@@ -1,0 +1,107 @@
+<metadata>
+  <table name="[dbo].[PhotoObjRAW]" />
+  <table name="[dbo].[PhotoObj]">
+    <column name="[objID]">
+      <summary> Unique ID. </summary>
+</column>
+    <column name="[objName]">
+      <summary> ASAS identification (coded from the star's RA_2000 and DEC_2000 in the format: hhmmss+ddmm.m). </summary>
+</column>
+    <column name="[ra]">
+      <summary> Right ascension in decimal degrees (J2000). </summary>
+<unit>deg J2000</unit>
+</column>
+    <column name="[dec]">
+      <summary> Declination in decimal degrees (J2000). </summary>
+<unit>deg J2000</unit>
+</column>
+    <column name="[cx]">
+      <summary> Cartesian X (J2000)</summary>
+</column>
+    <column name="[cy]">
+      <summary> Cartesian Y (J2000)</summary>
+</column>
+    <column name="[cz]">
+      <summary> Cartesian Z (J2000)</summary>
+</column>
+    <column name="[htmid]">
+      <summary> HTM ID (J2000)</summary>
+</column>
+    <column name="[PER]">
+      <summary> Period in days (or characteristic time scale of variation for irregular objects). </summary>
+<unit> days </unit>
+</column>
+    <column name="[HJD0]">
+      <summary>  Epoch of minimum (for eclipsing) or maximum (for pulsating) brightness. </summary>
+</column>
+    <column name="[VMAX]">
+      <summary>  Brightness at maximum. </summary>
+<unit> mag </unit>
+</column>
+    <column name="[VAMP]">
+      <summary> Amplitude of variation. </summary>
+<unit> mag </unit>
+</column>
+    <column name="[TYPE]">
+      <summary> One of the predefined classes: DSCT, RRC, RRAB, DCEP_FU, DCEP_FO, CW, ACV, BCEP, MIRA and MISC, or its combination. </summary>
+</column>
+    <column name="[GCVS_ID]">
+      <summary> GCVS name. </summary>
+</column>
+    <column name="[GCVS_TYPE]">
+      <summary> GCVS variability type. </summary>
+</column>
+    <column name="[IR12]">
+      <summary> IRAS flux at 12 microns (listed as -2.5 log flux). </summary>
+<unit> Jy </unit>
+</column>
+    <column name="[IR25]">
+      <summary>  IRAS flux at 25 microns. </summary>
+<unit> Jy </unit>
+</column>
+    <column name="[IR60]">
+      <summary>  IRAS flux at 60 microns. </summary>
+<unit> Jy </unit>
+</column>
+    <column name="[IR100]">
+      <summary>  IRAS flux at 100 microns. </summary>
+<unit> Jy </unit>
+</column>
+    <column name="[J]">
+      <summary> 2MASS J photometry. </summary>
+<unit> mag </unit>
+</column>
+    <column name="[H]">
+      <summary> 2MASS H photometry. </summary>
+<unit> mag </unit>
+</column>
+    <column name="[K]">
+      <summary> 2MASS K photometry. </summary>
+<unit> mag </unit>
+</column>
+    <column name="[V_IR12]">
+      <summary> V-IR12 color index. </summary>
+<unit> mag </unit>
+</column>
+    <column name="[V_J]">
+      <summary> V-J color index. </summary>
+<unit> mag </unit>
+</column>
+    <column name="[V_H]">
+      <summary> V-H color index. </summary>
+<unit> mag </unit>
+</column>
+    <column name="[V_K]">
+      <summary> V-K color index. </summary>
+<unit> mag </unit>
+</column>
+    <column name="[J_H]">
+      <summary> J-H color index. </summary>
+<unit> mag </unit>
+</column>
+    <column name="[H_K]">
+      <summary> H-K color index. </summary>
+<unit> mag </unit>
+</column>
+  </table>
+</metadata>
