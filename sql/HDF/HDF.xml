@@ -1,0 +1,136 @@
+<metadata>
+  <table name="[dbo].[PhotoObjRAW]" />
+  <table name="[dbo].[PhotoObj]">
+    <column name="[cx]">
+      <summary> Cartesian X (J2000)</summary>
+</column>
+    <column name="[cy]">
+      <summary> Cartesian Y (J2000)</summary>
+</column>
+    <column name="[cz]">
+      <summary> Cartesian Z (J2000)</summary>
+</column>
+    <column name="[htmid]">
+      <summary> HTM ID (J2000)</summary>
+</column>
+    <column name="[objID]">
+      <summary> This is the FOCAS catalog entry number. The numbers after the decimal point indicate the level of splitting.
+Both parents and daughters are included in the catalog shown here. Thus many objects are included repeatedly in the catalog,
+both as part of the parent and as a separate daughter entry. </summary>
+</column>
+    <column name="[x]">
+      <summary> The x pixel position of each object, as defined by brightest pixel within the 3x3 pixel grid with the greatest
+luminosity within the detection area. For objects with a bright off-center peak, this position can be significantly different
+from the weighted center of the luminosity distribution within the detection area. For the HDF, such differences are typically
+less than 0.1 arsces.</summary>
+<unit> pix </unit>
+</column>
+    <column name="[y]">
+      <summary> The y pixel position of each object, as defined by brightest pixel within the 3x3 pixel grid with the greatest
+luminosity within the detection area. For objects with a bright off-center peak, this position can be significantly different
+from the weighted center of the luminosity distribution within the detection area. For the HDF, such differences are typically
+less than 0.1 arsces. </summary>
+<unit> pix </unit>
+</column>
+    <column name="[ra]">
+      <summary> Degrees of the right ascension corresponding to the x, y centers, epoch J2000. </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[dec]">
+      <summary> Degrees of the declination corresponding to the x, y centers, epoch J2000. </summary>
+<unit> deg (J2000)  </unit>
+</column>
+    <column name="[mt]">
+      <summary> Total magnitude. The magnitudes of the detected sources in the F606W image.
+These magnitudes are in he AB system, where m = -2,5 log f_v � 48.60. The �isophotal�
+magnitude mi is determined from the sum of the counts within the detection isophote.
+The �total magnitude is computed from the number of counts within a �grown� area.
+The total area is determined by first filling in any x or y concavities in the isophote
+shape and then adding by rings around the object until the area exceeds the detection
+area by at least a factor of two. For daughter objects, the total magnitude is divided
+between the daughters in proportion to their isophotal luminosities. The isophoal
+mangitudes correspond to the higher isophotes at which the object broke into multiple components. </summary>
+</column>
+    <column name="[mt_limit]">
+      <summary>  </summary>
+</column>
+    <column name="[mi]">
+      <summary> Isophotal magnitude. The magnitudes of the detected sources in the F606W image.
+These magnitudes are in he AB system, where m = -2,5 log f_v � 48.60. The �isophotal�
+magnitude mi is determined from the sum of the counts within the detection isophote.
+The �total magnitude is computed from the number of counts within a �grown� area.
+The total area is determined by first filling in any x or y concavities in the isophote
+shape and then adding by rings around the object until the area exceeds the detection
+area by at least a factor of two. For daughter objects, the total magnitude is divided
+between the daughters in proportion to their isophotal luminosities. The isophoal
+mangitudes correspond to the higher isophotes at which the object broke into multiple components.  </summary>
+</column>
+    <column name="[mi_limit]">
+      <summary>  </summary>
+</column>
+    <column name="[U_B]">
+      <summary> Colors within the detection area. These are essentially isophotal colors measured to a
+faint limiting isophote defined from the summed F606W+F814W image. They are expressed in the AB system.
+(Our preferred notation for these colors is U_300 � B_450, B_450 � V606, and V_606 � I_814, to avoid
+confusion with the ground based Johnson and Str�mgren systems. Galaxies where one band is a non-detection,
+as defined by having signal-to-noise ration S/N&lt;2 within one of the bands, are marked as upper or lower
+limits (depending on which band drops out, see column xxx_limit). If both bands are upper limits, no color is given (-99). </summary>
+<unit> mag </unit>
+</column>
+    <column name="[U_B_limit]">
+      <summary> Galaxies where one band is a non-detection,  as defined by having signal-to-noise ratio S/N&lt;2 within one of the bands,
+are marked as upper, lower or both limits (depending on which band drops out). </summary>
+</column>
+    <column name="[B_V]">
+      <summary> Colors within the detection area. These are essentially isophotal colors measured to a
+faint limiting isophote defined from the summed F606W+F814W image. They are expressed in the AB system.
+(Our preferred notation for these colors is U_300 � B_450, B_450 � V606, and V_606 � I_814, to avoid
+confusion with the ground based Johnson and Str�mgren systems. Galaxies where one band is a non-detection,
+as defined by having signal-to-noise ration S/N&lt;2 within one of the bands, are marked as upper or lower
+limits (depending on which band drops out, see column xxx_limit). If both bands are upper limits, no color is given (-99).  </summary>
+<unit> mag </unit>
+</column>
+    <column name="[B_V_limit]">
+      <summary> Galaxies where one band is a non-detection,  as defined by having signal-to-noise ratio S/N&lt;2 within one of the bands,
+are marked as upper, lower or both limits (depending on which band drops out). </summary>
+</column>
+    <column name="[V_I]">
+      <summary> Colors within the detection area. These are essentially isophotal colors measured to a
+faint limiting isophote defined from the summed F606W+F814W image. They are expressed in the AB system.
+(Our preferred notation for these colors is U_300 � B_450, B_450 � V606, and V_606 � I_814, to avoid
+confusion with the ground based Johnson and Str�mgren systems. Galaxies where one band is a non-detection,
+as defined by having signal-to-noise ration S/N&lt;2 within one of the bands, are marked as upper or lower
+limits (depending on which band drops out, see column xxx_limit). If both bands are upper limits, no color is given (-99).  </summary>
+<unit> mag </unit>
+</column>
+    <column name="[V_I_limit]">
+      <summary> Galaxies where one band is a non-detection,  as defined by having signal-to-noise ratio S/N&lt;2 within one of the bands,
+are marked as upper, lower or both limits (depending on which band drops out). </summary>
+</column>
+    <column name="[SN]">
+      <summary> The signal-to-noise ratio of the detection in the summed F606W+F814W image, based on a semi-empirical noise model. (See 1996AJ....112.1335W) </summary>
+</column>
+    <column name="[area]">
+      <summary> Area in pixels within the detection isophote. </summary>
+<unit> pix </unit>
+</column>
+    <column name="[r1]">
+      <summary> Intensity-weighted first-moment radius determined from pixels within the detection isophote. The radii are determined relative
+to the x,y centers listed in the catalog. </summary>
+<unit> arcsec </unit>
+</column>
+    <column name="[bpa]">
+      <summary> The intensity-weighted axial ratio taken from the second moment of the light distribution </summary>
+<unit>  </unit>
+</column>
+    <column name="[PA]">
+      <summary> The intensity weighted position angle defined such that an object pointing North-South has Phi = 0,
+and the position angle increase as the major axis of the object rotates toward the east. (For further details see 1996AJ....112.1335W .)</summary>
+</column>
+    <column name="[Flags]">
+      <summary> S indicates that the source is a single object (not split into subcomponents). B indicates that the outer
+isophote of the source overlaps a chip boundary in one or more banpasses. F indicates that object components originally
+detected by FOCAS were manually merged back into their parent. </summary>
+</column>
+  </table>
+</metadata>
