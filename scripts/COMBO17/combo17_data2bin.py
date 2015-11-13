@@ -10,8 +10,6 @@ import pandas as pd
 import numpy as np
 
 # LOAD DATA
-# header should be checked for newer files
-# comment out header, units and the "hline" (------) rows
 
 # convert from HH:MM:SS.s DD:MM:SS.s
 
@@ -196,7 +194,5 @@ records = np.array(df.to_records(),dtype=np.dtype(types))
 # destination folder
 dst = r"C:\Data\ebanyai\project\Skyquery-data\COMBO-17\combo17.bin" 
 
-
-
 # write to file
-#records.tofile(dst)
+records.tofile(dst)

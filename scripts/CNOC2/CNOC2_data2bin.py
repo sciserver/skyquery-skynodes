@@ -10,8 +10,6 @@ import pandas as pd
 import numpy as np
 
 # LOAD DATA
-# header should be checked for newer files
-# comment out header, units and the "hline" (------) rows
 
 # convert from HH:MM:SS.s DD:MM:SS.s
 
@@ -40,7 +38,7 @@ cols = ["PPP","CNOC2sp","oRA","oDE","z","e_z","Rval","Sc","w_z","Imag","e_Imag",
 
 
 # grab the data
-df = pd.read_table(src,names=cols,index_col=False,comment="#",skipinitialspace=True)
+df = pd.read_table(src,names=cols,index_col=False,comment="#",skipinitialspace=True,skip_rows=127)
 df.fillna(value=-99,inplace=True)
 df["RA"],df["DEC"] = hmsdms2dd(df["RA1950"],df["DE1950"])
 

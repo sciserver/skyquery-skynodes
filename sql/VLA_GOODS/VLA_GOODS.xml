@@ -1,0 +1,79 @@
+<metadata>
+  <table name="[dbo].[PhotoObjRAW]" />
+  <table name="[dbo].[PhotoObj]">
+    <column name="[cx]">
+      <summary> Cartesian X (J2000)</summary>
+</column>
+    <column name="[cy]">
+      <summary> Cartesian Y (J2000)</summary>
+</column>
+    <column name="[cz]">
+      <summary> Cartesian Z (J2000)</summary>
+</column>
+    <column name="[htmid]">
+      <summary> HTM ID (J2000)</summary>
+</column>
+    <column name="[objID]">
+      <summary> Sequential id </summary>
+</column>
+    <column name="[Name]">
+      <summary> Catalog Source Number </summary>
+</column>
+    <column name="[RA]">
+      <summary> Right Ascension </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[e_RAs]">
+      <summary> Error in the Right Ascension </summary>
+<unit> arcsec (J2000) </unit>
+</column>
+    <column name="[DEC]">
+      <summary> Declination </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[e_DECs]">
+      <summary> Error in the Declination </summary>
+<unit>  arcsec (J2000) </unit>
+</column>
+    <column name="[SN]">
+      <summary> Peak Signal/Noise Ratio </summary>
+</column>
+    <column name="[Peak]">
+      <summary> Observed peak brightness. In units of microJanskeys/beam and
+uncorrected for primary beam or bandwidth smearing. </summary>
+<unit> uJy </unit>
+</column>
+    <column name="[e_Peak]">
+      <summary> Error in Observed peak brightness  </summary>
+<unit> uJy </unit>
+</column>
+    <column name="[Total]">
+      <summary> Total Flux Density </summary>
+<unit> uJy </unit>
+</column>
+    <column name="[e_Total]">
+      <summary> Error in Total Flux Density </summary>
+<unit> uJy </unit>
+</column>
+    <column name="[bmaj]">
+      <summary> Fitted Gaussian Major Axis FWHM </summary>
+<unit> arcsec </unit>
+</column>
+    <column name="[bmin]">
+      <summary> Fitted Gaussian Minor Axis FWHM </summary>
+<unit> arcsec </unit>
+</column>
+    <column name="[PA]">
+      <summary> Fitted Position Angle </summary>
+<unit> deg </unit>
+</column>
+    <column name="[ulim]">
+      <summary> bmaj-upper limit if bmaj=0.0. Or maximum size for very resolved sources. </summary>
+<unit> arcsec </unit>
+</column>
+    <column name="[beam_]">
+      <summary> map beam size </summary>
+<unit> arcsec </unit>
+</column>
+  </table>
+</metadata>
