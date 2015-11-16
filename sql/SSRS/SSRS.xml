@@ -1,0 +1,72 @@
+<metadata>
+  <table name="[dbo].[SpecObjRAW]" />
+  <table name="[dbo].[SpecObj]">
+    <column name="[cx]">
+      <summary> Cartesian X (J2000)</summary>
+</column>
+    <column name="[cy]">
+      <summary> Cartesian Y (J2000)</summary>
+</column>
+    <column name="[cz]">
+      <summary> Cartesian Z (J2000)</summary>
+</column>
+    <column name="[htmid]">
+      <summary> HTM ID (J2000)</summary>
+</column>
+    <column name="[seqID]">
+      <summary> sequential ID </summary>
+</column>
+    <column name="[n_GSC]">
+      <summary> f for galaxies fainter than the limit mSSRS2=15.5 </summary>
+</column>
+    <column name="[GSC]">
+      <summary> GSC (Cat. I/220) number of the galaxy  </summary>
+</column>
+    <column name="[m_GSC]">
+      <summary> [NSEW] Multiplicity index on GSC </summary>
+</column>
+    <column name="[ESO_MCG]">
+      <summary> ESO (Cat. VII/34) or MCG (Cat. VII/100) name </summary>
+</column>
+    <column name="[RA]">
+      <summary> )Right ascension (ICRS) (computed by VizieR, not part of the original data)  </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[DEC]">
+      <summary> Declination (ICRS) (computed by VizieR, not part of the original data)  </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[RA_1950]">
+      <summary> Right ascension (B1950.0) </summary>
+<unit> deg (B1950) </unit>
+</column>
+    <column name="[DEC_1950]">
+      <summary> Declination (B1950.0) </summary>
+<unit> deg (B1950) </unit>
+</column>
+    <column name="[mSSR]">
+      <summary> SSRS2 magnitude. m(SSRS2) = 0.59m(GSC) + 8.42 </summary>
+<unit> mag </unit>
+</column>
+    <column name="[RV]">
+      <summary> Radial velocity </summary>
+<unit> km/s </unit>
+</column>
+    <column name="[e_RV]">
+      <summary> rms uncertainty on RV </summary>
+<unit> km/s </unit>
+</column>
+    <column name="[TT]">
+      <summary> de Vaucouleurs' galaxy morphology (T-types) </summary>
+</column>
+    <column name="[r_RV]">
+      <summary> Source for the radial velocity in refs.dat file  </summary>
+</column>
+    <column name="[Note]">
+      <summary> Note </summary>
+</column>
+    <column name="[NGC_IC]">
+      <summary> NGC or IC (Cat. VII/118) name </summary>
+</column>
+  </table>
+</metadata>
