@@ -1,0 +1,81 @@
+<metadata>
+  <table name="[dbo].[SpecObjRAW]" />
+  <table name="[dbo].[SpecObj]">
+    <column name="[cx]">
+      <summary> Cartesian X (J2000)</summary>
+</column>
+    <column name="[cy]">
+      <summary> Cartesian Y (J2000)</summary>
+</column>
+    <column name="[cz]">
+      <summary> Cartesian Z (J2000)</summary>
+</column>
+    <column name="[htmid]">
+      <summary> HTM ID (J2000)</summary>
+</column>
+    <column name="[ID]">
+      <summary> WiggleZ name (ANNJHHMMSSsss+DDMMSSss). "ANN" represent the regions, where "NN" represents the hour of right
+00, 01, 03 and 22 for the South Galactic Pole; 09, 11 and 15 for the North Galactic Pole. </summary>
+</column>
+    <column name="[RA]">
+      <summary> Right ascension in decimal degrees </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[DEC]">
+      <summary> Declination in decimal degrees </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[Redshift]">
+      <summary> [-0.02/6.1] Redshift </summary>
+</column>
+    <column name="[Qop]">
+      <summary> [3/5]Redshift quality flag, 5=best. Redshift Quality Definitions:
+1=	No redshift was possible; highly noisy spectra.
+2=	An uncertain redshift was assigned.
+3=	A reasonably confident redshift; if based on [OII] alone, then the doublet is resolved or partially resolved.
+4=	A redshift that has multiple (obvious) emission lines all in agreement.
+5=	An excellent redshift with high S/N that may be suitable as a template.
+6=	Reserved for Galactic stars used as calibration sources. </summary>
+</column>
+    <column name="[u_SDSS]">
+      <summary> SDSS u magnitude.  </summary>
+<unit> mag </unit>
+</column>
+    <column name="[g_SDSS]">
+      <summary> SDSS g magnitude.  </summary>
+<unit> mag </unit>
+</column>
+    <column name="[r_SDSS]">
+      <summary> SDSS r magnitude. </summary>
+<unit> mag </unit>
+</column>
+    <column name="[i_SDSS]">
+      <summary> SDSS i magnitude.  </summary>
+<unit> mag </unit>
+</column>
+    <column name="[z_SDSS]">
+      <summary> SDSSz magnitude.  </summary>
+<unit> mag </unit>
+</column>
+    <column name="[g_RCS2]">
+      <summary> RCS2 g magnitude </summary>
+<unit> mag </unit>
+</column>
+    <column name="[r_RCS2]">
+      <summary> RCS2 r magnitude.  </summary>
+<unit> mag </unit>
+</column>
+    <column name="[z_RCS2]">
+      <summary> RCS2 z magnitude  </summary>
+<unit> mag </unit>
+</column>
+    <column name="[NUV]">
+      <summary> GALEX NUV magnitude  </summary>
+<unit> mag </unit>
+</column>
+    <column name="[FUV]">
+      <summary>  GALEX FUV magnitude </summary>
+<unit> mag </unit>
+</column>
+  </table>
+</metadata>

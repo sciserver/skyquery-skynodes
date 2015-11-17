@@ -1,0 +1,123 @@
+<metadata>
+  <table name="[dbo].[SpecObjRAW]" />
+  <table name="[dbo].[SpecObj]">
+    <column name="[cx]">
+      <summary> Cartesian X (J2000)</summary>
+</column>
+    <column name="[cy]">
+      <summary> Cartesian Y (J2000)</summary>
+</column>
+    <column name="[cz]">
+      <summary> Cartesian Z (J2000)</summary>
+</column>
+    <column name="[htmid]">
+      <summary> HTM ID (J2000)</summary>
+</column>
+    <column name="[ID]">
+      <summary> Observation identification </summary>
+</column>
+    <column name="[RA]">
+      <summary> Right ascension (J2000) </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[DEC]">
+      <summary> Declination (J2000) </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[Jname]">
+      <summary> Name based on J2000 position </summary>
+</column>
+    <column name="[z]">
+      <summary> Redshift (Z) </summary>
+</column>
+    <column name="[q_z]">
+      <summary> [1,219] Redshift quality. The last (rightmost) digit characterises the quality of the redshift:
+0=	No redshift could be assigned to the 1D spectrum.
+1=	50% confidence in the redshift.
+2=	75% confidence in the redshift.
+3=	95% confidence.
+4=	100% confidence.
+9=	Single isolated emission line spectraendTABULAR A value less than 10 indicates the quality of primary targets,
+objects which have been targeted in the VIMOS spectral slit. To this quality value, the following number may be added:
++10=	a primary QSO target
++20=	a secondary identified target, i.e. an object which is present by chance in the spectral slit in addition of the
+target; thus the secondary object is not ensured to be fully centered within the slit.
++210=	secondary QSO identified target </summary>
+</column>
+    <column name="[phf]">
+      <summary> [0,1] Photometry is 0=questionable, 1=OK </summary>
+</column>
+    <column name="[UEmag]">
+      <summary>  AB magnitude in ESO U/360 filter. the two U filters differ slightly:
+–the ESO U filter has a central wavelength of 340nm and a
+FWHMof 73nm, has his highest wavelength close to 400nm.
+–the Loiano U filter has a central wavelength of 362nm and a
+FWHMof 53nm; it also presents a red leak around 720nm </summary>
+<unit> mag </unit>
+</column>
+    <column name="[e_UEmag]">
+      <summary> Mean error on UEmag </summary>
+<unit> mag </unit>
+</column>
+    <column name="[ULmag]">
+      <summary> AB magnitude in Loiano U filter.  the two U filters differ slightly:
+–the ESO U filter has a central wavelength of 340nm and a
+FWHMof 73nm, has his highest wavelength close to 400nm.
+–the Loiano U filter has a central wavelength of 362nm and a
+FWHMof 53nm; it also presents a red leak around 720nm </summary>
+<unit> mag </unit>
+</column>
+    <column name="[e_ULmag]">
+      <summary> Mean error on ULmag </summary>
+<unit> mag </unit>
+</column>
+    <column name="[Bmag]">
+      <summary> AB magnitude in B filter </summary>
+<unit> mag </unit>
+</column>
+    <column name="[e_Bmag]">
+      <summary> Mean error on Bmag </summary>
+<unit> mag </unit>
+</column>
+    <column name="[Vmag]">
+      <summary> AB magnitude in V filter </summary>
+<unit> mag </unit>
+</column>
+    <column name="[e_Vmag]">
+      <summary> Mean error on Vmag </summary>
+<unit> mag </unit>
+</column>
+    <column name="[Rmag]">
+      <summary> AB magnitude in R filter  </summary>
+<unit> mag </unit>
+</column>
+    <column name="[e_Rmag]">
+      <summary> Mean error on Rmag </summary>
+<unit> mag </unit>
+</column>
+    <column name="[Imag]">
+      <summary> AB magnitude in I filter </summary>
+<unit> mag </unit>
+</column>
+    <column name="[e_Imag]">
+      <summary> Mean error on Imag  </summary>
+<unit> mag </unit>
+</column>
+    <column name="[Jmag]">
+      <summary> AB magnitude in J filter </summary>
+<unit> mag </unit>
+</column>
+    <column name="[e_Jmag]">
+      <summary> Mean error on Jmag </summary>
+<unit> mag </unit>
+</column>
+    <column name="[Kmag]">
+      <summary> AB magnitude in K filter </summary>
+<unit> mag </unit>
+</column>
+    <column name="[e_Kmag]">
+      <summary> Mean error on Kmag </summary>
+<unit> mag </unit>
+</column>
+  </table>
+</metadata>
