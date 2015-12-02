@@ -43,8 +43,8 @@ df["ID"] = df.index+1
 # DEFINE DATA TYPES FOR BINARY FORMAT
 dt_df = np.dtype([("ID","i8"),
                   ("OBJID","S13"),
-                  ("RA","f4"),
-                  ("DEC","f4"),
+                  ("RA","f8"),
+                  ("DEC","f8"),
                   ("PER","f4"),
                   ("HJD0","f8"),
                   ("VMAX","f4"),

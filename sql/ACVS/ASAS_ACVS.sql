@@ -11,8 +11,8 @@ CREATE TABLE dbo.PhotoObjRAW
 (
 	[objID] bigint NOT NULL,
 	[objName] char(13) NOT NULL,
-	[ra] real NOT NULL,
-	[dec] real NOT NULL,
+	[ra] float NOT NULL,
+	[dec] float NOT NULL,
 	[PER]  real NOT NULL,
 	[HJD0] float NOT NULL,
 	[VMAX] real NOT NULL,
@@ -70,11 +70,11 @@ CREATE TABLE dbo.PhotoObj
 
 	--/ <summary> Right ascension in decimal degrees (J2000). </summary>
 	--/ <unit>deg J2000</unit>
-	[ra] real NOT NULL,
+	[ra] float NOT NULL,
 
 	--/ <summary> Declination in decimal degrees (J2000). </summary>
 	--/ <unit>deg J2000</unit>
-	[dec] real NOT NULL,
+	[dec] float NOT NULL,
 
 	--/ <summary> Cartesian X (J2000)</summary>
 	[cx] [float] NOT NULL,
