@@ -881,6 +881,11 @@ CROSS APPLY Spherical.point.ConvertEqToXyz(ra, dec) AS c
 
 GO
 
+-- DROP RAW TABLE
+DROP TABLE PhotoObjRAW;
+
+GO
+
 -- HTM index
 CREATE NONCLUSTERED INDEX [IX_PhotoObj_htmid] ON [dbo].[PhotoObj]
 (

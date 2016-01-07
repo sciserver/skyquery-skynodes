@@ -1,11 +1,15 @@
 USE [First]
 GO
 
+IF OBJECT_ID ('dbo.PhotoObjRAW', 'U') IS NOT NULL
+	DROP TABLE dbo.PhotoObjRAW;
+
+GO
+
 -- CREATE PhotoObjRAW TABLE
 
 CREATE TABLE dbo.PhotoObjRAW
-(
-	[objID] bigint NOT NULL,
+(	[objID] bigint NOT NULL,
 	[ra] float NOT NULL,
 	[dec] float NOT NULL,
 	[Ps]  real NOT NULL,
@@ -45,7 +49,7 @@ GO
 
 BULK INSERT 
    PhotoObjRAW
-      FROM 'C:\Data\ebanyai\project\FIRST\FIRST_binTest.npy' 
+      FROM 'C:\Data\ebanyai\project\FIRST\FIRST.bin' 
      WITH 
     ( 
    DATAFILETYPE = 'native',
@@ -54,6 +58,12 @@ BULK INSERT
 GO
 
 -- CREATE PhotoObj TABLE
+
+IF OBJECT_ID ('dbo.PhotoObj', 'U') IS NOT NULL
+	DROP TABLE dbo.PhotoObj;
+
+GO
+
 
 CREATE TABLE dbo.PhotoObj 
 (
@@ -295,6 +305,11 @@ SELECT objID, ra, dec, c.x AS  cx, c.y AS cy, c.z AS cz, Spherical.htm.FromXyz(c
 Min,PA, fMaj, fMin, fPA, Field, num_SDSS, Sep_SDSS, i_SDSS, Cl_SDSS, num_2MASS, Sep_2MASS, K_2MASS, Mean_yr, Mean_MJD, rms_MJD
 FROM dbo.PhotoObjRAW
 CROSS APPLY Spherical.point.ConvertEqToXyz(ra, dec) AS c
+GO
+
+-- DROP RAW TABLE
+DROP TABLE PhotoObjRAW
+
 GO
 
 -- HTM index

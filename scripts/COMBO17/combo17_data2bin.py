@@ -8,27 +8,10 @@ AGES to binary file
 
 import pandas as pd
 import numpy as np
+import astropy.units as u
+from astropy.coordinates import SkyCoord
 
 # LOAD DATA
-
-# convert from HH:MM:SS.s DD:MM:SS.s
-
-def hmsdms2dd(ra,dec):
-   i=0
-   newRa, newDec = np.array(np.zeros(len(ra))),np.array(np.zeros(len(dec)))
-   for item in ra:
-      newRa[i] = (int(item[0:2])+ int(item[3:5])/60.+ float(item[6:])/3600.)*15
-      i+=1
-   i=0
-   for item in dec:
-      if int(item[0:3]) < 0:
-          newDec[i] = int(item[0:3]) - int(item[4:6])/60. - float(item[7:]) /3600.
-      else: 
-          newDec[i] = int(item[0:3]) + int(item[4:6])/60. + float(item[7:]) /3600.
-      i+=1
-   return newRa.astype(np.float), newDec.astype(np.float)
-
-
 # source file:
 src = "C:\\Data\\ebanyai\\project\\Skyquery-data\\COMBO-17\\public_catalogue-20150923_combo.dat"
 cols = ["objID","RAh","RAm","RAs","DEd","DEm","DEs","x_pos","y_pos",
@@ -71,8 +54,8 @@ for name,data_col in zip(cols,ad):
     df[name] = data_col
     
 
-
-df["RA"],df["DEC"] = hmsdms2dd(df["RAh"]+df["RAm"]+df["RAs"],df["DEd"]+df["DEm"]+df["DEs"])
+coords = SkyCoord(ra=(df["RAh"]+" "+df["RAm"]+" "+df["RAs"]),dec=(df["DEd"]+" "+df["DEm"]+" "+df["DEs"]),unit=(u.hourangle,u.deg))
+df["RA"],df["DEC"] = coords.ra.deg, coords.dec.deg
 
 df.replace(to_replace="^\s+$",value=-9999,regex=True,inplace=True)
 # grab the data

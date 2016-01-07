@@ -3,32 +3,17 @@
 Created on Thu Oct  1 12:09:37 2015
 
 @author: ebanyai
-AGES to binary file
 """
 
 import pandas as pd
 import numpy as np
+import astropy.units as u
+from astropy.coordinates import SkyCoord
+from astropy.coordinates import FK5
 
 # LOAD DATA
 
 # convert from HH:MM:SS.s DD:MM:SS.s
-
-def hmsdms2dd(ra,dec):
-   i=0
-   newRa, newDec = np.array(np.zeros(len(ra))),np.array(np.zeros(len(dec)))
-   for item in ra:
-      newRa[i] = (int(item[0:2])+ int(item[3:5])/60.+ float(item[6:])/3600.)*15
-      i+=1
-   i=0
-   for item in dec:
-      if int(item[0:3]) < 0:
-          newDec[i] = int(item[0:3]) - int(item[4:6])/60. - float(item[7:]) /3600.
-      else: 
-          newDec[i] = int(item[0:3]) + int(item[4:6])/60. + float(item[7:]) /3600.
-      i+=1
-   return newRa.astype(np.float), newDec.astype(np.float)
-
-
 # source file:
 src = "C:\\Data\\ebanyai\\project\\Skyquery-data\\CNOC2\\CNOC2-20150923_VizieR.tsv"
 cols = ["PPP","CNOC2sp","oRA","oDE","z","e_z","Rval","Sc","w_z","Imag","e_Imag","Ice",
@@ -38,9 +23,13 @@ cols = ["PPP","CNOC2sp","oRA","oDE","z","e_z","Rval","Sc","w_z","Imag","e_Imag",
 
 
 # grab the data
-df = pd.read_table(src,names=cols,index_col=False,comment="#",skipinitialspace=True,skip_rows=127)
+df = pd.read_table(src,names=cols,index_col=False,skipinitialspace=True,skiprows=127)
+
+coordsOld = SkyCoord(df["RA1950"],df["DE1950"],frame="fk5",equinox="J1950",unit =(u.hourangle,u.deg))
+coords = coordsOld.transform_to(FK5(equinox="J2000"))
+df["RA"],df["DEC"] = coords.ra.deg, coords.dec.deg
+
 df.fillna(value=-99,inplace=True)
-df["RA"],df["DEC"] = hmsdms2dd(df["RA1950"],df["DE1950"])
 
 
 # DEFINE DATA TYPES FOR BINARY FORMAT
