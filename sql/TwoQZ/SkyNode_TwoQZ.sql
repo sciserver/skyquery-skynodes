@@ -1,13 +1,19 @@
 USE [SkyNode_TwoQZ]
 GO
 
-CREATE TABLE [dbo].[PhotoObj](
+CREATE TABLE [dbo].[SpecObj]
+(
 --/ <summary>The main PhotoObj table for the 2QZ catalog</summary>
 --/ <remarks>The main PhotoObj table for the 2QZ catalog</remarks>
 	[objID] [bigint] NOT NULL, --/ <column>unique object identifier</column>
 	[name] [varchar](16) NOT NULL, --/ <column>IAU format object name</column>
 	[ra] [float] NOT NULL, --/ <column unit="deg">J2000 right ascension</column>
 	[dec] [float] NOT NULL, --/ <column unit="deg">J2000 declination</column>
+	[cx] [float] NOT NULL, --/ <column>Cartesian coordinate x</column>
+	[cy] [float] NOT NULL, --/ <column>Cartesian coordinate y</column>
+	[cz] [float] NOT NULL, --/ <column>Cartesian coordinate z</column>
+	[htmid] [bigint] NOT NULL, --/ <column>HTM ID</column>
+	[zoneid] [bigint] NOT NULL, --/ <column>Zone ID</column>
 	[cat_num] [int] NOT NULL, --/ <column>Internal catalogue object number</column>
 	[cat_name] [varchar](10) NOT NULL, --/ <column>Internal catalogue object name</column>
 	[sector] [varchar](25) NOT NULL, --/ <column>Name of the sector this object inhabits</column>
@@ -41,38 +47,57 @@ CREATE TABLE [dbo].[PhotoObj](
 	[Xray] [real] NOT NULL, --/ <column unit="keV">RASS  x-ray flux, 0.2-2.4keV (x10-13 erg s-1 cm-2)</column>
 	[dust] [real] NOT NULL, --/ <column>E_{B-V} (Schlegel, Finkbeiner &amp; Davis 1998)</column>
 	[comm1] [varchar](20) NOT NULL, --/ <column>Specific comments on observation 1</column>
-	[comm2] [varchar](20) NOT NULL, --/ <column>Specific comments on observation 2</column>
-  [cx] [float] NULL, --/ <column>Cartesian coordinate x</column>
-	[cy] [float] NULL, --/ <column>Cartesian coordinate y</column>
-	[cz] [float] NULL, --/ <column>Cartesian coordinate z</column>
-	[htmid] [bigint] NULL --/ <column>Unique HTM ID</column>
+	[comm2] [varchar](20) NOT NULL --/ <column>Specific comments on observation 2</column>
 ) ON [PRIMARY]
 
 
-ALTER TABLE [dbo].[PhotoObj] ADD PRIMARY KEY CLUSTERED 
+ALTER TABLE [dbo].[SpecObj] 
+ADD CONSTRAINT [PK_SpecObj] PRIMARY KEY CLUSTERED 
 (
 	[objID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 -- Index to support on the fly zone table creation
-CREATE NONCLUSTERED INDEX [IX_PhotoObj_Zone] ON [dbo].[PhotoObj] 
+CREATE NONCLUSTERED INDEX [IX_SpecObj_Zone] ON [dbo].[SpecObj] 
 (
 	[dec] ASC,
 	[ra] ASC,
 	[cx] ASC,
 	[cy] ASC,
 	[cz] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+GO
+
+
+CREATE NONCLUSTERED INDEX [IX_SpecObj_ZoneID] ON [dbo].[SpecObj] 
+(
+	[zoneid] ASC,
+	[dec] ASC,
+	[ra] ASC,
+	[cx] ASC,
+	[cy] ASC,
+	[cz] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 
 -- HTM index
-CREATE NONCLUSTERED INDEX [IX_PhotoObj_HtmID] ON [dbo].[PhotoObj] 
+CREATE NONCLUSTERED INDEX [IX_SpecObj_HtmID] ON [dbo].[SpecObj] 
 (
 	[htmid] ASC,
+	[ra] ASC,
+	[dec] ASC,
 	[cx] ASC,
 	[cy] ASC,
 	[cz] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO

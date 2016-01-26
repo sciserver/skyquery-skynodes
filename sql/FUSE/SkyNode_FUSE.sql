@@ -13,6 +13,11 @@ CREATE TABLE [dbo].[PhotoObj](
 	[TARGNAME] [varchar](64) NOT NULL, --/ <column>Target name on proposal</column>
 	[RA] [float] NOT NULL, --/ <column unit="deg">Right ascension of the target</column>
 	[DEC] [float] NOT NULL, --/ <column unit="deg">Declination of the target</column>
+	[cx] [float] NOT NULL, --/ <column>Cartesian coordinate x</column>
+	[cy] [float] NOT NULL, --/ <column>Cartesian coordinate y</column>
+	[cz] [float] NOT NULL, --/ <column>Cartesian coordinate z</column>
+	[htmid] [bigint] NOT NULL, --/ <column>HTM ID</column>
+	[zoneid] [bigint] NOT NULL, --/ <column>Zone ID</column>
 	[APER_PA] [float] NOT NULL, --/ <column unit="deg">Position angle of Y axis</column>
 	[ELAT] [float] NOT NULL, --/ <column unit="deg">Ecliptic latitud</column>
 	[ELONG] [float] NOT NULL, --/ <column unit="deg">Ecliptic longitud</column>
@@ -38,18 +43,17 @@ CREATE TABLE [dbo].[PhotoObj](
 	[BANDWID] [float] NOT NULL, --/ <column unit="Angstroms">Bandwidth of the data</column>
 	[CENTRWV] [float] NOT NULL, --/ <column unit="Angstroms">Central wavelenght of the data</column>
 	[WAVEMIN] [float] NOT NULL, --/ <column unit="Angstroms">Minimun wavelenght of the data</column>
-	[WAVEMAX] [float] NOT NULL, --/ <column unit="Angstroms">Maximun wavelenght of the data</column>
-	[cx] [float] NULL, --/ <column>Cartesian coordinate x</column>
-	[cy] [float] NULL, --/ <column>Cartesian coordinate y</column>
-	[cz] [float] NULL, --/ <column>Cartesian coordinate z</column>
-	[htmid] [bigint] NULL --/ <column>Unique HTM ID</column>
+	[WAVEMAX] [float] NOT NULL  --/ <column unit="Angstroms">Maximun wavelenght of the data</column>
 ) ON [PRIMARY]
 
 
-ALTER TABLE [dbo].[PhotoObj] ADD  CONSTRAINT [PK_PhotoObj] PRIMARY KEY CLUSTERED 
+ALTER TABLE [dbo].[PhotoObj] 
+ADD  CONSTRAINT [PK_PhotoObj] PRIMARY KEY CLUSTERED 
 (
 	[objID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 -- Index to support on the fly zone table creation
@@ -60,7 +64,23 @@ CREATE NONCLUSTERED INDEX [IX_PhotoObj_Zone] ON [dbo].[PhotoObj]
 	[cx] ASC,
 	[cy] ASC,
 	[cz] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+GO
+
+
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_ZoneID] ON [dbo].[PhotoObj] 
+(
+	[zoneid] ASC,
+	[dec] ASC,
+	[ra] ASC,
+	[cx] ASC,
+	[cy] ASC,
+	[cz] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 
@@ -68,17 +88,21 @@ GO
 CREATE NONCLUSTERED INDEX [IX_PhotoObj_HtmID] ON [dbo].[PhotoObj] 
 (
 	[htmid] ASC,
+	[ra] ASC,
+	[dec] ASC,
 	[cx] ASC,
 	[cy] ASC,
 	[cz] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 CREATE TABLE [dbo].[SpecLine](
 --/ <summary>The flux for each spectral line is in this table</summary>
 --/ <remarks></remarks>
 	[ObjID] [bigint] NOT NULL, --/ <column></column>
-	[LineID] [int] IDENTITY(1,1) NOT NULL, --/ <column>Unique ID for each spectral line</column>
+	[LineID] [int] NOT NULL, --/ <column>Unique ID for each spectral line</column>
 	[WAVE] [float] NOT NULL, --/ <column>Wavelength</column>
 	[FLUX] [float] NOT NULL, --/ <column>Flux</column>
 	[ERROR] [float] NOT NULL --/ <column>Error</column>
@@ -92,7 +116,8 @@ ALTER TABLE [dbo].[SpecLine] ADD  CONSTRAINT [PK_SpecLine] PRIMARY KEY CLUSTERED
 GO
 
 
-CREATE TABLE [dbo].[SpecObj](
+CREATE TABLE [dbo].[SpecObj]
+(
 --/ <summary>The main table containing the astronomical data</summary>
 --/ <remarks></remarks>
 	[objID] [bigint] NOT NULL, --/ <column>Unique ID of each object</column>
@@ -105,6 +130,11 @@ CREATE TABLE [dbo].[SpecObj](
 	[TARGNAME] [varchar](64) NOT NULL, --/ <column>Target name on proposal</column>
 	[RA] [float] NOT NULL, --/ <column unit="deg">Right ascension of the target</column>
 	[DEC] [float] NOT NULL, --/ <column unit="deg">Declination of the target</column>
+	[cx] [float] NOT NULL, --/ <column>Cartesian coordinate x</column>
+	[cy] [float] NOT NULL, --/ <column>Cartesian coordinate y</column>
+	[cz] [float] NOT NULL, --/ <column>Cartesian coordinate z</column>
+	[htmid] [bigint] NOT NULL, --/ <column>HTM ID</column>
+	[zoneid] [bigint] NOT NULL, --/ <column>Zone ID</column>
 	[APER_PA] [float] NOT NULL, --/ <column unit="deg">Position angle of Y axis</column>
 	[ELAT] [float] NOT NULL, --/ <column unit="deg">Ecliptic latitud</column>
 	[ELONG] [float] NOT NULL, --/ <column unit="deg">Ecliptic longitud</column>
@@ -130,18 +160,58 @@ CREATE TABLE [dbo].[SpecObj](
 	[BANDWID] [float] NOT NULL, --/ <column unit="Angstroms">Bandwidth of the data</column>
 	[CENTRWV] [float] NOT NULL, --/ <column unit="Angstroms">Central wavelenght of the data</column>
 	[WAVEMIN] [float] NOT NULL, --/ <column unit="Angstroms">Minimun wavelenght of the data</column>
-	[WAVEMAX] [float] NOT NULL, --/ <column unit="Angstroms">Maximun wavelenght of the data</column>
-	[cx] [float] NULL, --/ <column>Cartesian coordinate x</column>
-	[cy] [float] NULL, --/ <column>Cartesian coordinate y</column>
-	[cz] [float] NULL, --/ <column>Cartesian coordinate z</column>
-	[htmid] [bigint] NULL --/ <column>Unique HTM ID</column>
+	[WAVEMAX] [float] NOT NULL --/ <column unit="Angstroms">Maximun wavelenght of the data</column>
 ) ON [PRIMARY]
 
 
-ALTER TABLE [dbo].[SpecObj] ADD  CONSTRAINT [PK_SpecObj] PRIMARY KEY CLUSTERED 
+ALTER TABLE [dbo].[SpecObj] 
+ADD CONSTRAINT [PK_SpecObj] PRIMARY KEY CLUSTERED 
 (
 	[objID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 
+-- Index to support on the fly zone table creation
+CREATE NONCLUSTERED INDEX [IX_SpecObj_Zone] ON [dbo].[SpecObj] 
+(
+	[dec] ASC,
+	[ra] ASC,
+	[cx] ASC,
+	[cy] ASC,
+	[cz] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+GO
+
+
+CREATE NONCLUSTERED INDEX [IX_SpecObj_ZoneID] ON [dbo].[SpecObj] 
+(
+	[zoneid] ASC,
+	[dec] ASC,
+	[ra] ASC,
+	[cx] ASC,
+	[cy] ASC,
+	[cz] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+GO
+
+
+-- HTM index
+CREATE NONCLUSTERED INDEX [IX_SpecObj_HtmID] ON [dbo].[SpecObj] 
+(
+	[htmid] ASC,
+	[ra] ASC,
+	[dec] ASC,
+	[cx] ASC,
+	[cy] ASC,
+	[cz] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+GO

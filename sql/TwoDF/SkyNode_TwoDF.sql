@@ -1,16 +1,18 @@
 USE SkyNode_TwoDF
 
-CREATE TABLE [dbo].[PhotoObj](
+CREATE TABLE [dbo].[PhotoObj]
+(
 --/ <summary>The main PhotoObj table for the 2DF catalog</summary>
 --/ <remarks>The main PhotoObj table for the 2DF catalog</remarks>
 	[objID] [bigint] NOT NULL, --/ <column>unique object identifier, SEQNUM in original catalog</column>
 	[cat] [char](1) NOT NULL, --/ <column>Catalogue Type: n for NGP,s for SGP and r for random fiels</column>
 	[ra] [float] NOT NULL, --/ <column unit="deg">J2000 right ascension</column>
 	[dec] [float] NOT NULL, --/ <column unit="deg">J2000 declination</column>
-  [cx] [float] NULL, --/ <column>Cartesian coordinate x</column>
+    [cx] [float] NULL, --/ <column>Cartesian coordinate x</column>
 	[cy] [float] NULL, --/ <column>Cartesian coordinate y</column>
 	[cz] [float] NULL, --/ <column>Cartesian coordinate z</column>
-	[htmid] [bigint] NULL, --/ <column>Unique HTM ID</column>
+	[htmid] [bigint] NULL, --/ <column>HTM ID</column>
+	[zoneid] [bigint] NULL, --/ <column>Unique HTM ID</column>
 	[bjsel] [real] NOT NULL, --/ <column unit="mag">Final bj magnitude with extinction correction</column>
 	[prob] [real] NOT NULL, --/ <column>psi classification parameter</column>
 	[park] [real] NOT NULL, --/ <column>k classification parameter = k / k_star</column>
@@ -38,11 +40,15 @@ CREATE TABLE [dbo].[PhotoObj](
 	[bjg_100] [real] NOT NULL, --/ <column unit="mag">100k release bj magnitude without extinction correction</column>
 	[bjsel100] [real] NOT NULL --/ <column unit="mag">100k release bj  magnitude with extinction correction</column>
 ) ON [PRIMARY]
+GO
 
-ALTER TABLE [dbo].[PhotoObj] ADD PRIMARY KEY CLUSTERED 
+ALTER TABLE [dbo].[PhotoObj]
+ADD CONSTRAINT [PK_PhotoObj] PRIMARY KEY CLUSTERED 
 (
 	[objID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 -- Index to support on the fly zone table creation
@@ -53,7 +59,23 @@ CREATE NONCLUSTERED INDEX [IX_PhotoObj_Zone] ON [dbo].[PhotoObj]
 	[cx] ASC,
 	[cy] ASC,
 	[cz] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+GO
+
+
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_ZoneID] ON [dbo].[PhotoObj] 
+(
+	[zoneid] ASC,
+	[dec] ASC,
+	[ra] ASC,
+	[cx] ASC,
+	[cy] ASC,
+	[cz] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 
@@ -61,13 +83,20 @@ GO
 CREATE NONCLUSTERED INDEX [IX_PhotoObj_HtmID] ON [dbo].[PhotoObj] 
 (
 	[htmid] ASC,
+	[ra] ASC,
+	[dec] ASC,
 	[cx] ASC,
 	[cy] ASC,
 	[cz] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
-CREATE TABLE [dbo].[SpecObj](
+---------------------------------------------------------------
+
+CREATE TABLE [dbo].[SpecObj]
+(
 --/ <summary>The main SpecObj table for the 2DF catalog</summary>
 --/ <remarks>The main SpecObj table for the 2DF catalog</remarks>
 	[objID] [bigint] NOT NULL, --/ <column>unique object identifier, SEQNUM in original catalog</column>
@@ -77,10 +106,11 @@ CREATE TABLE [dbo].[SpecObj](
 	[UKST] [varchar](3) NOT NULL, --/ <column>UKST plate (=IFIELD)</column>
 	[ra] [float] NOT NULL, --/ <column unit="deg">Right Ascension (J2000)</column>
 	[dec] [float] NOT NULL, --/ <column unit="deg">Declination (J2000)</column>
-  [cx] [float] NULL, --/ <column>Cartesian coordinate x</column>
+	[cx] [float] NULL, --/ <column>Cartesian coordinate x</column>
 	[cy] [float] NULL, --/ <column>Cartesian coordinate y</column>
 	[cz] [float] NULL, --/ <column>Cartesian coordinate z</column>
-	[htmid] [bigint] NULL, --/ <column>Unique HTM ID</column>
+	[htmid] [bigint] NULL, --/ <column>HTM ID</column>
+	[zoneid] [bigint] NULL, --/ <column>Zone ID</column>
 	[bjg] [real] NOT NULL, --/ <column unit="mag">Final bj magnitude without extinction correction</column>
 	[bjsel] [real] NOT NULL, --/ <column unit="mag">Final bj magnitude with extinction correction</column>
 	[bjg_old] [real] NOT NULL, --/ <column unit="mag">Original bj magnitude without extinction correction</column>
@@ -103,9 +133,53 @@ CREATE TABLE [dbo].[SpecObj](
 ) ON [PRIMARY]
 
 
-ALTER TABLE [dbo].[SpecObj] ADD PRIMARY KEY CLUSTERED 
+ALTER TABLE [dbo].[SpecObj]
+ADD CONSTRAINT [PK_SpecObj] PRIMARY KEY CLUSTERED 
 (
 	[objID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
+-- Index to support on the fly zone table creation
+CREATE NONCLUSTERED INDEX [IX_SpecObj_Zone] ON [dbo].[SpecObj] 
+(
+	[dec] ASC,
+	[ra] ASC,
+	[cx] ASC,
+	[cy] ASC,
+	[cz] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+GO
+
+
+CREATE NONCLUSTERED INDEX [IX_SpecObj_ZoneID] ON [dbo].[SpecObj] 
+(
+	[zoneid] ASC,
+	[dec] ASC,
+	[ra] ASC,
+	[cx] ASC,
+	[cy] ASC,
+	[cz] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+GO
+
+
+-- HTM index
+CREATE NONCLUSTERED INDEX [IX_SpecObj_HtmID] ON [dbo].[SpecObj] 
+(
+	[htmid] ASC,
+	[ra] ASC,
+	[dec] ASC,
+	[cx] ASC,
+	[cy] ASC,
+	[cz] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+GO

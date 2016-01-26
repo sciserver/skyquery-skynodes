@@ -8,6 +8,11 @@ CREATE TABLE [dbo].[PhotoObj](
 	[cname] [varchar](11) NOT NULL, --/ <column>PSCz name e.g. Q12345+4856</column>
 	[ra] [float] NOT NULL, --/ <column unit="deg">J2000 right ascension</column>
 	[dec] [float] NOT NULL, --/ <column unit="deg">J2000 declination</column>
+	[cx] [float] NOT NULL, --/ <column>Cartesian coordinate x</column>
+	[cy] [float] NOT NULL, --/ <column>Cartesian coordinate y</column>
+	[cz] [float] NOT NULL, --/ <column>Cartesian coordinate z</column>
+	[htmid] [bigint] NOT NULL, --/ <column>HTM ID</column>
+	[zoneid] [bigint] NOT NULL, --/ <column>Zone ID</column>
 	[flux_12] [real] NOT NULL, --/ <column unit="Jy">non-color corrected flux, 12 um</column>
 	[flux_25] [real] NOT NULL, --/ <column unit="Jy">non-color corrected flux, 25 um</column>
 	[flux_60] [real] NOT NULL, --/ <column unit="Jy">non-color corrected flux, 60 um</column>
@@ -137,18 +142,16 @@ CREATE TABLE [dbo].[PhotoObj](
 	[ibe_60] [smallint] NOT NULL, --/ <column>1 for background fit, 0 for none (extended or bright), 2 = Rice</column>
 	[ibe_100] [smallint] NOT NULL, --/ <column>1 for background fit, 0 for none (extended or bright), 2 = Rice</column>
 	[width2] [real] NOT NULL, --/ <column unit="arcmin^2">best fit width**2 at 60um</column>
-	[ewidth] [real] NOT NULL, --/ <column>error on WIDTH2</column>
-  [cx] [float] NULL, --/ <column>Cartesian coordinate x</column>
-	[cy] [float] NULL, --/ <column>Cartesian coordinate y</column>
-	[cz] [float] NULL, --/ <column>Cartesian coordinate z</column>
-	[htmid] [bigint] NULL --/ <column>Unique HTM ID</column>
+	[ewidth] [real] NOT NULL --/ <column>error on WIDTH2</column>
 ) ON [PRIMARY]
 
 
-ALTER TABLE [dbo].[PhotoObj] ADD PRIMARY KEY CLUSTERED 
+ALTER TABLE [dbo].[PhotoObj]
+ADD PRIMARY KEY CLUSTERED 
 (
 	[objID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 GO
 
 
@@ -160,7 +163,21 @@ CREATE NONCLUSTERED INDEX [IX_PhotoObj_Zone] ON [dbo].[PhotoObj]
 	[cx] ASC,
 	[cy] ASC,
 	[cz] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+GO
+
+-- Index to support on the fly zone table creation
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_ZoneID] ON [dbo].[PhotoObj] 
+(
+	[zoneid] ASC,
+	[dec] ASC,
+	[ra] ASC,
+	[cx] ASC,
+	[cy] ASC,
+	[cz] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 GO
 
 
@@ -168,8 +185,11 @@ GO
 CREATE NONCLUSTERED INDEX [IX_PhotoObj_HtmID] ON [dbo].[PhotoObj] 
 (
 	[htmid] ASC,
+	[ra] ASC,
+	[dec] ASC,
 	[cx] ASC,
 	[cy] ASC,
 	[cz] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 GO

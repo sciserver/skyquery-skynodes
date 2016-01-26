@@ -6,8 +6,13 @@ CREATE TABLE [dbo].[PhotoObj](
 --/ <remarks>The main PhotoObj table for the NVSS catalog</remarks>
 	[objID] [bigint] NOT NULL, --/ <column>unique object identifier</column>
 	[ra] [float] NOT NULL, --/ <column unit="deg">J2000 right ascension</column>
-	[raErr] [float] NOT NULL, --/ <column unit="deg">Estimate of J2000 right ascension standard deviation</column>
 	[dec] [float] NOT NULL, --/ <column unit="deg">J2000 declination</column>
+	[cx] [float] NOT NULL, --/ <column>cartesian x coordinate</column>
+	[cy] [float] NOT NULL, --/ <column>cartesian x coordinate</column>
+	[cz] [float] NOT NULL, --/ <column>cartesian x coordinate</column>
+	[htmid] [bigint] NOT NULL, --/ <column>htmid for spatial searches</column>
+	[zoneid] [bigint] NOT NULL, --/ <column>htmid for spatial searches</column>
+	[raErr] [float] NOT NULL, --/ <column unit="deg">Estimate of J2000 right ascension standard deviation</column>
 	[decErr] [float] NOT NULL, --/ <column unit="deg">Estimate of J2000 declination standard deviation</column>
 	[flux] [real] NOT NULL, --/ <column unit="mJy">Strength of the source</column>
 	[fluxErr] [real] NOT NULL, --/ <column unit="mJy">Standard deviation estimate of the flux</column>
@@ -25,18 +30,17 @@ CREATE TABLE [dbo].[PhotoObj](
 	[p_angErr] [real] NULL, --/ <column unit="deg">Standard deviation estimate of p_ang (nulls allowed)</column>
 	[field] [varchar](8) NOT NULL, --/ <column>Name of the original survey image field</column>
 	[x_pix] [real] NOT NULL, --/ <column>X(Ra) pixel numbers of the center of the component</column>
-	[y_pix] [real] NOT NULL, --/ <column>Y(Dec) pixel numbers of the center of the component</column>
-  [htmid] [bigint] NOT NULL, --/ <column>htmid for spatial searches</column>
-  [cx] [float] NOT NULL, --/ <column>cartesian x coordinate</column>
-	[cy] [float] NOT NULL, --/ <column>cartesian x coordinate</column>
-	[cz] [float] NOT NULL, --/ <column>cartesian x coordinate</column>
+	[y_pix] [real] NOT NULL --/ <column>Y(Dec) pixel numbers of the center of the component</column>
 ) ON [PRIMARY]
+GO
 
-/****** Object:  Index [pk_PhotoObj]    Script Date: 07/26/2013 15:29:32 ******/
-ALTER TABLE [dbo].[PhotoObj] ADD  CONSTRAINT [pk_PhotoObj] PRIMARY KEY CLUSTERED 
+ALTER TABLE [dbo].[PhotoObj]
+ADD CONSTRAINT [pk_PhotoObj] PRIMARY KEY CLUSTERED 
 (
 	[objID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 -- Index to support on the fly zone table creation
@@ -47,16 +51,38 @@ CREATE NONCLUSTERED INDEX [IX_PhotoObj_Zone] ON [dbo].[PhotoObj]
 	[cx] ASC,
 	[cy] ASC,
 	[cz] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+GO
+
+
+-- Index to support on the fly zone table creation
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_ZoneID] ON [dbo].[PhotoObj] 
+(
+	[zoneid] ASC,
+	[dec] ASC,
+	[ra] ASC,
+	[cx] ASC,
+	[cy] ASC,
+	[cz] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 
 -- HTM index
-CREATE NONCLUSTERED INDEX [IX_PhotoObj_HtmID] ON [dbo].[PhotoObj] 
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_HtmID]
+ON [dbo].[PhotoObj] 
 (
 	[htmid] ASC,
+	[ra] ASC,
+	[dec] ASC,
 	[cx] ASC,
 	[cy] ASC,
 	[cz] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO

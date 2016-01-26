@@ -1,7 +1,8 @@
 USE [SkyNode_RC3]
 GO
 
-CREATE TABLE [dbo].[PhotoObj](
+CREATE TABLE [dbo].[PhotoObj]
+(
 --/ <summary> The main PhotoObj table for the RC3 catalog </summary>
 --/ <remarks> The main PhotoObj table for the RC3 catalog </remarks>
 	[name] [varchar](20) NOT NULL, --/ <column content="ID_AREA">Primary name</column>
@@ -9,6 +10,11 @@ CREATE TABLE [dbo].[PhotoObj](
 	[PGC_name] [varchar](10) NULL, --/ <column>PGC (Paturel et al. 1989a,b) designation</column>
 	[ra] [float] NOT NULL, --/ <column unit="degrees" content="POS_EQ_RA">Right Ascension (J2000)</column>
 	[dec] [float] NOT NULL, --/ <column unit="degrees" content="POS_EQ_DEC">Declination (J2000)</column>
+	[cx] [float] NOT NULL, --/ <column>cartesian x coordinate</column>
+	[cy] [float] NOT NULL, --/ <column>cartesian x coordinate</column>
+	[cz] [float] NOT NULL, --/ <column>cartesian x coordinate</column>
+	[htmid] [bigint] NOT NULL, --/ <column>htmid for spatial search</column>
+	[zoneid] [bigint] NOT NULL, --/ <column>zoneid for spatial search</column>
 	[good_position] [int] NOT NULL, --/ <column>The values of ra/dec are good to 0.1 sec time, 1 asec (otherwise, 0.1 min time, 1 amin)</column>
 	[galactic_l] [float] NULL, --/ <column unit="degrees" content="POS_EQ_RA">Galactic longitude in the IAU 1958 system (Blaauw et al. 1960); good to 0.01 degrees</column>
 	[galactic_b] [float] NULL, --/ <column unit="degrees" content="POS_EQ_DEC">Galactic latitude in the IAU 1958 system (Blaauw et al. 1960); good to 0.01 degrees</column>
@@ -66,18 +72,17 @@ CREATE TABLE [dbo].[PhotoObj](
 	[V_optErr] [float] NULL, --/ <column unit="km/s">Error in V_opt</column>
 	[V_GSR] [float] NULL, --/ <column unit="km/s">weighted mean of the neutral hydrogen and optical velocities, corrected to the ``Galactic standard of rest</column>
 	[V_3K] [float] NULL, --/ <column unit="km/s">weighted mean velocity corrected to the reference frame defined by the 3 K microwave background radiation</column>
-	[objId] [bigint] NOT NULL, --/ <column content="ID_MAIN">the main primary key</column>
-  [htmid] [bigint] NOT NULL, --/ <column>htmid for spatial searches</column>
-  [cx] [float] NOT NULL, --/ <column>cartesian x coordinate</column>
-	[cy] [float] NOT NULL, --/ <column>cartesian x coordinate</column>
-	[cz] [float] NOT NULL, --/ <column>cartesian x coordinate</column>
+	[objId] [bigint] NOT NULL --/ <column content="ID_MAIN">the main primary key</column>
 ) ON [PRIMARY]
 
 
-ALTER TABLE [dbo].[PhotoObj] ADD  CONSTRAINT [PK__PhotoObjAll__3A81B327] PRIMARY KEY CLUSTERED 
+ALTER TABLE [dbo].[PhotoObj]
+ADD CONSTRAINT [PK_PhotoObj] PRIMARY KEY CLUSTERED 
 (
 	[objId] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 
@@ -89,7 +94,24 @@ CREATE NONCLUSTERED INDEX [IX_PhotoObj_Zone] ON [dbo].[PhotoObj]
 	[cx] ASC,
 	[cy] ASC,
 	[cz] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+GO
+
+
+-- Index to support on the fly zone table creation
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_ZoneID] ON [dbo].[PhotoObj] 
+(
+	[zoneid] ASC,
+	[dec] ASC,
+	[ra] ASC,
+	[cx] ASC,
+	[cy] ASC,
+	[cz] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 
@@ -97,8 +119,12 @@ GO
 CREATE NONCLUSTERED INDEX [IX_PhotoObj_HtmID] ON [dbo].[PhotoObj] 
 (
 	[htmid] ASC,
+	[ra] ASC,
+	[dec] ASC,
 	[cx] ASC,
 	[cy] ASC,
 	[cz] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO

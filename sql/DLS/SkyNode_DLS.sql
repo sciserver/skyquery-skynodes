@@ -1,12 +1,18 @@
 USE [SkyNode_DLS]
 GO
 
-CREATE TABLE [dbo].[PhotoObj](
+CREATE TABLE [dbo].[PhotoObj]
+(
 --/ <summary> The main PhotoObj table for the Deep Lens Survey catalog </summary>
 --/ <remarks> The main PhotoObj table for the DLS catalog </remarks>
 	[objid] [bigint] NOT NULL, --/ <column>primary key</column>
 	[ra] [float] NOT NULL, --/ <column unit="deg">master right ascension</column>
 	[dec] [float] NOT NULL, --/ <column unit="deg">master declination</column>
+	[cx] [float] NOT NULL, --/ <column>cartesian x coordinate</column>
+	[cy] [float] NOT NULL, --/ <column>cartesian x coordinate</column>
+	[cz] [float] NOT NULL, --/ <column>cartesian x coordinate</column>
+	[htmid] [bigint] NOT NULL, --/ <column>htmid for spatial search</column>
+	[zoneid] [bigint] NOT NULL, --/ <column>zoneid for spatial search</column>
 	[band] [char](1) NOT NULL, --/ <column>master coordinate origin</column>
 	[AlphaB] [float] NULL, --/ <column unit="deg">RA in B</column>
 	[DeltaB] [float] NULL, --/ <column unit="deg">DEC in B</column>
@@ -71,12 +77,19 @@ CREATE TABLE [dbo].[PhotoObj](
 	[MAG_ISOz] [real] NULL, --/ <column unit="mag">Isophotal magnitude in z</column>
 	[MAGERR_ISOz] [real] NULL, --/ <column unit="mag">Error in isophotal magnitude in z</column>
 	[ISOAREAz] [real] NULL, --/ <column unit="pix^2">Isophotal area</column>
-	[CLASS_STARz] [real] NULL, --/ <column>Fuzzy classifier</column>
-  [htmid] [bigint] NOT NULL, --/ <column>htmid for spatial searches</column>
-  [cx] [float] NOT NULL, --/ <column>cartesian x coordinate</column>
-	[cy] [float] NOT NULL, --/ <column>cartesian x coordinate</column>
-	[cz] [float] NOT NULL, --/ <column>cartesian x coordinate</column>
+	[CLASS_STARz] [real] NULL --/ <column>Fuzzy classifier</column>
 ) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[PhotoObj]
+ADD CONSTRAINT PK_PhotoObj PRIMARY KEY
+(
+	[objID]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+
+GO
 
 -- Index to support on the fly zone table creation
 CREATE NONCLUSTERED INDEX [IX_PhotoObj_Zone] ON [dbo].[PhotoObj] 
@@ -89,16 +102,30 @@ CREATE NONCLUSTERED INDEX [IX_PhotoObj_Zone] ON [dbo].[PhotoObj]
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 GO
 
-
 -- HTM index
-CREATE NONCLUSTERED INDEX [IX_PhotoObj_HtmID] ON [dbo].[PhotoObj] 
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_ZoneID] ON [dbo].[PhotoObj] 
 (
-	[htmid] ASC,
+	[zoneid] ASC,
+	[dec] ASC,
+	[ra] ASC,
 	[cx] ASC,
 	[cy] ASC,
 	[cz] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 GO
+
+-- HTM index
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_HtmID] ON [dbo].[PhotoObj] 
+(
+	[htmid] ASC,
+	[ra] ASC,
+	[dec] ASC,
+	[cx] ASC,
+	[cy] ASC,
+	[cz] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+
 
 /*
 CREATE TABLE [dbo].[Frame](

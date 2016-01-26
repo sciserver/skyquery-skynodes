@@ -75,10 +75,11 @@ CREATE TABLE [dbo].[PhotoObj](
 	[ISOAREA_IMAGE] [bigint] NULL, --/ <column unit="pixel**2">Isophotal area above Analysis threshold</column>
 	[RA] [float] NOT NULL, --/ <column unit="deg">Right ascension of barycenter (J2000)</column>
 	[DEC] [float] NOT NULL, --/ <column unit="deg">Declination of barycenter (J2000)</column>
-  [cx] [float] NULL, --/ <column>Cartesian coordinate x</column>
-	[cy] [float] NULL, --/ <column>Cartesian coordinate y</column>
-	[cz] [float] NULL, --/ <column>Cartesian coordinate z</column>
-	[htmid] [bigint] NULL, --/ <column>Unique HTM ID</column>
+	[cx] [float] NOT NULL, --/ <column>Cartesian coordinate x</column>
+	[cy] [float] NOT NULL, --/ <column>Cartesian coordinate y</column>
+	[cz] [float] NOT NULL, --/ <column>Cartesian coordinate z</column>
+	[htmid] [bigint] NOT NULL, --/ <column>HTM ID</column>
+	[zoneid] [bigint] NOT NULL, --/ <column>Zone ID</column>
 	[ALPHAPEAK_J2000] [float] NULL, --/ <column unit="deg">Right ascension of brightest pix (J2000)</column>
 	[DELTAPEAK_J2000] [float] NULL, --/ <column unit="deg">Declination of brightest pix (J2000)</column>
 	[X2_IMAGE] [real] NULL, --/ <column unit="pixel**2">Variance along x</column>
@@ -110,10 +111,15 @@ CREATE TABLE [dbo].[PhotoObj](
 	[CLASS_STAR] [real] NULL --/ <column>S/G classifier output</column>
 ) ON [PRIMARY]
 
-ALTER TABLE [dbo].[PhotoObj] ADD PRIMARY KEY CLUSTERED 
+GO
+
+ALTER TABLE [dbo].[PhotoObj] 
+ADD PRIMARY KEY CLUSTERED 
 (
 	[OBJID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 
@@ -125,7 +131,24 @@ CREATE NONCLUSTERED INDEX [IX_PhotoObj_Zone] ON [dbo].[PhotoObj]
 	[cx] ASC,
 	[cy] ASC,
 	[cz] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+GO
+
+
+-- Index to support on the fly zone table creation
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_ZoneID] ON [dbo].[PhotoObj] 
+(
+	[zoneid] ASC,
+	[dec] ASC,
+	[ra] ASC,
+	[cx] ASC,
+	[cy] ASC,
+	[cz] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 
@@ -136,10 +159,13 @@ CREATE NONCLUSTERED INDEX [IX_PhotoObj_HtmID] ON [dbo].[PhotoObj]
 	[cx] ASC,
 	[cy] ASC,
 	[cz] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
-CREATE TABLE [dbo].[PhotoObjK](
+CREATE TABLE [dbo].[PhotoObjK]
+(
 --/ <summary> The main Photo table for the NOAO Deep Field catalog containing the individual band detections </summary>
 --/ <remarks> The main Photo table for the NOAO Deep Field catalog containing detections in   the individual bands. The merged catalog  will be located in the PhotoObjAll table </remarks>
 	[OBJID] [bigint] NOT NULL, --/ <column>unique object id, hashed from BAND, FIELD and NUMBER</column>
@@ -213,10 +239,11 @@ CREATE TABLE [dbo].[PhotoObjK](
 	[ISOAREA_IMAGE] [bigint] NULL, --/ <column unit="pixel**2">Isophotal area above Analysis threshold</column>
 	[RA] [float] NOT NULL, --/ <column unit="deg">Right ascension of barycenter (J2000)</column>
 	[DEC] [float] NOT NULL, --/ <column unit="deg">Declination of barycenter (J2000)</column>
-  [cx] [float] NULL, --/ <column>Cartesian coordinate x</column>
-	[cy] [float] NULL, --/ <column>Cartesian coordinate y</column>
-	[cz] [float] NULL, --/ <column>Cartesian coordinate z</column>
-	[htmid] [bigint] NULL, --/ <column>Unique HTM ID</column>
+    [cx] [float] NOT NULL, --/ <column>Cartesian coordinate x</column>
+	[cy] [float] NOT NULL, --/ <column>Cartesian coordinate y</column>
+	[cz] [float] NOT NULL, --/ <column>Cartesian coordinate z</column>
+	[htmid] [bigint] NOT NULL, --/ <column>Unique HTM ID</column>
+	[zoneid] [bigint] NOT NULL, --/ <column>Unique HTM ID</column>
 	[ALPHAPEAK_J2000] [float] NULL, --/ <column unit="deg">Right ascension of brightest pix (J2000)</column>
 	[DELTAPEAK_J2000] [float] NULL, --/ <column unit="deg">Declination of brightest pix (J2000)</column>
 	[X2_IMAGE] [real] NULL, --/ <column unit="pixel**2">Variance along x</column>
@@ -249,11 +276,13 @@ CREATE TABLE [dbo].[PhotoObjK](
 ) ON [PRIMARY]
 
 
-/****** Object:  Index [PK_PhotoObjK]    Script Date: 07/26/2013 15:26:42 ******/
-ALTER TABLE [dbo].[PhotoObjK] ADD  CONSTRAINT [PK_PhotoObjK] PRIMARY KEY CLUSTERED 
+ALTER TABLE [dbo].[PhotoObjK] 
+ADD CONSTRAINT [PK_PhotoObjK] PRIMARY KEY CLUSTERED 
 (
 	[OBJID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 -- Index to support on the fly zone table creation
@@ -264,9 +293,23 @@ CREATE NONCLUSTERED INDEX [IX_PhotoObjK_Zone] ON [dbo].[PhotoObjK]
 	[cx] ASC,
 	[cy] ASC,
 	[cz] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
+CREATE NONCLUSTERED INDEX [IX_PhotoObjK_ZoneID] ON [dbo].[PhotoObjK] 
+(
+	[zoneid] ASC,
+	[dec] ASC,
+	[ra] ASC,
+	[cx] ASC,
+	[cy] ASC,
+	[cz] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+GO
 
 -- HTM index
 CREATE NONCLUSTERED INDEX [IX_PhotoObjK_HtmID] ON [dbo].[PhotoObjK] 
@@ -275,7 +318,9 @@ CREATE NONCLUSTERED INDEX [IX_PhotoObjK_HtmID] ON [dbo].[PhotoObjK]
 	[cx] ASC,
 	[cy] ASC,
 	[cz] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 
