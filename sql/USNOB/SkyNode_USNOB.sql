@@ -7,12 +7,13 @@ CREATE TABLE [dbo].[PhotoObj](
 	[objid] [bigint] NOT NULL, --/ <column content="ID_MAIN">Main unique object identifier</column>
 	[zone] [smallint] NOT NULL, --/ <column content="ID_MAIN:1">The catalog is arranged in zones of 0.1deg in Dec, from 0 in South Pole to 1799 in North Pole</column>
 	[seqNo] [int] NOT NULL, --/ <column content="ID_MAIN:2">Sequence number of objects ordered by Right Ascension in the zone.</column>
+	[ra] [float] NOT NULL, --/ <column unit="deg" content="POS_EQ_RA_MAIN">J2000 Celestial Right Ascension</column>
+	[dec] [float] NOT NULL, --/ <column unit="deg" content="POS_EQ_DEC_MAIN">J2000 Celestial Declination</column>
 	[cx] [float] NOT NULL, --/ <column content="POS_EQ_X">unit vector of spherical co-ordinate</column>
 	[cy] [float] NOT NULL, --/ <column content="POS_EQ_Y">unit vector of spherical co-ordinate</column>
 	[cz] [float] NOT NULL, --/ <column content="POS_EQ_Z">unit vector of spherical co-ordinate</column>
 	[htmID] [bigint] NOT NULL, --/ <column content="POS_GENERAL">HTM index, 20 digits, for co-ordinate</column>
-	[ra] [float] NOT NULL, --/ <column unit="deg" content="POS_EQ_RA_MAIN">J2000 Celestial Right Ascension</column>
-	[dec] [float] NOT NULL, --/ <column unit="deg" content="POS_EQ_DEC_MAIN">J2000 Celestial Declination</column>
+	[zoneID] [bigint] NOT NULL, --/ <column content="POS_GENERAL">ZoneID</column>
 	[pmRA] [real] NOT NULL, --/ <column unit="mas/yr" content="POS_EQ_PMRA">Proper motion in RA (relative to YS4.0)</column>
 	[pmDEC] [real] NOT NULL, --/ <column unit="mas/yr" content="POS_EQ_PMDEC">Proper motion in DEC (relative to YS4.0)</column>
 	[pmPr] [real] NOT NULL, --/ <column content="STAT_PROBABILITY">Total Proper Motion probability</column>
@@ -70,10 +71,11 @@ CREATE TABLE [dbo].[PhotoObj](
 ) ON [PRIMARY]
 GO
 
-ALTER TABLE [dbo].[PhotoObj] ADD PRIMARY KEY CLUSTERED 
+ALTER TABLE [dbo].[PhotoObj]
+ADD CONSTRAINT [PK_PhotoObj] PRIMARY KEY
 (
 	[objid] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON) ON [PRIMARY]
 GO
 
 
@@ -87,7 +89,19 @@ CREATE NONCLUSTERED INDEX [IX_PhotoObj_Zone] ON [dbo].[PhotoObj]
 	[cx] ASC,
 	[cy] ASC,
 	[cz] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON) ON [PRIMARY]
+GO
+
+-- Index to support on the fly zone table creation
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_ZoneID] ON [dbo].[PhotoObj] 
+(
+	[zoneID] ASC,
+	[dec] ASC,
+	[ra] ASC,
+	[cx] ASC,
+	[cy] ASC,
+	[cz] ASC
+)WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON) ON [PRIMARY]
 GO
 
 
@@ -95,8 +109,10 @@ GO
 CREATE NONCLUSTERED INDEX [IX_PhotoObj_HtmID] ON [dbo].[PhotoObj] 
 (
 	[htmid] ASC,
+	[ra] ASC,
+	[dec] ASC,
 	[cx] ASC,
 	[cy] ASC,
 	[cz] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON) ON [PRIMARY]
 GO

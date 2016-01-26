@@ -15,6 +15,7 @@ CREATE TABLE [dbo].[PhotoObj](
 	[cy] [float] NOT NULL, --/ <column>Cartesian y</column>
 	[cz] [float] NOT NULL, --/ <column>Cartesian z</column>
 	[htmID] [bigint] NOT NULL, --/ <column>the htmid of the object</column>
+	[zoneID] [bigint] NOT NULL, --/ <column>the zoneid of the object</column>
 	[a] [real] NOT NULL, --/ <column unit="arcmin">Major axis</column>
 	[b] [real] NOT NULL, --/ <column unit="arcmin">Major axis</column>
 	[Bmag] [real] NOT NULL, --/ <column unit="mag">B magnitude</column>
@@ -55,11 +56,25 @@ CREATE NONCLUSTERED INDEX [IX_PhotoObj_Zone] ON [dbo].[PhotoObj]
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 GO
 
+-- ZoneID index
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_ZoneID] ON [dbo].[PhotoObj] 
+(
+	[zoneid] ASC,
+	[dec] ASC,
+	[ra] ASC,
+	[cx] ASC,
+	[cy] ASC,
+	[cz] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+
 
 -- HTM index
 CREATE NONCLUSTERED INDEX [IX_PhotoObj_HtmID] ON [dbo].[PhotoObj] 
 (
 	[htmid] ASC,
+	[ra] ASC,
+	[dec] ASC,
 	[cx] ASC,
 	[cy] ASC,
 	[cz] ASC

@@ -1,6 +1,6 @@
 USE SkyNode_TwoMASS
 
-CREATE TABLE [dbo].[PhotoObj](
+CREATE TABLE [dbo].[PhotoPSC](
 --/ <summary>Point source survey objects</summary>
 --/ <remarks>This is the Point Source Catalog.</remarks>
 	
@@ -20,6 +20,8 @@ CREATE TABLE [dbo].[PhotoObj](
 	[cz] [float] NULL, --/ <column>Cartesian coordinate z</column>
 	
 	[htmid] [bigint] NULL, --/ <column>Unique HTM ID</column>
+
+	[zoneid] [bigint] NULL, --/ <column>Zone ID</column>
 	
 	[err_maj] [real] NOT NULL, --/ <column unit="arcsec">major axis of position error ellipse</column>
 	
@@ -142,33 +144,48 @@ CREATE TABLE [dbo].[PhotoObj](
 	[j_k] [real] NOT NULL --/ <column unit="mag">default J-K mag color</column>
 ) ON [PRIMARY]
 
-ALTER TABLE [dbo].[PhotoObj] ADD PRIMARY KEY CLUSTERED 
+ALTER TABLE [dbo].[PhotoPSC] ADD PRIMARY KEY CLUSTERED 
 (
 	[objID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON) ON [PRIMARY]
 GO
 
 -- Index to support on the fly zone table creation
-CREATE NONCLUSTERED INDEX [IX_PhotoObj_Zone] ON [dbo].[PhotoObj] 
+CREATE NONCLUSTERED INDEX [IX_PhotoPSC_Zone] ON [dbo].[PhotoPSC] 
 (
 	[dec] ASC,
 	[ra] ASC,
 	[cx] ASC,
 	[cy] ASC,
 	[cz] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON) ON [PRIMARY]
 GO
 
 
 -- HTM index
-CREATE NONCLUSTERED INDEX [IX_PhotoObj_HtmID] ON [dbo].[PhotoObj] 
+CREATE NONCLUSTERED INDEX [IX_PhotoPSC_HtmID] ON [dbo].[PhotoPSC] 
 (
 	[htmid] ASC,
 	[cx] ASC,
 	[cy] ASC,
 	[cz] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON) ON [PRIMARY]
 GO
+
+-- Index to support on the fly zone table creation
+CREATE NONCLUSTERED INDEX [IX_PhotoPSC_ZoneID] ON [dbo].[PhotoPSC] 
+(
+	[ZoneID],
+	[ra],
+	[dec],
+	[cx],
+	[cy],
+	[cz],
+	[htmID]
+)WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON) ON [PRIMARY]
+GO
+
+---------------------------------------------------------------
 
 CREATE TABLE [dbo].[PhotoXSC](
 --/ <summary></summary>
@@ -177,6 +194,11 @@ CREATE TABLE [dbo].[PhotoXSC](
 	[designation] [varchar](17) NOT NULL, --/ <column>Sexagesimal, equatorial position-based source name in the form: hhmmssss+ddmmsss[ABC...].</column>
 	[ra] [float] NOT NULL, --/ <column></column>
 	[dec] [float] NOT NULL, --/ <column></column>
+	[cx] [float] NOT NULL, --/ <column></column>
+	[cy] [float] NOT NULL, --/ <column></column>
+	[cz] [float] NOT NULL, --/ <column></column>
+	[htmid] [bigint] NOT NULL,
+	[zoneid] [bigint] NOT NULL,
 	[sup_ra] [float] NOT NULL, --/ <column>Super-coadd centroid RA (J2000 decimal deg).</column>
 	[sup_dec] [float] NOT NULL, --/ <column>Super-coadd centroid Dec (J2000 decimal deg).</column>
 	[glon] [real] NOT NULL, --/ <column></column>
@@ -564,6 +586,52 @@ CREATE TABLE [dbo].[PhotoXSC](
 	[ext_key] [int] NOT NULL --/ <column>entry counter (key) number (unique within table).</column>
 ) ON [PRIMARY]
 
+GO
+
+ALTER TABLE [dbo].[PhotoXSC]
+ADD CONSTRAINT [PX_PhotoXSC] PRIMARY KEY
+(
+	[ext_key] ASC
+)WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON) ON [PRIMARY]
+GO
+
+-- Index to support on the fly zone table creation
+CREATE NONCLUSTERED INDEX [IX_PhotoXSC_Zone] ON [dbo].[PhotoXSC] 
+(
+	[dec] ASC,
+	[ra] ASC,
+	[cx] ASC,
+	[cy] ASC,
+	[cz] ASC
+)WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON) ON [PRIMARY]
+GO
+
+
+-- HTM index
+CREATE NONCLUSTERED INDEX [IX_PhotoXSC_HtmID] ON [dbo].[PhotoXSC] 
+(
+	[htmid] ASC,
+	[cx] ASC,
+	[cy] ASC,
+	[cz] ASC
+)WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON) ON [PRIMARY]
+GO
+
+-- Index to support on the fly zone table creation
+CREATE NONCLUSTERED INDEX [IX_PhotoXSC_ZoneID] ON [dbo].[PhotoXSC] 
+(
+	[ZoneID],
+	[ra],
+	[dec],
+	[cx],
+	[cy],
+	[cz],
+	[htmID]
+)WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON) ON [PRIMARY]
+GO
+
+------------------------------------------------------------------------
+
 CREATE TABLE [dbo].[ScanInfo](
 --/ <summary></summary>
 --/ <remarks></remarks>
@@ -632,5 +700,10 @@ CREATE TABLE [dbo].[ScanInfo](
 	[rel1] [smallint] NOT NULL, --/ <column>Flag indicating whether the scan is contained in the 2MASS First Incremental Data Release (IDR1)</column>
 	[rel2] [smallint] NOT NULL --/ <column>Flag indicating whether the scan is contained in the 2MASS Second Incremental Data Release (IDR2)</column>
 ) ON [PRIMARY]
+GO
 
-
+ALTER TABLE [dbo].[ScanInfo]
+ADD CONSTRAINT PK_ScanInfo PRIMARY KEY
+(
+	[scan_key]
+) ON [PRIMARY]
