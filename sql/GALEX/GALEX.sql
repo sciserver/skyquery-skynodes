@@ -394,9 +394,10 @@ GO
 
 ---------------------------------------------------------------
 
-CREATE TABLE [dbo].[PhotoExtract](
-	[photoExtractID] [bigint] NOT NULL CONSTRAINT [DF__photoExtr__photo__023D5A04]  DEFAULT ((0)),
-	[imgID] [bigint] NOT NULL CONSTRAINT [DF__photoExtr__imgID__03317E3D]  DEFAULT ((0)),
+CREATE TABLE [dbo].[PhotoExtract]
+(
+	[photoExtractID] [bigint] NOT NULL,
+	[imgID] [bigint] NOT NULL,
 	[sourceFileNPath] [varchar](256) NULL,
 	[simple] [varchar](32) NULL,
 	[bitpix] [int] NULL,
@@ -939,3 +940,14 @@ CREATE TABLE [dbo].[PhotoExtractPrimary](
 	[Area] [float] NOT NULL,
 	[RegionBinary] [varbinary](max) NULL
 ) ON [PHOTODATA] TEXTIMAGE_ON [PHOTODATA]
+
+GO
+
+CREATE UNIQUE CLUSTERED INDEX [PK_PhotoExtractPrimary]
+ON [dbo].[PhotoExtractPrimary]
+(
+	[photoExtractID] ASC,
+	[Radius] ASC
+) 
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PHOTODATA]

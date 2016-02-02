@@ -1,13 +1,19 @@
 USE [SkyNode_IRAS]
 GO
 
-CREATE TABLE [dbo].[PhotoObj](
+CREATE TABLE [dbo].[PhotoObj]
+(
 --/ <summary>The main PhotoObj table for the IRAS catalog</summary>
 --/ <remarks>The main PhotoObj table for the IRAS catalog</remarks>
-	[objID] [bigint] IDENTITY(1,1) NOT NULL, --/ <column>unique object identifier</column>
+	[objID] [bigint] NOT NULL, --/ <column>unique object identifier</column>
 	[name] [varchar](11) NOT NULL, --/ <column>IRAS Source Name</column>
 	[ra] [float] NOT NULL, --/ <column unit="deg">J2000 right ascension</column>
 	[dec] [float] NOT NULL, --/ <column unit="deg">J2000 declination</column>
+    [cx] [float] NOT NULL, --/ <column>Cartesian coordinate x</column>
+	[cy] [float] NOT NULL, --/ <column>Cartesian coordinate y</column>
+	[cz] [float] NOT NULL, --/ <column>Cartesian coordinate z</column>
+	[htmid] [bigint] NOT NULL, --/ <column>HTM ID</column>
+	[zoneid] [bigint] NOT NULL, --/ <column>Zone ID</column>
 	[err_maj] [real] NOT NULL, --/ <column unit="arcsec">Uncertainty ellipse major axis</column>
 	[err_min] [real] NOT NULL, --/ <column unit="arcsec">Uncertainty ellipse minor axis</column>
 	[err_ang] [smallint] NOT NULL, --/ <column unit="deg">Uncertainty ellipse position angle</column>
@@ -57,17 +63,18 @@ CREATE TABLE [dbo].[PhotoObj](
 	[fcor_12] [int] NOT NULL, --/ <column>Flux correction factor applied (times 1000),9999 is NULL, 12 microns</column>
 	[fcor_25] [int] NOT NULL, --/ <column>Flux correction factor applied (times 1000),9999 is NULL, 25 microns</column>
 	[fcor_60] [int] NOT NULL, --/ <column>Flux correction factor applied (times 1000),9999 is NULL, 60 microns</column>
-	[fcor_100] [int] NOT NULL, --/ <column>Flux correction factor applied (times 1000),9999 is NULL,100 microns</column>
-  [cx] [float] NULL, --/ <column>Cartesian coordinate x</column>
-	[cy] [float] NULL, --/ <column>Cartesian coordinate y</column>
-	[cz] [float] NULL, --/ <column>Cartesian coordinate z</column>
-	[htmid] [bigint] NULL --/ <column>Unique HTM ID</column>
+	[fcor_100] [int] NOT NULL --/ <column>Flux correction factor applied (times 1000),9999 is NULL,100 microns</column>
 ) ON [PRIMARY]
+
+GO
 
 ALTER TABLE [dbo].[PhotoObj] ADD PRIMARY KEY CLUSTERED 
 (
 	[objID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+
 GO
 
 -- Index to support on the fly zone table creation
@@ -78,7 +85,9 @@ CREATE NONCLUSTERED INDEX [IX_PhotoObj_Zone] ON [dbo].[PhotoObj]
 	[cx] ASC,
 	[cy] ASC,
 	[cz] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 
@@ -86,8 +95,26 @@ GO
 CREATE NONCLUSTERED INDEX [IX_PhotoObj_HtmID] ON [dbo].[PhotoObj] 
 (
 	[htmid] ASC,
+	[ra] ASC,
+	[dec] ASC,
 	[cx] ASC,
 	[cy] ASC,
 	[cz] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+GO
+
+-- Zone index
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_ZoneID] ON [dbo].[PhotoObj] 
+(
+	[zoneid] ASC,
+	[dec] ASC,
+	[ra] ASC,
+	[cx] ASC,
+	[cy] ASC,
+	[cz] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
