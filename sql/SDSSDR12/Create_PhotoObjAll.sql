@@ -511,6 +511,7 @@ CREATE TABLE PhotoObjAll (
 	nProf_z          [int] NOT NULL, --/D Number of Profile Bins*/
 	loadVersion      [int] NOT NULL, --/D Load Version  --/F NOFITS
 	htmID            bigint NOT NULL, --/D 20-deep hierarchical trangular mesh ID of this object --/F NOFITS
+	zoneID            bigint NOT NULL, --/D zoneID with 4 arc sec resolution --/F NOFITS
 	fieldID          bigint NOT NULL, --/D Link to the field this object is in
 	parentID         bigint NOT NULL DEFAULT 0, --/D Pointer to parent (if object deblended) or BRIGHT detection (if object has one), else 0
 	specObjID        bigint NOT NULL DEFAULT 0, --/D Pointer to the spectrum of object, if exists, else 0 --/F NOFITS

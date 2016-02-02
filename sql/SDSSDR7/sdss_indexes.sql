@@ -1,3 +1,6 @@
+USE [SkyNode_SDSSDR7]
+GO
+
 CREATE UNIQUE NONCLUSTERED INDEX [i_BestTarget2Sector_regionID_obj] ON [dbo].[BestTarget2Sector]
 (
 	[regionID] ASC,
@@ -399,7 +402,7 @@ CREATE INDEX IX_PhotoObjAll_htmID ON [dbo].[PhotoObjAll]
 )
 INCLUDE
 (
-	[mode], [ra], [dec], [cx], [cy], [cz]
+	[type], [mode], [ra], [dec], [cx], [cy], [cz]
 )
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [PHOTOINDEX]
@@ -412,7 +415,7 @@ CREATE INDEX IX_PhotoObjAll_zone ON [dbo].[PhotoObjAll]
 )
 INCLUDE
 (
-	[mode], [ra], [cx], [cy], [cz]
+	[type], [mode], [ra], [cx], [cy], [cz]
 )
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [PHOTOINDEX]
@@ -425,7 +428,7 @@ CREATE INDEX IX_PhotoObjAll_zoneID ON [dbo].[PhotoObjAll]
 )
 INCLUDE
 (
-	[mode], [ra], [cx], [cy], [cz]
+	[type], [mode], [ra], [cx], [cy], [cz]
 )
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [PHOTOINDEX]
