@@ -1,4 +1,5 @@
 USE [SkyNode_SDSSDR7]
+GO
 
 CREATE VIEW [dbo].[PhotoPrimary] 
 ----------------------------------------------------------------------
@@ -118,26 +119,7 @@ SELECT * FROM PhotoAuxAll
 	WHERE mode in (1,2)
 
 GO
-/****** Object:  View [dbo].[Columns]    Script Date: 1/28/2016 11:17:29 AM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
---
-CREATE VIEW [dbo].[Columns] 
----------------------------------------------------------------
---/H Aliias the DBColumns table also as Columns, for legacy SkyQuery
----------------------------------------------------------------
-AS
-SELECT * 
-    FROM DBColumns WITH(NOLOCK)
 
-GO
-/****** Object:  View [dbo].[CoordType]    Script Date: 1/28/2016 11:17:29 AM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
 --
 CREATE VIEW [dbo].[CoordType]
 ------------------------------------------
