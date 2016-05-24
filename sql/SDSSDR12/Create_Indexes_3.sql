@@ -34,11 +34,11 @@ GO
 CREATE NONCLUSTERED INDEX [IX_sdssTileAll_zoneID] ON [dbo].[sdssTileAll]
 (
 	[zoneID] ASC,
-	[decCen] ASC
+	[raCen] ASC
 )
 INCLUDE
 (
-	[raCen],
+	[decCen],
 	[cx],
 	[cy],
 	[cz]
@@ -86,11 +86,11 @@ GO
 CREATE NONCLUSTERED INDEX [IX_sdssTiledTargetAll_zoneID] ON [dbo].[sdssTiledTargetAll]
 (
 	[zoneID] ASC,
-	[dec] ASC
+	[ra] ASC
 )
 INCLUDE
 (
-	[ra],
+	[dec],
 	[cx],
 	[cy],
 	[cz]
@@ -142,13 +142,13 @@ GO
 CREATE NONCLUSTERED INDEX [IX_PhotoObjAll_zoneID] ON [dbo].[PhotoObjAll]
 (
 	[zoneID] ASC,
-	[dec] ASC
+	[ra] ASC
 )
 INCLUDE
 (
  	[type],
 	[mode],
-	[ra],
+	[dec],
 	[cx],
 	[cy],
 	[cz]
@@ -202,14 +202,14 @@ GO
 CREATE NONCLUSTERED INDEX [IX_PhotoObjDR7_zoneID] ON [dbo].[PhotoObjDR7]
 (
 	[zoneID] ASC,
-	[dec] ASC
+	[ra] ASC
 )
 INCLUDE
 (
 	[type],
 	[modeDR7],
 	[modeDR8],
-	[ra],
+	[dec],
 	[cx],
 	[cy],
 	[cz]
@@ -260,12 +260,12 @@ GO
 CREATE NONCLUSTERED INDEX [IX_PhotoPrimaryDR7_zoneID] ON [dbo].[PhotoPrimaryDR7]
 (
 	[zoneID] ASC,
-	[dec] ASC
+	[ra] ASC
 )
 INCLUDE
 (
 	[type],
-	[ra],
+	[dec],
 	[cx],
 	[cy],
 	[cz]
@@ -313,11 +313,11 @@ GO
 CREATE NONCLUSTERED INDEX [IX_Mask_zoneID] ON [dbo].[Mask]
 (
 	[zoneID] ASC,
-	[dec] ASC
+	[ra] ASC
 )
 INCLUDE
 (
-	[ra],
+	[dec],
 	[cx],
 	[cy],
 	[cz]
@@ -365,11 +365,11 @@ GO
 CREATE NONCLUSTERED INDEX [IX_SpecDR7_zoneID] ON [dbo].[SpecDR7]
 (
 	[zoneID] ASC,
-	[dec] ASC
+	[ra] ASC
 )
 INCLUDE
 (
-	[ra],
+	[dec],
 	[cx],
 	[cy],
 	[cz]
@@ -417,11 +417,11 @@ GO
 CREATE NONCLUSTERED INDEX [IX_SpecObjAll_zoneID] ON [dbo].[SpecObjAll]
 (
 	[zoneID] ASC,
-	[dec] ASC
+	[ra] ASC
 )
 INCLUDE
 (
-	[ra],
+	[dec],
 	[cx],
 	[cy],
 	[cz]
@@ -469,11 +469,11 @@ GO
 CREATE NONCLUSTERED INDEX [IX_SpecPhotoAll_zoneID] ON [dbo].[SpecPhotoAll]
 (
 	[zoneID] ASC,
-	[dec] ASC
+	[ra] ASC
 )
 INCLUDE
 (
-	[ra],
+	[dec],
 	[cx],
 	[cy],
 	[cz]
@@ -521,11 +521,11 @@ GO
 CREATE NONCLUSTERED INDEX [IX_Frame_zoneID] ON [dbo].[Frame]
 (
 	[zoneID] ASC,
-	[dec] ASC
+	[ra] ASC
 )
 INCLUDE
 (
-	[ra],
+	[dec],
 	[cx],
 	[cy],
 	[cz]
@@ -573,11 +573,11 @@ GO
 CREATE NONCLUSTERED INDEX [IX_PlateX_zoneID] ON [dbo].[PlateX]
 (
 	[zoneID] ASC,
-	[dec] ASC
+	[ra] ASC
 )
 INCLUDE
 (
-	[ra],
+	[dec],
 	[cx],
 	[cy],
 	[cz]
@@ -625,11 +625,11 @@ GO
 CREATE NONCLUSTERED INDEX [IX_apogeeStar_zoneID] ON [dbo].[apogeeStar]
 (
 	[zoneID] ASC,
-	[dec] ASC
+	[ra] ASC
 )
 INCLUDE
 (
-	[ra],
+	[dec],
 	[cx],
 	[cy],
 	[cz]
@@ -677,11 +677,11 @@ GO
 CREATE NONCLUSTERED INDEX [IX_RegionPatch_zoneID] ON [dbo].[RegionPatch]
 (
 	[zoneID] ASC,
-	[dec] ASC
+	[ra] ASC
 )
 INCLUDE
 (
-	[ra],
+	[dec],
 	[x],
 	[y],
 	[z]

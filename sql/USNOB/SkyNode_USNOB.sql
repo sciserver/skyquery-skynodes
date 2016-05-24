@@ -92,15 +92,18 @@ CREATE NONCLUSTERED INDEX [IX_PhotoObj_Zone] ON [dbo].[PhotoObj]
 )WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON) ON [PRIMARY]
 GO
 
--- Index to support on the fly zone table creation
+-- Index to support zoneID-based search
 CREATE NONCLUSTERED INDEX [IX_PhotoObj_ZoneID] ON [dbo].[PhotoObj] 
 (
 	[zoneID] ASC,
-	[dec] ASC,
-	[ra] ASC,
-	[cx] ASC,
-	[cy] ASC,
-	[cz] ASC
+	[ra] ASC
+)
+INCLUDE
+(
+	[dec],	
+	[cx],
+	[cy],
+	[cz]
 )WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON) ON [PRIMARY]
 GO
 

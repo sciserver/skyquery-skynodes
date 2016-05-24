@@ -175,8 +175,11 @@ GO
 -- Index to support on the fly zone table creation
 CREATE NONCLUSTERED INDEX [IX_PhotoPSC_ZoneID] ON [dbo].[PhotoPSC] 
 (
-	[ZoneID],
-	[ra],
+	[ZoneID] ASC,
+	[ra] ASC
+)
+INCLUDE
+(
 	[dec],
 	[cx],
 	[cy],
@@ -620,8 +623,11 @@ GO
 -- Index to support on the fly zone table creation
 CREATE NONCLUSTERED INDEX [IX_PhotoXSC_ZoneID] ON [dbo].[PhotoXSC] 
 (
-	[ZoneID],
-	[ra],
+	[ZoneID] ASC,
+	[ra] ASC
+)
+INCLUDE
+(
 	[dec],
 	[cx],
 	[cy],

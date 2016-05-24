@@ -171,11 +171,14 @@ GO
 CREATE NONCLUSTERED INDEX [IX_PhotoObj_ZoneID] ON [dbo].[PhotoObj] 
 (
 	[zoneid] ASC,
-	[dec] ASC,
-	[ra] ASC,
-	[cx] ASC,
-	[cy] ASC,
-	[cz] ASC
+	[ra] ASC
+)
+INCLUDE
+(
+	[dec],
+	[cx],
+	[cy],
+	[cz]
 )
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 GO

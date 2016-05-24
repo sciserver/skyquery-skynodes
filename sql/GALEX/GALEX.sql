@@ -382,8 +382,11 @@ GO
 -- Index to support on the fly zone table creation
 CREATE NONCLUSTERED INDEX [IX_PhotoObjAll_ZoneID] ON [dbo].[PhotoObjAll] 
 (
-	[ZoneID],
-	[ra],
+	[ZoneID] ASC,
+	[ra] ASC
+)
+INCLUDE
+(
 	[dec],
 	[cx],
 	[cy],

@@ -77,11 +77,14 @@ GO
 CREATE NONCLUSTERED INDEX [IX_SpecObj_ZoneID] ON [dbo].[SpecObj] 
 (
 	[zoneid] ASC,
-	[dec] ASC,
-	[ra] ASC,
-	[cx] ASC,
-	[cy] ASC,
-	[cz] ASC
+	[ra] ASC
+)
+INCLUDE
+(
+	[dec],	
+	[cx],
+	[cy],
+	[cz]
 )
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [PRIMARY]
