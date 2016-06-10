@@ -31,7 +31,7 @@ CREATE INDEX IX_DR3QuasarCatalog_htmID ON [dbo].[DR3QuasarCatalog]
 )
 INCLUDE
 (
-	[ra], [dec], [cx], [cy], [cz]
+	[ra], [dec], [cx], [cy], [cz], [zoneID]
 )
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [OTHER]
@@ -72,7 +72,7 @@ CREATE INDEX IX_DR5QuasarCatalog_htmID ON [dbo].[DR5QuasarCatalog]
 )
 INCLUDE
 (
-	[ra], [dec], [cx], [cy], [cz]
+	[ra], [dec], [cx], [cy], [cz], [zoneID]
 )
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [OTHER]
@@ -204,7 +204,7 @@ CREATE INDEX IX_HoleObj_htmID ON [dbo].[HoleObj]
 )
 INCLUDE
 (
-	[ra], [dec], [cx], [cy], [cz]
+	[ra], [dec], [cx], [cy], [cz], [zoneID]
 )
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [SPECOBJ]
@@ -245,7 +245,7 @@ CREATE INDEX IX_Mask_htmID ON [dbo].[Mask]
 )
 INCLUDE
 (
-	[ra], [dec], [cx], [cy], [cz]
+	[ra], [dec], [cx], [cy], [cz], [zoneID]
 )
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [PHOTOOTHER]
@@ -297,7 +297,7 @@ CREATE INDEX IX_OrigPhotoObjAll_htmID ON [dbo].[OrigPhotoObjAll]
 )
 INCLUDE
 (
-	[mode], [ra], [dec], [cx], [cy], [cz]
+	[mode], [ra], [dec], [cx], [cy], [cz], [zoneID]
 )
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [ORIGPHOTO]
@@ -402,7 +402,7 @@ CREATE INDEX IX_PhotoObjAll_htmID ON [dbo].[PhotoObjAll]
 )
 INCLUDE
 (
-	[type], [mode], [ra], [dec], [cx], [cy], [cz]
+	[type], [mode], [ra], [dec], [cx], [cy], [cz], [zoneID]
 )
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [PHOTOINDEX]
@@ -575,7 +575,7 @@ CREATE INDEX IX_PhotoTag_htmID ON [dbo].[PhotoTag]
 )
 INCLUDE
 (
-	[mode], [ra], [dec], [cx], [cy], [cz]
+	[mode], [ra], [dec], [cx], [cy], [cz], [zoneID]
 )
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [PHOTOTAG]
@@ -616,7 +616,7 @@ CREATE INDEX IX_PsObjAll_htmID ON [dbo].[PsObjAll]
 )
 INCLUDE
 (
-	[ra], [dec], [cx], [cy], [cz]
+	[ra], [dec], [cx], [cy], [cz], [zoneID]
 )
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [OTHER]
@@ -678,7 +678,7 @@ CREATE INDEX IX_QsoBunch_htmID ON [dbo].[QsoBunch]
 )
 INCLUDE
 (
-	[ra], [dec], [cx], [cy], [cz]
+	[ra], [dec], [cx], [cy], [cz], [zoneID]
 )
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [SPECOBJ]
@@ -837,7 +837,7 @@ CREATE INDEX IX_SpecObjAll_htmID ON [dbo].[SpecObjAll]
 )
 INCLUDE
 (
-	[ra], [dec], [cx], [cy], [cz]
+	[ra], [dec], [cx], [cy], [cz], [zoneID]
 )
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [SPECOBJ]
@@ -920,7 +920,7 @@ CREATE INDEX IX_SpecPhotoAll_htmID ON [dbo].[SpecPhotoAll]
 )
 INCLUDE
 (
-	[ra], [dec], [cx], [cy], [cz]
+	[ra], [dec], [cx], [cy], [cz], [zoneID]
 )
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [SPECOBJ]
@@ -961,7 +961,7 @@ CREATE INDEX IX_sppParams_htmID ON [dbo].[sppParams]
 )
 INCLUDE
 (
-	[ra], [dec], [cx], [cy], [cz]
+	[ra], [dec], [cx], [cy], [cz], [zoneID]
 )
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [SPECOBJ]
@@ -1035,7 +1035,7 @@ CREATE INDEX IX_Target_htmID ON [dbo].[Target]
 )
 INCLUDE
 (
-	[ra], [dec], [cx], [cy], [cz]
+	[ra], [dec], [cx], [cy], [cz], [zoneID]
 )
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [PHOTOOTHER]
@@ -1101,7 +1101,7 @@ CREATE INDEX IX_TargPhotoObjAll_htmID ON [dbo].[TargPhotoObjAll]
 )
 INCLUDE
 (
-	[ra], [dec], [cx], [cy], [cz]
+	[ra], [dec], [cx], [cy], [cz], [zoneID]
 )
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [PHOTOOTHER]
@@ -1142,7 +1142,7 @@ CREATE INDEX IX_TargPhotoTag_htmID ON [dbo].[TargPhotoTag]
 )
 INCLUDE
 (
-	[ra], [dec], [cx], [cy], [cz]
+	[ra], [dec], [cx], [cy], [cz], [zoneID]
 )
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [PHOTOOTHER]
@@ -1216,7 +1216,7 @@ CREATE INDEX IX_TiledTargetAll_htmID ON [dbo].[TiledTargetAll]
 )
 INCLUDE
 (
-	[ra], [dec], [cx], [cy], [cz]
+	[ra], [dec], [cx], [cy], [cz], [zoneID]
 )
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [SPECOBJ]
@@ -1291,7 +1291,7 @@ CREATE INDEX IX_UberAstro_htmID ON [dbo].[UberAstro]
 )
 INCLUDE
 (
-	[ra], [dec], [cx], [cy], [cz]
+	[ra], [dec], [cx], [cy], [cz], [zoneID]
 )
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [UBERCALIB]

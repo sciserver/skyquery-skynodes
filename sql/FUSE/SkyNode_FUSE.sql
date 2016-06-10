@@ -90,12 +90,16 @@ GO
 -- HTM index
 CREATE NONCLUSTERED INDEX [IX_PhotoObj_HtmID] ON [dbo].[PhotoObj] 
 (
-	[htmid] ASC,
-	[ra] ASC,
-	[dec] ASC,
-	[cx] ASC,
-	[cy] ASC,
-	[cz] ASC
+	[htmid] ASC
+)
+INCLUDE
+(
+	[ra],
+	[dec],
+	[cx],
+	[cy],
+	[cz],
+	[zoneID]
 )
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [PRIMARY]

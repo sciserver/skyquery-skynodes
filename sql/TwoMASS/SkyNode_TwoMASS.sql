@@ -165,10 +165,16 @@ GO
 -- HTM index
 CREATE NONCLUSTERED INDEX [IX_PhotoPSC_HtmID] ON [dbo].[PhotoPSC] 
 (
-	[htmid] ASC,
-	[cx] ASC,
-	[cy] ASC,
-	[cz] ASC
+	[htmid] ASC
+)
+INCLUDE
+(
+	[ra],
+	[dec],
+	[cx],
+	[cy],
+	[cz],
+	[zoneID]
 )WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON) ON [PRIMARY]
 GO
 
@@ -613,10 +619,16 @@ GO
 -- HTM index
 CREATE NONCLUSTERED INDEX [IX_PhotoXSC_HtmID] ON [dbo].[PhotoXSC] 
 (
-	[htmid] ASC,
-	[cx] ASC,
-	[cy] ASC,
-	[cz] ASC
+	[htmid] ASC
+)
+INCLUDE
+(
+	[ra],
+	[dec],
+	[cx],
+	[cy],
+	[cz],
+	[zoneID]
 )WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON) ON [PRIMARY]
 GO
 

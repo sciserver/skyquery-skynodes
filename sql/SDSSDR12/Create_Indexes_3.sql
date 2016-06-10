@@ -8,7 +8,8 @@ INCLUDE
 	[decCen],
 	[cx],
 	[cy],
-	[cz]
+	[cz],
+	[zoneID]
 ) 
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [PRIMARY]
@@ -60,7 +61,8 @@ INCLUDE
 	[dec],
 	[cx],
 	[cy],
-	[cz]
+	[cz],
+	[zoneID]
 ) 
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [PRIMARY]
@@ -114,7 +116,8 @@ INCLUDE
 	[dec],
 	[cx],
 	[cy],
-	[cz]
+	[cz],
+	[zoneID]
 ) 
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [PHOTOIDX]
@@ -173,7 +176,8 @@ INCLUDE
 	[dec],
 	[cx],
 	[cy],
-	[cz]
+	[cz],
+	[zoneID]
 ) 
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [PRIMARY]
@@ -233,7 +237,8 @@ INCLUDE
 	[dec],
 	[cx],
 	[cy],
-	[cz]
+	[cz],
+	[zoneID]
 ) 
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [PRIMARY]
@@ -287,7 +292,8 @@ INCLUDE
 	[dec],
 	[cx],
 	[cy],
-	[cz]
+	[cz],
+	[zoneID]
 ) 
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [PRIMARY]
@@ -339,7 +345,8 @@ INCLUDE
 	[dec],
 	[cx],
 	[cy],
-	[cz]
+	[cz],
+	[zoneID]
 ) 
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [PRIMARY]
@@ -391,7 +398,8 @@ INCLUDE
 	[dec],
 	[cx],
 	[cy],
-	[cz]
+	[cz],
+	[zoneID]
 ) 
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [PRIMARY]
@@ -443,7 +451,8 @@ INCLUDE
 	[dec],
 	[cx],
 	[cy],
-	[cz]
+	[cz],
+	[zoneID]
 ) 
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [PRIMARY]
@@ -495,7 +504,8 @@ INCLUDE
 	[dec],
 	[cx],
 	[cy],
-	[cz]
+	[cz],
+	[zoneID]
 ) 
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [PRIMARY]
@@ -547,7 +557,8 @@ INCLUDE
 	[dec],
 	[cx],
 	[cy],
-	[cz]
+	[cz],
+	[zoneID]
 ) 
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [PRIMARY]
@@ -599,7 +610,8 @@ INCLUDE
 	[dec],
 	[cx],
 	[cy],
-	[cz]
+	[cz],
+	[zoneID]
 ) 
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [PRIMARY]
@@ -651,7 +663,8 @@ INCLUDE
 	[dec],
 	[x],
 	[y],
-	[z]
+	[z],
+	[zoneID]
 ) 
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [PRIMARY]

@@ -1554,17 +1554,16 @@ CREATE TABLE [dbo].[PhotoObj]
 
 	--/ <summary>Dereddening index - computed column used in APOGEE target selection</summary>
 	[rjce] real NOT NULL,
- 
-	CONSTRAINT [PK_PhotoObj] PRIMARY KEY CLUSTERED 
-	(
-		[cntr] ASC
-	)
-	WITH (DATA_COMPRESSION = PAGE)
-	ON [PHOTO]
-
 ) ON [PHOTO]
 
 GO
+
+CREATE CLUSTERED INDEX [PK_PhotoObj] ON PhotoObj
+(
+	[cntr] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PHOTO]
 
 CREATE NONCLUSTERED INDEX [IX_PhotoObj_HtmID] ON [dbo].[PhotoObj]
 (
