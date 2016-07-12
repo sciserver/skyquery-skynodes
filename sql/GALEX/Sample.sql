@@ -37,7 +37,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[objid], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[objid], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_GALEX].[dbo].[PhotoObjAll] sourcetablealias
 	
  )

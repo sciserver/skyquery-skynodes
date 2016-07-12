@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SubsetDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceDatabaseConnectionString>Data Source=gw07;Initial Catalog=SkyNode_SDSSDR12;Integrated Security=True</SourceDatabaseConnectionString>
-  <DestinationDatabaseConnectionString>Data Source=gw07;Initial Catalog=SkyNode_SDSSDR12_Mini;Integrated Security=True</DestinationDatabaseConnectionString>
+  <SourceDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_SDSSDR12;Integrated Security=True</SourceDatabaseConnectionString>
+  <DestinationDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_SDSSDR12_STAT;Integrated Security=True</DestinationDatabaseConnectionString>
   <Tables_ForXml>
     <Table>
       <Order>0</Order>
@@ -72,7 +72,7 @@
         <string>target_id</string>
       </PrimaryKeyColumns>
       <PrimaryKeyColumnTypes>
-        <string>varchar</string>
+        <string>varchar(64)</string>
       </PrimaryKeyColumnTypes>
       <HasIdentityProperty>false</HasIdentityProperty>
       <Columns>
@@ -129,7 +129,7 @@
         <string>tmass_gal_contam</string>
       </Columns>
       <ForeignKeys />
-      <DataSpaceUsed>17028032</DataSpaceUsed>
+      <DataSpaceUsed>7527376</DataSpaceUsed>
       <RowCount>59083189</RowCount>
     </Table>
     <Table>
@@ -142,7 +142,7 @@
         <string>plate_visit_id</string>
       </PrimaryKeyColumns>
       <PrimaryKeyColumnTypes>
-        <string>varchar</string>
+        <string>varchar(64)</string>
       </PrimaryKeyColumnTypes>
       <HasIdentityProperty>false</HasIdentityProperty>
       <Columns>
@@ -180,7 +180,7 @@
         <string>apstar_id</string>
       </PrimaryKeyColumns>
       <PrimaryKeyColumnTypes>
-        <string>varchar</string>
+        <string>varchar(64)</string>
       </PrimaryKeyColumnTypes>
       <HasIdentityProperty>false</HasIdentityProperty>
       <Columns>
@@ -194,6 +194,9 @@
         <string>field</string>
         <string>ra</string>
         <string>dec</string>
+        <string>cx</string>
+        <string>cy</string>
+        <string>cz</string>
         <string>glon</string>
         <string>glat</string>
         <string>apogee_target1</string>
@@ -224,9 +227,10 @@
         <string>stablerv_chi2_prob</string>
         <string>apstar_version</string>
         <string>htmID</string>
+        <string>zoneID</string>
       </Columns>
       <ForeignKeys />
-      <DataSpaceUsed>59584</DataSpaceUsed>
+      <DataSpaceUsed>53144</DataSpaceUsed>
       <RowCount>163278</RowCount>
     </Table>
     <Table>
@@ -240,8 +244,8 @@
         <string>apstar_id</string>
       </PrimaryKeyColumns>
       <PrimaryKeyColumnTypes>
-        <string>varchar</string>
-        <string>varchar</string>
+        <string>varchar(64)</string>
+        <string>varchar(64)</string>
       </PrimaryKeyColumnTypes>
       <HasIdentityProperty>false</HasIdentityProperty>
       <Columns>
@@ -262,7 +266,7 @@
         <string>visit_id</string>
       </PrimaryKeyColumns>
       <PrimaryKeyColumnTypes>
-        <string>varchar</string>
+        <string>varchar(64)</string>
       </PrimaryKeyColumnTypes>
       <HasIdentityProperty>false</HasIdentityProperty>
       <Columns>
@@ -283,7 +287,7 @@
         <string>visit_id</string>
       </PrimaryKeyColumns>
       <PrimaryKeyColumnTypes>
-        <string>varchar</string>
+        <string>varchar(64)</string>
       </PrimaryKeyColumnTypes>
       <HasIdentityProperty>false</HasIdentityProperty>
       <Columns>
@@ -343,7 +347,7 @@
         <string>aspcap_id</string>
       </PrimaryKeyColumns>
       <PrimaryKeyColumnTypes>
-        <string>varchar</string>
+        <string>varchar(64)</string>
       </PrimaryKeyColumnTypes>
       <HasIdentityProperty>false</HasIdentityProperty>
       <Columns>
@@ -467,15 +471,15 @@
       <Order>9</Order>
       <Schema>dbo</Schema>
       <Name>aspcapStarCovar</Name>
-      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingFactor>0.001</SamplingFactor>
       <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>aspcap_covar_id</string>
         <string>aspcap_id</string>
       </PrimaryKeyColumns>
       <PrimaryKeyColumnTypes>
-        <string>varchar</string>
-        <string>varchar</string>
+        <string>varchar(64)</string>
+        <string>varchar(64)</string>
       </PrimaryKeyColumnTypes>
       <HasIdentityProperty>false</HasIdentityProperty>
       <Columns>
@@ -501,8 +505,8 @@
         <string>name</string>
       </PrimaryKeyColumns>
       <PrimaryKeyColumnTypes>
-        <string>varchar</string>
-        <string>varchar</string>
+        <string>varchar(128)</string>
+        <string>varchar(128)</string>
       </PrimaryKeyColumnTypes>
       <HasIdentityProperty>false</HasIdentityProperty>
       <Columns>
@@ -519,7 +523,7 @@
       <Order>11</Order>
       <Schema>dbo</Schema>
       <Name>emissionLinesPort</Name>
-      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingFactor>0.001</SamplingFactor>
       <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>specObjID</string>
@@ -946,7 +950,7 @@
       <Order>12</Order>
       <Schema>dbo</Schema>
       <Name>Field</Name>
-      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingFactor>0.001</SamplingFactor>
       <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>fieldID</string>
@@ -1396,7 +1400,7 @@
       <Order>13</Order>
       <Schema>dbo</Schema>
       <Name>FieldProfile</Name>
-      <SamplingFactor>1</SamplingFactor>
+      <SamplingFactor>0.001</SamplingFactor>
       <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>fieldID</string>
@@ -1425,7 +1429,7 @@
       <Order>14</Order>
       <Schema>dbo</Schema>
       <Name>Frame</Name>
-      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingFactor>0.001</SamplingFactor>
       <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>fieldID</string>
@@ -1465,16 +1469,17 @@
         <string>cy</string>
         <string>cz</string>
         <string>htmID</string>
+        <string>zoneID</string>
       </Columns>
       <ForeignKeys />
-      <DataSpaceUsed>789936</DataSpaceUsed>
+      <DataSpaceUsed>734208</DataSpaceUsed>
       <RowCount>3752184</RowCount>
     </Table>
     <Table>
       <Order>15</Order>
       <Schema>dbo</Schema>
       <Name>galSpecExtra</Name>
-      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingFactor>0.001</SamplingFactor>
       <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>specObjID</string>
@@ -1535,7 +1540,7 @@
       <Order>16</Order>
       <Schema>dbo</Schema>
       <Name>galSpecIndx</Name>
-      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingFactor>0.001</SamplingFactor>
       <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>specObjID</string>
@@ -1779,7 +1784,7 @@
       <Order>17</Order>
       <Schema>dbo</Schema>
       <Name>galSpecInfo</Name>
-      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingFactor>0.001</SamplingFactor>
       <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>specObjID</string>
@@ -1818,7 +1823,7 @@
       <Order>18</Order>
       <Schema>dbo</Schema>
       <Name>galSpecLine</Name>
-      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingFactor>0.001</SamplingFactor>
       <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>specObjID</string>
@@ -2027,7 +2032,7 @@
       <Order>19</Order>
       <Schema>dbo</Schema>
       <Name>HalfSpace</Name>
-      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingFactor>0.001</SamplingFactor>
       <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>constraintid</string>
@@ -2035,7 +2040,7 @@
       <PrimaryKeyColumnTypes>
         <string>bigint</string>
       </PrimaryKeyColumnTypes>
-      <HasIdentityProperty>true</HasIdentityProperty>
+      <HasIdentityProperty>false</HasIdentityProperty>
       <Columns>
         <string>constraintid</string>
         <string>regionid</string>
@@ -2060,8 +2065,8 @@
         <string>Plate</string>
       </PrimaryKeyColumns>
       <PrimaryKeyColumnTypes>
-        <string>varchar</string>
-        <string>varchar</string>
+        <string>varchar(64)</string>
+        <string>varchar(32)</string>
       </PrimaryKeyColumnTypes>
       <HasIdentityProperty>false</HasIdentityProperty>
       <Columns>
@@ -2127,11 +2132,11 @@
         <string>LST-OBS</string>
       </PrimaryKeyColumns>
       <PrimaryKeyColumnTypes>
-        <string>varchar</string>
+        <string>varchar(64)</string>
         <string>tinyint</string>
-        <string>varchar</string>
+        <string>varchar(32)</string>
         <string>float</string>
-        <string>varchar</string>
+        <string>varchar(32)</string>
       </PrimaryKeyColumnTypes>
       <HasIdentityProperty>false</HasIdentityProperty>
       <Columns>
@@ -2230,7 +2235,7 @@
       <Order>22</Order>
       <Schema>dbo</Schema>
       <Name>Mask</Name>
-      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingFactor>0.001</SamplingFactor>
       <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>maskID</string>
@@ -2257,16 +2262,17 @@
         <string>cy</string>
         <string>cz</string>
         <string>htmID</string>
+        <string>zoneID</string>
       </Columns>
       <ForeignKeys />
-      <DataSpaceUsed>7970968</DataSpaceUsed>
+      <DataSpaceUsed>9253040</DataSpaceUsed>
       <RowCount>35527329</RowCount>
     </Table>
     <Table>
       <Order>23</Order>
       <Schema>dbo</Schema>
       <Name>MaskedObject</Name>
-      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingFactor>0.001</SamplingFactor>
       <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>objid</string>
@@ -2476,6 +2482,7 @@
         <string>airmass_z</string>
         <string>loadVersion</string>
         <string>htmID</string>
+        <string>zoneID</string>
         <string>fieldID</string>
         <string>parentID</string>
         <string>specObjID</string>
@@ -2513,7 +2520,7 @@
         <string>TAI_z</string>
       </Columns>
       <ForeignKeys />
-      <DataSpaceUsed>1205805904</DataSpaceUsed>
+      <DataSpaceUsed>1209397784</DataSpaceUsed>
       <RowCount>1231051050</RowCount>
     </Table>
     <Table>
@@ -2597,12 +2604,13 @@
         <string>extinction_i</string>
         <string>extinction_z</string>
         <string>htmID</string>
+        <string>zoneID</string>
         <string>fieldID</string>
         <string>SpecObjID</string>
         <string>size</string>
       </Columns>
       <ForeignKeys />
-      <DataSpaceUsed>116754416</DataSpaceUsed>
+      <DataSpaceUsed>110736896</DataSpaceUsed>
       <RowCount>364857538</RowCount>
     </Table>
     <Table>
@@ -2684,12 +2692,13 @@
         <string>extinction_i</string>
         <string>extinction_z</string>
         <string>htmID</string>
+        <string>zoneID</string>
         <string>fieldID</string>
         <string>SpecObjID</string>
         <string>size</string>
       </Columns>
       <ForeignKeys />
-      <DataSpaceUsed>97852656</DataSpaceUsed>
+      <DataSpaceUsed>102771184</DataSpaceUsed>
       <RowCount>305789541</RowCount>
     </Table>
     <Table>
@@ -2743,7 +2752,7 @@
         <string>absMagZ</string>
       </Columns>
       <ForeignKeys />
-      <DataSpaceUsed>33356552</DataSpaceUsed>
+      <DataSpaceUsed>34708384</DataSpaceUsed>
       <RowCount>208478448</RowCount>
     </Table>
     <Table>
@@ -2790,7 +2799,7 @@
         <string>absMagZ</string>
       </Columns>
       <ForeignKeys />
-      <DataSpaceUsed>26473456</DataSpaceUsed>
+      <DataSpaceUsed>27279528</DataSpaceUsed>
       <RowCount>208478448</RowCount>
     </Table>
     <Table>
@@ -2814,7 +2823,7 @@
         <string>coeff</string>
       </Columns>
       <ForeignKeys />
-      <DataSpaceUsed>12517616</DataSpaceUsed>
+      <DataSpaceUsed>6722000</DataSpaceUsed>
       <RowCount>505398590</RowCount>
     </Table>
     <Table>
@@ -2838,7 +2847,7 @@
         <string>coeff</string>
       </Columns>
       <ForeignKeys />
-      <DataSpaceUsed>12828760</DataSpaceUsed>
+      <DataSpaceUsed>6874648</DataSpaceUsed>
       <RowCount>517961077</RowCount>
     </Table>
     <Table>
@@ -2858,7 +2867,7 @@
         <string>loadVersion</string>
       </Columns>
       <ForeignKeys />
-      <DataSpaceUsed>2212088</DataSpaceUsed>
+      <DataSpaceUsed>2204016</DataSpaceUsed>
       <RowCount>60059331</RowCount>
     </Table>
     <Table>
@@ -3006,10 +3015,11 @@
         <string>fscanMode</string>
         <string>fscanSpeed</string>
         <string>htmID</string>
+        <string>zoneID</string>
         <string>loadVersion</string>
       </Columns>
       <ForeignKeys />
-      <DataSpaceUsed>4136</DataSpaceUsed>
+      <DataSpaceUsed>2936</DataSpaceUsed>
       <RowCount>5392</RowCount>
     </Table>
     <Table>
@@ -3047,22 +3057,22 @@
         <string>objid</string>
       </Columns>
       <ForeignKeys />
-      <DataSpaceUsed>30632192</DataSpaceUsed>
+      <DataSpaceUsed>18440064</DataSpaceUsed>
       <RowCount>336954036</RowCount>
     </Table>
     <Table>
       <Order>34</Order>
       <Schema>dbo</Schema>
       <Name>Region</Name>
-      <SamplingFactor>0</SamplingFactor>
-      <SamplingMethod>None</SamplingMethod>
+      <SamplingFactor>0.001</SamplingFactor>
+      <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>regionid</string>
       </PrimaryKeyColumns>
       <PrimaryKeyColumnTypes>
         <string>bigint</string>
       </PrimaryKeyColumnTypes>
-      <HasIdentityProperty>true</HasIdentityProperty>
+      <HasIdentityProperty>false</HasIdentityProperty>
       <Columns>
         <string>regionid</string>
         <string>id</string>
@@ -3082,7 +3092,7 @@
       <Schema>dbo</Schema>
       <Name>Region2Box</Name>
       <SamplingFactor>0</SamplingFactor>
-      <SamplingMethod>None</SamplingMethod>
+      <SamplingMethod>FullTable</SamplingMethod>
       <PrimaryKeyColumns />
       <PrimaryKeyColumnTypes />
       <HasIdentityProperty>false</HasIdentityProperty>
@@ -3100,8 +3110,8 @@
       <Order>36</Order>
       <Schema>dbo</Schema>
       <Name>RegionArcs</Name>
-      <SamplingFactor>0</SamplingFactor>
-      <SamplingMethod>None</SamplingMethod>
+      <SamplingFactor>0.001</SamplingFactor>
+      <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>regionid</string>
         <string>convexid</string>
@@ -3112,7 +3122,7 @@
         <string>bigint</string>
         <string>int</string>
       </PrimaryKeyColumnTypes>
-      <HasIdentityProperty>true</HasIdentityProperty>
+      <HasIdentityProperty>false</HasIdentityProperty>
       <Columns>
         <string>arcid</string>
         <string>regionid</string>
@@ -3139,8 +3149,8 @@
       <Order>37</Order>
       <Schema>dbo</Schema>
       <Name>RegionPatch</Name>
-      <SamplingFactor>0</SamplingFactor>
-      <SamplingMethod>None</SamplingMethod>
+      <SamplingFactor>0.001</SamplingFactor>
+      <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>regionid</string>
         <string>convexid</string>
@@ -3165,11 +3175,12 @@
         <string>z</string>
         <string>c</string>
         <string>htmid</string>
+        <string>zoneid</string>
         <string>area</string>
         <string>convexString</string>
       </Columns>
       <ForeignKeys />
-      <DataSpaceUsed>3201424</DataSpaceUsed>
+      <DataSpaceUsed>3278392</DataSpaceUsed>
       <RowCount>8060101</RowCount>
     </Table>
     <Table>
@@ -3200,7 +3211,7 @@
         <string>row</string>
       </PrimaryKeyColumns>
       <PrimaryKeyColumnTypes>
-        <string>varchar</string>
+        <string>varchar(16)</string>
         <string>smallint</string>
       </PrimaryKeyColumnTypes>
       <HasIdentityProperty>false</HasIdentityProperty>
@@ -3286,7 +3297,7 @@
       <Schema>dbo</Schema>
       <Name>sdssBestTarget2Sector</Name>
       <SamplingFactor>0</SamplingFactor>
-      <SamplingMethod>None</SamplingMethod>
+      <SamplingMethod>FullTable</SamplingMethod>
       <PrimaryKeyColumns />
       <PrimaryKeyColumnTypes />
       <HasIdentityProperty>false</HasIdentityProperty>
@@ -3313,7 +3324,7 @@
         <string>name</string>
       </PrimaryKeyColumns>
       <PrimaryKeyColumnTypes>
-        <string>varchar</string>
+        <string>varchar(32)</string>
       </PrimaryKeyColumnTypes>
       <HasIdentityProperty>false</HasIdentityProperty>
       <Columns>
@@ -3330,8 +3341,8 @@
       <Order>44</Order>
       <Schema>dbo</Schema>
       <Name>sdssImagingHalfSpaces</Name>
-      <SamplingFactor>0</SamplingFactor>
-      <SamplingMethod>None</SamplingMethod>
+      <SamplingFactor>0.001</SamplingFactor>
+      <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>sdssPolygonID</string>
         <string>x</string>
@@ -3365,8 +3376,8 @@
       <Order>45</Order>
       <Schema>dbo</Schema>
       <Name>sdssPolygon2Field</Name>
-      <SamplingFactor>0</SamplingFactor>
-      <SamplingMethod>None</SamplingMethod>
+      <SamplingFactor>0.001</SamplingFactor>
+      <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>sdssPolygonID</string>
         <string>fieldID</string>
@@ -3389,8 +3400,8 @@
       <Order>46</Order>
       <Schema>dbo</Schema>
       <Name>sdssPolygons</Name>
-      <SamplingFactor>0</SamplingFactor>
-      <SamplingMethod>None</SamplingMethod>
+      <SamplingFactor>0.001</SamplingFactor>
+      <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>sdssPolygonID</string>
       </PrimaryKeyColumns>
@@ -3462,9 +3473,9 @@
         <string>name</string>
       </PrimaryKeyColumns>
       <PrimaryKeyColumnTypes>
-        <string>varchar</string>
-        <string>varchar</string>
-        <string>varchar</string>
+        <string>varchar(32)</string>
+        <string>varchar(32)</string>
+        <string>varchar(32)</string>
       </PrimaryKeyColumnTypes>
       <HasIdentityProperty>false</HasIdentityProperty>
       <Columns>
@@ -3496,6 +3507,7 @@
         <string>raCen</string>
         <string>decCen</string>
         <string>htmID</string>
+        <string>zoneID</string>
         <string>cx</string>
         <string>cy</string>
         <string>cz</string>
@@ -3504,15 +3516,15 @@
         <string>loadVersion</string>
       </Columns>
       <ForeignKeys />
-      <DataSpaceUsed>136</DataSpaceUsed>
+      <DataSpaceUsed>152</DataSpaceUsed>
       <RowCount>1869</RowCount>
     </Table>
     <Table>
       <Order>51</Order>
       <Schema>dbo</Schema>
       <Name>sdssTiledTargetAll</Name>
-      <SamplingFactor>0</SamplingFactor>
-      <SamplingMethod>None</SamplingMethod>
+      <SamplingFactor>0.001</SamplingFactor>
+      <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>targetID</string>
       </PrimaryKeyColumns>
@@ -3530,6 +3542,7 @@
         <string>ra</string>
         <string>dec</string>
         <string>htmID</string>
+        <string>zoneID</string>
         <string>cx</string>
         <string>cy</string>
         <string>cz</string>
@@ -3545,7 +3558,7 @@
         <string>loadVersion</string>
       </Columns>
       <ForeignKeys />
-      <DataSpaceUsed>130080</DataSpaceUsed>
+      <DataSpaceUsed>138608</DataSpaceUsed>
       <RowCount>1056872</RowCount>
     </Table>
     <Table>
@@ -3586,8 +3599,8 @@
       <Order>53</Order>
       <Schema>dbo</Schema>
       <Name>sdssTilingInfo</Name>
-      <SamplingFactor>0</SamplingFactor>
-      <SamplingMethod>None</SamplingMethod>
+      <SamplingFactor>0.001</SamplingFactor>
+      <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>tileRun</string>
         <string>targetID</string>
@@ -3678,14 +3691,14 @@
         <string>v1sigmaerr_tohv</string>
       </Columns>
       <ForeignKeys />
-      <DataSpaceUsed>54206088</DataSpaceUsed>
+      <DataSpaceUsed>38193368</DataSpaceUsed>
       <RowCount>453975934</RowCount>
     </Table>
     <Table>
       <Order>56</Order>
       <Schema>dbo</Schema>
       <Name>SpecDR7</Name>
-      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingFactor>0.001</SamplingFactor>
       <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>specObjID</string>
@@ -3759,6 +3772,7 @@
         <string>extinction_i</string>
         <string>extinction_z</string>
         <string>htmID</string>
+        <string>zoneID</string>
         <string>fieldID</string>
         <string>size</string>
         <string>pmRa</string>
@@ -3771,14 +3785,14 @@
         <string>match</string>
       </Columns>
       <ForeignKeys />
-      <DataSpaceUsed>565792</DataSpaceUsed>
+      <DataSpaceUsed>566672</DataSpaceUsed>
       <RowCount>1697361</RowCount>
     </Table>
     <Table>
       <Order>57</Order>
       <Schema>dbo</Schema>
       <Name>SpecObjAll</Name>
-      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingFactor>0.001</SamplingFactor>
       <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>specObjID</string>
@@ -3976,17 +3990,18 @@
         <string>elodieRChi2</string>
         <string>elodieDOF</string>
         <string>htmID</string>
+        <string>zoneID</string>
         <string>loadVersion</string>
       </Columns>
       <ForeignKeys />
-      <DataSpaceUsed>4149776</DataSpaceUsed>
+      <DataSpaceUsed>2163240</DataSpaceUsed>
       <RowCount>4355200</RowCount>
     </Table>
     <Table>
       <Order>58</Order>
       <Schema>dbo</Schema>
       <Name>SpecPhotoAll</Name>
-      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingFactor>0.001</SamplingFactor>
       <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>specObjID</string>
@@ -4012,6 +4027,7 @@
         <string>cy</string>
         <string>cz</string>
         <string>htmID</string>
+        <string>zoneID</string>
         <string>sciencePrimary</string>
         <string>legacyPrimary</string>
         <string>seguePrimary</string>
@@ -4120,14 +4136,14 @@
         <string>dered_z</string>
       </Columns>
       <ForeignKeys />
-      <DataSpaceUsed>2681768</DataSpaceUsed>
+      <DataSpaceUsed>2044040</DataSpaceUsed>
       <RowCount>4355200</RowCount>
     </Table>
     <Table>
       <Order>59</Order>
       <Schema>dbo</Schema>
       <Name>sppLines</Name>
-      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingFactor>0.001</SamplingFactor>
       <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>SPECOBJID</string>
@@ -4498,7 +4514,7 @@
       <Order>60</Order>
       <Schema>dbo</Schema>
       <Name>sppParams</Name>
-      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingFactor>0.001</SamplingFactor>
       <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>SPECOBJID</string>
@@ -4674,7 +4690,7 @@
       <Schema>dbo</Schema>
       <Name>sppTargets</Name>
       <SamplingFactor>0</SamplingFactor>
-      <SamplingMethod>None</SamplingMethod>
+      <SamplingMethod>FullTable</SamplingMethod>
       <PrimaryKeyColumns />
       <PrimaryKeyColumnTypes />
       <HasIdentityProperty>false</HasIdentityProperty>
@@ -4799,7 +4815,7 @@
       <Order>62</Order>
       <Schema>dbo</Schema>
       <Name>stellarMassFSPSGranEarlyDust</Name>
-      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingFactor>0.001</SamplingFactor>
       <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>specObjID</string>
@@ -4901,7 +4917,7 @@
       <Order>63</Order>
       <Schema>dbo</Schema>
       <Name>stellarMassFSPSGranEarlyNoDust</Name>
-      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingFactor>0.001</SamplingFactor>
       <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>specObjID</string>
@@ -5003,7 +5019,7 @@
       <Order>64</Order>
       <Schema>dbo</Schema>
       <Name>stellarMassFSPSGranWideDust</Name>
-      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingFactor>0.001</SamplingFactor>
       <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>specObjID</string>
@@ -5105,7 +5121,7 @@
       <Order>65</Order>
       <Schema>dbo</Schema>
       <Name>stellarMassFSPSGranWideNoDust</Name>
-      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingFactor>0.001</SamplingFactor>
       <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>specObjID</string>
@@ -5207,7 +5223,7 @@
       <Order>66</Order>
       <Schema>dbo</Schema>
       <Name>stellarMassPassivePort</Name>
-      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingFactor>0.001</SamplingFactor>
       <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>specObjID</string>
@@ -5260,7 +5276,7 @@
       <Order>67</Order>
       <Schema>dbo</Schema>
       <Name>stellarMassPCAWiscBC03</Name>
-      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingFactor>0.001</SamplingFactor>
       <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>specObjID</string>
@@ -5309,7 +5325,7 @@
       <Order>68</Order>
       <Schema>dbo</Schema>
       <Name>stellarMassPCAWiscM11</Name>
-      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingFactor>0.001</SamplingFactor>
       <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>specObjID</string>
@@ -5358,7 +5374,7 @@
       <Order>69</Order>
       <Schema>dbo</Schema>
       <Name>stellarMassStarformingPort</Name>
-      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingFactor>0.001</SamplingFactor>
       <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>specObjID</string>
@@ -5458,14 +5474,14 @@
         <string>loadVersion</string>
       </Columns>
       <ForeignKeys />
-      <DataSpaceUsed>37579264</DataSpaceUsed>
+      <DataSpaceUsed>17558512</DataSpaceUsed>
       <RowCount>563688948</RowCount>
     </Table>
     <Table>
       <Order>72</Order>
       <Schema>dbo</Schema>
       <Name>zoo2MainPhotoz</Name>
-      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingFactor>0.1</SamplingFactor>
       <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>dr7objid</string>
@@ -5966,7 +5982,7 @@
       <Order>74</Order>
       <Schema>dbo</Schema>
       <Name>zoo2Stripe82Coadd1</Name>
-      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingFactor>0.1</SamplingFactor>
       <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>stripe82objid</string>
@@ -6218,7 +6234,7 @@
       <Order>75</Order>
       <Schema>dbo</Schema>
       <Name>zoo2Stripe82Coadd2</Name>
-      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingFactor>0.1</SamplingFactor>
       <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>stripe82objid</string>
@@ -6470,7 +6486,7 @@
       <Order>76</Order>
       <Schema>dbo</Schema>
       <Name>zoo2Stripe82Normal</Name>
-      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingFactor>0.1</SamplingFactor>
       <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>dr7objid</string>
@@ -6754,7 +6770,7 @@
       <Order>78</Order>
       <Schema>dbo</Schema>
       <Name>zooMirrorBias</Name>
-      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingFactor>0.1</SamplingFactor>
       <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>dr7objid</string>
@@ -6796,7 +6812,7 @@
       <Order>79</Order>
       <Schema>dbo</Schema>
       <Name>zooMonochromeBias</Name>
-      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingFactor>0.1</SamplingFactor>
       <SamplingMethod>Random</SamplingMethod>
       <PrimaryKeyColumns>
         <string>dr7objid</string>

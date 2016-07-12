@@ -1,3 +1,5 @@
+USE [SkyNode_SDSSDR12]
+
 /*
 
 CREATE PARTITION FUNCTION PF_PhotoObjAll ( bigint )
@@ -560,7 +562,7 @@ CREATE TABLE PhotoObjAll (
 
 	CONSTRAINT PK_PhotoObjAll PRIMARY KEY (objID)
 ) 
-ON PS_PhotoObjAll(objid)
---ON PHOTOOBJ
+--ON PS_PhotoObjAll(objid)
+ON PHOTOOBJ
 WITH (DATA_COMPRESSION = PAGE)
 GO

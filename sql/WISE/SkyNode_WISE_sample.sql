@@ -13,7 +13,7 @@
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[cntr], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[cntr], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_WISE].[dbo].[PhotoObj] sourcetablealias
 	
  )

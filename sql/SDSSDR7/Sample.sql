@@ -13,7 +13,7 @@
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[objID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[objID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[Ap7Mag] sourcetablealias
 	
  )
@@ -49,7 +49,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[objID], sourcetablealias.[regionID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[objID], sourcetablealias.[regionID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[BestTarget2Sector] sourcetablealias
 	
  )
@@ -121,7 +121,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[elRedShiftID], sourcetablealias.[specObjID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[elRedShiftID], sourcetablealias.[specObjID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[ELRedShift] sourcetablealias
 	
  )
@@ -157,7 +157,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[fieldID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[fieldID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[Field] sourcetablealias
 	
  )
@@ -193,7 +193,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[fieldID], sourcetablealias.[bin], sourcetablealias.[band], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[fieldID], sourcetablealias.[bin], sourcetablealias.[band], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[FieldProfile] sourcetablealias
 	
  )
@@ -229,7 +229,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[fieldID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[fieldID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[FieldQA] sourcetablealias
 	
  )
@@ -265,7 +265,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[fieldID], sourcetablealias.[zoom], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[fieldID], sourcetablealias.[zoom], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[Frame] sourcetablealias
 	
  )
@@ -329,7 +329,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[maskID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[maskID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[Mask] sourcetablealias
 	
  )
@@ -365,7 +365,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[objid], sourcetablealias.[maskID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[objid], sourcetablealias.[maskID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[MaskedObject] sourcetablealias
 	
  )
@@ -401,7 +401,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[objID1], sourcetablealias.[objID2], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[objID1], sourcetablealias.[objID2], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[Match] sourcetablealias
 	
  )
@@ -437,7 +437,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[objID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[objID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[MatchHead] sourcetablealias
 	
  )
@@ -473,7 +473,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[objID], sourcetablealias.[neighborObjID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[objID], sourcetablealias.[neighborObjID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[Neighbors] sourcetablealias
 	
  )
@@ -509,7 +509,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[objID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[objID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[ObjMask] sourcetablealias
 	
  )
@@ -545,7 +545,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[fieldID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[fieldID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[OrigField] sourcetablealias
 	
  )
@@ -581,7 +581,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[objID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[objID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[OrigPhotoObjAll] sourcetablealias
 	
  )
@@ -617,7 +617,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[objID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[objID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[PhotoObjAll] sourcetablealias
 	
  )
@@ -653,7 +653,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[objID], sourcetablealias.[bin], sourcetablealias.[band], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[objID], sourcetablealias.[bin], sourcetablealias.[band], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[PhotoProfile] sourcetablealias
 	
  )
@@ -689,7 +689,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[objID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[objID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[PhotoTag] sourcetablealias
 	
  )
@@ -725,7 +725,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[objID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[objID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[Photoz] sourcetablealias
 	
  )
@@ -761,7 +761,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[objID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[objID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[Photoz2] sourcetablealias
 	
  )
@@ -821,7 +821,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[objid], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[objid], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[ProperMotions] sourcetablealias
 	
  )
@@ -857,7 +857,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[objID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[objID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[PsObjAll] sourcetablealias
 	
  )
@@ -893,7 +893,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[bestObjID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[bestObjID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[QsoBest] sourcetablealias
 	
  )
@@ -929,7 +929,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[HeadObjID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[HeadObjID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[QsoBunch] sourcetablealias
 	
  )
@@ -965,7 +965,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[HeadObjID], sourcetablealias.[TargetObjID], sourcetablealias.[SpecObjID], sourcetablealias.[BestObjID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[HeadObjID], sourcetablealias.[TargetObjID], sourcetablealias.[SpecObjID], sourcetablealias.[BestObjID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[QsoCatalogAll] sourcetablealias
 	
  )
@@ -975,6 +975,10 @@ GO
  WHERE randomnumber < 0.1;
  
  -- Insert subset into destination table
+ 
+ --Setting Identity Column
+ SET IDENTITY_INSERT [SkyNode_SDSSDR7_STAT].[dbo].[QsoCatalogAll] ON;
+ GO
  
  INSERT [SkyNode_SDSSDR7_STAT].[dbo].[QsoCatalogAll] WITH (TABLOCKX)
 	([HeadObjID], [tripleID], [QsoPrimary], [HeadObjType], [TargetObjID], [SpecObjID], [BestObjID], [TargetQsoTargeted], [SpecQsoConfirmed], [SpecQsoUnknown], [SpecQsoLargeZ], [SpecQsoTargeted], [BestQsoTargeted], [dist_Target_Best], [dist_Target_Spec], [dist_Best_Spec], [psfmag_i_diff], [psfmag_g_i_diff])
@@ -1001,7 +1005,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[HeadObjID], sourcetablealias.[tripleID], sourcetablealias.[TargetObjID], sourcetablealias.[SpecObjID], sourcetablealias.[BestObjID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[HeadObjID], sourcetablealias.[tripleID], sourcetablealias.[TargetObjID], sourcetablealias.[SpecObjID], sourcetablealias.[BestObjID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[QsoConcordanceAll] sourcetablealias
 	
  )
@@ -1037,7 +1041,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[SpecObjID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[SpecObjID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[QsoSpec] sourcetablealias
 	
  )
@@ -1073,7 +1077,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[targetObjID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[targetObjID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[QsoTarget] sourcetablealias
 	
  )
@@ -1177,7 +1181,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[fieldID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[fieldID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[RunQA] sourcetablealias
 	
  )
@@ -1273,7 +1277,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[specLineID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[specLineID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[SpecLineAll] sourcetablealias
 	
  )
@@ -1309,7 +1313,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[specLineIndexID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[specLineIndexID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[SpecLineIndex] sourcetablealias
 	
  )
@@ -1345,7 +1349,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[specObjID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[specObjID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[SpecObjAll] sourcetablealias
 	
  )
@@ -1381,7 +1385,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[specObjID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[specObjID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[SpecPhotoAll] sourcetablealias
 	
  )
@@ -1417,7 +1421,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[specobjid], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[specobjid], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[sppLines] sourcetablealias
 	
  )
@@ -1453,7 +1457,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[specobjid], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[specobjid], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[sppParams] sourcetablealias
 	
  )
@@ -1501,7 +1505,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[targetID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[targetID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[Target] sourcetablealias
 	
  )
@@ -1537,7 +1541,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[skyVersion], sourcetablealias.[targetID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[skyVersion], sourcetablealias.[targetID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[TargetInfo] sourcetablealias
 	
  )
@@ -1573,7 +1577,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[objID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[objID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[TargPhotoObjAll] sourcetablealias
 	
  )
@@ -1633,7 +1637,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[tile], sourcetablealias.[targetID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[tile], sourcetablealias.[targetID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[TiledTargetAll] sourcetablealias
 	
  )
@@ -1681,7 +1685,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[tileRun], sourcetablealias.[targetID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[tileRun], sourcetablealias.[targetID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[TilingInfo] sourcetablealias
 	
  )
@@ -1741,7 +1745,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[objID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[objID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[UberAstro] sourcetablealias
 	
  )
@@ -1777,7 +1781,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[objID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[objID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[UberCal] sourcetablealias
 	
  )
@@ -1813,7 +1817,7 @@ GO
  -- Collect IDs
  WITH temporaryidlistquery AS
  (
-	SELECT sourcetablealias.[xcRedShiftID], dbo.RandomDouble() AS randomnumber
+	SELECT sourcetablealias.[xcRedShiftID], gw.RandomDouble() AS randomnumber
 	FROM [SkyNode_SDSSDR7].[dbo].[XCRedshift] sourcetablealias
 	
  )
