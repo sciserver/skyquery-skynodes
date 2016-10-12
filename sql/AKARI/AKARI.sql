@@ -1,4 +1,4 @@
-USE [AKARI]
+USE [Graywulf_Temp]
 GO
 
 --------------------------------------------------------------------------------------
@@ -54,7 +54,7 @@ GO
 
 BULK INSERT 
    PhotoObjRAW
-      FROM 'C:\Data\ebanyai\project\Skyquery-data\AKARI\akari_irc.bin' 
+      FROM '\\SKYQUERY01\Data\temp0\data0\ebanyai\AKARI\akari_irc.bin' 
      WITH 
     ( 
    DATAFILETYPE = 'native',
@@ -98,6 +98,9 @@ CREATE TABLE dbo.IRC
 
 	--/ <summary> HTM ID (J2000)</summary>
 	[htmid] bigint NOT NULL,
+
+	--/ <summary> Zone ID </summary>
+	[zoneid] int NOT NULL,
 
 	--/ <summary> Position error major axis. One-sigma error of the source position expressed by an ellipse with Major and Minor axes
 	--/ [arcsec], and Position Angle [deg; East from North]. If only two events are available, POSERRMJ
@@ -239,16 +242,16 @@ GO
 -- INSERT DATA + CREATE HTMID, CX, CY, CZ
 
 INSERT dbo.IRC WITH (TABLOCKX)
-(objID, OBJNAME, ra, dec, cx,cy,cz,htmid, POSERRMJ,POSERRMI,POSERRPA,
+(objID, OBJNAME, ra, dec, cx,cy,cz,htmid, zoneid, POSERRMJ,POSERRMI,POSERRPA,
 FLUX09, FLUX18, FERR09, FERR18, FQUAL09, FQUAL18,FLAGS09, FLAGS18, NSCANC09, NSCANC18, 
 NSCANP09, NSCANP18, MCONF09, MCONF18, NDENS09, NDENS18, EXTENDED09, EXTENDED18,
 MEAN_AB09, MEAN_AB18, NDATA_POS, NDATA09, NDATA18)
-SELECT objID, OBJNAME, ra, dec, c.x AS  cx, c.y AS cy, c.z AS cz, Spherical.htm.FromXyz(c.x,c.y,c.z) AS htmid, POSERRMJ,POSERRMI,POSERRPA,
+SELECT objID, OBJNAME, ra, dec, c.x AS  cx, c.y AS cy, c.z AS cz, SkyQuery_CODE_dev.htmid.FromXyz(c.x,c.y,c.z) AS htmid, SkyQuery_CODE_dev.skyquery.ZoneIDFromDec(dec,4.0/3600.00000000) as zoneid, POSERRMJ,POSERRMI,POSERRPA,
 FLUX09, FLUX18, FERR09, FERR18, FQUAL09, FQUAL18,FLAGS09, FLAGS18, NSCANC09, NSCANC18, 
 NSCANP09, NSCANP18, MCONF09, MCONF18, NDENS09, NDENS18, EXTENDED09, EXTENDED18,
 MEAN_AB09, MEAN_AB18, NDATA_POS, NDATA09, NDATA18
 FROM dbo.PhotoObjRAW
-CROSS APPLY Spherical.point.ConvertEqToXyz(ra, dec) AS c
+CROSS APPLY SkyQuery_CODE_dev.point.EqToXyz(ra, dec) AS c
 GO
 
 -- DROP RAW TABLE
@@ -256,12 +259,57 @@ GO
 DROP TABLE dbo.PhotoObjRAW;
 GO
 
--- HTM index
+-- Spatial index
 
-CREATE NONCLUSTERED INDEX [IX_IRC_htmid] ON [dbo].IRC
+CREATE NONCLUSTERED INDEX [IX_IRC_Zone] ON [dbo].[IRC] 
+(
+	[dec] ASC
+)
+INCLUDE
+(
+	[ra],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+GO
+
+
+CREATE NONCLUSTERED INDEX [IX_IRC_ZoneID] ON [dbo].[IRC] 
+(
+	[zoneid] ASC,
+	[ra] ASC
+)
+INCLUDE
+(
+	[dec],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+GO
+
+
+-- HTM index
+CREATE NONCLUSTERED INDEX [IX_IRC_HtmID] ON [dbo].[IRC] 
 (
 	[htmid] ASC
 )
+INCLUDE
+(
+	[ra],
+	[dec],
+	[cx],
+	[cy],
+	[cz],
+	[zoneID]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 -------------------------------------------------------------------------------------------------------------------------------------
@@ -324,7 +372,7 @@ GO
 
 BULK INSERT 
    PhotoObjRAW
-      FROM 'C:\Data\ebanyai\project\Skyquery-data\AKARI\akari_fis.bin' 
+      FROM '\\SKYQUERY01\Data\temp0\data0\ebanyai\AKARI\akari_fis.bin' 
      WITH 
     ( 
    DATAFILETYPE = 'native',
@@ -369,6 +417,9 @@ CREATE TABLE dbo.FIS
 
 	--/ <summary> HTM ID (J2000)</summary>
 	[htmid] bigint NOT NULL,
+
+	--/ <summary> Zone ID </summary>
+	[zoneid] int NOT NULL,
 
 	--/ <summary> Position error major axis. One-sigma error of the source position expressed by an ellipse with Major (POSERRMJ) and Minor axes (POSERRMI)
 	--/ in arcsec, and Position Angle (POSERRPA) in degees measured from North to East. In the currently
@@ -660,16 +711,16 @@ GO
 -- INSERT DATA + CREATE HTMID, CX, CY, CZ
 
 INSERT dbo.FIS WITH (TABLOCKX)
-(objID, OBJNAME, ra, dec, cx,cy,cz,htmid, POSERRMJ,POSERRMI,POSERRPA,
+(objID, OBJNAME, ra, dec, cx,cy,cz,htmid, zoneId, POSERRMJ,POSERRMI,POSERRPA,
 FLUX65, FLUX90, FLUX140, FLUX160, FERR65, FERR90, FERR140, FERR160, FQUAL65, FQUAL90, FQUAL140, FQUAL160,
 FLAGS65, FLAGS90, FLAGS140, FLAGS160, NSCANC65, NSCANC90, NSCANC140, NSCANC160, NSCANP65, NSCANP90, NSCANP140, NSCANP160,
 MCONF65, MCONF90, MCONF140, MCONF160, NDENS)
-SELECT objID, OBJNAME, ra, dec, c.x AS  cx, c.y AS cy, c.z AS cz, Spherical.htm.FromXyz(c.x,c.y,c.z) AS htmid, POSERRMJ,POSERRMI,POSERRPA,
+SELECT objID, OBJNAME, ra, dec, c.x AS  cx, c.y AS cy, c.z AS cz, SkyQuery_CODE_dev.htmid.FromXyz(c.x,c.y,c.z) AS htmid, SkyQuery_CODE_dev.SkyQuery.ZoneIDFromDec(dec,4.0/3600.00000000) AS zoneid, POSERRMJ,POSERRMI,POSERRPA,
 FLUX65, FLUX90, FLUX140, FLUX160, FERR65, FERR90, FERR140, FERR160, FQUAL65, FQUAL90, FQUAL140, FQUAL160,
 FLAGS65, FLAGS90, FLAGS140, FLAGS160, NSCANC65, NSCANC90, NSCANC140, NSCANC160, NSCANP65, NSCANP90, NSCANP140, NSCANP160,
 MCONF65, MCONF90, MCONF140, MCONF160, NDENS
 FROM dbo.PhotoObjRAW
-CROSS APPLY Spherical.point.ConvertEqToXyz(ra, dec) AS c
+CROSS APPLY SkyQuery_CODE_dev.point.EqToXyz(ra, dec) AS c
 GO
 
 -- DROP RAW TABLE
@@ -677,10 +728,55 @@ GO
 DROP TABLE dbo.PhotoObjRAW;
 GO
 
--- HTM index
+-- Spatial index
 
-CREATE NONCLUSTERED INDEX [IX_FIS_htmid] ON [dbo].[FIS]
+CREATE NONCLUSTERED INDEX [IX_FIS_Zone] ON [dbo].[FIS] 
+(
+	[dec] ASC
+)
+INCLUDE
+(
+	[ra],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+GO
+
+
+CREATE NONCLUSTERED INDEX [IX_FIS_ZoneID] ON [dbo].[FIS] 
+(
+	[zoneid] ASC,
+	[ra] ASC
+)
+INCLUDE
+(
+	[dec],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+GO
+
+
+-- HTM index
+CREATE NONCLUSTERED INDEX [IX_FIS_HtmID] ON [dbo].[FIS] 
 (
 	[htmid] ASC
 )
+INCLUDE
+(
+	[ra],
+	[dec],
+	[cx],
+	[cy],
+	[cz],
+	[zoneID]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO

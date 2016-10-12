@@ -11,7 +11,7 @@ import numpy as np
 # LOAD DATA
 
 # source file:
-src = "C:\\Data\\ebanyai\\project\\Skyquery-data\\AKARI\\AKARI-IRC_PSC_V1-20151002.txt.gz"
+src = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\AKARI\\AKARI-IRC_PSC_V1.txt.gz"
 cols = ["OBJID","OBJNAME","RA","DEC","POSERRMJ","POSERRMI","POSERRPA","FLUX09","FLUX18",
         "FERR09","FERR18","FQUAL09","FQUAL18","FLAGS09","FLAGS18","NSCANC09","NSCANC18",
         "NCSANP09","NSCANP18","MCONF09","MCONF18","NDENS09","NDENS18","EXTENDED09","EXTENDED18",
@@ -59,7 +59,7 @@ dt_df = np.dtype([("OBJID","i8"),
 records = np.array(df.to_records(),dtype=dt_df) 
 
 # destination folder
-dst = r"C:\Data\ebanyai\project\Skyquery-data\akari\akari_irc.bin" 
+dst = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\AKARI\akari_irc.bin" 
 
 
 
