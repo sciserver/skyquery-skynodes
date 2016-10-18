@@ -1,0 +1,222 @@
+USE [SkyNode_SDSSDR13]
+
+
+ALTER TABLE PhotoObjAll
+ADD CONSTRAINT PK_PhotoObjAll PRIMARY KEY
+(
+	[objID] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PHOTOOBJ]
+
+GO
+
+-----
+
+ALTER TABLE [dbo].[PhotoObjDR7]
+ADD  CONSTRAINT [PK_PhotoObjDR7_DR8objID] PRIMARY KEY CLUSTERED 
+(
+	[dr8objid] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+
+GO
+
+-----
+
+ALTER TABLE [dbo].[PhotoPrimaryDR7]
+ADD  CONSTRAINT [pk_PhotoPrimaryDR7_DR8OBJID] PRIMARY KEY CLUSTERED 
+(
+	[dr8objid] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+
+GO
+
+-----
+
+ALTER TABLE [dbo].[segueTargetAll]
+ADD  CONSTRAINT [pk_segueTargetAll_objID] PRIMARY KEY CLUSTERED 
+(
+	[objid] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+
+GO
+
+-----
+
+ALTER TABLE [dbo].[thingIndex]
+ADD  CONSTRAINT [pk_thingIndex_thingId] PRIMARY KEY CLUSTERED 
+(
+	[thingId] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+
+GO
+
+-----
+
+ALTER TABLE [dbo].[Photoz]
+ADD  CONSTRAINT [pk_Photoz_objID] PRIMARY KEY CLUSTERED 
+(
+	[objID] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+
+GO
+
+-----
+
+ALTER TABLE [dbo].[ProperMotions]
+ADD  CONSTRAINT [pk_ProperMotions_objID] PRIMARY KEY CLUSTERED 
+(
+	[objid] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+
+GO
+
+-----
+
+ALTER TABLE [dbo].[PhotozRF]
+ADD  CONSTRAINT [pk_PhotozRF_objID] PRIMARY KEY CLUSTERED 
+(
+	[objID] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+
+GO
+
+-----
+
+ALTER TABLE [dbo].[apogeeObject]
+ADD  CONSTRAINT [pk_apogeeObject_target_id] PRIMARY KEY CLUSTERED 
+(
+	[target_id] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+
+GO
+
+-----
+
+ALTER TABLE [dbo].[PhotozTemplateCoeff]
+ADD  CONSTRAINT [pk_PhotozTemplateCoeff_objID_tem] PRIMARY KEY CLUSTERED 
+(
+	[objID] ASC,
+	[templateID] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+
+GO
+
+
+
+-----
+
+ALTER TABLE [dbo].[PhotozRFTemplateCoeff]
+ADD  CONSTRAINT [pk_PhotozRFTemplateCoeff_objID_t] PRIMARY KEY CLUSTERED 
+(
+	[objID] ASC,
+	[templateID] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+
+GO
+
+-----
+
+ALTER TABLE [dbo].[Mask]
+ADD  CONSTRAINT [pk_Mask_maskID] PRIMARY KEY CLUSTERED 
+(
+	[maskID] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+
+GO
+
+-----
+-----
+
+ALTER TABLE [dbo].[SpecDR7]
+ADD  CONSTRAINT [pk_specDR7_SpecObjID] PRIMARY KEY CLUSTERED 
+(
+	[specObjID] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+
+GO
+
+-----
+
+ALTER TABLE [dbo].[SpecObjAll]
+ADD  CONSTRAINT [pk_SpecObjAll_specObjID] PRIMARY KEY CLUSTERED 
+(
+	[specObjID] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+GO
+
+----
+
+ALTER TABLE [dbo].[SpecPhotoAll]
+ADD  CONSTRAINT [pk_SpecPhotoAll_specObjID] PRIMARY KEY CLUSTERED 
+(
+	[specObjID] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+
+GO
+
+-----
+
+ALTER TABLE [dbo].[apogeeStar]
+ADD  CONSTRAINT [pk_apogeeStar_apstar_id] PRIMARY KEY CLUSTERED 
+(
+	[apstar_id] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+
+GO
+
+-----
+
+ALTER TABLE [dbo].[Frame]
+ADD  CONSTRAINT [pk_Frame_fieldID_zoom] PRIMARY KEY CLUSTERED 
+(
+	[fieldID] ASC,
+	[zoom] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+
+GO
+
+-----
+
+ALTER TABLE [dbo].[PlateX]
+ADD  CONSTRAINT [pk_PlateX_plateID] PRIMARY KEY CLUSTERED 
+(
+	[plateID] ASC
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+
+GO
+
