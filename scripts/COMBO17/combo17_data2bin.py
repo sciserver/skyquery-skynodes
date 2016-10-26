@@ -3,7 +3,7 @@
 Created on Thu Oct  1 12:09:37 2015
 
 @author: ebanyai
-AGES to binary file
+COMBO17 to binary file
 """
 
 import pandas as pd
@@ -13,7 +13,7 @@ from astropy.coordinates import SkyCoord
 
 # LOAD DATA
 # source file:
-src = "C:\\Data\\ebanyai\\project\\Skyquery-data\\COMBO-17\\public_catalogue-20150923_combo.dat"
+src = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\COMBO17\combo17_20161026.dat"
 cols = ["objID","RAh","RAm","RAs","DEd","DEm","DEs","x_pos","y_pos",
         "Rmag","e_Rmag","Ap_Rmag","ApD_Rmag","mu_max","MajAxis","MinAxis","PA","phot_flag","var_flag","stellarity",
         "MC_class","MC_z",
@@ -175,7 +175,7 @@ types = [("objID","i8"),
 records = np.array(df.to_records(),dtype=np.dtype(types)) 
 
 # destination folder
-dst = r"C:\Data\ebanyai\project\Skyquery-data\COMBO-17\combo17.bin" 
+dst = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\COMBO17\combo17.bin" 
 
 # write to file
 records.tofile(dst)
