@@ -1,149 +1,10 @@
-USE [COMBO17]
+USE [SkyNode_COMBO17]
 
 GO
 
-IF OBJECT_ID ('dbo.PhotoObjRAW', 'U') IS NOT NULL
-	DROP TABLE dbo.PhotoObjRAW;
-
-GO
-
--- CREATE PhotoObjRAW TABLE
-CREATE TABLE dbo.PhotoObjRAW
-(	[objID] bigint NOT NULL,
-	[RA] float NOT NULL,
-	[DEC] float NOT NULL,
-	[x_pos] float NOT NULL,
-	[y_pos] float NOT NULL,
-	[Rmag] real NOT NULL,
-	[e_Rmag] real NOT NULL,
-	[Ap_Rmag] real NOT NULL,
-	[ApD_Rmag] real NOT NULL,
-	[mu_max] real NOT NULL,
-	[MajAxis] real NOT NULL,
-	[MinAxis] real NOT NULL,
-	[PA] real NOT NULL,
-	[phot_flag] int NOT NULL,
-	[var_flag] tinyint NOT NULL,
-	[stellarity] real NOT NULL,
-	[MC_class] char(15) NOT NULL,
-	[MC_z] real NOT NULL,
-	[e_MC_z] real NOT NULL,
-	[MC_z2] real NOT NULL,
-	[e_MC_z2] real NOT NULL,
-	[MC_z_ml] real NOT NULL,
-	[dl] real NOT NULL,
-	[chi2red] real NOT NULL,
-	[UjMag] real NOT NULL,
-	[e_UjMag] real NOT NULL,
-	[BjMag] real NOT NULL,
-	[e_BjMag] real NOT NULL,
-	[VjMag] real NOT NULL,
-	[e_VjMag] real NOT NULL,
-	[usMag] real NOT NULL,
-	[e_usMag] real NOT NULL,
-	[gsMag] real NOT NULL,
-	[e_gsMag] real NOT NULL,
-	[rsMag] real NOT NULL,
-	[e_rsMag] real NOT NULL,
-	[UbMag] real NOT NULL,
-	[e_UbMag] real NOT NULL,
-	[BbMag] real NOT NULL,
-	[e_BbMag] real NOT NULL,
-	[VbMag] real NOT NULL,
-	[e_VbMag] real NOT NULL,
-	[S280Mag] real NOT NULL,
-	[e_S280Mag] real NOT NULL,
-	[S145Mag] real NOT NULL,
-	[e_S145Mag] real NOT NULL,
-	[W420F_E] float NOT NULL,
-	[e_W420F_E] float NOT NULL,
-	[W462F_E] float NOT NULL,
-	[e_W462F_E] float NOT NULL,
-	[W485F_D] float NOT NULL,
-	[e_W485F_D] float NOT NULL,
-	[W518F_E] float NOT NULL,
-	[e_W518F_E] float NOT NULL,
-	[W571F_D] float NOT NULL,
-	[e_W571F_D] float NOT NULL,
-	[W571F_E] float NOT NULL,
-	[e_W571F_E] float NOT NULL,
-	[W571F_S] float NOT NULL,
-	[e_W571F_S] float NOT NULL,
-	[W604F_E] float NOT NULL,
-	[e_W604F_E] float NOT NULL,
-	[W646F_D] float NOT NULL,
-	[e_W646F_D] float NOT NULL,
-	[W696F_E] float NOT NULL,
-	[e_W696F_E] float NOT NULL,
-	[W753F_E] float NOT NULL,
-	[e_W753F_E] float NOT NULL,
-	[W815F_E] float NOT NULL,
-	[e_W815F_E] float NOT NULL,
-	[W815F_G] float NOT NULL,
-	[e_W815F_G] float NOT NULL,
-	[W815F_S] float NOT NULL,
-	[e_W815F_S] float NOT NULL,
-	[W856F_D] float NOT NULL,
-	[e_W856F_D] float NOT NULL,
-	[W914F_D] float NOT NULL,
-	[e_W914F_D] float NOT NULL,
-	[W914F_E] float NOT NULL,
-	[e_W914F_E] float NOT NULL,
-	[UF_F] float NOT NULL,
-	[e_UF_F] float NOT NULL,
-	[UF_G] float NOT NULL,
-	[e_UF_G] float NOT NULL,
-	[UF_S] float NOT NULL,
-	[e_UF_S] float NOT NULL,
-	[BF_D] float NOT NULL,
-	[e_BF_D] float NOT NULL,
-	[BF_F] float NOT NULL,
-	[e_BF_F] float NOT NULL,
-	[BF_S] float NOT NULL,
-	[e_BF_S] float NOT NULL,
-	[VF_D] float NOT NULL,
-	[e_VF_D] float NOT NULL,
-	[RF_D] float NOT NULL,
-	[e_RF_D] float NOT NULL,
-	[RF_E] float NOT NULL,
-	[e_RF_E] float NOT NULL,
-	[RF_F] float NOT NULL,
-	[e_RF_F] float NOT NULL,
-	[RF_G] float NOT NULL,
-	[e_RF_G] float NOT NULL,
-	[RF_S] float NOT NULL,
-	[e_RF_S] float NOT NULL,
-	[IF_D] float NOT NULL,
-	[e_IF_D] float NOT NULL,
-
-	CONSTRAINT [PK_PhotoObjRAW] PRIMARY KEY CLUSTERED
-(
-	[objID] ASC
-) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
--- BULK INSERT DATA
-BULK INSERT
-	PhotoObjRAW
-	FROM 'C:\Data\ebanyai\project\Skyquery-data\COMBO-17\combo17.bin'
-	WITH
-	(
-		DATAFILETYPE = 'native',
-		TABLOCK
-	)
-
-GO
-
-IF OBJECT_ID ('dbo.PhotoObj', 'U') IS NOT NULL
-	DROP TABLE dbo.PhotoObj;
-
-GO
 -- CREATE PhotoObj TABLE
 CREATE TABLE dbo.PhotoObj
 (
-
 	--/ <summary> Cartesian X (J2000)</summary>
 	[cx] [float] NOT NULL,
 
@@ -155,6 +16,9 @@ CREATE TABLE dbo.PhotoObj
 
 	--/ <summary> HTM ID (J2000)</summary>
 	[htmid] [bigint] NOT NULL,
+
+	--/ <summary> Zone ID </summary>
+	[zoneid] int NOT NULL,
 
 	--/ <summary> Sequential number (unique object ID) </summary>
 	[objID] bigint NOT NULL,
@@ -872,24 +736,52 @@ CREATE TABLE dbo.PhotoObj
 
 GO
 
--- INSERT DATA + CREATE HTMID, CX, CY, CZ
-INSERT dbo.PhotoObj WITH (TABLOCKX)
-( cx, cy, cz, htmid, objID, RA, DEC, x_pos, y_pos, Rmag, e_Rmag, Ap_Rmag, ApD_Rmag, mu_max, MajAxis, MinAxis, PA, phot_flag, var_flag, stellarity, MC_class, MC_z, e_MC_z, MC_z2, e_MC_z2, MC_z_ml, dl, chi2red, UjMag, e_UjMag, BjMag, e_BjMag, VjMag, e_VjMag, usMag, e_usMag, gsMag, e_gsMag, rsMag, e_rsMag, UbMag, e_UbMag, BbMag, e_BbMag, VbMag, e_VbMag, S280Mag, e_S280Mag, S145Mag, e_S145Mag, W420F_E, e_W420F_E, W462F_E, e_W462F_E, W485F_D, e_W485F_D, W518F_E, e_W518F_E, W571F_D, e_W571F_D, W571F_E, e_W571F_E, W571F_S, e_W571F_S, W604F_E, e_W604F_E, W646F_D, e_W646F_D, W696F_E, e_W696F_E, W753F_E, e_W753F_E, W815F_E, e_W815F_E, W815F_G, e_W815F_G, W815F_S, e_W815F_S, W856F_D, e_W856F_D, W914F_D, e_W914F_D, W914F_E, e_W914F_E, UF_F, e_UF_F, UF_G, e_UF_G, UF_S, e_UF_S, BF_D, e_BF_D, BF_F, e_BF_F, BF_S, e_BF_S, VF_D, e_VF_D, RF_D, e_RF_D, RF_E, e_RF_E, RF_F, e_RF_F, RF_G, e_RF_G, RF_S, e_RF_S, IF_D, e_IF_D)
-SELECT c.x AS  cx, c.y AS cy, c.z AS cz, Spherical.htm.FromXyz(c.x,c.y,c.z) AS htmid, objID, RA, DEC, x_pos, y_pos, Rmag, e_Rmag, Ap_Rmag, ApD_Rmag, mu_max, MajAxis, MinAxis, PA, phot_flag, var_flag, stellarity, MC_class, MC_z, e_MC_z, MC_z2, e_MC_z2, MC_z_ml, dl, chi2red, UjMag, e_UjMag, BjMag, e_BjMag, VjMag, e_VjMag, usMag, e_usMag, gsMag, e_gsMag, rsMag, e_rsMag, UbMag, e_UbMag, BbMag, e_BbMag, VbMag, e_VbMag, S280Mag, e_S280Mag, S145Mag, e_S145Mag, W420F_E, e_W420F_E, W462F_E, e_W462F_E, W485F_D, e_W485F_D, W518F_E, e_W518F_E, W571F_D, e_W571F_D, W571F_E, e_W571F_E, W571F_S, e_W571F_S, W604F_E, e_W604F_E, W646F_D, e_W646F_D, W696F_E, e_W696F_E, W753F_E, e_W753F_E, W815F_E, e_W815F_E, W815F_G, e_W815F_G, W815F_S, e_W815F_S, W856F_D, e_W856F_D, W914F_D, e_W914F_D, W914F_E, e_W914F_E, UF_F, e_UF_F, UF_G, e_UF_G, UF_S, e_UF_S, BF_D, e_BF_D, BF_F, e_BF_F, BF_S, e_BF_S, VF_D, e_VF_D, RF_D, e_RF_D, RF_E, e_RF_E, RF_F, e_RF_F, RF_G, e_RF_G, RF_S, e_RF_S, IF_D, e_IF_D
-FROM dbo.PhotoObjRAW
-CROSS APPLY Spherical.point.ConvertEqToXyz(ra, dec) AS c
-
+-- Spatial index
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_Zone] ON [dbo].[PhotoObj] 
+(
+	[dec] ASC
+)
+INCLUDE
+(
+	[ra],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
--- DROP RAW TABLE
-DROP TABLE PhotoObjRAW;
-
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_ZoneID] ON [dbo].[PhotoObj] 
+(
+	[zoneid] ASC,
+	[ra] ASC
+)
+INCLUDE
+(
+	[dec],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 -- HTM index
-CREATE NONCLUSTERED INDEX [IX_PhotoObj_htmid] ON [dbo].[PhotoObj]
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_HtmID] ON [dbo].[PhotoObj] 
 (
 	[htmid] ASC
 )
-
+INCLUDE
+(
+	[ra],
+	[dec],
+	[cx],
+	[cy],
+	[cz],
+	[zoneID]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
