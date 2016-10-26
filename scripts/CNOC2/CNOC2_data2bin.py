@@ -15,7 +15,7 @@ from astropy.coordinates import FK5
 
 # convert from HH:MM:SS.s DD:MM:SS.s
 # source file:
-src = "C:\\Data\\ebanyai\\project\\Skyquery-data\\CNOC2\\CNOC2-20150923_VizieR.tsv"
+src = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\CNOC2\CNOC2_VizieR_20161024.tsv"
 cols = ["PPP","CNOC2sp","oRA","oDE","z","e_z","Rval","Sc","w_z","Imag","e_Imag","Ice",
         "w_Imag","IWc","IWxy","Rmag","e_Rmag","Rce","w_Rmag","RWc","RWxy","Vmag","e_Vmag","Vce",
         "w_Vmag","VWc","VWxy","Bmag","e_Bmag","Bce","w_Bmag","BWc","BWxy","Umag","e_Umag","Uce",
@@ -86,7 +86,7 @@ dt_df = np.dtype(types)
 records = np.array(df.to_records(),dtype=dt_df) 
 
 # destination folder
-dst = r"C:\Data\ebanyai\project\Skyquery-data\CNOC2\cnoc2.bin" 
+dst = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\CNOC2\cnoc2.bin" 
 
 
 

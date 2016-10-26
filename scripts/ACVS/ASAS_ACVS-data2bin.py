@@ -27,7 +27,7 @@ def hmsdm2dd_no(ra,dec):
 
 # LOAD DATA
 # source file:
-src = "C:\\Data\\ebanyai\\project\\Skyquery-data\\ASAS\\ACVS.1.1-20150923.gz"
+src = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\ACVS\ACVS.1.1.gz"
 cols = ["OBJID","PER","HJD0","VMAX","VAMP","TYPE","GCVS_ID","GCVS_TYPE","IR12",
         "IR25","IR60","IR100","J","H","K","V_IR12","V_J","V_H","V_K","J_H","H_K"]
 
@@ -35,6 +35,8 @@ cols = ["OBJID","PER","HJD0","VMAX","VAMP","TYPE","GCVS_ID","GCVS_TYPE","IR12",
 # grab the data
 df = pd.read_table(src,sep=" ",names=cols,index_col=False,comment="#",skipinitialspace=True,compression="gzip")
 df.fillna(value=-99,inplace=True)
+
+df.drop(df.index[37983],inplace=True) # something is wrong with the object ID
 
 # GET RA & DEC
 df["RA"],df["DEC"] = hmsdm2dd_no(df["OBJID"].apply(lambda x: x[:6]),df["OBJID"].apply(lambda x: x[6:]))
@@ -72,7 +74,7 @@ dt_df = np.dtype([("ID","i8"),
 records = np.array(df.to_records(),dtype=dt_df) 
 
 # destination folder
-dst = r"C:\Data\ebanyai\project\Skyquery-data\ASAS\acvs.bin" 
+dst = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\ACVS\acvs.bin" 
 
 # write to file
 records.tofile(dst)
