@@ -1,63 +1,4 @@
-USE [Chandra]
-GO
-
-IF OBJECT_ID ('dbo.PhotoObjRAW', 'U') IS NOT NULL
-    DROP TABLE dbo.PhotoObjRAW;
-GO
-
--- CREATE PhotoObjRAW TABLE
-
-CREATE TABLE dbo.PhotoObjRAW
-(
-	[objID] bigint NOT NULL,
-	[CXO] char(16) NOT NULL,
-	[ra] float NOT NULL,
-	[dec] float NOT NULL,
-	[ePos]  real NOT NULL,
-	[SN] real NOT NULL,
-	[Fb] float NOT NULL,
-	[lower_Fb] float NOT NULL,
-	[upper_Fb] float NOT NULL,
-	[Fw] float NOT NULL,
-	[lower_Fw] float NOT NULL,
-	[upper_Fw] float NOT NULL,
-	[hr2] real NOT NULL,
-	[lower_hr2] real NOT NULL,
-	[upper_hr2] real NOT NULL,
-	[hr1] real NOT NULL,
-	[lower_hr1] real NOT NULL,
-	[upper_hr1] real NOT NULL,
-	[fc] tinyint NOT NULL,
-	[fe] tinyint NOT NULL,
-	[fs] tinyint NOT NULL,
-	[Vab] smallint NOT NULL,
-	[Vib] tinyint NOT NULL,
-	[Vaw] smallint NOT NULL,
-	[Viw] tinyint NOT NULL,
-
-	
- CONSTRAINT [PK_PhotoObjRAW] PRIMARY KEY CLUSTERED 
-(
-	[objID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
--- BULK INSERT DATA
-
-BULK INSERT 
-   PhotoObjRAW
-      FROM 'C:\Data\ebanyai\project\Skyquery-data\Chandra\chandra_src.bin' 
-     WITH 
-    ( 
-   DATAFILETYPE = 'native',
-   TABLOCK 
-    )
-GO
-
-IF OBJECT_ID ('dbo.PhotoObj', 'U') IS NOT NULL
-    DROP TABLE dbo.PhotoObj;
+USE [SkyNode_CHANDRA]
 GO
 
 -- CREATE PhotoObj TABLE
@@ -89,6 +30,9 @@ CREATE TABLE dbo.PhotoObj
 
 	--/ <summary> HTM ID (J2000)</summary>
 	[htmid] bigint NOT NULL,
+
+	--/ <summary> Zone ID </summary>
+	[zoneid] int NOT NULL,
 	
 	--/ <summary> [0.03/158] Position error radius at 95% confidence level. </summary>
 	--/ <unit> arcsec </unit>
@@ -262,26 +206,52 @@ CREATE TABLE dbo.PhotoObj
 ) ON [PRIMARY]
 GO
 
--- INSERT DATA + CREATE HTMID, CX, CY, CZ
-
-INSERT dbo.PhotoObj WITH (TABLOCKX)
-(objID, CXO, ra, dec, cx,cy,cz,htmid, ePos, SN, Fb, lower_Fb, upper_Fb, Fw, lower_Fw, upper_Fw,
-hr2, lower_hr2, upper_hr2, hr1, lower_hr1, upper_hr1, fc, fe, fs, Vab, Vib, Vaw, Viw)
-SELECT objID, CXO, ra, dec, c.x AS  cx, c.y AS cy, c.z AS cz, Spherical.htm.FromXyz(c.x,c.y,c.z) AS htmid, 
-ePos, SN, Fb, lower_Fb, upper_Fb, Fw, lower_Fw, upper_Fw, hr2, lower_hr2, upper_hr2, hr1, lower_hr1, 
-upper_hr1, fc, fe, fs, Vab, Vib, Vaw, Viw
-FROM dbo.PhotoObjRAW
-CROSS APPLY Spherical.point.ConvertEqToXyz(ra, dec) AS c
+-- Spatial index
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_Zone] ON [dbo].[PhotoObj] 
+(
+	[dec] ASC
+)
+INCLUDE
+(
+	[ra],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
--- DROP RAW TABLE
-DROP TABLE dbo.PhotoObjRAW;
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_ZoneID] ON [dbo].[PhotoObj] 
+(
+	[zoneid] ASC,
+	[ra] ASC
+)
+INCLUDE
+(
+	[dec],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 -- HTM index
-
-CREATE NONCLUSTERED INDEX [IX_PhotoObj_htmid] ON [dbo].[PhotoObj]
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_HtmID] ON [dbo].[PhotoObj] 
 (
 	[htmid] ASC
 )
+INCLUDE
+(
+	[ra],
+	[dec],
+	[cx],
+	[cy],
+	[cz],
+	[zoneID]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
