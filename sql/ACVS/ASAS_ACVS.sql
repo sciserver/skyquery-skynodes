@@ -1,61 +1,4 @@
-USE [ACVS]
-GO
-
-IF OBJECT_ID ('dbo.PhotoObjRAW', 'U') IS NOT NULL
-    DROP TABLE dbo.PhotoObjRAW;
-GO
-
--- CREATE PhotoObjRAW TABLE
-
-CREATE TABLE dbo.PhotoObjRAW
-(
-	[objID] bigint NOT NULL,
-	[objName] char(13) NOT NULL,
-	[ra] float NOT NULL,
-	[dec] float NOT NULL,
-	[PER]  real NOT NULL,
-	[HJD0] float NOT NULL,
-	[VMAX] real NOT NULL,
-	[VAMP] real NOT NULL,
-	[TYPE] char(27) NOT NULL,
-	[GCVS_ID] char(19) NOT NULL,
-	[GCVS_TYPE] char(13) NOT NULL,
-	[IR12]  real NOT NULL,
-	[IR25] real NOT NULL,
-	[IR60] real NOT NULL,
-	[IR100] real NOT NULL,
-	[J] real NOT NULL,
-	[H] real NOT NULL,
-	[K]  real NOT NULL,
-	[V_IR12] real NOT NULL,
-	[V_J] real NOT NULL,
-	[V_H] real NOT NULL,
-	[V_K] real NOT NULL,
-	[J_H] real NOT NULL,
-	[H_K]  real NOT NULL,
-	
- CONSTRAINT [PK_PhotoObjRAW] PRIMARY KEY CLUSTERED 
-(
-	[objID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
--- BULK INSERT DATA
-
-BULK INSERT 
-   PhotoObjRAW
-      FROM 'C:\Data\ebanyai\project\Skyquery-data\ASAS\acvs.bin' 
-     WITH 
-    ( 
-   DATAFILETYPE = 'native',
-   TABLOCK 
-    )
-GO
-
-IF OBJECT_ID ('dbo.PhotoObj', 'U') IS NOT NULL
-    DROP TABLE dbo.PhotoObj;
+USE [SkyNode_ACVS]
 GO
 
 -- CREATE PhotoObj TABLE
@@ -87,6 +30,9 @@ CREATE TABLE dbo.PhotoObj
 
 	--/ <summary> HTM ID (J2000)</summary>
 	[htmid] bigint NOT NULL,
+
+	--/ <summary> Zone ID </summary>
+	[zoneid] int NOT NULL,
 
 	--/ <summary> Period in days (or characteristic time scale of variation for irregular objects). </summary>
 	--/ <unit> days </unit>
@@ -171,25 +117,52 @@ CREATE TABLE dbo.PhotoObj
 ) ON [PRIMARY]
 GO
 
--- INSERT DATA + CREATE HTMID, CX, CY, CZ
-
-INSERT dbo.PhotoObj WITH (TABLOCKX)
-(objID, objName, ra, dec, cx,cy,cz,htmid, PER, HJD0, VMAX, VAMP, TYPE, GCVS_ID, GCVS_TYPE, IR12, IR25, IR60, IR100,
-J, H, K, V_IR12, V_J, V_H, V_K, J_H, H_K)
-SELECT objID, objName, ra, dec, c.x AS  cx, c.y AS cy, c.z AS cz, Spherical.htm.FromXyz(c.x,c.y,c.z) AS htmid, PER, HJD0, VMAX, VAMP, TYPE, GCVS_ID, GCVS_TYPE, IR12, IR25, IR60, IR100,
-J, H, K, V_IR12, V_J, V_H, V_K, J_H, H_K
-FROM dbo.PhotoObjRAW
-CROSS APPLY Spherical.point.ConvertEqToXyz(ra, dec) AS c
+-- Spatial index
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_Zone] ON [dbo].[PhotoObj] 
+(
+	[dec] ASC
+)
+INCLUDE
+(
+	[ra],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
--- DROP RAW TABLE
-DROP TABLE dbo.PhotoObjRAW;
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_ZoneID] ON [dbo].[PhotoObj] 
+(
+	[zoneid] ASC,
+	[ra] ASC
+)
+INCLUDE
+(
+	[dec],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 -- HTM index
-
-CREATE NONCLUSTERED INDEX [IX_PhotoObj_htmid] ON [dbo].[PhotoObj]
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_HtmID] ON [dbo].[PhotoObj] 
 (
 	[htmid] ASC
 )
+INCLUDE
+(
+	[ra],
+	[dec],
+	[cx],
+	[cy],
+	[cz],
+	[zoneID]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO

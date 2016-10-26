@@ -1,86 +1,5 @@
-USE [CNOC2]
+USE [SkyNode_CNOC2]
 GO
-
-IF OBJECT_ID ('dbo.SpecObjRAW', 'U') IS NOT NULL
-    DROP TABLE dbo.SpecObjRAW;
-GO
-
--- CREATE SpecObjRAW TABLE
-
-CREATE TABLE dbo.SpecObjRAW
-(
-	[objID] bigint NOT NULL,
-	[CNOC2sp] char(6) NOT NULL,
-	[ra] float NOT NULL,
-	[dec] float NOT NULL,
-	[oRA] real NOT NULL,
-	[oDE] real NOT NULL,
-	[z]  float NOT NULL,
-	[e_z]  int NOT NULL,
-	[Rval]  real NOT NULL,
-	[Sc]  smallint NOT NULL,
-	[w_z]  real NOT NULL,
-	[Imag]  real NOT NULL,
-	[e_Imag]  real NOT NULL,
-	[Ice]  real NOT NULL,
-	[w_Imag]  real NOT NULL,
-	[IWc]  real NOT NULL,
-	[IWxy]  real NOT NULL,
-	[Rmag]  real NOT NULL,
-	[e_Rmag]  real NOT NULL,
-	[Rce]  real NOT NULL,
-	[w_Rmag]  real NOT NULL,
-	[RWc]  real NOT NULL,
-	[RWxy]  real NOT NULL,
-	[Vmag]  real NOT NULL,
-	[e_Vmag]  real NOT NULL,
-	[Vce]  real NOT NULL,
-	[w_Vmag]  real NOT NULL,
-	[VWc]  real NOT NULL,
-	[VWxy]  real NOT NULL,
-	[Bmag]  real NOT NULL,
-	[e_Bmag]  real NOT NULL,
-	[Bce]  real NOT NULL,
-	[w_Bmag]  real NOT NULL,
-	[BWc]  real NOT NULL,
-	[BWxy]  real NOT NULL,
-	[Umag]  real NOT NULL,
-	[e_Umag]  real NOT NULL,
-	[Uce]  real NOT NULL,
-	[w_Umag]  real NOT NULL,
-	[UWc]  real NOT NULL,
-	[UWxy]  real NOT NULL,
-	[Pcl]  tinyint NOT NULL,
-	[Rkcor]  real NOT NULL,
-	[xpos]  real NOT NULL,
-	[ypos]  real NOT NULL,
-
-	
- CONSTRAINT [PK_SpecObjRAW] PRIMARY KEY CLUSTERED 
-(
-	[objID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
--- BULK INSERT DATA
-
-BULK INSERT 
-   SpecObjRAW
-      FROM 'C:\Data\ebanyai\project\Skyquery-data\CNOC2\cnoc2.bin' 
-     WITH 
-    ( 
-   DATAFILETYPE = 'native',
-   TABLOCK 
-    )
-GO
-
-IF OBJECT_ID ('dbo.SpecObj', 'U') IS NOT NULL
-    DROP TABLE dbo.SpecObj;
-GO
-
--- CREATE SpecObj TABLE
 
 CREATE TABLE dbo.SpecObj 
 (
@@ -112,6 +31,9 @@ CREATE TABLE dbo.SpecObj
 
 	--/ <summary> HTM ID (J2000)</summary>
 	[htmid] [bigint] NOT NULL,
+
+	--/ <summary> Zone ID </summary>
+	[zoneid] int NOT NULL,
 
 	--/ <summary> RA offset (West is positive), B1950. </summary>
 	--/ <unit> arcsec </unit>
@@ -378,27 +300,52 @@ CREATE TABLE dbo.SpecObj
 ) ON [PRIMARY]
 GO
 
--- INSERT DATA + CREATE HTMID, CX, CY, CZ
-
-INSERT dbo.SpecObj WITH (TABLOCKX)
-(objID, CNOC2sp, ra, dec, cx,cy,cz,htmid, oRA, ODE, SpecObj.z, e_z, Rval, Sc, w_z, Imag, e_Imag, Ice, w_Imag, IWc, IWxy, 
-Rmag, e_Rmag, Rce, w_Rmag, RWc, RWxy, Vmag, e_Vmag, Vce, w_Vmag, VWc, VWxy, Bmag, e_Bmag, Bce, w_Bmag, 
-BWc, BWxy, Umag, e_Umag, Uce, w_Umag, UWc, UWxy, Pcl, Rkcor, xpos, ypos )
-SELECT objID, CNOC2sp, ra, dec, c.x AS  cx, c.y AS cy, c.z AS cz, Spherical.htm.FromXyz(c.x,c.y,c.z) AS htmid, oRA, ODE, 
-SpecObjRAW.z, e_z, Rval, Sc, w_z, Imag, e_Imag, Ice, w_Imag, IWc, IWxy, Rmag, e_Rmag, Rce, w_Rmag, RWc, RWxy, Vmag, e_Vmag, Vce, 
-w_Vmag, VWc, VWxy, Bmag, e_Bmag, Bce, w_Bmag, BWc, BWxy, Umag, e_Umag, Uce, w_Umag, UWc, UWxy, Pcl, Rkcor, xpos, ypos
-
-FROM dbo.SpecObjRAW
-CROSS APPLY Spherical.point.ConvertEqToXyz(ra, dec) AS c
+-- Spatial index
+CREATE NONCLUSTERED INDEX [IX_SpecObj_Zone] ON [dbo].[SpecObj] 
+(
+	[dec] ASC
+)
+INCLUDE
+(
+	[ra],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
--- DROP RAW TABLE
-DROP TABLE SpecObjRAW;
+CREATE NONCLUSTERED INDEX [IX_SpecObj_ZoneID] ON [dbo].[SpecObj] 
+(
+	[zoneid] ASC,
+	[ra] ASC
+)
+INCLUDE
+(
+	[dec],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+GO
 
 -- HTM index
-
-CREATE NONCLUSTERED INDEX [IX_SpecObj_htmid] ON [dbo].[SpecObj]
+CREATE NONCLUSTERED INDEX [IX_SpecObj_HtmID] ON [dbo].[SpecObj] 
 (
 	[htmid] ASC
 )
+INCLUDE
+(
+	[ra],
+	[dec],
+	[cx],
+	[cy],
+	[cz],
+	[zoneID]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
