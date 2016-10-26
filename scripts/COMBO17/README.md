@@ -6,3 +6,8 @@ COMBO17-data2bin.py
 
 Creating COMBO-17 Database:
 COMBO17.sql
+
+The reference paper with all details :
+(Wolf et al., 2004, A&A, 421, 913)
+The update paper :
+(Wolf et al., 2008, A&A Research Note,submitted)
