@@ -11,3 +11,5 @@ CNOC2-data2bin.py
 
 Creating CNOC2 Database:
 CNOC2.sql
+
+Yee, H. K. C.; et. al, 2000, ApJS, 129, 2

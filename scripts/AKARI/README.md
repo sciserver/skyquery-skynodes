@@ -8,3 +8,12 @@ akari_irc-data2bin.py
 Creating FIRST Database:
 fis.sql
 irc.sql
+
+When publishing AKARI data in a journal or proceedings, you are requested to include the 
+following acknowledgement as a footnote to the title of your paper;
+
+"Based on observations with AKARI, a JAXA project with the participation of ESA."
+
+or in the acknowledgement:
+
+"This research is based on observations with AKARI, a JAXA project with the participation of ESA."
