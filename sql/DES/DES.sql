@@ -1,63 +1,7 @@
-USE [DES]
+USE [SkyNode_DES]
 
 GO
 
-IF OBJECT_ID ('dbo.PhotoObjRAW', 'U') IS NOT NULL
-	DROP TABLE dbo.PhotoObjRAW;
-
-GO
-
--- CREATE PhotoObjRAW TABLE
-CREATE TABLE dbo.PhotoObjRAW
-(	[seqID] bigint NOT NULL,
-	[dtpropid] char(10) NOT NULL,
-	[surveyid] char(24) NOT NULL,
-	[release_date] char(10) NOT NULL,
-	[start_date] char(10) NOT NULL,
-	[date_obs] char(23) NOT NULL,
-	[dtpi] char(7) NOT NULL,
-	[ra] float NOT NULL,
-	[dec] float NOT NULL,
-	[telescope] char(4) NOT NULL,
-	[instrument] char(5) NOT NULL,
-	[filter] char(32) NOT NULL,
-	[exposure] real NOT NULL,
-	[obstype] char(6) NOT NULL,
-	[obsmode] char(7) NOT NULL,
-	[proctype] char(7) NOT NULL,
-	[prodtype] char(6) NOT NULL,
-	[seeing] real NOT NULL,
-	[depth] real NOT NULL,
-	[dtacqnam] char(56) NOT NULL,
-	[archive_file] char(34) NOT NULL,
-	[filesize] bigint NOT NULL,
-	[reference] char(77) NOT NULL,
-	[md5sum] char(32) NOT NULL,
-
-	CONSTRAINT [PK_PhotoObjRAW] PRIMARY KEY CLUSTERED
-(
-	[seqID] ASC
-) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
--- BULK INSERT DATA
-BULK INSERT
-	PhotoObjRAW
-	FROM 'C:\Data\ebanyai\project\Skyquery-data\DES\DES.bin'
-	WITH
-	(
-		DATAFILETYPE = 'native',
-		TABLOCK
-	)
-
-GO
-
-IF OBJECT_ID ('dbo.PhotoObj', 'U') IS NOT NULL
-	DROP TABLE dbo.PhotoObj;
-
-GO
 -- CREATE PhotoObj TABLE
 CREATE TABLE dbo.PhotoObj
 (
@@ -72,6 +16,9 @@ CREATE TABLE dbo.PhotoObj
 
 	--/ <summary> HTM ID (J2000)</summary>
 	[htmid] bigint NOT NULL,
+
+	--/ <summary> Zone ID </summary>
+	[zoneid] int NOT NULL,
 
 	--/ <summary> sequential ID </summary>
 	[seqID] bigint NOT NULL,
@@ -160,24 +107,52 @@ CREATE TABLE dbo.PhotoObj
 
 GO
 
--- INSERT DATA + CREATE HTMID, CX, CY, CZ
-INSERT dbo.PhotoObj WITH (TABLOCKX)
-( cx, cy, cz, htmid, seqID, dtpropid, surveyid, release_date, start_date, date_obs, dtpi, ra, dec, telescope, instrument, filter, exposure, obstype, obsmode, proctype, prodtype, seeing, depth, dtacqnam, archive_file, filesize, reference, md5sum)
-SELECT c.x AS  cx, c.y AS cy, c.z AS cz, Spherical.htm.FromXyz(c.x,c.y,c.z) AS htmid, seqID, dtpropid, surveyid, release_date, start_date, date_obs, dtpi, ra, dec, telescope, instrument, filter, exposure, obstype, obsmode, proctype, prodtype, seeing, depth, dtacqnam, archive_file, filesize, reference, md5sum
-FROM dbo.PhotoObjRAW
-CROSS APPLY Spherical.point.ConvertEqToXyz(ra, dec) AS c
-
+-- Spatial index
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_Zone] ON [dbo].[PhotoObj] 
+(
+	[dec] ASC
+)
+INCLUDE
+(
+	[ra],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
--- DROP RAW TABLE
-DROP TABLE PhotoObjRAW
-
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_ZoneID] ON [dbo].[PhotoObj] 
+(
+	[zoneid] ASC,
+	[ra] ASC
+)
+INCLUDE
+(
+	[dec],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 -- HTM index
-CREATE NONCLUSTERED INDEX [IX_PhotoObj_htmid] ON [dbo].[PhotoObj]
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_HtmID] ON [dbo].[PhotoObj] 
 (
 	[htmid] ASC
 )
-
+INCLUDE
+(
+	[ra],
+	[dec],
+	[cx],
+	[cy],
+	[cz],
+	[zoneID]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
