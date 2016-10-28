@@ -28,14 +28,14 @@ def hmsdms2dd(ra,dec):
 
 # LOAD DATA
 # source file:
-src = "C:\\Data\\ebanyai\\project\\Skyquery-data\\CSDR2\\CatalinaVars.tbl"
-src_vt = "C:\\Data\\ebanyai\\project\\Skyquery-data\\CSDR2\\VarTypes.tsv"
+src = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\CSDR2\CatalinaVars.tbl"
+src_vt = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\CSDR2\VarTypes.txt"
 
 cols = ["CS_ID","Num_ID","RA","Dec","V","Period","Amplitude","NumberObs","VarType"]
 
 
 # grab the data
-df = pd.read_table(src,sep=" ",names=cols,header=False,index_col=False,comment="#",skipinitialspace=True,compression=None,na_values=[r"\\nodata"])
+df = pd.read_table(src,sep=" ",names=cols,header=None,index_col=False,comment="#",skipinitialspace=True,compression=None,na_values=[r"\\nodata"])
 vartypes = pd.read_table(src_vt,header=0,index_col=3)
 df = df.fillna(value=-99)
 df["Type"] = df["VarType"].apply(lambda x: vartypes["Type"].loc[x])
@@ -63,7 +63,7 @@ dt_df = np.dtype([("Num_ID","i8"),
 records = np.array(df.to_records(),dtype=dt_df) 
 
 # destination folder
-dst = r"C:\Data\ebanyai\project\Skyquery-data\CSDR2\csdr2_varCat.bin" 
+dst = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\CSDR2\csdr2_varCat.bin" 
 
 
 

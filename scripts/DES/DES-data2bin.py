@@ -8,8 +8,8 @@ from astropy.io.votable import parse
 from pandas import DataFrame
 import numpy as np
 
-path = r"C:\Data\ebanyai\project\skyquery-data\DES/"
-src = path+"DES_20151117_NOAO.vot"
+path = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\DES\\"
+src = path+"DES.vot"
 
 votable = parse(src)
 table = votable.get_first_table()

@@ -12,14 +12,14 @@ import numpy as np
 # LOAD DATA
 
 # source file:
-src = "C:\\Data\\ebanyai\\project\\Skyquery-data\\Chandra\\Chandra_Source-20150923_VizieR.tsv"
-cols = ["_RAJ2000","_DEJ2000","CXO","RAJ2000","DEJ2000","ePos","S/N","Fb","b_Fb",
+src = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\CHANDRA\Chandra_Source-20161026_VizieR.tsv"
+cols = ["CXO","RAJ2000","DEJ2000","ePos","S/N","Fb","b_Fb",
         "B_Fb","Fw","b_Fw","B_Fw","hr2","b_hr2","B_hr2","hr1","b_hr1","B_hr1",
         "fc","fe","fs","Vab","Vib","Vaw","Viw"]
 
 
 # grab the data
-df = pd.read_table(src,names=cols,index_col=False,skipinitialspace=True,skiprows=87)
+df = pd.read_table(src,names=cols,index_col=False,skipinitialspace=True,skiprows=82)
 df.fillna(value=-99,inplace=True)
 df["ID"] = df.index+1
 
@@ -55,7 +55,7 @@ dt_df = np.dtype([("ID","i8"),
 records = np.array(df.to_records(),dtype=dt_df) 
 
 # destination folder
-dst = r"C:\Data\ebanyai\project\Skyquery-data\Chandra\chandra_src.bin" 
+dst = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\CHANDRA\chandra_src.bin" 
 
 
 
