@@ -6,3 +6,5 @@ DES-data2bin.py
 
 Creating Database:
 DES.sql
+
+Bacon, D., et al, 2016, MNRAS, 460, 2
