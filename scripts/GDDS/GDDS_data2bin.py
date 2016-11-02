@@ -29,8 +29,8 @@ def hmsdms2dd(ra,dec):
 # LOAD DATA
 
 # source file:
-path = "C:\\Data\\ebanyai\\project\\Skyquery-data\\GDDS\\"
-src = path+"GDDS-20150923.tsv"
+path =  r"\\SKYQUERY01\Data\temp0\data0\ebanyai\GDDS\\"
+src = path+"GDDS.tsv"
 cols = ["GDDS","z","Sp","RAJ2000","DEJ2000","Conf","Ovlap","Weight","Bmag",
         "n_Bmag","e_Bmag","Vmag","n_Vmag","e_Vmag","Rmag","n_Rmag","e_Rmag","Icmag",
         "n_Icmag","e_Icmag","z_mag","n_z_mag","e_z_mag","Hmag","n_Hmag","e_Hmag",
@@ -38,7 +38,7 @@ cols = ["GDDS","z","Sp","RAJ2000","DEJ2000","Conf","Ovlap","Weight","Bmag",
 
 
 # grab the data
-df = pd.read_table(src,names=cols,index_col=False,comment="#",skipinitialspace=True)
+df = pd.read_table(src,names=cols,index_col=False,skipinitialspace=True,skiprows=92)
 df.fillna(value=-99,inplace=True)
 df["RA"],df["DEC"] = hmsdms2dd(df["RAJ2000"],df["DEJ2000"])
 df["objID"] = df.index+1

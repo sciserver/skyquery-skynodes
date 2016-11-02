@@ -3,7 +3,6 @@
 Created on Thu Oct  1 12:09:37 2015
 
 @author: ebanyai
-AGES to binary file
 """
 
 import pandas as pd
@@ -13,8 +12,8 @@ from astropy import units as u
 
 # LOAD DATA
 # source file:
-path = "C:\\Data\\ebanyai\\project\\Skyquery-data\\FORS_DeepField\\"
-src = path+"FORS-20150923_VizieR.tsv"
+path = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\FORS\\"
+src = path+"FORS_VizieR.tsv"
 cols = ["objID","RAJ2000","DEJ2000","BTmag","ITmag","Texp","ff0","SN","n_SN","Qs","Type","z","e_z","e_Type","q_z","Notes","FileName","Phot"]
 
 

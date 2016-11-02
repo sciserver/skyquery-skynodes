@@ -10,14 +10,14 @@ import numpy as np
 
 # LOAD DATA
 # source file:
-path = "C:\\Data\\ebanyai\\project\\Skyquery-data\\GDDS\\"
-src = path+"SpectralFeaturesAndClassifications.tsv"
+path = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\GDDS\\"
+src = path+"SpectralFeatures.tsv"
 cols = ["GDDS","AGN","OII","OIII","HiBal","LoBal","Fe2375","Fe2600","Mg2800",
         "Mg2852","HandK","Balmer","D4000","Temp","Class","Conf","z"]
 
 
 # grab the data
-df = pd.read_table(src,names=cols,index_col=False,comment="#",skipinitialspace=True)
+df = pd.read_table(src,names=cols,index_col=False,skiprows=63,skipinitialspace=True)
 df.fillna(value=-99,inplace=True)
 
 # DEFINE DATA TYPES FOR BINARY FORMAT

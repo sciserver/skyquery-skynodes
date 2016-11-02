@@ -41,7 +41,7 @@ def get_number(item):
 # LOAD DATA
 
 # source file:
-path = "C:\\Data\\ebanyai\\project\\Skyquery-data\\HDF\\"
+path = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\HDF\\"
 src = path+"chip1.txt"
 src2 = path+"chip2.txt"
 src3 = path+"chip3.txt"
@@ -50,10 +50,10 @@ cols = ["objID","x","y","RA","Dec","mt","mi","U-B","B-V","V-I","SN","area","r1",
 
 
 # grab the data
-df1 = pd.read_table(src,names=cols,index_col=False,comment="#",skipinitialspace=True,sep=" ")
-df2 = pd.read_table(src2,names=cols,index_col=False,comment="#",skipinitialspace=True, sep=" ")
-df3 = pd.read_table(src3,names=cols,index_col=False,comment="#",skipinitialspace=True, sep=" ")
-df4 = pd.read_table(src4,names=cols,index_col=False,comment="#",skipinitialspace=True, sep=" ")
+df1 = pd.read_table(src,names=cols,index_col=False,skiprows=1,skipinitialspace=True,sep=" ")
+df2 = pd.read_table(src2,names=cols,index_col=False,skiprows=1,skipinitialspace=True, sep=" ")
+df3 = pd.read_table(src3,names=cols,index_col=False,skiprows=1,skipinitialspace=True, sep=" ")
+df4 = pd.read_table(src4,names=cols,index_col=False,skiprows=1,skipinitialspace=True, sep=" ")
 df = pd.concat([df1,df2,df3,df4],ignore_index=True)
 
 df["ra"],df["dec"] = msms2dd(df["RA"],df["Dec"])
