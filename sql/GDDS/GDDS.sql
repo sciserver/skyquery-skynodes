@@ -1,68 +1,7 @@
-USE [GDDS]
+USE [SkyNode_GDDS]
 
 GO
 
-IF OBJECT_ID ('dbo.SpecObjRAW', 'U') IS NOT NULL
-	DROP TABLE dbo.SpecObjRAW;
-
-GO
-
--- CREATE SpecObjRAW TABLE
-CREATE TABLE dbo.SpecObjRAW
-(	[objID] bigint NOT NULL,
-	[GDDS] char(7) NOT NULL,
-	[RA] float NOT NULL,
-	[DEC] float NOT NULL,
-	[z] float NOT NULL,
-	[Conf] smallint NOT NULL,
-	[Ovlap] char(3) NOT NULL,
-	[Weight] float NOT NULL,
-	[Bmag] real NOT NULL,
-	[n_Bmag] char(1) NOT NULL,
-	[e_Bmag] real NOT NULL,
-	[Vmag] real NOT NULL,
-	[n_Vmag] char(1) NOT NULL,
-	[e_Vmag] real NOT NULL,
-	[Rmag] real NOT NULL,
-	[n_Rmag] char(1) NOT NULL,
-	[e_Rmag] real NOT NULL,
-	[Icmag] real NOT NULL,
-	[n_Icmag] char(1) NOT NULL,
-	[e_Icmag] real NOT NULL,
-	[z_mag] real NOT NULL,
-	[n_z_mag] char(1) NOT NULL,
-	[e_z_mag] real NOT NULL,
-	[Hmag] real NOT NULL,
-	[n_Hmag] char(1) NOT NULL,
-	[e_Hmag] real NOT NULL,
-	[Ksmag] real NOT NULL,
-	[n_Ksmag] char(1) NOT NULL,
-	[e_Ksmag] real NOT NULL,
-
-	CONSTRAINT [PK_SpecObjRAW] PRIMARY KEY CLUSTERED
-(
-	[objID] ASC
-) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
--- BULK INSERT DATA
-BULK INSERT
-	SpecObjRAW
-	FROM 'C:\Data\ebanyai\project\Skyquery-data\GDDS\\gdds.bin'
-	WITH
-	(
-		DATAFILETYPE = 'native',
-		TABLOCK
-	)
-
-GO
-
-IF OBJECT_ID ('dbo.SpecObj', 'U') IS NOT NULL
-	DROP TABLE dbo.SpecObj;
-
-GO
 -- CREATE SpecObj TABLE
 CREATE TABLE dbo.SpecObj
 (
@@ -78,6 +17,9 @@ CREATE TABLE dbo.SpecObj
 
 	--/ <summary> HTM ID (J2000)</summary>
 	[htmid] bigint NOT NULL,
+
+	--/ <summary> Zone ID </summary>
+	[zoneid] int NOT NULL,
 
 	--/ <summary> Sequential Number </summary>
 	[objID] bigint NOT NULL,
@@ -225,77 +167,56 @@ CREATE TABLE dbo.SpecObj
 
 GO
 
--- INSERT DATA + CREATE HTMID, CX, CY, CZ
-INSERT dbo.SpecObj WITH (TABLOCKX)
-( cx, cy, cz, htmid, objID, GDDS, RA, DEC, z, Conf, Ovlap, Weight, Bmag, n_Bmag, e_Bmag, Vmag, n_Vmag, e_Vmag, Rmag, n_Rmag, e_Rmag, Icmag, n_Icmag, e_Icmag, z_mag, n_z_mag, e_z_mag, Hmag, n_Hmag, e_Hmag, Ksmag, n_Ksmag, e_Ksmag)
-SELECT c.x AS  cx, c.y AS cy, c.z AS cz, Spherical.htm.FromXyz(c.x,c.y,c.z) AS htmid, objID, GDDS, RA, DEC, SpecObjRAW.z, Conf, Ovlap, Weight, Bmag, n_Bmag, e_Bmag, Vmag, n_Vmag, e_Vmag, Rmag, n_Rmag, e_Rmag, Icmag, n_Icmag, e_Icmag, z_mag, n_z_mag, e_z_mag, Hmag, n_Hmag, e_Hmag, Ksmag, n_Ksmag, e_Ksmag
-FROM dbo.SpecObjRAW
-CROSS APPLY Spherical.point.ConvertEqToXyz(ra, dec) AS c
-
+-- Spatial index
+CREATE NONCLUSTERED INDEX [IX_SpecObj_Zone] ON [dbo].[SpecObj] 
+(
+	[dec] ASC
+)
+INCLUDE
+(
+	[ra],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
--- DROP RAW TABLE
-DROP TABLE SpecObjRAW
+CREATE NONCLUSTERED INDEX [IX_Specbj_ZoneID] ON [dbo].[SpecObj] 
+(
+	[zoneid] ASC,
+	[ra] ASC
+)
+INCLUDE
+(
+	[dec],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 -- HTM index
-CREATE NONCLUSTERED INDEX [IX_SpecObj_htmid] ON [dbo].[SpecObj]
+CREATE NONCLUSTERED INDEX [IX_SpecObj_HtmID] ON [dbo].[SpecObj] 
 (
 	[htmid] ASC
 )
-
-GO
-
-
-IF OBJECT_ID ('dbo.SpectralFeaturesRAW', 'U') IS NOT NULL
-	DROP TABLE dbo.SpectralFeaturesRAW;
-
-GO
-
--- CREATE SpectralFeaturesRAW TABLE
-CREATE TABLE dbo.SpectralFeaturesRAW
-(	[GDDS] char(7) NOT NULL,
-	[AGN] tinyint NOT NULL,
-	[OII] tinyint NOT NULL,
-	[OIII] tinyint NOT NULL,
-	[HiBal] tinyint NOT NULL,
-	[LoBal] tinyint NOT NULL,
-	[Fe2375] tinyint NOT NULL,
-	[Fe2600] tinyint NOT NULL,
-	[Mg2800] tinyint NOT NULL,
-	[Mg2852] tinyint NOT NULL,
-	[HandK] tinyint NOT NULL,
-	[Balmer] tinyint NOT NULL,
-	[D4000] tinyint NOT NULL,
-	[Temp] tinyint NOT NULL,
-	[Class] int NOT NULL,
-	[Conf] smallint NOT NULL,
-	[z] real NOT NULL,
-
-	CONSTRAINT [PK_SpectralFeaturesRAW] PRIMARY KEY CLUSTERED
+INCLUDE
 (
-	[GDDS] ASC
-) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
+	[ra],
+	[dec],
+	[cx],
+	[cy],
+	[cz],
+	[zoneID]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
--- BULK INSERT DATA
-BULK INSERT
-	SpectralFeaturesRAW
-	FROM 'C:\Data\ebanyai\project\Skyquery-data\GDDS\\gdds_specFeatures.bin'
-	WITH
-	(
-		DATAFILETYPE = 'native',
-		TABLOCK
-	)
-
-GO
-
-IF OBJECT_ID ('dbo.SpectralFeatures', 'U') IS NOT NULL
-	DROP TABLE dbo.SpectralFeatures;
-
-GO
 -- CREATE SpectralFeatures TABLE
 CREATE TABLE dbo.SpectralFeatures
 (
@@ -388,14 +309,3 @@ CREATE TABLE dbo.SpectralFeatures
 
 GO
 
--- INSERT DATA
-INSERT dbo.SpectralFeatures WITH (TABLOCKX)
-(  GDDS, AGN, OII, OIII, HiBal, LoBal, Fe2375, Fe2600, Mg2800, Mg2852, HandK, Balmer, D4000, Temp, Class, Conf, z)
-SELECT GDDS, AGN, OII, OIII, HiBal, LoBal, Fe2375, Fe2600, Mg2800, Mg2852, HandK, Balmer, D4000, Temp, Class, Conf, z
-FROM dbo.SpectralFeaturesRAW
-
-GO
-
--- DROP RAW TABLE
-DROP TABLE SpectralFeaturesRAW
-GO

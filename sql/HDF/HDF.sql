@@ -1,64 +1,10 @@
-USE [HDF]
+USE [SkyNode_HDF]
 
 GO
 
-IF OBJECT_ID ('dbo.PhotoObjRAW', 'U') IS NOT NULL
-	DROP TABLE dbo.PhotoObjRAW;
-
-GO
-
--- CREATE PhotoObjRAW TABLE
-CREATE TABLE dbo.PhotoObjRAW
-(	[objID] char(14) NOT NULL,
-	[x] real NOT NULL,
-	[y] real NOT NULL,
-	[ra] float NOT NULL,
-	[dec] float NOT NULL,
-	[mt] real NOT NULL,
-	[mt_limit] char(5) NOT NULL,
-	[mi] real NOT NULL,
-	[mi_limit] char(5) NOT NULL,
-	[U_B] real NOT NULL,
-	[U_B_limit] char(5) NOT NULL,
-	[B_V] real NOT NULL,
-	[B_V_limit] char(5) NOT NULL,
-	[V_I] real NOT NULL,
-	[V_I_limit] char(5) NOT NULL,
-	[SN] real NOT NULL,
-	[area] real NOT NULL,
-	[r1] real NOT NULL,
-	[bpa] real NOT NULL,
-	[PA] real NOT NULL,
-	[Flags] char(3) NOT NULL,
-
-	CONSTRAINT [PK_PhotoObjRAW] PRIMARY KEY CLUSTERED
-(
-	[objID] ASC
-) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
--- BULK INSERT DATA
-BULK INSERT
-	PhotoObjRAW
-	FROM 'C:\Data\ebanyai\project\Skyquery-data\HDF\\hdf.bin'
-	WITH
-	(
-		DATAFILETYPE = 'native',
-		TABLOCK
-	)
-
-GO
-
-IF OBJECT_ID ('dbo.PhotoObj', 'U') IS NOT NULL
-	DROP TABLE dbo.PhotoObj;
-
-GO
 -- CREATE PhotoObj TABLE
 CREATE TABLE dbo.PhotoObj
 (
-
 	--/ <summary> Cartesian X (J2000)</summary>
 	[cx] [float] NOT NULL,
 
@@ -70,6 +16,9 @@ CREATE TABLE dbo.PhotoObj
 
 	--/ <summary> HTM ID (J2000)</summary>
 	[htmid] bigint NOT NULL,
+
+	--/ <summary> Zone ID </summary>
+	[zoneid] int NOT NULL,
 
 	--/ <summary> This is the FOCAS catalog entry number. The numbers after the decimal point indicate the level of splitting.
 	--/ Both parents and daughters are included in the catalog shown here. Thus many objects are included repeatedly in the catalog,
@@ -198,26 +147,52 @@ CREATE TABLE dbo.PhotoObj
 
 GO
 
--- INSERT DATA + CREATE HTMID, CX, CY, CZ
-INSERT dbo.PhotoObj WITH (TABLOCKX)
-( cx, cy, cz, htmid, objID, x, y, ra, dec,mt, mt_limit, mi, mi_limit, U_B, U_B_limit,
- B_V, B_V_limit, V_I, V_I_limit, SN, area, r1, bpa, PA, Flags)
-SELECT c.x AS  cx, c.y AS cy, c.z AS cz, Spherical.htm.FromXyz(c.x,c.y,c.z) AS htmid, objID, PhotoObjRAW.x, PhotoObjRAW.y, ra, dec, mt, mt_limit, mi, mi_limit, U_B, U_B_limit,
- B_V, B_V_limit, V_I, V_I_limit, SN, area, r1, bpa, PA, Flags
-FROM dbo.PhotoObjRAW
-CROSS APPLY Spherical.point.ConvertEqToXyz(ra, dec) AS c
-
+-- Spatial index
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_Zone] ON [dbo].[PhotoObj] 
+(
+	[dec] ASC
+)
+INCLUDE
+(
+	[ra],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
--- DROP RAW TABLE
-DROP TABLE PhotoObjRAW
-
+CREATE NONCLUSTERED INDEX [IX_Photo_ZoneID] ON [dbo].[PhotoObj] 
+(
+	[zoneid] ASC,
+	[ra] ASC
+)
+INCLUDE
+(
+	[dec],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 -- HTM index
-CREATE NONCLUSTERED INDEX [IX_PhotoObj_htmid] ON [dbo].[PhotoObj]
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_HtmID] ON [dbo].[PhotoObj] 
 (
 	[htmid] ASC
 )
-
+INCLUDE
+(
+	[ra],
+	[dec],
+	[cx],
+	[cy],
+	[cz],
+	[zoneID]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
