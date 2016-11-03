@@ -1,83 +1,7 @@
-USE [KIC]
+USE [SkyNode_KIC]
 
 GO
 
-IF OBJECT_ID ('dbo.PhotoObjRAW', 'U') IS NOT NULL
-	DROP TABLE dbo.PhotoObjRAW;
-
-GO
-
--- CREATE PhotoObjRAW TABLE
-CREATE TABLE dbo.PhotoObjRAW
-(	[seqID] float NOT NULL,
-	[RA] float NOT NULL,
-	[DEC] float NOT NULL,
-	[pmra] real NOT NULL,
-	[pmdec] real NOT NULL,
-	[umag] real NOT NULL,
-	[gmag] real NOT NULL,
-	[rmag] real NOT NULL,
-	[imag] real NOT NULL,
-	[zmag] real NOT NULL,
-	[gredmag] real NOT NULL,
-	[d51mag] real NOT NULL,
-	[jmag] real NOT NULL,
-	[hmag] real NOT NULL,
-	[kmag] real NOT NULL,
-	[kepmag] real NOT NULL,
-	[kepler_id] bigint NOT NULL,
-	[tmid] bigint NOT NULL,
-	[scpid] bigint NOT NULL,
-	[altid] bigint NOT NULL,
-	[altsource] bigint NOT NULL,
-	[galaxy] bigint NOT NULL,
-	[blend] bigint NOT NULL,
-	[variable] tinyint NOT NULL,
-	[teff] real NOT NULL,
-	[logg] real NOT NULL,
-	[feh] real NOT NULL,
-	[ebminusv] real NOT NULL,
-	[av] real NOT NULL,
-	[radius] real NOT NULL,
-	[cq] char(5) NOT NULL,
-	[pq] tinyint NOT NULL,
-	[aq] tinyint NOT NULL,
-	[catkey] bigint NOT NULL,
-	[scpkey] bigint NOT NULL,
-	[parallax] real NOT NULL,
-	[glon] real NOT NULL,
-	[glat] real NOT NULL,
-	[pmtotal] real NOT NULL,
-	[grcolor] real NOT NULL,
-	[jkcolor] real NOT NULL,
-	[gkcolor] real NOT NULL,
-	[fov_flag] tinyint NOT NULL,
-	[tm_designation] char(17) NOT NULL,
-
-	CONSTRAINT [PK_PhotoObjRAW] PRIMARY KEY CLUSTERED
-(
-	[seqID] ASC
-) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
--- BULK INSERT DATA
-BULK INSERT
-	PhotoObjRAW
-	FROM 'C:\Data\ebanyai\project\Skyquery-data\Kepler KIC\KIC.bin'
-	WITH
-	(
-		DATAFILETYPE = 'native',
-		TABLOCK
-	)
-
-GO
-
-IF OBJECT_ID ('dbo.PhotoObj', 'U') IS NOT NULL
-	DROP TABLE dbo.PhotoObj;
-
-GO
 -- CREATE PhotoObj TABLE
 CREATE TABLE dbo.PhotoObj
 (
@@ -92,6 +16,9 @@ CREATE TABLE dbo.PhotoObj
 
 	--/ <summary> HTM ID (J2000)</summary>
 	[htmid] bigint NOT NULL,
+
+	--/ <summary> Zone ID </summary>
+	[zoneid] int NOT NULL,
 
 	--/ <summary> sequential number </summary>
 	[seqID] float NOT NULL,
@@ -270,24 +197,52 @@ CREATE TABLE dbo.PhotoObj
 
 GO
 
--- INSERT DATA + CREATE HTMID, CX, CY, CZ
-INSERT dbo.PhotoObj WITH (TABLOCKX)
-( cx, cy, cz, htmid, seqID, RA, DEC, pmra, pmdec, umag, gmag, rmag, imag, zmag, gredmag, d51mag, jmag, hmag, kmag, kepmag, kepler_id, tmid, scpid, altid, altsource, galaxy, blend, variable, teff, logg, feh, ebminusv, av, radius, cq, pq, aq, catkey, scpkey, parallax, glon, glat, pmtotal, grcolor, jkcolor, gkcolor, fov_flag, tm_designation)
-SELECT c.x AS  cx, c.y AS cy, c.z AS cz, Spherical.htm.FromXyz(c.x,c.y,c.z) AS htmid, seqID, RA, DEC, pmra, pmdec, umag, gmag, rmag, imag, zmag, gredmag, d51mag, jmag, hmag, kmag, kepmag, kepler_id, tmid, scpid, altid, altsource, galaxy, blend, variable, teff, logg, feh, ebminusv, av, radius, cq, pq, aq, catkey, scpkey, parallax, glon, glat, pmtotal, grcolor, jkcolor, gkcolor, fov_flag, tm_designation
-FROM dbo.PhotoObjRAW
-CROSS APPLY Spherical.point.ConvertEqToXyz(ra, dec) AS c
-
+-- Spatial index
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_Zone] ON [dbo].[PhotoObj] 
+(
+	[dec] ASC
+)
+INCLUDE
+(
+	[ra],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
--- DROP RAW TABLE
-DROP TABLE PhotoObjRAW
-
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_ZoneID] ON [dbo].[PhotoObj] 
+(
+	[zoneid] ASC,
+	[ra] ASC
+)
+INCLUDE
+(
+	[dec],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 -- HTM index
-CREATE NONCLUSTERED INDEX [IX_PhotoObj_htmid] ON [dbo].[PhotoObj]
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_HtmID] ON [dbo].[PhotoObj] 
 (
 	[htmid] ASC
 )
-
+INCLUDE
+(
+	[ra],
+	[dec],
+	[cx],
+	[cy],
+	[cz],
+	[zoneID]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO

@@ -1,49 +1,7 @@
-USE [K20]
+USE [SkyNode_K20]
 
 GO
 
-IF OBJECT_ID ('dbo.SpecObjRAW', 'U') IS NOT NULL
-	DROP TABLE dbo.SpecObjRAW;
-
-GO
-
--- CREATE SpecObjRAW TABLE
-CREATE TABLE dbo.SpecObjRAW
-(	[Seq] char(11) NOT NULL,
-	[RA] float NOT NULL,
-	[DEC] float NOT NULL,
-	[Ksmag] real NOT NULL,
-	[R_K] real NOT NULL,
-	[z] real NOT NULL,
-	[q_z] smallint NOT NULL,
-	[Class] char(3) NOT NULL,
-	[FileName] char(17) NOT NULL,
-	[Com] char(12) NOT NULL,
-
-	CONSTRAINT [PK_SpecObjRAW] PRIMARY KEY CLUSTERED
-(
-	[Seq] ASC
-) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
--- BULK INSERT DATA
-BULK INSERT
-	SpecObjRAW
-	FROM 'C:\Data\ebanyai\project\Skyquery-data\K20\K20_SpecObj.bin'
-	WITH
-	(
-		DATAFILETYPE = 'native',
-		TABLOCK
-	)
-
-GO
-
-IF OBJECT_ID ('dbo.SpecObj', 'U') IS NOT NULL
-	DROP TABLE dbo.SpecObj;
-
-GO
 -- CREATE SpecObj TABLE
 CREATE TABLE dbo.SpecObj
 (
@@ -58,6 +16,9 @@ CREATE TABLE dbo.SpecObj
 
 	--/ <summary> HTM ID (J2000)</summary>
 	[htmid] bigint NOT NULL,
+
+	--/ <summary> Zone ID </summary>
+	[zoneid] int NOT NULL,
 
 	--/ <summary> K20 identification number, CDFS_NNNNN or q0055_NNNNN </summary>
 	[Seq] char(11) NOT NULL,
@@ -111,24 +72,52 @@ CREATE TABLE dbo.SpecObj
 
 GO
 
--- INSERT DATA + CREATE HTMID, CX, CY, CZ
-INSERT dbo.SpecObj WITH (TABLOCKX)
-( cx, cy, cz, htmid, Seq, RA, DEC, Ksmag, R_K, z, q_z, Class, FileName, Com)
-SELECT c.x AS  cx, c.y AS cy, c.z AS cz, Spherical.htm.FromXyz(c.x,c.y,c.z) AS htmid, Seq, RA, DEC, Ksmag, R_K, SpecObjRAW.z, q_z, Class, FileName, Com
-FROM dbo.SpecObjRAW
-CROSS APPLY Spherical.point.ConvertEqToXyz(ra, dec) AS c
-
+-- Spatial index
+CREATE NONCLUSTERED INDEX [IX_SpecObj_Zone] ON [dbo].[SpecObj] 
+(
+	[dec] ASC
+)
+INCLUDE
+(
+	[ra],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
--- DROP RAW TABLE
-DROP TABLE SpecObjRAW
-
+CREATE NONCLUSTERED INDEX [IX_SpecObj_ZoneID] ON [dbo].[SpecObj] 
+(
+	[zoneid] ASC,
+	[ra] ASC
+)
+INCLUDE
+(
+	[dec],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 -- HTM index
-CREATE NONCLUSTERED INDEX [IX_SpecObj_htmid] ON [dbo].[SpecObj]
+CREATE NONCLUSTERED INDEX [IX_SpecObj_HtmID] ON [dbo].[SpecObj] 
 (
 	[htmid] ASC
 )
-
+INCLUDE
+(
+	[ra],
+	[dec],
+	[cx],
+	[cy],
+	[cz],
+	[zoneID]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
