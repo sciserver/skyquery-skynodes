@@ -11,7 +11,7 @@ from astropy import units as u
 from astropy.coordinates import SkyCoord
 
 # source file:
-src = "C:\\Data\\ebanyai\\project\\Skyquery-data\\K20\\K20-20150923_VizieR.tsv"
+src = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\K20\K20_VizieR.tsv"
 cols = ["Seq","RAJ2000","DEJ2000","Ksmag","R-K","z","q_z","Class","FileName","Com"]
 
 
@@ -41,7 +41,7 @@ dt_df = np.dtype(types)
 records = np.array(df.to_records(),dtype=dt_df) 
 
 # destination folder
-dst = r"C:\Data\ebanyai\project\Skyquery-data\K20\K20_SpecObj.bin" 
+dst = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\K20\K20_SpecObj.bin" 
 
 
 

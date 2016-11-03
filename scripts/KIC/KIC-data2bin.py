@@ -8,7 +8,7 @@ import pandas as pd
 import numpy as np
 
 
-path = r"C:\Data\ebanyai\project\Skyquery-data\Kepler KIC/"
+path = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\KIC\\"
 src = path+"kic.txt.gz"
 
 # LOAD DATA FILE
