@@ -9,3 +9,4 @@ HDF-data2bin.py
 Creating HDF Database:
 HDF.sql
 
+Williams, R. E, et al., 1996, AJ, 112, 1335
