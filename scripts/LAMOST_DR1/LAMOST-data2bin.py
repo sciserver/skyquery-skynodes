@@ -10,8 +10,8 @@ import numpy as np
 
 
 # source file:
-path = "C:\\Data\\ebanyai\\project\\Skyquery-data\\LAMOST_DR1\\"
-src = path+"dr1.csv-20150923_lamost.gz"
+path = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\LAMOST\\"
+src = path+"dr1.csv.gz"
 
 
 # grab the data

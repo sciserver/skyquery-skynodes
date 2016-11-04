@@ -3,7 +3,6 @@
 Created on Thu Oct  1 12:09:37 2015
 
 @author: ebanyai
-AGES to binary file
 """
 
 import pandas as pd
@@ -13,8 +12,8 @@ from astropy.coordinates import SkyCoord
 
 # LOAD DATA
 # source file:
-path = "C:\\Data\\ebanyai\\project\\Skyquery-data\\KPGRS\\"
-src = path+"catalog-20150923_VizieR.tsv"
+path = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\KPGRS\\"
+src = path+"KPGRS_VizieR.tsv"
 
 cols = ["MKK97","RA1950","DE1950","RFmag","U-BJ","BJ-RF","RF-IN","z","q_z","r_z",
         "Ns","Nb","Note","_RA.icrs","_DE.icrs"]
