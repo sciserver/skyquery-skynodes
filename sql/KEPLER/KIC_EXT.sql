@@ -2,13 +2,13 @@ USE [Graywulf_Temp]
 
 GO
 
-IF OBJECT_ID ('dbo.PhotoObjRAW', 'U') IS NOT NULL
-	DROP TABLE dbo.PhotoObjRAW;
+IF OBJECT_ID ('dbo.KICRAW', 'U') IS NOT NULL
+	DROP TABLE dbo.KICRAW;
 
 GO
 
--- CREATE PhotoObjRAW TABLE
-CREATE TABLE dbo.PhotoObjRAW
+-- CREATE KICRAW TABLE
+CREATE TABLE dbo.KICRAW
 (	[seqID] float NOT NULL,
 	[RA] float NOT NULL,
 	[DEC] float NOT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE dbo.PhotoObjRAW
 	[fov_flag] tinyint NOT NULL,
 	[tm_designation] char(17) NOT NULL,
 
-	CONSTRAINT [PK_PhotoObjRAW] PRIMARY KEY CLUSTERED
+	CONSTRAINT [PK_KICRAW] PRIMARY KEY CLUSTERED
 (
 	[seqID] ASC
 ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -64,7 +64,7 @@ GO
 
 -- BULK INSERT DATA
 BULK INSERT
-	PhotoObjRAW
+	KICRAW
 	FROM '\\SKYQUERY01\Data\temp0\data0\ebanyai\KIC\KIC.bin'
 	WITH
 	(
@@ -74,12 +74,12 @@ BULK INSERT
 
 GO
 
-IF OBJECT_ID ('dbo.PhotoObj', 'U') IS NOT NULL
-	DROP TABLE dbo.PhotoObj;
+IF OBJECT_ID ('dbo.KIC', 'U') IS NOT NULL
+	DROP TABLE dbo.KIC;
 
 GO
--- CREATE PhotoObj TABLE
-CREATE TABLE dbo.PhotoObj
+-- CREATE KIC TABLE
+CREATE TABLE dbo.KIC
 (
 	--/ <summary> Cartesian X (J2000)</summary>
 	[cx] [float] NOT NULL,
@@ -265,7 +265,7 @@ CREATE TABLE dbo.PhotoObj
 	--/ (See 2mass_conflict_flag). </summary>
 	[tm_designation] char(17) NOT NULL,
 
-	CONSTRAINT [PK_PhotoObj] PRIMARY KEY CLUSTERED
+	CONSTRAINT [PK_KIC] PRIMARY KEY CLUSTERED
 (
 	[seqID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -274,23 +274,23 @@ CREATE TABLE dbo.PhotoObj
 GO
 
 -- INSERT DATA + CREATE HTMID, CX, CY, CZ
-INSERT dbo.PhotoObj WITH (TABLOCKX)
+INSERT dbo.KIC WITH (TABLOCKX)
 ( cx, cy, cz, htmid, zoneid, seqID, RA, DEC, pmra, pmdec, umag, gmag, rmag, imag, zmag, gredmag, d51mag, jmag, hmag, kmag, kepmag, kepler_id, tmid, scpid, altid, altsource, galaxy, blend, variable, teff, logg, feh, ebminusv, av, radius, cq, pq, aq, catkey, scpkey, parallax, glon, glat, pmtotal, grcolor, jkcolor, gkcolor, fov_flag, tm_designation)
 SELECT c.x AS  cx, c.y AS cy, c.z AS cz, SkyQuery_CODE_dev.htmid.FromXyz(c.x,c.y,c.z) AS htmid, 
 SkyQuery_CODE_dev.skyquery.ZoneIDFromDec(dec,4.0/3600.00000000) as zoneid, 
 seqID, RA, DEC, pmra, pmdec, umag, gmag, rmag, imag, zmag, gredmag, d51mag, jmag, hmag, kmag, kepmag, kepler_id, tmid, scpid, altid, altsource, galaxy, blend, variable, teff, logg, feh, ebminusv, av, radius, cq, pq, aq, catkey, scpkey, parallax, glon, glat, pmtotal, grcolor, jkcolor, gkcolor, fov_flag, tm_designation
-FROM dbo.PhotoObjRAW
+FROM dbo.KICRAW
 CROSS APPLY SkyQuery_CODE_dev.point.EqToXyz(ra, dec) AS c
 
 GO
 
 -- DROP RAW TABLE
-DROP TABLE PhotoObjRAW
+DROP TABLE KICRAW
 
 GO
 
 -- Spatial index
-CREATE NONCLUSTERED INDEX [IX_PhotoObj_Zone] ON [dbo].[PhotoObj] 
+CREATE NONCLUSTERED INDEX [IX_KIC_Zone] ON [dbo].[KIC] 
 (
 	[dec] ASC
 )
@@ -305,7 +305,7 @@ WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [PRIMARY]
 GO
 
-CREATE NONCLUSTERED INDEX [IX_PhotoObj_ZoneID] ON [dbo].[PhotoObj] 
+CREATE NONCLUSTERED INDEX [IX_KIC_ZoneID] ON [dbo].[KIC] 
 (
 	[zoneid] ASC,
 	[ra] ASC
@@ -322,7 +322,7 @@ ON [PRIMARY]
 GO
 
 -- HTM index
-CREATE NONCLUSTERED INDEX [IX_PhotoObj_HtmID] ON [dbo].[PhotoObj] 
+CREATE NONCLUSTERED INDEX [IX_KIC_HtmID] ON [dbo].[KIC] 
 (
 	[htmid] ASC
 )

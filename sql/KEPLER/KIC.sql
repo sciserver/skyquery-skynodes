@@ -1,9 +1,9 @@
-USE [SkyNode_KIC]
+USE [SkyNode_KEPLER]
 
 GO
 
 -- CREATE PhotoObj TABLE
-CREATE TABLE dbo.PhotoObj
+CREATE TABLE dbo.KIC
 (
 	--/ <summary> Cartesian X (J2000)</summary>
 	[cx] [float] NOT NULL,
@@ -189,7 +189,7 @@ CREATE TABLE dbo.PhotoObj
 	--/ (See 2mass_conflict_flag). </summary>
 	[tm_designation] char(17) NOT NULL,
 
-	CONSTRAINT [PK_PhotoObj] PRIMARY KEY CLUSTERED
+	CONSTRAINT [PK_KIC] PRIMARY KEY CLUSTERED
 (
 	[seqID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -198,7 +198,7 @@ CREATE TABLE dbo.PhotoObj
 GO
 
 -- Spatial index
-CREATE NONCLUSTERED INDEX [IX_PhotoObj_Zone] ON [dbo].[PhotoObj] 
+CREATE NONCLUSTERED INDEX [IX_KIC_Zone] ON [dbo].[KIC] 
 (
 	[dec] ASC
 )
@@ -213,7 +213,7 @@ WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [PRIMARY]
 GO
 
-CREATE NONCLUSTERED INDEX [IX_PhotoObj_ZoneID] ON [dbo].[PhotoObj] 
+CREATE NONCLUSTERED INDEX [IX_KIC_ZoneID] ON [dbo].[KIC] 
 (
 	[zoneid] ASC,
 	[ra] ASC
@@ -230,7 +230,7 @@ ON [PRIMARY]
 GO
 
 -- HTM index
-CREATE NONCLUSTERED INDEX [IX_PhotoObj_HtmID] ON [dbo].[PhotoObj] 
+CREATE NONCLUSTERED INDEX [IX_KIC_HtmID] ON [dbo].[KIC] 
 (
 	[htmid] ASC
 )
