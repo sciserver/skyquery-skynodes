@@ -1,158 +1,9 @@
-USE [MGC]
+USE [SkyNode_MGC]
 
 GO
 
-IF OBJECT_ID ('dbo.SpecObjRAW', 'U') IS NOT NULL
-	DROP TABLE dbo.SpecObjRAW;
-
-GO
-
--- CREATE SpecObjRAW TABLE
-CREATE TABLE dbo.SpecObjRAW
-(	[MGC] bigint NOT NULL,
-	[MGCFN] int NOT NULL,
-	[CCD] tinyint NOT NULL,
-	[Xpos] real NOT NULL,
-	[Ypos] real NOT NULL,
-	[RA] float NOT NULL,
-	[DEC] float NOT NULL,
-	[a] real NOT NULL,
-	[b] real NOT NULL,
-	[PA] real NOT NULL,
-	[HLRad] real NOT NULL,
-	[FWHM] real NOT NULL,
-	[Bkgrnd] real NOT NULL,
-	[Bmag] real NOT NULL,
-	[Bmagc] real NOT NULL,
-	[Bmu] real NOT NULL,
-	[Qual] tinyint NOT NULL,
-	[Stel] real NOT NULL,
-	[Class] smallint NOT NULL,
-	[xReg] tinyint NOT NULL,
-	[NSDSS] smallint NOT NULL,
-	[SDSSid] char(18) NOT NULL,
-	[SDSSrun] int NOT NULL,
-	[SDSSrun2] smallint NOT NULL,
-	[SDSScam] tinyint NOT NULL,
-	[SDSSfld] int NOT NULL,
-	[RA1deg] float NOT NULL,
-	[DE1deg] float NOT NULL,
-	[psfUmag] real NOT NULL,
-	[psfGmag] real NOT NULL,
-	[psfRmag] real NOT NULL,
-	[psfImag] real NOT NULL,
-	[psfZmag] real NOT NULL,
-	[petUmag] real NOT NULL,
-	[petGmag] real NOT NULL,
-	[petRmag] real NOT NULL,
-	[petImag] real NOT NULL,
-	[petZmag] real NOT NULL,
-	[modUmag] real NOT NULL,
-	[modGmag] real NOT NULL,
-	[modRmag] real NOT NULL,
-	[modImag] real NOT NULL,
-	[modZmag] real NOT NULL,
-	[galUext] real NOT NULL,
-	[galGext] real NOT NULL,
-	[galRext] real NOT NULL,
-	[galIext] real NOT NULL,
-	[galZext] real NOT NULL,
-	[R50U] real NOT NULL,
-	[R50G] real NOT NULL,
-	[R50R] real NOT NULL,
-	[R50I] real NOT NULL,
-	[R50Z] real NOT NULL,
-	[MType] tinyint NOT NULL,
-	[Class1] smallint NOT NULL,
-	[SpClass] tinyint NOT NULL,
-	[Class2] smallint NOT NULL,
-	[N2dFGRS] tinyint NOT NULL,
-	[twodFGRS] char(10) NOT NULL,
-	[ID2dFGRS] bigint NOT NULL,
-	[RA2deg] float NOT NULL,
-	[DE2deg] float NOT NULL,
-	[UKST] int NOT NULL,
-	[bJmag] real NOT NULL,
-	[bJmagc] real NOT NULL,
-	[bJmagS] real NOT NULL,
-	[RmagS] real NOT NULL,
-	[Class3] tinyint NOT NULL,
-	[Class4] tinyint NOT NULL,
-	[twoQZ] char(16) NOT NULL,
-	[RA3deg] float NOT NULL,
-	[DE3deg] float NOT NULL,
-	[UKST2qz] int NOT NULL,
-	[bJmag2] real NOT NULL,
-	[U_bJ] real NOT NULL,
-	[bJ_R] real NOT NULL,
-	[Ext_B_V] real NOT NULL,
-	[N2qz] tinyint NOT NULL,
-	[T2qz] char(10) NOT NULL,
-	[Class5] tinyint NOT NULL,
-	[NNED] tinyint NOT NULL,
-	[NEDname] char(30) NOT NULL,
-	[RA4deg] float NOT NULL,
-	[DE4deg] float NOT NULL,
-	[NEDID] char(3) NOT NULL,
-	[Class6] tinyint NOT NULL,
-	[PFr] char(7) NOT NULL,
-	[RA5deg] float NOT NULL,
-	[DE5deg] float NOT NULL,
-	[Rmag] real NOT NULL,
-	[Kmag] real NOT NULL,
-	[J_K] real NOT NULL,
-	[LSBG] char(12) NOT NULL,
-	[RA6deg] float NOT NULL,
-	[DE6deg] float NOT NULL,
-	[BTOT] real NOT NULL,
-	[SuBr] real NOT NULL,
-	[SuBreff] real NOT NULL,
-	[Reff] real NOT NULL,
-	[z1] float NOT NULL,
-	[q_z1] tinyint NOT NULL,
-	[z2] float NOT NULL,
-	[q_z2] tinyint NOT NULL,
-	[z3] float NOT NULL,
-	[q_z3] tinyint NOT NULL,
-	[z4] float NOT NULL,
-	[q_z4] tinyint NOT NULL,
-	[z5] float NOT NULL,
-	[q_z5] tinyint NOT NULL,
-	[z6] float NOT NULL,
-	[q_z6] tinyint NOT NULL,
-	[z7] float NOT NULL,
-	[q_z7] tinyint NOT NULL,
-	[r_z] char(8) NOT NULL,
-	[z] float NOT NULL,
-	[q_z] tinyint NOT NULL,
-	[Nsp] tinyint NOT NULL,
-
-	CONSTRAINT [PK_SpecObjRAW] PRIMARY KEY CLUSTERED
-(
-	[MGC] ASC
-) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
--- BULK INSERT DATA
-BULK INSERT
-	SpecObjRAW
-	FROM 'C:\Data\ebanyai\project\Skyquery-data\MGC\\mgc.bin'
-	WITH
-	(
-		DATAFILETYPE = 'native',
-		TABLOCK
-	)
-
-GO
-
-IF OBJECT_ID ('dbo.SpecObj', 'U') IS NOT NULL
-	DROP TABLE dbo.SpecObj;
-
-GO
--- CREATE SpecObj TABLE
-CREATE TABLE dbo.SpecObj
+-- CREATE PhotoObj TABLE
+CREATE TABLE dbo.PhotoObj
 (
 	--/ <summary> Cartesian X (J2000)</summary>
 	[cx] [float] NOT NULL,
@@ -165,6 +16,9 @@ CREATE TABLE dbo.SpecObj
 
 	--/ <summary> HTM ID (J2000)</summary>
 	[htmid] bigint NOT NULL,
+
+	--/ <summary> Zone ID </summary>
+	[zoneid] int NOT NULL,
 
 	--/ <summary> MGC object ID/serial number (=ID) </summary>
 	[MGC] bigint NOT NULL,
@@ -667,7 +521,7 @@ CREATE TABLE dbo.SpecObj
 	--/ <summary> Total number of spectra for this object </summary>
 	[Nsp] tinyint NOT NULL,
 
-	CONSTRAINT [PK_SpecObj] PRIMARY KEY CLUSTERED
+	CONSTRAINT [PK_PhotoObj] PRIMARY KEY CLUSTERED
 (
 	[MGC] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -675,24 +529,52 @@ CREATE TABLE dbo.SpecObj
 
 GO
 
--- INSERT DATA + CREATE HTMID, CX, CY, CZ
-INSERT dbo.SpecObj WITH (TABLOCKX)
-( cx, cy, cz, htmid, MGC, MGCFN, CCD, Xpos, Ypos, RA, DEC, a, b, PA, HLRad, FWHM, Bkgrnd, Bmag, Bmagc, Bmu, Qual, Stel, Class, xReg, NSDSS, SDSSid, SDSSrun, SDSSrun2, SDSScam, SDSSfld, RA1deg, DE1deg, psfUmag, psfGmag, psfRmag, psfImag, psfZmag, petUmag, petGmag, petRmag, petImag, petZmag, modUmag, modGmag, modRmag, modImag, modZmag, galUext, galGext, galRext, galIext, galZext, R50U, R50G, R50R, R50I, R50Z, MType, Class1, SpClass, Class2, N2dFGRS, twodFGRS, ID2dFGRS, RA2deg, DE2deg, UKST, bJmag, bJmagc, bJmagS, RmagS, Class3, Class4, twoQZ, RA3deg, DE3deg, UKST2qz, bJmag2, U_bJ, bJ_R, Ext_B_V, N2qz, T2qz, Class5, NNED, NEDname, RA4deg, DE4deg, NEDID, Class6, PFr, RA5deg, DE5deg, Rmag, Kmag, J_K, LSBG, RA6deg, DE6deg, BTOT, SuBr, SuBreff, Reff, z1, q_z1, z2, q_z2, z3, q_z3, z4, q_z4, z5, q_z5, z6, q_z6, z7, q_z7, r_z, z, q_z, Nsp)
-SELECT c.x AS  cx, c.y AS cy, c.z AS cz, Spherical.htm.FromXyz(c.x,c.y,c.z) AS htmid, MGC, MGCFN, CCD, Xpos, Ypos, RA, DEC, a, b, PA, HLRad, FWHM, Bkgrnd, Bmag, Bmagc, Bmu, Qual, Stel, Class, xReg, NSDSS, SDSSid, SDSSrun, SDSSrun2, SDSScam, SDSSfld, RA1deg, DE1deg, psfUmag, psfGmag, psfRmag, psfImag, psfZmag, petUmag, petGmag, petRmag, petImag, petZmag, modUmag, modGmag, modRmag, modImag, modZmag, galUext, galGext, galRext, galIext, galZext, R50U, R50G, R50R, R50I, R50Z, MType, Class1, SpClass, Class2, N2dFGRS, twodFGRS, ID2dFGRS, RA2deg, DE2deg, UKST, bJmag, bJmagc, bJmagS, RmagS, Class3, Class4, twoQZ, RA3deg, DE3deg, UKST2qz, bJmag2, U_bJ, bJ_R, Ext_B_V, N2qz, T2qz, Class5, NNED, NEDname, RA4deg, DE4deg, NEDID, Class6, PFr, RA5deg, DE5deg, Rmag, Kmag, J_K, LSBG, RA6deg, DE6deg, BTOT, SuBr, SuBreff, Reff, z1, q_z1, z2, q_z2, z3, q_z3, z4, q_z4, z5, q_z5, z6, q_z6, z7, q_z7, r_z, SpecObjRAW.z, q_z, Nsp
-FROM dbo.SpecObjRAW
-CROSS APPLY Spherical.point.ConvertEqToXyz(ra, dec) AS c
-
+-- Spatial index
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_Zone] ON [dbo].[PhotoObj] 
+(
+	[dec] ASC
+)
+INCLUDE
+(
+	[ra],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
--- DROP RAW TABLE
-DROP TABLE SpecObjRAW
-
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_ZoneID] ON [dbo].[PhotoObj] 
+(
+	[zoneid] ASC,
+	[ra] ASC
+)
+INCLUDE
+(
+	[dec],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 -- HTM index
-CREATE NONCLUSTERED INDEX [IX_SpecObj_htmid] ON [dbo].[SpecObj]
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_HtmID] ON [dbo].[PhotoObj] 
 (
 	[htmid] ASC
 )
-
+INCLUDE
+(
+	[ra],
+	[dec],
+	[cx],
+	[cy],
+	[cz],
+	[zoneID]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO

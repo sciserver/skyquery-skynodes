@@ -1,51 +1,7 @@
-USE [LBG3z]
+USE [SkyNode_LBG3Z]
 
 GO
 
-IF OBJECT_ID ('dbo.SpecObjRAW', 'U') IS NOT NULL
-	DROP TABLE dbo.SpecObjRAW;
-
-GO
-
--- CREATE SpecObjRAW TABLE
-CREATE TABLE dbo.SpecObjRAW
-(	[Name] char(16) NOT NULL,
-	[RA] float NOT NULL,
-	[DEC] float NOT NULL,
-	[Rmag] real NOT NULL,
-	[G_R] real NOT NULL,
-	[U_G] real NOT NULL,
-	[u_z_em] char(1) NOT NULL,
-	[z_em] real NOT NULL,
-	[u_z_abs] char(1) NOT NULL,
-	[z_abs] real NOT NULL,
-	[Type] char(4) NOT NULL,
-	[n_Name] char(23) NOT NULL,
-
-	CONSTRAINT [PK_SpecObjRAW] PRIMARY KEY CLUSTERED
-(
-	[Name] ASC
-) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
--- BULK INSERT DATA
-BULK INSERT
-	SpecObjRAW
-	FROM 'C:\Data\ebanyai\project\Skyquery-data\LBG-3z\\lbg3z.bin'
-	WITH
-	(
-		DATAFILETYPE = 'native',
-		TABLOCK
-	)
-
-GO
-
-IF OBJECT_ID ('dbo.SpecObj', 'U') IS NOT NULL
-	DROP TABLE dbo.SpecObj;
-
-GO
 -- CREATE SpecObj TABLE
 CREATE TABLE dbo.SpecObj
 (
@@ -60,6 +16,9 @@ CREATE TABLE dbo.SpecObj
 
 	--/ <summary> HTM ID (J2000)</summary>
 	[htmid] bigint NOT NULL,
+
+	--/ <summary> Zone ID </summary>
+	[zoneid] int NOT NULL,
 
 	--/ <summary> Object name (Field-Identifier) </summary>
 	[Name] char(16) NOT NULL,
@@ -145,74 +104,59 @@ CREATE TABLE dbo.SpecObj
 
 GO
 
--- INSERT DATA + CREATE HTMID, CX, CY, CZ
-INSERT dbo.SpecObj WITH (TABLOCKX)
-( cx, cy, cz, htmid, Name, RA, DEC, Rmag, G_R, U_G, u_z_em, z_em, u_z_abs, z_abs, Type, n_Name)
-SELECT c.x AS  cx, c.y AS cy, c.z AS cz, Spherical.htm.FromXyz(c.x,c.y,c.z) AS htmid, Name, RA, DEC, Rmag, G_R, U_G, u_z_em, z_em, u_z_abs, z_abs, Type, n_Name
-FROM dbo.SpecObjRAW
-CROSS APPLY Spherical.point.ConvertEqToXyz(ra, dec) AS c
-
+-- Spatial index
+CREATE NONCLUSTERED INDEX [IX_SpecObj_Zone] ON [dbo].[SpecObj] 
+(
+	[dec] ASC
+)
+INCLUDE
+(
+	[ra],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
--- DROP RAW TABLE
-DROP TABLE SpecObjRAW
-
+CREATE NONCLUSTERED INDEX [IX_SpecObj_ZoneID] ON [dbo].[SpecObj] 
+(
+	[zoneid] ASC,
+	[ra] ASC
+)
+INCLUDE
+(
+	[dec],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 -- HTM index
-CREATE NONCLUSTERED INDEX [IX_SpecObj_htmid] ON [dbo].[SpecObj]
+CREATE NONCLUSTERED INDEX [IX_SpecObj_HtmID] ON [dbo].[SpecObj] 
 (
 	[htmid] ASC
 )
-
-GO
-
-IF OBJECT_ID ('dbo.DeepImObsRAW', 'U') IS NOT NULL
-	DROP TABLE dbo.DeepImObsRAW;
-
-GO
-
--- CREATE DeepImObsRAW TABLE
-CREATE TABLE dbo.DeepImObsRAW
-(	[objID] bigint NOT NULL,
-	[Field] char(10) NOT NULL,
-	[RA] float NOT NULL,
-	[DEC] float NOT NULL,
-	[Filt] char(4) NOT NULL,
-	[Tel] char(28) NOT NULL,
-	[Scale] real NOT NULL,
-	[FWHM] real NOT NULL,
-	[ExpTime] int NOT NULL,
-	[Dim1] real NOT NULL,
-	[Dim2] real NOT NULL,
-	[Area] real NOT NULL,
-
-	CONSTRAINT [PK_DeepImObsRAW] PRIMARY KEY CLUSTERED
+INCLUDE
 (
-	[objID] ASC
-) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
+	[ra],
+	[dec],
+	[cx],
+	[cy],
+	[cz],
+	[zoneID]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
--- BULK INSERT DATA
-BULK INSERT
-	DeepImObsRAW
-	FROM 'C:\Data\ebanyai\project\Skyquery-data\LBG-3z\\lbg3z-deepIm.bin'
-	WITH
-	(
-		DATAFILETYPE = 'native',
-		TABLOCK
-	)
 
-GO
-
-IF OBJECT_ID ('dbo.DeepImObs', 'U') IS NOT NULL
-	DROP TABLE dbo.DeepImObs;
-
-GO
--- CREATE DeepImObs TABLE
-CREATE TABLE dbo.DeepImObs
+-- CREATE DeepImagingObs TABLE
+CREATE TABLE dbo.DeepImagingObs
 (
 	--/ <summary> Cartesian X (J2000)</summary>
 	[cx] [float] NOT NULL,
@@ -225,6 +169,9 @@ CREATE TABLE dbo.DeepImObs
 
 	--/ <summary> HTM ID (J2000)</summary>
 	[htmid] bigint NOT NULL,
+
+	--/ <summary> Zone ID </summary>
+	[zoneid] int NOT NULL,
 
 	--/ <summary> sequential ID </summary>
 	[objID] bigint NOT NULL,
@@ -279,7 +226,7 @@ CREATE TABLE dbo.DeepImObs
 	--/ <unit> arcmin+2 </unit>
 	[Area] real NOT NULL,
 
-	CONSTRAINT [PK_DeepImObs] PRIMARY KEY CLUSTERED
+	CONSTRAINT [PK_DeepImagingObs] PRIMARY KEY CLUSTERED
 (
 	[objID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -287,24 +234,52 @@ CREATE TABLE dbo.DeepImObs
 
 GO
 
--- INSERT DATA + CREATE HTMID, CX, CY, CZ
-INSERT dbo.DeepImObs WITH (TABLOCKX)
-( cx, cy, cz, htmid, objID, Field, RA, DEC, Filt, Tel, Scale, FWHM, ExpTime, Dim1, Dim2, Area)
-SELECT c.x AS  cx, c.y AS cy, c.z AS cz, Spherical.htm.FromXyz(c.x,c.y,c.z) AS htmid, objID, Field, RA, DEC, Filt, Tel, Scale, FWHM, ExpTime, Dim1, Dim2, Area
-FROM dbo.DeepImObsRAW
-CROSS APPLY Spherical.point.ConvertEqToXyz(ra, dec) AS c
-
+-- Spatial index
+CREATE NONCLUSTERED INDEX [IX_DeepImagingObs_Zone] ON [dbo].[DeepImagingObs] 
+(
+	[dec] ASC
+)
+INCLUDE
+(
+	[ra],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
--- DROP RAW TABLE
-DROP TABLE DeepImObsRAW
-
+CREATE NONCLUSTERED INDEX [IX_DeepImagingObs_ZoneID] ON [dbo].[DeepImagingObs] 
+(
+	[zoneid] ASC,
+	[ra] ASC
+)
+INCLUDE
+(
+	[dec],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 -- HTM index
-CREATE NONCLUSTERED INDEX [IX_DeepImObs_htmid] ON [dbo].[DeepImObs]
+CREATE NONCLUSTERED INDEX [IX_DeepImagingObs_HtmID] ON [dbo].[DeepImagingObs] 
 (
 	[htmid] ASC
 )
-
+INCLUDE
+(
+	[ra],
+	[dec],
+	[cx],
+	[cy],
+	[cz],
+	[zoneID]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO

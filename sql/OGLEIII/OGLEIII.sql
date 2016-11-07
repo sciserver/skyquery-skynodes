@@ -1,80 +1,9 @@
-USE [ogleIII]
+USE [SkyNode_OGLEIII]
 
 GO
 
-IF OBJECT_ID ('dbo.PhotoObjRAW', 'U') IS NOT NULL
-	DROP TABLE dbo.PhotoObjRAW;
-
-GO
-
--- CREATE PhotoObjRAW TABLE
-CREATE TABLE dbo.PhotoObjRAW
-(	[ID] char(20) NOT NULL,
-	[Field] char(8) NOT NULL,
-	[StarID] bigint NOT NULL,
-	[Type] char(5) NOT NULL,
-	[Subtype] char(9) NOT NULL,
-	[ra] float NOT NULL,
-	[dec] float NOT NULL,
-	[ID_OGLE_II] char(16) NOT NULL,
-	[ID_MACHO] char(14) NOT NULL,
-	[ID_ASAS] char(13) NOT NULL,
-	[ID_GCVS] char(6) NOT NULL,
-	[ID_OTHER] char(21) NOT NULL,
-	[I] real NOT NULL,
-	[V] real NOT NULL,
-	[P_1] real NOT NULL,
-	[dP_1] float NOT NULL,
-	[T0_1] real NOT NULL,
-	[A_1] real NOT NULL,
-	[R21_1] real NOT NULL,
-	[phi21_1] real NOT NULL,
-	[R31_1] real NOT NULL,
-	[phi31_1] real NOT NULL,
-	[P_2] real NOT NULL,
-	[dP_2] float NOT NULL,
-	[T0_2] real NOT NULL,
-	[A_2] real NOT NULL,
-	[R21_2] real NOT NULL,
-	[phi21_2] real NOT NULL,
-	[R31_2] real NOT NULL,
-	[phi31_2] real NOT NULL,
-	[P_3] real NOT NULL,
-	[dP_3] float NOT NULL,
-	[T0_3] real NOT NULL,
-	[A_3] real NOT NULL,
-	[R21_3] real NOT NULL,
-	[phi21_3] real NOT NULL,
-	[R31_3] real NOT NULL,
-	[phi31_3] real NOT NULL,
-	[Remarks] char(85) NOT NULL,
-
-	CONSTRAINT [PK_PhotoObjRAW] PRIMARY KEY CLUSTERED
-(
-	[id] ASC
-) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
--- BULK INSERT DATA
-BULK INSERT
-	PhotoObjRAW
-	FROM 'C:\Data\ebanyai\project\Skyquery-data\OGLE-III\\ogleIII_PhotoObj.bin'
-	WITH
-	(
-		DATAFILETYPE = 'native',
-		TABLOCK
-	)
-
-GO
-
-IF OBJECT_ID ('dbo.PhotoObj', 'U') IS NOT NULL
-	DROP TABLE dbo.PhotoObj;
-
-GO
--- CREATE PhotoObj TABLE
-CREATE TABLE dbo.PhotoObj
+-- CREATE VariableStars TABLE
+CREATE TABLE dbo.VariableStars
 (
 	--/ <summary> Cartesian X (J2000)</summary>
 	[cx] [float] NOT NULL,
@@ -87,6 +16,9 @@ CREATE TABLE dbo.PhotoObj
 
 	--/ <summary> HTM ID (J2000)</summary>
 	[htmid] bigint NOT NULL,
+
+	--/ <summary> Zone ID </summary>
+	[zoneid] int NOT NULL,
 
 	--/ <summary> OGLE-III ID </summary>
 	[ID] char(20) NOT NULL,
@@ -212,7 +144,7 @@ CREATE TABLE dbo.PhotoObj
 	--/ <summary>  </summary>
 	[Remarks] char(85) NOT NULL,
 
-	CONSTRAINT [PK_PhotoObj] PRIMARY KEY CLUSTERED
+	CONSTRAINT [PK_VariableStars] PRIMARY KEY CLUSTERED
 (
 	[id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -220,24 +152,52 @@ CREATE TABLE dbo.PhotoObj
 
 GO
 
--- INSERT DATA + CREATE HTMID, CX, CY, CZ
-INSERT dbo.PhotoObj WITH (TABLOCKX)
-( cx, cy, cz, htmid, ID, Field, StarID, Type, Subtype, ra, dec, ID_OGLE_II, ID_MACHO, ID_ASAS, ID_GCVS, ID_OTHER, I, V, P_1, dP_1, T0_1, A_1, R21_1, phi21_1, R31_1, phi31_1, P_2, dP_2, T0_2, A_2, R21_2, phi21_2, R31_2, phi31_2, P_3, dP_3, T0_3, A_3, R21_3, phi21_3, R31_3, phi31_3, Remarks)
-SELECT c.x AS  cx, c.y AS cy, c.z AS cz, Spherical.htm.FromXyz(c.x,c.y,c.z) AS htmid, ID, Field, StarID, Type, Subtype, ra, dec, ID_OGLE_II, ID_MACHO, ID_ASAS, ID_GCVS, ID_OTHER, PhotoObjRAW.I, V, P_1, dP_1, T0_1, A_1, R21_1, phi21_1, R31_1, phi31_1, P_2, dP_2, T0_2, A_2, R21_2, phi21_2, R31_2, phi31_2, P_3, dP_3, T0_3, A_3, R21_3, phi21_3, R31_3, phi31_3, Remarks
-FROM dbo.PhotoObjRAW
-CROSS APPLY Spherical.point.ConvertEqToXyz(ra, dec) AS c
-
+-- Spatial index
+CREATE NONCLUSTERED INDEX [IX_VariableStars_Zone] ON [dbo].[VariableStars] 
+(
+	[dec] ASC
+)
+INCLUDE
+(
+	[ra],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
--- DROP RAW TABLE
-DROP TABLE PhotoObjRAW
-
+CREATE NONCLUSTERED INDEX [IX_VariableStars_ZoneID] ON [dbo].[VariableStars] 
+(
+	[zoneid] ASC,
+	[ra] ASC
+)
+INCLUDE
+(
+	[dec],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 -- HTM index
-CREATE NONCLUSTERED INDEX [IX_PhotoObj_htmid] ON [dbo].[PhotoObj]
+CREATE NONCLUSTERED INDEX [IX_VariableStars_HtmID] ON [dbo].[VariableStars] 
 (
 	[htmid] ASC
 )
-
+INCLUDE
+(
+	[ra],
+	[dec],
+	[cx],
+	[cy],
+	[cz],
+	[zoneID]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
