@@ -3,7 +3,6 @@
 Created on Thu Oct  1 12:09:37 2015
 
 @author: ebanyai
-AGES to binary file
 """
 
 import pandas as pd
@@ -17,8 +16,8 @@ from astropy.coordinates import SkyCoord
 
 
 # source file:
-path = "C:\\Data\\ebanyai\\project\\Skyquery-data\\LBG-3z\\"
-src = path+"DeepImagingObservations-20150923_VizieR.tsv"
+path = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\LBG3Z\\"
+src = path+"dio_VizieR.tsv"
 cols = ["Field","RAJ2000","DEJ2000","Filt","Tel","Scale","FWHM","ExpTime","Dim1","Dim2","Area"]
 
 

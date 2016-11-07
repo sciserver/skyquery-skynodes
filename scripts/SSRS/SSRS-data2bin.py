@@ -13,8 +13,8 @@ from astropy.coordinates import SkyCoord
 # LOAD DATA
 
 # source file:
-path = "C:\\Data\\ebanyai\\project\\Skyquery-data\\SSRS\\"
-src = path+"SSRS-20150923_VizieR.tsv"
+path = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\SSRS\\"
+src = path+"ssrs.tsv"
 cols = ["n_GSC","GSC","m_GSC","ESO_MCG","RAB1950","DEB1950","mSSR","RV","e_RV",
         "TT","r_RV","Note","NGC_IC","_RA.icrs","_DE.icrs"]
 

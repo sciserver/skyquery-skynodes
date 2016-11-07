@@ -12,8 +12,8 @@ from astropy import units as u
 
 
 # source file:
-path = "C:\\Data\\ebanyai\\project\\Skyquery-data\\OGLE-III\\"
-src = path+"fullStarTable_20150924.txt"
+path = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\OGLEIII\\"
+src = path+"ogleIII.txt"
 
 
 # grab the data
@@ -77,7 +77,7 @@ records = np.array(df.iloc[:-1].to_records(),dtype=dt_df)
 
 
 # destination folder
-dst = path+"ogleIII_PhotoObj.bin" 
+dst = path+"ogleIII_VariableStars.bin" 
 
 # write to file
 records.tofile(dst)

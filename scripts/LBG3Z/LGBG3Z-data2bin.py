@@ -11,8 +11,8 @@ from astropy import units as u
 from astropy.coordinates import SkyCoord
 
 # source file:
-path = "C:\\Data\\ebanyai\\project\\Skyquery-data\\LBG-3z\\"
-src = path+"LBG-3z-20150923.tsv"
+path = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\LBG3Z\\"
+src = path+"lbg_VizieR.tsv"
 cols = ["Name","RAJ2000","DEJ2000","Rmag","G-R","U-G","u_z-em","z-em","u_z-abs","z-abs","Type","n_Name"]
 
 

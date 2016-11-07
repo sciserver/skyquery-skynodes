@@ -10,8 +10,8 @@ import numpy as np
 
 
 # source file:
-path = "C:\\Data\\ebanyai\\project\\Skyquery-data\\MGC\\"
-src = path+"MGC-20150923_VizieR.tsv"
+path = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\MGC\\"
+src = path+"mgc.tsv"
 cols = ["MGC","MGCFN","CCD","Xpos","Ypos","RA","DEC","a","b","PA","HLRad",
         "FWHM","Bkgrnd","Bmag","Bmagc","Bmu","Qual","Stel","Class","xReg","NSDSS",
         "SDSSid","SDSSrun","SDSSrun2","SDSScam","SDSSfld","RA1deg","DE1deg",
