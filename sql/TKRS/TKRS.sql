@@ -1,58 +1,7 @@
-USE [TKRS]
+USE [SkyNode_TKRS]
 
 GO
 
-IF OBJECT_ID ('dbo.SpecObjRAW', 'U') IS NOT NULL
-	DROP TABLE dbo.SpecObjRAW;
-
-GO
-
--- CREATE SpecObjRAW TABLE
-CREATE TABLE dbo.SpecObjRAW
-(	[TKRS] bigint NOT NULL,
-	[RA] float NOT NULL,
-	[DEC] float NOT NULL,
-	[Rmag] real NOT NULL,
-	[Mask] smallint NOT NULL,
-	[Slit] int NOT NULL,
-	[z] float NOT NULL,
-	[q_z] smallint NOT NULL,
-	[zOther] real NOT NULL,
-	[r_zOther] smallint NOT NULL,
-	[XpixD] real NOT NULL,
-	[YpixD] real NOT NULL,
-	[ACS] smallint NOT NULL,
-	[XpixG] real NOT NULL,
-	[YpixG] real NOT NULL,
-	[MajAxis] real NOT NULL,
-	[e2] real NOT NULL,
-	[PA] real NOT NULL,
-	[GOODS] char(20) NOT NULL,
-
-	CONSTRAINT [PK_SpecObjRAW] PRIMARY KEY CLUSTERED
-(
-	[TKRS] ASC
-) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
--- BULK INSERT DATA
-BULK INSERT
-	SpecObjRAW
-	FROM 'C:\Data\ebanyai\project\Skyquery-data\TKRS\\tkrs.bin'
-	WITH
-	(
-		DATAFILETYPE = 'native',
-		TABLOCK
-	)
-
-GO
-
-IF OBJECT_ID ('dbo.SpecObj', 'U') IS NOT NULL
-	DROP TABLE dbo.SpecObj;
-
-GO
 -- CREATE SpecObj TABLE
 CREATE TABLE dbo.SpecObj
 (
@@ -67,6 +16,9 @@ CREATE TABLE dbo.SpecObj
 
 	--/ <summary> HTM ID (J2000)</summary>
 	[htmid] bigint NOT NULL,
+
+	--/ <summary> Zone ID </summary>
+	[zoneid] int NOT NULL,
 
 	--/ <summary> Serial number in Team Keck Survey </summary>
 	[TKRS] bigint NOT NULL,
@@ -148,24 +100,52 @@ CREATE TABLE dbo.SpecObj
 
 GO
 
--- INSERT DATA + CREATE HTMID, CX, CY, CZ
-INSERT dbo.SpecObj WITH (TABLOCKX)
-( cx, cy, cz, htmid, TKRS, RA, DEC, Rmag, Mask, Slit, z, q_z, zOther, r_zOther, XpixD, YpixD, ACS, XpixG, YpixG, MajAxis, e2, PA, GOODS)
-SELECT c.x AS  cx, c.y AS cy, c.z AS cz, Spherical.htm.FromXyz(c.x,c.y,c.z) AS htmid, TKRS, RA, DEC, Rmag, Mask, Slit, SpecObjRAW.z, q_z, zOther, r_zOther, XpixD, YpixD, ACS, XpixG, YpixG, MajAxis, e2, PA, GOODS
-FROM dbo.SpecObjRAW
-CROSS APPLY Spherical.point.ConvertEqToXyz(ra, dec) AS c
-
+	-- Spatial index
+CREATE NONCLUSTERED INDEX [IX_SpecObj_Zone] ON [dbo].[SpecObj] 
+(
+	[dec] ASC
+)
+INCLUDE
+(
+	[ra],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
--- DROP RAW TABLE
-DROP TABLE SpecObjRAW
-
+CREATE NONCLUSTERED INDEX [IX_SpecObj_ZoneID] ON [dbo].[SpecObj] 
+(
+	[zoneid] ASC,
+	[ra] ASC
+)
+INCLUDE
+(
+	[dec],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 -- HTM index
-CREATE NONCLUSTERED INDEX [IX_SpecObj_htmid] ON [dbo].[SpecObj]
+CREATE NONCLUSTERED INDEX [IX_SpecObj_HtmID] ON [dbo].[SpecObj] 
 (
 	[htmid] ASC
 )
-
+INCLUDE
+(
+	[ra],
+	[dec],
+	[cx],
+	[cy],
+	[cz],
+	[zoneID]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
