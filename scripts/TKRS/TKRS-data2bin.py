@@ -12,8 +12,8 @@ from astropy.coordinates import SkyCoord
 
 
 # source file:
-path = "C:\\Data\\ebanyai\\project\\Skyquery-data\\TKRS\\"
-src = path+"TKRS-20150923_VizieR.tsv"
+path = r"\\skyquery01\Data\temp0\data0\ebanyai\TKRS\\"
+src = path+"tkrs.tsv"
 cols = ["TKRS","RAJ2000","DEJ2000","Rmag","Mask","Slit","z","q_z","zOther",
         "r_zOther","XpixD","YpixD","ACS","XpixG","YpixG","MajAxis","e2","PA","GOODS"]
 
