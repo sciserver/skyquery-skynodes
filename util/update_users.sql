@@ -23,8 +23,14 @@ BEGIN
 	SET @cmd = 'USE [' + @dbname + ']; CREATE USER [SDSS\skyquery-user] FOR LOGIN [SDSS\skyquery-user]'
 	EXEC(@cmd)
 	
-	SET @cmd = 'USE [' + @dbname + ']; ALTER ROLE [db_datareader] ADD MEMBER [SDSS\skyquery-user]'
+	SET @cmd = 'GRANT SELECT ON DATABASE::[' + @dbname + '] TO [SDSS\skyquery-user]'
 	EXEC(@cmd)
+
+	SET @cmd = 'GRANT VIEW DEFINITION ON DATABASE::[' + @dbname + '] TO [SDSS\skyquery-user]'
+	EXEC(@cmd)
+
+	--SET @cmd = 'USE [' + @dbname + ']; ALTER ROLE [db_datareader] ADD MEMBER [SDSS\skyquery-user]'
+	--EXEC(@cmd)
 
 	SET @cmd = 'ALTER DATABASE [' + @dbname + '] SET READ_ONLY WITH NO_WAIT'
 	EXEC(@cmd)
