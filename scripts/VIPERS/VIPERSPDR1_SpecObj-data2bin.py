@@ -10,7 +10,7 @@ import numpy as np
 
 
 # source file:
-path = "C:\\Data\\ebanyai\\project\\Skyquery-data\\VIPERS\\"
+path = r"\\skyquery01\Data\temp0\data0\ebanyai\VIPERSPDR1\\"
 
 
 # grab the data
