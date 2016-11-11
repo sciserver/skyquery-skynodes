@@ -10,8 +10,8 @@ import numpy as np
 
 
 # source file:
-path = "C:\\Data\\ebanyai\\project\\Skyquery-data\\2MRS\\"
-src = path + "2MRS_cat-20150923.tsv"
+path = r"\\skyquery01\Data\temp0\data0\ebanyai\TwoMRS\\"
+src = path + "TwoMRS.tsv"
 
 # grab the data
 cols = ["ID","A","RA","DEC","GLON","GLAT","Kcmag","e_Kcmag","Hcmag",

@@ -10,8 +10,8 @@ import numpy as np
 
 
 # source file:
-path = "C:\\Data\\ebanyai\\project\\Skyquery-data\\2SLAQ\\"
-src = path + "2SLAQ-20150923_VizieR.tsv"
+path = r"\\skyquery01\Data\temp0\data0\ebanyai\TwoSLAQ\\"
+src = path + "TwoSLAQ.tsv"
 
 # grab the data
 cols = ["Name","n_Name","Pr","Run","Rerun","Camcol","Field","ID","umag","e_umag",
