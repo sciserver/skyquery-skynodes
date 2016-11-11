@@ -1,88 +1,7 @@
-USE [TwoSLAQ]
+USE [SkyNode_TwoSLAQ]
 
 GO
 
-IF OBJECT_ID ('dbo.SpecObjRAW', 'U') IS NOT NULL
-	DROP TABLE dbo.SpecObjRAW;
-
-GO
-
--- CREATE SpecObjRAW TABLE
-CREATE TABLE dbo.SpecObjRAW
-(	[Name] char(19) NOT NULL,
-	[n_Name] char(1) NOT NULL,
-	[RA] float NOT NULL,
-	[DEC] float NOT NULL,
-	[Pr] tinyint NOT NULL,
-	[Run] int NOT NULL,
-	[Rerun] smallint NOT NULL,
-	[Camcol] tinyint NOT NULL,
-	[Field] int NOT NULL,
-	[ID] int NOT NULL,
-	[umag] real NOT NULL,
-	[e_umag] real NOT NULL,
-	[gmag] real NOT NULL,
-	[e_gmag] real NOT NULL,
-	[rmag] real NOT NULL,
-	[e_rmag] real NOT NULL,
-	[imag] real NOT NULL,
-	[e_imag] real NOT NULL,
-	[zmag] real NOT NULL,
-	[e_zmag] real NOT NULL,
-	[ured] real NOT NULL,
-	[gred] real NOT NULL,
-	[rred] real NOT NULL,
-	[ired] real NOT NULL,
-	[zred] real NOT NULL,
-	[SpG] real NOT NULL,
-	[Cl] tinyint NOT NULL,
-	[zem_S] real NOT NULL,
-	[q_zem_S] real NOT NULL,
-	[ID_S] char(9) NOT NULL,
-	[bj] real NOT NULL,
-	[zem2q] real NOT NULL,
-	[q_zem2q] tinyint NOT NULL,
-	[ID2q] char(9) NOT NULL,
-	[q_ID2q] tinyint NOT NULL,
-	[TwoQZ] char(17) NOT NULL,
-	[z2S] real NOT NULL,
-	[q_z2S] tinyint NOT NULL,
-	[ID2S] char(10) NOT NULL,
-	[q_ID2S] tinyint NOT NULL,
-	[Date] char(10) NOT NULL,
-	[Fl2S] char(3) NOT NULL,
-	[Fb2S] smallint NOT NULL,
-	[SpN] real NOT NULL,
-	[dmag] real NOT NULL,
-	[FX] real NOT NULL,
-	[F1p4] real NOT NULL,
-	[n_F1p4] tinyint NOT NULL,
-	[Com] char(20) NOT NULL,
-
-	CONSTRAINT [PK_SpecObjRAW] PRIMARY KEY CLUSTERED
-(
-	[Name] ASC
-) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
--- BULK INSERT DATA
-BULK INSERT
-	SpecObjRAW
-	FROM 'C:\Data\ebanyai\project\Skyquery-data\2SLAQ\TwoSLAQ_SpecObj.bin'
-	WITH
-	(
-		DATAFILETYPE = 'native',
-		TABLOCK
-	)
-
-GO
-
-IF OBJECT_ID ('dbo.SpecObj', 'U') IS NOT NULL
-	DROP TABLE dbo.SpecObj;
-
-GO
 -- CREATE SpecObj TABLE
 CREATE TABLE dbo.SpecObj
 (
@@ -97,6 +16,9 @@ CREATE TABLE dbo.SpecObj
 
 	--/ <summary> HTM ID (J2000)</summary>
 	[htmid] bigint NOT NULL,
+
+	--/ <summary> Zone ID </summary>
+	[zoneid] int NOT NULL,
 
 	--/ <summary> Source name (JHHMMSS.ss+DDMMSS.s) (not identical to SDSS name) </summary>
 	[Name] char(19) NOT NULL,
@@ -287,24 +209,52 @@ CREATE TABLE dbo.SpecObj
 
 GO
 
--- INSERT DATA + CREATE HTMID, CX, CY, CZ
-INSERT dbo.SpecObj WITH (TABLOCKX)
-( cx, cy, cz, htmid, Name, n_Name, RA, DEC, Pr, Run, Rerun, Camcol, Field, ID, umag, e_umag, gmag, e_gmag, rmag, e_rmag, imag, e_imag, zmag, e_zmag, ured, gred, rred, ired, zred, SpG, Cl, zem_S, q_zem_S, ID_S, bj, zem2q, q_zem2q, ID2q, q_ID2q, TwoQZ, z2S, q_z2S, ID2S, q_ID2S, Date, Fl2S, Fb2S, SpN, dmag, FX, F1p4, n_F1p4, Com)
-SELECT c.x AS  cx, c.y AS cy, c.z AS cz, Spherical.htm.FromXyz(c.x,c.y,c.z) AS htmid, Name, n_Name, RA, DEC, Pr, Run, Rerun, Camcol, Field, ID, umag, e_umag, gmag, e_gmag, rmag, e_rmag, imag, e_imag, zmag, e_zmag, ured, gred, rred, ired, zred, SpG, Cl, zem_S, q_zem_S, ID_S, bj, zem2q, q_zem2q, ID2q, q_ID2q, TwoQZ, z2S, q_z2S, ID2S, q_ID2S, Date, Fl2S, Fb2S, SpN, dmag, FX, F1p4, n_F1p4, Com
-FROM dbo.SpecObjRAW
-CROSS APPLY Spherical.point.ConvertEqToXyz(ra, dec) AS c
-
+-- Spatial index
+CREATE NONCLUSTERED INDEX [IX_SpecObj_Zone] ON [dbo].[SpecObj] 
+(
+	[dec] ASC
+)
+INCLUDE
+(
+	[ra],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
--- DROP RAW TABLE
-DROP TABLE SpecObjRAW
-
+CREATE NONCLUSTERED INDEX [IX_SpecObj_ZoneID] ON [dbo].[SpecObj] 
+(
+	[zoneid] ASC,
+	[ra] ASC
+)
+INCLUDE
+(
+	[dec],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 -- HTM index
-CREATE NONCLUSTERED INDEX [IX_SpecObj_htmid] ON [dbo].[SpecObj]
+CREATE NONCLUSTERED INDEX [IX_SpecObj_HtmID] ON [dbo].[SpecObj] 
 (
 	[htmid] ASC
 )
-
+INCLUDE
+(
+	[ra],
+	[dec],
+	[cx],
+	[cy],
+	[cz],
+	[zoneID]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
