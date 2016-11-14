@@ -50,7 +50,7 @@ records = np.array(df.to_records(),dtype=dt_df)
 
 
 # destination folder
-dst = path+"vipers_SpecObj.bin" 
+dst = path+"VIPERSPDR1_SpecObj.bin" 
 
 # write to file
 records.tofile(dst)

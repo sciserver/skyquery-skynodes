@@ -14,7 +14,7 @@ path = r"\\skyquery01\Data\temp0\data0\ebanyai\VIPERSPDR1\\\\"
 
 
 # grab the data
-cols = ["id_IAU","num","alpha","delta","selmag","errselmag","u","g","r","i","z",
+cols = ["id_IAU","num","ra","dec","selmag","errselmag","u","g","r","i","z",
 "erru","errg","errr","erri","errz","u_T07","g_T07","r_T07","i_T07","iy_T07","z_T07",
 "erru_T07","errg_T07","errr_T07","erri_T07","erriy_T07","errz_T07","DeltaUG",
 "DeltaGR","DeltaRI","E_BV","r2","r2_T07","classFlag","agnFlag","photoMask","spectroMask"]
@@ -30,8 +30,8 @@ df = pd.concat([df1,df2],ignore_index=True)
 # DEFINE DATA TYPES FOR BINARY FORMAT
 types = [("id_IAU","S16"),
         ("num","i8"),
-        ("alpha","f8"),
-        ("delta","f8"),
+        ("ra","f8"),
+        ("dec","f8"),
         ("selmag","f4"),
         ("errselmag","f4"),
         ("u","f4"),
