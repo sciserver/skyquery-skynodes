@@ -1,4 +1,4 @@
-USE [VIPERS]
+USE [Graywulf_Temp]
 
 GO
 
@@ -35,7 +35,7 @@ GO
 -- BULK INSERT DATA
 BULK INSERT
 	SpecObjRAW
-	FROM 'C:\Data\ebanyai\project\Skyquery-data\VIPERS\\VIPERS_SpecObj.bin'
+	FROM 'C:\Data\ebanyai\project\Skyquery-data\VIPERS\\VIPERSPDR1_SpecObj.bin'
 	WITH
 	(
 		DATAFILETYPE = 'native',
@@ -62,6 +62,9 @@ CREATE TABLE dbo.SpecObj
 
 	--/ <summary> HTM ID (J2000)</summary>
 	[htmid] bigint NOT NULL,
+
+	--/ <summary> Zone ID </summary>
+	[zoneid] int NOT NULL,
 
 	--/ <summary> VIPERS object name, according to IAU standards. The name is composed of
 	--/ theprefix VIPERS plus the internal identification number. The internal
@@ -238,10 +241,12 @@ GO
 
 -- INSERT DATA + CREATE HTMID, CX, CY, CZ
 INSERT dbo.SpecObj WITH (TABLOCKX)
-( cx, cy, cz, htmid, id_IAU, num, ra, dec, selmag, errselmag, pointing, quadrant, zflg, zspec, epoch, photoMask, tsr, ssr)
-SELECT c.x AS  cx, c.y AS cy, c.z AS cz, Spherical.htm.FromXyz(c.x,c.y,c.z) AS htmid, id_IAU, num, ra, dec, selmag, errselmag, pointing, quadrant, zflg, zspec, epoch, photoMask, tsr, ssr
+( cx, cy, cz, htmid, zoneid, id_IAU, num, ra, dec, selmag, errselmag, pointing, quadrant, zflg, zspec, epoch, photoMask, tsr, ssr)
+SELECT c.x AS  cx, c.y AS cy, c.z AS cz, SkyQuery_CODE_dev.htmid.FromXyz(c.x,c.y,c.z) AS htmid,
+SkyQuery_CODE_dev.skyquery.ZoneIDFromDec(dec,4.0/3600.00000000) as zoneid,
+id_IAU, num, ra, dec, selmag, errselmag, pointing, quadrant, zflg, zspec, epoch, photoMask, tsr, ssr
 FROM dbo.SpecObjRAW
-CROSS APPLY Spherical.point.ConvertEqToXyz(ra, dec) AS c
+CROSS APPLY SkyQuery_CODE_dev.point.EqToXyz(ra, dec) AS c
 
 GO
 
@@ -250,11 +255,52 @@ DROP TABLE SpecObjRAW
 
 GO
 
+-- Spatial index
+CREATE NONCLUSTERED INDEX [IX_SpecObj_Zone] ON [dbo].[SpecObj] 
+(
+	[dec] ASC
+)
+INCLUDE
+(
+	[ra],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+GO
+
+CREATE NONCLUSTERED INDEX [IX_SpecObj_ZoneID] ON [dbo].[SpecObj] 
+(
+	[zoneid] ASC,
+	[ra] ASC
+)
+INCLUDE
+(
+	[dec],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+GO
 
 -- HTM index
-CREATE NONCLUSTERED INDEX [IX_SpecObj_htmid] ON [dbo].[SpecObj]
+CREATE NONCLUSTERED INDEX [IX_SpecObj_HtmID] ON [dbo].[SpecObj] 
 (
 	[htmid] ASC
 )
-
+INCLUDE
+(
+	[ra],
+	[dec],
+	[cx],
+	[cy],
+	[cz],
+	[zoneID]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
