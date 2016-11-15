@@ -11,7 +11,8 @@ import numpy as np
 
 
 # source file:
-src = "C:\Data\ebanyai\project\Skyquery-data\zCOSMOS\zCOSMOS-20150923_VizieR.tsv"
+path = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\zCOSMOS"
+src = path + r"\zCOSMOS.tsv"
 cols = ["zCOSMOS", "RAJ2000","DEJ2000","z","CC","Imag","Sp","Cutout"]
 
 
@@ -32,7 +33,7 @@ dt_df = np.dtype([("zCOSMOS","i8"),
 records = np.array(df.to_records(),dtype=dt_df) 
 
 # destination folder
-dst = r"C:\Data\ebanyai\project\Skyquery-data\zCOSMOS\zCOSMOS.bin" 
+dst = path + r"\zCOSMOS.bin" 
 
 # write to file
 records.tofile(dst)

@@ -10,8 +10,8 @@ import numpy as np
 
 
 # source file:
-path = "C:\\Data\\ebanyai\\project\\Skyquery-data\\VVDS-DEEP\\"
-src = path+"VVDS-DEEP-20150923_VizieR.tsv"
+path = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\VVDS\\"
+src = path+"vvds.tsv"
 cols = ["ID","Jname","z","q_z","phf","UEmag","e_UEmag","ULmag","e_ULmag","Bmag",
         "e_Bmag","Vmag","e_Vmag","Rmag","e_Rmag","Imag","e_Imag","Jmag","e_Jmag",
         "Kmag","e_Kmag","VVDS","FITS","RA","DEC"]

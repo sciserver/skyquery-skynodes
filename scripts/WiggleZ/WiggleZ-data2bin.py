@@ -10,8 +10,8 @@ import numpy as np
 
 
 # source file:
-path = "C:\\Data\\ebanyai\\project\\Skyquery-data\\WiggleZ\\"
-src = path + "wigglez_dr1_1-20150923_wigglez.txt"
+path = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\WiggleZ\\"
+src = path + "wigglez_dr1.txt"
 
 # grab the data
 cols = ["ID","RA","DEC","Redshift","Qop","u_SDSS","g_SDSS","r_SDSS","i_SDSS",

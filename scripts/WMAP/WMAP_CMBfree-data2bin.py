@@ -7,18 +7,23 @@ Created on Thu Oct  1 12:09:37 2015
 
 import pandas as pd
 import numpy as np
+from astropy import units as u
+from astropy.coordinates import SkyCoord
 
 
 # source file:
-path = "C:\\Data\\ebanyai\\project\\Skyquery-data\\WMAP\\"
-src = path+"wmap_CMB-freeQVW-20150923_VizieR.tsv"
-cols = ["RA","DEC","RAJ2000","DEJ2000","WMAP","All","WMAP1","S(Q)",
+path = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\WMAP\\"
+src = path+"wmap_CMBfree.tsv"
+cols = ["RAJ2000","DEJ2000","WMAP","All","WMAP1","S(Q)",
         "e_S(Q)","S(V)","e_S(V)","S(W)","e_S(W)","fiveGHzID","f_5GHzID","Simbad"]
 
 
 # grab the data
-df = pd.read_table(src,names=cols,index_col=False,skiprows=23,skipinitialspace=True)
+df = pd.read_table(src,names=cols,index_col=False,skiprows=63,skipinitialspace=True)
 df.fillna(value=-99,inplace=True)
+
+coords = SkyCoord(df["RAJ2000"],df["DEJ2000"],unit=(u.hourangle,u.deg))
+df["RA"],df["DEC"] = coords.ra.deg, coords.dec.deg
 
 df[["fiveGHzID","f_5GHzID"]] = df[["fiveGHzID","f_5GHzID"]].replace(to_replace=[-99],value="")
 
