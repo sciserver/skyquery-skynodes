@@ -12,7 +12,7 @@ from os.path import isfile
 #||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 #vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 
-dbName = "VIPERSPDR1"
+dbName = "SkyNode_VIPERSPDR1"
 
 spath = r"\\skyquery01\Data\temp0\data0\ebanyai\\"+dbName+"\\"
 dpath = r"C:\Data\ebanyai\project\skyquery-all\skyquery-skynodes\sql\\"+dbName+"\\"
@@ -60,6 +60,8 @@ def correction(colName,types=types):
 
 def sum_formatter(string):
     string = string.replace("\n", " \n\t--/ ")
+    string = string.replace("<","&lt;")
+    string = string.replace(">","&gt;")
     split_string = string.split(" ")
     new_string = "\n\t--/ <summary> "
     c = 0
@@ -76,7 +78,6 @@ def sum_formatter(string):
             new_string += s+" "
             
         if i == len(split_string)-1:
-            print(i,string)
             new_string += "</summary>\n"
             
     
