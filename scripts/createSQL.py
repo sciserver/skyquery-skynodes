@@ -59,26 +59,25 @@ def correction(colName,types=types):
         json.dump(dDict, f,indent=1)
 
 def sum_formatter(string):
+    string = string.replace("\n", " \n\t--/ ")
     split_string = string.split(" ")
     new_string = "\n\t--/ <summary> "
     c = 0
     for s,i in zip(split_string,range(len(split_string))):
-        c += len(s)
+        c += len(s)    
         
         if "\n" in s:
-            new_string += s.replace("\n", "\n\t--/ ")
             c = 0
         
-        elif c > 100:
+        if c > 100:
             c = 0
-            if i == len(split_string)-1:
-                new_string += "</summary>\n"
-            else:
-                new_string += "\n\t--/ "
+            new_string += "\n\t--/ "
         else:
             new_string += s+" "
-            if i == len(split_string)-1:
-                new_string += "</summary>\n"
+            
+        if i == len(split_string)-1:
+            print(i,string)
+            new_string += "</summary>\n"
             
     
     return new_string
@@ -158,7 +157,7 @@ def sqlCreator(dbName,tableName,fileName,dtypes,dest_folder,primary_key,descript
         f.write("\t--/ <summary> Cartesian Z (J2000)</summary>\n")
         f.write("\t[cz] [float] NOT NULL,\n\n")
         f.write("\t--/ <summary> HTM ID (J2000)</summary>\n")
-        f.write("\t[htmid] bigint NOT NULL,\n")
+        f.write("\t[htmid] bigint NOT NULL,\n\n")
         f.write("\t--/ <summary> Zone ID (J2000)</summary>\n")
         f.write("\t[zoneid] int NOT NULL,\n")
         
