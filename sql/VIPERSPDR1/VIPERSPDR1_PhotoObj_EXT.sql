@@ -2,6 +2,77 @@ USE [SkyNode_VIPERSPDR1]
 
 GO
 
+IF OBJECT_ID ('dbo.PhotoObjRAW', 'U') IS NOT NULL
+	DROP TABLE dbo.PhotoObjRAW;
+
+GO
+
+-- CREATE PhotoObjRAW TABLE
+CREATE TABLE dbo.PhotoObjRAW
+(	[id_IAU] char(16) NOT NULL,
+	[num] bigint NOT NULL,
+	[ra] float NOT NULL,
+	[dec] float NOT NULL,
+	[selmag] real NOT NULL,
+	[errselmag] real NOT NULL,
+	[u] real NOT NULL,
+	[g] real NOT NULL,
+	[r] real NOT NULL,
+	[i] real NOT NULL,
+	[z] real NOT NULL,
+	[erru] real NOT NULL,
+	[errg] real NOT NULL,
+	[errr] real NOT NULL,
+	[erri] real NOT NULL,
+	[errz] real NOT NULL,
+	[u_T07] real NOT NULL,
+	[g_T07] real NOT NULL,
+	[r_T07] real NOT NULL,
+	[i_T07] real NOT NULL,
+	[iy_T07] real NOT NULL,
+	[z_T07] real NOT NULL,
+	[erru_T07] real NOT NULL,
+	[errg_T07] real NOT NULL,
+	[errr_T07] real NOT NULL,
+	[erri_T07] real NOT NULL,
+	[erriy_T07] real NOT NULL,
+	[errz_T07] real NOT NULL,
+	[DeltaUG] real NOT NULL,
+	[DeltaGR] real NOT NULL,
+	[DeltaRI] real NOT NULL,
+	[E_BV] real NOT NULL,
+	[r2] real NOT NULL,
+	[r2_T07] real NOT NULL,
+	[classFlag] int NOT NULL,
+	[agnFlag] int NOT NULL,
+	[photoMask] tinyint NOT NULL,
+	[spectroMask] tinyint NOT NULL,
+
+	CONSTRAINT [PK_PhotoObjRAW] PRIMARY KEY CLUSTERED
+(
+	[id_IAU] ASC
+) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+-- BULK INSERT DATA
+BULK INSERT
+	PhotoObjRAW
+	FROM '\\skyquery01\Data\temp0\data0\ebanyai\\VIPERSPDR1\VIPERSPDR1_PhotoObj.bin'
+	WITH
+	(
+		DATAFILETYPE = 'native',
+		TABLOCK
+	)
+
+GO
+
+IF OBJECT_ID ('dbo.PhotoObj', 'U') IS NOT NULL
+	DROP TABLE dbo.PhotoObj;
+
+GO
+
 -- CREATE PhotoObj TABLE
 CREATE TABLE dbo.PhotoObj
 (
@@ -388,6 +459,19 @@ CREATE TABLE dbo.PhotoObj
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
+GO
+
+-- INSERT DATA + CREATE HTMID, CX, CY, CZ
+INSERT dbo.PhotoObj WITH (TABLOCKX)
+( cx, cy, cz, htmid, zoneid, id_IAU, num, ra, dec, selmag, errselmag, u, g, r, i, z, erru, errg, errr, erri, errz, u_T07, g_T07, r_T07, i_T07, iy_T07, z_T07, erru_T07, errg_T07, errr_T07, erri_T07, erriy_T07, errz_T07, DeltaUG, DeltaGR, DeltaRI, E_BV, r2, r2_T07, classFlag, agnFlag, photoMask, spectroMask)
+SELECT c.x AS  cx, c.y AS cy, c.z AS cz, SkyQuery_CODE_dev.htmid.FromXyz(c.x,c.y,c.z) AS htmid, SkyQuery_CODE_dev.skyquery.ZoneIDFromDec(dec,4.0/3600.00000000) as zoneid, id_IAU, num, ra, dec, selmag, errselmag, u, g, r, PhotoObjRAW.i, PhotoObjRAW.z, erru, errg, errr, erri, errz, u_T07, g_T07, r_T07, i_T07, iy_T07, z_T07, erru_T07, errg_T07, errr_T07, erri_T07, erriy_T07, errz_T07, DeltaUG, DeltaGR, DeltaRI, E_BV, r2, r2_T07, classFlag, agnFlag, photoMask, spectroMask
+FROM dbo.PhotoObjRAW
+CROSS APPLY SkyQuery_CODE_dev.point.EqToXyz(ra, dec) AS c
+
+GO
+
+-- DROP RAW TABLE
+DROP TABLE dbo.PhotoObjRAW;
 GO
 
 -- Spatial index

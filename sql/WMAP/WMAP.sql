@@ -1,60 +1,9 @@
-USE [wmap]
+USE [SkyNode_WMAP]
 
 GO
 
-IF OBJECT_ID ('dbo.PhotoObjRAW', 'U') IS NOT NULL
-	DROP TABLE dbo.PhotoObjRAW;
-
-GO
-
--- CREATE PhotoObjRAW TABLE
-CREATE TABLE dbo.PhotoObjRAW
-(	[seqID] bigint NOT NULL,
-	[RA] float NOT NULL,
-	[DEC] float NOT NULL,
-	[WMAP] char(10) NOT NULL,
-	[WMAP1] int NOT NULL,
-	[S_K] real NOT NULL,
-	[e_S_K] real NOT NULL,
-	[S_Ka] real NOT NULL,
-	[e_S_Ka] real NOT NULL,
-	[S_Q] real NOT NULL,
-	[e_S_Q] real NOT NULL,
-	[S_V] real NOT NULL,
-	[e_S_V] real NOT NULL,
-	[S_W] real NOT NULL,
-	[e_S_W] real NOT NULL,
-	[alf] real NOT NULL,
-	[e_alf] real NOT NULL,
-	[fiveGHzID] char(15) NOT NULL,
-	[f_5GHzID] char(1) NOT NULL,
-
-	CONSTRAINT [PK_PhotoObjRAW] PRIMARY KEY CLUSTERED
-(
-	[seqID] ASC
-) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
--- BULK INSERT DATA
-BULK INSERT
-	PhotoObjRAW
-	FROM 'C:\Data\ebanyai\project\Skyquery-data\WMAP\\wmap.bin'
-	WITH
-	(
-		DATAFILETYPE = 'native',
-		TABLOCK
-	)
-
-GO
-
-IF OBJECT_ID ('dbo.PhotoObj', 'U') IS NOT NULL
-	DROP TABLE dbo.PhotoObj;
-
-GO
--- CREATE PhotoObj TABLE
-CREATE TABLE dbo.PhotoObj
+-- CREATE Obs TABLE
+CREATE TABLE dbo.Obs
 (
 	--/ <summary> Cartesian X (J2000)</summary>
 	[cx] [float] NOT NULL,
@@ -67,6 +16,9 @@ CREATE TABLE dbo.PhotoObj
 
 	--/ <summary> HTM ID (J2000)</summary>
 	[htmid] bigint NOT NULL,
+
+	--/ <summary> Zone ID </summary>
+	[zoneid] int NOT NULL,
 
 	--/ <summary> Sequential ID </summary>
 	[seqID] bigint NOT NULL,
@@ -143,7 +95,7 @@ CREATE TABLE dbo.PhotoObj
 	--/ S.A. (2003BSAO...55...90T). </summary>
 	[f_5GHzID] char(1) NOT NULL,
 
-	CONSTRAINT [PK_PhotoObj] PRIMARY KEY CLUSTERED
+	CONSTRAINT [PK_Obs] PRIMARY KEY CLUSTERED
 (
 	[seqID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -151,75 +103,59 @@ CREATE TABLE dbo.PhotoObj
 
 GO
 
--- INSERT DATA + CREATE HTMID, CX, CY, CZ
-INSERT dbo.PhotoObj WITH (TABLOCKX)
-( cx, cy, cz, htmid, seqID, RA, DEC, WMAP, WMAP1, S_K, e_S_K, S_Ka, e_S_Ka, S_Q, e_S_Q, S_V, e_S_V, S_W, e_S_W, alf, e_alf, fiveGHzID, f_5GHzID)
-SELECT c.x AS  cx, c.y AS cy, c.z AS cz, Spherical.htm.FromXyz(c.x,c.y,c.z) AS htmid, seqID, RA, DEC, WMAP, WMAP1, S_K, e_S_K, S_Ka, e_S_Ka, S_Q, e_S_Q, S_V, e_S_V, S_W, e_S_W, alf, e_alf, fiveGHzID, f_5GHzID
-FROM dbo.PhotoObjRAW
-CROSS APPLY Spherical.point.ConvertEqToXyz(ra, dec) AS c
-
+-- Spatial index
+CREATE NONCLUSTERED INDEX [IX_Obs_Zone] ON [dbo].[Obs] 
+(
+	[dec] ASC
+)
+INCLUDE
+(
+	[ra],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
--- DROP RAW TABLE
-DROP TABLE PhotoObjRAW
-
+CREATE NONCLUSTERED INDEX [IX_Obs_ZoneID] ON [dbo].[Obs] 
+(
+	[zoneid] ASC,
+	[ra] ASC
+)
+INCLUDE
+(
+	[dec],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 -- HTM index
-CREATE NONCLUSTERED INDEX [IX_PhotoObj_htmid] ON [dbo].[PhotoObj]
+CREATE NONCLUSTERED INDEX [IX_Obs_HtmID] ON [dbo].[Obs] 
 (
 	[htmid] ASC
 )
-
-GO
-
-IF OBJECT_ID ('dbo.CMBfreeRAW', 'U') IS NOT NULL
-	DROP TABLE dbo.CMBfreeRAW;
-
-GO
-
--- CREATE CMBfreeRAW TABLE
-CREATE TABLE dbo.CMBfreeRAW
-(	[seqID] bigint NOT NULL,
-	[RA] float NOT NULL,
-	[DEC] float NOT NULL,
-	[WMAP] char(10) NOT NULL,
-	[WMAP1] int NOT NULL,
-	[S_Q] real NOT NULL,
-	[e_S_Q] real NOT NULL,
-	[S_V] real NOT NULL,
-	[e_S_V] real NOT NULL,
-	[S_W] real NOT NULL,
-	[e_S_W] real NOT NULL,
-	[fiveGHzID] char(15) NOT NULL,
-	[f_5GHzID] char(1) NOT NULL,
-
-	CONSTRAINT [PK_CMBfreeRAW] PRIMARY KEY CLUSTERED
+INCLUDE
 (
-	[seqID] ASC
-) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
+	[ra],
+	[dec],
+	[cx],
+	[cy],
+	[cz],
+	[zoneID]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
--- BULK INSERT DATA
-BULK INSERT
-	CMBfreeRAW
-	FROM 'C:\Data\ebanyai\project\Skyquery-data\WMAP\\wmap_CMBfree.bin'
-	WITH
-	(
-		DATAFILETYPE = 'native',
-		TABLOCK
-	)
 
-GO
-
-IF OBJECT_ID ('dbo.CMBfree', 'U') IS NOT NULL
-	DROP TABLE dbo.CMBfree;
-
-GO
--- CREATE CMBfree TABLE
-CREATE TABLE dbo.CMBfree
+-- CREATE ObsCMBFree TABLE
+CREATE TABLE dbo.ObsCMBFree
 (
 	--/ <summary> Cartesian X (J2000)</summary>
 	[cx] [float] NOT NULL,
@@ -232,6 +168,9 @@ CREATE TABLE dbo.CMBfree
 
 	--/ <summary> HTM ID (J2000)</summary>
 	[htmid] bigint NOT NULL,
+
+	--/ <summary> Zone ID </summary>
+	[zoneid] int NOT NULL,
 
 	--/ <summary> Sequential ID </summary>
 	[seqID] bigint NOT NULL,
@@ -286,7 +225,7 @@ CREATE TABLE dbo.CMBfree
 	--/ S.A. (2003BSAO...55...90T). </summary>
 	[f_5GHzID] char(1) NOT NULL,
 
-	CONSTRAINT [PK_CMBfree] PRIMARY KEY CLUSTERED
+	CONSTRAINT [PK_ObsCMBFree] PRIMARY KEY CLUSTERED
 (
 	[seqID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -294,22 +233,52 @@ CREATE TABLE dbo.CMBfree
 
 GO
 
--- INSERT DATA + CREATE HTMID, CX, CY, CZ
-INSERT dbo.CMBfree WITH (TABLOCKX)
-( cx, cy, cz, htmid, seqID, RA, DEC, WMAP, WMAP1, S_Q, e_S_Q, S_V, e_S_V, S_W, e_S_W, fiveGHzID, f_5GHzID)
-SELECT c.x AS  cx, c.y AS cy, c.z AS cz, Spherical.htm.FromXyz(c.x,c.y,c.z) AS htmid, seqID, RA, DEC, WMAP, WMAP1, S_Q, e_S_Q, S_V, e_S_V, S_W, e_S_W, fiveGHzID, f_5GHzID
-FROM dbo.CMBfreeRAW
-CROSS APPLY Spherical.point.ConvertEqToXyz(ra, dec) AS c
-
+-- Spatial index
+CREATE NONCLUSTERED INDEX [IX_ObsCMBFree_Zone] ON [dbo].[ObsCMBFree] 
+(
+	[dec] ASC
+)
+INCLUDE
+(
+	[ra],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
--- DROP RAW TABLE
-DROP TABLE CMBfreeRAW
+CREATE NONCLUSTERED INDEX [IX_ObsCMBFree_ZoneID] ON [dbo].[ObsCMBFree] 
+(
+	[zoneid] ASC,
+	[ra] ASC
+)
+INCLUDE
+(
+	[dec],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+GO
 
 -- HTM index
-CREATE NONCLUSTERED INDEX [IX_CMBfree_htmid] ON [dbo].[CMBfree]
+CREATE NONCLUSTERED INDEX [IX_ObsCMBFree_HtmID] ON [dbo].[ObsCMBFree] 
 (
 	[htmid] ASC
 )
-
+INCLUDE
+(
+	[ra],
+	[dec],
+	[cx],
+	[cy],
+	[cz],
+	[zoneID]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO

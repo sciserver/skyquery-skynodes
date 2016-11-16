@@ -1,51 +1,4 @@
-USE [Graywulf_Temp]
-
-GO
-
-IF OBJECT_ID ('dbo.SpecObjRAW', 'U') IS NOT NULL
-	DROP TABLE dbo.SpecObjRAW;
-
-GO
-
--- CREATE SpecObjRAW TABLE
-CREATE TABLE dbo.SpecObjRAW
-(	[id_IAU] char(16) NOT NULL,
-	[num] bigint NOT NULL,
-	[ra] real NOT NULL,
-	[dec] real NOT NULL,
-	[selmag] real NOT NULL,
-	[errselmag] real NOT NULL,
-	[pointing] char(6) NOT NULL,
-	[quadrant] tinyint NOT NULL,
-	[zflg] real NOT NULL,
-	[zspec] real NOT NULL,
-	[epoch] tinyint NOT NULL,
-	[photoMask] tinyint NOT NULL,
-	[tsr] real NOT NULL,
-	[ssr] real NOT NULL,
-
-	CONSTRAINT [PK_SpecObjRAW] PRIMARY KEY CLUSTERED
-(
-	[id_IAU] ASC
-) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
--- BULK INSERT DATA
-BULK INSERT
-	SpecObjRAW
-	FROM 'C:\Data\ebanyai\project\Skyquery-data\VIPERS\\VIPERSPDR1_SpecObj.bin'
-	WITH
-	(
-		DATAFILETYPE = 'native',
-		TABLOCK
-	)
-
-GO
-
-IF OBJECT_ID ('dbo.SpecObj', 'U') IS NOT NULL
-	DROP TABLE dbo.SpecObj;
+USE [SkyNode_VIPERSPDR1]
 
 GO
 -- CREATE SpecObj TABLE
@@ -67,8 +20,8 @@ CREATE TABLE dbo.SpecObj
 	[zoneid] int NOT NULL,
 
 	--/ <summary> VIPERS object name, according to IAU standards. The name is composed of
-	--/ theprefix VIPERS plus the internal identification number. The internal
-	--/ idnumber (num) is in the form 
+	--/ the prefix VIPERS plus the internal identification number. The internal
+	--/ id number (num) is in the form 
 	--/ 
 	--/   attxxxxxx
 	--/ 
@@ -78,13 +31,13 @@ CREATE TABLE dbo.SpecObj
 	--/  tt identifies the CFHTLS tile number where the object is located,
 	--/  xxxxxx is the original CFHTLS ID within the tile.
 	--/ 
-	--/ Thecorrespondence between our tile identifier and the official CFHTLS
-	--/ tilename is provided in Guzzo et al. 2013. </summary>
+	--/ The correspondence between our tile identifier and the official CFHTLS
+	--/ tile name is provided in Guzzo et al. 2013. </summary>
 	[id_IAU] char(16) NOT NULL,
 
 	--/ <summary> VIPERS object name, according to IAU standards. The name is composed of
-	--/ theprefix VIPERS plus the internal identification number. The internal
-	--/ idnumber (num) is in the form 
+	--/ the prefix VIPERS plus the internal identification number. The internal
+	--/ id number (num) is in the form 
 	--/ 
 	--/   attxxxxxx
 	--/ 
@@ -95,7 +48,7 @@ CREATE TABLE dbo.SpecObj
 	--/  xxxxxx is the original CFHTLS ID within the tile.
 	--/ 
 	--/ Thecorrespondence between our tile identifier and the official CFHTLS
-	--/ tilename is provided in Guzzo et al. 2013. </summary>
+	--/ tile name is provided in Guzzo et al. 2013. </summary>
 	[num] bigint NOT NULL,
 
 	--/ <summary> Right Ascension </summary>
@@ -107,7 +60,7 @@ CREATE TABLE dbo.SpecObj
 	[dec] real NOT NULL,
 
 	--/ <summary> i_AB selection magnitude. The selection magnitude comes from
-	--/ CFHTLST0005 catalogues. </summary>
+	--/ CFHTLS T0005 catalogues. </summary>
 	--/ <unit> mag </unit>
 	[selmag] real NOT NULL,
 
@@ -141,8 +94,8 @@ CREATE TABLE dbo.SpecObj
 	--/    0 no reliable spectroscopic redshift measurement was
 	--/      possible. Redshift is set to the conventional value of 9.9999.
 	--/ 
-	--/ Incase of broad emission lines typical of broad line AGN, a prefix of 1
-	--/ isadded to zflag, i.e.
+	--/ In case of broad emission lines typical of broad line AGN, a prefix of 1
+	--/ is added to zflag, i.e.
 	--/ 
 	--/    14 secure AGN with a &gt;95% secure redshift, at least 2 broad lines;
 	--/    13 secure AGN with good confidence redshift, based on one broad line
@@ -154,7 +107,7 @@ CREATE TABLE dbo.SpecObj
 	--/    11 a tentative redshift measurement, with spectral features not
 	--/       significantly broad.
 	--/ 
-	--/ Secondobjects in slit get a 2 as prefix to the flag, i.e.
+	--/ Second objects in slit get a 2 as prefix to the flag, i.e.
 	--/ 
 	--/    24 a second object with flag 4
 	--/    23 a second object with flag 3
@@ -163,9 +116,9 @@ CREATE TABLE dbo.SpecObj
 	--/    21 a second object with flag 1
 	--/    20 a second object with flag 0
 	--/ 
-	--/ Andsimilarly for BLAGN (214, 213, 212, ...).
+	--/ And similarly for BLAGN (214, 213, 212, ...).
 	--/ 
-	--/ Suffixin form of decimal digit has the following meaning:
+	--/ Suffix in form of decimal digit has the following meaning:
 	--/ 
 	--/    .5 the spectroscopic redshift is compatible within 1 sigma with
 	--/       photometric redshift, i.e
@@ -184,50 +137,50 @@ CREATE TABLE dbo.SpecObj
 	[zflg] real NOT NULL,
 
 	--/ <summary> Spectroscopic redshift. A conventional zpsec value of 9.9999 is assigned
-	--/ incase a redshift could not be measured. </summary>
+	--/ in case a redshift could not be measured. </summary>
 	[zspec] real NOT NULL,
 
 	--/ <summary> Observing epoch. epoch=1 objects have been observed before VIMOS
-	--/ refurbishingin summer 2010, epoch=2 objects have been observed after
-	--/ summer2010. </summary>
+	--/ refurbishing in summer 2010, epoch=2 objects have been observed after
+	--/ summer 2010. </summary>
 	[epoch] tinyint NOT NULL,
 
 	--/ <summary> Flag indicating whether the object falls within the photometric mask. 1
-	--/ ifthe object is inside the mask, 0 if it is outside. Objects outside
-	--/ thephotometric mask have a less reliable photometry </summary>
+	--/ if the object is inside the mask, 0 if it is outside. Objects outside
+	--/ the photometric mask have a less reliable photometry </summary>
 	[photoMask] tinyint NOT NULL,
 
 	--/ <summary> The Target Sampling Rate is defined as the ratio of the observed objects
-	--/ overthe number of possible targets: TSR=Nspec/Nparent, where Nspec is
-	--/ thenumber of detected targets and Nparent is the number of all the
-	--/ possiblerandom targets.
-	--/ TSRhas been computed in bins of apparent magnitude to take into account
-	--/ thepossible dependence of the sampling rate on the clustering of bright
-	--/ objects(possibly causing slit collision) and the higher fraction of
-	--/ observedbright objects for which a spectrum has not been extracted (see
-	--/ Garilliet al. 2013).
-	--/ TSRand is needed to take into account the fact that not all the
-	--/ possibletargets can be observed in the single pass strategy adopted in
-	--/ VIPERS.See Garilli et al. 2013 for details
-	--/ TSRis = -1 for serendipitous targets (flags 2*.*), and observed objects
-	--/ notfulfilling the selection criterion for z&gt;0.5 galaxies (i.e. AGN);
-	--/ TSR= -99 for objects outside the considered area and selection
-	--/ magnituderange (i.e. either i&lt;17.5 or i&gt;22.5). </summary>
+	--/ over the number of possible targets: TSR=Nspec/Nparent, where Nspec is
+	--/ the number of detected targets and Nparent is the number of all the
+	--/ possible random targets.
+	--/ TSR has been computed in bins of apparent magnitude to take into account
+	--/ the possible dependence of the sampling rate on the clustering of bright
+	--/ objects (possibly causing slit collision) and the higher fraction of
+	--/ observed bright objects for which a spectrum has not been extracted (see
+	--/ Garilli et al. 2013).
+	--/ TSR and is needed to take into account the fact that not all the
+	--/ possible targets can be observed in the single pass strategy adopted in
+	--/ VIPERS. See Garilli et al. 2013 for details
+	--/ TSR is = -1 for serendipitous targets (flags 2*.*), and observed objects
+	--/ not fulfilling the selection criterion for z&gt;0.5 galaxies (i.e. AGN);
+	--/ TSR = -99 for objects outside the considered area and selection
+	--/ magnitude range (i.e. either i&lt;17.5 or i&gt;22.5). </summary>
 	[tsr] real NOT NULL,
 
 	--/ <summary> The SSR is defined as the ratio of the galaxies with a successfully
-	--/ measuredredshift (flag = 2.*,3.*,4.*,9.*) over the total sample of
-	--/ detectedgalaxies.
-	--/ SSRis a function of the apparent magnitude (since to bright objects
-	--/ correspondspectra with high signal-to-noise, from which the redshift
-	--/ canbe more easily measured), and of redshift (because the spectral
-	--/ featuresvisible in the observed spectral range can change). Therefore
-	--/ SSRhas been computed in bins of redshift and apparent magnitude.
-	--/ SSRis = -1 for stars (z=0.0000), non measured objects (flag 0), low
-	--/ confidenceredshift measurements (flags 1.*), spectroscopic BLAGN (flags
-	--/ 1*.*),serendipitous targets (flags=2*.*), and hight redshift galaxies
+	--/ measured redshift (flag = 2.*,3.*,4.*,9.*) over the total sample of
+	--/ detected galaxies.
+	--/ SSR is a function of the apparent magnitude (since to bright objects
+	--/ correspond spectra with high signal-to-noise, from which the redshift
+	--/ can be more easily measured), and of redshift (because the spectral
+	--/ features visible in the observed spectral range can change). Therefore
+	--/ SSR has been computed in bins of redshift and apparent magnitude.
+	--/ SSR is = -1 for stars (z=0.0000), non measured objects (flag 0), low
+	--/ confidence redshift measurements (flags 1.*), spectroscopic BLAGN (flags
+	--/ 1*.*), serendipitous targets (flags=2*.*), and hight redshift galaxies
 	--/ (zspec&gt;3);
-	--/ SSR= -99 for objects outside the considered area and selection
+	--/ SSR = -99 for objects outside the considered area and selection
 	--/ magnituderange (i.e. either i&lt;17.5 or i&gt;22.5). </summary>
 	[ssr] real NOT NULL,
 
@@ -236,22 +189,6 @@ CREATE TABLE dbo.SpecObj
 	[id_IAU] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
-
-GO
-
--- INSERT DATA + CREATE HTMID, CX, CY, CZ
-INSERT dbo.SpecObj WITH (TABLOCKX)
-( cx, cy, cz, htmid, zoneid, id_IAU, num, ra, dec, selmag, errselmag, pointing, quadrant, zflg, zspec, epoch, photoMask, tsr, ssr)
-SELECT c.x AS  cx, c.y AS cy, c.z AS cz, SkyQuery_CODE_dev.htmid.FromXyz(c.x,c.y,c.z) AS htmid,
-SkyQuery_CODE_dev.skyquery.ZoneIDFromDec(dec,4.0/3600.00000000) as zoneid,
-id_IAU, num, ra, dec, selmag, errselmag, pointing, quadrant, zflg, zspec, epoch, photoMask, tsr, ssr
-FROM dbo.SpecObjRAW
-CROSS APPLY SkyQuery_CODE_dev.point.EqToXyz(ra, dec) AS c
-
-GO
-
--- DROP RAW TABLE
-DROP TABLE SpecObjRAW
 
 GO
 

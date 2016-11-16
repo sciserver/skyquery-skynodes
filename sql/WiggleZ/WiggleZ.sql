@@ -1,54 +1,7 @@
-USE [WiggleZ]
+USE [SkyNode_WiggleZ]
 
 GO
 
-IF OBJECT_ID ('dbo.SpecObjRAW', 'U') IS NOT NULL
-	DROP TABLE dbo.SpecObjRAW;
-
-GO
-
--- CREATE SpecObjRAW TABLE
-CREATE TABLE dbo.SpecObjRAW
-(	[ID] char(22) NOT NULL,
-	[RA] float NOT NULL,
-	[DEC] float NOT NULL,
-	[Redshift] real NOT NULL,
-	[Qop] tinyint NOT NULL,
-	[u_SDSS] real NOT NULL,
-	[g_SDSS] real NOT NULL,
-	[r_SDSS] real NOT NULL,
-	[i_SDSS] real NOT NULL,
-	[z_SDSS] real NOT NULL,
-	[g_RCS2] real NOT NULL,
-	[r_RCS2] real NOT NULL,
-	[z_RCS2] real NOT NULL,
-	[NUV] real NOT NULL,
-	[FUV] real NOT NULL,
-
-	CONSTRAINT [PK_SpecObjRAW] PRIMARY KEY CLUSTERED
-(
-	[ID] ASC
-) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
--- BULK INSERT DATA
-BULK INSERT
-	SpecObjRAW
-	FROM 'C:\Data\ebanyai\project\Skyquery-data\WiggleZ\\WiggleZ_SpecObj.bin'
-	WITH
-	(
-		DATAFILETYPE = 'native',
-		TABLOCK
-	)
-
-GO
-
-IF OBJECT_ID ('dbo.SpecObj', 'U') IS NOT NULL
-	DROP TABLE dbo.SpecObj;
-
-GO
 -- CREATE SpecObj TABLE
 CREATE TABLE dbo.SpecObj
 (
@@ -63,6 +16,9 @@ CREATE TABLE dbo.SpecObj
 
 	--/ <summary> HTM ID (J2000)</summary>
 	[htmid] bigint NOT NULL,
+
+	--/ <summary> Zone ID </summary>
+	[zoneid] int NOT NULL,
 
 	--/ <summary> WiggleZ name (ANNJHHMMSSsss+DDMMSSss). "ANN" represent the regions, where "NN" represents the hour of right 
 	--/ 00, 01, 03 and 22 for the South Galactic Pole; 09, 11 and 15 for the North Galactic Pole. </summary>
@@ -136,24 +92,52 @@ CREATE TABLE dbo.SpecObj
 
 GO
 
--- INSERT DATA + CREATE HTMID, CX, CY, CZ
-INSERT dbo.SpecObj WITH (TABLOCKX)
-( cx, cy, cz, htmid, ID, RA, DEC, Redshift, Qop, u_SDSS, g_SDSS, r_SDSS, i_SDSS, z_SDSS, g_RCS2, r_RCS2, z_RCS2, NUV, FUV)
-SELECT c.x AS  cx, c.y AS cy, c.z AS cz, Spherical.htm.FromXyz(c.x,c.y,c.z) AS htmid, ID, RA, DEC, Redshift, Qop, u_SDSS, g_SDSS, r_SDSS, i_SDSS, z_SDSS, g_RCS2, r_RCS2, z_RCS2, NUV, FUV
-FROM dbo.SpecObjRAW
-CROSS APPLY Spherical.point.ConvertEqToXyz(ra, dec) AS c
-
+-- Spatial index
+CREATE NONCLUSTERED INDEX [IX_SpecObj_Zone] ON [dbo].[SpecObj] 
+(
+	[dec] ASC
+)
+INCLUDE
+(
+	[ra],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
--- DROP RAW TABLE
-DROP TABLE SpecObjRAW
-
+CREATE NONCLUSTERED INDEX [IX_SpecObj_ZoneID] ON [dbo].[SpecObj] 
+(
+	[zoneid] ASC,
+	[ra] ASC
+)
+INCLUDE
+(
+	[dec],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 -- HTM index
-CREATE NONCLUSTERED INDEX [IX_SpecObj_htmid] ON [dbo].[SpecObj]
+CREATE NONCLUSTERED INDEX [IX_SpecObj_HtmID] ON [dbo].[SpecObj] 
 (
 	[htmid] ASC
 )
-
+INCLUDE
+(
+	[ra],
+	[dec],
+	[cx],
+	[cy],
+	[cz],
+	[zoneID]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO

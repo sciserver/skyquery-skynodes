@@ -1,62 +1,7 @@
-USE [VVDS]
+USE [SkyNode_VVDS]
 
 GO
 
-IF OBJECT_ID ('dbo.SpecObjRAW', 'U') IS NOT NULL
-	DROP TABLE dbo.SpecObjRAW;
-
-GO
-
--- CREATE SpecObjRAW TABLE
-CREATE TABLE dbo.SpecObjRAW
-(	[ID] bigint NOT NULL,
-	[RA] float NOT NULL,
-	[DEC] float NOT NULL,
-	[Jname] char(19) NOT NULL,
-	[z] real NOT NULL,
-	[q_z] smallint NOT NULL,
-	[phf] tinyint NOT NULL,
-	[UEmag] real NOT NULL,
-	[e_UEmag] real NOT NULL,
-	[ULmag] real NOT NULL,
-	[e_ULmag] real NOT NULL,
-	[Bmag] real NOT NULL,
-	[e_Bmag] real NOT NULL,
-	[Vmag] real NOT NULL,
-	[e_Vmag] real NOT NULL,
-	[Rmag] real NOT NULL,
-	[e_Rmag] real NOT NULL,
-	[Imag] real NOT NULL,
-	[e_Imag] real NOT NULL,
-	[Jmag] real NOT NULL,
-	[e_Jmag] real NOT NULL,
-	[Kmag] real NOT NULL,
-	[e_Kmag] real NOT NULL,
-
-	CONSTRAINT [PK_SpecObjRAW] PRIMARY KEY CLUSTERED
-(
-	[ID] ASC
-) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
--- BULK INSERT DATA
-BULK INSERT
-	SpecObjRAW
-	FROM 'C:\Data\ebanyai\project\Skyquery-data\VVDS-DEEP\\vvds.bin'
-	WITH
-	(
-		DATAFILETYPE = 'native',
-		TABLOCK
-	)
-
-GO
-
-IF OBJECT_ID ('dbo.SpecObj', 'U') IS NOT NULL
-	DROP TABLE dbo.SpecObj;
-
-GO
 -- CREATE SpecObj TABLE
 CREATE TABLE dbo.SpecObj
 (
@@ -71,6 +16,9 @@ CREATE TABLE dbo.SpecObj
 
 	--/ <summary> HTM ID (J2000)</summary>
 	[htmid] bigint NOT NULL,
+
+	--/ <summary> Zone ID </summary>
+	[zoneid] int NOT NULL,
 
 	--/ <summary> Observation identification </summary>
 	[ID] bigint NOT NULL,
@@ -186,24 +134,52 @@ CREATE TABLE dbo.SpecObj
 
 GO
 
--- INSERT DATA + CREATE HTMID, CX, CY, CZ
-INSERT dbo.SpecObj WITH (TABLOCKX)
-( cx, cy, cz, htmid, ID, RA, DEC, Jname, z, q_z, phf, UEmag, e_UEmag, ULmag, e_ULmag, Bmag, e_Bmag, Vmag, e_Vmag, Rmag, e_Rmag, Imag, e_Imag, Jmag, e_Jmag, Kmag, e_Kmag)
-SELECT c.x AS  cx, c.y AS cy, c.z AS cz, Spherical.htm.FromXyz(c.x,c.y,c.z) AS htmid, ID, RA, DEC, Jname, SpecObjRAW.z, q_z, phf, UEmag, e_UEmag, ULmag, e_ULmag, Bmag, e_Bmag, Vmag, e_Vmag, Rmag, e_Rmag, Imag, e_Imag, Jmag, e_Jmag, Kmag, e_Kmag
-FROM dbo.SpecObjRAW
-CROSS APPLY Spherical.point.ConvertEqToXyz(ra, dec) AS c
-
+-- Spatial index
+CREATE NONCLUSTERED INDEX [IX_SpecObj_Zone] ON [dbo].[SpecObj] 
+(
+	[dec] ASC
+)
+INCLUDE
+(
+	[ra],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
--- DROP RAW TABLE
-DROP TABLE SpecObjRAW
-
+CREATE NONCLUSTERED INDEX [IX_SpecObj_ZoneID] ON [dbo].[SpecObj] 
+(
+	[zoneid] ASC,
+	[ra] ASC
+)
+INCLUDE
+(
+	[dec],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 -- HTM index
-CREATE NONCLUSTERED INDEX [IX_SpecObj_htmid] ON [dbo].[SpecObj]
+CREATE NONCLUSTERED INDEX [IX_SpecObj_HtmID] ON [dbo].[SpecObj] 
 (
 	[htmid] ASC
 )
-
+INCLUDE
+(
+	[ra],
+	[dec],
+	[cx],
+	[cy],
+	[cz],
+	[zoneID]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
