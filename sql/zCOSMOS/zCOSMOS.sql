@@ -1,51 +1,8 @@
-USE [zCOSMOS]
-GO
-
-IF OBJECT_ID ('dbo.PhotoObjRAW', 'U') IS NOT NULL
-    DROP TABLE dbo.PhotoObjRAW;
+USE [SkyNode_zCOSMOS]
 GO
 
 
--- CREATE PhotoObjRAW TABLE
-
-
-
-CREATE TABLE dbo.PhotoObjRAW
-(
-	[objID] bigint NOT NULL,
-	[ra] float NOT NULL,
-	[dec] float NOT NULL,
-	[z]  real NOT NULL,
-	[CC] real NOT NULL,
-	[Imag] real NOT NULL,
-
- CONSTRAINT [PK_PhotoObjRAW] PRIMARY KEY CLUSTERED 
-(
-	[objID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
--- BULK INSERT DATA
-
-BULK INSERT 
-   PhotoObjRAW
-      FROM 'C:\Data\ebanyai\project\Skyquery-data\zCOSMOS\zCOSMOS.bin' 
-     WITH 
-    ( 
-   DATAFILETYPE = 'native',
-   TABLOCK 
-    )
-GO
-
--- CREATE PhotoObj TABLE
-
-IF OBJECT_ID ('dbo.PhotoObj', 'U') IS NOT NULL
-    DROP TABLE dbo.PhotoObj;
-GO
-
-CREATE TABLE dbo.PhotoObj 
+CREATE TABLE dbo.SpecObj 
 (
 	--/ <summary> zCOSMOS identification number.</summary>
 	[objID] bigint NOT NULL,
@@ -69,6 +26,9 @@ CREATE TABLE dbo.PhotoObj
 
 	--/ <summary>HTM ID (J2000)</summary>
 	[htmid] bigint NOT NULL,
+
+	--/ <summary> Zone ID </summary>
+	[zoneid] int NOT NULL,
 
 	--/ <summary> Redshift. </summary>
 	[z]  real NOT NULL,
@@ -115,31 +75,59 @@ CREATE TABLE dbo.PhotoObj
 	--/ <unit>mag</unit>
 	[Imag] real NOT NULL,
 
- CONSTRAINT [PK_PhotoObj] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_SpecObj] PRIMARY KEY CLUSTERED 
 (
 	[objID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
 
--- INSERT DATA + CREATE HTMID, CX, CY, CZ
-
-INSERT dbo.PhotoObj WITH (TABLOCKX)
-(objID,ra, dec, cx,cy,cz,htmid, z, CC, Imag)
-SELECT objID, ra, dec, c.x AS  cx, c.y AS cy, c.z AS cz, Spherical.htm.FromXyz(c.x,c.y,c.z) AS htmid, PhotoObjRAW.z, CC, Imag
-FROM dbo.PhotoObjRAW
-CROSS APPLY Spherical.point.ConvertEqToXyz(ra, dec) AS c
+-- Spatial index
+CREATE NONCLUSTERED INDEX [IX_SpecObj_Zone] ON [dbo].[SpecObj] 
+(
+	[dec] ASC
+)
+INCLUDE
+(
+	[ra],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
--- DROP RAW TABLE
-DROP TABLE PhotoObjRAW
-
+CREATE NONCLUSTERED INDEX [IX_SpecObj_ZoneID] ON [dbo].[SpecObj] 
+(
+	[zoneid] ASC,
+	[ra] ASC
+)
+INCLUDE
+(
+	[dec],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 -- HTM index
-
-CREATE NONCLUSTERED INDEX [IX_PhotoObj_htmid] ON [dbo].[PhotoObj]
+CREATE NONCLUSTERED INDEX [IXSpecObj__HtmID] ON [dbo].[SpecObj] 
 (
 	[htmid] ASC
 )
+INCLUDE
+(
+	[ra],
+	[dec],
+	[cx],
+	[cy],
+	[cz],
+	[zoneID]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
