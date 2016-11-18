@@ -6,3 +6,9 @@ SPITZER_GOODS-data2bin.py
 
 Creating Database:
 SPITZER_GOODS.sql
+
+MIPS:
+Giavalisco, M., et al., 2004, ApJ, 600, 93
+
+IRS:
+Teplitz, H. I., et. al. 2011, AJ, 141, 1
