@@ -12,16 +12,16 @@ from os.path import isfile
 #||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 #vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 
-dbName = "SkyNode_VIPERSPDR1"
+dbName = "SPITZER"
 
 spath = r"\\skyquery01\Data\temp0\data0\ebanyai\\"+dbName+"\\"
 dpath = r"C:\Data\ebanyai\project\skyquery-all\skyquery-skynodes\sql\\"+dbName+"\\"
 
 
-tableName = "PhotoObj"
+tableName = "goodsnIRS16micron"
 fileName = spath+dbName+"_"+tableName+".bin"
 dst = dpath+dbName+"_"+tableName+".sql"
-primary_key = "id_IAU"
+primary_key = "objID"
 sName = spath+dbName+"_"+tableName+".jdict"
 
 
@@ -104,7 +104,7 @@ for i in range(1,91):
 # az én csodálatos életkönnyítőm :D 
 def sqlCreator(dbName,tableName,fileName,dtypes,dest_folder,primary_key,description):
     with open(dest_folder,"w",encoding='utf-8') as f:
-        f.write("USE ["+dbName+"]\n")
+        f.write("USE [SkyNode_"+dbName+"]\n")
         f.write("\nGO\n\n")
         
         f.write("IF OBJECT_ID ('dbo."+tableName+"RAW', 'U') IS NOT NULL\n")
@@ -210,7 +210,7 @@ def sqlCreator(dbName,tableName,fileName,dtypes,dest_folder,primary_key,descript
         f.write("\nGO\n\n")        
         
         f.write("-- DROP RAW TABLE\n")
-        f.write("DROP TABLE dbo.PhotoObjRAW;\n")
+        f.write("DROP TABLE dbo."+tableName+"RAW;\n")
         f.write("GO\n\n")
         
         f.write("-- Spatial index\n")
