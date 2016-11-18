@@ -1,57 +1,9 @@
-USE [VLAGOODS]
+USE [SkyNode_VLA]
 
 GO
 
-IF OBJECT_ID ('dbo.PhotoObjRAW', 'U') IS NOT NULL
-	DROP TABLE dbo.PhotoObjRAW;
-
-GO
-
--- CREATE PhotoObjRAW TABLE
-CREATE TABLE dbo.PhotoObjRAW
-(	[objID] bigint NOT NULL,
-	[Name] char(5) NOT NULL,
-	[RA] float NOT NULL,
-	[e_RAs] float NOT NULL,
-	[DEC] float NOT NULL,
-	[e_DECs] float NOT NULL,
-	[SN] real NOT NULL,
-	[Peak] real NOT NULL,
-	[e_Peak] real NOT NULL,
-	[Total] real NOT NULL,
-	[e_Total] real NOT NULL,
-	[bmaj] real NOT NULL,
-	[bmin] real NOT NULL,
-	[PA] int NOT NULL,
-	[ulim] real NOT NULL,
-	[beam_] real NOT NULL,
-
-	CONSTRAINT [PK_PhotoObjRAW] PRIMARY KEY CLUSTERED
-(
-	[objID] ASC
-) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
--- BULK INSERT DATA
-BULK INSERT
-	PhotoObjRAW
-	FROM 'C:\Data\ebanyai\project\Skyquery-data\VLA_GOODSN\\vla_goods.bin'
-	WITH
-	(
-		DATAFILETYPE = 'native',
-		TABLOCK
-	)
-
-GO
-
-IF OBJECT_ID ('dbo.PhotoObj', 'U') IS NOT NULL
-	DROP TABLE dbo.PhotoObj;
-
-GO
 -- CREATE VLA TABLE
-CREATE TABLE dbo.PhotoObj
+CREATE TABLE dbo.GOODSN
 (
 
 	--/ <summary> Cartesian X (J2000)</summary>
@@ -65,6 +17,9 @@ CREATE TABLE dbo.PhotoObj
 
 	--/ <summary> HTM ID (J2000)</summary>
 	[htmid] bigint NOT NULL,
+
+	--/ <summary> Zone ID </summary>
+	[zoneid] int NOT NULL,
 
 	--/ <summary> Sequential id </summary>
 	[objID] bigint NOT NULL,
@@ -126,7 +81,7 @@ CREATE TABLE dbo.PhotoObj
 
 	--/ <summary> map beam size </summary>
 	--/ <unit> arcsec </unit>
-	[beam_] real NOT NULL,
+	[beam] real NOT NULL,
 
 	CONSTRAINT [PK_VLA] PRIMARY KEY CLUSTERED
 (
@@ -136,22 +91,52 @@ CREATE TABLE dbo.PhotoObj
 
 GO
 
--- INSERT DATA + CREATE HTMID, CX, CY, CZ
-INSERT dbo.PhotoObj WITH (TABLOCKX)
-( cx, cy, cz, htmid, objID, Name, RA, e_RAs, DEC, e_DECs, SN, Peak, e_Peak, Total, e_Total, bmaj, bmin, PA, ulim, beam_)
-SELECT c.x AS  cx, c.y AS cy, c.z AS cz, Spherical.htm.FromXyz(c.x,c.y,c.z) AS htmid, objID, Name, RA, e_RAs, DEC, e_DECs, SN, Peak, e_Peak, Total, e_Total, bmaj, bmin, PA, ulim, beam_
-FROM dbo.PhotoObjRAW
-CROSS APPLY Spherical.point.ConvertEqToXyz(ra, dec) AS c
-
+-- Spatial index
+CREATE NONCLUSTERED INDEX [IX_GOODSN_Zone] ON [dbo].[GOODSN] 
+(
+	[dec] ASC
+)
+INCLUDE
+(
+	[ra],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
--- DROP RAW TABLE
-DROP TABLE PhotoObjRAW
+CREATE NONCLUSTERED INDEX [IX_GOODSN_ZoneID] ON [dbo].[GOODSN] 
+(
+	[zoneid] ASC,
+	[ra] ASC
+)
+INCLUDE
+(
+	[dec],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
+GO
 
 -- HTM index
-CREATE NONCLUSTERED INDEX [IX_PhotoObj_htmid] ON [dbo].[PhotoObj]
+CREATE NONCLUSTERED INDEX [IX_GOODSN_HtmID] ON [dbo].[GOODSN] 
 (
 	[htmid] ASC
 )
-
+INCLUDE
+(
+	[ra],
+	[dec],
+	[cx],
+	[cy],
+	[cz],
+	[zoneID]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
