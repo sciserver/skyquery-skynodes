@@ -11,23 +11,22 @@ import numpy as np
 # LOAD DATA
 
 # source file:
-path = "C:\\Data\\ebanyai\\project\\Skyquery-data\\GOODS_HERSCHEL\\"
-src = path+"goods-updp-irsa-north_DR1.tbl"
-src2 = path+"goods-updp-irsa-south_DR1.tbl"
+path = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\HERSCHEL\\"
+src = path+"goods-updp-irsa-south_DR1.tbl"
 cols = ["IAU_name","id","ra","dec","f3p6","err3p6","flag3p6","f4p5","err4p5",
         "flag4p5","f5p8","err5p8","flag5p8","f8p0","err8p0","flag8p0","f24","err24_ima",
         "err24_sim","cov24","f70","err70_ima","err70_sim","cov70","f100","err100_ima",
-        "err100_sim","cov100","f160","err160_ima","err160_sim","cov160","f250","err250_ima",
-        "err250_sim","cov250","f350","err350_ima","err350_sim","cov350","f500","err500_ima",
-        "err500_sim","cov500","clean_index"]
+        "err100_sim","cov100","f160","err160_ima","err160_sim","cov160","clean_index"]
 
 
 # grab the data
-df1 = pd.read_table(src,names=cols,index_col=False,comment="#",skipinitialspace=True,sep=" ")
-df2 = pd.read_table(src2,names=cols,index_col=False,comment="#",skipinitialspace=True, sep=" ")
-df = pd.concat([df1,df2],ignore_index=True)
+# SOUTH
+df = pd.read_table(src,names=cols,index_col=False,skiprows=110,skipinitialspace=True,sep=" ")
+
 df.fillna(value=-99,inplace=True)
 df["objID"] = df.index+1
+
+# SOUTH
 
 # DEFINE DATA TYPES FOR BINARY FORMAT
 types = [("objID","i8"),
@@ -62,18 +61,6 @@ types = [("objID","i8"),
         ("err160_ima","f4"),
         ("err160_sim","f4"),
         ("cov160","f4"),
-        ("f250","f4"),
-        ("err250_ima","f4"),
-        ("err250_sim","f4"),
-        ("cov250","f4"),
-        ("f350","f4"),
-        ("err350_ima","f4"),
-        ("err350_sim","f4"),
-        ("cov350","f4"),
-        ("f500","f4"),
-        ("err500_ima","f4"),
-        ("err500_sim","f4"),
-        ("cov500","f4"),
         ("clean_index","i4")]
         
 dt_df = np.dtype(types)
@@ -84,10 +71,9 @@ dt_df = np.dtype(types)
 records = np.array(df.to_records(),dtype=dt_df) 
 
 # destination folder
-dst = path+"herschel_goods.bin" 
 
+dst = path+"HERSCHEL_goodsSouth.bin" 
 
 
 # write to file
 records.tofile(dst)
-

@@ -1,86 +1,9 @@
-USE [HerschelGOODS]
+USE [SkyNode_HERSCHEL]
 
 GO
 
-IF OBJECT_ID ('dbo.PhotoObjRAW', 'U') IS NOT NULL
-	DROP TABLE dbo.PhotoObjRAW;
-
-GO
-
--- CREATE PhotoObjRAW TABLE
-CREATE TABLE dbo.PhotoObjRAW
-(	[objID] bigint NOT NULL,
-	[IAU_name] char(25) NOT NULL,
-	[ra] float NOT NULL,
-	[dec] float NOT NULL,
-	[f3p6] real NOT NULL,
-	[err3p6] real NOT NULL,
-	[flag3p6] int NOT NULL,
-	[f4p5] real NOT NULL,
-	[err4p5] real NOT NULL,
-	[flag4p5] int NOT NULL,
-	[f5p8] real NOT NULL,
-	[err5p8] real NOT NULL,
-	[flag5p8] int NOT NULL,
-	[f8p0] real NOT NULL,
-	[err8p0] real NOT NULL,
-	[flag8p0] int NOT NULL,
-	[f24] real NOT NULL,
-	[err24_ima] real NOT NULL,
-	[err24_sim] real NOT NULL,
-	[cov24] real NOT NULL,
-	[f70] real NOT NULL,
-	[err70_ima] real NOT NULL,
-	[err70_sim] real NOT NULL,
-	[cov70] real NOT NULL,
-	[f100] real NOT NULL,
-	[err100_ima] real NOT NULL,
-	[err100_sim] real NOT NULL,
-	[cov100] real NOT NULL,
-	[f160] real NOT NULL,
-	[err160_ima] real NOT NULL,
-	[err160_sim] real NOT NULL,
-	[cov160] real NOT NULL,
-	[f250] real NOT NULL,
-	[err250_ima] real NOT NULL,
-	[err250_sim] real NOT NULL,
-	[cov250] real NOT NULL,
-	[f350] real NOT NULL,
-	[err350_ima] real NOT NULL,
-	[err350_sim] real NOT NULL,
-	[cov350] real NOT NULL,
-	[f500] real NOT NULL,
-	[err500_ima] real NOT NULL,
-	[err500_sim] real NOT NULL,
-	[cov500] real NOT NULL,
-	[clean_index] int NOT NULL,
-
-	CONSTRAINT [PK_PhotoObjRAW] PRIMARY KEY CLUSTERED
-(
-	[objID] ASC
-) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
--- BULK INSERT DATA
-BULK INSERT
-	PhotoObjRAW
-	FROM 'C:\Data\ebanyai\project\Skyquery-data\HERSCHEL_GOODS\\herschel_goods.bin'
-	WITH
-	(
-		DATAFILETYPE = 'native',
-		TABLOCK
-	)
-
-GO
-
-IF OBJECT_ID ('dbo.PhotoObj', 'U') IS NOT NULL
-	DROP TABLE dbo.PhotoObj;
-
-GO
--- CREATE PhotoObj TABLE
-CREATE TABLE dbo.PhotoObj
+-- CREATE goodsNorth TABLE
+CREATE TABLE dbo.goodsNorth
 (
 
 	--/ <summary> Cartesian X (J2000)</summary>
@@ -97,6 +20,9 @@ CREATE TABLE dbo.PhotoObj
 
 	--/ <summary> Sequential id </summary>
 	[objID] bigint NOT NULL,
+
+	--/ <summary> Zone ID (J2000)</summary>
+	[zoneid] int NOT NULL,
 
 	--/ <summary> GOODS IAU coded object identifier </summary>
 	[IAU_name] char(25) NOT NULL,
@@ -415,7 +341,7 @@ CREATE TABLE dbo.PhotoObj
 	--/ GOODS-South, it is assumed that Neib250 = Neib350 = Neib500 = 0. </summary>
 	[clean_index] int NOT NULL,
 
-	CONSTRAINT [PK.PhotoObj] PRIMARY KEY CLUSTERED
+	CONSTRAINT [PK.goodsNorth] PRIMARY KEY CLUSTERED
 (
 	[objID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -423,23 +349,53 @@ CREATE TABLE dbo.PhotoObj
 
 GO
 
--- INSERT DATA + CREATE HTMID, CX, CY, CZ
-INSERT dbo.PhotoObj WITH (TABLOCKX)
-( cx, cy, cz, htmid, objID, IAU_name, ra, dec, f3p6, err3p6, flag3p6, f4p5, err4p5, flag4p5, f5p8, err5p8, flag5p8, f8p0, err8p0, flag8p0, f24, err24_ima, err24_sim, cov24, f70, err70_ima, err70_sim, cov70, f100, err100_ima, err100_sim, cov100, f160, err160_ima, err160_sim, cov160, f250, err250_ima, err250_sim, cov250, f350, err350_ima, err350_sim, cov350, f500, err500_ima, err500_sim, cov500, clean_index)
-SELECT c.x AS  cx, c.y AS cy, c.z AS cz, Spherical.htm.FromXyz(c.x,c.y,c.z) AS htmid, objID, IAU_name, ra, dec, f3p6, err3p6, flag3p6, f4p5, err4p5, flag4p5, f5p8, err5p8, flag5p8, f8p0, err8p0, flag8p0, f24, err24_ima, err24_sim, cov24, f70, err70_ima, err70_sim, cov70, f100, err100_ima, err100_sim, cov100, f160, err160_ima, err160_sim, cov160, f250, err250_ima, err250_sim, cov250, f350, err350_ima, err350_sim, cov350, f500, err500_ima, err500_sim, cov500, clean_index
-FROM dbo.PhotoObjRAW
-CROSS APPLY Spherical.point.ConvertEqToXyz(ra, dec) AS c
 
+-- Spatial index
+CREATE NONCLUSTERED INDEX [IX_goodsNorth_Zone] ON [dbo].[goodsNorth] 
+(
+	[dec] ASC
+)
+INCLUDE
+(
+	[ra],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
--- DROP RAW TABLE
-DROP TABLE dbo.PhotoObjRAW;
+CREATE NONCLUSTERED INDEX [IX_goodsNorth_ZoneID] ON [dbo].[goodsNorth] 
+(
+	[zoneid] ASC,
+	[ra] ASC
+)
+INCLUDE
+(
+	[dec],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 -- HTM index
-CREATE NONCLUSTERED INDEX [IX.PhotoObj_htmid] ON [dbo].[PhotoObj]
+CREATE NONCLUSTERED INDEX [IX_goodsNorth_HtmID] ON [dbo].[goodsNorth] 
 (
 	[htmid] ASC
 )
-
+INCLUDE
+(
+	[ra],
+	[dec],
+	[cx],
+	[cy],
+	[cz],
+	[zoneID]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
