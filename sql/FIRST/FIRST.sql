@@ -1,60 +1,4 @@
-USE [First]
-GO
-
-IF OBJECT_ID ('dbo.PhotoObjRAW', 'U') IS NOT NULL
-	DROP TABLE dbo.PhotoObjRAW;
-
-GO
-
--- CREATE PhotoObjRAW TABLE
-
-CREATE TABLE dbo.PhotoObjRAW
-(	[objID] bigint NOT NULL,
-	[ra] float NOT NULL,
-	[dec] float NOT NULL,
-	[Ps]  real NOT NULL,
-	[Fpeak] real NOT NULL,
-	[Fint] real NOT NULL,
-	[RMS] real NOT NULL,
-	[Maj] real NOT NULL,
-	[Min] real NOT NULL,
-	[PA] real NOT NULL,
-	[fMaj] real NOT NULL,
-	[fMin] real NOT NULL,
-	[fPA] real NOT NULL,
-	[Field] char(12) NOT NULL,
-	[num_SDSS] smallint NOT NULL,
-	[Sep_SDSS] real NOT NULL,
-	[i_SDSS] real NOT NULL,
-	[Cl_SDSS] char(1) NOT NULL,
-	[num_2MASS] smallint NOT NULL,
-	[Sep_2MASS] real NOT NULL,
-	[K_2MASS] real NOT NULL,
-	[Mean_yr] real NOT NULL,
-	[Mean_MJD] float NOT NULL,
-	[rms_MJD] real NOT NULL,
-
-	
-
- CONSTRAINT [PK_PhotoObjRAW] PRIMARY KEY CLUSTERED 
-(
-	[objID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
-
--- BULK INSERT DATA
-
-BULK INSERT 
-   PhotoObjRAW
-      FROM 'C:\Data\ebanyai\project\FIRST\FIRST.bin' 
-     WITH 
-    ( 
-   DATAFILETYPE = 'native',
-   TABLOCK 
-    )
+USE [SkyNode_FIRST]
 GO
 
 -- CREATE PhotoObj TABLE
@@ -63,7 +7,6 @@ IF OBJECT_ID ('dbo.PhotoObj', 'U') IS NOT NULL
 	DROP TABLE dbo.PhotoObj;
 
 GO
-
 
 CREATE TABLE dbo.PhotoObj 
 (
@@ -110,6 +53,8 @@ CREATE TABLE dbo.PhotoObj
 	--/ <summary>HTM ID (J2000)</summary>
 	[htmid] [float] NOT NULL,
 
+	--/ <summary> Zone ID </summary>
+	[zoneid] int NOT NULL,
 
 	--/ <summary> Ps indicates the probability that the source is spurious (most commonly because it is a sidelobe 
 	--/ of a nearby bright source.) Low values mean the source is unlikely to be spurious. Here is the distribution  
@@ -296,26 +241,53 @@ CREATE TABLE dbo.PhotoObj
 ) ON [PRIMARY]
 GO
 
--- INSERT DATA + CREATE HTMID, CX, CY, CZ
-
-INSERT dbo.PhotoObj WITH (TABLOCKX)
-(objID,ra, dec, cx,cy,cz,htmid, Ps, Fpeak, Fint, RMS, Maj, Min, PA, fMaj, fMin, fPA, Field, num_SDSS, Sep_SDSS, i_SDSS, Cl_SDSS, 
-num_2MASS, Sep_2MASS, K_2MASS, Mean_yr, Mean_MJD, rms_MJD)
-SELECT objID, ra, dec, c.x AS  cx, c.y AS cy, c.z AS cz, Spherical.htm.FromXyz(c.x,c.y,c.z) AS htmid, Ps, Fpeak, Fint, RMS, Maj, 
-Min,PA, fMaj, fMin, fPA, Field, num_SDSS, Sep_SDSS, i_SDSS, Cl_SDSS, num_2MASS, Sep_2MASS, K_2MASS, Mean_yr, Mean_MJD, rms_MJD
-FROM dbo.PhotoObjRAW
-CROSS APPLY Spherical.point.ConvertEqToXyz(ra, dec) AS c
+-- Spatial index
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_Zone] ON [dbo].[PhotoObj] 
+(
+	[dec] ASC
+)
+INCLUDE
+(
+	[ra],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
--- DROP RAW TABLE
-DROP TABLE PhotoObjRAW
-
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_ZoneID] ON [dbo].[PhotoObj] 
+(
+	[zoneid] ASC,
+	[ra] ASC
+)
+INCLUDE
+(
+	[dec],
+	[cx],
+	[cy],
+	[cz]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
 
 -- HTM index
-
-CREATE NONCLUSTERED INDEX [IX_PhotoObj_htmid] ON [dbo].[PhotoObj]
+CREATE NONCLUSTERED INDEX [IX_PhotoObj_HtmID] ON [dbo].[PhotoObj] 
 (
 	[htmid] ASC
 )
+INCLUDE
+(
+	[ra],
+	[dec],
+	[cx],
+	[cy],
+	[cz],
+	[zoneID]
+)
+WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
+ON [PRIMARY]
 GO
+
