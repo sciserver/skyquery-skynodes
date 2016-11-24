@@ -1,5 +1,4 @@
 <metadata>
-  <table name="[dbo].[PhotoObjRAW]" />
   <table name="[dbo].[PhotoObj]">
     <column name="[cx]">
       <summary> Cartesian X (J2000)</summary>
@@ -12,6 +11,9 @@
 </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
+</column>
+    <column name="[zoneid]">
+      <summary> Zone ID </summary>
 </column>
     <column name="[objID]">
       <summary> Sequential number (unique object ID) </summary>

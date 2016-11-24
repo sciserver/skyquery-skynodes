@@ -1,5 +1,4 @@
 <metadata>
-  <table name="[dbo].[PhotoObjRAW]" />
   <table name="[dbo].[PhotoObj]">
     <column name="[objID]">
       <summary> Unique ID. </summary>
@@ -26,6 +25,9 @@
 </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
+</column>
+    <column name="[zoneid]">
+      <summary> Zone ID </summary>
 </column>
     <column name="[PER]">
       <summary> Period in days (or characteristic time scale of variation for irregular objects). </summary>

@@ -1,5 +1,4 @@
 <metadata>
-  <table name="[dbo].[PhotoObjRAW]" />
   <table name="[dbo].[IRC]">
     <column name="[objID]">
       <summary> AKARI source ID number. </summary>
@@ -29,6 +28,9 @@ literatures by its full name; AKARI-IRC-V1 J0123456+765432, where V1 refers to t
 </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
+</column>
+    <column name="[zoneid]">
+      <summary> Zone ID </summary>
 </column>
     <column name="[POSERRMJ]">
       <summary> Position error major axis. One-sigma error of the source position expressed by an ellipse with Major and Minor axes
@@ -160,7 +162,6 @@ near the edge of the image strip are excluded from the measurements. Note that i
 event are available, the flux is computed also from edge events. </summary>
 </column>
   </table>
-  <table name="[dbo].[PhotoObjRAW]" />
   <table name="[dbo].[FIS]">
     <column name="[objID]">
       <summary> Internal Object ID. A unique number for each object in the catalogue. This is mostly for internal use in the
@@ -191,6 +192,9 @@ literatures by its full name; AKARI-FIS-V1 J0123456+765432.</summary>
 </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
+</column>
+    <column name="[zoneid]">
+      <summary> Zone ID </summary>
 </column>
     <column name="[POSERRMJ]">
       <summary> Position error major axis. One-sigma error of the source position expressed by an ellipse with Major (POSERRMJ) and Minor axes (POSERRMI)

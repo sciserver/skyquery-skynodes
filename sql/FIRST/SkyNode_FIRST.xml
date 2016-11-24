@@ -1,5 +1,4 @@
 <metadata>
-  <table name="[dbo].[PhotoObjRAW]" />
   <table name="[dbo].[PhotoObj]">
     <column name="[objID]">
       <summary>FIRST primary key.</summary>
@@ -43,6 +42,9 @@ pixels and by various calibration uncertainties. Systematic errors in the positi
 </column>
     <column name="[htmid]">
       <summary>HTM ID (J2000)</summary>
+</column>
+    <column name="[zoneid]">
+      <summary> Zone ID </summary>
 </column>
     <column name="[Ps]">
       <summary> Ps indicates the probability that the source is spurious (most commonly because it is a sidelobe

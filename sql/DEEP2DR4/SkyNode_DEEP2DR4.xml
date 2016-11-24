@@ -1,6 +1,5 @@
 <metadata>
-  <table name="[dbo].[PhotoObjRAW]" />
-  <table name="[dbo].[PhotoObj]">
+  <table name="[dbo].[SpecObj]">
     <column name="[cx]">
       <summary> Cartesian X (J2000)</summary>
 </column>
@@ -12,6 +11,9 @@
 </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
+</column>
+    <column name="[zoneid]">
+      <summary> Zone ID </summary>
 </column>
     <column name="[objID]">
       <summary> DEEP2 object number </summary>

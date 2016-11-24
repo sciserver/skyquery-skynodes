@@ -1,5 +1,4 @@
 <metadata>
-  <table name="[dbo].[PhotoObjRAW]" />
   <table name="[dbo].[PhotoObj]">
     <column name="[objID]">
       <summary> Numerical ID. </summary>
@@ -26,6 +25,9 @@
 </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
+</column>
+    <column name="[zoneid]">
+      <summary> Zone ID </summary>
 </column>
     <column name="[ePos]">
       <summary> [0.03/158] Position error radius at 95% confidence level. </summary>
