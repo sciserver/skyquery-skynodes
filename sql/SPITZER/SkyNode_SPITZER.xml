@@ -1,0 +1,414 @@
+<metadata>
+  <table name="[dbo].[goodsnIRS16micron]">
+    <column name="[cx]">
+      <summary> Cartesian X (J2000)</summary>
+</column>
+    <column name="[cy]">
+      <summary> Cartesian Y (J2000)</summary>
+</column>
+    <column name="[cz]">
+      <summary> Cartesian Z (J2000)</summary>
+</column>
+    <column name="[htmid]">
+      <summary> HTM ID (J2000)</summary>
+</column>
+    <column name="[zoneid]">
+      <summary> Zone ID (J2000)</summary>
+</column>
+    <column name="[objID]">
+      <summary> Sequential ID </summary>
+</column>
+    <column name="[id]">
+      <summary> Source ID </summary>
+</column>
+    <column name="[ra]">
+      <summary> Right Ascension (J2000) </summary>
+<unit> deg </unit>
+</column>
+    <column name="[dec]">
+      <summary> Declination (J2000) </summary>
+<unit> deg </unit>
+</column>
+    <column name="[cov]">
+      <summary> Coverage </summary>
+</column>
+    <column name="[s3_6]">
+      <summary> 3.6 micron flux density </summary>
+<unit> microjy </unit>
+</column>
+    <column name="[e_s3_6]">
+      <summary> 3.6 micron flux density uncertainty </summary>
+<unit> microjy </unit>
+</column>
+    <column name="[s4_5]">
+      <summary> 4.5 micron flux density </summary>
+<unit> microjy </unit>
+</column>
+    <column name="[e_s4_5]">
+      <summary> 4.5 micron flux density uncertainty </summary>
+<unit> microjy </unit>
+</column>
+    <column name="[s5_8]">
+      <summary> 5.8 micron flux density </summary>
+<unit> microjy </unit>
+</column>
+    <column name="[e_s5_8]">
+      <summary> 5.8 micron flux density uncertainty </summary>
+<unit> microjy </unit>
+</column>
+    <column name="[s8]">
+      <summary> 8 micron flux density </summary>
+<unit> microjy </unit>
+</column>
+    <column name="[e_s8]">
+      <summary> 8 micron flux density uncertainty </summary>
+<unit> microjy </unit>
+</column>
+    <column name="[s16]">
+      <summary> 16 micron flux density </summary>
+<unit> microjy </unit>
+</column>
+    <column name="[e_s16]">
+      <summary> 16 micron flux density uncertainty </summary>
+<unit> microjy </unit>
+</column>
+    <column name="[s24]">
+      <summary> 24 micron flux density </summary>
+<unit> microjy </unit>
+</column>
+    <column name="[e_s24]">
+      <summary> 24 micron flux density uncertainty </summary>
+<unit> microjy </unit>
+</column>
+    <column name="[zspec]">
+      <summary> Spectroscopic redshift </summary>
+</column>
+    <column name="[r_zspec]">
+      <summary> Reference for the spectroscopic redshift </summary>
+</column>
+    <column name="[xdet]">
+      <summary> X-ray detection flag </summary>
+</column>
+    <column name="[sbf]">
+      <summary> Soft X-ray flux </summary>
+<unit> 1e-15 mW m^-2 </unit>
+</column>
+    <column name="[hbf]">
+      <summary> Hard X-ray flux </summary>
+<unit> 1e-15 mW m^-2 </unit>
+</column>
+    <column name="[star]">
+      <summary> Star flag </summary>
+</column>
+    <column name="[ratio]">
+      <summary> 16 micron concentration index </summary>
+</column>
+    <column name="[ncf]">
+      <summary> Number of 8 micron sources within 4 arcsec </summary>
+</column>
+    <column name="[ncf16]">
+      <summary> Number of 16 micron sources within 5.4 arcsec </summary>
+</column>
+    <column name="[q]">
+      <summary> Quality flag </summary>
+</column>
+    <column name="[e]">
+      <summary> Extended source flag </summary>
+</column>
+    <column name="[bmag]">
+      <summary> HST B magnitude </summary>
+<unit> mag </unit>
+</column>
+    <column name="[vmag]">
+      <summary> HST V magnitude </summary>
+<unit> mag </unit>
+</column>
+    <column name="[imag]">
+      <summary> HST I magnitude </summary>
+<unit> mag </unit>
+</column>
+    <column name="[zmag]">
+      <summary> HST z magnitude </summary>
+<unit> mag </unit>
+</column>
+    <column name="[ebmag]">
+      <summary> HST B magnitude uncertainty </summary>
+<unit> mag </unit>
+</column>
+    <column name="[evmag]">
+      <summary> HST V magnitude uncertainty </summary>
+<unit> mag </unit>
+</column>
+    <column name="[eimag]">
+      <summary> HST I magnitude uncertainty </summary>
+<unit> mag </unit>
+</column>
+    <column name="[ezmag]">
+      <summary> HST z magnitude uncertainty </summary>
+<unit> mag </unit>
+</column>
+    <column name="[icls]">
+      <summary> Number of I-band sources within 1 arcsec </summary>
+<unit> mag </unit>
+</column>
+  </table>
+  <table name="[dbo].[goodsnMIPS24micron]">
+    <column name="[cx]">
+      <summary> Cartesian X (J2000)</summary>
+</column>
+    <column name="[cy]">
+      <summary> Cartesian Y (J2000)</summary>
+</column>
+    <column name="[cz]">
+      <summary> Cartesian Z (J2000)</summary>
+</column>
+    <column name="[htmid]">
+      <summary> HTM ID (J2000)</summary>
+</column>
+    <column name="[zoneid]">
+      <summary> Zone ID (J2000)</summary>
+</column>
+    <column name="[objID]">
+      <summary> Sequential ID </summary>
+</column>
+    <column name="[srcid]">
+      <summary> Source Number </summary>
+</column>
+    <column name="[ra]">
+      <summary> RA J2000 of MIPS 24 micron source </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[dec]">
+      <summary> Dec J2000 of MIPS 24 micron source </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[ra_irac]">
+      <summary> RA J2000 of IRAC prior source (-1 if no prior) </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[dec_irac]">
+      <summary> Dec J2000 of IRAC prior source (-1 if no prior) </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[s_24]">
+      <summary> Flux density of MIPS 24 micron source </summary>
+<unit> microJy </unit>
+</column>
+    <column name="[s_24_err]">
+      <summary> Uncertanity in flux density of MIPS 24 micron source </summary>
+<unit> microJy </unit>
+</column>
+    <column name="[irac_tag]">
+      <summary> Set to 1 if there is IRAC coverage </summary>
+</column>
+    <column name="[extended_tag]">
+      <summary> Set to 1 if source is extended at 24 microns </summary>
+</column>
+  </table>
+  <table name="[dbo].[goodssIRS16micron]">
+    <column name="[cx]">
+      <summary> Cartesian X (J2000)</summary>
+</column>
+    <column name="[cy]">
+      <summary> Cartesian Y (J2000)</summary>
+</column>
+    <column name="[cz]">
+      <summary> Cartesian Z (J2000)</summary>
+</column>
+    <column name="[htmid]">
+      <summary> HTM ID (J2000)</summary>
+</column>
+    <column name="[zoneid]">
+      <summary> Zone ID (J2000)</summary>
+</column>
+    <column name="[objID]">
+      <summary> Sequential ID </summary>
+</column>
+    <column name="[id]">
+      <summary> Source ID </summary>
+</column>
+    <column name="[ra]">
+      <summary> Right Ascension (J2000) </summary>
+<unit> deg </unit>
+</column>
+    <column name="[dec]">
+      <summary> Declination (J2000) </summary>
+<unit> deg </unit>
+</column>
+    <column name="[cov]">
+      <summary> Coverage </summary>
+</column>
+    <column name="[s3_6]">
+      <summary> 3.6 micron flux density </summary>
+<unit> microjy </unit>
+</column>
+    <column name="[e_s3_6]">
+      <summary> 3.6 micron flux density uncertainty </summary>
+<unit> microjy </unit>
+</column>
+    <column name="[s4_5]">
+      <summary> 4.5 micron flux density </summary>
+<unit> microjy </unit>
+</column>
+    <column name="[e_s4_5]">
+      <summary> 4.5 micron flux density uncertainty </summary>
+<unit> microjy </unit>
+</column>
+    <column name="[s5_8]">
+      <summary> 5.8 micron flux density </summary>
+<unit> microjy </unit>
+</column>
+    <column name="[e_s5_8]">
+      <summary> 5.8 micron flux density uncertainty </summary>
+<unit> microjy </unit>
+</column>
+    <column name="[s8]">
+      <summary> 8 micron flux density </summary>
+<unit> microjy </unit>
+</column>
+    <column name="[e_s8]">
+      <summary> 8 micron flux density uncertainty </summary>
+<unit> microjy </unit>
+</column>
+    <column name="[s16]">
+      <summary> 16 micron flux density </summary>
+<unit> microjy </unit>
+</column>
+    <column name="[e_s16]">
+      <summary> 16 micron flux density uncertainty </summary>
+<unit> microjy </unit>
+</column>
+    <column name="[s24]">
+      <summary> 24 micron flux density </summary>
+<unit> microjy </unit>
+</column>
+    <column name="[e_s24]">
+      <summary> 24 micron flux density uncertainty </summary>
+<unit> microjy </unit>
+</column>
+    <column name="[zspec]">
+      <summary> Spectroscopic redshift </summary>
+</column>
+    <column name="[r_zspec]">
+      <summary> Reference for the spectroscopic redshift </summary>
+</column>
+    <column name="[xdet]">
+      <summary> X-ray detection flag </summary>
+</column>
+    <column name="[sbf]">
+      <summary> Soft X-ray flux </summary>
+<unit> 1e-15 mW m^-2 </unit>
+</column>
+    <column name="[hbf]">
+      <summary> Hard X-ray flux </summary>
+<unit> 1e-15 mW m^-2 </unit>
+</column>
+    <column name="[star]">
+      <summary> Star flag </summary>
+</column>
+    <column name="[ratio]">
+      <summary> 16 micron concentration index </summary>
+</column>
+    <column name="[ncf]">
+      <summary> Number of 8 micron sources within 4 arcsec </summary>
+</column>
+    <column name="[ncf16]">
+      <summary> Number of 16 micron sources within 5.4 arcsec </summary>
+</column>
+    <column name="[q]">
+      <summary> Quality flag </summary>
+</column>
+    <column name="[e]">
+      <summary> Extended source flag </summary>
+</column>
+    <column name="[bmag]">
+      <summary> HST B magnitude </summary>
+<unit> mag </unit>
+</column>
+    <column name="[vmag]">
+      <summary> HST V magnitude </summary>
+<unit> mag </unit>
+</column>
+    <column name="[imag]">
+      <summary> HST I magnitude </summary>
+<unit> mag </unit>
+</column>
+    <column name="[zmag]">
+      <summary> HST z magnitude </summary>
+<unit> mag </unit>
+</column>
+    <column name="[ebmag]">
+      <summary> HST B magnitude uncertainty </summary>
+<unit> mag </unit>
+</column>
+    <column name="[evmag]">
+      <summary> HST V magnitude uncertainty </summary>
+<unit> mag </unit>
+</column>
+    <column name="[eimag]">
+      <summary> HST I magnitude uncertainty </summary>
+<unit> mag </unit>
+</column>
+    <column name="[ezmag]">
+      <summary> HST z magnitude uncertainty </summary>
+<unit> mag </unit>
+</column>
+    <column name="[icls]">
+      <summary> Number of I-band sources within 1 arcsec </summary>
+<unit> mag </unit>
+</column>
+  </table>
+  <table name="[dbo].[goodssMIPS24micron]">
+    <column name="[cx]">
+      <summary> Cartesian X (J2000)</summary>
+</column>
+    <column name="[cy]">
+      <summary> Cartesian Y (J2000)</summary>
+</column>
+    <column name="[cz]">
+      <summary> Cartesian Z (J2000)</summary>
+</column>
+    <column name="[htmid]">
+      <summary> HTM ID (J2000)</summary>
+</column>
+    <column name="[zoneid]">
+      <summary> Zone ID (J2000)</summary>
+</column>
+    <column name="[objID]">
+      <summary> Sequential ID </summary>
+</column>
+    <column name="[srcid]">
+      <summary> Source Number </summary>
+</column>
+    <column name="[ra]">
+      <summary> RA J2000 of MIPS 24 micron source </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[dec]">
+      <summary> Dec J2000 of MIPS 24 micron source </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[ra_irac]">
+      <summary> RA J2000 of IRAC prior source (-1 if no prior) </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[dec_irac]">
+      <summary> Dec J2000 of IRAC prior source (-1 if no prior) </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[s_24]">
+      <summary> Flux density of MIPS 24 micron source </summary>
+<unit> microJy </unit>
+</column>
+    <column name="[s_24_err]">
+      <summary> Uncertanity in flux density of MIPS 24 micron source </summary>
+<unit> microJy </unit>
+</column>
+    <column name="[irac_tag]">
+      <summary> Set to 1 if there is IRAC coverage </summary>
+</column>
+    <column name="[extended_tag]">
+      <summary> Set to 1 if source is extended at 24 microns </summary>
+</column>
+  </table>
+</metadata>
