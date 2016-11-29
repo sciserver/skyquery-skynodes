@@ -1,73 +1,229 @@
 USE [SkyNode_USNOB]
 GO
 
-CREATE TABLE [dbo].[PhotoObj](
 --/ <summary> The main photometry table for the USNOB1.0 catalog </summary>
 --/ <remarks> We created a bigint objid that is concatenated from  zone and seqNo, with zone in the upper 4 bytes of objid.  The table has been loaded by the ROE group, and has been  genereously shared with the JHU group. </remarks>
-	[objid] [bigint] NOT NULL, --/ <column content="ID_MAIN">Main unique object identifier</column>
-	[zone] [smallint] NOT NULL, --/ <column content="ID_MAIN:1">The catalog is arranged in zones of 0.1deg in Dec, from 0 in South Pole to 1799 in North Pole</column>
-	[seqNo] [int] NOT NULL, --/ <column content="ID_MAIN:2">Sequence number of objects ordered by Right Ascension in the zone.</column>
-	[ra] [float] NOT NULL, --/ <column unit="deg" content="POS_EQ_RA_MAIN">J2000 Celestial Right Ascension</column>
-	[dec] [float] NOT NULL, --/ <column unit="deg" content="POS_EQ_DEC_MAIN">J2000 Celestial Declination</column>
-	[cx] [float] NOT NULL, --/ <column content="POS_EQ_X">unit vector of spherical co-ordinate</column>
-	[cy] [float] NOT NULL, --/ <column content="POS_EQ_Y">unit vector of spherical co-ordinate</column>
-	[cz] [float] NOT NULL, --/ <column content="POS_EQ_Z">unit vector of spherical co-ordinate</column>
-	[htmID] [bigint] NOT NULL, --/ <column content="POS_GENERAL">HTM index, 20 digits, for co-ordinate</column>
-	[zoneID] [bigint] NOT NULL, --/ <column content="POS_GENERAL">ZoneID</column>
-	[pmRA] [real] NOT NULL, --/ <column unit="mas/yr" content="POS_EQ_PMRA">Proper motion in RA (relative to YS4.0)</column>
-	[pmDEC] [real] NOT NULL, --/ <column unit="mas/yr" content="POS_EQ_PMDEC">Proper motion in DEC (relative to YS4.0)</column>
-	[pmPr] [real] NOT NULL, --/ <column content="STAT_PROBABILITY">Total Proper Motion probability</column>
-	[mcFlag] [tinyint] NOT NULL, --/ <column content="CODE_MISC">Motion catalogue flag, 0=no, 1=yes</column>
-	[e_pmRA] [real] NOT NULL, --/ <column unit="mas/yr" content="ERROR">Mean error on pmRA</column>
-	[e_pmDEC] [real] NOT NULL, --/ <column unit="mas/yr" content="ERROR">Mean error on pmDEC</column>
-	[e_RAfit] [real] NOT NULL, --/ <column unit="arcsec" content="FIT_ERROR">Mean error on RA fit</column>
-	[e_DECfit] [real] NOT NULL, --/ <column unit="arcsec" content="FIT_ERROR">Mean error on DEC fit</column>
-	[Ndet] [tinyint] NOT NULL, --/ <column content="NUMBER">Number of detections</column>
-	[difSp] [tinyint] NOT NULL, --/ <column content="CODE_MISC">Diffraction spike flag, 0=no, 1=yes</column>
-	[e_RA] [real] NOT NULL, --/ <column unit="mas" content="ERROR">Mean error on ra*cos(dec) at Epoch</column>
-	[e_DEC] [real] NOT NULL, --/ <column unit="mas" content="ERROR">Mean error on dec at Epoch</column>
-	[Epoch] [real] NOT NULL, --/ <column unit="yr" content="TIME_EPOCH">Mean epoch of observation</column>
-	[ys40] [tinyint] NOT NULL, --/ <column content="CODE_MISC">YS4.0 correlation flag, 0=no, 1=yes</column>
-	[B1Mag] [real] NOT NULL, --/ <column unit="mag" content="PHOT_PHG_B">First blue magnitude</column>
-	[B1C] [tinyint] NOT NULL, --/ <column content="INST_CALIB_PARAM">source of photometric calibration</column>
-	[B1S] [tinyint] NOT NULL, --/ <column content="ID_SURVEY">Survey number</column>
-	[B1F] [smallint] NOT NULL, --/ <column content="ID_FIELD">Field number in survey</column>
-	[B1S_G] [tinyint] NOT NULL, --/ <column content="CLASS_STAR/GALAXY">Star-galaxy separation</column>
-	[B1Xi] [real] NOT NULL, --/ <column unit="arcsec" content="POS_EQ_RA_OFF">Residual in X direction</column>
-	[B1Eta] [real] NOT NULL, --/ <column unit="arcsec" content="POS_EQ_DEC_OFF">Residual in Y direction</column>
-	[R1Mag] [real] NOT NULL, --/ <column unit="mag" content="PHOT_PHG_R">First red magnitude</column>
-	[R1C] [tinyint] NOT NULL, --/ <column content="INST_CALIB_PARAM">source of photometric calibration</column>
-	[R1S] [tinyint] NOT NULL, --/ <column content="ID_SURVEY">Survey number</column>
-	[R1F] [smallint] NOT NULL, --/ <column content="ID_FIELD">Field number in survey</column>
-	[R1S_G] [tinyint] NOT NULL, --/ <column content="CLASS_STAR/GALAXY">Star-galaxy separation</column>
-	[R1Xi] [real] NOT NULL, --/ <column unit="arcsec" content="POS_EQ_RA_OFF">Residual in X direction</column>
-	[R1Eta] [real] NOT NULL, --/ <column unit="arcsec" content="POS_EQ_DEC_OFF">Residual in Y direction</column>
-	[B2Mag] [real] NOT NULL, --/ <column unit="mag" content="PHOT_PHG_B">Second blue magnitude</column>
-	[B2C] [tinyint] NOT NULL, --/ <column content="INST_CALIB_PARAM">source of photometric calibration</column>
-	[B2S] [tinyint] NOT NULL, --/ <column content="ID_SURVEY">Survey number</column>
-	[B2F] [smallint] NOT NULL, --/ <column content="ID_FIELD">Field number in survey</column>
-	[B2S_G] [tinyint] NOT NULL, --/ <column content="CLASS_STAR/GALAXY">Star-galaxy separation</column>
-	[B2Xi] [real] NOT NULL, --/ <column unit="arcsec" content="POS_EQ_RA_OFF">Residual in X direction</column>
-	[B2Eta] [real] NOT NULL, --/ <column unit="arcsec" content="POS_EQ_DEC_OFF">Residual in Y direction</column>
-	[R2Mag] [real] NOT NULL, --/ <column unit="mag" content="PHOT_PHG_R">Second red magnitude</column>
-	[R2C] [tinyint] NOT NULL, --/ <column content="INST_CALIB_PARAM">source of photometric calibration</column>
-	[R2S] [tinyint] NOT NULL, --/ <column content="ID_SURVEY">Survey number</column>
-	[R2F] [smallint] NOT NULL, --/ <column content="ID_FIELD">Field number in survey</column>
-	[R2S_G] [tinyint] NOT NULL, --/ <column content="CLASS_STAR/GALAXY">Star-galaxy separation</column>
-	[R2Xi] [real] NOT NULL, --/ <column unit="arcsec" content="POS_EQ_RA_OFF">Residual in X direction</column>
-	[R2Eta] [real] NOT NULL, --/ <column unit="arcsec" content="POS_EQ_DEC_OFF">Residual in Y direction</column>
-	[NMag] [real] NOT NULL, --/ <column unit="mag" content="PHOT_PHG_I">Infrared (N) magnitude</column>
-	[NC] [tinyint] NOT NULL, --/ <column content="INST_CALIB_PARAM">source of photometric calibration</column>
-	[NS] [tinyint] NOT NULL, --/ <column content="ID_SURVEY">Survey number</column>
-	[NF] [smallint] NOT NULL, --/ <column content="ID_FIELD">Field number in survey</column>
-	[NS_G] [tinyint] NOT NULL, --/ <column content="CLASS_STAR/GALAXY">Star-galaxy separation</column>
-	[NXi] [real] NOT NULL, --/ <column unit="arcses" content="POS_EQ_RA_OFF">Residual in X direction</column>
-	[NEta] [real] NOT NULL, --/ <column unit="arcsec" content="POS_EQ_DEC_OFF">Residual in Y direction</column>
-	[lbIdxB1] [int] NOT NULL, --/ <column content="CODE_MISC">First blue look-back index into PMM scan file</column>
-	[lbIdxR1] [int] NOT NULL, --/ <column content="CODE_MISC">First red look-back index into PMM scan file</column>
-	[lbIdxB2] [int] NOT NULL, --/ <column content="CODE_MISC">Second blue look-back index into PMM scan file</column>
-	[lbIdxR2] [int] NOT NULL, --/ <column content="CODE_MISC">Second red look-back index into PMM scan file</column>
-	[lbIdxN] [int] NOT NULL --/ <column content="CODE_MISC">N look-back index into PMM scan file</column>
+CREATE TABLE [dbo].[PhotoObj](
+		
+	--/ <summary>Main unique object identifier</summary>
+	[objid] [bigint] NOT NULL, 
+
+	--/ <summary>The catalog is arranged in zones of 0.1deg in Dec, from 0 in South Pole to 1799 in North Pole</summary>
+	[zone] [smallint] NOT NULL, 
+
+	--/ <summary>Sequence number of objects ordered by Right Ascension in the zone.</summary>
+	--/ <unit>deg (J2000)</unit>
+	[seqNo] [int] NOT NULL, 
+
+	--/ <summary>J2000 Celestial Right Ascension</summary>
+	--/ <unit>deg (J2000)</unit>
+	[ra] [float] NOT NULL, 
+
+	--/ <summary>J2000 Celestial Declination</summary>
+	--/ <unit>deg</unit>
+	[dec] [float] NOT NULL, 
+
+	--/ <summary>unit vector of spherical co-ordinate</summary>
+	[cx] [float] NOT NULL, 
+
+	--/ <summary>unit vector of spherical co-ordinate</summary>
+	[cy] [float] NOT NULL, 
+
+	--/ <summary>unit vector of spherical co-ordinate</summary>
+	[cz] [float] NOT NULL, 
+
+	--/ <summary>HTM index, 20 digits, for co-ordinate</summary>
+	[htmID] [bigint] NOT NULL, 
+
+	--/ <summary>ZoneID</summary>
+	[zoneID] [bigint] NOT NULL, 
+
+	--/ <summary>Proper motion in RA (relative to YS4.0)</summary>
+	--/ <unit>mas/yr</unit>
+	[pmRA] [real] NOT NULL, 
+
+	--/ <summary>Proper motion in DEC (relative to YS4.0)</summary>
+	--/ <unit>mas/yr</unit>
+	[pmDEC] [real] NOT NULL, 
+
+	--/ <summary>Total Proper Motion probability</summary>
+	[pmPr] [real] NOT NULL, 
+
+	--/ <summary>Motion catalogue flag, 0=no, 1=yes</summary>
+	[mcFlag] [tinyint] NOT NULL, 
+
+	--/ <summary>Mean error on pmRA</summary>
+	--/ <unit>myas/yr</unit>
+	[e_pmRA] [real] NOT NULL, 
+
+	--/ <summary>Mean error on pmDEC</summary>
+	--/ <unit>mas/yr</unit>
+	[e_pmDEC] [real] NOT NULL, 
+
+	--/ <summary>Mean error on RA fit</summary>
+	--/ <unit>arcsec</unit>
+	[e_RAfit] [real] NOT NULL, 
+
+	--/ <summary>Mean error on DEC fit</summary>
+	--/ <unit>arcsec</unit>
+	[e_DECfit] [real] NOT NULL, 
+
+	--/ <summary>Number of detections</summary>
+	[Ndet] [tinyint] NOT NULL, 
+
+	--/ <summary>Diffraction spike flag, 0=no, 1=yes</summary>
+	[difSp] [tinyint] NOT NULL, 
+
+	--/ <summary>Mean error on ra*cos(dec) at Epoch</summary>
+	--/ <unit>mas</unit>
+	[e_RA] [real] NOT NULL, 
+
+	--/ <summary>Mean error on dec at Epoch</summary>
+	--/ <unit>mas</unit>
+	[e_DEC] [real] NOT NULL, 
+
+	--/ <summary>Mean epoch of observation</summary>
+	--/ <unit>yr</unit>
+	[Epoch] [real] NOT NULL, 
+
+	--/ <summary>YS4.0 correlation flag, 0=no, 1=yes</summary>
+	[ys40] [tinyint] NOT NULL, 
+
+	--/ <summary>First blue magnitude</summary>
+	--/ <unit>mag</unit>
+	[B1Mag] [real] NOT NULL, 
+
+	--/ <summary>source of photometric calibration</summary>
+	[B1C] [tinyint] NOT NULL, 
+
+	--/ <summary>Survey number</summary>
+	[B1S] [tinyint] NOT NULL, 
+
+	--/ <summary>Field number in survey</summary>
+	[B1F] [smallint] NOT NULL, 
+
+	--/ <summary>Star-galaxy separation</summary>
+	[B1S_G] [tinyint] NOT NULL, 
+
+	--/ <summary>Residual in X direction</summary>
+	--/ <unit>arcsec</unit>
+	[B1Xi] [real] NOT NULL, 
+
+	--/ <summary>Residual in Y direction</summary>
+	--/ <unit>arcsec</unit>
+	[B1Eta] [real] NOT NULL, 
+
+	--/ <summary>First red magnitude</summary>
+	--/ <unit>mag</unit>
+	[R1Mag] [real] NOT NULL, 
+
+	--/ <summary>source of photometric calibration</summary>
+	[R1C] [tinyint] NOT NULL, 
+
+	--/ <summary>Survey number</summary>
+	[R1S] [tinyint] NOT NULL, 
+
+	--/ <summary>Field number in survey</summary>
+	[R1F] [smallint] NOT NULL, 
+
+	--/ <summary>Star-galaxy separation</summary>
+	[R1S_G] [tinyint] NOT NULL, 
+
+	--/ <summary>Residual in X direction</summary>
+	--/ <unit>arcsec</unit>
+	[R1Xi] [real] NOT NULL, 
+
+	--/ <summary>Residual in Y direction</summary>
+	--/ <unit>arcsec</unit>
+	[R1Eta] [real] NOT NULL, 
+
+	--/ <summary>Second blue magnitude</summary>
+	--/ <unit>mag</unit>
+	[B2Mag] [real] NOT NULL, 
+
+	--/ <summary>source of photometric calibration</summary>
+	[B2C] [tinyint] NOT NULL, 
+
+	--/ <summary>Survey number</summary>
+	[B2S] [tinyint] NOT NULL, 
+
+	--/ <summary>Field number in survey</summary>
+	[B2F] [smallint] NOT NULL, 
+
+	--/ <summary>Star-galaxy separation</summary>
+	[B2S_G] [tinyint] NOT NULL, 
+
+	--/ <summary>Residual in X direction</summary>
+	--/ <unit>arcsec</unit>
+	[B2Xi] [real] NOT NULL, 
+
+	--/ <summary>Residual in Y direction</summary>
+	--/ <unit>arcsec</unit>
+	[B2Eta] [real] NOT NULL, 
+
+	--/ <summary>Second red magnitude</summary>
+	--/ <unit>mag</unit>
+	[R2Mag] [real] NOT NULL, 
+
+	--/ <summary>source of photometric calibration</summary>
+	[R2C] [tinyint] NOT NULL, 
+
+	--/ <summary>Survey number</summary>
+	[R2S] [tinyint] NOT NULL, 
+
+	--/ <summary>Field number in survey</summary>
+	[R2F] [smallint] NOT NULL, 
+
+	--/ <summary>Star-galaxy separation</summary>
+	[R2S_G] [tinyint] NOT NULL, 
+
+	--/ <summary>Residual in X direction</summary>
+	--/ <unit>arcsec</unit>
+	[R2Xi] [real] NOT NULL, 
+
+	--/ <summary>Residual in Y direction</summary>
+	--/ <unit>arcsec</unit>
+	[R2Eta] [real] NOT NULL, 
+
+	--/ <summary>Infrared (N) magnitude</summary>
+	--/ <unit>mag</unit>
+	[NMag] [real] NOT NULL, 
+
+	--/ <summary>source of photometric calibration</summary>
+	[NC] [tinyint] NOT NULL, 
+
+	--/ <summary>Survey number</summary>
+	[NS] [tinyint] NOT NULL, 
+
+	--/ <summary>Field number in survey</summary>
+	[NF] [smallint] NOT NULL, 
+
+	--/ <summary>Star-galaxy separation</summary>
+	[NS_G] [tinyint] NOT NULL, 
+
+	--/ <summary>Residual in X direction</summary>
+	--/ <unit>arcsec</unit>
+	[NXi] [real] NOT NULL, 
+
+	--/ <summary>Residual in Y direction</summary>
+	--/ <unit>arcsec</unit>
+	[NEta] [real] NOT NULL, 
+
+	--/ <summary>First blue look-back index into PMM scan file</summary>
+	[lbIdxB1] [int] NOT NULL, 
+
+	--/ <summary>First red look-back index into PMM scan file</summary>
+	[lbIdxR1] [int] NOT NULL, 
+
+	--/ <summary>Second blue look-back index into PMM scan file</summary>
+	[lbIdxB2] [int] NOT NULL, 
+
+	--/ <summary>Second red look-back index into PMM scan file</summary>
+	[lbIdxR2] [int] NOT NULL, 
+
+	--/ <summary>N look-back index into PMM scan file</summary>
+	[lbIdxN] [int] NOT NULL 
+
 ) ON [PRIMARY]
 GO
 
