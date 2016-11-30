@@ -3,47 +3,143 @@ USE SkyNode_FUSE
 CREATE TABLE [dbo].[PhotoObj](
 --/ <summary>A view of the SpecObj table so SkyNode queries will work</summary>
 --/ <remarks>Using the FUSE SkyNode for cross-matching requires it to have a table named PhotoPrimary.  Even though FUSE data is spectroscopic data, a PhotoPrimary view of the main SpecObj table is defined for this purpose.</remarks>
-	[objID] [bigint] NOT NULL, --/ <column>Unique ID of each object</column>
-	[TELESCOP] [varchar](64) NOT NULL, --/ <column></column>
-	[ROOTNAME] [varchar](64) NOT NULL, --/ <column>Rootname of the observation ppppttooeee</column>
-	[PRGRM_ID] [varchar](64) NOT NULL, --/ <column>PROGRAM IDENTIFICATION</column>
-	[TARG_ID] [float] NOT NULL, --/ <column>Target ID</column>
-	[PR_INV_L] [varchar](64) NOT NULL, --/ <column> Last name of principal investigator</column>
-	[PR_INV_R] [varchar](64) NOT NULL, --/ <column> First name of principal investigator </column>
-	[TARGNAME] [varchar](64) NOT NULL, --/ <column>Target name on proposal</column>
-	[RA] [float] NOT NULL, --/ <column unit="deg">Right ascension of the target</column>
-	[DEC] [float] NOT NULL, --/ <column unit="deg">Declination of the target</column>
-	[cx] [float] NOT NULL, --/ <column>Cartesian coordinate x</column>
-	[cy] [float] NOT NULL, --/ <column>Cartesian coordinate y</column>
-	[cz] [float] NOT NULL, --/ <column>Cartesian coordinate z</column>
-	[htmid] [bigint] NOT NULL, --/ <column>HTM ID</column>
-	[zoneid] [bigint] NOT NULL, --/ <column>Zone ID</column>
-	[APER_PA] [float] NOT NULL, --/ <column unit="deg">Position angle of Y axis</column>
-	[ELAT] [float] NOT NULL, --/ <column unit="deg">Ecliptic latitud</column>
-	[ELONG] [float] NOT NULL, --/ <column unit="deg">Ecliptic longitud</column>
-	[GLAT] [float] NOT NULL, --/ <column unit="deg">Galactic latitud</column>
-	[GLONG] [float] NOT NULL, --/ <column unit="deg">Galactic longitud</column>
-	[OBJCLASS] [float] NOT NULL, --/ <column>Object class</column>
-	[SP_TYPE] [varchar](64) NULL, --/ <column> MK spectral type and luminosity class </column>
-	[SRC_TYPE] [varchar](64) NULL, --/ <column>Point or Extended Continuum Emission</column>
-	[VMAG] [float] NOT NULL, --/ <column>Target V magnitud</column>
-	[EBV] [float] NOT NULL, --/ <column>Color excess</column>
-	[Z] [float] NOT NULL, --/ <column>Redshift</column>
-	[HIGH_PM] [varchar](64) NOT NULL, --/ <column>High proper motion target</column>
-	[MOV_TARG] [varchar](64) NOT NULL, --/ <column>Fixed or Moving target</column>
-	[DATEOBS] [varchar](64) NOT NULL, --/ <column>UT date of start of exposure yyyy-mm-dd</column>
-	[OBSSTART] [float] NOT NULL, --/ <column>Exposure start time - Modified Julian Date</column>
-	[OBSEND] [float] NOT NULL, --/ <column>Exposure end time - Modified Julian Date</column>
-	[OBSTIME] [float] NOT NULL, --/ <column unit="s"> Total time after screening </column>
-	[RAWTIME] [float] NOT NULL, --/ <column unit="s">Exposure duration of raw data file</column>
-	[OBSNIGHT] [float] NOT NULL, --/ <column unit="s">Night time after screening</column>
-	[INSTMODE] [varchar](64) NOT NULL, --/ <column>Instrument mode TTAG or HIST</column>
-	[APERTURE] [varchar](64) NOT NULL, --/ <column>Planned target aperture</column>
-	[CF_VERS] [varchar](64) NOT NULL, --/ <column>CALFUSE pipeline version number</column>
-	[BANDWID] [float] NOT NULL, --/ <column unit="Angstroms">Bandwidth of the data</column>
-	[CENTRWV] [float] NOT NULL, --/ <column unit="Angstroms">Central wavelenght of the data</column>
-	[WAVEMIN] [float] NOT NULL, --/ <column unit="Angstroms">Minimun wavelenght of the data</column>
-	[WAVEMAX] [float] NOT NULL  --/ <column unit="Angstroms">Maximun wavelenght of the data</column>
+
+	--/ <summary>Unique ID of each object</summary>
+	[objID] [bigint] NOT NULL, 
+
+	--/ <summary></summary>
+	[TELESCOP] [varchar](64) NOT NULL, 
+
+	--/ <summary>Rootname of the observation ppppttooeee</summary>
+	[ROOTNAME] [varchar](64) NOT NULL, 
+
+	--/ <summary>PROGRAM IDENTIFICATION</summary>
+	[PRGRM_ID] [varchar](64) NOT NULL, 
+
+	--/ <summary>Target ID</summary>
+	[TARG_ID] [float] NOT NULL, 
+
+	--/ <summary> Last name of principal investigator</summary>
+	[PR_INV_L] [varchar](64) NOT NULL, 
+
+	--/ <summary> First name of principal investigator </summary>
+	[PR_INV_R] [varchar](64) NOT NULL, 
+
+	--/ <summary>Target name on proposal</summary>
+	[TARGNAME] [varchar](64) NOT NULL, 
+
+	--/ <summary>Right ascension of the target</summary>
+	--/ <unit>deg</unit>
+	[RA] [float] NOT NULL, 
+
+	--/ <summary>Declination of the target</summary>
+	--/ <unit>deg</unit>
+	[DEC] [float] NOT NULL, 
+
+	--/ <summary>Cartesian coordinate x</summary>
+	[cx] [float] NOT NULL, 
+
+	--/ <summary>Cartesian coordinate y</summary>
+	[cy] [float] NOT NULL, 
+
+	--/ <summary>Cartesian coordinate z</summary>
+	[cz] [float] NOT NULL, 
+
+	--/ <summary>HTM ID</summary>
+	[htmid] [bigint] NOT NULL, 
+
+	--/ <summary>Zone ID</summary>
+	[zoneid] [bigint] NOT NULL, 
+
+	--/ <summary>Position angle of Y axis</summary>
+	--/ <unit>deg</unit>
+	[APER_PA] [float] NOT NULL, 
+
+	--/ <summary>Ecliptic latitud</summary>
+	--/ <unit>deg</unit>
+	[ELAT] [float] NOT NULL, 
+
+	--/ <summary>Ecliptic longitud</summary>
+	--/ <unit>deg</unit>
+	[ELONG] [float] NOT NULL, 
+
+	--/ <summary>Galactic latitud</summary>
+	--/ <unit>deg</unit>
+	[GLAT] [float] NOT NULL, 
+
+	--/ <summary>Galactic longitud</summary>
+	--/ <unit>deg</unit>
+	[GLONG] [float] NOT NULL, 
+
+	--/ <summary>Object class</summary>
+	[OBJCLASS] [float] NOT NULL, 
+
+	--/ <summary> MK spectral type and luminosity class </summary>
+	[SP_TYPE] [varchar](64) NULL, 
+
+	--/ <summary>Point or Extended Continuum Emission</summary>
+	[SRC_TYPE] [varchar](64) NULL, 
+
+	--/ <summary>Target V magnitud</summary>
+	[VMAG] [float] NOT NULL, 
+
+	--/ <summary>Color excess</summary>
+	[EBV] [float] NOT NULL, 
+
+	--/ <summary>Redshift</summary>
+	[Z] [float] NOT NULL, 
+
+	--/ <summary>High proper motion target</summary>
+	[HIGH_PM] [varchar](64) NOT NULL, 
+
+	--/ <summary>Fixed or Moving target</summary>
+	[MOV_TARG] [varchar](64) NOT NULL, 
+
+	--/ <summary>UT date of start of exposure yyyy-mm-dd</summary>
+	[DATEOBS] [varchar](64) NOT NULL, 
+
+	--/ <summary>Exposure start time - Modified Julian Date</summary>
+	[OBSSTART] [float] NOT NULL, 
+
+	--/ <summary>Exposure end time - Modified Julian Date</summary>
+	[OBSEND] [float] NOT NULL, 
+
+	--/ <summary> Total time after screening </summary>
+	--/ <unit>s</unit>
+	[OBSTIME] [float] NOT NULL, 
+
+	--/ <summary>Exposure duration of raw data file</summary>
+	--/ <unit>s</unit>
+	[RAWTIME] [float] NOT NULL, 
+
+	--/ <summary>Night time after screening</summary>
+	--/ <unit>s</unit>
+	[OBSNIGHT] [float] NOT NULL, 
+
+	--/ <summary>Instrument mode TTAG or HIST</summary>
+	[INSTMODE] [varchar](64) NOT NULL, 
+
+	--/ <summary>Planned target aperture</summary>
+	[APERTURE] [varchar](64) NOT NULL, 
+
+	--/ <summary>CALFUSE pipeline version number</summary>
+	[CF_VERS] [varchar](64) NOT NULL, 
+
+	--/ <summary>Bandwidth of the data</summary>
+	--/ <unit>Angstroms</unit>
+	[BANDWID] [float] NOT NULL, 
+
+	--/ <summary>Central wavelenght of the data</summary>
+	--/ <unit>Angstroms</unit>
+	[CENTRWV] [float] NOT NULL, 
+
+	--/ <summary>Minimun wavelenght of the data</summary>
+	--/ <unit>Angstroms</unit>
+	[WAVEMIN] [float] NOT NULL, 
+
+	--/ <summary>Maximun wavelenght of the data</summary>
+	--/ <unit>Angstroms</unit>
+	[WAVEMAX] [float] NOT NULL  
 ) ON [PRIMARY]
 
 
@@ -108,11 +204,21 @@ GO
 CREATE TABLE [dbo].[SpecLine](
 --/ <summary>The flux for each spectral line is in this table</summary>
 --/ <remarks></remarks>
-	[ObjID] [bigint] NOT NULL, --/ <column></column>
-	[LineID] [int] NOT NULL, --/ <column>Unique ID for each spectral line</column>
-	[WAVE] [float] NOT NULL, --/ <column>Wavelength</column>
-	[FLUX] [float] NOT NULL, --/ <column>Flux</column>
-	[ERROR] [float] NOT NULL --/ <column>Error</column>
+
+	--/ <summary></summary>
+	[ObjID] [bigint] NOT NULL, 
+
+	--/ <summary>Unique ID for each spectral line</summary>
+	[LineID] [int] NOT NULL, 
+
+	--/ <summary>Wavelength</summary>
+	[WAVE] [float] NOT NULL, 
+
+	--/ <summary>Flux</summary>
+	[FLUX] [float] NOT NULL, 
+
+	--/ <summary>Error</summary>
+	[ERROR] [float] NOT NULL 
 ) ON [PRIMARY]
 
 ALTER TABLE [dbo].[SpecLine] ADD  CONSTRAINT [PK_SpecLine] PRIMARY KEY CLUSTERED 
@@ -127,47 +233,143 @@ CREATE TABLE [dbo].[SpecObj]
 (
 --/ <summary>The main table containing the astronomical data</summary>
 --/ <remarks></remarks>
-	[objID] [bigint] NOT NULL, --/ <column>Unique ID of each object</column>
-	[TELESCOP] [varchar](64) NOT NULL, --/ <column></column>
-	[ROOTNAME] [varchar](64) NOT NULL, --/ <column>Rootname of the observation ppppttooeee</column>
-	[PRGRM_ID] [varchar](64) NOT NULL, --/ <column>PROGRAM IDENTIFICATION</column>
-	[TARG_ID] [float] NOT NULL, --/ <column>Target ID</column>
-	[PR_INV_L] [varchar](64) NOT NULL, --/ <column> Last name of principal investigator</column>
-	[PR_INV_R] [varchar](64) NOT NULL, --/ <column> First name of principal investigator </column>
-	[TARGNAME] [varchar](64) NOT NULL, --/ <column>Target name on proposal</column>
-	[RA] [float] NOT NULL, --/ <column unit="deg">Right ascension of the target</column>
-	[DEC] [float] NOT NULL, --/ <column unit="deg">Declination of the target</column>
-	[cx] [float] NOT NULL, --/ <column>Cartesian coordinate x</column>
-	[cy] [float] NOT NULL, --/ <column>Cartesian coordinate y</column>
-	[cz] [float] NOT NULL, --/ <column>Cartesian coordinate z</column>
-	[htmid] [bigint] NOT NULL, --/ <column>HTM ID</column>
-	[zoneid] [bigint] NOT NULL, --/ <column>Zone ID</column>
-	[APER_PA] [float] NOT NULL, --/ <column unit="deg">Position angle of Y axis</column>
-	[ELAT] [float] NOT NULL, --/ <column unit="deg">Ecliptic latitud</column>
-	[ELONG] [float] NOT NULL, --/ <column unit="deg">Ecliptic longitud</column>
-	[GLAT] [float] NOT NULL, --/ <column unit="deg">Galactic latitud</column>
-	[GLONG] [float] NOT NULL, --/ <column unit="deg">Galactic longitud</column>
-	[OBJCLASS] [float] NOT NULL, --/ <column>Object class</column>
-	[SP_TYPE] [varchar](64) NULL, --/ <column> MK spectral type and luminosity class </column>
-	[SRC_TYPE] [varchar](64) NULL, --/ <column>Point or Extended Continuum Emission</column>
-	[VMAG] [float] NOT NULL, --/ <column>Target V magnitud</column>
-	[EBV] [float] NOT NULL, --/ <column>Color excess</column>
-	[Z] [float] NOT NULL, --/ <column>Redshift</column>
-	[HIGH_PM] [varchar](64) NOT NULL, --/ <column>High proper motion target</column>
-	[MOV_TARG] [varchar](64) NOT NULL, --/ <column>Fixed or Moving target</column>
-	[DATEOBS] [varchar](64) NOT NULL, --/ <column>UT date of start of exposure yyyy-mm-dd</column>
-	[OBSSTART] [float] NOT NULL, --/ <column>Exposure start time - Modified Julian Date</column>
-	[OBSEND] [float] NOT NULL, --/ <column>Exposure end time - Modified Julian Date</column>
-	[OBSTIME] [float] NOT NULL, --/ <column unit="s"> Total time after screening </column>
-	[RAWTIME] [float] NOT NULL, --/ <column unit="s">Exposure duration of raw data file</column>
-	[OBSNIGHT] [float] NOT NULL, --/ <column unit="s">Night time after screening</column>
-	[INSTMODE] [varchar](64) NOT NULL, --/ <column>Instrument mode TTAG or HIST</column>
-	[APERTURE] [varchar](64) NOT NULL, --/ <column>Planned target aperture</column>
-	[CF_VERS] [varchar](64) NOT NULL, --/ <column>CALFUSE pipeline version number</column>
-	[BANDWID] [float] NOT NULL, --/ <column unit="Angstroms">Bandwidth of the data</column>
-	[CENTRWV] [float] NOT NULL, --/ <column unit="Angstroms">Central wavelenght of the data</column>
-	[WAVEMIN] [float] NOT NULL, --/ <column unit="Angstroms">Minimun wavelenght of the data</column>
-	[WAVEMAX] [float] NOT NULL --/ <column unit="Angstroms">Maximun wavelenght of the data</column>
+
+	--/ <summary>Unique ID of each object</summary>
+	[objID] [bigint] NOT NULL, 
+
+	--/ <summary></summary>
+	[TELESCOP] [varchar](64) NOT NULL, 
+
+	--/ <summary>Rootname of the observation ppppttooeee</summary>
+	[ROOTNAME] [varchar](64) NOT NULL, 
+
+	--/ <summary>PROGRAM IDENTIFICATION</summary>
+	[PRGRM_ID] [varchar](64) NOT NULL, 
+
+	--/ <summary>Target ID</summary>
+	[TARG_ID] [float] NOT NULL, 
+
+	--/ <summary> Last name of principal investigator</summary>
+	[PR_INV_L] [varchar](64) NOT NULL, 
+
+	--/ <summary> First name of principal investigator </summary>
+	[PR_INV_R] [varchar](64) NOT NULL, 
+
+	--/ <summary>Target name on proposal</summary>
+	[TARGNAME] [varchar](64) NOT NULL, 
+
+	--/ <summary>Right ascension of the target</summary>
+	--/ <unit>deg</unit>
+	[RA] [float] NOT NULL, 
+
+	--/ <summary>Declination of the target</summary>
+	--/ <unit>deg</unit>
+	[DEC] [float] NOT NULL, 
+
+	--/ <summary>Cartesian coordinate x</summary>
+	[cx] [float] NOT NULL, 
+
+	--/ <summary>Cartesian coordinate y</summary>
+	[cy] [float] NOT NULL, 
+
+	--/ <summary>Cartesian coordinate z</summary>
+	[cz] [float] NOT NULL, 
+
+	--/ <summary>HTM ID</summary>
+	[htmid] [bigint] NOT NULL, 
+
+	--/ <summary>Zone ID</summary>
+	[zoneid] [bigint] NOT NULL, 
+
+	--/ <summary>Position angle of Y axis</summary>
+	--/ <unit>deg</unit>
+	[APER_PA] [float] NOT NULL, 
+
+	--/ <summary>Ecliptic latitud</summary>
+	--/ <unit>deg</unit>
+	[ELAT] [float] NOT NULL, 
+
+	--/ <summary>Ecliptic longitud</summary>
+	--/ <unit>deg</unit>
+	[ELONG] [float] NOT NULL, 
+
+	--/ <summary>Galactic latitud</summary>
+	--/ <unit>deg</unit>
+	[GLAT] [float] NOT NULL, 
+
+	--/ <summary>Galactic longitud</summary>
+	--/ <unit>deg</unit>
+	[GLONG] [float] NOT NULL, 
+
+	--/ <summary>Object class</summary>
+	[OBJCLASS] [float] NOT NULL, 
+
+	--/ <summary> MK spectral type and luminosity class </summary>
+	[SP_TYPE] [varchar](64) NULL, 
+
+	--/ <summary>Point or Extended Continuum Emission</summary>
+	[SRC_TYPE] [varchar](64) NULL, 
+
+	--/ <summary>Target V magnitud</summary>
+	[VMAG] [float] NOT NULL, 
+
+	--/ <summary>Color excess</summary>
+	[EBV] [float] NOT NULL, 
+
+	--/ <summary>Redshift</summary>
+	[Z] [float] NOT NULL, 
+
+	--/ <summary>High proper motion target</summary>
+	[HIGH_PM] [varchar](64) NOT NULL, 
+
+	--/ <summary>Fixed or Moving target</summary>
+	[MOV_TARG] [varchar](64) NOT NULL, 
+
+	--/ <summary>UT date of start of exposure yyyy-mm-dd</summary>
+	[DATEOBS] [varchar](64) NOT NULL, 
+
+	--/ <summary>Exposure start time - Modified Julian Date</summary>
+	[OBSSTART] [float] NOT NULL, 
+
+	--/ <summary>Exposure end time - Modified Julian Date</summary>
+	[OBSEND] [float] NOT NULL, 
+
+	--/ <summary> Total time after screening </summary>
+	--/ <unit>s</unit>
+	[OBSTIME] [float] NOT NULL, 
+
+	--/ <summary>Exposure duration of raw data file</summary>
+	--/ <unit>s</unit>
+	[RAWTIME] [float] NOT NULL, 
+
+	--/ <summary>Night time after screening</summary>
+	--/ <unit>s</unit>
+	[OBSNIGHT] [float] NOT NULL, 
+
+	--/ <summary>Instrument mode TTAG or HIST</summary>
+	[INSTMODE] [varchar](64) NOT NULL, 
+
+	--/ <summary>Planned target aperture</summary>
+	[APERTURE] [varchar](64) NOT NULL, 
+
+	--/ <summary>CALFUSE pipeline version number</summary>
+	[CF_VERS] [varchar](64) NOT NULL, 
+
+	--/ <summary>Bandwidth of the data</summary>
+	--/ <unit>Angstroms</unit>
+	[BANDWID] [float] NOT NULL, 
+
+	--/ <summary>Central wavelenght of the data</summary>
+	--/ <unit>Angstroms</unit>
+	[CENTRWV] [float] NOT NULL, 
+
+	--/ <summary>Minimun wavelenght of the data</summary>
+	--/ <unit>Angstroms</unit>
+	[WAVEMIN] [float] NOT NULL, 
+
+	--/ <summary>Maximun wavelenght of the data</summary>
+	--/ <unit>Angstroms</unit>
+	[WAVEMAX] [float] NOT NULL 
 ) ON [PRIMARY]
 
 

@@ -1,41 +1,110 @@
 USE [SkyNode_AGC]
 GO
 
-CREATE TABLE [dbo].[PhotoObj](
 --------------------------------------------------------------------------------
 --/ <summary>Arecibo Galaxy Catalog</summary>
 --/ <remarks>Objects from the Arecibo Galaxy Catalog, which provide 
 --/ HI measurements of about 100,000 bright galaxies. Galaxy redshifts 
 --/ are in km/s</remarks>
 --------------------------------------------------------------------------------
-	[objid] [bigint] NOT NULL, --/ <column>Unique object identifier</column>
-	[ra] [float] NOT NULL, --/ <column unit="deg">RA (J2000)</column>
-	[dec] [float] NOT NULL, --/ <column unit="deg">Dec (J2000)</column>
-	[cx] [float] NOT NULL, --/ <column>Cartesian x</column>
-	[cy] [float] NOT NULL, --/ <column>Cartesian y</column>
-	[cz] [float] NOT NULL, --/ <column>Cartesian z</column>
-	[htmID] [bigint] NOT NULL, --/ <column>the htmid of the object</column>
-	[zoneID] [bigint] NOT NULL, --/ <column>the zoneid of the object</column>
-	[a] [real] NOT NULL, --/ <column unit="arcmin">Major axis</column>
-	[b] [real] NOT NULL, --/ <column unit="arcmin">Major axis</column>
-	[Bmag] [real] NOT NULL, --/ <column unit="mag">B magnitude</column>
-	[angle] [real] NOT NULL, --/ <column unit="deg">Position angle</column>
-	[type] [varchar](8) NULL, --/ <column>Morphological type</column>
-	[btype] [int] NOT NULL, --/ <column>Burstein morph type (enum)</column>
-	[velocity] [real] NOT NULL, --/ <column unit="km/s">Optical velocity</column>
-	[velocityError] [real] NOT NULL, --/ <column unit="km/s">Error of optical velocity</column>
-	[objname] [varchar](64) NULL, --/ <column>Object name</column>
-	[fluxHI] [real] NOT NULL, --/ <column unit="Jy*km/s">HI flux</column>
-	[fluxHInoise] [real] NOT NULL, --/ <column unit="Jy*km/s">Noise HI rms</column>
-	[centerVelocity] [real] NOT NULL, --/ <column unit="km/s">HI center velocity</column>
-	[velocityWidth] [real] NOT NULL, --/ <column unit="km/s">Velocity width</column>
-	[velocityWidthError] [real] NOT NULL, --/ <column unit="km/s">Error of velocity width</column>
-	[telescopeCode] [char](1) NULL, --/ <column>Telescope code</column>
-	[HIdetectionCode] [tinyint] NOT NULL, --/ <column>HI detection code</column>
-	[HIsnr] [smallint] NOT NULL, --/ <column>HI signal-to-noise ratio</column>
-	[IbandQ] [tinyint] NOT NULL, --/ <column>I band quality index</column>
-	[RC3flag] [tinyint] NOT NULL, --/ <column>Indicator of galaxy is part of RC3 catalog</column>
-	[IrotCat] [tinyint] NOT NULL, --/ <column>Flag for rotation curve database</column>
+CREATE TABLE [dbo].[PhotoObj](
+
+	--/ <summary>Unique object identifier</summary>
+	[objid] [bigint] NOT NULL, 
+
+	--/ <summary>RA (J2000)</summary>
+	--/ <unit>deg</unit>
+	[ra] [float] NOT NULL, 
+
+	--/ <summary>Dec (J2000)</summary>
+	--/ <unit>deg</unit>
+	[dec] [float] NOT NULL, 
+
+	--/ <summary>Cartesian x</summary>
+	[cx] [float] NOT NULL, 
+
+	--/ <summary>Cartesian y</summary>
+	[cy] [float] NOT NULL, 
+
+	--/ <summary>Cartesian z</summary>
+	[cz] [float] NOT NULL, 
+
+	--/ <summary>the htmid of the object</summary>
+	[htmID] [bigint] NOT NULL, 
+
+	--/ <summary>the zoneid of the object</summary>
+	[zoneID] [bigint] NOT NULL, 
+
+	--/ <summary>Major axis</summary>
+	--/ <unit>arcmin</unit>
+	[a] [real] NOT NULL, 
+
+	--/ <summary>Major axis</summary>
+	--/ <unit>arcmin</unit>
+	[b] [real] NOT NULL, 
+
+	--/ <summary>B magnitude</summary>
+	--/ <unit>mag</unit>
+	[Bmag] [real] NOT NULL, 
+
+	--/ <summary>Position angle</summary>
+	--/ <unit>deg</unit>
+	[angle] [real] NOT NULL, 
+
+	--/ <summary>Morphological type</summary>
+	[type] [varchar](8) NULL, 
+
+	--/ <summary>Burstein morph type (enum)</summary>
+	[btype] [int] NOT NULL, 
+
+	--/ <summary>Optical velocity</summary>
+	--/ <unit>km/s</unit>
+	[velocity] [real] NOT NULL, 
+
+	--/ <summary>Error of optical velocity</summary>
+	--/ <unit>km/s</unit>
+	[velocityError] [real] NOT NULL, 
+
+	--/ <summary>Object name</summary>
+	[objname] [varchar](64) NULL, 
+
+	--/ <summary>HI flux</summary>
+	--/ <unit>Jy*km/s</unit>
+	[fluxHI] [real] NOT NULL, 
+
+	--/ <summary>Noise HI rms</summary>
+	--/ <unit>Jy*km/s</unit>
+	[fluxHInoise] [real] NOT NULL, 
+
+	--/ <summary>HI center velocity</summary>
+	--/ <unit>km/s</unit>
+	[centerVelocity] [real] NOT NULL, 
+
+	--/ <summary>Velocity width</summary>
+	--/ <unit>km/s</unit>
+	[velocityWidth] [real] NOT NULL, 
+
+	--/ <summary>Error of velocity width</summary>
+	--/ <unit>km/s</unit>
+	[velocityWidthError] [real] NOT NULL, 
+
+	--/ <summary>Telescope code</summary>
+	[telescopeCode] [char](1) NULL, 
+
+	--/ <summary>HI detection code</summary>
+	[HIdetectionCode] [tinyint] NOT NULL, 
+
+	--/ <summary>HI signal-to-noise ratio</summary>
+	[HIsnr] [smallint] NOT NULL, 
+
+	--/ <summary>I band quality index</summary>
+	[IbandQ] [tinyint] NOT NULL, 
+
+	--/ <summary>Indicator of galaxy is part of RC3 catalog</summary>
+	[RC3flag] [tinyint] NOT NULL, 
+
+	--/ <summary>Flag for rotation curve database</summary>
+	[IrotCat] [tinyint] NOT NULL, 
 PRIMARY KEY CLUSTERED 
 (
 	[objid] ASC

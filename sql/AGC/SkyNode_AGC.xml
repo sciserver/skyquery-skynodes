@@ -1,35 +1,49 @@
 <metadata>
   <table name="[dbo].[PhotoObj]">
     <summary>Arecibo Galaxy Catalog</summary>
-    <remarks>Objects from the Arecibo Galaxy Catalog, which provide 
- HI measurements of about 100,000 bright galaxies. Galaxy redshifts 
- are in km/s</remarks>
-    <column name="[objid]">Unique object identifier</column>
-    <column name="[ra]" unit="deg">RA (J2000)</column>
-    <column name="[dec]" unit="deg">Dec (J2000)</column>
-    <column name="[cx]">Cartesian x</column>
-    <column name="[cy]">Cartesian y</column>
-    <column name="[cz]">Cartesian z</column>
-    <column name="[htmID]">the htmid of the object</column>
-    <column name="[a]" unit="arcmin">Major axis</column>
-    <column name="[b]" unit="arcmin">Major axis</column>
-    <column name="[Bmag]" unit="mag">B magnitude</column>
-    <column name="[angle]" unit="deg">Position angle</column>
-    <column name="[type]">Morphological type</column>
-    <column name="[btype]">Burstein morph type (enum)</column>
-    <column name="[velocity]" unit="km/s">Optical velocity</column>
-    <column name="[velocityError]" unit="km/s">Error of optical velocity</column>
-    <column name="[objname]">Object name</column>
-    <column name="[fluxHI]" unit="Jy*km/s">HI flux</column>
-    <column name="[fluxHInoise]" unit="Jy*km/s">Noise HI rms</column>
-    <column name="[centerVelocity]" unit="km/s">HI center velocity</column>
-    <column name="[velocityWidth]" unit="km/s">Velocity width</column>
-    <column name="[velocityWidthError]" unit="km/s">Error of velocity width</column>
-    <column name="[telescopeCode]">Telescope code</column>
-    <column name="[HIdetectionCode]">HI detection code</column>
-    <column name="[HIsnr]">HI signal-to-noise ratio</column>
-    <column name="[IbandQ]">I band quality index</column>
-    <column name="[RC3flag]">Indicator of galaxy is part of RC3 catalog</column>
-    <column name="[IrotCat]">Flag for rotation curve database</column>
-  </table>
+<remarks>Objects from the Arecibo Galaxy Catalog, which provide
+HI measurements of about 100,000 bright galaxies. Galaxy redshifts
+are in km/s</remarks>
+<column name="[objid]"><summary>Unique object identifier</summary>
+</column><column name="[ra]"><summary>RA (J2000)</summary>
+<unit>deg</unit>
+</column><column name="[dec]"><summary>Dec (J2000)</summary>
+<unit>deg</unit>
+</column><column name="[cx]"><summary>Cartesian x</summary>
+</column><column name="[cy]"><summary>Cartesian y</summary>
+</column><column name="[cz]"><summary>Cartesian z</summary>
+</column><column name="[htmID]"><summary>the htmid of the object</summary>
+</column><column name="[zoneID]"><summary>the zoneid of the object</summary>
+</column><column name="[a]"><summary>Major axis</summary>
+<unit>arcmin</unit>
+</column><column name="[b]"><summary>Major axis</summary>
+<unit>arcmin</unit>
+</column><column name="[Bmag]"><summary>B magnitude</summary>
+<unit>mag</unit>
+</column><column name="[angle]"><summary>Position angle</summary>
+<unit>deg</unit>
+</column><column name="[type]"><summary>Morphological type</summary>
+</column><column name="[btype]"><summary>Burstein morph type (enum)</summary>
+</column><column name="[velocity]"><summary>Optical velocity</summary>
+<unit>km/s</unit>
+</column><column name="[velocityError]"><summary>Error of optical velocity</summary>
+<unit>km/s</unit>
+</column><column name="[objname]"><summary>Object name</summary>
+</column><column name="[fluxHI]"><summary>HI flux</summary>
+<unit>Jy*km/s</unit>
+</column><column name="[fluxHInoise]"><summary>Noise HI rms</summary>
+<unit>Jy*km/s</unit>
+</column><column name="[centerVelocity]"><summary>HI center velocity</summary>
+<unit>km/s</unit>
+</column><column name="[velocityWidth]"><summary>Velocity width</summary>
+<unit>km/s</unit>
+</column><column name="[velocityWidthError]"><summary>Error of velocity width</summary>
+<unit>km/s</unit>
+</column><column name="[telescopeCode]"><summary>Telescope code</summary>
+</column><column name="[HIdetectionCode]"><summary>HI detection code</summary>
+</column><column name="[HIsnr]"><summary>HI signal-to-noise ratio</summary>
+</column><column name="[IbandQ]"><summary>I band quality index</summary>
+</column><column name="[RC3flag]"><summary>Indicator of galaxy is part of RC3 catalog</summary>
+</column><column name="[IrotCat]"><summary>Flag for rotation curve database</summary>
+</column></table>
 </metadata>

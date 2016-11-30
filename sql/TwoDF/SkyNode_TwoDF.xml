@@ -1,74 +1,96 @@
 <metadata>
   <table name="[dbo].[PhotoObj]">
     <summary>The main PhotoObj table for the 2DF catalog</summary>
-    <remarks>The main PhotoObj table for the 2DF catalog</remarks>
-    <column name="[objID]">unique object identifier, SEQNUM in original catalog</column>
-    <column name="[cat]">Catalogue Type: n for NGP,s for SGP and r for random fiels</column>
-    <column name="[ra]" unit="deg">J2000 right ascension</column>
-    <column name="[dec]" unit="deg">J2000 declination</column>
-    <column name="[cx]">Cartesian coordinate x</column>
-    <column name="[cy]">Cartesian coordinate y</column>
-    <column name="[cz]">Cartesian coordinate z</column>
-    <column name="[htmid]">Unique HTM ID</column>
-    <column name="[bjsel]" unit="mag">Final bj magnitude with extinction correction</column>
-    <column name="[prob]">psi classification parameter</column>
-    <column name="[park]">k classification parameter = k / k_star</column>
-    <column name="[parmu]">mu classification parameter = mu / mu_star</column>
-    <column name="[igal]">Final classification</column>
-    <column name="[jon]">Eyeball classification</column>
-    <column name="[orient]">Orientation measured in degrees clockwise from E to W</column>
-    <column name="[eccent]">Eccentricity (e)</column>
-    <column name="[area]">Isophotal area in pixels</column>
-    <column name="[x_bj]">Plate x_bj in 8 micron pixels</column>
-    <column name="[y_bj]">Plate y_bj in 8 micron pixels</column>
-    <column name="[dx]">Distortion corrected difference (x_bj - x_R)*100</column>
-    <column name="[dy]">Distortion corrected difference (y_bj - y_R)*100</column>
-    <column name="[bjg]" unit="mag">Final bj magnitude without extinction correction</column>
-    <column name="[rmag]" unit="mag">Unmatched APM 'total' mag</column>
-    <column name="[pmag]" unit="mag">Unmatched raw APM profile integrated mag</column>
-    <column name="[fmag]" unit="mag">Unmatched raw APM 2" profile integrated mag</column>
-    <column name="[smag]" unit="mag">Unmatched raw stellar mag (from APMCAL)</column>
-    <column name="[redmag]">Not used.</column>
-    <column name="[ifield]">UKST field</column>
-    <column name="[igfield]">Galaxy number in UKST field</column>
-    <column name="[name]">2dFGRS assigned name</column>
-    <column name="[bjg_old]" unit="mag">Original bj magnitude without extinction correction</column>
-    <column name="[bjselold]" unit="mag">Original bj magnitude with extinction correction</column>
-    <column name="[bjg_100]" unit="mag">100k release bj magnitude without extinction correction</column>
-    <column name="[bjsel100]" unit="mag">100k release bj  magnitude with extinction correction</column>
-  </table>
+<remarks>The main PhotoObj table for the 2DF catalog</remarks>
+<column name="[objID]"><summary>unique object identifier, SEQNUM in original catalog</summary>
+</column><column name="[cat]"><summary>Catalogue Type: n for NGP,s for SGP and r for random fiels</summary>
+</column><column name="[ra]"><summary>J2000 right ascension</summary>
+<unit>deg</unit>
+</column><column name="[dec]"><summary>J2000 declination</summary>
+<unit>deg</unit>
+</column><column name="[cx]"><summary>Cartesian coordinate x</summary>
+</column><column name="[cy]"><summary>Cartesian coordinate y</summary>
+</column><column name="[cz]"><summary>Cartesian coordinate z</summary>
+</column><column name="[htmid]"><summary>HTM ID</summary>
+</column><column name="[zoneid]"><summary>Unique HTM ID</summary>
+</column><column name="[bjsel]"><summary>Final bj magnitude with extinction correction</summary>
+<unit>mag</unit>
+</column><column name="[prob]"><summary>psi classification parameter</summary>
+</column><column name="[park]"><summary>k classification parameter = k / k_star</summary>
+</column><column name="[parmu]"><summary>mu classification parameter = mu / mu_star</summary>
+</column><column name="[igal]"><summary>Final classification</summary>
+</column><column name="[jon]"><summary>Eyeball classification</summary>
+</column><column name="[orient]"><summary>Orientation measured in degrees clockwise from E to W</summary>
+</column><column name="[eccent]"><summary>Eccentricity (e)</summary>
+</column><column name="[area]"><summary>Isophotal area in pixels</summary>
+</column><column name="[x_bj]"><summary>Plate x_bj in 8 micron pixels</summary>
+</column><column name="[y_bj]"><summary>Plate y_bj in 8 micron pixels</summary>
+</column><column name="[dx]"><summary>Distortion corrected difference (x_bj - x_R)*100</summary>
+</column><column name="[dy]"><summary>Distortion corrected difference (y_bj - y_R)*100</summary>
+</column><column name="[bjg]"><summary>Final bj magnitude without extinction correction</summary>
+<unit>mag</unit>
+</column><column name="[rmag]"><summary>Unmatched APM 'total' mag</summary>
+<unit>mag</unit>
+</column><column name="[pmag]"><summary>Unmatched raw APM profile integrated mag</summary>
+<unit>mag</unit>
+</column><column name="[fmag]"><summary>Unmatched raw APM 2" profile integrated mag</summary>
+<unit>mag</unit>
+</column><column name="[smag]"><summary>Unmatched raw stellar mag (from APMCAL)</summary>
+<unit>mag</unit>
+</column><column name="[redmag]"><summary>Not used.</summary>
+</column><column name="[ifield]"><summary>UKST field</summary>
+</column><column name="[igfield]"><summary>Galaxy number in UKST field</summary>
+</column><column name="[name]"><summary>2dFGRS assigned name</summary>
+</column><column name="[bjg_old]"><summary>Original bj magnitude without extinction correction</summary>
+<unit>mag</unit>
+</column><column name="[bjselold]"><summary>Original bj magnitude with extinction correction</summary>
+<unit>mag</unit>
+</column><column name="[bjg_100]"><summary>100k release bj magnitude without extinction correction</summary>
+<unit>mag</unit>
+</column><column name="[bjsel100]"><summary>100k release bj  magnitude with extinction correction</summary>
+<unit>mag</unit>
+</column></table>
   <table name="[dbo].[SpecObj]">
     <summary>The main SpecObj table for the 2DF catalog</summary>
-    <remarks>The main SpecObj table for the 2DF catalog</remarks>
-    <column name="[objID]">unique object identifier, SEQNUM in original catalog</column>
-    <column name="[cat]">Catalogue Type: n for NGP,s for SGP and r for random fiels</column>
-    <column name="[spectra]">Number of spectra obtained</column>
-    <column name="[name]">2dFGRS name</column>
-    <column name="[UKST]">UKST plate (=IFIELD)</column>
-    <column name="[ra]" unit="deg">Right Ascension (J2000)</column>
-    <column name="[dec]" unit="deg">Declination (J2000)</column>
-    <column name="[cx]">Cartesian coordinate x</column>
-    <column name="[cy]">Cartesian coordinate y</column>
-    <column name="[cz]">Cartesian coordinate z</column>
-    <column name="[htmid]">Unique HTM ID</column>
-    <column name="[bjg]" unit="mag">Final bj magnitude without extinction correction</column>
-    <column name="[bjsel]" unit="mag">Final bj magnitude with extinction correction</column>
-    <column name="[bjg_old]" unit="mag">Original bj magnitude without extinction correction</column>
-    <column name="[bjselold]" unit="mag">Original bj magnitude with extinction correction</column>
-    <column name="[galext]">Galactic extinction value</column>
-    <column name="[sb_bj]" unit="mag">SuperCosmos bj magnitude without extinction correction</column>
-    <column name="[sr_r]" unit="mag">SuperCosmos R magnitude without extinction correction</column>
-    <column name="[z]">Best redshift (observed)</column>
-    <column name="[z_helio]">Best redshift (heliocentric)</column>
-    <column name="[obsrun]">Observation run of best spectrum</column>
-    <column name="[quality]">Redshift quality parameter for best spectrum; reliable redshifts have &gt;=3</column>
-    <column name="[abemma]">Redshift type (abs=1, emi=2, man=3)</column>
-    <column name="[z_abs]">Cross-correlation redshift from best spectrum</column>
-    <column name="[kbestr]">Cross-correlation template from best spectrum</column>
-    <column name="[r_crcor]">Cross-correlation R value from best spectrum</column>
-    <column name="[z_emi]">Emission redshift from best spectrum</column>
-    <column name="[nmbest]">Number of emission lines for Z_EMI from best spectrum</column>
-    <column name="[snr]">Median S/N per pixel from best spectrum</column>
-    <column name="[eta_type]">Eta spectral type parameter from best spectrum (-99.9 if none)</column>
-  </table>
+<remarks>The main SpecObj table for the 2DF catalog</remarks>
+<column name="[objID]"><summary>unique object identifier, SEQNUM in original catalog</summary>
+</column><column name="[cat]"><summary>Catalogue Type: n for NGP,s for SGP and r for random fiels</summary>
+</column><column name="[spectra]"><summary>Number of spectra obtained</summary>
+</column><column name="[name]"><summary>2dFGRS name</summary>
+</column><column name="[UKST]"><summary>UKST plate (=IFIELD)</summary>
+</column><column name="[ra]"><summary>Right Ascension (J2000)</summary>
+<unit>deg</unit>
+</column><column name="[dec]"><summary>Declination (J2000)</summary>
+<unit>deg</unit>
+</column><column name="[cx]"><summary>Cartesian coordinate x</summary>
+</column><column name="[cy]"><summary>Cartesian coordinate y</summary>
+</column><column name="[cz]"><summary>Cartesian coordinate z</summary>
+</column><column name="[htmid]"><summary>HTM ID</summary>
+</column><column name="[zoneid]"><summary>Zone ID</summary>
+</column><column name="[bjg]"><summary>Final bj magnitude without extinction correction</summary>
+<unit>mag</unit>
+</column><column name="[bjsel]"><summary>Final bj magnitude with extinction correction</summary>
+<unit>mag</unit>
+</column><column name="[bjg_old]"><summary>Original bj magnitude without extinction correction</summary>
+<unit>mag</unit>
+</column><column name="[bjselold]"><summary>Original bj magnitude with extinction correction</summary>
+<unit>mag</unit>
+</column><column name="[galext]"><summary>Galactic extinction value</summary>
+</column><column name="[sb_bj]"><summary>SuperCosmos bj magnitude without extinction correction</summary>
+<unit>mag</unit>
+</column><column name="[sr_r]"><summary>SuperCosmos R magnitude without extinction correction</summary>
+<unit>mag</unit>
+</column><column name="[z]"><summary>Best redshift (observed)</summary>
+</column><column name="[z_helio]"><summary>Best redshift (heliocentric)</summary>
+</column><column name="[obsrun]"><summary>Observation run of best spectrum</summary>
+</column><column name="[quality]"><summary>Redshift quality parameter for best spectrum; reliable redshifts have &gt;=3</summary>
+</column><column name="[abemma]"><summary>Redshift type (abs=1, emi=2, man=3)</summary>
+</column><column name="[z_abs]"><summary>Cross-correlation redshift from best spectrum</summary>
+</column><column name="[kbestr]"><summary>Cross-correlation template from best spectrum</summary>
+</column><column name="[r_crcor]"><summary>Cross-correlation R value from best spectrum</summary>
+</column><column name="[z_emi]"><summary>Emission redshift from best spectrum</summary>
+</column><column name="[nmbest]"><summary>Number of emission lines for Z_EMI from best spectrum</summary>
+</column><column name="[snr]"><summary>Median S/N per pixel from best spectrum</summary>
+</column><column name="[eta_type]"><summary>Eta spectral type parameter from best spectrum (-99.9 if none)</summary>
+</column></table>
 </metadata>

@@ -1,36 +1,103 @@
 USE [SkyNode_NVSS]
 GO
 
-CREATE TABLE [dbo].[PhotoObj](
 --/ <summary>The main PhotoObj table for the NVSS catalog</summary>
 --/ <remarks>The main PhotoObj table for the NVSS catalog</remarks>
-	[objID] [bigint] NOT NULL, --/ <column>unique object identifier</column>
-	[ra] [float] NOT NULL, --/ <column unit="deg">J2000 right ascension</column>
-	[dec] [float] NOT NULL, --/ <column unit="deg">J2000 declination</column>
-	[cx] [float] NOT NULL, --/ <column>cartesian x coordinate</column>
-	[cy] [float] NOT NULL, --/ <column>cartesian x coordinate</column>
-	[cz] [float] NOT NULL, --/ <column>cartesian x coordinate</column>
-	[htmid] [bigint] NOT NULL, --/ <column>htmid for spatial searches</column>
-	[zoneid] [bigint] NOT NULL, --/ <column>htmid for spatial searches</column>
-	[raErr] [float] NOT NULL, --/ <column unit="deg">Estimate of J2000 right ascension standard deviation</column>
-	[decErr] [float] NOT NULL, --/ <column unit="deg">Estimate of J2000 declination standard deviation</column>
-	[flux] [real] NOT NULL, --/ <column unit="mJy">Strength of the source</column>
-	[fluxErr] [real] NOT NULL, --/ <column unit="mJy">Standard deviation estimate of the flux</column>
-	[major] [real] NOT NULL, --/ <column>Major axis size of the source</column>
-	[majorErr] [real] NULL, --/ <column>Estimated standard deviation of the major axis size (nulls allowed)</column>
-	[minor] [real] NOT NULL, --/ <column>Minor axis size of the source</column>
-	[minorErr] [real] NULL, --/ <column>Estimated standard deviation of the minor axis size (nulls allowed)</column>
-	[pa] [real] NULL, --/ <column unit="deg">Orientation of the major axis on the sky (from N through E) (nulls allowed)</column>
-	[paErr] [real] NULL, --/ <column unit="deg">Standard deviation estimate of Pa</column>
-	[res] [varchar](1) NULL, --/ <column>Code indicating structure more complex than can be fitted by the Gaussian model(P=peak, R=RMS, S=integrated) (nulls allowed)</column>
-	[resOff] [smallint] NULL, --/ <column unit="100s of mJy">offending value (nulls allowed)</column>
-	[p_flux] [real] NULL, --/ <column unit="mJy">Integrated linearly polarized flux density (nulls allowed)</column>
-	[p_fluxErr] [real] NULL, --/ <column unit="mJy">Standard deviation estimate of the integrated linearly polarized flux density (nulls allowed)</column>
-	[p_ang] [real] NULL, --/ <column unit="deg">Position angle of the "E" vectors on the sky if the source was detected in linear polarization (nulls allowed)</column>
-	[p_angErr] [real] NULL, --/ <column unit="deg">Standard deviation estimate of p_ang (nulls allowed)</column>
-	[field] [varchar](8) NOT NULL, --/ <column>Name of the original survey image field</column>
-	[x_pix] [real] NOT NULL, --/ <column>X(Ra) pixel numbers of the center of the component</column>
-	[y_pix] [real] NOT NULL --/ <column>Y(Dec) pixel numbers of the center of the component</column>
+CREATE TABLE [dbo].[PhotoObj](
+
+	--/ <summary>unique object identifier</summary>
+	[objID] [bigint] NOT NULL, 
+
+	--/ <summary>J2000 right ascension</summary>
+	--/ <unit>deg</unit>
+	[ra] [float] NOT NULL, 
+
+	--/ <summary>J2000 declination</summary>
+	--/ <unit>deg</unit>
+	[dec] [float] NOT NULL, 
+
+	--/ <summary>cartesian x coordinate</summary>
+	[cx] [float] NOT NULL, 
+
+	--/ <summary>cartesian x coordinate</summary>
+	[cy] [float] NOT NULL, 
+
+	--/ <summary>cartesian x coordinate</summary>
+	[cz] [float] NOT NULL, 
+
+	--/ <summary>htmid for spatial searches</summary>
+	[htmid] [bigint] NOT NULL, 
+
+	--/ <summary>htmid for spatial searches</summary>
+	[zoneid] [bigint] NOT NULL, 
+
+	--/ <summary>Estimate of J2000 right ascension standard deviation</summary>
+	--/ <unit>deg</unit>
+	[raErr] [float] NOT NULL, 
+
+	--/ <summary>Estimate of J2000 declination standard deviation</summary>
+	--/ <unit>deg</unit>
+	[decErr] [float] NOT NULL, 
+
+	--/ <summary>Strength of the source</summary>
+	--/ <unit>mJy</unit>
+	[flux] [real] NOT NULL, 
+
+	--/ <summary>Standard deviation estimate of the flux</summary>
+	--/ <unit>mJy</unit>
+	[fluxErr] [real] NOT NULL, 
+
+	--/ <summary>Major axis size of the source</summary>
+	[major] [real] NOT NULL, 
+
+	--/ <summary>Estimated standard deviation of the major axis size (nulls allowed)</summary>
+	[majorErr] [real] NULL, 
+
+	--/ <summary>Minor axis size of the source</summary>
+	[minor] [real] NOT NULL, 
+
+	--/ <summary>Estimated standard deviation of the minor axis size (nulls allowed)</summary>
+	[minorErr] [real] NULL, 
+
+	--/ <summary>Orientation of the major axis on the sky (from N through E) (nulls allowed)</summary>
+	--/ <unit>deg</unit>
+	[pa] [real] NULL, 
+
+	--/ <summary>Standard deviation estimate of Pa</summary>
+	--/ <unit>deg</unit>
+	[paErr] [real] NULL, 
+
+	--/ <summary>Code indicating structure more complex than can be fitted by the Gaussian model(P=peak, R=RMS, S=integrated) (nulls allowed)</summary>
+	[res] [varchar](1) NULL, 
+
+	--/ <summary>offending value (nulls allowed)</summary>
+	--/ <unit>100s of mJy</unit>
+	[resOff] [smallint] NULL, 
+
+	--/ <summary>Integrated linearly polarized flux density (nulls allowed)</summary>
+	--/ <unit>mJy</unit>
+	[p_flux] [real] NULL, 
+
+	--/ <summary>Standard deviation estimate of the integrated linearly polarized flux density (nulls allowed)</summary>
+	--/ <unit>mJy</unit>
+	[p_fluxErr] [real] NULL, 
+
+	--/ <summary>Position angle of the "E" vectors on the sky if the source was detected in linear polarization (nulls allowed)</summary>
+	--/ <unit>deg</unit>
+	[p_ang] [real] NULL, 
+
+	--/ <summary>Standard deviation estimate of p_ang (nulls allowed)</summary>
+	--/ <unit>deg</unit>
+	[p_angErr] [real] NULL, 
+
+	--/ <summary>Name of the original survey image field</summary>
+	[field] [varchar](8) NOT NULL, 
+
+	--/ <summary>X(Ra) pixel numbers of the center of the component</summary>
+	[x_pix] [real] NOT NULL, 
+
+	--/ <summary>Y(Dec) pixel numbers of the center of the component</summary>
+	[y_pix] [real] NOT NULL 
 ) ON [PRIMARY]
 GO
 

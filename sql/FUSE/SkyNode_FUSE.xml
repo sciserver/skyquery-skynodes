@@ -1,104 +1,305 @@
 <metadata>
   <table name="[dbo].[PhotoObj]">
-    <summary>A view of the SpecObj table so SkyNode queries will work</summary>
-    <remarks>Using the FUSE SkyNode for cross-matching requires it to have a table named PhotoPrimary.  Even though FUSE data is spectroscopic data, a PhotoPrimary view of the main SpecObj table is defined for this purpose.</remarks>
-    <column name="[objID]">Unique ID of each object</column>
+    <column name="[objID]">
+      <summary>A view of the SpecObj table so SkyNode queries will work</summary>
+<remarks>Using the FUSE SkyNode for cross-matching requires it to have a table named PhotoPrimary.  Even though FUSE data is spectroscopic data, a PhotoPrimary view of the main SpecObj table is defined for this purpose.</remarks>
+<summary>Unique ID of each object</summary>
+</column>
     <column name="[TELESCOP]">
-    </column>
-    <column name="[ROOTNAME]">Rootname of the observation ppppttooeee</column>
-    <column name="[PRGRM_ID]">PROGRAM IDENTIFICATION</column>
-    <column name="[TARG_ID]">Target ID</column>
-    <column name="[PR_INV_L]"> Last name of principal investigator</column>
-    <column name="[PR_INV_R]"> First name of principal investigator </column>
-    <column name="[TARGNAME]">Target name on proposal</column>
-    <column name="[RA]" unit="deg">Right ascension of the target</column>
-    <column name="[DEC]" unit="deg">Declination of the target</column>
-    <column name="[APER_PA]" unit="deg">Position angle of Y axis</column>
-    <column name="[ELAT]" unit="deg">Ecliptic latitud</column>
-    <column name="[ELONG]" unit="deg">Ecliptic longitud</column>
-    <column name="[GLAT]" unit="deg">Galactic latitud</column>
-    <column name="[GLONG]" unit="deg">Galactic longitud</column>
-    <column name="[OBJCLASS]">Object class</column>
-    <column name="[SP_TYPE]"> MK spectral type and luminosity class </column>
-    <column name="[SRC_TYPE]">Point or Extended Continuum Emission</column>
-    <column name="[VMAG]">Target V magnitud</column>
-    <column name="[EBV]">Color excess</column>
-    <column name="[Z]">Redshift</column>
-    <column name="[HIGH_PM]">High proper motion target</column>
-    <column name="[MOV_TARG]">Fixed or Moving target</column>
-    <column name="[DATEOBS]">UT date of start of exposure yyyy-mm-dd</column>
-    <column name="[OBSSTART]">Exposure start time - Modified Julian Date</column>
-    <column name="[OBSEND]">Exposure end time - Modified Julian Date</column>
-    <column name="[OBSTIME]" unit="s"> Total time after screening </column>
-    <column name="[RAWTIME]" unit="s">Exposure duration of raw data file</column>
-    <column name="[OBSNIGHT]" unit="s">Night time after screening</column>
-    <column name="[INSTMODE]">Instrument mode TTAG or HIST</column>
-    <column name="[APERTURE]">Planned target aperture</column>
-    <column name="[CF_VERS]">CALFUSE pipeline version number</column>
-    <column name="[BANDWID]" unit="Angstroms">Bandwidth of the data</column>
-    <column name="[CENTRWV]" unit="Angstroms">Central wavelenght of the data</column>
-    <column name="[WAVEMIN]" unit="Angstroms">Minimun wavelenght of the data</column>
-    <column name="[WAVEMAX]" unit="Angstroms">Maximun wavelenght of the data</column>
-    <column name="[cx]">Cartesian coordinate x</column>
-    <column name="[cy]">Cartesian coordinate y</column>
-    <column name="[cz]">Cartesian coordinate z</column>
-    <column name="[htmid]">Unique HTM ID</column>
+      <summary>
+      </summary>
+</column>
+    <column name="[ROOTNAME]">
+      <summary>Rootname of the observation ppppttooeee</summary>
+</column>
+    <column name="[PRGRM_ID]">
+      <summary>PROGRAM IDENTIFICATION</summary>
+</column>
+    <column name="[TARG_ID]">
+      <summary>Target ID</summary>
+</column>
+    <column name="[PR_INV_L]">
+      <summary> Last name of principal investigator</summary>
+</column>
+    <column name="[PR_INV_R]">
+      <summary> First name of principal investigator </summary>
+</column>
+    <column name="[TARGNAME]">
+      <summary>Target name on proposal</summary>
+</column>
+    <column name="[RA]">
+      <summary>Right ascension of the target</summary>
+<unit>deg</unit>
+</column>
+    <column name="[DEC]">
+      <summary>Declination of the target</summary>
+<unit>deg</unit>
+</column>
+    <column name="[cx]">
+      <summary>Cartesian coordinate x</summary>
+</column>
+    <column name="[cy]">
+      <summary>Cartesian coordinate y</summary>
+</column>
+    <column name="[cz]">
+      <summary>Cartesian coordinate z</summary>
+</column>
+    <column name="[htmid]">
+      <summary>HTM ID</summary>
+</column>
+    <column name="[zoneid]">
+      <summary>Zone ID</summary>
+</column>
+    <column name="[APER_PA]">
+      <summary>Position angle of Y axis</summary>
+<unit>deg</unit>
+</column>
+    <column name="[ELAT]">
+      <summary>Ecliptic latitud</summary>
+<unit>deg</unit>
+</column>
+    <column name="[ELONG]">
+      <summary>Ecliptic longitud</summary>
+<unit>deg</unit>
+</column>
+    <column name="[GLAT]">
+      <summary>Galactic latitud</summary>
+<unit>deg</unit>
+</column>
+    <column name="[GLONG]">
+      <summary>Galactic longitud</summary>
+<unit>deg</unit>
+</column>
+    <column name="[OBJCLASS]">
+      <summary>Object class</summary>
+</column>
+    <column name="[SP_TYPE]">
+      <summary> MK spectral type and luminosity class </summary>
+</column>
+    <column name="[SRC_TYPE]">
+      <summary>Point or Extended Continuum Emission</summary>
+</column>
+    <column name="[VMAG]">
+      <summary>Target V magnitud</summary>
+</column>
+    <column name="[EBV]">
+      <summary>Color excess</summary>
+</column>
+    <column name="[Z]">
+      <summary>Redshift</summary>
+</column>
+    <column name="[HIGH_PM]">
+      <summary>High proper motion target</summary>
+</column>
+    <column name="[MOV_TARG]">
+      <summary>Fixed or Moving target</summary>
+</column>
+    <column name="[DATEOBS]">
+      <summary>UT date of start of exposure yyyy-mm-dd</summary>
+</column>
+    <column name="[OBSSTART]">
+      <summary>Exposure start time - Modified Julian Date</summary>
+</column>
+    <column name="[OBSEND]">
+      <summary>Exposure end time - Modified Julian Date</summary>
+</column>
+    <column name="[OBSTIME]">
+      <summary> Total time after screening </summary>
+<unit>s</unit>
+</column>
+    <column name="[RAWTIME]">
+      <summary>Exposure duration of raw data file</summary>
+<unit>s</unit>
+</column>
+    <column name="[OBSNIGHT]">
+      <summary>Night time after screening</summary>
+<unit>s</unit>
+</column>
+    <column name="[INSTMODE]">
+      <summary>Instrument mode TTAG or HIST</summary>
+</column>
+    <column name="[APERTURE]">
+      <summary>Planned target aperture</summary>
+</column>
+    <column name="[CF_VERS]">
+      <summary>CALFUSE pipeline version number</summary>
+</column>
+    <column name="[BANDWID]">
+      <summary>Bandwidth of the data</summary>
+<unit>Angstroms</unit>
+</column>
+    <column name="[CENTRWV]">
+      <summary>Central wavelenght of the data</summary>
+<unit>Angstroms</unit>
+</column>
+    <column name="[WAVEMIN]">
+      <summary>Minimun wavelenght of the data</summary>
+<unit>Angstroms</unit>
+</column>
+    <column name="[WAVEMAX]">
+      <summary>Maximun wavelenght of the data</summary>
+<unit>Angstroms</unit>
+</column>
   </table>
   <table name="[dbo].[SpecLine]">
-    <summary>The flux for each spectral line is in this table</summary>
-    <remarks>
-    </remarks>
-    <column name="[SpecObjID]">
-    </column>
-    <column name="[LineID]">Unique ID for each spectral line</column>
-    <column name="[WAVE]">Wavelength</column>
-    <column name="[FLUX]">Flux</column>
-    <column name="[ERROR]">Error</column>
+    <column name="[ObjID]">
+      <summary>The flux for each spectral line is in this table</summary>
+<remarks></remarks>
+<summary></summary>
+</column>
+    <column name="[LineID]">
+      <summary>Unique ID for each spectral line</summary>
+</column>
+    <column name="[WAVE]">
+      <summary>Wavelength</summary>
+</column>
+    <column name="[FLUX]">
+      <summary>Flux</summary>
+</column>
+    <column name="[ERROR]">
+      <summary>Error</summary>
+</column>
   </table>
   <table name="[dbo].[SpecObj]">
-    <summary>The main table containing the astronomical data</summary>
-    <remarks>
-    </remarks>
-    <column name="[objID]">Unique ID of each object</column>
+    <column name="[objID]">
+      <summary>The main table containing the astronomical data</summary>
+<remarks></remarks>
+<summary>Unique ID of each object</summary>
+</column>
     <column name="[TELESCOP]">
-    </column>
-    <column name="[ROOTNAME]">Rootname of the observation ppppttooeee</column>
-    <column name="[PRGRM_ID]">PROGRAM IDENTIFICATION</column>
-    <column name="[TARG_ID]">Target ID</column>
-    <column name="[PR_INV_L]"> Last name of principal investigator</column>
-    <column name="[PR_INV_R]"> First name of principal investigator </column>
-    <column name="[TARGNAME]">Target name on proposal</column>
-    <column name="[RA]" unit="deg">Right ascension of the target</column>
-    <column name="[DEC]" unit="deg">Declination of the target</column>
-    <column name="[APER_PA]" unit="deg">Position angle of Y axis</column>
-    <column name="[ELAT]" unit="deg">Ecliptic latitud</column>
-    <column name="[ELONG]" unit="deg">Ecliptic longitud</column>
-    <column name="[GLAT]" unit="deg">Galactic latitud</column>
-    <column name="[GLONG]" unit="deg">Galactic longitud</column>
-    <column name="[OBJCLASS]">Object class</column>
-    <column name="[SP_TYPE]"> MK spectral type and luminosity class </column>
-    <column name="[SRC_TYPE]">Point or Extended Continuum Emission</column>
-    <column name="[VMAG]">Target V magnitud</column>
-    <column name="[EBV]">Color excess</column>
-    <column name="[Z]">Redshift</column>
-    <column name="[HIGH_PM]">High proper motion target</column>
-    <column name="[MOV_TARG]">Fixed or Moving target</column>
-    <column name="[DATEOBS]">UT date of start of exposure yyyy-mm-dd</column>
-    <column name="[OBSSTART]">Exposure start time - Modified Julian Date</column>
-    <column name="[OBSEND]">Exposure end time - Modified Julian Date</column>
-    <column name="[OBSTIME]" unit="s"> Total time after screening </column>
-    <column name="[RAWTIME]" unit="s">Exposure duration of raw data file</column>
-    <column name="[OBSNIGHT]" unit="s">Night time after screening</column>
-    <column name="[INSTMODE]">Instrument mode TTAG or HIST</column>
-    <column name="[APERTURE]">Planned target aperture</column>
-    <column name="[CF_VERS]">CALFUSE pipeline version number</column>
-    <column name="[BANDWID]" unit="Angstroms">Bandwidth of the data</column>
-    <column name="[CENTRWV]" unit="Angstroms">Central wavelenght of the data</column>
-    <column name="[WAVEMIN]" unit="Angstroms">Minimun wavelenght of the data</column>
-    <column name="[WAVEMAX]" unit="Angstroms">Maximun wavelenght of the data</column>
-    <column name="[cx]">Cartesian coordinate x</column>
-    <column name="[cy]">Cartesian coordinate y</column>
-    <column name="[cz]">Cartesian coordinate z</column>
-    <column name="[htmid]">Unique HTM ID</column>
+      <summary>
+      </summary>
+</column>
+    <column name="[ROOTNAME]">
+      <summary>Rootname of the observation ppppttooeee</summary>
+</column>
+    <column name="[PRGRM_ID]">
+      <summary>PROGRAM IDENTIFICATION</summary>
+</column>
+    <column name="[TARG_ID]">
+      <summary>Target ID</summary>
+</column>
+    <column name="[PR_INV_L]">
+      <summary> Last name of principal investigator</summary>
+</column>
+    <column name="[PR_INV_R]">
+      <summary> First name of principal investigator </summary>
+</column>
+    <column name="[TARGNAME]">
+      <summary>Target name on proposal</summary>
+</column>
+    <column name="[RA]">
+      <summary>Right ascension of the target</summary>
+<unit>deg</unit>
+</column>
+    <column name="[DEC]">
+      <summary>Declination of the target</summary>
+<unit>deg</unit>
+</column>
+    <column name="[cx]">
+      <summary>Cartesian coordinate x</summary>
+</column>
+    <column name="[cy]">
+      <summary>Cartesian coordinate y</summary>
+</column>
+    <column name="[cz]">
+      <summary>Cartesian coordinate z</summary>
+</column>
+    <column name="[htmid]">
+      <summary>HTM ID</summary>
+</column>
+    <column name="[zoneid]">
+      <summary>Zone ID</summary>
+</column>
+    <column name="[APER_PA]">
+      <summary>Position angle of Y axis</summary>
+<unit>deg</unit>
+</column>
+    <column name="[ELAT]">
+      <summary>Ecliptic latitud</summary>
+<unit>deg</unit>
+</column>
+    <column name="[ELONG]">
+      <summary>Ecliptic longitud</summary>
+<unit>deg</unit>
+</column>
+    <column name="[GLAT]">
+      <summary>Galactic latitud</summary>
+<unit>deg</unit>
+</column>
+    <column name="[GLONG]">
+      <summary>Galactic longitud</summary>
+<unit>deg</unit>
+</column>
+    <column name="[OBJCLASS]">
+      <summary>Object class</summary>
+</column>
+    <column name="[SP_TYPE]">
+      <summary> MK spectral type and luminosity class </summary>
+</column>
+    <column name="[SRC_TYPE]">
+      <summary>Point or Extended Continuum Emission</summary>
+</column>
+    <column name="[VMAG]">
+      <summary>Target V magnitud</summary>
+</column>
+    <column name="[EBV]">
+      <summary>Color excess</summary>
+</column>
+    <column name="[Z]">
+      <summary>Redshift</summary>
+</column>
+    <column name="[HIGH_PM]">
+      <summary>High proper motion target</summary>
+</column>
+    <column name="[MOV_TARG]">
+      <summary>Fixed or Moving target</summary>
+</column>
+    <column name="[DATEOBS]">
+      <summary>UT date of start of exposure yyyy-mm-dd</summary>
+</column>
+    <column name="[OBSSTART]">
+      <summary>Exposure start time - Modified Julian Date</summary>
+</column>
+    <column name="[OBSEND]">
+      <summary>Exposure end time - Modified Julian Date</summary>
+</column>
+    <column name="[OBSTIME]">
+      <summary> Total time after screening </summary>
+<unit>s</unit>
+</column>
+    <column name="[RAWTIME]">
+      <summary>Exposure duration of raw data file</summary>
+<unit>s</unit>
+</column>
+    <column name="[OBSNIGHT]">
+      <summary>Night time after screening</summary>
+<unit>s</unit>
+</column>
+    <column name="[INSTMODE]">
+      <summary>Instrument mode TTAG or HIST</summary>
+</column>
+    <column name="[APERTURE]">
+      <summary>Planned target aperture</summary>
+</column>
+    <column name="[CF_VERS]">
+      <summary>CALFUSE pipeline version number</summary>
+</column>
+    <column name="[BANDWID]">
+      <summary>Bandwidth of the data</summary>
+<unit>Angstroms</unit>
+</column>
+    <column name="[CENTRWV]">
+      <summary>Central wavelenght of the data</summary>
+<unit>Angstroms</unit>
+</column>
+    <column name="[WAVEMIN]">
+      <summary>Minimun wavelenght of the data</summary>
+<unit>Angstroms</unit>
+</column>
+    <column name="[WAVEMAX]">
+      <summary>Maximun wavelenght of the data</summary>
+<unit>Angstroms</unit>
+</column>
   </table>
 </metadata>
