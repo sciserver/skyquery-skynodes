@@ -12,16 +12,16 @@ from os.path import isfile
 #||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 #vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 
-dbName = "SPITZER"
+dbName = "VIPERSPDR2"
 
 spath = r"\\skyquery01\Data\temp0\data0\ebanyai\\"+dbName+"\\"
 dpath = r"C:\Data\ebanyai\project\skyquery-all\skyquery-skynodes\sql\\"+dbName+"\\"
 
 
-tableName = "goodsnIRS16micron"
+tableName = "SpecObj"
 fileName = spath+dbName+"_"+tableName+".bin"
 dst = dpath+dbName+"_"+tableName+".sql"
-primary_key = "objID"
+primary_key = "id_IAU"
 sName = spath+dbName+"_"+tableName+".jdict"
 
 
@@ -194,12 +194,12 @@ def sqlCreator(dbName,tableName,fileName,dtypes,dest_folder,primary_key,descript
         f.write("SkyQuery_CODE_dev.skyquery.ZoneIDFromDec(dec,4.0/3600.00000000) as zoneid, ")
         for col,i in zip(dtypes,range(len(dtypes))):
             if i == len(dtypes)-1:
-                if col[0] == "x" or col[0] == "y" or col[0] == "z" or col[0] == "I":
+                if col[0].lower() == "x" or col[0].lower() == "y" or col[0].lower() == "z" or col[0].lower() == "i":
                     f.write(tableName+"RAW."+rp(col[0]))
                 else:
                     f.write(rp(col[0]))
             else:
-                if col[0] == "x" or col[0] == "y" or col[0] == "z" or col[0] == "I":
+                if col[0].lower() == "x" or col[0].lower() == "y" or col[0].lower() == "z" or col[0].lower() == "i":
                     f.write(tableName+"RAW."+rp(col[0])+", ")
                 else:
                     f.write(rp(col[0])+", ")
