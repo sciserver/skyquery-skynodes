@@ -12,13 +12,13 @@ from os.path import isfile
 #||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 #vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 
-dbName = "SkyNode_VIPERSPDR1"
+dbName = "VIPERSPDR2"
 
 spath = r"\\skyquery01\Data\temp0\data0\ebanyai\\"+dbName+"\\"
 dpath = r"C:\Data\ebanyai\project\skyquery-all\skyquery-skynodes\sql\\"+dbName+"\\"
 
 
-tableName = "PhotoObj"
+tableName = "SpecObj"
 fileName = spath+dbName+"_"+tableName+".bin"
 dst = dpath+dbName+"_"+tableName+".sql"
 primary_key = "id_IAU"
@@ -104,7 +104,7 @@ for i in range(1,91):
 # az én csodálatos életkönnyítőm :D 
 def sqlCreator(dbName,tableName,fileName,dtypes,dest_folder,primary_key,description):
     with open(dest_folder,"w",encoding='utf-8') as f:
-        f.write("USE ["+dbName+"]\n")
+        f.write("USE [SkyNode_"+dbName+"]\n")
         f.write("\nGO\n\n")
         
         f.write("IF OBJECT_ID ('dbo."+tableName+"RAW', 'U') IS NOT NULL\n")
@@ -194,12 +194,12 @@ def sqlCreator(dbName,tableName,fileName,dtypes,dest_folder,primary_key,descript
         f.write("SkyQuery_CODE_dev.skyquery.ZoneIDFromDec(dec,4.0/3600.00000000) as zoneid, ")
         for col,i in zip(dtypes,range(len(dtypes))):
             if i == len(dtypes)-1:
-                if col[0] == "x" or col[0] == "y" or col[0] == "z" or col[0] == "I":
+                if col[0].lower() == "x" or col[0].lower() == "y" or col[0].lower() == "z" or col[0].lower() == "i":
                     f.write(tableName+"RAW."+rp(col[0]))
                 else:
                     f.write(rp(col[0]))
             else:
-                if col[0] == "x" or col[0] == "y" or col[0] == "z" or col[0] == "I":
+                if col[0].lower() == "x" or col[0].lower() == "y" or col[0].lower() == "z" or col[0].lower() == "i":
                     f.write(tableName+"RAW."+rp(col[0])+", ")
                 else:
                     f.write(rp(col[0])+", ")
@@ -210,7 +210,7 @@ def sqlCreator(dbName,tableName,fileName,dtypes,dest_folder,primary_key,descript
         f.write("\nGO\n\n")        
         
         f.write("-- DROP RAW TABLE\n")
-        f.write("DROP TABLE dbo.PhotoObjRAW;\n")
+        f.write("DROP TABLE dbo."+tableName+"RAW;\n")
         f.write("GO\n\n")
         
         f.write("-- Spatial index\n")

@@ -1,69 +1,195 @@
 USE [SkyNode_IRAS]
 GO
 
-CREATE TABLE [dbo].[PhotoObj]
-(
 --/ <summary>The main PhotoObj table for the IRAS catalog</summary>
 --/ <remarks>The main PhotoObj table for the IRAS catalog</remarks>
-	[objID] [bigint] NOT NULL, --/ <column>unique object identifier</column>
-	[name] [varchar](11) NOT NULL, --/ <column>IRAS Source Name</column>
-	[ra] [float] NOT NULL, --/ <column unit="deg">J2000 right ascension</column>
-	[dec] [float] NOT NULL, --/ <column unit="deg">J2000 declination</column>
+CREATE TABLE [dbo].[PhotoObj]
+(
+
+	--/ <summary>unique object identifier</summary>
+	[objID] [bigint] NOT NULL, 
+
+	--/ <summary>IRAS Source Name</summary>
+	[name] [varchar](11) NOT NULL, 
+
+	--/ <summary>J2000 right ascension</summary>
+	--/ <unit>deg</unit>
+	[ra] [float] NOT NULL, 
+
+	--/ <summary>J2000 declination</summary>
+	--/ <unit>deg</unit>
+	[dec] [float] NOT NULL, 
     [cx] [float] NOT NULL, --/ <column>Cartesian coordinate x</column>
-	[cy] [float] NOT NULL, --/ <column>Cartesian coordinate y</column>
-	[cz] [float] NOT NULL, --/ <column>Cartesian coordinate z</column>
-	[htmid] [bigint] NOT NULL, --/ <column>HTM ID</column>
-	[zoneid] [bigint] NOT NULL, --/ <column>Zone ID</column>
-	[err_maj] [real] NOT NULL, --/ <column unit="arcsec">Uncertainty ellipse major axis</column>
-	[err_min] [real] NOT NULL, --/ <column unit="arcsec">Uncertainty ellipse minor axis</column>
-	[err_ang] [smallint] NOT NULL, --/ <column unit="deg">Uncertainty ellipse position angle</column>
-	[nhcon] [smallint] NOT NULL, --/ <column>Number of times observed (&lt;25)</column>
-	[flux_12] [real] NOT NULL, --/ <column unit="Jansky">Averaged non-color corrected flux density, 12 microns</column>
-	[flux_25] [real] NOT NULL, --/ <column unit="Jansky">Averaged non-color corrected flux density, 25 microns</column>
-	[flux_60] [real] NOT NULL, --/ <column unit="Jansky">Averaged non-color corrected flux density, 60 microns</column>
-	[flux_100] [real] NOT NULL, --/ <column unit="Jansky">Averaged non-color corrected flux density,100 microns</column>
-	[fqual_12] [smallint] NOT NULL, --/ <column>flux density quality, 12 microns</column>
-	[fqual_25] [smallint] NOT NULL, --/ <column>flux density quality, 25 microns</column>
-	[fqual_60] [smallint] NOT NULL, --/ <column>flux density quality, 60 microns</column>
-	[fqual_100] [smallint] NOT NULL, --/ <column>flux density quality,100 microns</column>
-	[nlrs] [smallint] NOT NULL, --/ <column>Number of significant LRS spectra</column>
-	[lrschar] [char](2) NOT NULL, --/ <column>Characterization of averaged LRS spectrum, __ is NULL</column>
-	[relunc_12] [smallint] NOT NULL, --/ <column>Percent relative flux density uncertainties, 12 microns</column>
-	[relunc_25] [smallint] NOT NULL, --/ <column>Percent relative flux density uncertainties, 25 microns</column>
-	[relunc_60] [smallint] NOT NULL, --/ <column>Percent relative flux density uncertainties, 60 microns</column>
-	[relunc_100] [smallint] NOT NULL, --/ <column>Percent relative flux density uncertainties,100 microns</column>
-	[tsnr_12] [int] NOT NULL, --/ <column>Ten times the minimum signal-to-noise ratio, 12 microns</column>
-	[tsnr_25] [int] NOT NULL, --/ <column>Ten times the minimum signal-to-noise ratio, 25 microns</column>
-	[tsnr_60] [int] NOT NULL, --/ <column>Ten times the minimum signal-to-noise ratio, 60 microns</column>
-	[tsnr_100] [int] NOT NULL, --/ <column>Ten times the minimum signal-to-noise ratio,100 microns</column>
-	[cc_12] [char](1) NOT NULL, --/ <column>Point source correlation coefficient,_ is NULL, 12 microns</column>
-	[cc_25] [char](1) NOT NULL, --/ <column>Point source correlation coefficient,_ is NULL, 25 microns</column>
-	[cc_60] [char](1) NOT NULL, --/ <column>Point source correlation coefficient,_ is NULL, 60 microns</column>
-	[cc_100] [char](1) NOT NULL, --/ <column>Point source correlation coefficient,_ is NULL,100 microns</column>
-	[lvar] [smallint] NOT NULL, --/ <column>Percent Likelihood of Variability</column>
-	[disc] [binary](1) NOT NULL, --/ <column>Discrepant Fluxes flag (hex-encoded)</column>
-	[confuse] [binary](1) NOT NULL, --/ <column>Confusion flag (hex-encoded)</column>
-	[pnearh] [smallint] NOT NULL, --/ <column>Number of nearby hours-confirmed point sources</column>
-	[pnearw] [smallint] NOT NULL, --/ <column>Number of nearby weeks-confirmed point sources</column>
-	[ses1_12] [smallint] NOT NULL, --/ <column>Number of seconds-confirmed nearby small extended sources, 12 microns</column>
-	[ses1_25] [smallint] NOT NULL, --/ <column>Number of seconds-confirmed nearby small extended sources, 25 microns</column>
-	[ses1_60] [smallint] NOT NULL, --/ <column>Number of seconds-confirmed nearby small extended sources, 60 microns</column>
-	[ses1_100] [smallint] NOT NULL, --/ <column>Number of seconds-confirmed nearby small extended sources,100 microns</column>
-	[ses2_12] [smallint] NOT NULL, --/ <column>Number of nearby weeks-confirmed small extended sources, 12 microns</column>
-	[ses2_25] [smallint] NOT NULL, --/ <column>Number of nearby weeks-confirmed small extended sources, 25 microns</column>
-	[ses2_60] [smallint] NOT NULL, --/ <column>Number of nearby weeks-confirmed small extended sources, 60 microns</column>
-	[ses2_100] [smallint] NOT NULL, --/ <column>Number of nearby weeks-confirmed small extended sources,100 microns</column>
-	[hsdflag] [binary](1) NOT NULL, --/ <column>Source is located in high source density bin (hex-encoded)</column>
-	[cirr1] [smallint] NOT NULL, --/ <column>Number of nearby 100 micron only WSDB sources</column>
-	[cirr2] [smallint] NOT NULL, --/ <column>Spatially filtered 100 micron sky brightness ratio to flux density of point source (see text)</column>
-	[cirr3] [smallint] NOT NULL, --/ <column unit="MJy/sr">Total 100 micron sky surface brightness</column>
-	[nid] [smallint] NOT NULL, --/ <column>Number of positional associations</column>
-	[idtype] [smallint] NOT NULL, --/ <column>Type of Object</column>
-	[mhcon] [smallint] NOT NULL, --/ <column>Possible number of HCONs, 99 for NULL</column>
-	[fcor_12] [int] NOT NULL, --/ <column>Flux correction factor applied (times 1000),9999 is NULL, 12 microns</column>
-	[fcor_25] [int] NOT NULL, --/ <column>Flux correction factor applied (times 1000),9999 is NULL, 25 microns</column>
-	[fcor_60] [int] NOT NULL, --/ <column>Flux correction factor applied (times 1000),9999 is NULL, 60 microns</column>
-	[fcor_100] [int] NOT NULL --/ <column>Flux correction factor applied (times 1000),9999 is NULL,100 microns</column>
+
+	--/ <summary>Cartesian coordinate y</summary>
+	[cy] [float] NOT NULL, 
+
+	--/ <summary>Cartesian coordinate z</summary>
+	[cz] [float] NOT NULL, 
+
+	--/ <summary>HTM ID</summary>
+	[htmid] [bigint] NOT NULL, 
+
+	--/ <summary>Zone ID</summary>
+	[zoneid] [bigint] NOT NULL, 
+
+	--/ <summary>Uncertainty ellipse major axis</summary>
+	--/ <unit>arcsec</unit>
+	[err_maj] [real] NOT NULL, 
+
+	--/ <summary>Uncertainty ellipse minor axis</summary>
+	--/ <unit>arcsec</unit>
+	[err_min] [real] NOT NULL, 
+
+	--/ <summary>Uncertainty ellipse position angle</summary>
+	--/ <unit>deg</unit>
+	[err_ang] [smallint] NOT NULL, 
+
+	--/ <summary>Number of times observed (&lt;25)</summary>
+	[nhcon] [smallint] NOT NULL, 
+
+	--/ <summary>Averaged non-color corrected flux density, 12 microns</summary>
+	--/ <unit>Jansky</unit>
+	[flux_12] [real] NOT NULL, 
+
+	--/ <summary>Averaged non-color corrected flux density, 25 microns</summary>
+	--/ <unit>Jansky</unit>
+	[flux_25] [real] NOT NULL, 
+
+	--/ <summary>Averaged non-color corrected flux density, 60 microns</summary>
+	--/ <unit>Jansky</unit>
+	[flux_60] [real] NOT NULL, 
+
+	--/ <summary>Averaged non-color corrected flux density,100 microns</summary>
+	--/ <unit>Jansky</unit>
+	[flux_100] [real] NOT NULL, 
+
+	--/ <summary>flux density quality, 12 microns</summary>
+	[fqual_12] [smallint] NOT NULL, 
+
+	--/ <summary>flux density quality, 25 microns</summary>
+	[fqual_25] [smallint] NOT NULL, 
+
+	--/ <summary>flux density quality, 60 microns</summary>
+	[fqual_60] [smallint] NOT NULL, 
+
+	--/ <summary>flux density quality,100 microns</summary>
+	[fqual_100] [smallint] NOT NULL, 
+
+	--/ <summary>Number of significant LRS spectra</summary>
+	[nlrs] [smallint] NOT NULL, 
+
+	--/ <summary>Characterization of averaged LRS spectrum, __ is NULL</summary>
+	[lrschar] [char](2) NOT NULL, 
+
+	--/ <summary>Percent relative flux density uncertainties, 12 microns</summary>
+	[relunc_12] [smallint] NOT NULL, 
+
+	--/ <summary>Percent relative flux density uncertainties, 25 microns</summary>
+	[relunc_25] [smallint] NOT NULL, 
+
+	--/ <summary>Percent relative flux density uncertainties, 60 microns</summary>
+	[relunc_60] [smallint] NOT NULL, 
+
+	--/ <summary>Percent relative flux density uncertainties,100 microns</summary>
+	[relunc_100] [smallint] NOT NULL, 
+
+	--/ <summary>Ten times the minimum signal-to-noise ratio, 12 microns</summary>
+	[tsnr_12] [int] NOT NULL, 
+
+	--/ <summary>Ten times the minimum signal-to-noise ratio, 25 microns</summary>
+	[tsnr_25] [int] NOT NULL, 
+
+	--/ <summary>Ten times the minimum signal-to-noise ratio, 60 microns</summary>
+	[tsnr_60] [int] NOT NULL, 
+
+	--/ <summary>Ten times the minimum signal-to-noise ratio,100 microns</summary>
+	[tsnr_100] [int] NOT NULL, 
+
+	--/ <summary>Point source correlation coefficient,_ is NULL, 12 microns</summary>
+	[cc_12] [char](1) NOT NULL, 
+
+	--/ <summary>Point source correlation coefficient,_ is NULL, 25 microns</summary>
+	[cc_25] [char](1) NOT NULL, 
+
+	--/ <summary>Point source correlation coefficient,_ is NULL, 60 microns</summary>
+	[cc_60] [char](1) NOT NULL, 
+
+	--/ <summary>Point source correlation coefficient,_ is NULL,100 microns</summary>
+	[cc_100] [char](1) NOT NULL, 
+
+	--/ <summary>Percent Likelihood of Variability</summary>
+	[lvar] [smallint] NOT NULL, 
+
+	--/ <summary>Discrepant Fluxes flag (hex-encoded)</summary>
+	[disc] [binary](1) NOT NULL, 
+
+	--/ <summary>Confusion flag (hex-encoded)</summary>
+	[confuse] [binary](1) NOT NULL, 
+
+	--/ <summary>Number of nearby hours-confirmed point sources</summary>
+	[pnearh] [smallint] NOT NULL, 
+
+	--/ <summary>Number of nearby weeks-confirmed point sources</summary>
+	[pnearw] [smallint] NOT NULL, 
+
+	--/ <summary>Number of seconds-confirmed nearby small extended sources, 12 microns</summary>
+	[ses1_12] [smallint] NOT NULL, 
+
+	--/ <summary>Number of seconds-confirmed nearby small extended sources, 25 microns</summary>
+	[ses1_25] [smallint] NOT NULL, 
+
+	--/ <summary>Number of seconds-confirmed nearby small extended sources, 60 microns</summary>
+	[ses1_60] [smallint] NOT NULL, 
+
+	--/ <summary>Number of seconds-confirmed nearby small extended sources,100 microns</summary>
+	[ses1_100] [smallint] NOT NULL, 
+
+	--/ <summary>Number of nearby weeks-confirmed small extended sources, 12 microns</summary>
+	[ses2_12] [smallint] NOT NULL, 
+
+	--/ <summary>Number of nearby weeks-confirmed small extended sources, 25 microns</summary>
+	[ses2_25] [smallint] NOT NULL, 
+
+	--/ <summary>Number of nearby weeks-confirmed small extended sources, 60 microns</summary>
+	[ses2_60] [smallint] NOT NULL, 
+
+	--/ <summary>Number of nearby weeks-confirmed small extended sources,100 microns</summary>
+	[ses2_100] [smallint] NOT NULL, 
+
+	--/ <summary>Source is located in high source density bin (hex-encoded)</summary>
+	[hsdflag] [binary](1) NOT NULL, 
+
+	--/ <summary>Number of nearby 100 micron only WSDB sources</summary>
+	[cirr1] [smallint] NOT NULL, 
+
+	--/ <summary>Spatially filtered 100 micron sky brightness ratio to flux density of point source (see text)</summary>
+	[cirr2] [smallint] NOT NULL, 
+
+	--/ <summary>Total 100 micron sky surface brightness</summary>
+	--/ <unit>MJy/sr</unit>
+	[cirr3] [smallint] NOT NULL, 
+
+	--/ <summary>Number of positional associations</summary>
+	[nid] [smallint] NOT NULL, 
+
+	--/ <summary>Type of Object</summary>
+	[idtype] [smallint] NOT NULL, 
+
+	--/ <summary>Possible number of HCONs, 99 for NULL</summary>
+	[mhcon] [smallint] NOT NULL, 
+
+	--/ <summary>Flux correction factor applied (times 1000),9999 is NULL, 12 microns</summary>
+	[fcor_12] [int] NOT NULL, 
+
+	--/ <summary>Flux correction factor applied (times 1000),9999 is NULL, 25 microns</summary>
+	[fcor_25] [int] NOT NULL, 
+
+	--/ <summary>Flux correction factor applied (times 1000),9999 is NULL, 60 microns</summary>
+	[fcor_60] [int] NOT NULL, 
+
+	--/ <summary>Flux correction factor applied (times 1000),9999 is NULL,100 microns</summary>
+	[fcor_100] [int] NOT NULL 
 ) ON [PRIMARY]
 
 GO

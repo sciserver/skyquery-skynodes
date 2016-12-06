@@ -6,6 +6,8 @@ Read FIRST Catalog
 """
 import numpy as np
 import pandas as pd
+from astropy import units as u
+from astropy.coordinates import SkyCoord
 
 # function for converting from HHMMSS.s DDMMSS.s
 
@@ -26,7 +28,7 @@ def hmsdms2dd_no(ra,dec):
 dtypes = {"RA1":str,"RA2":str,"RA3":str,"Dec1":str,"Dec2":str,"Dec3":str}  
 
 # source folder
-src = r"C:\Data\ebanyai\project\FIRST\catalog_14dec17.bin"  
+src = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\FIRST\catalog_14dec17.bin.gz"  
 
 # setting up a new header
 header = ["RA1", "RA2", "RA3", "Dec1", "Dec2", "Dec3",  "Ps", "Fpeak", "Fint", "RMS", 
@@ -35,20 +37,14 @@ header = ["RA1", "RA2", "RA3", "Dec1", "Dec2", "Dec3",  "Ps", "Fpeak", "Fint", "
           "Mean-MJD", "rms-MJD"]        
           
 # grab the data
-data = pd.read_csv(src,dtype=dtypes, sep=" ",skipinitialspace=True,index_col=None,names=header,header=None,comment="#")
+data = pd.read_csv(src,dtype=dtypes, sep=" ",skipinitialspace=True,index_col=None,names=header,header=None,comment="#",compression='gzip')
 
 # CREATE PROPER FORMAT FOR CONVERTING & CONVERT 
-data["RA_hms"] = data.apply(lambda x:'%s%s%s' % (x['RA1'],x['RA2'],x["RA3"]),axis=1)
-data["Dec_hms"] = data.apply(lambda x:'%s%s%s' % (x['Dec1'],x['Dec2'],x["Dec3"]),axis=1)
+data["RA_hms"] = data.apply(lambda x:'%s %s %s' % (x['RA1'],x['RA2'],x["RA3"]),axis=1)
+data["Dec_dms"] = data.apply(lambda x:'%s %s %s' % (x['Dec1'],x['Dec2'],x["Dec3"]),axis=1)
 
-ra,dec= hmsdms2dd_no(data["RA_hms"],data["Dec_hms"])
-
-# DROP UNNECESSARY COLUMNS
-data.drop(data.columns[[0,1,2,3,4,5,-1,-2]], axis=1, inplace=True)
-
-# INSERT CONVERTED RA & Dec
-data.insert(1,"RA",ra)
-data.insert(2,"Dec",dec)
+coords = SkyCoord(data["RA_hms"],data["Dec_dms"],unit=(u.hourangle,u.deg))
+data["RA"],data["DEC"] = coords.ra.deg, coords.dec.deg
 
 
 # DEFINE DATA TYPES FOR BINARY FORMAT
@@ -84,7 +80,7 @@ dt_data = np.dtype([("index","i8"),
 records = np.array(data.to_records(),dtype=dt_data) 
 
 # destination folder
-dst = r".\FIRST_binTest.npy" 
+dst = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\FIRST\FIRST.bin" 
 
 # write to file
 records.tofile(dst)

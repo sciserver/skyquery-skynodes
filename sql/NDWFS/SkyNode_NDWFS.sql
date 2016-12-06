@@ -1,114 +1,414 @@
 USE [SkyNode_NDWFS]
 GO
 
-CREATE TABLE [dbo].[PhotoObj](
 --/ <summary> The main Photo table for the NOAO Deep Field catalog containing the individual band detections </summary>
 --/ <remarks> The main Photo table for the NOAO Deep Field catalog containing detections in   the individual bands. The merged catalog  will be located in the PhotoObjAll table </remarks>
-	[OBJID] [bigint] NOT NULL, --/ <column>unique object id, hashed from BAND, FIELD and NUMBER</column>
-	[BAND] [varchar](4) NOT NULL, --/ <column>Designates filter</column>
-	[FIELD] [varchar](16) NOT NULL, --/ <column>Field identifier</column>
-	[X_IMAGE] [real] NULL, --/ <column unit="pixel">Object position along x</column>
-	[Y_IMAGE] [real] NULL, --/ <column unit="pixel">Object position along y</column>
-	[XPEAK_IMAGE] [bigint] NULL, --/ <column unit="pixel">x-coordinate of the brightest pixel</column>
-	[YPEAK_IMAGE] [bigint] NULL, --/ <column unit="pixel">y-coordinate of the brightest pixel</column>
-	[NUMBER] [int] NOT NULL, --/ <column>Running object number</column>
-	[FLUX_ISO] [real] NULL, --/ <column unit="count">Isophotal flux</column>
-	[FLUXERR_ISO] [real] NULL, --/ <column unit="count">RMS error for isophotal flux</column>
-	[MAG_ISO] [real] NULL, --/ <column unit="mag">Isophotal magnitude</column>
-	[MAGERR_ISO] [real] NULL, --/ <column unit="mag">RMS error for isophotal magnitude</column>
-	[MAG_ISOCOR] [real] NULL, --/ <column unit="mag">Corrected isophotal magnitude</column>
-	[MAGERR_ISOCOR] [real] NULL, --/ <column unit="mag">RMS error for corrected isophotal magnitude</column>
-	[FLUX_APER_01] [real] NULL, --/ <column unit="count">Flux vector within fixed circular aperture(s)</column>
-	[FLUX_APER_02] [real] NULL, --/ <column unit="count">Flux vector within fixed circular aperture(s)</column>
-	[FLUX_APER_03] [real] NULL, --/ <column unit="count">Flux vector within fixed circular aperture(s)</column>
-	[FLUX_APER_04] [real] NULL, --/ <column unit="count">Flux vector within fixed circular aperture(s)</column>
-	[FLUX_APER_05] [real] NULL, --/ <column unit="count">Flux vector within fixed circular aperture(s)</column>
-	[FLUX_APER_06] [real] NULL, --/ <column unit="count">Flux vector within fixed circular aperture(s)</column>
-	[FLUX_APER_07] [real] NULL, --/ <column unit="count">Flux vector within fixed circular aperture(s)</column>
-	[FLUX_APER_08] [real] NULL, --/ <column unit="count">Flux vector within fixed circular aperture(s)</column>
-	[FLUX_APER_09] [real] NULL, --/ <column unit="count">Flux vector within fixed circular aperture(s)</column>
-	[FLUX_APER_10] [real] NULL, --/ <column unit="count">Flux vector within fixed circular aperture(s)</column>
-	[FLUX_APER_15] [real] NULL, --/ <column unit="count">Flux vector within fixed circular aperture(s)</column>
-	[FLUX_APER_20] [real] NULL, --/ <column unit="count">Flux vector within fixed circular aperture(s)</column>
-	[FLUXERR_APER_01] [real] NULL, --/ <column unit="count">RMS error vector for aperture flux(es)</column>
-	[FLUXERR_APER_02] [real] NULL, --/ <column unit="count">RMS error vector for aperture flux(es)</column>
-	[FLUXERR_APER_03] [real] NULL, --/ <column unit="count">RMS error vector for aperture flux(es)</column>
-	[FLUXERR_APER_04] [real] NULL, --/ <column unit="count">RMS error vector for aperture flux(es)</column>
-	[FLUXERR_APER_05] [real] NULL, --/ <column unit="count">RMS error vector for aperture flux(es)</column>
-	[FLUXERR_APER_06] [real] NULL, --/ <column unit="count">RMS error vector for aperture flux(es)</column>
-	[FLUXERR_APER_07] [real] NULL, --/ <column unit="count">RMS error vector for aperture flux(es)</column>
-	[FLUXERR_APER_08] [real] NULL, --/ <column unit="count">RMS error vector for aperture flux(es)</column>
-	[FLUXERR_APER_09] [real] NULL, --/ <column unit="count">RMS error vector for aperture flux(es)</column>
-	[FLUXERR_APER_10] [real] NULL, --/ <column unit="count">RMS error vector for aperture flux(es)</column>
-	[FLUXERR_APER_15] [real] NULL, --/ <column unit="count">RMS error vector for aperture flux(es)</column>
-	[FLUXERR_APER_20] [real] NULL, --/ <column unit="count">RMS error vector for aperture flux(es)</column>
-	[MAG_APER_01] [real] NULL, --/ <column unit="mag">Fixed aperture magnitude vector</column>
-	[MAG_APER_02] [real] NULL, --/ <column unit="mag">Fixed aperture magnitude vector</column>
-	[MAG_APER_03] [real] NULL, --/ <column unit="mag">Fixed aperture magnitude vector</column>
-	[MAG_APER_04] [real] NULL, --/ <column unit="mag">Fixed aperture magnitude vector</column>
-	[MAG_APER_05] [real] NULL, --/ <column unit="mag">Fixed aperture magnitude vector</column>
-	[MAG_APER_06] [real] NULL, --/ <column unit="mag">Fixed aperture magnitude vector</column>
-	[MAG_APER_07] [real] NULL, --/ <column unit="mag">Fixed aperture magnitude vector</column>
-	[MAG_APER_08] [real] NULL, --/ <column unit="mag">Fixed aperture magnitude vector</column>
-	[MAG_APER_09] [real] NULL, --/ <column unit="mag">Fixed aperture magnitude vector</column>
-	[MAG_APER_10] [real] NULL, --/ <column unit="mag">Fixed aperture magnitude vector</column>
-	[MAG_APER_15] [real] NULL, --/ <column unit="mag">Fixed aperture magnitude vector</column>
-	[MAG_APER_20] [real] NULL, --/ <column unit="mag">Fixed aperture magnitude vector</column>
-	[MAGERR_APER_01] [real] NULL, --/ <column unit="mag">RMS error vector for fixed aperture mag.</column>
-	[MAGERR_APER_02] [real] NULL, --/ <column unit="mag">RMS error vector for fixed aperture mag.</column>
-	[MAGERR_APER_03] [real] NULL, --/ <column unit="mag">RMS error vector for fixed aperture mag.</column>
-	[MAGERR_APER_04] [real] NULL, --/ <column unit="mag">RMS error vector for fixed aperture mag.</column>
-	[MAGERR_APER_05] [real] NULL, --/ <column unit="mag">RMS error vector for fixed aperture mag.</column>
-	[MAGERR_APER_06] [real] NULL, --/ <column unit="mag">RMS error vector for fixed aperture mag.</column>
-	[MAGERR_APER_07] [real] NULL, --/ <column unit="mag">RMS error vector for fixed aperture mag.</column>
-	[MAGERR_APER_08] [real] NULL, --/ <column unit="mag">RMS error vector for fixed aperture mag.</column>
-	[MAGERR_APER_09] [real] NULL, --/ <column unit="mag">RMS error vector for fixed aperture mag.</column>
-	[MAGERR_APER_10] [real] NULL, --/ <column unit="mag">RMS error vector for fixed aperture mag.</column>
-	[MAGERR_APER_15] [real] NULL, --/ <column unit="mag">RMS error vector for fixed aperture mag.</column>
-	[MAGERR_APER_20] [real] NULL, --/ <column unit="mag">RMS error vector for fixed aperture mag.</column>
-	[MAG_AUTO] [real] NULL, --/ <column unit="mag">Kron-like elliptical aperture magnitude</column>
-	[MAGERR_AUTO] [real] NULL, --/ <column unit="mag">RMS error for AUTO magnitude</column>
-	[KRON_RADIUS] [real] NULL, --/ <column>Kron apertures in units of A or B</column>
-	[BACKGROUND] [real] NULL, --/ <column unit="count">Background at centroid position</column>
-	[THRESHOLD] [real] NULL, --/ <column unit="count">Detection threshold above background</column>
-	[FLUX_MAX] [real] NULL, --/ <column unit="count">Peak flux above background</column>
-	[ISOAREA_IMAGE] [bigint] NULL, --/ <column unit="pixel**2">Isophotal area above Analysis threshold</column>
-	[RA] [float] NOT NULL, --/ <column unit="deg">Right ascension of barycenter (J2000)</column>
-	[DEC] [float] NOT NULL, --/ <column unit="deg">Declination of barycenter (J2000)</column>
-	[cx] [float] NOT NULL, --/ <column>Cartesian coordinate x</column>
-	[cy] [float] NOT NULL, --/ <column>Cartesian coordinate y</column>
-	[cz] [float] NOT NULL, --/ <column>Cartesian coordinate z</column>
-	[htmid] [bigint] NOT NULL, --/ <column>HTM ID</column>
-	[zoneid] [bigint] NOT NULL, --/ <column>Zone ID</column>
-	[ALPHAPEAK_J2000] [float] NULL, --/ <column unit="deg">Right ascension of brightest pix (J2000)</column>
-	[DELTAPEAK_J2000] [float] NULL, --/ <column unit="deg">Declination of brightest pix (J2000)</column>
-	[X2_IMAGE] [real] NULL, --/ <column unit="pixel**2">Variance along x</column>
-	[Y2_IMAGE] [real] NULL, --/ <column unit="pixel**2">Variance along y</column>
-	[XY_IMAGE] [real] NULL, --/ <column unit="pixel**2">Covariance between x and y</column>
-	[CXX_IMAGE] [real] NULL, --/ <column unit="pixel**(-2)">Cxx object ellipse parameter</column>
-	[CYY_IMAGE] [real] NULL, --/ <column unit="pixel**(-2)">Cyy object ellipse parameter</column>
-	[CXY_IMAGE] [real] NULL, --/ <column unit="pixel**(-2)">Cxy object ellipse parameter</column>
-	[CXX_WORLD] [real] NULL, --/ <column unit="deg**(-2)">Cxx object ellipse parameter (WORLD units)</column>
-	[CYY_WORLD] [real] NULL, --/ <column unit="deg**(-2)">Cyy object ellipse parameter (WORLD units)</column>
-	[CXY_WORLD] [real] NULL, --/ <column unit="deg**(-2)">Cxy object ellipse parameter (WORLD units)</column>
-	[A_IMAGE] [real] NULL, --/ <column unit="pixel">Profile RMS along major axis</column>
-	[B_IMAGE] [real] NULL, --/ <column unit="pixel">Profile RMS along minor axis</column>
-	[A_WORLD] [real] NULL, --/ <column unit="deg">Profile RMS along major axis (world units)</column>
-	[B_WORLD] [real] NULL, --/ <column unit="deg">Profile RMS along minor axis (world units)</column>
-	[THETA_IMAGE] [real] NULL, --/ <column unit="deg">Position angle (CCW/x)</column>
-	[THETA_WORLD] [real] NULL, --/ <column unit="deg">Position angle (CCW/world-x)</column>
-	[ELONGATION] [real] NULL, --/ <column>A_IMAGE/B_IMAGE</column>
-	[ELLIPTICITY] [real] NULL, --/ <column>1 - B_IMAGE/A_IMAGE</column>
-	[ERRX2_IMAGE] [real] NULL, --/ <column unit="pixel**2">Variance of position along x</column>
-	[ERRY2_IMAGE] [real] NULL, --/ <column unit="pixel**2">Variance of position along y</column>
-	[ERRXY_IMAGE] [real] NULL, --/ <column unit="pixel**2">Covariance of position between x and y</column>
-	[ERRA_IMAGE] [real] NULL, --/ <column unit="pixel">RMS position error along major axis</column>
-	[ERRB_IMAGE] [real] NULL, --/ <column unit="pixel">RMS position error along minor axis</column>
-	[ERRTHETA_IMAGE] [real] NULL, --/ <column unit="deg">Error ellipse position angle (CCW/x)</column>
-	[FWHM_IMAGE] [real] NULL, --/ <column unit="pixel">FWHM assuming a gaussian core</column>
-	[FLAGS] [bigint] NULL, --/ <column>Extraction flags</column>
-	[IMAFLAGS_ISO] [bigint] NULL, --/ <column>FLAG-image flags OR'ed over the iso. profile</column>
-	[CLASS_STAR] [real] NULL --/ <column>S/G classifier output</column>
+CREATE TABLE [dbo].[PhotoObj](
+
+	--/ <summary>unique object id, hashed from BAND, FIELD and NUMBER</summary>
+	[OBJID] [bigint] NOT NULL, 
+
+	--/ <summary>Designates filter</summary>
+	[BAND] [varchar](4) NOT NULL, 
+
+	--/ <summary>Field identifier</summary>
+	[FIELD] [varchar](16) NOT NULL, 
+
+	--/ <summary>Object position along x</summary>
+	--/ <unit>pixel</unit>
+	[X_IMAGE] [real] NULL, 
+
+	--/ <summary>Object position along y</summary>
+	--/ <unit>pixel</unit>
+	[Y_IMAGE] [real] NULL, 
+
+	--/ <summary>x-coordinate of the brightest pixel</summary>
+	--/ <unit>pixel</unit>
+	[XPEAK_IMAGE] [bigint] NULL, 
+
+	--/ <summary>y-coordinate of the brightest pixel</summary>
+	--/ <unit>pixel</unit>
+	[YPEAK_IMAGE] [bigint] NULL, 
+
+	--/ <summary>Running object number</summary>
+	[NUMBER] [int] NOT NULL, 
+
+	--/ <summary>Isophotal flux</summary>
+	--/ <unit>count</unit>
+	[FLUX_ISO] [real] NULL, 
+
+	--/ <summary>RMS error for isophotal flux</summary>
+	--/ <unit>count</unit>
+	[FLUXERR_ISO] [real] NULL, 
+
+	--/ <summary>Isophotal magnitude</summary>
+	--/ <unit>mag</unit>
+	[MAG_ISO] [real] NULL, 
+
+	--/ <summary>RMS error for isophotal magnitude</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_ISO] [real] NULL, 
+
+	--/ <summary>Corrected isophotal magnitude</summary>
+	--/ <unit>mag</unit>
+	[MAG_ISOCOR] [real] NULL, 
+
+	--/ <summary>RMS error for corrected isophotal magnitude</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_ISOCOR] [real] NULL, 
+
+	--/ <summary>Flux vector within fixed circular aperture(s)</summary>
+	--/ <unit>count</unit>
+	[FLUX_APER_01] [real] NULL, 
+
+	--/ <summary>Flux vector within fixed circular aperture(s)</summary>
+	--/ <unit>count</unit>
+	[FLUX_APER_02] [real] NULL, 
+
+	--/ <summary>Flux vector within fixed circular aperture(s)</summary>
+	--/ <unit>count</unit>
+	[FLUX_APER_03] [real] NULL, 
+
+	--/ <summary>Flux vector within fixed circular aperture(s)</summary>
+	--/ <unit>count</unit>
+	[FLUX_APER_04] [real] NULL, 
+
+	--/ <summary>Flux vector within fixed circular aperture(s)</summary>
+	--/ <unit>count</unit>
+	[FLUX_APER_05] [real] NULL, 
+
+	--/ <summary>Flux vector within fixed circular aperture(s)</summary>
+	--/ <unit>count</unit>
+	[FLUX_APER_06] [real] NULL, 
+
+	--/ <summary>Flux vector within fixed circular aperture(s)</summary>
+	--/ <unit>count</unit>
+	[FLUX_APER_07] [real] NULL, 
+
+	--/ <summary>Flux vector within fixed circular aperture(s)</summary>
+	--/ <unit>count</unit>
+	[FLUX_APER_08] [real] NULL, 
+
+	--/ <summary>Flux vector within fixed circular aperture(s)</summary>
+	--/ <unit>count</unit>
+	[FLUX_APER_09] [real] NULL, 
+
+	--/ <summary>Flux vector within fixed circular aperture(s)</summary>
+	--/ <unit>count</unit>
+	[FLUX_APER_10] [real] NULL, 
+
+	--/ <summary>Flux vector within fixed circular aperture(s)</summary>
+	--/ <unit>count</unit>
+	[FLUX_APER_15] [real] NULL, 
+
+	--/ <summary>Flux vector within fixed circular aperture(s)</summary>
+	--/ <unit>count</unit>
+	[FLUX_APER_20] [real] NULL, 
+
+	--/ <summary>RMS error vector for aperture flux(es)</summary>
+	--/ <unit>count</unit>
+	[FLUXERR_APER_01] [real] NULL, 
+
+	--/ <summary>RMS error vector for aperture flux(es)</summary>
+	--/ <unit>count</unit>
+	[FLUXERR_APER_02] [real] NULL, 
+
+	--/ <summary>RMS error vector for aperture flux(es)</summary>
+	--/ <unit>count</unit>
+	[FLUXERR_APER_03] [real] NULL, 
+
+	--/ <summary>RMS error vector for aperture flux(es)</summary>
+	--/ <unit>count</unit>
+	[FLUXERR_APER_04] [real] NULL, 
+
+	--/ <summary>RMS error vector for aperture flux(es)</summary>
+	--/ <unit>count</unit>
+	[FLUXERR_APER_05] [real] NULL, 
+
+	--/ <summary>RMS error vector for aperture flux(es)</summary>
+	--/ <unit>count</unit>
+	[FLUXERR_APER_06] [real] NULL, 
+
+	--/ <summary>RMS error vector for aperture flux(es)</summary>
+	--/ <unit>count</unit>
+	[FLUXERR_APER_07] [real] NULL, 
+
+	--/ <summary>RMS error vector for aperture flux(es)</summary>
+	--/ <unit>count</unit>
+	[FLUXERR_APER_08] [real] NULL, 
+
+	--/ <summary>RMS error vector for aperture flux(es)</summary>
+	--/ <unit>count</unit>
+	[FLUXERR_APER_09] [real] NULL, 
+
+	--/ <summary>RMS error vector for aperture flux(es)</summary>
+	--/ <unit>count</unit>
+	[FLUXERR_APER_10] [real] NULL, 
+
+	--/ <summary>RMS error vector for aperture flux(es)</summary>
+	--/ <unit>count</unit>
+	[FLUXERR_APER_15] [real] NULL, 
+
+	--/ <summary>RMS error vector for aperture flux(es)</summary>
+	--/ <unit>count</unit>
+	[FLUXERR_APER_20] [real] NULL, 
+
+	--/ <summary>Fixed aperture magnitude vector</summary>
+	--/ <unit>mag</unit>
+	[MAG_APER_01] [real] NULL, 
+
+	--/ <summary>Fixed aperture magnitude vector</summary>
+	--/ <unit>mag</unit>
+	[MAG_APER_02] [real] NULL, 
+
+	--/ <summary>Fixed aperture magnitude vector</summary>
+	--/ <unit>mag</unit>
+	[MAG_APER_03] [real] NULL, 
+
+	--/ <summary>Fixed aperture magnitude vector</summary>
+	--/ <unit>mag</unit>
+	[MAG_APER_04] [real] NULL, 
+
+	--/ <summary>Fixed aperture magnitude vector</summary>
+	--/ <unit>mag</unit>
+	[MAG_APER_05] [real] NULL, 
+
+	--/ <summary>Fixed aperture magnitude vector</summary>
+	--/ <unit>mag</unit>
+	[MAG_APER_06] [real] NULL, 
+
+	--/ <summary>Fixed aperture magnitude vector</summary>
+	--/ <unit>mag</unit>
+	[MAG_APER_07] [real] NULL, 
+
+	--/ <summary>Fixed aperture magnitude vector</summary>
+	--/ <unit>mag</unit>
+	[MAG_APER_08] [real] NULL, 
+
+	--/ <summary>Fixed aperture magnitude vector</summary>
+	--/ <unit>mag</unit>
+	[MAG_APER_09] [real] NULL, 
+
+	--/ <summary>Fixed aperture magnitude vector</summary>
+	--/ <unit>mag</unit>
+	[MAG_APER_10] [real] NULL, 
+
+	--/ <summary>Fixed aperture magnitude vector</summary>
+	--/ <unit>mag</unit>
+	[MAG_APER_15] [real] NULL, 
+
+	--/ <summary>Fixed aperture magnitude vector</summary>
+	--/ <unit>mag</unit>
+	[MAG_APER_20] [real] NULL, 
+
+	--/ <summary>RMS error vector for fixed aperture mag.</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_APER_01] [real] NULL, 
+
+	--/ <summary>RMS error vector for fixed aperture mag.</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_APER_02] [real] NULL, 
+
+	--/ <summary>RMS error vector for fixed aperture mag.</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_APER_03] [real] NULL, 
+
+	--/ <summary>RMS error vector for fixed aperture mag.</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_APER_04] [real] NULL, 
+
+	--/ <summary>RMS error vector for fixed aperture mag.</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_APER_05] [real] NULL, 
+
+	--/ <summary>RMS error vector for fixed aperture mag.</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_APER_06] [real] NULL, 
+
+	--/ <summary>RMS error vector for fixed aperture mag.</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_APER_07] [real] NULL, 
+
+	--/ <summary>RMS error vector for fixed aperture mag.</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_APER_08] [real] NULL, 
+
+	--/ <summary>RMS error vector for fixed aperture mag.</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_APER_09] [real] NULL, 
+
+	--/ <summary>RMS error vector for fixed aperture mag.</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_APER_10] [real] NULL, 
+
+	--/ <summary>RMS error vector for fixed aperture mag.</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_APER_15] [real] NULL, 
+
+	--/ <summary>RMS error vector for fixed aperture mag.</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_APER_20] [real] NULL, 
+
+	--/ <summary>Kron-like elliptical aperture magnitude</summary>
+	--/ <unit>mag</unit>
+	[MAG_AUTO] [real] NULL, 
+
+	--/ <summary>RMS error for AUTO magnitude</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_AUTO] [real] NULL, 
+
+	--/ <summary>Kron apertures in units of A or B</summary>
+	[KRON_RADIUS] [real] NULL, 
+
+	--/ <summary>Background at centroid position</summary>
+	--/ <unit>count</unit>
+	[BACKGROUND] [real] NULL, 
+
+	--/ <summary>Detection threshold above background</summary>
+	--/ <unit>count</unit>
+	[THRESHOLD] [real] NULL, 
+
+	--/ <summary>Peak flux above background</summary>
+	--/ <unit>count</unit>
+	[FLUX_MAX] [real] NULL, 
+
+	--/ <summary>Isophotal area above Analysis threshold</summary>
+	--/ <unit>pixel**2</unit>
+	[ISOAREA_IMAGE] [bigint] NULL, 
+
+	--/ <summary>Right ascension of barycenter (J2000)</summary>
+	--/ <unit>deg</unit>
+	[RA] [float] NOT NULL, 
+
+	--/ <summary>Declination of barycenter (J2000)</summary>
+	--/ <unit>deg</unit>
+	[DEC] [float] NOT NULL, 
+
+	--/ <summary>Cartesian coordinate x</summary>
+	[cx] [float] NOT NULL, 
+
+	--/ <summary>Cartesian coordinate y</summary>
+	[cy] [float] NOT NULL, 
+
+	--/ <summary>Cartesian coordinate z</summary>
+	[cz] [float] NOT NULL, 
+
+	--/ <summary>HTM ID</summary>
+	[htmid] [bigint] NOT NULL, 
+
+	--/ <summary>Zone ID</summary>
+	[zoneid] [bigint] NOT NULL, 
+
+	--/ <summary>Right ascension of brightest pix (J2000)</summary>
+	--/ <unit>deg</unit>
+	[ALPHAPEAK_J2000] [float] NULL, 
+
+	--/ <summary>Declination of brightest pix (J2000)</summary>
+	--/ <unit>deg</unit>
+	[DELTAPEAK_J2000] [float] NULL, 
+
+	--/ <summary>Variance along x</summary>
+	--/ <unit>pixel**2</unit>
+	[X2_IMAGE] [real] NULL, 
+
+	--/ <summary>Variance along y</summary>
+	--/ <unit>pixel**2</unit>
+	[Y2_IMAGE] [real] NULL, 
+
+	--/ <summary>Covariance between x and y</summary>
+	--/ <unit>pixel**2</unit>
+	[XY_IMAGE] [real] NULL, 
+
+	--/ <summary>Cxx object ellipse parameter</summary>
+	--/ <unit>pixel**(-2)</unit>
+	[CXX_IMAGE] [real] NULL, 
+
+	--/ <summary>Cyy object ellipse parameter</summary>
+	--/ <unit>pixel**(-2)</unit>
+	[CYY_IMAGE] [real] NULL, 
+
+	--/ <summary>Cxy object ellipse parameter</summary>
+	--/ <unit>pixel**(-2)</unit>
+	[CXY_IMAGE] [real] NULL, 
+
+	--/ <summary>Cxx object ellipse parameter (WORLD units)</summary>
+	--/ <unit>deg**(-2)</unit>
+	[CXX_WORLD] [real] NULL, 
+
+	--/ <summary>Cyy object ellipse parameter (WORLD units)</summary>
+	--/ <unit>deg**(-2)</unit>
+	[CYY_WORLD] [real] NULL, 
+
+	--/ <summary>Cxy object ellipse parameter (WORLD units)</summary>
+	--/ <unit>deg**(-2)</unit>
+	[CXY_WORLD] [real] NULL, 
+
+	--/ <summary>Profile RMS along major axis</summary>
+	--/ <unit>pixel</unit>
+	[A_IMAGE] [real] NULL, 
+
+	--/ <summary>Profile RMS along minor axis</summary>
+	--/ <unit>pixel</unit>
+	[B_IMAGE] [real] NULL, 
+
+	--/ <summary>Profile RMS along major axis (world units)</summary>
+	--/ <unit>deg</unit>
+	[A_WORLD] [real] NULL, 
+
+	--/ <summary>Profile RMS along minor axis (world units)</summary>
+	--/ <unit>deg</unit>
+	[B_WORLD] [real] NULL, 
+
+	--/ <summary>Position angle (CCW/x)</summary>
+	--/ <unit>deg</unit>
+	[THETA_IMAGE] [real] NULL, 
+
+	--/ <summary>Position angle (CCW/world-x)</summary>
+	--/ <unit>deg</unit>
+	[THETA_WORLD] [real] NULL, 
+
+	--/ <summary>A_IMAGE/B_IMAGE</summary>
+	[ELONGATION] [real] NULL, 
+
+	--/ <summary>1 - B_IMAGE/A_IMAGE</summary>
+	[ELLIPTICITY] [real] NULL, 
+
+	--/ <summary>Variance of position along x</summary>
+	--/ <unit>pixel**2</unit>
+	[ERRX2_IMAGE] [real] NULL, 
+
+	--/ <summary>Variance of position along y</summary>
+	--/ <unit>pixel**2</unit>
+	[ERRY2_IMAGE] [real] NULL, 
+
+	--/ <summary>Covariance of position between x and y</summary>
+	--/ <unit>pixel**2</unit>
+	[ERRXY_IMAGE] [real] NULL, 
+
+	--/ <summary>RMS position error along major axis</summary>
+	--/ <unit>pixel</unit>
+	[ERRA_IMAGE] [real] NULL, 
+
+	--/ <summary>RMS position error along minor axis</summary>
+	--/ <unit>pixel</unit>
+	[ERRB_IMAGE] [real] NULL, 
+
+	--/ <summary>Error ellipse position angle (CCW/x)</summary>
+	--/ <unit>deg</unit>
+	[ERRTHETA_IMAGE] [real] NULL, 
+
+	--/ <summary>FWHM assuming a gaussian core</summary>
+	--/ <unit>pixel</unit>
+	[FWHM_IMAGE] [real] NULL, 
+
+	--/ <summary>Extraction flags</summary>
+	[FLAGS] [bigint] NULL, 
+
+	--/ <summary>FLAG-image flags OR'ed over the iso. profile</summary>
+	[IMAFLAGS_ISO] [bigint] NULL, 
+
+	--/ <summary>S/G classifier output</summary>
+	[CLASS_STAR] [real] NULL 
 ) ON [PRIMARY]
 
 GO
@@ -173,115 +473,415 @@ WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [PRIMARY]
 GO
 
-CREATE TABLE [dbo].[PhotoObjK]
-(
 --/ <summary> The main Photo table for the NOAO Deep Field catalog containing the individual band detections </summary>
 --/ <remarks> The main Photo table for the NOAO Deep Field catalog containing detections in   the individual bands. The merged catalog  will be located in the PhotoObjAll table </remarks>
-	[OBJID] [bigint] NOT NULL, --/ <column>unique object id, hashed from BAND, FIELD and NUMBER</column>
-	[BAND] [varchar](4) NOT NULL, --/ <column>Designates filter</column>
-	[FIELD] [varchar](16) NOT NULL, --/ <column>Field identifier</column>
-	[X_IMAGE] [real] NULL, --/ <column unit="pixel">Object position along x</column>
-	[Y_IMAGE] [real] NULL, --/ <column unit="pixel">Object position along y</column>
-	[XPEAK_IMAGE] [bigint] NULL, --/ <column unit="pixel">x-coordinate of the brightest pixel</column>
-	[YPEAK_IMAGE] [bigint] NULL, --/ <column unit="pixel">y-coordinate of the brightest pixel</column>
-	[NUMBER] [int] NOT NULL, --/ <column>Running object number</column>
-	[FLUX_ISO] [real] NULL, --/ <column unit="count">Isophotal flux</column>
-	[FLUXERR_ISO] [real] NULL, --/ <column unit="count">RMS error for isophotal flux</column>
-	[MAG_ISO] [real] NULL, --/ <column unit="mag">Isophotal magnitude</column>
-	[MAGERR_ISO] [real] NULL, --/ <column unit="mag">RMS error for isophotal magnitude</column>
-	[MAG_ISOCOR] [real] NULL, --/ <column unit="mag">Corrected isophotal magnitude</column>
-	[MAGERR_ISOCOR] [real] NULL, --/ <column unit="mag">RMS error for corrected isophotal magnitude</column>
-	[FLUX_APER_01] [real] NULL, --/ <column unit="count">Flux vector within fixed circular aperture(s)</column>
-	[FLUX_APER_02] [real] NULL, --/ <column unit="count">Flux vector within fixed circular aperture(s)</column>
-	[FLUX_APER_03] [real] NULL, --/ <column unit="count">Flux vector within fixed circular aperture(s)</column>
-	[FLUX_APER_04] [real] NULL, --/ <column unit="count">Flux vector within fixed circular aperture(s)</column>
-	[FLUX_APER_05] [real] NULL, --/ <column unit="count">Flux vector within fixed circular aperture(s)</column>
-	[FLUX_APER_06] [real] NULL, --/ <column unit="count">Flux vector within fixed circular aperture(s)</column>
-	[FLUX_APER_07] [real] NULL, --/ <column unit="count">Flux vector within fixed circular aperture(s)</column>
-	[FLUX_APER_08] [real] NULL, --/ <column unit="count">Flux vector within fixed circular aperture(s)</column>
-	[FLUX_APER_09] [real] NULL, --/ <column unit="count">Flux vector within fixed circular aperture(s)</column>
-	[FLUX_APER_10] [real] NULL, --/ <column unit="count">Flux vector within fixed circular aperture(s)</column>
-	[FLUX_APER_15] [real] NULL, --/ <column unit="count">Flux vector within fixed circular aperture(s)</column>
-	[FLUX_APER_20] [real] NULL, --/ <column unit="count">Flux vector within fixed circular aperture(s)</column>
-	[FLUXERR_APER_01] [real] NULL, --/ <column unit="count">RMS error vector for aperture flux(es)</column>
-	[FLUXERR_APER_02] [real] NULL, --/ <column unit="count">RMS error vector for aperture flux(es)</column>
-	[FLUXERR_APER_03] [real] NULL, --/ <column unit="count">RMS error vector for aperture flux(es)</column>
-	[FLUXERR_APER_04] [real] NULL, --/ <column unit="count">RMS error vector for aperture flux(es)</column>
-	[FLUXERR_APER_05] [real] NULL, --/ <column unit="count">RMS error vector for aperture flux(es)</column>
-	[FLUXERR_APER_06] [real] NULL, --/ <column unit="count">RMS error vector for aperture flux(es)</column>
-	[FLUXERR_APER_07] [real] NULL, --/ <column unit="count">RMS error vector for aperture flux(es)</column>
-	[FLUXERR_APER_08] [real] NULL, --/ <column unit="count">RMS error vector for aperture flux(es)</column>
-	[FLUXERR_APER_09] [real] NULL, --/ <column unit="count">RMS error vector for aperture flux(es)</column>
-	[FLUXERR_APER_10] [real] NULL, --/ <column unit="count">RMS error vector for aperture flux(es)</column>
-	[FLUXERR_APER_15] [real] NULL, --/ <column unit="count">RMS error vector for aperture flux(es)</column>
-	[FLUXERR_APER_20] [real] NULL, --/ <column unit="count">RMS error vector for aperture flux(es)</column>
-	[MAG_APER_01] [real] NULL, --/ <column unit="mag">Fixed aperture magnitude vector</column>
-	[MAG_APER_02] [real] NULL, --/ <column unit="mag">Fixed aperture magnitude vector</column>
-	[MAG_APER_03] [real] NULL, --/ <column unit="mag">Fixed aperture magnitude vector</column>
-	[MAG_APER_04] [real] NULL, --/ <column unit="mag">Fixed aperture magnitude vector</column>
-	[MAG_APER_05] [real] NULL, --/ <column unit="mag">Fixed aperture magnitude vector</column>
-	[MAG_APER_06] [real] NULL, --/ <column unit="mag">Fixed aperture magnitude vector</column>
-	[MAG_APER_07] [real] NULL, --/ <column unit="mag">Fixed aperture magnitude vector</column>
-	[MAG_APER_08] [real] NULL, --/ <column unit="mag">Fixed aperture magnitude vector</column>
-	[MAG_APER_09] [real] NULL, --/ <column unit="mag">Fixed aperture magnitude vector</column>
-	[MAG_APER_10] [real] NULL, --/ <column unit="mag">Fixed aperture magnitude vector</column>
-	[MAG_APER_15] [real] NULL, --/ <column unit="mag">Fixed aperture magnitude vector</column>
-	[MAG_APER_20] [real] NULL, --/ <column unit="mag">Fixed aperture magnitude vector</column>
-	[MAGERR_APER_01] [real] NULL, --/ <column unit="mag">RMS error vector for fixed aperture mag.</column>
-	[MAGERR_APER_02] [real] NULL, --/ <column unit="mag">RMS error vector for fixed aperture mag.</column>
-	[MAGERR_APER_03] [real] NULL, --/ <column unit="mag">RMS error vector for fixed aperture mag.</column>
-	[MAGERR_APER_04] [real] NULL, --/ <column unit="mag">RMS error vector for fixed aperture mag.</column>
-	[MAGERR_APER_05] [real] NULL, --/ <column unit="mag">RMS error vector for fixed aperture mag.</column>
-	[MAGERR_APER_06] [real] NULL, --/ <column unit="mag">RMS error vector for fixed aperture mag.</column>
-	[MAGERR_APER_07] [real] NULL, --/ <column unit="mag">RMS error vector for fixed aperture mag.</column>
-	[MAGERR_APER_08] [real] NULL, --/ <column unit="mag">RMS error vector for fixed aperture mag.</column>
-	[MAGERR_APER_09] [real] NULL, --/ <column unit="mag">RMS error vector for fixed aperture mag.</column>
-	[MAGERR_APER_10] [real] NULL, --/ <column unit="mag">RMS error vector for fixed aperture mag.</column>
-	[MAGERR_APER_15] [real] NULL, --/ <column unit="mag">RMS error vector for fixed aperture mag.</column>
-	[MAGERR_APER_20] [real] NULL, --/ <column unit="mag">RMS error vector for fixed aperture mag.</column>
-	[MAG_AUTO] [real] NULL, --/ <column unit="mag">Kron-like elliptical aperture magnitude</column>
-	[MAGERR_AUTO] [real] NULL, --/ <column unit="mag">RMS error for AUTO magnitude</column>
-	[KRON_RADIUS] [real] NULL, --/ <column>Kron apertures in units of A or B</column>
-	[BACKGROUND] [real] NULL, --/ <column unit="count">Background at centroid position</column>
-	[THRESHOLD] [real] NULL, --/ <column unit="count">Detection threshold above background</column>
-	[FLUX_MAX] [real] NULL, --/ <column unit="count">Peak flux above background</column>
-	[ISOAREA_IMAGE] [bigint] NULL, --/ <column unit="pixel**2">Isophotal area above Analysis threshold</column>
-	[RA] [float] NOT NULL, --/ <column unit="deg">Right ascension of barycenter (J2000)</column>
-	[DEC] [float] NOT NULL, --/ <column unit="deg">Declination of barycenter (J2000)</column>
-    [cx] [float] NOT NULL, --/ <column>Cartesian coordinate x</column>
-	[cy] [float] NOT NULL, --/ <column>Cartesian coordinate y</column>
-	[cz] [float] NOT NULL, --/ <column>Cartesian coordinate z</column>
-	[htmid] [bigint] NOT NULL, --/ <column>Unique HTM ID</column>
-	[zoneid] [bigint] NOT NULL, --/ <column>Unique HTM ID</column>
-	[ALPHAPEAK_J2000] [float] NULL, --/ <column unit="deg">Right ascension of brightest pix (J2000)</column>
-	[DELTAPEAK_J2000] [float] NULL, --/ <column unit="deg">Declination of brightest pix (J2000)</column>
-	[X2_IMAGE] [real] NULL, --/ <column unit="pixel**2">Variance along x</column>
-	[Y2_IMAGE] [real] NULL, --/ <column unit="pixel**2">Variance along y</column>
-	[XY_IMAGE] [real] NULL, --/ <column unit="pixel**2">Covariance between x and y</column>
-	[CXX_IMAGE] [real] NULL, --/ <column unit="pixel**(-2)">Cxx object ellipse parameter</column>
-	[CYY_IMAGE] [real] NULL, --/ <column unit="pixel**(-2)">Cyy object ellipse parameter</column>
-	[CXY_IMAGE] [real] NULL, --/ <column unit="pixel**(-2)">Cxy object ellipse parameter</column>
-	[CXX_WORLD] [real] NULL, --/ <column unit="deg**(-2)">Cxx object ellipse parameter (WORLD units)</column>
-	[CYY_WORLD] [real] NULL, --/ <column unit="deg**(-2)">Cyy object ellipse parameter (WORLD units)</column>
-	[CXY_WORLD] [real] NULL, --/ <column unit="deg**(-2)">Cxy object ellipse parameter (WORLD units)</column>
-	[A_IMAGE] [real] NULL, --/ <column unit="pixel">Profile RMS along major axis</column>
-	[B_IMAGE] [real] NULL, --/ <column unit="pixel">Profile RMS along minor axis</column>
-	[A_WORLD] [real] NULL, --/ <column unit="deg">Profile RMS along major axis (world units)</column>
-	[B_WORLD] [real] NULL, --/ <column unit="deg">Profile RMS along minor axis (world units)</column>
-	[THETA_IMAGE] [real] NULL, --/ <column unit="deg">Position angle (CCW/x)</column>
-	[THETA_WORLD] [real] NULL, --/ <column unit="deg">Position angle (CCW/world-x)</column>
-	[ELONGATION] [real] NULL, --/ <column>A_IMAGE/B_IMAGE</column>
-	[ELLIPTICITY] [real] NULL, --/ <column>1 - B_IMAGE/A_IMAGE</column>
-	[ERRX2_IMAGE] [real] NULL, --/ <column unit="pixel**2">Variance of position along x</column>
-	[ERRY2_IMAGE] [real] NULL, --/ <column unit="pixel**2">Variance of position along y</column>
-	[ERRXY_IMAGE] [real] NULL, --/ <column unit="pixel**2">Covariance of position between x and y</column>
-	[ERRA_IMAGE] [real] NULL, --/ <column unit="pixel">RMS position error along major axis</column>
-	[ERRB_IMAGE] [real] NULL, --/ <column unit="pixel">RMS position error along minor axis</column>
-	[ERRTHETA_IMAGE] [real] NULL, --/ <column unit="deg">Error ellipse position angle (CCW/x)</column>
-	[FWHM_IMAGE] [real] NULL, --/ <column unit="pixel">FWHM assuming a gaussian core</column>
-	[FLAGS] [bigint] NULL, --/ <column>Extraction flags</column>
-	[IMAFLAGS_ISO] [bigint] NULL, --/ <column>FLAG-image flags OR'ed over the iso. profile</column>
-	[CLASS_STAR] [real] NULL --/ <column>S/G classifier output</column>
+CREATE TABLE [dbo].[PhotoObjK]
+(
+
+	--/ <summary>unique object id, hashed from BAND, FIELD and NUMBER</summary>
+	[OBJID] [bigint] NOT NULL, 
+
+	--/ <summary>Designates filter</summary>
+	[BAND] [varchar](4) NOT NULL, 
+
+	--/ <summary>Field identifier</summary>
+	[FIELD] [varchar](16) NOT NULL, 
+
+	--/ <summary>Object position along x</summary>
+	--/ <unit>pixel</unit>
+	[X_IMAGE] [real] NULL, 
+
+	--/ <summary>Object position along y</summary>
+	--/ <unit>pixel</unit>
+	[Y_IMAGE] [real] NULL, 
+
+	--/ <summary>x-coordinate of the brightest pixel</summary>
+	--/ <unit>pixel</unit>
+	[XPEAK_IMAGE] [bigint] NULL, 
+
+	--/ <summary>y-coordinate of the brightest pixel</summary>
+	--/ <unit>pixel</unit>
+	[YPEAK_IMAGE] [bigint] NULL, 
+
+	--/ <summary>Running object number</summary>
+	[NUMBER] [int] NOT NULL, 
+
+	--/ <summary>Isophotal flux</summary>
+	--/ <unit>count</unit>
+	[FLUX_ISO] [real] NULL, 
+
+	--/ <summary>RMS error for isophotal flux</summary>
+	--/ <unit>count</unit>
+	[FLUXERR_ISO] [real] NULL, 
+
+	--/ <summary>Isophotal magnitude</summary>
+	--/ <unit>mag</unit>
+	[MAG_ISO] [real] NULL, 
+
+	--/ <summary>RMS error for isophotal magnitude</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_ISO] [real] NULL, 
+
+	--/ <summary>Corrected isophotal magnitude</summary>
+	--/ <unit>mag</unit>
+	[MAG_ISOCOR] [real] NULL, 
+
+	--/ <summary>RMS error for corrected isophotal magnitude</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_ISOCOR] [real] NULL, 
+
+	--/ <summary>Flux vector within fixed circular aperture(s)</summary>
+	--/ <unit>count</unit>
+	[FLUX_APER_01] [real] NULL, 
+
+	--/ <summary>Flux vector within fixed circular aperture(s)</summary>
+	--/ <unit>count</unit>
+	[FLUX_APER_02] [real] NULL, 
+
+	--/ <summary>Flux vector within fixed circular aperture(s)</summary>
+	--/ <unit>count</unit>
+	[FLUX_APER_03] [real] NULL, 
+
+	--/ <summary>Flux vector within fixed circular aperture(s)</summary>
+	--/ <unit>count</unit>
+	[FLUX_APER_04] [real] NULL, 
+
+	--/ <summary>Flux vector within fixed circular aperture(s)</summary>
+	--/ <unit>count</unit>
+	[FLUX_APER_05] [real] NULL, 
+
+	--/ <summary>Flux vector within fixed circular aperture(s)</summary>
+	--/ <unit>count</unit>
+	[FLUX_APER_06] [real] NULL, 
+
+	--/ <summary>Flux vector within fixed circular aperture(s)</summary>
+	--/ <unit>count</unit>
+	[FLUX_APER_07] [real] NULL, 
+
+	--/ <summary>Flux vector within fixed circular aperture(s)</summary>
+	--/ <unit>count</unit>
+	[FLUX_APER_08] [real] NULL, 
+
+	--/ <summary>Flux vector within fixed circular aperture(s)</summary>
+	--/ <unit>count</unit>
+	[FLUX_APER_09] [real] NULL, 
+
+	--/ <summary>Flux vector within fixed circular aperture(s)</summary>
+	--/ <unit>count</unit>
+	[FLUX_APER_10] [real] NULL, 
+
+	--/ <summary>Flux vector within fixed circular aperture(s)</summary>
+	--/ <unit>count</unit>
+	[FLUX_APER_15] [real] NULL, 
+
+	--/ <summary>Flux vector within fixed circular aperture(s)</summary>
+	--/ <unit>count</unit>
+	[FLUX_APER_20] [real] NULL, 
+
+	--/ <summary>RMS error vector for aperture flux(es)</summary>
+	--/ <unit>count</unit>
+	[FLUXERR_APER_01] [real] NULL, 
+
+	--/ <summary>RMS error vector for aperture flux(es)</summary>
+	--/ <unit>count</unit>
+	[FLUXERR_APER_02] [real] NULL, 
+
+	--/ <summary>RMS error vector for aperture flux(es)</summary>
+	--/ <unit>count</unit>
+	[FLUXERR_APER_03] [real] NULL, 
+
+	--/ <summary>RMS error vector for aperture flux(es)</summary>
+	--/ <unit>count</unit>
+	[FLUXERR_APER_04] [real] NULL, 
+
+	--/ <summary>RMS error vector for aperture flux(es)</summary>
+	--/ <unit>count</unit>
+	[FLUXERR_APER_05] [real] NULL, 
+
+	--/ <summary>RMS error vector for aperture flux(es)</summary>
+	--/ <unit>count</unit>
+	[FLUXERR_APER_06] [real] NULL, 
+
+	--/ <summary>RMS error vector for aperture flux(es)</summary>
+	--/ <unit>count</unit>
+	[FLUXERR_APER_07] [real] NULL, 
+
+	--/ <summary>RMS error vector for aperture flux(es)</summary>
+	--/ <unit>count</unit>
+	[FLUXERR_APER_08] [real] NULL, 
+
+	--/ <summary>RMS error vector for aperture flux(es)</summary>
+	--/ <unit>count</unit>
+	[FLUXERR_APER_09] [real] NULL, 
+
+	--/ <summary>RMS error vector for aperture flux(es)</summary>
+	--/ <unit>count</unit>
+	[FLUXERR_APER_10] [real] NULL, 
+
+	--/ <summary>RMS error vector for aperture flux(es)</summary>
+	--/ <unit>count</unit>
+	[FLUXERR_APER_15] [real] NULL, 
+
+	--/ <summary>RMS error vector for aperture flux(es)</summary>
+	--/ <unit>count</unit>
+	[FLUXERR_APER_20] [real] NULL, 
+
+	--/ <summary>Fixed aperture magnitude vector</summary>
+	--/ <unit>mag</unit>
+	[MAG_APER_01] [real] NULL, 
+
+	--/ <summary>Fixed aperture magnitude vector</summary>
+	--/ <unit>mag</unit>
+	[MAG_APER_02] [real] NULL, 
+
+	--/ <summary>Fixed aperture magnitude vector</summary>
+	--/ <unit>mag</unit>
+	[MAG_APER_03] [real] NULL, 
+
+	--/ <summary>Fixed aperture magnitude vector</summary>
+	--/ <unit>mag</unit>
+	[MAG_APER_04] [real] NULL, 
+
+	--/ <summary>Fixed aperture magnitude vector</summary>
+	--/ <unit>mag</unit>
+	[MAG_APER_05] [real] NULL, 
+
+	--/ <summary>Fixed aperture magnitude vector</summary>
+	--/ <unit>mag</unit>
+	[MAG_APER_06] [real] NULL, 
+
+	--/ <summary>Fixed aperture magnitude vector</summary>
+	--/ <unit>mag</unit>
+	[MAG_APER_07] [real] NULL, 
+
+	--/ <summary>Fixed aperture magnitude vector</summary>
+	--/ <unit>mag</unit>
+	[MAG_APER_08] [real] NULL, 
+
+	--/ <summary>Fixed aperture magnitude vector</summary>
+	--/ <unit>mag</unit>
+	[MAG_APER_09] [real] NULL, 
+
+	--/ <summary>Fixed aperture magnitude vector</summary>
+	--/ <unit>mag</unit>
+	[MAG_APER_10] [real] NULL, 
+
+	--/ <summary>Fixed aperture magnitude vector</summary>
+	--/ <unit>mag</unit>
+	[MAG_APER_15] [real] NULL, 
+
+	--/ <summary>Fixed aperture magnitude vector</summary>
+	--/ <unit>mag</unit>
+	[MAG_APER_20] [real] NULL, 
+
+	--/ <summary>RMS error vector for fixed aperture mag.</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_APER_01] [real] NULL, 
+
+	--/ <summary>RMS error vector for fixed aperture mag.</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_APER_02] [real] NULL, 
+
+	--/ <summary>RMS error vector for fixed aperture mag.</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_APER_03] [real] NULL, 
+
+	--/ <summary>RMS error vector for fixed aperture mag.</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_APER_04] [real] NULL, 
+
+	--/ <summary>RMS error vector for fixed aperture mag.</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_APER_05] [real] NULL, 
+
+	--/ <summary>RMS error vector for fixed aperture mag.</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_APER_06] [real] NULL, 
+
+	--/ <summary>RMS error vector for fixed aperture mag.</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_APER_07] [real] NULL, 
+
+	--/ <summary>RMS error vector for fixed aperture mag.</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_APER_08] [real] NULL, 
+
+	--/ <summary>RMS error vector for fixed aperture mag.</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_APER_09] [real] NULL, 
+
+	--/ <summary>RMS error vector for fixed aperture mag.</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_APER_10] [real] NULL, 
+
+	--/ <summary>RMS error vector for fixed aperture mag.</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_APER_15] [real] NULL, 
+
+	--/ <summary>RMS error vector for fixed aperture mag.</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_APER_20] [real] NULL, 
+
+	--/ <summary>Kron-like elliptical aperture magnitude</summary>
+	--/ <unit>mag</unit>
+	[MAG_AUTO] [real] NULL, 
+
+	--/ <summary>RMS error for AUTO magnitude</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_AUTO] [real] NULL, 
+
+	--/ <summary>Kron apertures in units of A or B</summary>
+	[KRON_RADIUS] [real] NULL, 
+
+	--/ <summary>Background at centroid position</summary>
+	--/ <unit>count</unit>
+	[BACKGROUND] [real] NULL, 
+
+	--/ <summary>Detection threshold above background</summary>
+	--/ <unit>count</unit>
+	[THRESHOLD] [real] NULL, 
+
+	--/ <summary>Peak flux above background</summary>
+	--/ <unit>count</unit>
+	[FLUX_MAX] [real] NULL, 
+
+	--/ <summary>Isophotal area above Analysis threshold</summary>
+	--/ <unit>pixel**2</unit>
+	[ISOAREA_IMAGE] [bigint] NULL, 
+
+	--/ <summary>Right ascension of barycenter (J2000)</summary>
+	--/ <unit>deg</unit>
+	[RA] [float] NOT NULL, 
+
+	--/ <summary>Declination of barycenter (J2000)</summary>
+	--/ <unit>deg</unit>
+	[DEC] [float] NOT NULL, 
+
+	--/ <summary>Cartesian coordinate x</summary>
+	[cx] [float] NOT NULL, 
+
+	--/ <summary>Cartesian coordinate y</summary>
+	[cy] [float] NOT NULL, 
+
+	--/ <summary>Cartesian coordinate z</summary>
+	[cz] [float] NOT NULL, 
+
+	--/ <summary>Unique HTM ID</summary>
+	[htmid] [bigint] NOT NULL, 
+
+	--/ <summary>Unique HTM ID</summary>
+	[zoneid] [bigint] NOT NULL, 
+
+	--/ <summary>Right ascension of brightest pix (J2000)</summary>
+	--/ <unit>deg</unit>
+	[ALPHAPEAK_J2000] [float] NULL, 
+
+	--/ <summary>Declination of brightest pix (J2000)</summary>
+	--/ <unit>deg</unit>
+	[DELTAPEAK_J2000] [float] NULL, 
+
+	--/ <summary>Variance along x</summary>
+	--/ <unit>pixel**2</unit>
+	[X2_IMAGE] [real] NULL, 
+
+	--/ <summary>Variance along y</summary>
+	--/ <unit>pixel**2</unit>
+	[Y2_IMAGE] [real] NULL, 
+
+	--/ <summary>Covariance between x and y</summary>
+	--/ <unit>pixel**2</unit>
+	[XY_IMAGE] [real] NULL, 
+
+	--/ <summary>Cxx object ellipse parameter</summary>
+	--/ <unit>pixel**(-2)</unit>
+	[CXX_IMAGE] [real] NULL, 
+
+	--/ <summary>Cyy object ellipse parameter</summary>
+	--/ <unit>pixel**(-2)</unit>
+	[CYY_IMAGE] [real] NULL, 
+
+	--/ <summary>Cxy object ellipse parameter</summary>
+	--/ <unit>pixel**(-2)</unit>
+	[CXY_IMAGE] [real] NULL, 
+
+	--/ <summary>Cxx object ellipse parameter (WORLD units)</summary>
+	--/ <unit>deg**(-2)</unit>
+	[CXX_WORLD] [real] NULL, 
+
+	--/ <summary>Cyy object ellipse parameter (WORLD units)</summary>
+	--/ <unit>deg**(-2)</unit>
+	[CYY_WORLD] [real] NULL, 
+
+	--/ <summary>Cxy object ellipse parameter (WORLD units)</summary>
+	--/ <unit>deg**(-2)</unit>
+	[CXY_WORLD] [real] NULL, 
+
+	--/ <summary>Profile RMS along major axis</summary>
+	--/ <unit>pixel</unit>
+	[A_IMAGE] [real] NULL, 
+
+	--/ <summary>Profile RMS along minor axis</summary>
+	--/ <unit>pixel</unit>
+	[B_IMAGE] [real] NULL, 
+
+	--/ <summary>Profile RMS along major axis (world units)</summary>
+	--/ <unit>deg</unit>
+	[A_WORLD] [real] NULL, 
+
+	--/ <summary>Profile RMS along minor axis (world units)</summary>
+	--/ <unit>deg</unit>
+	[B_WORLD] [real] NULL, 
+
+	--/ <summary>Position angle (CCW/x)</summary>
+	--/ <unit>deg</unit>
+	[THETA_IMAGE] [real] NULL, 
+
+	--/ <summary>Position angle (CCW/world-x)</summary>
+	--/ <unit>deg</unit>
+	[THETA_WORLD] [real] NULL, 
+
+	--/ <summary>A_IMAGE/B_IMAGE</summary>
+	[ELONGATION] [real] NULL, 
+
+	--/ <summary>1 - B_IMAGE/A_IMAGE</summary>
+	[ELLIPTICITY] [real] NULL, 
+
+	--/ <summary>Variance of position along x</summary>
+	--/ <unit>pixel**2</unit>
+	[ERRX2_IMAGE] [real] NULL, 
+
+	--/ <summary>Variance of position along y</summary>
+	--/ <unit>pixel**2</unit>
+	[ERRY2_IMAGE] [real] NULL, 
+
+	--/ <summary>Covariance of position between x and y</summary>
+	--/ <unit>pixel**2</unit>
+	[ERRXY_IMAGE] [real] NULL, 
+
+	--/ <summary>RMS position error along major axis</summary>
+	--/ <unit>pixel</unit>
+	[ERRA_IMAGE] [real] NULL, 
+
+	--/ <summary>RMS position error along minor axis</summary>
+	--/ <unit>pixel</unit>
+	[ERRB_IMAGE] [real] NULL, 
+
+	--/ <summary>Error ellipse position angle (CCW/x)</summary>
+	--/ <unit>deg</unit>
+	[ERRTHETA_IMAGE] [real] NULL, 
+
+	--/ <summary>FWHM assuming a gaussian core</summary>
+	--/ <unit>pixel</unit>
+	[FWHM_IMAGE] [real] NULL, 
+
+	--/ <summary>Extraction flags</summary>
+	[FLAGS] [bigint] NULL, 
+
+	--/ <summary>FLAG-image flags OR'ed over the iso. profile</summary>
+	[IMAFLAGS_ISO] [bigint] NULL, 
+
+	--/ <summary>S/G classifier output</summary>
+	[CLASS_STAR] [real] NULL 
 ) ON [PRIMARY]
 
 
@@ -342,14 +942,25 @@ ON [PRIMARY]
 GO
 
 
-CREATE TABLE [dbo].[Neighbors](
 --/ <summary> All PhotoObjAll pairs within 2 arcseconds  </summary>
 --/ <remarks> SDSS objects within 2 arcsec and their match parameters stored here.   The two halves of the pair come from different bands. The first  half of the pair  </remarks>
-	[objID] [bigint] NOT NULL, --/ <column content="ID_CATALOG">The unique objId of the center object</column>
-	[neighborObjID] [bigint] NULL, --/ <column content="ID_CATALOG">The objId of the neighbor</column>
-	[distance] [float] NOT NULL, --/ <column unit="arcmins" content="POS_ANG_DIST_GENERAL">Distance between center and neighbor</column>
-	[band] [varchar](3) NOT NULL, --/ <column content="CLASS_OBJECT">Filter band of the center</column>
-	[neighborBand] [varchar](3) NULL --/ <column content="CLASS_OBJECT">Filter band of the neighbor</column>
+CREATE TABLE [dbo].[Neighbors](
+
+	--/ <summary>The unique objId of the center object</summary>
+	[objID] [bigint] NOT NULL, 
+
+	--/ <summary>The objId of the neighbor</summary>
+	[neighborObjID] [bigint] NULL, 
+
+	--/ <summary>Distance between center and neighbor</summary>
+	--/ <unit>arcmins</unit>
+	[distance] [float] NOT NULL, 
+
+	--/ <summary>Filter band of the center</summary>
+	[band] [varchar](3) NOT NULL, 
+
+	--/ <summary>Filter band of the neighbor</summary>
+	[neighborBand] [varchar](3) NULL 
 ) ON [PRIMARY]
 
 

@@ -1,0 +1,520 @@
+<metadata>
+  <table name="[dbo].[PhotoObj]">
+    <column name="[cx]">
+      <summary> Cartesian X (J2000)</summary>
+</column>
+    <column name="[cy]">
+      <summary> Cartesian Y (J2000)</summary>
+</column>
+    <column name="[cz]">
+      <summary> Cartesian Z (J2000)</summary>
+</column>
+    <column name="[htmid]">
+      <summary> HTM ID (J2000)</summary>
+</column>
+    <column name="[zoneid]">
+      <summary> Zone ID </summary>
+</column>
+    <column name="[MGC]">
+      <summary> MGC object ID/serial number (=ID) </summary>
+</column>
+    <column name="[MGCFN]">
+      <summary> MGC field number (=MGCFN) </summary>
+</column>
+    <column name="[CCD]">
+      <summary> CCD number (=CCD) </summary>
+</column>
+    <column name="[Xpos]">
+      <summary> Object x position </summary>
+<unit> pix </unit>
+</column>
+    <column name="[Ypos]">
+      <summary> Object y position </summary>
+<unit> pix </unit>
+</column>
+    <column name="[RA]">
+      <summary> Object right ascension (J2000) </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[DEC]">
+      <summary> Object declination (J2000)  </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[a]">
+      <summary> Flux rms along major axis </summary>
+<unit> pix </unit>
+</column>
+    <column name="[b]">
+      <summary> Flux rms along minor axis </summary>
+<unit> pix </unit>
+</column>
+    <column name="[PA]">
+      <summary> Position angle </summary>
+<unit> deg </unit>
+</column>
+    <column name="[HLRad]">
+      <summary> Semi-major axis of half-light ellipse </summary>
+<unit> pix </unit>
+</column>
+    <column name="[FWHM]">
+      <summary> FWHM assuming a Gaussian core </summary>
+<unit> pix </unit>
+</column>
+    <column name="[Bkgrnd]">
+      <summary> Background at object position  </summary>
+<unit> ct </unit>
+</column>
+    <column name="[Bmag]">
+      <summary> Best of MAG_AUTO and MAG_ISOCOR </summary>
+<unit> mag </unit>
+</column>
+    <column name="[Bmagc]">
+      <summary> B_MGC corrected for extinction </summary>
+<unit> mag </unit>
+</column>
+    <column name="[Bmu]">
+      <summary> Effective surface brightness </summary>
+<unit> mag/arcsec2 </unit>
+</column>
+    <column name="[Qual]">
+      <summary> Quality class. Photometric quality parameter: This parameter describes the reliability of an object's photometric
+depending on the level of
+-contamination by CCD defects satellite trails, cosmic rays and
+diffractionspikes
+-blending with a similarly bright object
+-missing light due to a CCD edge
+-failed background estimation due to nearby very bright objects.
+0:Unclassified
+1:Photometric parameters are reliable.
+2:Photometric parameters are probably ok.
+3:Photometric parameters are unreliable. All objects with Qual=3 lie in exclusion regions. </summary>
+</column>
+    <column name="[Stel]">
+      <summary> Stellaricity </summary>
+</column>
+    <column name="[Class]">
+      <summary> [0/15] Classification parameter. Classification parameter is defined as follows:
+0:Unclassified
+1:Galaxy
+2:Reserved for morphological classification of galaxies
+3:Reserved for morphological classification of galaxies
+4:Reserved for morphological classification of galaxies
+5:Currently unused
+6:Currently unused
+7:QSO
+8:Star
+9:Asteroid
+10:Satellite trail
+11:Cosmic ray
+12:CCD defect
+13:Diffraction spike
+14:Other (noise)
+15:Obsolete (ie. replaced by a new catalogue entry) </summary>
+</column>
+    <column name="[xReg]">
+      <summary> [0/1] Exclusion region flag. Exclusion region flag:
+0:Object is not in an exclusion region
+1:Object is in an exclusion region </summary>
+</column>
+    <column name="[NSDSS]">
+      <summary> Number of SDSS objects matched to MGC object </summary>
+</column>
+    <column name="[SDSSid]">
+      <summary> SDSS PhotoObject ID </summary>
+</column>
+    <column name="[SDSSrun]">
+      <summary> SDSS run number </summary>
+</column>
+    <column name="[SDSSrun2]">
+      <summary> SDSS rerun number </summary>
+</column>
+    <column name="[SDSScam]">
+      <summary> SDSS camera colum </summary>
+</column>
+    <column name="[SDSSfld]">
+      <summary> SDSS field number </summary>
+</column>
+    <column name="[RA1deg]">
+      <summary> SDSS object right ascension (J2000) </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[DE1deg]">
+      <summary> SDSS object declination (J2000)  </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[psfUmag]">
+      <summary> SDSS extinction corrected PSF magnitude </summary>
+<unit> mag </unit>
+</column>
+    <column name="[psfGmag]">
+      <summary> SDSS extinction corrected PSF magnitude </summary>
+<unit> mag </unit>
+</column>
+    <column name="[psfRmag]">
+      <summary> SDSS extinction corrected PSF magnitude </summary>
+<unit> mag </unit>
+</column>
+    <column name="[psfImag]">
+      <summary> SDSS extinction corrected PSF magnitude </summary>
+<unit> mag </unit>
+</column>
+    <column name="[psfZmag]">
+      <summary> SDSS extinction corrected PSF magnitude </summary>
+<unit> mag </unit>
+</column>
+    <column name="[petUmag]">
+      <summary> SDSS extinction corrected Petrosian magnitude </summary>
+<unit> mag </unit>
+</column>
+    <column name="[petGmag]">
+      <summary> SDSS extinction corrected Petrosian magnitude </summary>
+<unit> mag </unit>
+</column>
+    <column name="[petRmag]">
+      <summary> SDSS extinction corrected Petrosian magnitude </summary>
+<unit> mag </unit>
+</column>
+    <column name="[petImag]">
+      <summary> SDSS extinction corrected Petrosian magnitude </summary>
+<unit> mag </unit>
+</column>
+    <column name="[petZmag]">
+      <summary> SDSS extinction corrected Petrosian magnitude </summary>
+<unit> mag </unit>
+</column>
+    <column name="[modUmag]">
+      <summary> SDSS extinction corrected model magnitude </summary>
+<unit> mag </unit>
+</column>
+    <column name="[modGmag]">
+      <summary> SDSS extinction corrected model magnitude </summary>
+<unit> mag </unit>
+</column>
+    <column name="[modRmag]">
+      <summary> SDSS extinction corrected model magnitude </summary>
+<unit> mag </unit>
+</column>
+    <column name="[modImag]">
+      <summary> SDSS extinction corrected model magnitude </summary>
+<unit> mag </unit>
+</column>
+    <column name="[modZmag]">
+      <summary> SDSS extinction corrected model magnitude </summary>
+<unit> mag </unit>
+</column>
+    <column name="[galUext]">
+      <summary> SDSS Galactic extinction correction </summary>
+<unit> mag </unit>
+</column>
+    <column name="[galGext]">
+      <summary> SDSS Galactic extinction correction </summary>
+<unit> mag </unit>
+</column>
+    <column name="[galRext]">
+      <summary> SDSS Galactic extinction correction </summary>
+<unit> mag </unit>
+</column>
+    <column name="[galIext]">
+      <summary> SDSS Galactic extinction correction </summary>
+<unit> mag </unit>
+</column>
+    <column name="[galZext]">
+      <summary> SDSS Galactic extinction correction </summary>
+<unit> mag </unit>
+</column>
+    <column name="[R50U]">
+      <summary> SDSS radius containing 50% Petrosian flux </summary>
+<unit> arcsec </unit>
+</column>
+    <column name="[R50G]">
+      <summary> SDSS radius containing 50% Petrosian flux </summary>
+<unit> arcsec </unit>
+</column>
+    <column name="[R50R]">
+      <summary> SDSS radius containing 50% Petrosian flux </summary>
+<unit> arcsec </unit>
+</column>
+    <column name="[R50I]">
+      <summary> SDSS radius containing 50% Petrosian flux </summary>
+<unit> arcsec </unit>
+</column>
+    <column name="[R50Z]">
+      <summary> SDSS radius containing 50% Petrosian flux </summary>
+<unit> arcsec </unit>
+</column>
+    <column name="[MType]">
+      <summary> [0/6] SDSS morphological classification </summary>
+</column>
+    <column name="[Class1]">
+      <summary> [0/8] MGC translation of MType </summary>
+</column>
+    <column name="[SpClass]">
+      <summary> [0/8] SDSS spectroscopic classification </summary>
+</column>
+    <column name="[Class2]">
+      <summary> [0/14] MGC translation of SpClass </summary>
+</column>
+    <column name="[N2dFGRS]">
+      <summary> Number of 2dFGRS objects/spectra for this MGC object </summary>
+</column>
+    <column name="[twodFGRS]">
+      <summary> 2dFGRS (Cat. VII/226) object name </summary>
+</column>
+    <column name="[ID2dFGRS]">
+      <summary> 2dFGRS sequence number </summary>
+</column>
+    <column name="[RA2deg]">
+      <summary> 2dFGRS object right ascension (J2000) </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[DE2deg]">
+      <summary> 2dFGRS object declination (J2000) </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[UKST]">
+      <summary> UKST survey field number  </summary>
+</column>
+    <column name="[bJmag]">
+      <summary> 2dFGRS final bJ magnitude </summary>
+<unit> mag </unit>
+</column>
+    <column name="[bJmagc]">
+      <summary> 2dFGRS final extinction corrected bJ magnitude </summary>
+<unit> mag </unit>
+</column>
+    <column name="[bJmagS]">
+      <summary> uperCOSMOS Sky Surveys (=SSS) bJ magnitude </summary>
+<unit> mag </unit>
+</column>
+    <column name="[RmagS]">
+      <summary> SSS R magnitude (=TDFGRS_SRRMAG) </summary>
+<unit> mag </unit>
+</column>
+    <column name="[Class3]">
+      <summary> [0/2] 2dFGRS classification </summary>
+</column>
+    <column name="[Class4]">
+      <summary> [0/1] MGC translation of Class3 </summary>
+</column>
+    <column name="[twoQZ]">
+      <summary> 2QZ (Cat. VII/233) object name </summary>
+</column>
+    <column name="[RA3deg]">
+      <summary> 2QZ object right ascension (J2000) </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[DE3deg]">
+      <summary> 2QZ object declination (J2000) </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[UKST2qz]">
+      <summary> UKST survey field number  </summary>
+</column>
+    <column name="[bJmag2]">
+      <summary> 2QZ bJ magnitude </summary>
+<unit> mag </unit>
+</column>
+    <column name="[U_bJ]">
+      <summary> 2QZ U-bJ colour </summary>
+<unit> mag </unit>
+</column>
+    <column name="[bJ_R]">
+      <summary>  2QZ bJ-R colour </summary>
+<unit> mag </unit>
+</column>
+    <column name="[Ext_B_V]">
+      <summary> 2QZ color excess E(B-V) </summary>
+<unit> mag </unit>
+</column>
+    <column name="[N2qz]">
+      <summary> Number of 2QZ spectra for this MGC object </summary>
+</column>
+    <column name="[T2qz]">
+      <summary> 2QZ type </summary>
+</column>
+    <column name="[Class5]">
+      <summary> [0/8] MGC translation of T2qZ </summary>
+</column>
+    <column name="[NNED]">
+      <summary> Number of NED objects matched to this MGC object  </summary>
+</column>
+    <column name="[NEDname]">
+      <summary> NED object name </summary>
+</column>
+    <column name="[RA4deg]">
+      <summary> NED object right ascension (J2000) </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[DE4deg]">
+      <summary> NED object declination (J2000) </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[NEDID]">
+      <summary> NED identification </summary>
+</column>
+    <column name="[Class6]">
+      <summary> [0/7] MGC translation of NEDID  </summary>
+</column>
+    <column name="[PFr]">
+      <summary> PFr (Cat. J/AJ/127/646) object name </summary>
+</column>
+    <column name="[RA5deg]">
+      <summary> PFr object right ascension (J2000) </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[DE5deg]">
+      <summary> PFr object declination (J2000) </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[Rmag]">
+      <summary> PFr R magnitude from USNO </summary>
+<unit> mag </unit>
+</column>
+    <column name="[Kmag]">
+      <summary> PFr K magnitude from 2MASS </summary>
+<unit> mag </unit>
+</column>
+    <column name="[J_K]">
+      <summary> PFr J-K colour from 2MASS </summary>
+<unit> mag </unit>
+</column>
+    <column name="[LSBG]">
+      <summary> LSBG (Cat. J/MNRAS/304/297) object name </summary>
+</column>
+    <column name="[RA6deg]">
+      <summary> LSBG object right ascension (J2000) </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[DE6deg]">
+      <summary>  LSBG object declination (J2000) </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[BTOT]">
+      <summary>  LSBG total B magnitude (=LSBG_BTOT) </summary>
+<unit> mag </unit>
+</column>
+    <column name="[SuBr]">
+      <summary>  LSBG central surface brightness </summary>
+<unit> mag/arcsec2 </unit>
+</column>
+    <column name="[SuBreff]">
+      <summary> LSBG effective surface brightness </summary>
+<unit> mag/arcsec2 </unit>
+</column>
+    <column name="[Reff]">
+      <summary>  LSBG effective radius  </summary>
+<unit> arcsec </unit>
+</column>
+    <column name="[z1]">
+      <summary> MGCz heliocentric redshift </summary>
+</column>
+    <column name="[q_z1]">
+      <summary> MGCz redshift quality. Spectroscopic quality parameter (Normally only redshifts with q_z&ge;3 should be used):
+1:Something is clearly wrong with the spectrum or there is absolutely no flux. Redshift measurement is not possible.
+with this q_z are meaningless
+2:Low quality spectrum. Probability that redshift is correct is low.
+3:Reasonable spectrum. Redshift is probably correct.
+4:Good quality spectrum. Very reliable redshift.
+5:very good quality spectrum. Very reliable redshift.
+9:The database contains no spectroscopic information for this object </summary>
+</column>
+    <column name="[z2]">
+      <summary> SDSS redshift </summary>
+</column>
+    <column name="[q_z2]">
+      <summary> SDSS redshift quality (=SDSS_ZQUAL). Spectroscopic quality parameter (Normally only redshifts with q_z&ge;3 should
+used):
+1:Something is clearly wrong with the spectrum or there is absolutely no flux. Redshift measurement is not possible.
+with this q_z are meaningless
+2:Low quality spectrum. Probability that redshift is correct is low.
+3:Reasonable spectrum. Redshift is probably correct.
+4:Good quality spectrum. Very reliable redshift.
+5:very good quality spectrum. Very reliable redshift.
+9:The database contains no spectroscopic information for this object </summary>
+</column>
+    <column name="[z3]">
+      <summary> 2dFGRS heliocentric redshift </summary>
+</column>
+    <column name="[q_z3]">
+      <summary> 2dFGRS redshift quality. Spectroscopic quality parameter (Normally only redshifts with q_z&ge;3 should be used):
+1:Something is clearly wrong with the spectrum or there is absolutely no flux. Redshift measurement is not possible.
+with this q_z are meaningless
+2:Low quality spectrum. Probability that redshift is correct is low.
+3:Reasonable spectrum. Redshift is probably correct.
+4:Good quality spectrum. Very reliable redshift.
+5:very good quality spectrum. Very reliable redshift.
+9:The database contains no spectroscopic information for this object </summary>
+</column>
+    <column name="[z4]">
+      <summary> 2QZ redshift  </summary>
+</column>
+    <column name="[q_z4]">
+      <summary> 2QZ redshift quality. Spectroscopic quality parameter (Normally only redshifts with q_z&ge;3 should be used):
+1:Something is clearly wrong with the spectrum or there is absolutely no flux. Redshift measurement is not possible.
+with this q_z are meaningless
+2:Low quality spectrum. Probability that redshift is correct is low.
+3:Reasonable spectrum. Redshift is probably correct.
+4:Good quality spectrum. Very reliable redshift.
+5:very good quality spectrum. Very reliable redshift.
+9:The database contains no spectroscopic information for this object </summary>
+</column>
+    <column name="[z5]">
+      <summary> NED heliocentric redshift </summary>
+</column>
+    <column name="[q_z5]">
+      <summary> NED redshift quality. Spectroscopic quality parameter (Normally only redshifts with q_z&ge;3 should be used):
+1:Something is clearly wrong with the spectrum or there is absolutely no flux. Redshift measurement is not possible.
+with this q_z are meaningless
+2:Low quality spectrum. Probability that redshift is correct is low.
+3:Reasonable spectrum. Redshift is probably correct.
+4:Good quality spectrum. Very reliable redshift.
+5:very good quality spectrum. Very reliable redshift.
+9:The database contains no spectroscopic information for this object </summary>
+</column>
+    <column name="[z6]">
+      <summary> PFr redshift </summary>
+</column>
+    <column name="[q_z6]">
+      <summary> PFr redshift quality. Spectroscopic quality parameter (Normally only redshifts with q_z&ge;3 should be used):
+1:Something is clearly wrong with the spectrum or there is absolutely no flux. Redshift measurement is not possible.
+with this q_z are meaningless
+2:Low quality spectrum. Probability that redshift is correct is low.
+3:Reasonable spectrum. Redshift is probably correct.
+4:Good quality spectrum. Very reliable redshift.
+5:very good quality spectrum. Very reliable redshift.
+9:The database contains no spectroscopic information for this object </summary>
+</column>
+    <column name="[z7]">
+      <summary> LSBG heliocentric redshift  </summary>
+</column>
+    <column name="[q_z7]">
+      <summary>  LSBG redshift quality. Spectroscopic quality parameter (Normally only redshifts with q_z&ge;3 should be used):
+1:Something is clearly wrong with the spectrum or there is absolutely no flux. Redshift measurement is not possible.
+with this q_z are meaningless
+2:Low quality spectrum. Probability that redshift is correct is low.
+3:Reasonable spectrum. Redshift is probably correct.
+4:Good quality spectrum. Very reliable redshift.
+5:very good quality spectrum. Very reliable redshift.
+9:The database contains no spectroscopic information for this object </summary>
+</column>
+    <column name="[r_z]">
+      <summary> Choice for best redshift+quality </summary>
+</column>
+    <column name="[z]">
+      <summary> Best redshift  </summary>
+</column>
+    <column name="[q_z]">
+      <summary> Quality of best redshift. Spectroscopic quality parameter (Normally only redshifts with q_z&ge;3 should be used):
+1:Something is clearly wrong with the spectrum or there is absolutely no flux. Redshift measurement is not possible.
+with this q_z are meaningless
+2:Low quality spectrum. Probability that redshift is correct is low.
+3:Reasonable spectrum. Redshift is probably correct.
+4:Good quality spectrum. Very reliable redshift.
+5:very good quality spectrum. Very reliable redshift.
+9:The database contains no spectroscopic information for this object </summary>
+</column>
+    <column name="[Nsp]">
+      <summary> Total number of spectra for this object </summary>
+</column>
+  </table>
+</metadata>

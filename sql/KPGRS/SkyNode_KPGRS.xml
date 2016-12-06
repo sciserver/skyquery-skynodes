@@ -1,0 +1,92 @@
+<metadata>
+  <table name="[dbo].[SpecObj]">
+    <column name="[cx]">
+      <summary> Cartesian X (J2000)</summary>
+</column>
+    <column name="[cy]">
+      <summary> Cartesian Y (J2000)</summary>
+</column>
+    <column name="[cz]">
+      <summary> Cartesian Z (J2000)</summary>
+</column>
+    <column name="[htmid]">
+      <summary> HTM ID (J2000)</summary>
+</column>
+    <column name="[zoneid]">
+      <summary> Zone ID </summary>
+</column>
+    <column name="[MKK97]">
+      <summary> Identifying serial number. Objects in fields SA57, SA68, Her1, and Lynx2 begin with the digit 1, 2, 3, and 4, respectively.</summary>
+</column>
+    <column name="[RA]">
+      <summary> Right ascension (ICRS) (computed by VizieR, not part of the original data) </summary>
+<unit> deg </unit>
+</column>
+    <column name="[DEC]">
+      <summary> Declination (ICRS) (computed by VizieR, not part of the original data) </summary>
+<unit> deg </unit>
+</column>
+    <column name="[RFmag]">
+      <summary> Total RF (RF approx. (V+R)/2) magnitude. In SA57 and SA68, this means the magnitude within a circular aperture of radius 2*r1.
+In Her1 and Lynx2, this means the FOCAS total magnitude (magnitude within an area at least twice the size of that contained within the
+detection isophote). </summary>
+<unit> mag </unit>
+</column>
+    <column name="[U_BJ]">
+      <summary> U-BJohnson color. In SA57 and SA68, the colors are derived from magnitudes measured in a circular aperture of radius 2*r1.
+In Her1 and Lynx2, the colors are derived from magnitudes measured in a circular aperture of radius 2 arcsec.
+The 5 off-scale values (MKK97= 103357, 103341, 213807, 217739, 316656) reflect the fact that the photometry for individual objects
+can be wrong due to plate defects or whatever. They clearly indicate that the photometry in at least one band for that object is questionable. </summary>
+<unit> mag </unit>
+</column>
+    <column name="[BJ_RF]">
+      <summary> BJohnson-RF color. </summary>
+<unit> mag </unit>
+</column>
+    <column name="[RF_IN]">
+      <summary> RF-IN color (IN approx. Kron-Cousins I).  </summary>
+<unit> mag </unit>
+</column>
+    <column name="[z]">
+      <summary> Redshift. Objects with a redshift of 0.0000 were morphologically classified as galaxies, but spectroscopically found to be stars. </summary>
+</column>
+    <column name="[q_z]">
+      <summary> Redshift quality. q = min[6, min(1, Ndef) + 2 Ndef + Nprob], where Ndef and Nprob are the number of definite and probable features, respectively. </summary>
+</column>
+    <column name="[r_z]">
+      <summary> The sources of the redshift. (A�OO): multi-hole or multi-slit spectrum from the specified mask (cross-reference to column 1 in Table 5)
+(a�z): long-slit or multi-fiber spectrum from the specified observing run (cross-reference to column 1 in Table 3)
+(1) Spinrad, 1980, private communication;
+(2) Turner, 1980, private communication;
+(3) Based on observations obtained at the W. M. Keck Observatory, which is operated jointly by the California Institute of Technology and the
+University of California. </summary>
+</column>
+    <column name="[Ns]">
+      <summary> The number of galaxies, brighter than this galaxy in RF and within the field-of-view of this galaxy's primary mask, for which no
+spectra were ever obtained and no other redshifts exist. </summary>
+</column>
+    <column name="[Nb]">
+      <summary> The number of galaxies, brighter than this galaxy in RF and part of the statistical sample defined by this galaxy's primary mask,
+which have been observed spectroscopically, but which lack definite redshifts (q&gt;2).  If this value is -1, then all galaxies brighter than
+this galaxy in F which are within the field-of-view of this galaxy's primary mask have q&gt;2 redshifts. </summary>
+</column>
+    <column name="[Note]">
+      <summary> Notes.
+B: special target of the mask, selected as a bright galaxy;
+C: special target of the mask, selected as a member of a cluster of galaxies;
+J: special target of the mask, selected as a member of a faint J-selected sample;
+N: special target of the mask, selected as a candidate NELG;
+R: special target of the mask, selected as a radio source;
+U: special target of the mask, selected as a UV-excess source;
+X: not targeted by the mask, but accidentally fell within a slitlet or slit targeted at a different object. </summary>
+</column>
+    <column name="[RA1950]">
+      <summary> Right ascension (1950) </summary>
+<unit> h:m:s </unit>
+</column>
+    <column name="[DE1950]">
+      <summary> Declination (1950) </summary>
+<unit> d:m:s </unit>
+</column>
+  </table>
+</metadata>

@@ -1,83 +1,287 @@
 USE [SkyNode_DLS]
 GO
 
-CREATE TABLE [dbo].[PhotoObj]
-(
 --/ <summary> The main PhotoObj table for the Deep Lens Survey catalog </summary>
 --/ <remarks> The main PhotoObj table for the DLS catalog </remarks>
-	[objid] [bigint] NOT NULL, --/ <column>primary key</column>
-	[ra] [float] NOT NULL, --/ <column unit="deg">master right ascension</column>
-	[dec] [float] NOT NULL, --/ <column unit="deg">master declination</column>
-	[cx] [float] NOT NULL, --/ <column>cartesian x coordinate</column>
-	[cy] [float] NOT NULL, --/ <column>cartesian x coordinate</column>
-	[cz] [float] NOT NULL, --/ <column>cartesian x coordinate</column>
-	[htmid] [bigint] NOT NULL, --/ <column>htmid for spatial search</column>
-	[zoneid] [bigint] NOT NULL, --/ <column>zoneid for spatial search</column>
-	[band] [char](1) NOT NULL, --/ <column>master coordinate origin</column>
-	[AlphaB] [float] NULL, --/ <column unit="deg">RA in B</column>
-	[DeltaB] [float] NULL, --/ <column unit="deg">DEC in B</column>
-	[XB] [float] NULL, --/ <column unit="pix">position on CCD in B</column>
-	[YB] [float] NULL, --/ <column unit="pix">position on CCD in B</column>
-	[AB] [real] NULL, --/ <column unit="pix">Semi-major axis in B</column>
-	[BB] [real] NULL, --/ <column unit="pix">Semi-minor axis in B</column>
-	[THETAB] [real] NULL, --/ <column unit="deg">Position angle</column>
-	[FLAGSB] [int] NULL, --/ <column>Flags from Sextractor</column>
-	[MAG_APERB] [real] NULL, --/ <column unit="mag">Aperture magnitude in B</column>
-	[MAGERR_APERB] [real] NULL, --/ <column unit="mag">error in aperture magnitude in B</column>
-	[MAGB] [real] NULL, --/ <column unit="mag">Best magnitude in B</column>
-	[MAGERRB] [real] NULL, --/ <column unit="mag">Error in best magnitude in B</column>
-	[MAG_ISOB] [real] NULL, --/ <column unit="mag">Isophotal magnitude in B</column>
-	[MAGERR_ISOB] [real] NULL, --/ <column unit="mag">Error in isophotal magnitude in B</column>
-	[ISOAREAB] [real] NULL, --/ <column unit="pix^2">Isophotal area</column>
-	[CLASS_STARB] [real] NULL, --/ <column>Fuzzy classifier</column>
-	[AlphaV] [float] NULL, --/ <column unit="deg">RA in V</column>
-	[DeltaV] [float] NULL, --/ <column unit="deg">DEC in V</column>
-	[XV] [float] NULL, --/ <column unit="pix">position on CCD in V</column>
-	[YV] [float] NULL, --/ <column unit="pix">position on CCD in V</column>
-	[AV] [real] NULL, --/ <column unit="pix">Semi-major axis in V</column>
-	[BV] [real] NULL, --/ <column unit="pix">Semi-minor axis in V</column>
-	[THETAV] [real] NULL, --/ <column unit="deg">Position angle in V</column>
-	[FLAGSV] [int] NULL, --/ <column>Flags from Sextractor</column>
-	[MAG_APERV] [real] NULL, --/ <column unit="mag">Aperture magnitude in V</column>
-	[MAGERR_APERV] [real] NULL, --/ <column unit="mag">error in aperture magnitude in V</column>
-	[MAGV] [real] NULL, --/ <column unit="mag">Best magnitude in V</column>
-	[MAGERRV] [real] NULL, --/ <column unit="mag">Error in best magnitude in V</column>
-	[MAG_ISOV] [real] NULL, --/ <column unit="mag">Isophotal magnitude in V</column>
-	[MAGERR_ISOV] [real] NULL, --/ <column unit="mag">Error in isophotal magnitude in V</column>
-	[ISOAREAV] [real] NULL, --/ <column unit="pix^2">Isophotal area</column>
-	[CLASS_STARV] [real] NULL, --/ <column>Fuzzy classifier</column>
-	[AlphaR] [float] NULL, --/ <column unit="deg">RA in R</column>
-	[DeltaR] [float] NULL, --/ <column unit="deg">DEC in R</column>
-	[XR] [float] NULL, --/ <column unit="pix">position on CCD in R</column>
-	[YR] [float] NULL, --/ <column unit="pix">position on CCD in R</column>
-	[AR] [real] NULL, --/ <column unit="pix">Semi-major axis in R</column>
-	[BR] [real] NULL, --/ <column unit="pix">Semi-minor axis in R</column>
-	[THETAR] [real] NULL, --/ <column unit="deg">Position angle in R</column>
-	[FLAGSR] [int] NULL, --/ <column>Flags from Sextractor</column>
-	[MAG_APERR] [real] NULL, --/ <column unit="mag">Aperture magnitude in R</column>
-	[MAGERR_APERR] [real] NULL, --/ <column unit="mag">error in aperture magnitude in R</column>
-	[MAGR] [real] NULL, --/ <column unit="mag">Best magnitude in R</column>
-	[MAGERRR] [real] NULL, --/ <column unit="mag">Error in best magnitude in R</column>
-	[MAG_ISOR] [real] NULL, --/ <column unit="mag">Isophotal magnitude in R</column>
-	[MAGERR_ISOR] [real] NULL, --/ <column unit="mag">Error in isophotal magnitude in R</column>
-	[ISOAREAR] [real] NULL, --/ <column unit="pix^2">Isophotal area</column>
-	[CLASS_STARR] [real] NULL, --/ <column>Fuzzy classifier</column>
-	[Alphaz] [float] NULL, --/ <column unit="deg">RA in z</column>
-	[Deltaz] [float] NULL, --/ <column unit="deg">DEC in z</column>
-	[Xz] [float] NULL, --/ <column unit="pix">position on CCD in z</column>
-	[Yz] [float] NULL, --/ <column unit="pix">position on CCD in z</column>
-	[Az] [real] NULL, --/ <column unit="pix">Semi-major axis in z</column>
-	[Bz] [real] NULL, --/ <column unit="pix">Semi-minor axis in z</column>
-	[THETAz] [real] NULL, --/ <column unit="deg">Position angle in z</column>
-	[FLAGSz] [int] NULL, --/ <column>Flags from Sextractor</column>
-	[MAG_APERz] [real] NULL, --/ <column unit="mag">Aperture magnitude in z</column>
-	[MAGERR_APERz] [real] NULL, --/ <column unit="mag">error in aperture magnitude in z</column>
-	[MAGz] [real] NULL, --/ <column unit="mag">Best magnitude in z</column>
-	[MAGERRz] [real] NULL, --/ <column unit="mag">Error in best magnitude in z</column>
-	[MAG_ISOz] [real] NULL, --/ <column unit="mag">Isophotal magnitude in z</column>
-	[MAGERR_ISOz] [real] NULL, --/ <column unit="mag">Error in isophotal magnitude in z</column>
-	[ISOAREAz] [real] NULL, --/ <column unit="pix^2">Isophotal area</column>
-	[CLASS_STARz] [real] NULL --/ <column>Fuzzy classifier</column>
+CREATE TABLE [dbo].[PhotoObj]
+(
+
+	--/ <summary>primary key</summary>
+	[objid] [bigint] NOT NULL, 
+
+	--/ <summary>master right ascension</summary>
+	--/ <unit>deg</unit>
+	[ra] [float] NOT NULL, 
+
+	--/ <summary>master declination</summary>
+	--/ <unit>deg</unit>
+	[dec] [float] NOT NULL, 
+
+	--/ <summary>cartesian x coordinate</summary>
+	[cx] [float] NOT NULL, 
+
+	--/ <summary>cartesian x coordinate</summary>
+	[cy] [float] NOT NULL, 
+
+	--/ <summary>cartesian x coordinate</summary>
+	[cz] [float] NOT NULL, 
+
+	--/ <summary>htmid for spatial search</summary>
+	[htmid] [bigint] NOT NULL, 
+
+	--/ <summary>zoneid for spatial search</summary>
+	[zoneid] [bigint] NOT NULL, 
+
+	--/ <summary>master coordinate origin</summary>
+	[band] [char](1) NOT NULL, 
+
+	--/ <summary>RA in B</summary>
+	--/ <unit>deg</unit>
+	[AlphaB] [float] NULL, 
+
+	--/ <summary>DEC in B</summary>
+	--/ <unit>deg</unit>
+	[DeltaB] [float] NULL, 
+
+	--/ <summary>position on CCD in B</summary>
+	--/ <unit>pix</unit>
+	[XB] [float] NULL, 
+
+	--/ <summary>position on CCD in B</summary>
+	--/ <unit>pix</unit>
+	[YB] [float] NULL, 
+
+	--/ <summary>Semi-major axis in B</summary>
+	--/ <unit>pix</unit>
+	[AB] [real] NULL, 
+
+	--/ <summary>Semi-minor axis in B</summary>
+	--/ <unit>pix</unit>
+	[BB] [real] NULL, 
+
+	--/ <summary>Position angle</summary>
+	--/ <unit>deg</unit>
+	[THETAB] [real] NULL, 
+
+	--/ <summary>Flags from Sextractor</summary>
+	[FLAGSB] [int] NULL, 
+
+	--/ <summary>Aperture magnitude in B</summary>
+	--/ <unit>mag</unit>
+	[MAG_APERB] [real] NULL, 
+
+	--/ <summary>error in aperture magnitude in B</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_APERB] [real] NULL, 
+
+	--/ <summary>Best magnitude in B</summary>
+	--/ <unit>mag</unit>
+	[MAGB] [real] NULL, 
+
+	--/ <summary>Error in best magnitude in B</summary>
+	--/ <unit>mag</unit>
+	[MAGERRB] [real] NULL, 
+
+	--/ <summary>Isophotal magnitude in B</summary>
+	--/ <unit>mag</unit>
+	[MAG_ISOB] [real] NULL, 
+
+	--/ <summary>Error in isophotal magnitude in B</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_ISOB] [real] NULL, 
+
+	--/ <summary>Isophotal area</summary>
+	--/ <unit>pix^2</unit>
+	[ISOAREAB] [real] NULL, 
+
+	--/ <summary>Fuzzy classifier</summary>
+	[CLASS_STARB] [real] NULL, 
+
+	--/ <summary>RA in V</summary>
+	--/ <unit>deg</unit>
+	[AlphaV] [float] NULL, 
+
+	--/ <summary>DEC in V</summary>
+	--/ <unit>deg</unit>
+	[DeltaV] [float] NULL, 
+
+	--/ <summary>position on CCD in V</summary>
+	--/ <unit>pix</unit>
+	[XV] [float] NULL, 
+
+	--/ <summary>position on CCD in V</summary>
+	--/ <unit>pix</unit>
+	[YV] [float] NULL, 
+
+	--/ <summary>Semi-major axis in V</summary>
+	--/ <unit>pix</unit>
+	[AV] [real] NULL, 
+
+	--/ <summary>Semi-minor axis in V</summary>
+	--/ <unit>pix</unit>
+	[BV] [real] NULL, 
+
+	--/ <summary>Position angle in V</summary>
+	--/ <unit>deg</unit>
+	[THETAV] [real] NULL, 
+
+	--/ <summary>Flags from Sextractor</summary>
+	[FLAGSV] [int] NULL, 
+
+	--/ <summary>Aperture magnitude in V</summary>
+	--/ <unit>mag</unit>
+	[MAG_APERV] [real] NULL, 
+
+	--/ <summary>error in aperture magnitude in V</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_APERV] [real] NULL, 
+
+	--/ <summary>Best magnitude in V</summary>
+	--/ <unit>mag</unit>
+	[MAGV] [real] NULL, 
+
+	--/ <summary>Error in best magnitude in V</summary>
+	--/ <unit>mag</unit>
+	[MAGERRV] [real] NULL, 
+
+	--/ <summary>Isophotal magnitude in V</summary>
+	--/ <unit>mag</unit>
+	[MAG_ISOV] [real] NULL, 
+
+	--/ <summary>Error in isophotal magnitude in V</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_ISOV] [real] NULL, 
+
+	--/ <summary>Isophotal area</summary>
+	--/ <unit>pix^2</unit>
+	[ISOAREAV] [real] NULL, 
+
+	--/ <summary>Fuzzy classifier</summary>
+	[CLASS_STARV] [real] NULL, 
+
+	--/ <summary>RA in R</summary>
+	--/ <unit>deg</unit>
+	[AlphaR] [float] NULL, 
+
+	--/ <summary>DEC in R</summary>
+	--/ <unit>deg</unit>
+	[DeltaR] [float] NULL, 
+
+	--/ <summary>position on CCD in R</summary>
+	--/ <unit>pix</unit>
+	[XR] [float] NULL, 
+
+	--/ <summary>position on CCD in R</summary>
+	--/ <unit>pix</unit>
+	[YR] [float] NULL, 
+
+	--/ <summary>Semi-major axis in R</summary>
+	--/ <unit>pix</unit>
+	[AR] [real] NULL, 
+
+	--/ <summary>Semi-minor axis in R</summary>
+	--/ <unit>pix</unit>
+	[BR] [real] NULL, 
+
+	--/ <summary>Position angle in R</summary>
+	--/ <unit>deg</unit>
+	[THETAR] [real] NULL, 
+
+	--/ <summary>Flags from Sextractor</summary>
+	[FLAGSR] [int] NULL, 
+
+	--/ <summary>Aperture magnitude in R</summary>
+	--/ <unit>mag</unit>
+	[MAG_APERR] [real] NULL, 
+
+	--/ <summary>error in aperture magnitude in R</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_APERR] [real] NULL, 
+
+	--/ <summary>Best magnitude in R</summary>
+	--/ <unit>mag</unit>
+	[MAGR] [real] NULL, 
+
+	--/ <summary>Error in best magnitude in R</summary>
+	--/ <unit>mag</unit>
+	[MAGERRR] [real] NULL, 
+
+	--/ <summary>Isophotal magnitude in R</summary>
+	--/ <unit>mag</unit>
+	[MAG_ISOR] [real] NULL, 
+
+	--/ <summary>Error in isophotal magnitude in R</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_ISOR] [real] NULL, 
+
+	--/ <summary>Isophotal area</summary>
+	--/ <unit>pix^2</unit>
+	[ISOAREAR] [real] NULL, 
+
+	--/ <summary>Fuzzy classifier</summary>
+	[CLASS_STARR] [real] NULL, 
+
+	--/ <summary>RA in z</summary>
+	--/ <unit>deg</unit>
+	[Alphaz] [float] NULL, 
+
+	--/ <summary>DEC in z</summary>
+	--/ <unit>deg</unit>
+	[Deltaz] [float] NULL, 
+
+	--/ <summary>position on CCD in z</summary>
+	--/ <unit>pix</unit>
+	[Xz] [float] NULL, 
+
+	--/ <summary>position on CCD in z</summary>
+	--/ <unit>pix</unit>
+	[Yz] [float] NULL, 
+
+	--/ <summary>Semi-major axis in z</summary>
+	--/ <unit>pix</unit>
+	[Az] [real] NULL, 
+
+	--/ <summary>Semi-minor axis in z</summary>
+	--/ <unit>pix</unit>
+	[Bz] [real] NULL, 
+
+	--/ <summary>Position angle in z</summary>
+	--/ <unit>deg</unit>
+	[THETAz] [real] NULL, 
+
+	--/ <summary>Flags from Sextractor</summary>
+	[FLAGSz] [int] NULL, 
+
+	--/ <summary>Aperture magnitude in z</summary>
+	--/ <unit>mag</unit>
+	[MAG_APERz] [real] NULL, 
+
+	--/ <summary>error in aperture magnitude in z</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_APERz] [real] NULL, 
+
+	--/ <summary>Best magnitude in z</summary>
+	--/ <unit>mag</unit>
+	[MAGz] [real] NULL, 
+
+	--/ <summary>Error in best magnitude in z</summary>
+	--/ <unit>mag</unit>
+	[MAGERRz] [real] NULL, 
+
+	--/ <summary>Isophotal magnitude in z</summary>
+	--/ <unit>mag</unit>
+	[MAG_ISOz] [real] NULL, 
+
+	--/ <summary>Error in isophotal magnitude in z</summary>
+	--/ <unit>mag</unit>
+	[MAGERR_ISOz] [real] NULL, 
+
+	--/ <summary>Isophotal area</summary>
+	--/ <unit>pix^2</unit>
+	[ISOAREAz] [real] NULL, 
+
+	--/ <summary>Fuzzy classifier</summary>
+	[CLASS_STARz] [real] NULL 
 ) ON [PRIMARY]
 
 GO
@@ -135,27 +339,76 @@ GO
 
 
 /*
-CREATE TABLE [dbo].[Frame](
 --/ <summary> Table to store precomputed JPEG images </summary>
 --/ <remarks> Images are stored with their WCS.   </remarks>
-	[fieldid] [bigint] NOT NULL, --/ <column>unique identifier of the field</column>
-	[name] [varchar](16) NOT NULL, --/ <column>field name</column>
-	[raCen] [float] NOT NULL, --/ <column unit="deg">ra of center</column>
-	[decCen] [float] NOT NULL, --/ <column unit="deg">dec of center</column>
-	[crpix1] [float] NOT NULL, --/ <column unit="pix">pixel location of center</column>
-	[crpix2] [float] NOT NULL, --/ <column unit="pix">pixel location of center</column>
-	[cd1_1] [float] NOT NULL, --/ <column unit="deg/pix">element of WCS CD matrix</column>
-	[cd1_2] [float] NOT NULL, --/ <column unit="deg/pix">element of WCS CD matrix</column>
-	[cd2_1] [float] NOT NULL, --/ <column unit="deg/pix">element of WCS CD matrix</column>
-	[cd2_2] [float] NOT NULL, --/ <column unit="deg/pix">element of WCS CD matrix</column>
-	[zoom] [int] NOT NULL, --/ <column>log2 of zoom factor</column>
-	[width] [int] NOT NULL, --/ <column unit="pix">width of image</column>
-	[height] [int] NOT NULL, --/ <column unit="pix">height of image</column>
-	[scale] [float] NOT NULL, --/ <column unit="arcsec/pix">pixel scale</column>
-	[htmid] [bigint] NOT NULL, --/ <column>htmid for spatial searches</column>
-	[cx] [float] NOT NULL, --/ <column>cartesian x coordinate</column>
-	[cy] [float] NOT NULL, --/ <column>cartesian x coordinate</column>
-	[cz] [float] NOT NULL, --/ <column>cartesian x coordinate</column>
-	[img] [image] NOT NULL --/ <column>the binary blob of the image</column>
+CREATE TABLE [dbo].[Frame](
+
+	--/ <summary>unique identifier of the field</summary>
+	[fieldid] [bigint] NOT NULL, 
+
+	--/ <summary>field name</summary>
+	[name] [varchar](16) NOT NULL, 
+
+	--/ <summary>ra of center</summary>
+	--/ <unit>deg</unit>
+	[raCen] [float] NOT NULL, 
+
+	--/ <summary>dec of center</summary>
+	--/ <unit>deg</unit>
+	[decCen] [float] NOT NULL, 
+
+	--/ <summary>pixel location of center</summary>
+	--/ <unit>pix</unit>
+	[crpix1] [float] NOT NULL, 
+
+	--/ <summary>pixel location of center</summary>
+	--/ <unit>pix</unit>
+	[crpix2] [float] NOT NULL, 
+
+	--/ <summary>element of WCS CD matrix</summary>
+	--/ <unit>deg/pix</unit>
+	[cd1_1] [float] NOT NULL, 
+
+	--/ <summary>element of WCS CD matrix</summary>
+	--/ <unit>deg/pix</unit>
+	[cd1_2] [float] NOT NULL, 
+
+	--/ <summary>element of WCS CD matrix</summary>
+	--/ <unit>deg/pix</unit>
+	[cd2_1] [float] NOT NULL, 
+
+	--/ <summary>element of WCS CD matrix</summary>
+	--/ <unit>deg/pix</unit>
+	[cd2_2] [float] NOT NULL, 
+
+	--/ <summary>log2 of zoom factor</summary>
+	[zoom] [int] NOT NULL, 
+
+	--/ <summary>width of image</summary>
+	--/ <unit>pix</unit>
+	[width] [int] NOT NULL, 
+
+	--/ <summary>height of image</summary>
+	--/ <unit>pix</unit>
+	[height] [int] NOT NULL, 
+
+	--/ <summary>pixel scale</summary>
+	--/ <unit>arcsec/pix</unit>
+	[scale] [float] NOT NULL, 
+
+	--/ <summary>htmid for spatial searches</summary>
+	[htmid] [bigint] NOT NULL, 
+
+	--/ <summary>cartesian x coordinate</summary>
+	[cx] [float] NOT NULL, 
+
+	--/ <summary>cartesian x coordinate</summary>
+	[cy] [float] NOT NULL, 
+
+	--/ <summary>cartesian x coordinate</summary>
+	[cz] [float] NOT NULL, 
+
+	--/ <summary>the binary blob of the image</summary>
+	[img] [image] NOT NULL 
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 */

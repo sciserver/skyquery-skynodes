@@ -1,0 +1,168 @@
+<metadata>
+  <table name="[dbo].[SpecObj]">
+    <column name="[cx]">
+      <summary> Cartesian X (J2000)</summary>
+</column>
+    <column name="[cy]">
+      <summary> Cartesian Y (J2000)</summary>
+</column>
+    <column name="[cz]">
+      <summary> Cartesian Z (J2000)</summary>
+</column>
+    <column name="[htmid]">
+      <summary> HTM ID (J2000)</summary>
+</column>
+    <column name="[zoneid]">
+      <summary> Zone ID </summary>
+</column>
+    <column name="[objID]">
+      <summary> DEEP2 object number </summary>
+</column>
+    <column name="[RA]">
+      <summary> Right Ascension (in decimal degrees, J2000) </summary>
+<unit> deg </unit>
+</column>
+    <column name="[DEC]">
+      <summary> Declination (in decimal degrees, J2000) </summary>
+<unit> deg </unit>
+</column>
+    <column name="[MAGB]">
+      <summary> CFHT B-band magnitude (AB) from Coil et al. 2004 (2004ApJ...617..765C) </summary>
+<unit> mag </unit>
+</column>
+    <column name="[MAGR]">
+      <summary> CFHT R-band magnitude (AB) from Coil et al. 2004 (2004ApJ...617..765C) </summary>
+<unit> mag </unit>
+</column>
+    <column name="[MAGI]">
+      <summary> CFHT I-band magnitude (AB) from Coil et al. 2004 (2004ApJ...617..765C) </summary>
+<unit> mag </unit>
+</column>
+    <column name="[MAGBERR]">
+      <summary> B-band magnitude error </summary>
+<unit> mag </unit>
+</column>
+    <column name="[MAGRERR]">
+      <summary> R-band magnitude error </summary>
+<unit> mag </unit>
+</column>
+    <column name="[MAGIERR]">
+      <summary> I-band magnitude error </summary>
+<unit> mag </unit>
+</column>
+    <column name="[RG]">
+      <summary> estimated R-band radius of object
+(sigma of Guassian fit in units of pixels --- 0.207�/pix) </summary>
+<unit> pix </unit>
+</column>
+    <column name="[E2]">
+      <summary> ellipticity defined as E2 = (1 - b/a) </summary>
+</column>
+    <column name="[PA]">
+      <summary> object PA (degrees E of N)  </summary>
+<unit> deg </unit>
+</column>
+    <column name="[PGAL]">
+      <summary> the probability (0 - 1) that the sources is a galaxy for unresolved galaxies, 3 if resolved </summary>
+</column>
+    <column name="[SFD_EBV]">
+      <summary> E(B-V) from Schlegel, Finkbeiner, and Davis dust map </summary>
+</column>
+    <column name="[M_B]">
+      <summary> absolute B-band magnitude (AB, h = 1) from Willmer et al. (2006ApJ...647..853W) </summary>
+</column>
+    <column name="[U_B]">
+      <summary> rest-frame U-B color (AB) from Willmer et al. 2006 (2006ApJ...647..853W) </summary>
+</column>
+    <column name="[OBJNAME]">
+      <summary> the 8-digit DEEP2 object id (not always the same as OBJNO).
+The CFHT 12K BRI catalogs are created on a pointing-by-pointing bases
+and not at a field-by-field level (for more info regarding the DEEP2
+fields and pointings, refer to the description of the photometric
+catalogs: http://deep.ps.uci.edu/DR4/photo.html and
+here: http://deep.ps.uci.edu/DR4/completeness.html). For objects that
+fall in the regions of overlap between the various photometric pointings
+within a given field, the objects can appear in multiple photometric
+catalogs (e.g., in pcat.41.fits and pcat.42.fits), being assigned different
+8-digit DEEP2 identification numbers in each catalog. These duplications
+have been resolved such that a unique identifier is assigned. This is
+the 8-digit ID given in the �OBJNO� field. However, the slitmasks are
+designed on a pointing-by-pointing basis, so objects are actually targeted
+based on their id numbers in a particular pointing. Most importantly, since
+the spec2d data reduction pipeline draws the object id information from the
+slitmask design files, the object id in the �spec1d� files is this
+pointing-specific number. In order to facilitate matching of entries in the
+redshift catalog to 1-d spectral files, the �OBJNAME� field is included,
+which gives the pointing-specific id number. Thus, for a given entry in the
+redshift catalog, the spec1d file will be named �spec1d.MASK.SLIT.OBJNAME.fits�,
+following the formatting detailed here: http://deep.ps.uci.edu/DR4/spectra.html. </summary>
+</column>
+    <column name="[MASK]">
+      <summary> the DEEP2/DEEP3 slitmask number on which the object was observed </summary>
+<unit>  </unit>
+</column>
+    <column name="[SLIT]">
+      <summary> the slitlet number (on mask MASKNAME) in which the object was placed </summary>
+<unit>  </unit>
+</column>
+    <column name="[DATE]">
+      <summary> Date on which the mask was observed (YYYY-MM-DD) </summary>
+</column>
+    <column name="[MJD]">
+      <summary> Modified Julian date of observation </summary>
+</column>
+    <column name="[SLITRA]">
+      <summary> RA of slit center </summary>
+<unit> deg </unit>
+</column>
+    <column name="[SLITDEC]">
+      <summary> Dec of slit center </summary>
+<unit> deg </unit>
+</column>
+    <column name="[SLITLEN]">
+      <summary> PA (degrees E of N) of slit </summary>
+<unit> deg </unit>
+</column>
+    <column name="[SLITPA]">
+      <summary> length of slit (arcsec) </summary>
+<unit> arcsec </unit>
+</column>
+    <column name="[Z]">
+      <summary> observed best-fitting redshift </summary>
+</column>
+    <column name="[ZBEST]">
+      <summary> best redshift (corrected for heliocentric motion) </summary>
+</column>
+    <column name="[ZERR]">
+      <summary> redshift error (zerr &lt; 0 indicates problematic z fit) </summary>
+</column>
+    <column name="[ZQUALITY]">
+      <summary> redshift quality code, Q </summary>
+</column>
+    <column name="[CLASS]">
+      <summary> type of best-fitting template (e.g., GALAXY or STAR).
+It should be noted that the CLASS tag only indicates the best-fitting
+template; many AGN (both broad- and narrow-line) in the DEEP2 sample
+will have 'GALAXY' as their class.</summary>
+</column>
+    <column name="[SUBCLASS]">
+      <summary> coarse classification for stellar templates </summary>
+</column>
+    <column name="[RCHI2]">
+      <summary> reduced chi-squared value for the redshift fit </summary>
+</column>
+    <column name="[DOF]">
+      <summary> degrees of freedom for redshift fit </summary>
+</column>
+    <column name="[VDISP]">
+      <summary> velocity dispersion in km/s </summary>
+<unit> km/s </unit>
+</column>
+    <column name="[VDISPERR]">
+      <summary> error in velocity dispersion </summary>
+</column>
+    <column name="[COMMENT]">
+      <summary> comment field </summary>
+</column>
+  </table>
+</metadata>

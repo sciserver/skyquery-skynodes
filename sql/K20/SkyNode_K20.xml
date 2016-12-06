@@ -1,0 +1,63 @@
+<metadata>
+  <table name="[dbo].[SpecObj]">
+    <column name="[cx]">
+      <summary> Cartesian X (J2000)</summary>
+</column>
+    <column name="[cy]">
+      <summary> Cartesian Y (J2000)</summary>
+</column>
+    <column name="[cz]">
+      <summary> Cartesian Z (J2000)</summary>
+</column>
+    <column name="[htmid]">
+      <summary> HTM ID (J2000)</summary>
+</column>
+    <column name="[zoneid]">
+      <summary> Zone ID </summary>
+</column>
+    <column name="[Seq]">
+      <summary> K20 identification number, CDFS_NNNNN or q0055_NNNNN </summary>
+</column>
+    <column name="[RA]">
+      <summary> Right ascension (J2000.0) </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[DEC]">
+      <summary> Declination (J2000.0) </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[Ksmag]">
+      <summary> Total (SExtractor BEST) Ks-band magnitude </summary>
+<unit> mag </unit>
+</column>
+    <column name="[R_K]">
+      <summary> R-K colour index, measured in a 2"-diameter aperture corrected to total </summary>
+<unit> mag </unit>
+</column>
+    <column name="[z]">
+      <summary> Spectroscopic redshift </summary>
+<unit> mag </unit>
+</column>
+    <column name="[q_z]">
+      <summary> [-1/1] Quality flag on redshfit. Quality flag on redshfit as follows:
+1=	solid redshift determination;
+0=	tentative redshift determination;
+-1=	no redshfit determination. </summary>
+</column>
+    <column name="[Class]">
+      <summary> Spectroscopic classes code. Spectroscopic classes as follows:
+0=	objects classified as stars;
+1=	red passive early-type galaxies;
+2=	blue emission-line galaxies;
+1.5=	intermediate galaxies with emission lines but red continuum indices;
+3=	galaxies which are not included in one of the three previous classes;
+4=	broad-line AGN. We remind that objects with only a tentative redshift (q_z=0) are not classified. </summary>
+</column>
+    <column name="[FileName]">
+      <summary> Spectra file name in "sp" subdirectory </summary>
+</column>
+    <column name="[Com]">
+      <summary> Comment </summary>
+</column>
+  </table>
+</metadata>

@@ -1,0 +1,91 @@
+<metadata>
+  <table name="[dbo].[SpecObj]">
+    <column name="[cx]">
+      <summary> Cartesian X (J2000)</summary>
+</column>
+    <column name="[cy]">
+      <summary> Cartesian Y (J2000)</summary>
+</column>
+    <column name="[cz]">
+      <summary> Cartesian Z (J2000)</summary>
+</column>
+    <column name="[htmid]">
+      <summary> HTM ID (J2000)</summary>
+</column>
+    <column name="[zoneid]">
+      <summary> Zone ID </summary>
+</column>
+    <column name="[TKRS]">
+      <summary> Serial number in Team Keck Survey </summary>
+</column>
+    <column name="[RA]">
+      <summary> DEIMOS degree of Right Ascension (J2000) </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[DEC]">
+      <summary> DEIMOS Degree of Declination (J2000) </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[Rmag]">
+      <summary> DEIMOS R band (648.7&plusmn;81nm) in AB system </summary>
+<unit> mag </unit>
+</column>
+    <column name="[Mask]">
+      <summary> Mask number on which object was placed </summary>
+</column>
+    <column name="[Slit]">
+      <summary>  Slit number for object on TKRS mask </summary>
+</column>
+    <column name="[z]">
+      <summary> Topocentric redshift measured by TKRS </summary>
+</column>
+    <column name="[q_z]">
+      <summary> Redshift code assigned by TKRS. Redshift code as follows:
+-1=	star
+1=	redshift unmeasurable
+2=	redshift uncertain
+3=	90% confidence
+4=	99% confidence </summary>
+</column>
+    <column name="[zOther]">
+      <summary> Alternate redshift from other works </summary>
+</column>
+    <column name="[r_zOther]">
+      <summary> Source of alternate redshift </summary>
+</column>
+    <column name="[XpixD]">
+      <summary> X position on the DEIMOS mosaic image </summary>
+<unit> pix </unit>
+</column>
+    <column name="[YpixD]">
+      <summary> Y position on the DEIMOS mosaic image </summary>
+<unit> pix </unit>
+</column>
+    <column name="[ACS]">
+      <summary> Sector number in which the object lies on the HST/ACS mosaic image. As shown in the figure made by the GOODS team at </summary>
+</column>
+    <column name="[XpixG]">
+      <summary> X position on the HST/ACS mosaic image </summary>
+<unit> pix </unit>
+</column>
+    <column name="[YpixG]">
+      <summary> Y position on the HST/ACS mosaic image </summary>
+<unit> pix </unit>
+</column>
+    <column name="[MajAxis]">
+      <summary> DEIMOS semi-major axis. Measured by SExtractor on DEIMOS mosaic image. </summary>
+<unit> arcsec </unit>
+</column>
+    <column name="[e2]">
+      <summary> DEIMOS ellipticity (1-a/b). Measured by SExtractor on DEIMOS mosaic image. </summary>
+</column>
+    <column name="[PA]">
+      <summary> [-90/140] DEIMOS major axis position angle. Measured by SExtractor on DEIMOS mosaic image (North=0, East=+90). </summary>
+<unit> deg </unit>
+</column>
+    <column name="[GOODS]">
+      <summary> GOODS-N v1.0 catalog IAU identification. Of objects matching the DEIMOS catalogue from Giavalisco et al. (2004, in
+Cat. II/261). </summary>
+</column>
+  </table>
+</metadata>

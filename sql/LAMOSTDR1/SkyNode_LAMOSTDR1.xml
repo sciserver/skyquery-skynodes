@@ -1,0 +1,126 @@
+<metadata>
+  <table name="[dbo].[SpecObj]">
+    <column name="[cx]">
+      <summary> Cartesian X (J2000)</summary>
+</column>
+    <column name="[cy]">
+      <summary> Cartesian Y (J2000)</summary>
+</column>
+    <column name="[cz]">
+      <summary> Cartesian Z (J2000)</summary>
+</column>
+    <column name="[htmid]">
+      <summary> HTM ID (J2000)</summary>
+</column>
+    <column name="[zoneid]">
+      <summary> Zone ID </summary>
+</column>
+    <column name="[obsid]">
+      <summary> Unique Spectra ID </summary>
+</column>
+    <column name="[designation]">
+      <summary> Target Designation </summary>
+</column>
+    <column name="[obsdate]">
+      <summary> Target Observation Date </summary>
+</column>
+    <column name="[lmjd]">
+      <summary> Local Modified Julian Day </summary>
+</column>
+    <column name="[planid]">
+      <summary> Plan Name </summary>
+</column>
+    <column name="[spid]">
+      <summary> Spectrograph ID </summary>
+</column>
+    <column name="[fiberid]">
+      <summary> Fiber ID </summary>
+</column>
+    <column name="[ra]">
+      <summary> Right Ascension </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[dec]">
+      <summary> Declination </summary>
+<unit> deg (J2000) </unit>
+</column>
+    <column name="[snru]">
+      <summary> Signal Noise Ratio of u filter </summary>
+</column>
+    <column name="[snrg]">
+      <summary> Signal Noise Ratio of g filter </summary>
+</column>
+    <column name="[snrr]">
+      <summary> Signal Noise Ratio of r filter </summary>
+</column>
+    <column name="[snri]">
+      <summary> Signal Noise Ratio of i filter </summary>
+</column>
+    <column name="[snrz]">
+      <summary> Signal Noise Ratio of z filter </summary>
+</column>
+    <column name="[objtype]">
+      <summary> Object Type </summary>
+</column>
+    <column name="[class]">
+      <summary> Spectra Type </summary>
+</column>
+    <column name="[subclass]">
+      <summary> Stellar Sub-Class </summary>
+</column>
+    <column name="[magtype]">
+      <summary> Target Magnitude Type </summary>
+</column>
+    <column name="[mag1]">
+      <summary> Associated Magnitude 1 </summary>
+<unit> mag </unit>
+</column>
+    <column name="[mag2]">
+      <summary> Associated Magnitude 2 </summary>
+<unit> mag </unit>
+</column>
+    <column name="[mag3]">
+      <summary> Associated Magnitude 3 </summary>
+<unit> mag </unit>
+</column>
+    <column name="[mag4]">
+      <summary> Associated Magnitude 4 </summary>
+<unit> mag </unit>
+</column>
+    <column name="[mag5]">
+      <summary> Associated Magnitude 5 </summary>
+<unit> mag </unit>
+</column>
+    <column name="[mag6]">
+      <summary> Associated Magnitude 6 </summary>
+<unit> mag </unit>
+</column>
+    <column name="[mag7]">
+      <summary> Associated Magnitude 7 </summary>
+<unit> mag </unit>
+</column>
+    <column name="[tsource]">
+      <summary> Organization or person who submits input catalog </summary>
+</column>
+    <column name="[fibertype]">
+      <summary> Fiber Type of target [Obj, Sky, F-std, Unused, PosErr, Dead] </summary>
+</column>
+    <column name="[tfrom]">
+      <summary> Input catalog submitted by an organization or a person determined by the tsource </summary>
+</column>
+    <column name="[t_info]">
+      <summary> Target ID from SDSS, UCAC4, PANSTAR and other catalogue </summary>
+</column>
+    <column name="[rv]">
+      <summary> Heliocentric Radial Velocity </summary>
+<unit> km/s </unit>
+</column>
+    <column name="[z]">
+      <summary> Redshift </summary>
+<unit> Redshift Uncertainty </unit>
+</column>
+    <column name="[z_err]">
+      <summary> Redshift Uncertainty </summary>
+</column>
+  </table>
+</metadata>
