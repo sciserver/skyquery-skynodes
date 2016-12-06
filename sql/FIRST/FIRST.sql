@@ -1,4 +1,4 @@
-USE [First]
+USE [SkyNode_First]
 GO
 
 IF OBJECT_ID ('dbo.PhotoObjRAW', 'U') IS NOT NULL
