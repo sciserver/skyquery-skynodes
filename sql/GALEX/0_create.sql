@@ -1,6 +1,3 @@
-USE [SkyNode_Galex]
-GO
-
 CREATE TABLE [dbo].[PhotoObjAll]
 (
 	[objid] [bigint] NOT NULL,

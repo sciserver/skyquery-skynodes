@@ -1,6 +1,3 @@
-USE [SkyNode_USNOB]
-GO
-
 --/ <summary> The main photometry table for the USNOB1.0 catalog </summary>
 --/ <remarks> We created a bigint objid that is concatenated from  zone and seqNo, with zone in the upper 4 bytes of objid.  The table has been loaded by the ROE group, and has been  genereously shared with the JHU group. </remarks>
 CREATE TABLE [dbo].[PhotoObj](
@@ -231,47 +228,5 @@ ALTER TABLE [dbo].[PhotoObj]
 ADD CONSTRAINT [PK_PhotoObj] PRIMARY KEY
 (
 	[objid] ASC
-)WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON) ON [PRIMARY]
-GO
-
-
-
-
--- Index to support on the fly zone table creation
-CREATE NONCLUSTERED INDEX [IX_PhotoObj_Zone] ON [dbo].[PhotoObj] 
-(
-	[dec] ASC,
-	[ra] ASC,
-	[cx] ASC,
-	[cy] ASC,
-	[cz] ASC
-)WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON) ON [PRIMARY]
-GO
-
--- Index to support zoneID-based search
-CREATE NONCLUSTERED INDEX [IX_PhotoObj_ZoneID] ON [dbo].[PhotoObj] 
-(
-	[zoneID] ASC,
-	[ra] ASC
-)
-INCLUDE
-(
-	[dec],	
-	[cx],
-	[cy],
-	[cz]
-)WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON) ON [PRIMARY]
-GO
-
-
--- HTM index
-CREATE NONCLUSTERED INDEX [IX_PhotoObj_HtmID] ON [dbo].[PhotoObj] 
-(
-	[htmid] ASC,
-	[ra] ASC,
-	[dec] ASC,
-	[cx] ASC,
-	[cy] ASC,
-	[cz] ASC
 )WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON) ON [PRIMARY]
 GO

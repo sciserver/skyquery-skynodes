@@ -1,5 +1,3 @@
-USE SkyNode_FUSE
-
 CREATE TABLE [dbo].[PhotoObj](
 --/ <summary>A view of the SpecObj table so SkyNode queries will work</summary>
 --/ <remarks>Using the FUSE SkyNode for cross-matching requires it to have a table named PhotoPrimary.  Even though FUSE data is spectroscopic data, a PhotoPrimary view of the main SpecObj table is defined for this purpose.</remarks>
@@ -377,52 +375,6 @@ ALTER TABLE [dbo].[SpecObj]
 ADD CONSTRAINT [PK_SpecObj] PRIMARY KEY CLUSTERED 
 (
 	[objID] ASC
-)
-WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
-ON [PRIMARY]
-GO
-
-
--- Index to support on the fly zone table creation
-CREATE NONCLUSTERED INDEX [IX_SpecObj_Zone] ON [dbo].[SpecObj] 
-(
-	[dec] ASC,
-	[ra] ASC,
-	[cx] ASC,
-	[cy] ASC,
-	[cz] ASC
-)
-WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
-ON [PRIMARY]
-GO
-
-
-CREATE NONCLUSTERED INDEX [IX_SpecObj_ZoneID] ON [dbo].[SpecObj] 
-(
-	[zoneid] ASC,
-	[ra] ASC
-)
-INCLUDE
-(
-	[dec],
-	[cx],
-	[cy],
-	[cz]
-)
-WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
-ON [PRIMARY]
-GO
-
-
--- HTM index
-CREATE NONCLUSTERED INDEX [IX_SpecObj_HtmID] ON [dbo].[SpecObj] 
-(
-	[htmid] ASC,
-	[ra] ASC,
-	[dec] ASC,
-	[cx] ASC,
-	[cy] ASC,
-	[cz] ASC
 )
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [PRIMARY]

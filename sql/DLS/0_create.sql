@@ -1,6 +1,3 @@
-USE [SkyNode_DLS]
-GO
-
 --/ <summary> The main PhotoObj table for the Deep Lens Survey catalog </summary>
 --/ <remarks> The main PhotoObj table for the DLS catalog </remarks>
 CREATE TABLE [dbo].[PhotoObj]
@@ -293,48 +290,6 @@ ADD CONSTRAINT PK_PhotoObj PRIMARY KEY
 )
 WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 
-GO
-
--- Index to support on the fly zone table creation
-CREATE NONCLUSTERED INDEX [IX_PhotoObj_Zone] ON [dbo].[PhotoObj] 
-(
-	[dec] ASC,
-	[ra] ASC,
-	[cx] ASC,
-	[cy] ASC,
-	[cz] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-GO
-
--- ZoneID index
-CREATE NONCLUSTERED INDEX [IX_PhotoObj_ZoneID] ON [dbo].[PhotoObj] 
-(
-	[zoneid] ASC,
-	[ra] ASC
-)
-INCLUDE
-(
-	[dec],
-	[cx],
-	[cy],
-	[cz]
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-GO
-
--- HTM index
-CREATE NONCLUSTERED INDEX [IX_PhotoObj_HtmID] ON [dbo].[PhotoObj] 
-(
-	[htmid] ASC
-)
-INCLUDE
-(
-	[ra],
-	[dec],
-	[cx],
-	[cy],
-	[cz],
-	[zoneID]
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 GO
 
 
