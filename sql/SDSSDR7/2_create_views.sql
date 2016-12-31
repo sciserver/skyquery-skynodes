@@ -1,6 +1,3 @@
-USE [SkyNode_SDSSDR7]
-GO
-
 CREATE VIEW [dbo].[PhotoPrimary] 
 ----------------------------------------------------------------------
 --/H These objects are the primary survey objects. 

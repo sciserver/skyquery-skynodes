@@ -1,5 +1,3 @@
-USE [SkyNode_SDSSDR12]
-
 /*
 
 CREATE PARTITION FUNCTION PF_PhotoObjAll ( bigint )

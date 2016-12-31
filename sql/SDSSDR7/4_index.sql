@@ -1,6 +1,3 @@
-USE [SkyNode_SDSSDR7]
-GO
-
 CREATE UNIQUE NONCLUSTERED INDEX [i_BestTarget2Sector_regionID_obj] ON [dbo].[BestTarget2Sector]
 (
 	[regionID] ASC,

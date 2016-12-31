@@ -1,5 +1,3 @@
-USE [SkyNode_SDSSDR12]
-
 CREATE NONCLUSTERED INDEX [i_PhotoObjAll_field_run_rerun_ca] ON [dbo].[PhotoObjAll]
 (
 	[field] ASC,
