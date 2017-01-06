@@ -1,0 +1,102 @@
+-- CREATE SpecObj TABLE
+CREATE TABLE dbo.SpecObj
+(
+	--/ <summary> Cartesian X (J2000)</summary>
+	[cx] [float] NOT NULL,
+
+	--/ <summary> Cartesian Y (J2000)</summary>
+	[cy] [float] NOT NULL,
+
+	--/ <summary> Cartesian Z (J2000)</summary>
+	[cz] [float] NOT NULL,
+
+	--/ <summary> HTM ID (J2000)</summary>
+	[htmid] bigint NOT NULL,
+
+	--/ <summary> Zone ID </summary>
+	[zoneid] int NOT NULL,
+
+	--/ <summary> Sequential ID </summary>
+	[seqID] bigint NOT NULL,
+
+	--/ <summary> Right ascension (J2000) </summary>
+	--/ <unit> deg (J2000) </unit>
+	[RA] float NOT NULL,
+
+	--/ <summary> Declination (J2000)  </summary>
+	--/ <unit> deg (J2000) </unit>
+	[DEC] float NOT NULL,
+
+	--/ <summary> B magnitude (Zwicky magnitude)  </summary>
+	--/ <unit> mag </unit>
+	[Bmag] real NOT NULL,
+
+	--/ <summary> Heliocentric redshift  </summary>
+	--/ <unit> km/s </unit>
+	[z] int NOT NULL,
+
+	--/ <summary> rms uncertainty on z  </summary>
+	--/ <unit> km/s </unit>
+	[e_z] smallint NOT NULL,
+
+	--/ <summary> [ABE] Spectral characteristics. the symbol means: 
+	--/ A:absorption 
+	--/ E:emission 
+	--/ B:both emission and absorption </summary>
+	[T] char(1) NOT NULL,
+
+	--/ <summary> [0/4] UZC class 0-4. the UZC class is defined as:
+	--/ 
+	--/ 0:a "hit", where the GSC and Zwicky objects are separated in position by less than 180", are comparable in brightness as 
+	--/ visually, and there is no other object within the field that could be a Zwicky galaxy.
+	--/ 
+	--/ 
+	--/ 1:a "hit" with positional difference less than 180", again with a GSC brightness in the vicinity of the Zwicky value. 
+	--/ the field is centered on a GSC "star" rather than on a "nonstar", but there is only one possible Zwicky galaxy nearby, 
+	--/ the field. Thus, index 1 merely indicated that the nearest GSC object to the Zwicky coordinates is a star rather than the 
+	--/ galaxy.
+	--/ 
+	--/ 
+	--/ 2:a near "hit" with positional difference less than 180". However, there is confusion because there are at least two 
+	--/ with an estimated spread in magnitudes |Δm| within the expected range, either of which could be a Zwicky galaxy.
+	--/ 
+	--/ 
+	--/ 3:A near "hit" with positional difference less than 180", but with |Δm| outside the expected range, raising suspicions 
+	--/ the match of the GSC object to the Zwicky galaxy.
+	--/ 
+	--/ 
+	--/ 4:No "hit" at all for a positional difference less than 180", i.e., there is no match for a Zwicky galaxy. </summary>
+	[U] tinyint NOT NULL,
+
+	--/ <summary> Number of UZC neighboring galaxies, within 3' </summary>
+	[N] tinyint NOT NULL,
+
+	--/ <summary> Zwicky label based on 1950 positions </summary>
+	[Zname] char(12) NOT NULL,
+
+	--/ <summary> [FMTXZ] Origin of the redshift measurement. Code for the origin of the redshift measurement taken at the CfA: Z for 
+	--/ M for the MMT (4.5m Multiple Mirror Telescope) F for FAST spectra taken from our own and from other projects X flags a 
+	--/ spectrum for Z-machine (FAST) measurements and 
+	--/ indicatesa low S/N match with a spectrum at c&lt;100km/s. </summary>
+	[f_z] char(1) NOT NULL,
+
+	--/ <summary> Reference code detailed in file refs.dat (blank for CfA unpublished data) </summary>
+	[r_z] int NOT NULL,
+
+	--/ <summary> Other name </summary>
+	[Name] char(11) NOT NULL,
+
+	--/ <summary> [*] UZC multiplicity, * if multiple </summary>
+	[UZC] char(1) NOT NULL,
+
+	--/ <summary> [PTG] NED multiplicity: Pair, Triple, Group  </summary>
+	[mul] char(1) NOT NULL,
+
+	CONSTRAINT [PK_SpecObj] PRIMARY KEY CLUSTERED
+(
+	[seqID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
