@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SubsetDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_CNOC2;Integrated Security=True</SourceDatabaseConnectionString>
+  <DestinationDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_CNOC2_STAT;Integrated Security=True</DestinationDatabaseConnectionString>
+  <Tables_ForXml>
+    <Table>
+      <Order>0</Order>
+      <Schema>dbo</Schema>
+      <Name>SpecObj</Name>
+      <SamplingFactor>0.5</SamplingFactor>
+      <SamplingMethod>Random</SamplingMethod>
+      <PrimaryKeyColumns>
+        <string>objID</string>
+      </PrimaryKeyColumns>
+      <PrimaryKeyColumnTypes>
+        <string>bigint</string>
+      </PrimaryKeyColumnTypes>
+      <HasIdentityProperty>false</HasIdentityProperty>
+      <Columns>
+        <string>objID</string>
+        <string>CNOC2sp</string>
+        <string>ra</string>
+        <string>dec</string>
+        <string>cx</string>
+        <string>cy</string>
+        <string>cz</string>
+        <string>htmid</string>
+        <string>zoneid</string>
+        <string>oRA</string>
+        <string>oDE</string>
+        <string>z</string>
+        <string>e_z</string>
+        <string>Rval</string>
+        <string>Sc</string>
+        <string>w_z</string>
+        <string>Imag</string>
+        <string>e_Imag</string>
+        <string>Ice</string>
+        <string>w_Imag</string>
+        <string>IWc</string>
+        <string>IWxy</string>
+        <string>Rmag</string>
+        <string>e_Rmag</string>
+        <string>Rce</string>
+        <string>w_Rmag</string>
+        <string>RWc</string>
+        <string>RWxy</string>
+        <string>Vmag</string>
+        <string>e_Vmag</string>
+        <string>Vce</string>
+        <string>w_Vmag</string>
+        <string>VWc</string>
+        <string>VWxy</string>
+        <string>Bmag</string>
+        <string>e_Bmag</string>
+        <string>Bce</string>
+        <string>w_Bmag</string>
+        <string>BWc</string>
+        <string>BWxy</string>
+        <string>Umag</string>
+        <string>e_Umag</string>
+        <string>Uce</string>
+        <string>w_Umag</string>
+        <string>UWc</string>
+        <string>UWxy</string>
+        <string>Pcl</string>
+        <string>Rkcor</string>
+        <string>xpos</string>
+        <string>ypos</string>
+      </Columns>
+      <ForeignKeys />
+      <DataSpaceUsed>5848</DataSpaceUsed>
+      <RowCount>24101</RowCount>
+    </Table>
+  </Tables_ForXml>
+</SubsetDefinition>

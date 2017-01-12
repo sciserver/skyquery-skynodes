@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SubsetDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_DEEP2DR4;Integrated Security=True</SourceDatabaseConnectionString>
+  <DestinationDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_DEEP2DR4_STAT;Integrated Security=True</DestinationDatabaseConnectionString>
+  <Tables_ForXml>
+    <Table>
+      <Order>0</Order>
+      <Schema>dbo</Schema>
+      <Name>SpecObj</Name>
+      <SamplingFactor>0.1</SamplingFactor>
+      <SamplingMethod>Random</SamplingMethod>
+      <PrimaryKeyColumns>
+        <string>objID</string>
+      </PrimaryKeyColumns>
+      <PrimaryKeyColumnTypes>
+        <string>bigint</string>
+      </PrimaryKeyColumnTypes>
+      <HasIdentityProperty>false</HasIdentityProperty>
+      <Columns>
+        <string>cx</string>
+        <string>cy</string>
+        <string>cz</string>
+        <string>htmid</string>
+        <string>zoneid</string>
+        <string>objID</string>
+        <string>RA</string>
+        <string>DEC</string>
+        <string>MAGB</string>
+        <string>MAGR</string>
+        <string>MAGI</string>
+        <string>MAGBERR</string>
+        <string>MAGRERR</string>
+        <string>MAGIERR</string>
+        <string>RG</string>
+        <string>E2</string>
+        <string>PA</string>
+        <string>PGAL</string>
+        <string>SFD_EBV</string>
+        <string>M_B</string>
+        <string>U_B</string>
+        <string>OBJNAME</string>
+        <string>MASK</string>
+        <string>SLIT</string>
+        <string>DATE</string>
+        <string>MJD</string>
+        <string>SLITRA</string>
+        <string>SLITDEC</string>
+        <string>SLITLEN</string>
+        <string>SLITPA</string>
+        <string>Z</string>
+        <string>ZBEST</string>
+        <string>ZERR</string>
+        <string>ZQUALITY</string>
+        <string>CLASS</string>
+        <string>SUBCLASS</string>
+        <string>RCHI2</string>
+        <string>DOF</string>
+        <string>VDISP</string>
+        <string>VDISPERR</string>
+        <string>COMMENT</string>
+      </Columns>
+      <ForeignKeys />
+      <DataSpaceUsed>13888</DataSpaceUsed>
+      <RowCount>50319</RowCount>
+    </Table>
+  </Tables_ForXml>
+</SubsetDefinition>

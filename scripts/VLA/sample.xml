@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SubsetDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_VLA;Integrated Security=True</SourceDatabaseConnectionString>
+  <DestinationDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_VLA_STAT;Integrated Security=True</DestinationDatabaseConnectionString>
+  <Tables_ForXml>
+    <Table>
+      <Order>0</Order>
+      <Schema>dbo</Schema>
+      <Name>GOODSN</Name>
+      <SamplingFactor>0</SamplingFactor>
+      <SamplingMethod>FullTable</SamplingMethod>
+      <PrimaryKeyColumns>
+        <string>objID</string>
+      </PrimaryKeyColumns>
+      <PrimaryKeyColumnTypes>
+        <string>bigint</string>
+      </PrimaryKeyColumnTypes>
+      <HasIdentityProperty>false</HasIdentityProperty>
+      <Columns>
+        <string>cx</string>
+        <string>cy</string>
+        <string>cz</string>
+        <string>htmid</string>
+        <string>zoneid</string>
+        <string>objID</string>
+        <string>Name</string>
+        <string>RA</string>
+        <string>e_RAs</string>
+        <string>DEC</string>
+        <string>e_DECs</string>
+        <string>SN</string>
+        <string>Peak</string>
+        <string>e_Peak</string>
+        <string>Total</string>
+        <string>e_Total</string>
+        <string>bmaj</string>
+        <string>bmin</string>
+        <string>PA</string>
+        <string>ulim</string>
+        <string>beam</string>
+      </Columns>
+      <ForeignKeys />
+      <DataSpaceUsed>168</DataSpaceUsed>
+      <RowCount>1230</RowCount>
+    </Table>
+  </Tables_ForXml>
+</SubsetDefinition>

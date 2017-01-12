@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SubsetDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_HDF;Integrated Security=True</SourceDatabaseConnectionString>
+  <DestinationDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_HDF_STAT;Integrated Security=True</DestinationDatabaseConnectionString>
+  <Tables_ForXml>
+    <Table>
+      <Order>0</Order>
+      <Schema>dbo</Schema>
+      <Name>PhotoObj</Name>
+      <SamplingFactor>0</SamplingFactor>
+      <SamplingMethod>FullTable</SamplingMethod>
+      <PrimaryKeyColumns>
+        <string>objID</string>
+      </PrimaryKeyColumns>
+      <PrimaryKeyColumnTypes>
+        <string>char(14)</string>
+      </PrimaryKeyColumnTypes>
+      <HasIdentityProperty>false</HasIdentityProperty>
+      <Columns>
+        <string>cx</string>
+        <string>cy</string>
+        <string>cz</string>
+        <string>htmid</string>
+        <string>zoneid</string>
+        <string>objID</string>
+        <string>x</string>
+        <string>y</string>
+        <string>ra</string>
+        <string>dec</string>
+        <string>mt</string>
+        <string>mt_limit</string>
+        <string>mi</string>
+        <string>mi_limit</string>
+        <string>U_B</string>
+        <string>U_B_limit</string>
+        <string>B_V</string>
+        <string>B_V_limit</string>
+        <string>V_I</string>
+        <string>V_I_limit</string>
+        <string>SN</string>
+        <string>area</string>
+        <string>r1</string>
+        <string>bpa</string>
+        <string>PA</string>
+        <string>Flags</string>
+      </Columns>
+      <ForeignKeys />
+      <DataSpaceUsed>544</DataSpaceUsed>
+      <RowCount>3509</RowCount>
+    </Table>
+  </Tables_ForXml>
+</SubsetDefinition>

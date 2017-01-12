@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SubsetDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_DES;Integrated Security=True</SourceDatabaseConnectionString>
+  <DestinationDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_DES_STAT;Integrated Security=True</DestinationDatabaseConnectionString>
+  <Tables_ForXml>
+    <Table>
+      <Order>0</Order>
+      <Schema>dbo</Schema>
+      <Name>PhotoObj</Name>
+      <SamplingFactor>0.1</SamplingFactor>
+      <SamplingMethod>Random</SamplingMethod>
+      <PrimaryKeyColumns>
+        <string>seqID</string>
+      </PrimaryKeyColumns>
+      <PrimaryKeyColumnTypes>
+        <string>bigint</string>
+      </PrimaryKeyColumnTypes>
+      <HasIdentityProperty>false</HasIdentityProperty>
+      <Columns>
+        <string>cx</string>
+        <string>cy</string>
+        <string>cz</string>
+        <string>htmid</string>
+        <string>zoneid</string>
+        <string>seqID</string>
+        <string>dtpropid</string>
+        <string>surveyid</string>
+        <string>release_date</string>
+        <string>start_date</string>
+        <string>date_obs</string>
+        <string>dtpi</string>
+        <string>ra</string>
+        <string>dec</string>
+        <string>telescope</string>
+        <string>instrument</string>
+        <string>filter</string>
+        <string>exposure</string>
+        <string>obstype</string>
+        <string>obsmode</string>
+        <string>proctype</string>
+        <string>prodtype</string>
+        <string>seeing</string>
+        <string>depth</string>
+        <string>dtacqnam</string>
+        <string>archive_file</string>
+        <string>filesize</string>
+        <string>reference</string>
+        <string>md5sum</string>
+      </Columns>
+      <ForeignKeys />
+      <DataSpaceUsed>18520</DataSpaceUsed>
+      <RowCount>41670</RowCount>
+    </Table>
+  </Tables_ForXml>
+</SubsetDefinition>

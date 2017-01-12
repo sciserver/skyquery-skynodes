@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SubsetDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_VVDS;Integrated Security=True</SourceDatabaseConnectionString>
+  <DestinationDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_VVDS_STAT;Integrated Security=True</DestinationDatabaseConnectionString>
+  <Tables_ForXml>
+    <Table>
+      <Order>0</Order>
+      <Schema>dbo</Schema>
+      <Name>SpecObj</Name>
+      <SamplingFactor>0</SamplingFactor>
+      <SamplingMethod>FullTable</SamplingMethod>
+      <PrimaryKeyColumns>
+        <string>ID</string>
+      </PrimaryKeyColumns>
+      <PrimaryKeyColumnTypes>
+        <string>bigint</string>
+      </PrimaryKeyColumnTypes>
+      <HasIdentityProperty>false</HasIdentityProperty>
+      <Columns>
+        <string>cx</string>
+        <string>cy</string>
+        <string>cz</string>
+        <string>htmid</string>
+        <string>zoneid</string>
+        <string>ID</string>
+        <string>RA</string>
+        <string>DEC</string>
+        <string>Jname</string>
+        <string>z</string>
+        <string>q_z</string>
+        <string>phf</string>
+        <string>UEmag</string>
+        <string>e_UEmag</string>
+        <string>ULmag</string>
+        <string>e_ULmag</string>
+        <string>Bmag</string>
+        <string>e_Bmag</string>
+        <string>Vmag</string>
+        <string>e_Vmag</string>
+        <string>Rmag</string>
+        <string>e_Rmag</string>
+        <string>Imag</string>
+        <string>e_Imag</string>
+        <string>Jmag</string>
+        <string>e_Jmag</string>
+        <string>Kmag</string>
+        <string>e_Kmag</string>
+      </Columns>
+      <ForeignKeys />
+      <DataSpaceUsed>1472</DataSpaceUsed>
+      <RowCount>8981</RowCount>
+    </Table>
+  </Tables_ForXml>
+</SubsetDefinition>

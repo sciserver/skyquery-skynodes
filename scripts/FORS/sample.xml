@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SubsetDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_FORS;Integrated Security=True</SourceDatabaseConnectionString>
+  <DestinationDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_FORS_STAT;Integrated Security=True</DestinationDatabaseConnectionString>
+  <Tables_ForXml>
+    <Table>
+      <Order>0</Order>
+      <Schema>dbo</Schema>
+      <Name>SpecObj</Name>
+      <SamplingFactor>1</SamplingFactor>
+      <SamplingMethod>FullTable</SamplingMethod>
+      <PrimaryKeyColumns>
+        <string>objID</string>
+      </PrimaryKeyColumns>
+      <PrimaryKeyColumnTypes>
+        <string>bigint</string>
+      </PrimaryKeyColumnTypes>
+      <HasIdentityProperty>false</HasIdentityProperty>
+      <Columns>
+        <string>cx</string>
+        <string>cy</string>
+        <string>cz</string>
+        <string>htmid</string>
+        <string>zoneid</string>
+        <string>objID</string>
+        <string>RA</string>
+        <string>DEC</string>
+        <string>BTmag</string>
+        <string>ITmag</string>
+        <string>Texp</string>
+        <string>ff0</string>
+        <string>SN</string>
+        <string>n_SN</string>
+        <string>Qs</string>
+        <string>Type</string>
+        <string>z</string>
+        <string>e_z</string>
+        <string>e_Type</string>
+        <string>q_z</string>
+        <string>Notes</string>
+        <string>FileName</string>
+      </Columns>
+      <ForeignKeys />
+      <DataSpaceUsed>48</DataSpaceUsed>
+      <RowCount>341</RowCount>
+    </Table>
+  </Tables_ForXml>
+</SubsetDefinition>

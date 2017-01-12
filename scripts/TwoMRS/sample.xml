@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SubsetDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_TwoMRS;Integrated Security=True</SourceDatabaseConnectionString>
+  <DestinationDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_TwoMRS_STAT;Integrated Security=True</DestinationDatabaseConnectionString>
+  <Tables_ForXml>
+    <Table>
+      <Order>0</Order>
+      <Schema>dbo</Schema>
+      <Name>SpecObj</Name>
+      <SamplingFactor>0</SamplingFactor>
+      <SamplingMethod>FullTable</SamplingMethod>
+      <PrimaryKeyColumns>
+        <string>ID</string>
+      </PrimaryKeyColumns>
+      <PrimaryKeyColumnTypes>
+        <string>char(16)</string>
+      </PrimaryKeyColumnTypes>
+      <HasIdentityProperty>false</HasIdentityProperty>
+      <Columns>
+        <string>cx</string>
+        <string>cy</string>
+        <string>cz</string>
+        <string>htmid</string>
+        <string>zoneid</string>
+        <string>ID</string>
+        <string>A</string>
+        <string>RA</string>
+        <string>DEC</string>
+        <string>GLON</string>
+        <string>GLAT</string>
+        <string>Kcmag</string>
+        <string>e_Kcmag</string>
+        <string>Hcmag</string>
+        <string>e_Hcmag</string>
+        <string>Jcmag</string>
+        <string>e_Jcmag</string>
+        <string>Ktmag</string>
+        <string>e_Ktmag</string>
+        <string>Htmag</string>
+        <string>e_Htmag</string>
+        <string>Jtmag</string>
+        <string>e_Jtmag</string>
+        <string>E_B_V</string>
+        <string>Riso</string>
+        <string>Rext</string>
+        <string>bpa</string>
+        <string>flags</string>
+        <string>type</string>
+        <string>r_type</string>
+        <string>bz</string>
+        <string>e_bz</string>
+        <string>n_bz</string>
+        <string>r_bz</string>
+        <string>CAT</string>
+      </Columns>
+      <ForeignKeys />
+      <DataSpaceUsed>10200</DataSpaceUsed>
+      <RowCount>44598</RowCount>
+    </Table>
+  </Tables_ForXml>
+</SubsetDefinition>

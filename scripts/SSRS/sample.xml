@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SubsetDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_SSRS;Integrated Security=True</SourceDatabaseConnectionString>
+  <DestinationDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_SSRS_STAT;Integrated Security=True</DestinationDatabaseConnectionString>
+  <Tables_ForXml>
+    <Table>
+      <Order>0</Order>
+      <Schema>dbo</Schema>
+      <Name>SpecObj</Name>
+      <SamplingFactor>0</SamplingFactor>
+      <SamplingMethod>FullTable</SamplingMethod>
+      <PrimaryKeyColumns>
+        <string>seqID</string>
+      </PrimaryKeyColumns>
+      <PrimaryKeyColumnTypes>
+        <string>bigint</string>
+      </PrimaryKeyColumnTypes>
+      <HasIdentityProperty>false</HasIdentityProperty>
+      <Columns>
+        <string>cx</string>
+        <string>cy</string>
+        <string>cz</string>
+        <string>htmid</string>
+        <string>zoneid</string>
+        <string>seqID</string>
+        <string>n_GSC</string>
+        <string>GSC</string>
+        <string>m_GSC</string>
+        <string>ESO_MCG</string>
+        <string>RA</string>
+        <string>DEC</string>
+        <string>RA_1950</string>
+        <string>DEC_1950</string>
+        <string>mSSR</string>
+        <string>RV</string>
+        <string>e_RV</string>
+        <string>TT</string>
+        <string>r_RV</string>
+        <string>Note</string>
+        <string>NGC_IC</string>
+      </Columns>
+      <ForeignKeys />
+      <DataSpaceUsed>736</DataSpaceUsed>
+      <RowCount>5426</RowCount>
+    </Table>
+  </Tables_ForXml>
+</SubsetDefinition>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SubsetDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_KEPLER;Integrated Security=True</SourceDatabaseConnectionString>
+  <DestinationDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_KEPLER_STAT;Integrated Security=True</DestinationDatabaseConnectionString>
+  <Tables_ForXml>
+    <Table>
+      <Order>0</Order>
+      <Schema>dbo</Schema>
+      <Name>KIC</Name>
+      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingMethod>Random</SamplingMethod>
+      <PrimaryKeyColumns>
+        <string>seqID</string>
+      </PrimaryKeyColumns>
+      <PrimaryKeyColumnTypes>
+        <string>float</string>
+      </PrimaryKeyColumnTypes>
+      <HasIdentityProperty>false</HasIdentityProperty>
+      <Columns>
+        <string>cx</string>
+        <string>cy</string>
+        <string>cz</string>
+        <string>htmid</string>
+        <string>zoneid</string>
+        <string>seqID</string>
+        <string>RA</string>
+        <string>DEC</string>
+        <string>pmra</string>
+        <string>pmdec</string>
+        <string>umag</string>
+        <string>gmag</string>
+        <string>rmag</string>
+        <string>imag</string>
+        <string>zmag</string>
+        <string>gredmag</string>
+        <string>d51mag</string>
+        <string>jmag</string>
+        <string>hmag</string>
+        <string>kmag</string>
+        <string>kepmag</string>
+        <string>kepler_id</string>
+        <string>tmid</string>
+        <string>scpid</string>
+        <string>altid</string>
+        <string>altsource</string>
+        <string>galaxy</string>
+        <string>blend</string>
+        <string>variable</string>
+        <string>teff</string>
+        <string>logg</string>
+        <string>feh</string>
+        <string>ebminusv</string>
+        <string>av</string>
+        <string>radius</string>
+        <string>cq</string>
+        <string>pq</string>
+        <string>aq</string>
+        <string>catkey</string>
+        <string>scpkey</string>
+        <string>parallax</string>
+        <string>glon</string>
+        <string>glat</string>
+        <string>pmtotal</string>
+        <string>grcolor</string>
+        <string>jkcolor</string>
+        <string>gkcolor</string>
+        <string>fov_flag</string>
+        <string>tm_designation</string>
+      </Columns>
+      <ForeignKeys />
+      <DataSpaceUsed>3630632</DataSpaceUsed>
+      <RowCount>13161029</RowCount>
+    </Table>
+  </Tables_ForXml>
+</SubsetDefinition>
