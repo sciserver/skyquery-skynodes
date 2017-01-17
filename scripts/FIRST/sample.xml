@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SubsetDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_FIRST;Integrated Security=True</SourceDatabaseConnectionString>
+  <DestinationDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_FIRST_STAT;Integrated Security=True</DestinationDatabaseConnectionString>
+  <Tables_ForXml>
+    <Table>
+      <Order>0</Order>
+      <Schema>dbo</Schema>
+      <Name>PhotoObj</Name>
+      <SamplingFactor>0.01</SamplingFactor>
+      <SamplingMethod>Random</SamplingMethod>
+      <PrimaryKeyColumns>
+        <string>objID</string>
+      </PrimaryKeyColumns>
+      <PrimaryKeyColumnTypes>
+        <string>bigint</string>
+      </PrimaryKeyColumnTypes>
+      <HasIdentityProperty>false</HasIdentityProperty>
+      <Columns>
+        <string>objID</string>
+        <string>ra</string>
+        <string>dec</string>
+        <string>cx</string>
+        <string>cy</string>
+        <string>cz</string>
+        <string>htmid</string>
+        <string>zoneid</string>
+        <string>Ps</string>
+        <string>Fpeak</string>
+        <string>Fint</string>
+        <string>RMS</string>
+        <string>Maj</string>
+        <string>Min</string>
+        <string>PA</string>
+        <string>fMaj</string>
+        <string>fMin</string>
+        <string>fPA</string>
+        <string>Field</string>
+        <string>num_SDSS</string>
+        <string>Sep_SDSS</string>
+        <string>i_SDSS</string>
+        <string>Cl_SDSS</string>
+        <string>num_2MASS</string>
+        <string>Sep_2MASS</string>
+        <string>K_2MASS</string>
+        <string>Mean_yr</string>
+        <string>Mean_MJD</string>
+        <string>rms_MJD</string>
+      </Columns>
+      <ForeignKeys />
+      <DataSpaceUsed>151432</DataSpaceUsed>
+      <RowCount>946432</RowCount>
+    </Table>
+  </Tables_ForXml>
+</SubsetDefinition>

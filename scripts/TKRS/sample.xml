@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SubsetDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_TKRS;Integrated Security=True</SourceDatabaseConnectionString>
+  <DestinationDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_TKRS_STAT;Integrated Security=True</DestinationDatabaseConnectionString>
+  <Tables_ForXml>
+    <Table>
+      <Order>0</Order>
+      <Schema>dbo</Schema>
+      <Name>SpecObj</Name>
+      <SamplingFactor>0</SamplingFactor>
+      <SamplingMethod>FullTable</SamplingMethod>
+      <PrimaryKeyColumns>
+        <string>TKRS</string>
+      </PrimaryKeyColumns>
+      <PrimaryKeyColumnTypes>
+        <string>bigint</string>
+      </PrimaryKeyColumnTypes>
+      <HasIdentityProperty>false</HasIdentityProperty>
+      <Columns>
+        <string>cx</string>
+        <string>cy</string>
+        <string>cz</string>
+        <string>htmid</string>
+        <string>zoneid</string>
+        <string>TKRS</string>
+        <string>RA</string>
+        <string>DEC</string>
+        <string>Rmag</string>
+        <string>Mask</string>
+        <string>Slit</string>
+        <string>z</string>
+        <string>q_z</string>
+        <string>zOther</string>
+        <string>r_zOther</string>
+        <string>XpixD</string>
+        <string>YpixD</string>
+        <string>ACS</string>
+        <string>XpixG</string>
+        <string>YpixG</string>
+        <string>MajAxis</string>
+        <string>e2</string>
+        <string>PA</string>
+        <string>GOODS</string>
+      </Columns>
+      <ForeignKeys />
+      <DataSpaceUsed>840</DataSpaceUsed>
+      <RowCount>5737</RowCount>
+    </Table>
+  </Tables_ForXml>
+</SubsetDefinition>

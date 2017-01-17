@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SubsetDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_K20;Integrated Security=True</SourceDatabaseConnectionString>
+  <DestinationDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_K20_STAT;Integrated Security=True</DestinationDatabaseConnectionString>
+  <Tables_ForXml>
+    <Table>
+      <Order>0</Order>
+      <Schema>dbo</Schema>
+      <Name>SpecObj</Name>
+      <SamplingFactor>0</SamplingFactor>
+      <SamplingMethod>FullTable</SamplingMethod>
+      <PrimaryKeyColumns>
+        <string>Seq</string>
+      </PrimaryKeyColumns>
+      <PrimaryKeyColumnTypes>
+        <string>char(11)</string>
+      </PrimaryKeyColumnTypes>
+      <HasIdentityProperty>false</HasIdentityProperty>
+      <Columns>
+        <string>cx</string>
+        <string>cy</string>
+        <string>cz</string>
+        <string>htmid</string>
+        <string>zoneid</string>
+        <string>Seq</string>
+        <string>RA</string>
+        <string>DEC</string>
+        <string>Ksmag</string>
+        <string>R_K</string>
+        <string>z</string>
+        <string>q_z</string>
+        <string>Class</string>
+        <string>FileName</string>
+        <string>Com</string>
+      </Columns>
+      <ForeignKeys />
+      <DataSpaceUsed>72</DataSpaceUsed>
+      <RowCount>545</RowCount>
+    </Table>
+  </Tables_ForXml>
+</SubsetDefinition>

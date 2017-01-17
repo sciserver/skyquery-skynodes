@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SubsetDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_LBG3Z;Integrated Security=True</SourceDatabaseConnectionString>
+  <DestinationDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_LBG3Z_STAT;Integrated Security=True</DestinationDatabaseConnectionString>
+  <Tables_ForXml>
+    <Table>
+      <Order>0</Order>
+      <Schema>dbo</Schema>
+      <Name>DeepImagingObs</Name>
+      <SamplingFactor>0</SamplingFactor>
+      <SamplingMethod>FullTable</SamplingMethod>
+      <PrimaryKeyColumns>
+        <string>objID</string>
+      </PrimaryKeyColumns>
+      <PrimaryKeyColumnTypes>
+        <string>bigint</string>
+      </PrimaryKeyColumnTypes>
+      <HasIdentityProperty>false</HasIdentityProperty>
+      <Columns>
+        <string>cx</string>
+        <string>cy</string>
+        <string>cz</string>
+        <string>htmid</string>
+        <string>zoneid</string>
+        <string>objID</string>
+        <string>Field</string>
+        <string>RA</string>
+        <string>DEC</string>
+        <string>Filt</string>
+        <string>Tel</string>
+        <string>Scale</string>
+        <string>FWHM</string>
+        <string>ExpTime</string>
+        <string>Dim1</string>
+        <string>Dim2</string>
+        <string>Area</string>
+      </Columns>
+      <ForeignKeys />
+      <DataSpaceUsed>16</DataSpaceUsed>
+      <RowCount>65</RowCount>
+    </Table>
+    <Table>
+      <Order>1</Order>
+      <Schema>dbo</Schema>
+      <Name>SpecObj</Name>
+      <SamplingFactor>0</SamplingFactor>
+      <SamplingMethod>FullTable</SamplingMethod>
+      <PrimaryKeyColumns>
+        <string>Name</string>
+      </PrimaryKeyColumns>
+      <PrimaryKeyColumnTypes>
+        <string>char(16)</string>
+      </PrimaryKeyColumnTypes>
+      <HasIdentityProperty>false</HasIdentityProperty>
+      <Columns>
+        <string>cx</string>
+        <string>cy</string>
+        <string>cz</string>
+        <string>htmid</string>
+        <string>zoneid</string>
+        <string>Name</string>
+        <string>RA</string>
+        <string>DEC</string>
+        <string>Rmag</string>
+        <string>G_R</string>
+        <string>U_G</string>
+        <string>u_z_em</string>
+        <string>z_em</string>
+        <string>u_z_abs</string>
+        <string>z_abs</string>
+        <string>Type</string>
+        <string>n_Name</string>
+      </Columns>
+      <ForeignKeys />
+      <DataSpaceUsed>336</DataSpaceUsed>
+      <RowCount>2594</RowCount>
+    </Table>
+  </Tables_ForXml>
+</SubsetDefinition>

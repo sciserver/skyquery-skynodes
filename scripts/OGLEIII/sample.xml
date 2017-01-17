@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SubsetDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_OGLEIII;Integrated Security=True</SourceDatabaseConnectionString>
+  <DestinationDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_OGLEIII_STAT;Integrated Security=True</DestinationDatabaseConnectionString>
+  <Tables_ForXml>
+    <Table>
+      <Order>0</Order>
+      <Schema>dbo</Schema>
+      <Name>VariableStars</Name>
+      <SamplingFactor>0.1</SamplingFactor>
+      <SamplingMethod>Random</SamplingMethod>
+      <PrimaryKeyColumns>
+        <string>ID</string>
+      </PrimaryKeyColumns>
+      <PrimaryKeyColumnTypes>
+        <string>char(20)</string>
+      </PrimaryKeyColumnTypes>
+      <HasIdentityProperty>false</HasIdentityProperty>
+      <Columns>
+        <string>cx</string>
+        <string>cy</string>
+        <string>cz</string>
+        <string>htmid</string>
+        <string>zoneid</string>
+        <string>ID</string>
+        <string>Field</string>
+        <string>StarID</string>
+        <string>Type</string>
+        <string>Subtype</string>
+        <string>ra</string>
+        <string>dec</string>
+        <string>ID_OGLE_II</string>
+        <string>ID_MACHO</string>
+        <string>ID_ASAS</string>
+        <string>ID_GCVS</string>
+        <string>ID_OTHER</string>
+        <string>I</string>
+        <string>V</string>
+        <string>P_1</string>
+        <string>dP_1</string>
+        <string>T0_1</string>
+        <string>A_1</string>
+        <string>R21_1</string>
+        <string>phi21_1</string>
+        <string>R31_1</string>
+        <string>phi31_1</string>
+        <string>P_2</string>
+        <string>dP_2</string>
+        <string>T0_2</string>
+        <string>A_2</string>
+        <string>R21_2</string>
+        <string>phi21_2</string>
+        <string>R31_2</string>
+        <string>phi31_2</string>
+        <string>P_3</string>
+        <string>dP_3</string>
+        <string>T0_3</string>
+        <string>A_3</string>
+        <string>R21_3</string>
+        <string>phi21_3</string>
+        <string>R31_3</string>
+        <string>phi31_3</string>
+        <string>Remarks</string>
+      </Columns>
+      <ForeignKeys />
+      <DataSpaceUsed>159872</DataSpaceUsed>
+      <RowCount>399678</RowCount>
+    </Table>
+  </Tables_ForXml>
+</SubsetDefinition>

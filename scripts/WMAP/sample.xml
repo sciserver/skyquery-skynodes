@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SubsetDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_WMAP;Integrated Security=True</SourceDatabaseConnectionString>
+  <DestinationDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_WMAP_STAT;Integrated Security=True</DestinationDatabaseConnectionString>
+  <Tables_ForXml>
+    <Table>
+      <Order>0</Order>
+      <Schema>dbo</Schema>
+      <Name>Obs</Name>
+      <SamplingFactor>0</SamplingFactor>
+      <SamplingMethod>FullTable</SamplingMethod>
+      <PrimaryKeyColumns>
+        <string>seqID</string>
+      </PrimaryKeyColumns>
+      <PrimaryKeyColumnTypes>
+        <string>bigint</string>
+      </PrimaryKeyColumnTypes>
+      <HasIdentityProperty>false</HasIdentityProperty>
+      <Columns>
+        <string>cx</string>
+        <string>cy</string>
+        <string>cz</string>
+        <string>htmid</string>
+        <string>zoneid</string>
+        <string>seqID</string>
+        <string>RA</string>
+        <string>DEC</string>
+        <string>WMAP</string>
+        <string>WMAP1</string>
+        <string>S_K</string>
+        <string>e_S_K</string>
+        <string>S_Ka</string>
+        <string>e_S_Ka</string>
+        <string>S_Q</string>
+        <string>e_S_Q</string>
+        <string>S_V</string>
+        <string>e_S_V</string>
+        <string>S_W</string>
+        <string>e_S_W</string>
+        <string>alf</string>
+        <string>e_alf</string>
+        <string>fiveGHzID</string>
+        <string>f_5GHzID</string>
+      </Columns>
+      <ForeignKeys />
+      <DataSpaceUsed>80</DataSpaceUsed>
+      <RowCount>491</RowCount>
+    </Table>
+    <Table>
+      <Order>1</Order>
+      <Schema>dbo</Schema>
+      <Name>ObsCMBFree</Name>
+      <SamplingFactor>0</SamplingFactor>
+      <SamplingMethod>FullTable</SamplingMethod>
+      <PrimaryKeyColumns>
+        <string>seqID</string>
+      </PrimaryKeyColumns>
+      <PrimaryKeyColumnTypes>
+        <string>bigint</string>
+      </PrimaryKeyColumnTypes>
+      <HasIdentityProperty>false</HasIdentityProperty>
+      <Columns>
+        <string>cx</string>
+        <string>cy</string>
+        <string>cz</string>
+        <string>htmid</string>
+        <string>zoneid</string>
+        <string>seqID</string>
+        <string>RA</string>
+        <string>DEC</string>
+        <string>WMAP</string>
+        <string>WMAP1</string>
+        <string>S_Q</string>
+        <string>e_S_Q</string>
+        <string>S_V</string>
+        <string>e_S_V</string>
+        <string>S_W</string>
+        <string>e_S_W</string>
+        <string>fiveGHzID</string>
+        <string>f_5GHzID</string>
+      </Columns>
+      <ForeignKeys />
+      <DataSpaceUsed>64</DataSpaceUsed>
+      <RowCount>502</RowCount>
+    </Table>
+  </Tables_ForXml>
+</SubsetDefinition>

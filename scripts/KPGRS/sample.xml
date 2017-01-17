@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SubsetDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_KPGRS;Integrated Security=True</SourceDatabaseConnectionString>
+  <DestinationDatabaseConnectionString>Data Source=SKYQUERY01\MSSQL_A;Initial Catalog=SkyNode_KPGRS_STAT;Integrated Security=True</DestinationDatabaseConnectionString>
+  <Tables_ForXml>
+    <Table>
+      <Order>0</Order>
+      <Schema>dbo</Schema>
+      <Name>SpecObj</Name>
+      <SamplingFactor>0</SamplingFactor>
+      <SamplingMethod>FullTable</SamplingMethod>
+      <PrimaryKeyColumns>
+        <string>MKK97</string>
+      </PrimaryKeyColumns>
+      <PrimaryKeyColumnTypes>
+        <string>bigint</string>
+      </PrimaryKeyColumnTypes>
+      <HasIdentityProperty>false</HasIdentityProperty>
+      <Columns>
+        <string>cx</string>
+        <string>cy</string>
+        <string>cz</string>
+        <string>htmid</string>
+        <string>zoneid</string>
+        <string>MKK97</string>
+        <string>RA</string>
+        <string>DEC</string>
+        <string>RFmag</string>
+        <string>U_BJ</string>
+        <string>BJ_RF</string>
+        <string>RF_IN</string>
+        <string>z</string>
+        <string>q_z</string>
+        <string>r_z</string>
+        <string>Ns</string>
+        <string>Nb</string>
+        <string>Note</string>
+        <string>RA1950</string>
+        <string>DE1950</string>
+      </Columns>
+      <ForeignKeys />
+      <DataSpaceUsed>176</DataSpaceUsed>
+      <RowCount>1337</RowCount>
+    </Table>
+  </Tables_ForXml>
+</SubsetDefinition>
