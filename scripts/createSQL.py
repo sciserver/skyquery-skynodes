@@ -12,16 +12,16 @@ from os.path import isfile
 #||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 #vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 
-dbName = "VIPERSPDR2"
+dbName = "TwoRXS"
 
 spath = r"\\skyquery01\Data\temp0\data0\ebanyai\\"+dbName+"\\"
-dpath = r"C:\Data\ebanyai\project\skyquery-all\skyquery-skynodes\sql\\"+dbName+"\\"
+dpath = r"C:\Data\ebanyai\project\skyquery-all-v1.2\skyquery-skynodes\sql\\"+dbName+"\\"
 
 
-tableName = "SpecObj"
+tableName = "SourceObj"
 fileName = spath+dbName+"_"+tableName+".bin"
 dst = dpath+dbName+"_"+tableName+".sql"
-primary_key = "id_IAU"
+primary_key = "IAU_NAME"
 sName = spath+dbName+"_"+tableName+".jdict"
 
 
