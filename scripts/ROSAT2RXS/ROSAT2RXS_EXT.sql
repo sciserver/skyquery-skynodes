@@ -7,7 +7,7 @@ IF OBJECT_ID ('dbo.SourceObjRAW', 'U') IS NOT NULL
 
 GO
 
--- CREATE 2RXSRAW TABLE
+-- CREATE SourceObjRAW TABLE
 CREATE TABLE dbo.SourceObjRAW
 (	[IAU_NAME] char(21) NOT NULL,
 	[SEQ_ID] bigint NOT NULL,
@@ -18,8 +18,8 @@ CREATE TABLE dbo.SourceObjRAW
 	[RATE] float NOT NULL,
 	[ERATE] float NOT NULL,
 	[EXPOSURE] float NOT NULL,
-	[RA_DEG] float NOT NULL,
-	[DEC_DEG] float NOT NULL,
+	[RA] float NOT NULL,
+	[DEC] float NOT NULL,
 	[RA_HMS] char(12) NOT NULL,
 	[DEC_DMS] char(12) NOT NULL,
 	[LII] float NOT NULL,
@@ -314,7 +314,7 @@ CREATE TABLE dbo.SourceObjRAW
 	[OBS_UT_2] char(10) NOT NULL,
 	[IND_2RXS] int NOT NULL,
 
-	CONSTRAINT [PK_2RXSRAW] PRIMARY KEY CLUSTERED
+	CONSTRAINT [PK_SourceObjRAW] PRIMARY KEY CLUSTERED
 (
 	[IAU_NAME] ASC
 ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -324,8 +324,8 @@ GO
 
 -- BULK INSERT DATA
 BULK INSERT
-	SourceObj
-	FROM '\\SKYQUERY01\Data\temp0\data0\ebanyai\ROSAT2RXS\TwoRXS.bin'
+	SourceObjRAW
+	FROM '\\skyquery01\Data\temp0\data0\ebanyai\\TwoRXS\TwoRXS_SourceObj.bin'
 	WITH
 	(
 		DATAFILETYPE = 'native',
@@ -339,7 +339,7 @@ IF OBJECT_ID ('dbo.SourceObj', 'U') IS NOT NULL
 
 GO
 
--- CREATE 2RXS TABLE
+-- CREATE SourceObj TABLE
 CREATE TABLE dbo.SourceObj
 (
 	--/ <summary> Cartesian X (J2000)</summary>
@@ -392,11 +392,11 @@ CREATE TABLE dbo.SourceObj
 
 	--/ <summary> Right ascension </summary>
 	--/ <unit> deg </unit>
-	[RA_DEG] float NOT NULL,
+	[RA] float NOT NULL,
 
 	--/ <summary> Declination </summary>
 	--/ <unit> deg </unit>
-	[DEC_DEG] float NOT NULL,
+	[DEC] float NOT NULL,
 
 	--/ <summary> Sexadecimal right ascension </summary>
 	[RA_HMS] char(12) NOT NULL,
@@ -1440,7 +1440,7 @@ CREATE TABLE dbo.SourceObj
 	--/ <summary>  </summary>
 	[IND_2RXS] int NOT NULL,
 
-	CONSTRAINT [PK_2RXS] PRIMARY KEY CLUSTERED
+	CONSTRAINT [PK_SourceObj] PRIMARY KEY CLUSTERED
 (
 	[IAU_NAME] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -1450,10 +1450,10 @@ GO
 
 -- INSERT DATA + CREATE HTMID, CX, CY, CZ
 INSERT dbo.SourceObj WITH (TABLOCKX)
-( cx, cy, cz, htmid, zoneid, IAU_NAME, SEQ_ID, IND_DET, EXI_ML, CTS, CERR, RATE, ERATE, EXPOSURE, RA_DEG, DEC_DEG, RA_HMS, DEC_DMS, LII, BII, LAMBDA, BETA, EXT, EXTERR, EXT_ML, HR_1, HR_1_err, HR_2, HR_2_err, USKY, Masked, FLAG_all, S_flag, [INDEX], AMPL_MAX, CM, CD, CTS_lc, CMIN, CMAX, EMIN, EMAX, CHI2_lc, EXCESS_VAR, UNCERTAINTY, Sigma_Excess, NH_gal, NH_fit_p, NH_err_p, NORM_p, NORM_err_p, GAMMA_p, GAMMA_err_p, CTR_spec_p, FLUX_p, Chi2red_spec_p, Chi2_spec_p, Num_Data_pts_p, Num_Deg_free_p, NH_fit_m, NH_err_m, NORM_m, NORM_err_m, Temp_fit_m, Temp_err_m, CTR_spec_m, FLUX_m, Chi2red_spec_m, Chi2_spec_m, Num_Data_pts_m, Num_Deg_free_m, NH_fit_b, NH_err_b, NORM_b, NORM_err_b, Temp_fit_b, Temp_err_b, CTR_spec_b, FLUX_b, Chi2red_spec_b, Chi2_spec_b, Num_Data_pts_b, Num_Deg_free_b, X_IMA, Y_IMA, XERR, YERR, X_SKY, Y_SKY, CUT_RAD, FA, TOTNUM, BGR, VIG_COR, REMARKS, SB1, SB2, SB3, SB4, B1, B2, B3, B4, B_SPA, S1, S2, S3, S4, mult_xmmsl1, entr_xmmsl1, dist_xmmsl1, RA_xmmsl1, DEC_xmmsl1, SRCNAME_xmmsl1, RATE_B0_xmmsl1, RATE_B0e_xmmsl1, RATE_B5_xmmsl1, RATE_B5e_xmmsl1, mult_3xmm, entr_3xmm, dist_3xmm, RA_3xmm, DEC_3xmm, SRCNAME_3xmm, RATE_EP8_3xmm, RATE_EP8e_3xmm, FLUX_R_3xmm, FLUX_R_err_3xmm, mult_2rxp, entr_2rxp, dist_2rxp, RA_2rxp, DEC_2rxp, SRCNAME_2rxp, CRATE_2rxp, CRATE_err_2rxp, ExpTime_2rxp, ObsID_2rxp, mult_1rxs, entr_1rxs, dist_1rxs, RA_1rxs, DEC_1rxs, SRCNAME_1rxs, RATE_1rxs, RATE_err_1rxs, CTS_1rxs, CTS_err_1rxs, EXI_ML_1rxs, EXPOS_1rxs, HR1_1rxs, HR1e_1rxs, HR2_1rxs, HR2e_1rxs, mult_vv10, entr_vv10, dist_vv10, NAME_vv10, Type_vv10, Vmag_vv10, z_vv10, Index_vv10, RA_vv10, DEC_vv10, mult_tyc2, entr_tyc2, dist_tyc2, RA_tyc2, DEC_tyc2, RecNo_tyc2, VTmag_tyc2, BTmag_tyc2, TYC1_tyc2, TYC2_tyc2, TYC3_tyc2, mult_bri, entr_bri, dist_bri, RA_bri, DEC_bri, Vmag_bri, SpType_bri, RecNo_bri, HD_bri, mult_hmxb, entr_hmxb, dist_hmxb, RA_hmxb, DEC_hmxb, Name_hmxb, Name2_hmxb, Vmag_hmxb, mult_lmxb, entr_lmxb, dist_lmxb, RA_lmxb, DEC_lmxb, Name_lmxb, Name2_lmxb, Vmag_lmxb, mult_atnf, entr_atnf, dist_atnf, RA_atnf, DEC_atnf, Name_atnf, Type_atnf, Period_atnf, mult_fuh, entr_fuh, dist_fuh, RA_fuh, DEC_fuh, Seq_fuh, Name_fuh, mult_1sxps, entr_1sxps, dist_1sxps, RA_1sxps, DEC_1sxps, Expos_1sxps, DET_1sxps, DET0_1sxps, DET1_1sxps, DET2_1sxps, DET3_1sxps, INDEX_1sxps, Rate0_1sxps, ERate0_1sxps, mult_1rxh, entr_1rxh, dist_1rxh, RA_1rxh, DEC_1rxh, SRCNAME_1rxh, CRATE_1rxh, CRATE_err_1rxh, ExpTime_1rxh, SNR_1rxh, mult_flem, entr_flem, dist_flem, RA_flem, DEC_flem, SRCNAME_flem, Type_flem, WFC_flem, Rate_flem, e_Rate_flem, mult_wd, entr_wd, dist_wd, RA_wd, DEC_wd, SRCNAME_wd, Vmag_wd, Vsphot_wd, mult_sdss, entr_sdss, dist_sdss, RA_sdss, DEC_sdss, SDSS_NAME, LAMBDA_sdss, BETA_sdss, mult_2rxs, entr_2rxs, dist_2rxs, INDEX_2rxs, SEQ_ID_2rxs, IND_DET_2rxs, EXI_ML_2rxs, RATE_2rxs, RA_2rxs, DEC_2rxs, USKY_2rxs, FLAG_2rxs, BKG_id, X_BKG_1, Y_BKG_1, X_BKG_2, Y_BKG_2, BGR_1rxs, BGR_2rxs, LFLAG, CM6, CD6, EXCESSVAR6, UNCERTAINTY6, NBINS_A, NBINS_6, NBINS_1, NBINS_N, CMIN6, CMAX6, EMIN6, EMAX6, CTS_lc6, SIGMA_excess6, CM_plus_CD, SPX, LCX, OBS_CLOCK_1, OBS_CLOCK_2, OBS_DATE_1, OBS_UT_1, OBS_DATE_2, OBS_UT_2, IND_2RXS)
-SELECT c.x AS  cx, c.y AS cy, c.z AS cz, SkyQuery_CODE_dev.htmid.FromXyz(c.x,c.y,c.z) AS htmid, SkyQuery_CODE_dev.skyquery.ZoneIDFromDec(dec_DEG,4.0/3600.00000000) as zoneid, IAU_NAME, SEQ_ID, IND_DET, EXI_ML, CTS, CERR, RATE, ERATE, EXPOSURE, RA_DEG, DEC_DEG, RA_HMS, DEC_DMS, LII, BII, LAMBDA, BETA, EXT, EXTERR, EXT_ML, HR_1, HR_1_err, HR_2, HR_2_err, USKY, Masked, FLAG_all, S_flag, [INDEX], AMPL_MAX, CM, CD, CTS_lc, CMIN, CMAX, EMIN, EMAX, CHI2_lc, EXCESS_VAR, UNCERTAINTY, Sigma_Excess, NH_gal, NH_fit_p, NH_err_p, NORM_p, NORM_err_p, GAMMA_p, GAMMA_err_p, CTR_spec_p, FLUX_p, Chi2red_spec_p, Chi2_spec_p, Num_Data_pts_p, Num_Deg_free_p, NH_fit_m, NH_err_m, NORM_m, NORM_err_m, Temp_fit_m, Temp_err_m, CTR_spec_m, FLUX_m, Chi2red_spec_m, Chi2_spec_m, Num_Data_pts_m, Num_Deg_free_m, NH_fit_b, NH_err_b, NORM_b, NORM_err_b, Temp_fit_b, Temp_err_b, CTR_spec_b, FLUX_b, Chi2red_spec_b, Chi2_spec_b, Num_Data_pts_b, Num_Deg_free_b, X_IMA, Y_IMA, XERR, YERR, X_SKY, Y_SKY, CUT_RAD, FA, TOTNUM, BGR, VIG_COR, REMARKS, SB1, SB2, SB3, SB4, B1, B2, B3, B4, B_SPA, S1, S2, S3, S4, mult_xmmsl1, entr_xmmsl1, dist_xmmsl1, RA_xmmsl1, DEC_xmmsl1, SRCNAME_xmmsl1, RATE_B0_xmmsl1, RATE_B0e_xmmsl1, RATE_B5_xmmsl1, RATE_B5e_xmmsl1, mult_3xmm, entr_3xmm, dist_3xmm, RA_3xmm, DEC_3xmm, SRCNAME_3xmm, RATE_EP8_3xmm, RATE_EP8e_3xmm, FLUX_R_3xmm, FLUX_R_err_3xmm, mult_2rxp, entr_2rxp, dist_2rxp, RA_2rxp, DEC_2rxp, SRCNAME_2rxp, CRATE_2rxp, CRATE_err_2rxp, ExpTime_2rxp, ObsID_2rxp, mult_1rxs, entr_1rxs, dist_1rxs, RA_1rxs, DEC_1rxs, SRCNAME_1rxs, RATE_1rxs, RATE_err_1rxs, CTS_1rxs, CTS_err_1rxs, EXI_ML_1rxs, EXPOS_1rxs, HR1_1rxs, HR1e_1rxs, HR2_1rxs, HR2e_1rxs, mult_vv10, entr_vv10, dist_vv10, NAME_vv10, Type_vv10, Vmag_vv10, z_vv10, Index_vv10, RA_vv10, DEC_vv10, mult_tyc2, entr_tyc2, dist_tyc2, RA_tyc2, DEC_tyc2, RecNo_tyc2, VTmag_tyc2, BTmag_tyc2, TYC1_tyc2, TYC2_tyc2, TYC3_tyc2, mult_bri, entr_bri, dist_bri, RA_bri, DEC_bri, Vmag_bri, SpType_bri, RecNo_bri, HD_bri, mult_hmxb, entr_hmxb, dist_hmxb, RA_hmxb, DEC_hmxb, Name_hmxb, Name2_hmxb, Vmag_hmxb, mult_lmxb, entr_lmxb, dist_lmxb, RA_lmxb, DEC_lmxb, Name_lmxb, Name2_lmxb, Vmag_lmxb, mult_atnf, entr_atnf, dist_atnf, RA_atnf, DEC_atnf, Name_atnf, Type_atnf, Period_atnf, mult_fuh, entr_fuh, dist_fuh, RA_fuh, DEC_fuh, Seq_fuh, Name_fuh, mult_1sxps, entr_1sxps, dist_1sxps, RA_1sxps, DEC_1sxps, Expos_1sxps, DET_1sxps, DET0_1sxps, DET1_1sxps, DET2_1sxps, DET3_1sxps, INDEX_1sxps, Rate0_1sxps, ERate0_1sxps, mult_1rxh, entr_1rxh, dist_1rxh, RA_1rxh, DEC_1rxh, SRCNAME_1rxh, CRATE_1rxh, CRATE_err_1rxh, ExpTime_1rxh, SNR_1rxh, mult_flem, entr_flem, dist_flem, RA_flem, DEC_flem, SRCNAME_flem, Type_flem, WFC_flem, Rate_flem, e_Rate_flem, mult_wd, entr_wd, dist_wd, RA_wd, DEC_wd, SRCNAME_wd, Vmag_wd, Vsphot_wd, mult_sdss, entr_sdss, dist_sdss, RA_sdss, DEC_sdss, SDSS_NAME, LAMBDA_sdss, BETA_sdss, mult_2rxs, entr_2rxs, dist_2rxs, INDEX_2rxs, SEQ_ID_2rxs, IND_DET_2rxs, EXI_ML_2rxs, RATE_2rxs, RA_2rxs, DEC_2rxs, USKY_2rxs, FLAG_2rxs, BKG_id, X_BKG_1, Y_BKG_1, X_BKG_2, Y_BKG_2, BGR_1rxs, BGR_2rxs, LFLAG, CM6, CD6, EXCESSVAR6, UNCERTAINTY6, NBINS_A, NBINS_6, NBINS_1, NBINS_N, CMIN6, CMAX6, EMIN6, EMAX6, CTS_lc6, SIGMA_excess6, CM_plus_CD, SPX, LCX, OBS_CLOCK_1, OBS_CLOCK_2, OBS_DATE_1, OBS_UT_1, OBS_DATE_2, OBS_UT_2, IND_2RXS
+( cx, cy, cz, htmid, zoneid, IAU_NAME, SEQ_ID, IND_DET, EXI_ML, CTS, CERR, RATE, ERATE, EXPOSURE, RA, DEC, RA_HMS, DEC_DMS, LII, BII, LAMBDA, BETA, EXT, EXTERR, EXT_ML, HR_1, HR_1_err, HR_2, HR_2_err, USKY, Masked, FLAG_all, S_flag, [INDEX], AMPL_MAX, CM, CD, CTS_lc, CMIN, CMAX, EMIN, EMAX, CHI2_lc, EXCESS_VAR, UNCERTAINTY, Sigma_Excess, NH_gal, NH_fit_p, NH_err_p, NORM_p, NORM_err_p, GAMMA_p, GAMMA_err_p, CTR_spec_p, FLUX_p, Chi2red_spec_p, Chi2_spec_p, Num_Data_pts_p, Num_Deg_free_p, NH_fit_m, NH_err_m, NORM_m, NORM_err_m, Temp_fit_m, Temp_err_m, CTR_spec_m, FLUX_m, Chi2red_spec_m, Chi2_spec_m, Num_Data_pts_m, Num_Deg_free_m, NH_fit_b, NH_err_b, NORM_b, NORM_err_b, Temp_fit_b, Temp_err_b, CTR_spec_b, FLUX_b, Chi2red_spec_b, Chi2_spec_b, Num_Data_pts_b, Num_Deg_free_b, X_IMA, Y_IMA, XERR, YERR, X_SKY, Y_SKY, CUT_RAD, FA, TOTNUM, BGR, VIG_COR, REMARKS, SB1, SB2, SB3, SB4, B1, B2, B3, B4, B_SPA, S1, S2, S3, S4, mult_xmmsl1, entr_xmmsl1, dist_xmmsl1, RA_xmmsl1, DEC_xmmsl1, SRCNAME_xmmsl1, RATE_B0_xmmsl1, RATE_B0e_xmmsl1, RATE_B5_xmmsl1, RATE_B5e_xmmsl1, mult_3xmm, entr_3xmm, dist_3xmm, RA_3xmm, DEC_3xmm, SRCNAME_3xmm, RATE_EP8_3xmm, RATE_EP8e_3xmm, FLUX_R_3xmm, FLUX_R_err_3xmm, mult_2rxp, entr_2rxp, dist_2rxp, RA_2rxp, DEC_2rxp, SRCNAME_2rxp, CRATE_2rxp, CRATE_err_2rxp, ExpTime_2rxp, ObsID_2rxp, mult_1rxs, entr_1rxs, dist_1rxs, RA_1rxs, DEC_1rxs, SRCNAME_1rxs, RATE_1rxs, RATE_err_1rxs, CTS_1rxs, CTS_err_1rxs, EXI_ML_1rxs, EXPOS_1rxs, HR1_1rxs, HR1e_1rxs, HR2_1rxs, HR2e_1rxs, mult_vv10, entr_vv10, dist_vv10, NAME_vv10, Type_vv10, Vmag_vv10, z_vv10, Index_vv10, RA_vv10, DEC_vv10, mult_tyc2, entr_tyc2, dist_tyc2, RA_tyc2, DEC_tyc2, RecNo_tyc2, VTmag_tyc2, BTmag_tyc2, TYC1_tyc2, TYC2_tyc2, TYC3_tyc2, mult_bri, entr_bri, dist_bri, RA_bri, DEC_bri, Vmag_bri, SpType_bri, RecNo_bri, HD_bri, mult_hmxb, entr_hmxb, dist_hmxb, RA_hmxb, DEC_hmxb, Name_hmxb, Name2_hmxb, Vmag_hmxb, mult_lmxb, entr_lmxb, dist_lmxb, RA_lmxb, DEC_lmxb, Name_lmxb, Name2_lmxb, Vmag_lmxb, mult_atnf, entr_atnf, dist_atnf, RA_atnf, DEC_atnf, Name_atnf, Type_atnf, Period_atnf, mult_fuh, entr_fuh, dist_fuh, RA_fuh, DEC_fuh, Seq_fuh, Name_fuh, mult_1sxps, entr_1sxps, dist_1sxps, RA_1sxps, DEC_1sxps, Expos_1sxps, DET_1sxps, DET0_1sxps, DET1_1sxps, DET2_1sxps, DET3_1sxps, INDEX_1sxps, Rate0_1sxps, ERate0_1sxps, mult_1rxh, entr_1rxh, dist_1rxh, RA_1rxh, DEC_1rxh, SRCNAME_1rxh, CRATE_1rxh, CRATE_err_1rxh, ExpTime_1rxh, SNR_1rxh, mult_flem, entr_flem, dist_flem, RA_flem, DEC_flem, SRCNAME_flem, Type_flem, WFC_flem, Rate_flem, e_Rate_flem, mult_wd, entr_wd, dist_wd, RA_wd, DEC_wd, SRCNAME_wd, Vmag_wd, Vsphot_wd, mult_sdss, entr_sdss, dist_sdss, RA_sdss, DEC_sdss, SDSS_NAME, LAMBDA_sdss, BETA_sdss, mult_2rxs, entr_2rxs, dist_2rxs, INDEX_2rxs, SEQ_ID_2rxs, IND_DET_2rxs, EXI_ML_2rxs, RATE_2rxs, RA_2rxs, DEC_2rxs, USKY_2rxs, FLAG_2rxs, BKG_id, X_BKG_1, Y_BKG_1, X_BKG_2, Y_BKG_2, BGR_1rxs, BGR_2rxs, LFLAG, CM6, CD6, EXCESSVAR6, UNCERTAINTY6, NBINS_A, NBINS_6, NBINS_1, NBINS_N, CMIN6, CMAX6, EMIN6, EMAX6, CTS_lc6, SIGMA_excess6, CM_plus_CD, SPX, LCX, OBS_CLOCK_1, OBS_CLOCK_2, OBS_DATE_1, OBS_UT_1, OBS_DATE_2, OBS_UT_2, IND_2RXS)
+SELECT c.x AS  cx, c.y AS cy, c.z AS cz, SkyQuery_CODE_dev.htmid.FromXyz(c.x,c.y,c.z) AS htmid, SkyQuery_CODE_dev.skyquery.ZoneIDFromDec(dec,4.0/3600.00000000) as zoneid, IAU_NAME, SEQ_ID, IND_DET, EXI_ML, CTS, CERR, RATE, ERATE, EXPOSURE, RA, DEC, RA_HMS, DEC_DMS, LII, BII, LAMBDA, BETA, EXT, EXTERR, EXT_ML, HR_1, HR_1_err, HR_2, HR_2_err, USKY, Masked, FLAG_all, S_flag, [INDEX], AMPL_MAX, CM, CD, CTS_lc, CMIN, CMAX, EMIN, EMAX, CHI2_lc, EXCESS_VAR, UNCERTAINTY, Sigma_Excess, NH_gal, NH_fit_p, NH_err_p, NORM_p, NORM_err_p, GAMMA_p, GAMMA_err_p, CTR_spec_p, FLUX_p, Chi2red_spec_p, Chi2_spec_p, Num_Data_pts_p, Num_Deg_free_p, NH_fit_m, NH_err_m, NORM_m, NORM_err_m, Temp_fit_m, Temp_err_m, CTR_spec_m, FLUX_m, Chi2red_spec_m, Chi2_spec_m, Num_Data_pts_m, Num_Deg_free_m, NH_fit_b, NH_err_b, NORM_b, NORM_err_b, Temp_fit_b, Temp_err_b, CTR_spec_b, FLUX_b, Chi2red_spec_b, Chi2_spec_b, Num_Data_pts_b, Num_Deg_free_b, X_IMA, Y_IMA, XERR, YERR, X_SKY, Y_SKY, CUT_RAD, FA, TOTNUM, BGR, VIG_COR, REMARKS, SB1, SB2, SB3, SB4, B1, B2, B3, B4, B_SPA, S1, S2, S3, S4, mult_xmmsl1, entr_xmmsl1, dist_xmmsl1, RA_xmmsl1, DEC_xmmsl1, SRCNAME_xmmsl1, RATE_B0_xmmsl1, RATE_B0e_xmmsl1, RATE_B5_xmmsl1, RATE_B5e_xmmsl1, mult_3xmm, entr_3xmm, dist_3xmm, RA_3xmm, DEC_3xmm, SRCNAME_3xmm, RATE_EP8_3xmm, RATE_EP8e_3xmm, FLUX_R_3xmm, FLUX_R_err_3xmm, mult_2rxp, entr_2rxp, dist_2rxp, RA_2rxp, DEC_2rxp, SRCNAME_2rxp, CRATE_2rxp, CRATE_err_2rxp, ExpTime_2rxp, ObsID_2rxp, mult_1rxs, entr_1rxs, dist_1rxs, RA_1rxs, DEC_1rxs, SRCNAME_1rxs, RATE_1rxs, RATE_err_1rxs, CTS_1rxs, CTS_err_1rxs, EXI_ML_1rxs, EXPOS_1rxs, HR1_1rxs, HR1e_1rxs, HR2_1rxs, HR2e_1rxs, mult_vv10, entr_vv10, dist_vv10, NAME_vv10, Type_vv10, Vmag_vv10, z_vv10, Index_vv10, RA_vv10, DEC_vv10, mult_tyc2, entr_tyc2, dist_tyc2, RA_tyc2, DEC_tyc2, RecNo_tyc2, VTmag_tyc2, BTmag_tyc2, TYC1_tyc2, TYC2_tyc2, TYC3_tyc2, mult_bri, entr_bri, dist_bri, RA_bri, DEC_bri, Vmag_bri, SpType_bri, RecNo_bri, HD_bri, mult_hmxb, entr_hmxb, dist_hmxb, RA_hmxb, DEC_hmxb, Name_hmxb, Name2_hmxb, Vmag_hmxb, mult_lmxb, entr_lmxb, dist_lmxb, RA_lmxb, DEC_lmxb, Name_lmxb, Name2_lmxb, Vmag_lmxb, mult_atnf, entr_atnf, dist_atnf, RA_atnf, DEC_atnf, Name_atnf, Type_atnf, Period_atnf, mult_fuh, entr_fuh, dist_fuh, RA_fuh, DEC_fuh, Seq_fuh, Name_fuh, mult_1sxps, entr_1sxps, dist_1sxps, RA_1sxps, DEC_1sxps, Expos_1sxps, DET_1sxps, DET0_1sxps, DET1_1sxps, DET2_1sxps, DET3_1sxps, INDEX_1sxps, Rate0_1sxps, ERate0_1sxps, mult_1rxh, entr_1rxh, dist_1rxh, RA_1rxh, DEC_1rxh, SRCNAME_1rxh, CRATE_1rxh, CRATE_err_1rxh, ExpTime_1rxh, SNR_1rxh, mult_flem, entr_flem, dist_flem, RA_flem, DEC_flem, SRCNAME_flem, Type_flem, WFC_flem, Rate_flem, e_Rate_flem, mult_wd, entr_wd, dist_wd, RA_wd, DEC_wd, SRCNAME_wd, Vmag_wd, Vsphot_wd, mult_sdss, entr_sdss, dist_sdss, RA_sdss, DEC_sdss, SDSS_NAME, LAMBDA_sdss, BETA_sdss, mult_2rxs, entr_2rxs, dist_2rxs, INDEX_2rxs, SEQ_ID_2rxs, IND_DET_2rxs, EXI_ML_2rxs, RATE_2rxs, RA_2rxs, DEC_2rxs, USKY_2rxs, FLAG_2rxs, BKG_id, X_BKG_1, Y_BKG_1, X_BKG_2, Y_BKG_2, BGR_1rxs, BGR_2rxs, LFLAG, CM6, CD6, EXCESSVAR6, UNCERTAINTY6, NBINS_A, NBINS_6, NBINS_1, NBINS_N, CMIN6, CMAX6, EMIN6, EMAX6, CTS_lc6, SIGMA_excess6, CM_plus_CD, SPX, LCX, OBS_CLOCK_1, OBS_CLOCK_2, OBS_DATE_1, OBS_UT_1, OBS_DATE_2, OBS_UT_2, IND_2RXS
 FROM dbo.SourceObjRAW
-CROSS APPLY SkyQuery_CODE_dev.point.EqToXyz(ra_DEG, dec_DEG) AS c
+CROSS APPLY SkyQuery_CODE_dev.point.EqToXyz(ra, dec) AS c
 
 GO
 
@@ -1462,13 +1462,13 @@ DROP TABLE dbo.SourceObjRAW;
 GO
 
 -- Spatial index
-CREATE NONCLUSTERED INDEX [IX_2RXS_Zone] ON [dbo].[SourceObj] 
+CREATE NONCLUSTERED INDEX [IX_SourceObj_Zone] ON [dbo].[SourceObj] 
 (
-	[dec_DEG] ASC
+	[dec] ASC
 )
 INCLUDE
 (
-	[ra_DEG],
+	[ra],
 	[cx],
 	[cy],
 	[cz]
@@ -1477,14 +1477,14 @@ WITH (DATA_COMPRESSION = PAGE, SORT_IN_TEMPDB = ON)
 ON [PRIMARY]
 GO
 
-CREATE NONCLUSTERED INDEX [IX_2RXS_ZoneID] ON [dbo].[SourceObj] 
+CREATE NONCLUSTERED INDEX [IX_SourceObj_ZoneID] ON [dbo].[SourceObj] 
 (
 	[zoneid] ASC,
-	[ra_DEG] ASC
+	[ra] ASC
 )
 INCLUDE
 (
-	[dec_DEG],
+	[dec],
 	[cx],
 	[cy],
 	[cz]
@@ -1494,14 +1494,14 @@ ON [PRIMARY]
 GO
 
 -- HTM index
-CREATE NONCLUSTERED INDEX [IX_2RXS_HtmID] ON [dbo].[SourceObj] 
+CREATE NONCLUSTERED INDEX [IX_SourceObj_HtmID] ON [dbo].[SourceObj] 
 (
 	[htmid] ASC
 )
 INCLUDE
 (
-	[ra_DEG],
-	[dec_DEG],
+	[ra],
+	[dec],
 	[cx],
 	[cy],
 	[cz],
