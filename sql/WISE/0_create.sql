@@ -1368,7 +1368,7 @@ CREATE TABLE [dbo].[PhotoObj]
 	[w1mag_2] real NOT NULL,
 
 	--/ <summary>Like w1sigmag_1</summary>
-	--/ <quantity><stat.error; phot.mag; em.IR.WISE.w1/quantity>
+	--/ <quantity>stat.error; phot.mag; em.IR.WISE.w1</quantity>
 	--/ <unit>mag</unit>
 	[w1sigmag_2] real NOT NULL,
 
