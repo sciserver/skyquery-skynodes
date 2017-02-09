@@ -65,10 +65,10 @@
 </column>
     <column name="[P_1]">
       <summary> Period </summary>
-<unit> I-band amplitude </unit>
+<unit>d</unit>
 </column>
     <column name="[dP_1]">
-      <summary>  </summary>
+      <summary> I-band amplitude </summary>
 </column>
     <column name="[T0_1]">
       <summary>  </summary>

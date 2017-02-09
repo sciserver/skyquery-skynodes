@@ -65,10 +65,10 @@ CREATE TABLE dbo.VariableStars
 	[V] real NOT NULL,
 
 	--/ <summary> Period </summary>
-	--/ <unit> I-band amplitude </unit>
+	--/ <unit>d</unit>
 	[P_1] real NOT NULL,
 
-	--/ <summary>  </summary>
+	--/ <summary> I-band amplitude </summary>
 	[dP_1] float NOT NULL,
 
 	--/ <summary>  </summary>
