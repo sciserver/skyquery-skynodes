@@ -2,79 +2,79 @@
 
 CREATE TABLE dbo.IRC 
 (
-	--/ <summary> AKARI source ID number. </summary>
+	--/ <summary> AKARI source ID number. </summary>	--/ <quantity>meta.id</quantity>
 	[objID] bigint NOT NULL,
 	
 	--/ <summary> Source name from its J2000 coordinates, following the IAU Recommendations for
 	--/ Nomenclature (2006). The format is HHMMSSS+/−DDMMSS, e.g., 0123456+765432
 	--/ for a source at (01h23m45.6s, +76d54m32s). The source must be referred to in the
-	--/ literatures by its full name; AKARI-IRC-V1 J0123456+765432, where V1 refers to the version code.</summary>
+	--/ literatures by its full name; AKARI-IRC-V1 J0123456+765432, where V1 refers to the version code.</summary>	--/ <quantity>meta.id</quantity>
 	[OBJNAME] char(14) NOT NULL,
 
-	--/ <summary> Right ascension in decimal degrees (J2000). </summary>
-	--/ <unit>deg J2000</unit>
+	--/ <summary> Right ascension in decimal degrees (J2000). </summary>	--/ <quantity>pos.eq.ra; pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[ra] float NOT NULL,
 
-	--/ <summary> Declination in decimal degrees (J2000). </summary>
-	--/ <unit>deg J2000</unit>
+	--/ <summary> Declination in decimal degrees (J2000). </summary>	--/ <quantity>pos.eq.dec; pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[dec] float NOT NULL,
 
-	--/ <summary> Cartesian X (J2000)</summary>
+	--/ <summary> Cartesian X (J2000)</summary>	--/ <quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
 	[cx] [float] NOT NULL,
 
-	--/ <summary> Cartesian Y (J2000)</summary>
+	--/ <summary> Cartesian Y (J2000)</summary>	--/ <quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
 	[cy] [float] NOT NULL,
 
-	--/ <summary> Cartesian Z (J2000)</summary>
+	--/ <summary> Cartesian Z (J2000)</summary>	--/ <quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
 	[cz] [float] NOT NULL,
 
-	--/ <summary> HTM ID (J2000)</summary>
+	--/ <summary> HTM ID (J2000)</summary>	--/ <quantity>pos.HTM; pos.eq; pos.frame=J2000</quantity>
 	[htmid] bigint NOT NULL,
 
-	--/ <summary> Zone ID </summary>
+	--/ <summary> Zone ID </summary>	--/ <quantity>pos.zone; pos.eq; pos.frame=J2000</quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> Position error major axis. One-sigma error of the source position expressed by an ellipse with Major and Minor axes
 	--/ [arcsec], and Position Angle [deg; East from North]. If only two events are available, POSERRMJ
-	--/ is calculated from the distance of the two events and POSERRMI is set to the same as POSERRMJ. </summary>
+	--/ is calculated from the distance of the two events and POSERRMI is set to the same as POSERRMJ. </summary>	--/ <quantity>stat.error; pos.errorEllipse.smajAxis</quantity>
 	--/ <unit> arsec </unit>
 	[POSERRMJ]  real NOT NULL,
 
 	--/ <summary>  Position error minor axis. One-sigma error of the source position expressed by an ellipse with Major and Minor axes
 	--/ [arcsec], and Position Angle [deg; East from North]. If only two events are available, POSERRMJ
-	--/ is calculated from the distance of the two events and POSERRMI is set to the same as POSERRMJ. </summary>
+	--/ is calculated from the distance of the two events and POSERRMI is set to the same as POSERRMJ. </summary>	--/ <quantity>stat.error; pos.errorEllipse.sminAxis</quantity>
 	--/ <unit> arsec </unit>
 	[POSERRMI] real NOT NULL,
 
 	--/ <summary>  Position error Position Angle. One-sigma error of the source position expressed by an ellipse with Major and Minor axes
 	--/ [arcsec], and Position Angle [deg; East from North]. If only two events are available, POSERRMJ
-	--/ is calculated from the distance of the two events and POSERRMI is set to the same as POSERRMJ. </summary>
+	--/ is calculated from the distance of the two events and POSERRMI is set to the same as POSERRMJ. </summary>	--/ <quantity>stat.error; pos.errorEllipse.posAng</quantity>
 	--/ <unit> deg </unit>
 	[POSERRPA] real NOT NULL,
 
-	--/ <summary> Flux density in S9W. </summary>
+	--/ <summary> Flux density in S9W. </summary>	--/ <quantity>phot.flux; em.IR.AKARI.IRC09</quantity>
 	--/ <unit> Jy </unit>
 	[FLUX09] real NOT NULL,
 
-	--/ <summary> Flux density in L18W. </summary>
+	--/ <summary> Flux density in L18W. </summary>	--/ <quantity>phot.flux; em.IR.AKARI.IRC18</quantity>
 	--/ <unit> Jy </unit>
 	[FLUX18] real NOT NULL,
 
-	--/ <summary> Flux error in S9W. Errors are defined as equation 5. </summary>
+	--/ <summary> Flux error in S9W. Errors are defined as equation 5. </summary>	--/ <quantity>stat.error; phot.flux; em.IR.AKARI.IRC09</quantity>
 	--/ <unit> Jy </unit>
 	[FERR09] real NOT NULL,
 
-	--/ <summary> Flux error in L18W. Errors are defined as equation 5. </summary>
+	--/ <summary> Flux error in L18W. Errors are defined as equation 5. </summary>	--/ <quantity>stat.error; phot.flux; em.IR.AKARI.IRC18</quantity>
 	--/ <unit> Jy </unit> 
 	[FERR18] real NOT NULL,
 
 
 	--/ <summary> Flux quality flag for S9W. 3 when flux is valid and 0 when flux is not
-	--/ available. </summary>
+	--/ available. </summary>	--/ <quantity>meta.code.qual; phot.flux; em.IR.AKARI.IRC09</quantity>
 	[FQUAL09] tinyint NOT NULL,
 
 	--/ <summary> Flux quality flag for L18W. 3 when flux is valid and 0 when flux is not
-	--/ available.</summary>
+	--/ available.</summary>	--/ <quantity>meta.code.qual; phot.flux; em.IR.AKARI.IRC18</quantity>
 	[FQUAL18] tinyint NOT NULL,
 
 	--/ <summary> Bit flags data quality for S9W. Bit flags of data quality:
@@ -85,7 +85,7 @@ CREATE TABLE dbo.IRC
 	--/ 4: use SAA (not used in this version)
 	--/ 8(MSB): use edge events
 	--/ If the number of events is too small, we use the event data near the edge of the image
-	--/ strip. In this case, this flag warn you of underestimation of the flux. </summary>
+	--/ strip. In this case, this flag warn you of underestimation of the flux. </summary>	--/ <quantity>meta.code.qual; em.IR.AKARI.IRC09</quantity>
 	[FLAGS09] char(4) NOT NULL,
 
 	--/ <summary>  Bit flags data quality for L18W. Bit flags of data quality:
@@ -96,54 +96,54 @@ CREATE TABLE dbo.IRC
 	--/ 4: use SAA (not used in this version)
 	--/ 8(MSB): use edge events
 	--/ If the number of events is too small, we use the event data near the edge of the image
-	--/ strip. In this case, this flag warn you of underestimation of the flux. </summary>
+	--/ strip. In this case, this flag warn you of underestimation of the flux. </summary>	--/ <quantity>meta.code.qual; em.IR.AKARI.IRC18</quantity>
 	[FLAGS18] char(4) NOT NULL,
 
 	--/ <summary> Number of scans on which the source is detected for S9W. Normally, NSCANC is less or equal to
 	--/ SCANP. In some exceptional case, resultant position of the source drops out from the image
-	--/ stripe boundary and NSCANC is larger than NSCANP. </summary>
+	--/ stripe boundary and NSCANC is larger than NSCANP. </summary>	--/ <quantity>meta.code.number; obs; em.IR.AKARI.IRC09</quantity>
 	[NSCANC09]  int NOT NULL,
 
 	--/ <summary> Number of scans on which the source is detected  for L18W. Normally, NSCANC is less or equal to
 	--/ NSCANP. In some exceptional case, resultant position of the source drops out from the image
-	--/ stripe boundary and NSCANC is larger than NSCANP. </summary>
+	--/ stripe boundary and NSCANC is larger than NSCANP. </summary>	--/ <quantity>meta.code.number; obs; em.IR.AKARI.IRC18</quantity>
 	[NSCANC18] int NOT NULL,
 
-	--/ <summary> Total number of scans that possibly observed the source for S9W. </summary>
+	--/ <summary> Total number of scans that possibly observed the source for S9W. </summary>	--/ <quantity>meta.code.number; obs; em.IR.AKARI.IRC09</quantity>
 	[NSCANP09] int NOT NULL,
 
-	--/ <summary> Total number of scans that possibly observed the source for L18W. </summary>
+	--/ <summary> Total number of scans that possibly observed the source for L18W. </summary>	--/ <quantity>meta.code.number; obs; em.IR.AKARI.IRC18</quantity>
 	[NSCANP18] int NOT NULL,
 
-	--/ <summary> 1 is month confirmed and 0 is not. Inverted value of LSB of FLAGS09. </summary>
+	--/ <summary> 1 is month confirmed and 0 is not. Inverted value of LSB of FLAGS09. </summary>	--/ <quantity>meta.code; em.IR.AKARI.IRC09</quantity>
 	[MCONF09] smallint NOT NULL,
 
-	--/ <summary> 1 is month confirmed and 0 is not. Inverted value of LSB of FLAGS18. </summary>
+	--/ <summary> 1 is month confirmed and 0 is not. Inverted value of LSB of FLAGS18. </summary>	--/ <quantity>meta.code; em.IR.AKARI.IRC18</quantity>
 	[MCONF18] smallint NOT NULL,
 	
-	--/ <summary> The number of sources in 45 arcsec radius for S9W. </summary>
+	--/ <summary> The number of sources in 45 arcsec radius for S9W. </summary>	--/ <quantity>meta.code.nubmer; src; em.IR.AKARI.IRC09</quantity>
 	[NDENS09] int NOT NULL,
 	
-	--/ <summary> The number of sources in 45 arcsec radius for L18W. </summary>
+	--/ <summary> The number of sources in 45 arcsec radius for L18W. </summary>	--/ <quantity></quantity>
 	[NDENS18] int NOT NULL,
 	
 	--/ <summary> The flag indicates that the source is possibly more extended than the point spread function.
-	--/ This is "TRUE" when MEAN AB &gt; 15.6 [arcsec] </summary>
+	--/ This is "TRUE" when MEAN AB &gt; 15.6 [arcsec] </summary>	--/ <quantity></quantity>
 	[EXTENDED09] smallint NOT NULL,
 	
 	--/ <summary> The flag indicates that the source is possibly more extended than the point spread function.
-	--/ This is "TRUE" when MEAN AB &gt; 15.6 [arcsec] </summary>
+	--/ This is "TRUE" when MEAN AB &gt; 15.6 [arcsec] </summary>	--/ <quantity></quantity>
 	[EXTENDED18] smallint NOT NULL,
 	
 	--/ <summary> The average of radius along major and minor axes of images, i.e. (&lt; a &gt; + &lt; b &gt;)/2 where
 	--/ &lt; a &gt; and &lt; b &gt; are the mean semi-major and semi-minor axis lengths of images estimated by
-	--/ SExtractor. </summary>
+	--/ SExtractor. </summary>	--/ <quantity></quantity>
 	--/ <unit> arsec </unit>
 	[MEAN_AB09] real NOT NULL,
 	
 	--/ <summary> The average of radius along major and minor axes of images, i.e. (&lt; a &gt; + &lt; b &gt;)/2 where
 	--/ &lt; a &gt; and &lt; b &gt; are the mean semi-major and semi-minor axis lengths of images estimated by
-	--/ SExtractor. </summary>
+	--/ SExtractor. </summary>	--/ <quantity></quantity>
 	--/ <unit> arsec </unit>
 	[MEAN_AB18] real NOT NULL,
 	
@@ -151,17 +151,17 @@ CREATE TABLE dbo.IRC
 	--/ available S9W events, the position is estimated from S9W events only, else the position is
 	--/ estimated from L18W events, i.e.
 	--/ NDATA POS = NSCANC09 for NSCANC09 &ge; 2
-	--/ NDATA POS = NSCANC18 for NSCANC09 &lt; 2 </summary>
+	--/ NDATA POS = NSCANC18 for NSCANC09 &lt; 2 </summary>	--/ <quantity></quantity>
 	[NDATA_POS] int NOT NULL,
 	
 	--/ <summary> Number of events that contribute to the flux measurements for S9W. Normally, events
 	--/ near the edge of the image strip are excluded from the measurements. Note that if only 0 or 1
-	--/ event are available, the flux is computed also from edge events. </summary>
+	--/ event are available, the flux is computed also from edge events. </summary>	--/ <quantity></quantity>
 	[NDATA09] int NOT NULL,
 	
 	--/ <summary> Number of events that contribute to the flux measurements for L18W. Normally, events
 	--/ near the edge of the image strip are excluded from the measurements. Note that if only 0 or 1
-	--/ event are available, the flux is computed also from edge events. </summary>
+	--/ event are available, the flux is computed also from edge events. </summary>	--/ <quantity></quantity>
 	[NDATA18] int NOT NULL,
 	
  CONSTRAINT [PK_IRC] PRIMARY KEY CLUSTERED 
@@ -177,56 +177,56 @@ GO
 CREATE TABLE dbo.FIS 
 (
 	--/ <summary> Internal Object ID. A unique number for each object in the catalogue. This is mostly for internal use in the
-	--/ AKARI-CAS, and should be ignored in the astronomical analysis.</summary>
+	--/ AKARI-CAS, and should be ignored in the astronomical analysis.</summary>	--/ <quantity></quantity>
 	[objID] bigint NOT NULL,
 	
 	--/ <summary> Source identifier from its J2000 coordinates, following the IAU Recommendations for
 	--/ Nomenclature (2006). The format is HHMMSSS+/−DDMMSS, e.g., 0123456+765432
 	--/ for a source at (01h23m45.6s, +76d54m32s). The source must be referred to in the
-	--/ literatures by its full name; AKARI-FIS-V1 J0123456+765432.</summary>
+	--/ literatures by its full name; AKARI-FIS-V1 J0123456+765432.</summary>	--/ <quantity></quantity>
 	[OBJNAME] char(14) NOT NULL,
 
-	--/ <summary> Right ascension in decimal degrees (J2000). </summary>
+	--/ <summary> Right ascension in decimal degrees (J2000). </summary>	--/ <quantity></quantity>
 	--/ <unit>deg J2000</unit>
 	[ra] float NOT NULL,
 
-	--/ <summary> Declination in decimal degrees (J2000). </summary>
+	--/ <summary> Declination in decimal degrees (J2000). </summary>	--/ <quantity></quantity>
 	--/ <unit>deg J2000</unit>
 	[dec] float NOT NULL,
 
-	--/ <summary> Cartesian X (J2000)</summary>
+	--/ <summary> Cartesian X (J2000)</summary>	--/ <quantity></quantity>
 	[cx] [float] NOT NULL,
 
-	--/ <summary> Cartesian Y (J2000)</summary>
+	--/ <summary> Cartesian Y (J2000)</summary>	--/ <quantity></quantity>
 	[cy] [float] NOT NULL,
 
-	--/ <summary> Cartesian Z (J2000)</summary>
+	--/ <summary> Cartesian Z (J2000)</summary>	--/ <quantity></quantity>
 	[cz] [float] NOT NULL,
 
-	--/ <summary> HTM ID (J2000)</summary>
+	--/ <summary> HTM ID (J2000)</summary>	--/ <quantity></quantity>
 	[htmid] bigint NOT NULL,
 
-	--/ <summary> Zone ID </summary>
+	--/ <summary> Zone ID </summary>	--/ <quantity></quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> Position error major axis. One-sigma error of the source position expressed by an ellipse with Major (POSERRMJ) and Minor axes (POSERRMI)
 	--/ in arcsec, and Position Angle (POSERRPA) in degees measured from North to East. In the currently
 	--/ version we give the same value (6.0 arcsec) for all the sources both in the major and minor
-	--/ axis (thus polar-angle is 0.0) based on the statistical analysis in Section 5.5. </summary>
+	--/ axis (thus polar-angle is 0.0) based on the statistical analysis in Section 5.5. </summary>	--/ <quantity></quantity>
 	--/ <unit> arcsec </unit>
 	[POSERRMJ]  real NOT NULL,
 
 	--/ <summary>  Position error minor axis. One-sigma error of the source position expressed by an ellipse with Major (POSERRMJ) and Minor axes (POSERRMI)
 	--/ in arcsec, and Position Angle (POSERRPA) in degees measured from North to East. In the currently
 	--/ version we give the same value (6.0 arcsec) for all the sources both in the major and minor
-	--/ axis (thus polar-angle is 0.0) based on the statistical analysis in Section 5.5. </summary>
+	--/ axis (thus polar-angle is 0.0) based on the statistical analysis in Section 5.5. </summary>	--/ <quantity></quantity>
 	--/ <unit> arcsec </unit>
 	[POSERRMI] real NOT NULL,
 
 	--/ <summary>  Position error Position Angle. One-sigma error of the source position expressed by an ellipse with Major (POSERRMJ) and Minor axes (POSERRMI)
 	--/ in arcsec, and Position Angle (POSERRPA) in degees measured from North to East. In the currently
 	--/ version we give the same value (6.0 arcsec) for all the sources both in the major and minor
-	--/ axis (thus polar-angle is 0.0) based on the statistical analysis in Section 5.5. </summary>
+	--/ axis (thus polar-angle is 0.0) based on the statistical analysis in Section 5.5. </summary>	--/ <quantity></quantity>
 	
 	--/ <unit> deg </unit>
 	[POSERRPA] real NOT NULL,
@@ -235,7 +235,7 @@ CREATE TABLE dbo.FIS
 	--/ bands are indicated by their central wavelengths as 65, 90, 140 and 160.
 	--/ Values are given even for the unconfirmed sources as much as possible, though such the
 	--/ data are not guaranteed. If it is not possible to measure the source flux, NULL value is
-	--/ set; NaN in the FITS format and −999.9 in the text format, respectively. </summary>
+	--/ set; NaN in the FITS format and −999.9 in the text format, respectively. </summary>	--/ <quantity></quantity>
 	--/ <unit> Jy </unit>
 	[FLUX65] real NOT NULL,
 
@@ -243,7 +243,7 @@ CREATE TABLE dbo.FIS
 	--/ bands are indicated by their central wavelengths as 65, 90, 140 and 160.
 	--/ Values are given even for the unconfirmed sources as much as possible, though such the
 	--/ data are not guaranteed. If it is not possible to measure the source flux, NULL value is
-	--/ set; NaN in the FITS format and −999.9 in the text format, respectively. </summary>
+	--/ set; NaN in the FITS format and −999.9 in the text format, respectively. </summary>	--/ <quantity></quantity>
 	--/ <unit> Jy </unit>
 	[FLUX90] real NOT NULL,
 
@@ -251,7 +251,7 @@ CREATE TABLE dbo.FIS
 	--/ bands are indicated by their central wavelengths as 65, 90, 140 and 160.
 	--/ Values are given even for the unconfirmed sources as much as possible, though such the
 	--/ data are not guaranteed. If it is not possible to measure the source flux, NULL value is
-	--/ set; NaN in the FITS format and −999.9 in the text format, respectively. </summary>
+	--/ set; NaN in the FITS format and −999.9 in the text format, respectively. </summary>	--/ <quantity></quantity>
 	--/ <unit> Jy </unit>
 	[FLUX140] real NOT NULL,
 
@@ -259,7 +259,7 @@ CREATE TABLE dbo.FIS
 	--/ bands are indicated by their central wavelengths as 65, 90, 140 and 160.
 	--/ Values are given even for the unconfirmed sources as much as possible, though such the
 	--/ data are not guaranteed. If it is not possible to measure the source flux, NULL value is
-	--/ set; NaN in the FITS format and −999.9 in the text format, respectively. </summary>
+	--/ set; NaN in the FITS format and −999.9 in the text format, respectively. </summary>	--/ <quantity></quantity>
 	--/ <unit> Jy </unit>
 	[FLUX160] real NOT NULL,
 
@@ -268,7 +268,7 @@ CREATE TABLE dbo.FIS
 	--/ measurements (presented in NSCANC). The error thus only includes relative uncertainty
 	--/ at the measurements. Details of the flux uncertainty are discussed in Section 5.3.
 	--/ When it is not possible to calculate the standard deviation, NULL is set to this column.
-	--/ The text version has −99.9. </summary>
+	--/ The text version has −99.9. </summary>	--/ <quantity></quantity>
 	--/ <unit> Jy </unit>
 	[FERR65] real NOT NULL,
 
@@ -277,7 +277,7 @@ CREATE TABLE dbo.FIS
 	--/ measurements (presented in NSCANC). The error thus only includes relative uncertainty
 	--/ at the measurements. Details of the flux uncertainty are discussed in Section 5.3.
 	--/ When it is not possible to calculate the standard deviation, NULL is set to this column.
-	--/ The text version has −99.9. </summary>
+	--/ The text version has −99.9. </summary>	--/ <quantity></quantity>
 	--/ <unit> Jy </unit> 
 	[FERR90] real NOT NULL,
 
@@ -286,7 +286,7 @@ CREATE TABLE dbo.FIS
 	--/ measurements (presented in NSCANC). The error thus only includes relative uncertainty
 	--/ at the measurements. Details of the flux uncertainty are discussed in Section 5.3.
 	--/ When it is not possible to calculate the standard deviation, NULL is set to this column.
-	--/ The text version has −99.9. </summary>
+	--/ The text version has −99.9. </summary>	--/ <quantity></quantity>
 	--/ <unit> Jy </unit> 
 	[FERR140] real NOT NULL,
 
@@ -295,7 +295,7 @@ CREATE TABLE dbo.FIS
 	--/ measurements (presented in NSCANC). The error thus only includes relative uncertainty
 	--/ at the measurements. Details of the flux uncertainty are discussed in Section 5.3.
 	--/ When it is not possible to calculate the standard deviation, NULL is set to this column.
-	--/ The text version has −99.9. </summary>
+	--/ The text version has −99.9. </summary>	--/ <quantity></quantity>
 	--/ <unit> Jy </unit> 
 	[FERR160] real NOT NULL,
 
@@ -303,14 +303,14 @@ CREATE TABLE dbo.FIS
 	--/ 3: High quality (the source is confirmed and flux is reliable)
 	--/ 2: The source is confirmed but flux is not reliable (see FLAGS)
 	--/ 1: The source is not confirmed
-	--/ 0: Not observed (no scan data available) </summary>
+	--/ 0: Not observed (no scan data available) </summary>	--/ <quantity></quantity>
 	[FQUAL65] tinyint NOT NULL,
 
 	--/ <summary> Flux density quality flag for WIDE-S. Four level flux quality indicator:
 	--/ 3: High quality (the source is confirmed and flux is reliable)
 	--/ 2: The source is confirmed but flux is not reliable (see FLAGS)
 	--/ 1: The source is not confirmed
-	--/ 0: Not observed (no scan data available) </summary>
+	--/ 0: Not observed (no scan data available) </summary>	--/ <quantity></quantity>
 	[FQUAL90] tinyint NOT NULL,
 
 	--/ <summary> Flux density quality flag for WIDE-L. Four level flux quality indicator:
@@ -324,7 +324,7 @@ CREATE TABLE dbo.FIS
 	--/ 3: High quality (the source is confirmed and flux is reliable)
 	--/ 2: The source is confirmed but flux is not reliable (see FLAGS)
 	--/ 1: The source is not confirmed
-	--/ 0: Not observed (no scan data available) </summary>
+	--/ 0: Not observed (no scan data available) </summary>	--/ <quantity></quantity>
 	[FQUAL160] tinyint NOT NULL,
 
 	--/ <summary> Bit flags of data quality for N60. A 16 bits flag per band indicating various data condition. In version 1 catalogue three
@@ -347,7 +347,7 @@ CREATE TABLE dbo.FIS
 	--/ 1: Flux too low -------------------- 2 -------------------+  |
 	--/ 0: Normal mode, 1: CDS mode -------- 1 ----------------------+
 	--/ x NULL is set in case of no measurement (FQUAL = 0). The value is −1 in the files, and
-	--/ is defined as NULL in the FITS header. </summary>
+	--/ is defined as NULL in the FITS header. </summary>	--/ <quantity></quantity>
 	[FLAGS65] char(4) NOT NULL,
 
 	--/ <summary> Bit flags of data quality for WIDE-S. A 16 bits flag per band indicating various data condition. In version 1 catalogue three
@@ -370,7 +370,7 @@ CREATE TABLE dbo.FIS
 	--/ 1: Flux too low -------------------- 2 -------------------+  |
 	--/ 0: Normal mode, 1: CDS mode -------- 1 ----------------------+
 	--/ x NULL is set in case of no measurement (FQUAL = 0). The value is −1 in the files, and
-	--/ is defined as NULL in the FITS header. </summary>
+	--/ is defined as NULL in the FITS header. </summary>	--/ <quantity></quantity>
 	[FLAGS90] char(4) NOT NULL,
 
 	--/ <summary> Bit flags of data quality for WIDE-L. A 16 bits flag per band indicating various data condition. In version 1 catalogue three
@@ -393,7 +393,7 @@ CREATE TABLE dbo.FIS
 	--/ 1: Flux too low -------------------- 2 -------------------+  |
 	--/ 0: Normal mode, 1: CDS mode -------- 1 ----------------------+
 	--/ x NULL is set in case of no measurement (FQUAL = 0). The value is −1 in the files, and
-	--/ is defined as NULL in the FITS header. </summary>
+	--/ is defined as NULL in the FITS header. </summary>	--/ <quantity></quantity>
 	[FLAGS140] char(4) NOT NULL,
 
 	--/ <summary> Bit flags of data quality for N160. A 16 bits flag per band indicating various data condition. In version 1 catalogue three
@@ -416,35 +416,35 @@ CREATE TABLE dbo.FIS
 	--/ 1: Flux too low -------------------- 2 -------------------+  |
 	--/ 0: Normal mode, 1: CDS mode -------- 1 ----------------------+
 	--/ x NULL is set in case of no measurement (FQUAL = 0). The value is −1 in the files, and
-	--/ is defined as NULL in the FITS header. </summary>
+	--/ is defined as NULL in the FITS header. </summary>	--/ <quantity></quantity>
 	[FLAGS160] char(4) NOT NULL,
 
 	--/ <summary> nScanConfirm for N60. Number of scans on which the source is properly detected with logEvidence larger than
-	--/ the threshold. </summary>
+	--/ the threshold. </summary>	--/ <quantity></quantity>
 	[NSCANC65]  int NOT NULL,
 
 	--/ <summary> nScanConfirm for WIDE-S. Number of scans on which the source is properly detected with logEvidence larger than
-	--/ the threshold. </summary>
+	--/ the threshold. </summary>	--/ <quantity></quantity>
 	[NSCANC90] int NOT NULL,
 
 	--/ <summary> nScanConfirm for WIDE-L. Number of scans on which the source is properly detected with logEvidence larger than
-	--/ the threshold. </summary>
+	--/ the threshold. </summary>	--/ <quantity></quantity>
 	[NSCANC140] int NOT NULL,
 
 	--/ <summary> nScanConfirm for N160. Number of scans on which the source is properly detected with logEvidence larger than
-	--/ the threshold. </summary>
+	--/ the threshold. </summary>	--/ <quantity></quantity>
 	[NSCANC160] int NOT NULL,
 
-	--/ <summary> nScanPossible for N60. Total number of scans that passed on the source (that possibly observed the source) </summary>
+	--/ <summary> nScanPossible for N60. Total number of scans that passed on the source (that possibly observed the source) </summary>	--/ <quantity></quantity>
 	[NSCANP65] int NOT NULL,
 
-	--/ <summary> nScanPossible for WIDE-S. Total number of scans that passed on the source (that possibly observed the source) </summary>
+	--/ <summary> nScanPossible for WIDE-S. Total number of scans that passed on the source (that possibly observed the source) </summary>	--/ <quantity></quantity>
 	[NSCANP90] int NOT NULL,
 
-	--/ <summary> nScanPossible for WIDE-L. Total number of scans that passed on the source (that possibly observed the source) </summary>
+	--/ <summary> nScanPossible for WIDE-L. Total number of scans that passed on the source (that possibly observed the source) </summary>	--/ <quantity></quantity>
 	[NSCANP140]  int NOT NULL,
 
-	--/ <summary> nScanPossible for N160. Total number of scans that passed on the source (that possibly observed the source) </summary>
+	--/ <summary> nScanPossible for N160. Total number of scans that passed on the source (that possibly observed the source) </summary>	--/ <quantity></quantity>
 	[NSCANP160] int NOT NULL,
 
 	--/ <summary> Months confirmation flag for N60. The value is 1 when the source
@@ -453,7 +453,7 @@ CREATE TABLE dbo.FIS
 	--/ if the source is not confirmed (FQUAL = 1). Because of the visibility constraint of the
 	--/ AKARI Survey, some sky regions were observed by scans only within a month. MCONF
 	--/ = 0 does not mean that the source is unreliable.
-	--/ This flag is NULL (−1) for FQUAL = 0 sources. </summary>
+	--/ This flag is NULL (−1) for FQUAL = 0 sources. </summary>	--/ <quantity></quantity>
 	[MCONF65] smallint NOT NULL,
 
 	--/ <summary> Months confirmation flag for WIDE-S. The value is 1 when the source
@@ -462,7 +462,7 @@ CREATE TABLE dbo.FIS
 	--/ if the source is not confirmed (FQUAL = 1). Because of the visibility constraint of the
 	--/ AKARI Survey, some sky regions were observed by scans only within a month. MCONF
 	--/ = 0 does not mean that the source is unreliable.
-	--/ This flag is NULL (−1) for FQUAL = 0 sources. </summary>
+	--/ This flag is NULL (−1) for FQUAL = 0 sources. </summary>	--/ <quantity></quantity>
 	[MCONF90] smallint NOT NULL,
 
 	--/ <summary> Months confirmation flag for WIDE-L. The value is 1 when the source
@@ -471,7 +471,7 @@ CREATE TABLE dbo.FIS
 	--/ if the source is not confirmed (FQUAL = 1). Because of the visibility constraint of the
 	--/ AKARI Survey, some sky regions were observed by scans only within a month. MCONF
 	--/ = 0 does not mean that the source is unreliable.
-	--/ This flag is NULL (−1) for FQUAL = 0 sources. </summary>
+	--/ This flag is NULL (−1) for FQUAL = 0 sources. </summary>	--/ <quantity></quantity>
 	[MCONF140] smallint NOT NULL,
 
 	--/ <summary> Months confirmation flag for N160. The value is 1 when the source
@@ -480,13 +480,13 @@ CREATE TABLE dbo.FIS
 	--/ if the source is not confirmed (FQUAL = 1). Because of the visibility constraint of the
 	--/ AKARI Survey, some sky regions were observed by scans only within a month. MCONF
 	--/ = 0 does not mean that the source is unreliable.
-	--/ This flag is NULL (−1) for FQUAL = 0 sources. </summary>
+	--/ This flag is NULL (−1) for FQUAL = 0 sources. </summary>	--/ <quantity></quantity>
 	[MCONF160] smallint NOT NULL,
 
 	--/ <summary> Number of neighbouring sources. Number of sources in the catalogue within the distance of 5 arcmin from the source. This
 	--/ value is intended to be an indicator of crowdedness of the sky region. Since the source
 	--/ extraction program is tuned so that a unique source is found within 48 arcsec radius, the
-	--/ 5 arcmin radius corresponds to approximately 40 beams. </summary>
+	--/ 5 arcmin radius corresponds to approximately 40 beams. </summary>	--/ <quantity></quantity>
 	[NDENS] int NOT NULL,
 
  CONSTRAINT [PK_FIS] PRIMARY KEY CLUSTERED 
