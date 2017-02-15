@@ -20,11 +20,11 @@
 </column>
     <column name="[cy]">
       <summary>Cartesian Y (J2000)</summary>
-<quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
+<quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[cz]">
       <summary>Cartesian Z (J2000)</summary>
-<quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
+<quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[htmid]">
       <summary>HTM ID (J2000)</summary>

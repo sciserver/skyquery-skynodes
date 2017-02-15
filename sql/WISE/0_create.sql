@@ -19,11 +19,11 @@ CREATE TABLE [dbo].[PhotoObj]
 	[cx] [float] NOT NULL,
 
 	--/ <summary>Cartesian Y (J2000)</summary>
-	--/ <quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
 	[cy] [float] NOT NULL,
 
 	--/ <summary>Cartesian Z (J2000)</summary>
-	--/ <quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
 	[cz] [float] NOT NULL,
 
 	--/ <summary>HTM ID (J2000)</summary>
