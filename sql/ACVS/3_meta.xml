@@ -2,107 +2,136 @@
   <table name="[dbo].[PhotoObj]">
     <column name="[objID]">
       <summary> Unique ID. </summary>
+<quantity>meta.record</quantity>
 </column>
     <column name="[objName]">
       <summary> ASAS identification (coded from the star's RA_2000 and DEC_2000 in the format: hhmmss+ddmm.m). </summary>
+<quantity>meta.id</quantity>
 </column>
     <column name="[ra]">
-      <summary> Right ascension in decimal degrees (J2000). </summary>
-<unit>deg J2000</unit>
+      <summary> Right ascension in decimal degrees </summary>
+<quantity>pos.eq.ra</quantity>
+<unit>deg</unit>
 </column>
     <column name="[dec]">
-      <summary> Declination in decimal degrees (J2000). </summary>
-<unit>deg J2000</unit>
+      <summary> Declination in decimal degrees </summary>
+<quantity>pos.eq.dec</quantity>
+<unit>deg</unit>
 </column>
     <column name="[cx]">
       <summary> Cartesian X (J2000)</summary>
+<quantity>pos.cartesian.x</quantity>
 </column>
     <column name="[cy]">
       <summary> Cartesian Y (J2000)</summary>
+<quantity>pos.cartesian.y</quantity>
 </column>
     <column name="[cz]">
       <summary> Cartesian Z (J2000)</summary>
+<quantity>pos.cartesian.z</quantity>
 </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
+<quantity>pos.HTM</quantity>
 </column>
     <column name="[zoneid]">
       <summary> Zone ID </summary>
+<quantity>pos.zone</quantity>
 </column>
     <column name="[PER]">
       <summary> Period in days (or characteristic time scale of variation for irregular objects). </summary>
-<unit> days </unit>
+<quantity>time.period; src.var</quantity>
+<unit> d </unit>
 </column>
     <column name="[HJD0]">
-      <summary>  Epoch of minimum (for eclipsing) or maximum (for pulsating) brightness. </summary>
+      <summary> Epoch of minimum (for eclipsing) or maximum (for pulsating) brightness. </summary>
+<quantity>time.epoch</quantity>
 </column>
     <column name="[VMAX]">
-      <summary>  Brightness at maximum. </summary>
+      <summary> Brightness at maximum. </summary>
+<quantity>phot.mag; stat.max</quantity>
 <unit> mag </unit>
 </column>
     <column name="[VAMP]">
       <summary> Amplitude of variation. </summary>
+<quantity>src.var.amplitude</quantity>
 <unit> mag </unit>
 </column>
     <column name="[TYPE]">
       <summary> One of the predefined classes: DSCT, RRC, RRAB, DCEP_FU, DCEP_FO, CW, ACV, BCEP, MIRA and MISC, or its combination. </summary>
+<quantity>src.var.type</quantity>
 </column>
     <column name="[GCVS_ID]">
       <summary> GCVS name. </summary>
+<quantity>meta.id.cross</quantity>
 </column>
     <column name="[GCVS_TYPE]">
       <summary> GCVS variability type. </summary>
+<quantity>src.var.type</quantity>
 </column>
     <column name="[IR12]">
       <summary> IRAS flux at 12 microns (listed as -2.5 log flux). </summary>
+<quantity>phot.flux; em.IR.IRAS.12</quantity>
 <unit> Jy </unit>
 </column>
     <column name="[IR25]">
       <summary>  IRAS flux at 25 microns. </summary>
+<quantity>phot.flux; em.IR.IRAS.25</quantity>
 <unit> Jy </unit>
 </column>
     <column name="[IR60]">
       <summary>  IRAS flux at 60 microns. </summary>
+<quantity>phot.flux; em.IR.IRAS.60</quantity>
 <unit> Jy </unit>
 </column>
     <column name="[IR100]">
       <summary>  IRAS flux at 100 microns. </summary>
+<quantity>phot.flux; em.IR.IRAS.100</quantity>
 <unit> Jy </unit>
 </column>
     <column name="[J]">
       <summary> 2MASS J photometry. </summary>
+<quantity>phot.mag; em.IR.J</quantity>
 <unit> mag </unit>
 </column>
     <column name="[H]">
       <summary> 2MASS H photometry. </summary>
+<quantity>phot.mag; em.IR.H</quantity>
 <unit> mag </unit>
 </column>
     <column name="[K]">
       <summary> 2MASS K photometry. </summary>
+<quantity>phot.mag; em.IR.K</quantity>
 <unit> mag </unit>
 </column>
     <column name="[V_IR12]">
       <summary> V-IR12 color index. </summary>
+<quantity>phot.color; em.opt.V; em.IR.IRAS.12</quantity>
 <unit> mag </unit>
 </column>
     <column name="[V_J]">
       <summary> V-J color index. </summary>
+<quantity>phot.color; em.opt.V; em.IR.J</quantity>
 <unit> mag </unit>
 </column>
     <column name="[V_H]">
       <summary> V-H color index. </summary>
+<quantity>phot.color; em.opt.V; em.IR.H</quantity>
 <unit> mag </unit>
 </column>
     <column name="[V_K]">
       <summary> V-K color index. </summary>
+<quantity>phot.color; em.opt.V; em.IR.K</quantity>
 <unit> mag </unit>
 </column>
     <column name="[J_H]">
       <summary> J-H color index. </summary>
+<quantity>phot.color; em.IR.J; em.IR.H</quantity>
 <unit> mag </unit>
 </column>
     <column name="[H_K]">
       <summary> H-K color index. </summary>
+<quantity>phot.color; em.IR.H; em.IR.K</quantity>
 <unit> mag </unit>
 </column>
   </table>
