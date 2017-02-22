@@ -2,53 +2,67 @@
   <table name="[dbo].[SpecObj]">
     <column name="[objID]">
       <summary> ID number in PPP (Picture-Processing Package) catalog. </summary>
+<quantity>meta.id</quantity>
 </column>
     <column name="[CNOC2sp]">
       <summary> CNOC2 spectrum number. Spectrum name. The last 4 characters denote mask number,
 (A,B,C) and spectrum number (e.g. A034), the first 2 numbers denote field numbers (same as
 (1)). Note that for objects with multiple observations only one of the spectrum IDs is listed
 (usually the one with the highest redshift reliability (Rval) value). </summary>
+<quantity>meta.id</quantity>
 </column>
     <column name="[ra]">
-      <summary> 	Right Ascension 1950. </summary>
-<unit>deg J1950</unit>
+      <summary> Right Ascension </summary>
+<quantity>pos.eq.ra; pos.frame=j2000</quantity>
+<unit>deg</unit>
 </column>
     <column name="[dec]">
-      <summary> Declination 1950. </summary>
-<unit>deg J1950</unit>
+      <summary> Declination </summary>
+<quantity>pos.eq.dec; pos.frame=j2000</quantity>
+<unit>deg</unit>
 </column>
     <column name="[cx]">
       <summary> Cartesian X (J2000)</summary>
+<quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[cy]">
       <summary> Cartesian Y (J2000)</summary>
+<quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[cz]">
       <summary> Cartesian Z (J2000)</summary>
+<quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
+<quantity>pos.HTM; pos.eq; pos.frame=J2000</quantity>
 </column>
     <column name="[zoneid]">
       <summary> Zone ID </summary>
+<quantity>pos.zone; pos.eq; pos.frame=J2000</quantity>
 </column>
     <column name="[oRA]">
       <summary> RA offset (West is positive), B1950. </summary>
+<quantity>pos.eq.ra;arith.diff</quantity>
 <unit> arcsec </unit>
 </column>
     <column name="[oDE]">
       <summary> DE offset (North is positive), B1950 </summary>
+<quantity>pos.eq.ra;arith.diff</quantity>
 <unit> arcsec </unit>
 </column>
     <column name="[z]">
       <summary> Redshift  </summary>
+<quantity>src.redshift</quantity>
 </column>
     <column name="[e_z]">
       <summary> Redshift error </summary>
-<unit> 10^-5 </unit>
+<quantity>stat.error; src.redshift</quantity>
+<unit> 1e-5 </unit>
 </column>
     <column name="[Rval]">
       <summary> Redshift reliability value </summary>
+<quantity>stat.value; src.redshift</quantity>
 </column>
     <column name="[Sc]">
       <summary> Spectral class. Spectroscopic classification:
@@ -60,6 +74,7 @@
 77 = star
 88 = unknown
 99 = slit but no spectrum (object too faint) </summary>
+<quantity>meta.code; src.class</quantity>
 </column>
     <column name="[w_z]">
       <summary> Redshift weight. An important feature of the catalog is the various weights computed to
@@ -69,19 +84,23 @@ weights modify the magnitude weight Wm as follows:
 W(tot) = Wm * Wxy * Wc * Wz,
 where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own
 Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>
+<quantity>stat.weight; src.redshift</quantity>
 </column>
     <column name="[Imag]">
       <summary> Cousins I magnitude </summary>
+<quantity>phot.mag;em.opt.I</quantity>
 <unit> mag </unit>
 </column>
     <column name="[e_Imag]">
       <summary> Cousins I magnitude error </summary>
+<quantity>stat.error;phot.mag;em.opt.I</quantity>
 <unit> mag </unit>
 </column>
     <column name="[Ice]">
       <summary> Cousins I color aperture magnitude error. Color aperture magnitude error. This is the magnitude
 error within the aperture used to determine the color of the object. An approximate uncertainty in the
 color between any two filters can be derived by adding the two color aperture errors in quadrature. </summary>
+<quantity>stat.error;phot.mag;em.opt.I</quantity>
 <unit> mag </unit>
 </column>
     <column name="[w_Imag]">
@@ -92,6 +111,7 @@ weights modify the magnitude weight Wm as follows:
 W(tot) = Wm * Wxy * Wc * Wz,
 where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own
 Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter.  </summary>
+<quantity>stat.weight;phot.mag;em.opt.I</quantity>
 </column>
     <column name="[IWc]">
       <summary> Cousins I color weight. An important feature of the catalog is the various weights computed to
@@ -101,6 +121,7 @@ weights modify the magnitude weight Wm as follows:
 W(tot) = Wm * Wxy * Wc * Wz,
 where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own
 Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>
+<quantity>stat.weight;phot.mag;em.opt.I</quantity>
 </column>
     <column name="[IWxy]">
       <summary> Cousins I positional weight. An important feature of the catalog is the various weights computed to
@@ -110,19 +131,23 @@ weights modify the magnitude weight Wm as follows:
 W(tot) = Wm * Wxy * Wc * Wz,
 where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own
 Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>
+<quantity>stat.weight;phot.mag;em.opt.I</quantity>
 </column>
     <column name="[Rmag]">
       <summary> Cousins R magnitude </summary>
+<quantity>phot.mag;em.opt.R</quantity>
 <unit> mag </unit>
 </column>
     <column name="[e_Rmag]">
       <summary> Cousins R magnitude error </summary>
+<quantity>stat.error;phot.mag;em.opt.R</quantity>
 <unit> mag </unit>
 </column>
     <column name="[Rce]">
       <summary> Rmag color aperture magnitude error. Color aperture magnitude error. This is the magnitude
 error within the aperture used to determine the color of the object. An approximate uncertainty in the
 color between any two filters can be derived by adding the two color aperture errors in quadrature. </summary>
+<quantity>stat.error;phot.mag;em.opt.R</quantity>
 <unit> mag </unit>
 </column>
     <column name="[w_Rmag]">
@@ -133,6 +158,7 @@ weights modify the magnitude weight Wm as follows:
 W(tot) = Wm * Wxy * Wc * Wz,
 where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own
 Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>
+<quantity>stat.weight;phot.mag;em.opt.R</quantity>
 </column>
     <column name="[RWc]">
       <summary> Cousins R color weight. An important feature of the catalog is the various weights computed to
@@ -142,6 +168,7 @@ weights modify the magnitude weight Wm as follows:
 W(tot) = Wm * Wxy * Wc * Wz,
 where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own
 Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>
+<quantity>stat.weigt;phot.mag;em.opt.R</quantity>
 </column>
     <column name="[RWxy]">
       <summary> Cousins R positional weight. An important feature of the catalog is the various weights computed to
@@ -151,19 +178,23 @@ weights modify the magnitude weight Wm as follows:
 W(tot) = Wm * Wxy * Wc * Wz,
 where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own
 Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>
+<quantity>stat.weight;phot.mag;em.opt.R</quantity>
 </column>
     <column name="[Vmag]">
       <summary> Johnson V magnitude </summary>
+<quantity>phot.mag;em.opt.V</quantity>
 <unit> mag </unit>
 </column>
     <column name="[e_Vmag]">
       <summary> Johnson V magnitude error </summary>
+<quantity>stat.error;phot.mag;em.opt.V</quantity>
 <unit> mag </unit>
 </column>
     <column name="[Vce]">
       <summary> Vmag color aperture magnitude error. Color aperture magnitude error. This is the magnitude
 error within the aperture used to determine the color of the object. An approximate uncertainty in the
 color between any two filters can be derived by adding the two color aperture errors in quadrature. </summary>
+<quantity>stat.error;phot.mag;em.opt.V</quantity>
 <unit> mag </unit>
 </column>
     <column name="[w_Vmag]">
@@ -174,6 +205,7 @@ weights modify the magnitude weight Wm as follows:
 W(tot) = Wm * Wxy * Wc * Wz,
 where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own
 Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>
+<quantity>stat.weight;phot.mag;em.opt.V</quantity>
 </column>
     <column name="[VWc]">
       <summary> Johnson V color weight. An important feature of the catalog is the various weights computed to
@@ -183,6 +215,7 @@ weights modify the magnitude weight Wm as follows:
 W(tot) = Wm * Wxy * Wc * Wz,
 where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own
 Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>
+<quantity>stat.weight;phot.mag;em.opt.V</quantity>
 </column>
     <column name="[VWxy]">
       <summary> Johnson V positional weight. An important feature of the catalog is the various weights computed to
@@ -192,19 +225,23 @@ weights modify the magnitude weight Wm as follows:
 W(tot) = Wm * Wxy * Wc * Wz,
 where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own
 Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>
+<quantity>stat.weight;phot.mag;em.opt.V</quantity>
 </column>
     <column name="[Bmag]">
       <summary> Johnson B magnitude </summary>
+<quantity>phot.mag;em.opt.B</quantity>
 <unit> mag </unit>
 </column>
     <column name="[e_Bmag]">
       <summary> Johnson B magnitude error </summary>
+<quantity>stat.error;phot.mag;em.opt.B</quantity>
 <unit> mag </unit>
 </column>
     <column name="[Bce]">
       <summary> Bmag color aperture magnitude error. Color aperture magnitude error. This is the magnitude
 error within the aperture used to determine the color of the object. An approximate uncertainty in the
 color between any two filters can be derived by adding the two color aperture errors in quadrature.</summary>
+<quantity>stat.error;phot.mag;em.opt.B</quantity>
 <unit> mag </unit>
 </column>
     <column name="[w_Bmag]">
@@ -215,6 +252,7 @@ weights modify the magnitude weight Wm as follows:
 W(tot) = Wm * Wxy * Wc * Wz,
 where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own
 Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>
+<quantity>stat.weight;phot.mag;em.opt.B</quantity>
 </column>
     <column name="[BWc]">
       <summary> Johnson B color weight. An important feature of the catalog is the various weights computed to
@@ -224,6 +262,7 @@ weights modify the magnitude weight Wm as follows:
 W(tot) = Wm * Wxy * Wc * Wz,
 where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own
 Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>
+<quantity>stat.weight;phot.mag;em.opt.B</quantity>
 </column>
     <column name="[BWxy]">
       <summary> Johnson B positional weight. An important feature of the catalog is the various weights computed to
@@ -233,19 +272,23 @@ weights modify the magnitude weight Wm as follows:
 W(tot) = Wm * Wxy * Wc * Wz,
 where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own
 Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>
+<quantity>stat.weight;phot.mag;em.opt.B</quantity>
 </column>
     <column name="[Umag]">
       <summary> Johnson U magnitude </summary>
+<quantity>phot.mag;em.opt.U</quantity>
 <unit> mag </unit>
 </column>
     <column name="[e_Umag]">
       <summary> Johnson U magnitude error </summary>
+<quantity>stat.error;phot.mag;em.opt.U</quantity>
 <unit> mag </unit>
 </column>
     <column name="[Uce]">
       <summary> Umag color aperture magnitude error. Color aperture magnitude error. This is the magnitude
 error within the aperture used to determine the color of the object. An approximate uncertainty in the
 color between any two filters can be derived by adding the two color aperture errors in quadrature. </summary>
+<quantity>stat.error;phot.mag;em.opt.U</quantity>
 <unit> mag </unit>
 </column>
     <column name="[w_Umag]">
@@ -256,6 +299,7 @@ weights modify the magnitude weight Wm as follows:
 W(tot) = Wm * Wxy * Wc * Wz,
 where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own
 Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>
+<quantity>stat.weight;phot.mag;em.opt.U</quantity>
 </column>
     <column name="[UWc]">
       <summary> Johnson U color weight. An important feature of the catalog is the various weights computed to
@@ -265,6 +309,7 @@ weights modify the magnitude weight Wm as follows:
 W(tot) = Wm * Wxy * Wc * Wz,
 where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own
 Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>
+<quantity>stat.weight;phot.mag;em.opt.U</quantity>
 </column>
     <column name="[UWxy]">
       <summary> Johnson U positional weight. An important feature of the catalog is the various weights computed to
@@ -274,20 +319,25 @@ weights modify the magnitude weight Wm as follows:
 W(tot) = Wm * Wxy * Wc * Wz,
 where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own
 Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>
+<quantity>stat.weight;phot.mag;em.opt.U</quantity>
 </column>
     <column name="[Pcl]">
       <summary> [0,4] PPP morphological class </summary>
+<quantity>src.class.struct</quantity>
 </column>
     <column name="[Rkcor]">
       <summary> R-band k-correction </summary>
+<quantity>phot.mag;arith.diff</quantity>
 <unit> mag </unit>
 </column>
     <column name="[xpos]">
       <summary> Original CCD x coordinate </summary>
+<quantity>pos.cartesian.x;instr.det</quantity>
 <unit> pix </unit>
 </column>
     <column name="[ypos]">
       <summary> Original CCD y coordinate </summary>
+<quantity>pos.cartesian.y;instr.det</quantity>
 <unit> pix </unit>
 </column>
   </table>

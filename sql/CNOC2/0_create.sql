@@ -1,53 +1,53 @@
 CREATE TABLE dbo.SpecObj 
 (
-	--/ <summary> ID number in PPP (Picture-Processing Package) catalog. </summary>
+	--/ <summary> ID number in PPP (Picture-Processing Package) catalog. </summary>	--/ <quantity>meta.id</quantity>
 	[objID] bigint NOT NULL,
 
 	--/ <summary> CNOC2 spectrum number. Spectrum name. The last 4 characters denote mask number, 
 	--/ (A,B,C) and spectrum number (e.g. A034), the first 2 numbers denote field numbers (same as 
 	--/ (1)). Note that for objects with multiple observations only one of the spectrum IDs is listed 
-	--/ (usually the one with the highest redshift reliability (Rval) value). </summary>
+	--/ (usually the one with the highest redshift reliability (Rval) value). </summary>	--/ <quantity>meta.id</quantity>
 	[CNOC2sp] char(6) NOT NULL,
 
-	--/ <summary> 	Right Ascension 1950. </summary>
-	--/ <unit>deg J1950</unit>
+	--/ <summary> Right Ascension </summary>	--/ <quantity>pos.eq.ra; pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[ra] float NOT NULL,
 
-	--/ <summary> Declination 1950. </summary>
-	--/ <unit>deg J1950</unit>
+	--/ <summary> Declination </summary>	--/ <quantity>pos.eq.dec; pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[dec] float NOT NULL,
 
-	--/ <summary> Cartesian X (J2000)</summary>
+	--/ <summary> Cartesian X (J2000)</summary>	--/ <quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
 	[cx] [float] NOT NULL,
 
-	--/ <summary> Cartesian Y (J2000)</summary>
+	--/ <summary> Cartesian Y (J2000)</summary>	--/ <quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
 	[cy] [float] NOT NULL,
 
-	--/ <summary> Cartesian Z (J2000)</summary>
+	--/ <summary> Cartesian Z (J2000)</summary>	--/ <quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
 	[cz] [float] NOT NULL,
 
-	--/ <summary> HTM ID (J2000)</summary>
+	--/ <summary> HTM ID (J2000)</summary>	--/ <quantity>pos.HTM; pos.eq; pos.frame=J2000</quantity>
 	[htmid] [bigint] NOT NULL,
 
-	--/ <summary> Zone ID </summary>
+	--/ <summary> Zone ID </summary>	--/ <quantity>pos.zone; pos.eq; pos.frame=J2000</quantity>
 	[zoneid] int NOT NULL,
 
-	--/ <summary> RA offset (West is positive), B1950. </summary>
+	--/ <summary> RA offset (West is positive), B1950. </summary>	--/ <quantity>pos.eq.ra;arith.diff</quantity>
 	--/ <unit> arcsec </unit>
 	[oRA] real NOT NULL,
 
-	--/ <summary> DE offset (North is positive), B1950 </summary>
+	--/ <summary> DE offset (North is positive), B1950 </summary>	--/ <quantity>pos.eq.ra;arith.diff</quantity>
 	--/ <unit> arcsec </unit>
 	[oDE] real NOT NULL,
 
-	--/ <summary> Redshift  </summary>
+	--/ <summary> Redshift  </summary>	--/ <quantity>src.redshift</quantity>
 	[z]  float NOT NULL,
 
-	--/ <summary> Redshift error </summary>
-	--/ <unit> 10^-5 </unit>
+	--/ <summary> Redshift error </summary>	--/ <quantity>stat.error; src.redshift</quantity>
+	--/ <unit> 1e-5 </unit>
 	[e_z]  int NOT NULL,
 
-	--/ <summary> Redshift reliability value </summary>
+	--/ <summary> Redshift reliability value </summary>	--/ <quantity>stat.value; src.redshift</quantity>
 	[Rval]  real NOT NULL,
 
 	--/ <summary> Spectral class. Spectroscopic classification: 
@@ -58,7 +58,7 @@ CREATE TABLE dbo.SpecObj
 	--/ 6 = active galactic nuclei 
 	--/ 77 = star 
 	--/ 88 = unknown 
-	--/ 99 = slit but no spectrum (object too faint) </summary>
+	--/ 99 = slit but no spectrum (object too faint) </summary>	--/ <quantity>meta.code; src.class</quantity>
 	[Sc]  smallint NOT NULL,
 
 	--/ <summary> Redshift weight. An important feature of the catalog is the various weights computed to 
@@ -67,20 +67,20 @@ CREATE TABLE dbo.SpecObj
 	--/ weights modify the magnitude weight Wm as follows: 
 	--/ W(tot) = Wm * Wxy * Wc * Wz,
 	--/ where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own 
-	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>
+	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>	--/ <quantity>stat.weight; src.redshift</quantity>
 	[w_z]  real NOT NULL,
 
-	--/ <summary> Cousins I magnitude </summary>
+	--/ <summary> Cousins I magnitude </summary>	--/ <quantity>phot.mag;em.opt.I</quantity>
 	--/ <unit> mag </unit>
 	[Imag]  real NOT NULL,
 
-	--/ <summary> Cousins I magnitude error </summary>
+	--/ <summary> Cousins I magnitude error </summary>	--/ <quantity>stat.error;phot.mag;em.opt.I</quantity>
 	--/ <unit> mag </unit>
 	[e_Imag]  real NOT NULL,
 
 	--/ <summary> Cousins I color aperture magnitude error. Color aperture magnitude error. This is the magnitude 
 	--/ error within the aperture used to determine the color of the object. An approximate uncertainty in the 
-	--/ color between any two filters can be derived by adding the two color aperture errors in quadrature. </summary>
+	--/ color between any two filters can be derived by adding the two color aperture errors in quadrature. </summary>	--/ <quantity>stat.error;phot.mag;em.opt.I</quantity>
 	--/ <unit> mag </unit>
 	[Ice]  real NOT NULL,
 
@@ -90,7 +90,7 @@ CREATE TABLE dbo.SpecObj
 	--/ weights modify the magnitude weight Wm as follows: 
 	--/ W(tot) = Wm * Wxy * Wc * Wz,
 	--/ where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own 
-	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter.  </summary>
+	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter.  </summary>	--/ <quantity>stat.weight;phot.mag;em.opt.I</quantity>
 	[w_Imag]  real NOT NULL,
 
 	--/ <summary> Cousins I color weight. An important feature of the catalog is the various weights computed to 
@@ -99,7 +99,7 @@ CREATE TABLE dbo.SpecObj
 	--/ weights modify the magnitude weight Wm as follows: 
 	--/ W(tot) = Wm * Wxy * Wc * Wz,
 	--/ where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own 
-	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>
+	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>	--/ <quantity>stat.weight;phot.mag;em.opt.I</quantity>
 	[IWc]  real NOT NULL,
 
 	--/ <summary> Cousins I positional weight. An important feature of the catalog is the various weights computed to 
@@ -108,20 +108,20 @@ CREATE TABLE dbo.SpecObj
 	--/ weights modify the magnitude weight Wm as follows: 
 	--/ W(tot) = Wm * Wxy * Wc * Wz,
 	--/ where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own 
-	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>
+	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>	--/ <quantity>stat.weight;phot.mag;em.opt.I</quantity>
 	[IWxy]  real NOT NULL,
 
-	--/ <summary> Cousins R magnitude </summary>
+	--/ <summary> Cousins R magnitude </summary>	--/ <quantity>phot.mag;em.opt.R</quantity>
 	--/ <unit> mag </unit>
 	[Rmag]  real NOT NULL,
 
-	--/ <summary> Cousins R magnitude error </summary>
+	--/ <summary> Cousins R magnitude error </summary>	--/ <quantity>stat.error;phot.mag;em.opt.R</quantity>
 	--/ <unit> mag </unit>
 	[e_Rmag]  real NOT NULL,
 
 	--/ <summary> Rmag color aperture magnitude error. Color aperture magnitude error. This is the magnitude 
 	--/ error within the aperture used to determine the color of the object. An approximate uncertainty in the 
-	--/ color between any two filters can be derived by adding the two color aperture errors in quadrature. </summary>
+	--/ color between any two filters can be derived by adding the two color aperture errors in quadrature. </summary>	--/ <quantity>stat.error;phot.mag;em.opt.R</quantity>
 	--/ <unit> mag </unit>
 	[Rce]  real NOT NULL,
 
@@ -131,7 +131,7 @@ CREATE TABLE dbo.SpecObj
 	--/ weights modify the magnitude weight Wm as follows: 
 	--/ W(tot) = Wm * Wxy * Wc * Wz,
 	--/ where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own 
-	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>
+	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>	--/ <quantity>stat.weight;phot.mag;em.opt.R</quantity>
 	[w_Rmag]  real NOT NULL,
 
 	--/ <summary> Cousins R color weight. An important feature of the catalog is the various weights computed to 
@@ -140,7 +140,7 @@ CREATE TABLE dbo.SpecObj
 	--/ weights modify the magnitude weight Wm as follows: 
 	--/ W(tot) = Wm * Wxy * Wc * Wz,
 	--/ where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own 
-	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>
+	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>	--/ <quantity>stat.weigt;phot.mag;em.opt.R</quantity>
 	[RWc]  real NOT NULL,
 
 	--/ <summary> Cousins R positional weight. An important feature of the catalog is the various weights computed to 
@@ -149,20 +149,20 @@ CREATE TABLE dbo.SpecObj
 	--/ weights modify the magnitude weight Wm as follows: 
 	--/ W(tot) = Wm * Wxy * Wc * Wz,
 	--/ where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own 
-	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>
+	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>	--/ <quantity>stat.weight;phot.mag;em.opt.R</quantity>
 	[RWxy]  real NOT NULL,
 
-	--/ <summary> Johnson V magnitude </summary>
+	--/ <summary> Johnson V magnitude </summary>	--/ <quantity>phot.mag;em.opt.V</quantity>
 	--/ <unit> mag </unit>
 	[Vmag]  real NOT NULL,
 
-	--/ <summary> Johnson V magnitude error </summary>
+	--/ <summary> Johnson V magnitude error </summary>	--/ <quantity>stat.error;phot.mag;em.opt.V</quantity>
 	--/ <unit> mag </unit>
 	[e_Vmag]  real NOT NULL,
 
 	--/ <summary> Vmag color aperture magnitude error. Color aperture magnitude error. This is the magnitude 
 	--/ error within the aperture used to determine the color of the object. An approximate uncertainty in the 
-	--/ color between any two filters can be derived by adding the two color aperture errors in quadrature. </summary>
+	--/ color between any two filters can be derived by adding the two color aperture errors in quadrature. </summary>	--/ <quantity>stat.error;phot.mag;em.opt.V</quantity>
 	--/ <unit> mag </unit>
 	[Vce]  real NOT NULL,
 
@@ -172,7 +172,7 @@ CREATE TABLE dbo.SpecObj
 	--/ weights modify the magnitude weight Wm as follows: 
 	--/ W(tot) = Wm * Wxy * Wc * Wz,
 	--/ where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own 
-	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>
+	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>	--/ <quantity>stat.weight;phot.mag;em.opt.V</quantity>
 	[w_Vmag]  real NOT NULL,
 
 	--/ <summary> Johnson V color weight. An important feature of the catalog is the various weights computed to 
@@ -181,7 +181,7 @@ CREATE TABLE dbo.SpecObj
 	--/ weights modify the magnitude weight Wm as follows: 
 	--/ W(tot) = Wm * Wxy * Wc * Wz,
 	--/ where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own 
-	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>
+	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>	--/ <quantity>stat.weight;phot.mag;em.opt.V</quantity>
 	[VWc]  real NOT NULL,
 
 	--/ <summary> Johnson V positional weight. An important feature of the catalog is the various weights computed to 
@@ -190,20 +190,20 @@ CREATE TABLE dbo.SpecObj
 	--/ weights modify the magnitude weight Wm as follows: 
 	--/ W(tot) = Wm * Wxy * Wc * Wz,
 	--/ where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own 
-	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>
+	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>	--/ <quantity>stat.weight;phot.mag;em.opt.V</quantity>
 	[VWxy]  real NOT NULL,
 
-	--/ <summary> Johnson B magnitude </summary>
+	--/ <summary> Johnson B magnitude </summary>	--/ <quantity>phot.mag;em.opt.B</quantity>
 	--/ <unit> mag </unit>
 	[Bmag]  real NOT NULL,
 
-	--/ <summary> Johnson B magnitude error </summary>
+	--/ <summary> Johnson B magnitude error </summary>	--/ <quantity>stat.error;phot.mag;em.opt.B</quantity>
 	--/ <unit> mag </unit>
 	[e_Bmag]  real NOT NULL,
 
 	--/ <summary> Bmag color aperture magnitude error. Color aperture magnitude error. This is the magnitude 
 	--/ error within the aperture used to determine the color of the object. An approximate uncertainty in the 
-	--/ color between any two filters can be derived by adding the two color aperture errors in quadrature.</summary>
+	--/ color between any two filters can be derived by adding the two color aperture errors in quadrature.</summary>	--/ <quantity>stat.error;phot.mag;em.opt.B</quantity>
 	--/ <unit> mag </unit>
 	[Bce]  real NOT NULL,
 
@@ -213,7 +213,7 @@ CREATE TABLE dbo.SpecObj
 	--/ weights modify the magnitude weight Wm as follows: 
 	--/ W(tot) = Wm * Wxy * Wc * Wz,
 	--/ where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own 
-	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>
+	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>	--/ <quantity>stat.weight;phot.mag;em.opt.B</quantity>
 	[w_Bmag]  real NOT NULL,
 
 	--/ <summary> Johnson B color weight. An important feature of the catalog is the various weights computed to 
@@ -222,7 +222,7 @@ CREATE TABLE dbo.SpecObj
 	--/ weights modify the magnitude weight Wm as follows: 
 	--/ W(tot) = Wm * Wxy * Wc * Wz,
 	--/ where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own 
-	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>
+	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>	--/ <quantity>stat.weight;phot.mag;em.opt.B</quantity>
 	[BWc]  real NOT NULL,
 
 	--/ <summary> Johnson B positional weight. An important feature of the catalog is the various weights computed to 
@@ -231,20 +231,20 @@ CREATE TABLE dbo.SpecObj
 	--/ weights modify the magnitude weight Wm as follows: 
 	--/ W(tot) = Wm * Wxy * Wc * Wz,
 	--/ where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own 
-	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>
+	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>	--/ <quantity>stat.weight;phot.mag;em.opt.B</quantity>
 	[BWxy]  real NOT NULL,
 
-	--/ <summary> Johnson U magnitude </summary>
+	--/ <summary> Johnson U magnitude </summary>	--/ <quantity>phot.mag;em.opt.U</quantity>
 	--/ <unit> mag </unit>
 	[Umag]  real NOT NULL,
 
-	--/ <summary> Johnson U magnitude error </summary>
+	--/ <summary> Johnson U magnitude error </summary>	--/ <quantity>stat.error;phot.mag;em.opt.U</quantity>
 	--/ <unit> mag </unit>
 	[e_Umag]  real NOT NULL,
 
 	--/ <summary> Umag color aperture magnitude error. Color aperture magnitude error. This is the magnitude 
 	--/ error within the aperture used to determine the color of the object. An approximate uncertainty in the 
-	--/ color between any two filters can be derived by adding the two color aperture errors in quadrature. </summary>
+	--/ color between any two filters can be derived by adding the two color aperture errors in quadrature. </summary>	--/ <quantity>stat.error;phot.mag;em.opt.U</quantity>
 	--/ <unit> mag </unit>
 	[Uce]  real NOT NULL,
 
@@ -254,7 +254,7 @@ CREATE TABLE dbo.SpecObj
 	--/ weights modify the magnitude weight Wm as follows: 
 	--/ W(tot) = Wm * Wxy * Wc * Wz,
 	--/ where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own 
-	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>
+	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>	--/ <quantity>stat.weight;phot.mag;em.opt.U</quantity>
 	[w_Umag]  real NOT NULL,
 
 	--/ <summary> Johnson U color weight. An important feature of the catalog is the various weights computed to 
@@ -263,7 +263,7 @@ CREATE TABLE dbo.SpecObj
 	--/ weights modify the magnitude weight Wm as follows: 
 	--/ W(tot) = Wm * Wxy * Wc * Wz,
 	--/ where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own 
-	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>
+	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>	--/ <quantity>stat.weight;phot.mag;em.opt.U</quantity>
 	[UWc]  real NOT NULL,
 
 	--/ <summary> Johnson U positional weight. An important feature of the catalog is the various weights computed to 
@@ -272,21 +272,21 @@ CREATE TABLE dbo.SpecObj
 	--/ weights modify the magnitude weight Wm as follows: 
 	--/ W(tot) = Wm * Wxy * Wc * Wz,
 	--/ where Wxy=geometric weight, Wc=color weight, and Wz=redshift weight. Note that each filter has its own 
-	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>
+	--/ Wm, Wxy and Wc. However, Wz, which is model dependent, is determined only for the R filter. </summary>	--/ <quantity>stat.weight;phot.mag;em.opt.U</quantity>
 	[UWxy]  real NOT NULL,
 
-	--/ <summary> [0,4] PPP morphological class </summary>
+	--/ <summary> [0,4] PPP morphological class </summary>	--/ <quantity>src.class.struct</quantity>
 	[Pcl]  tinyint NOT NULL,
 
-	--/ <summary> R-band k-correction </summary>
+	--/ <summary> R-band k-correction </summary>	--/ <quantity>phot.mag;arith.diff</quantity>
 	--/ <unit> mag </unit>
 	[Rkcor]  real NOT NULL,
 
-	--/ <summary> Original CCD x coordinate </summary>
+	--/ <summary> Original CCD x coordinate </summary>	--/ <quantity>pos.cartesian.x;instr.det</quantity>
 	--/ <unit> pix </unit>
 	[xpos]  real NOT NULL,
 
-	--/ <summary> Original CCD y coordinate </summary>
+	--/ <summary> Original CCD y coordinate </summary>	--/ <quantity>pos.cartesian.y;instr.det</quantity>
 	--/ <unit> pix </unit>
 	[ypos]  real NOT NULL,
 

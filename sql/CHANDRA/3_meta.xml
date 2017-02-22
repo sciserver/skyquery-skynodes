@@ -2,39 +2,50 @@
   <table name="[dbo].[PhotoObj]">
     <column name="[objID]">
       <summary> Numerical ID. </summary>
+<quantity>meta.record</quantity>
 </column>
     <column name="[CXO]">
       <summary> Chandra source name (JHHMMSS.s+DDMMSS) </summary>
+<quantity>meta.id</quantity>
 </column>
     <column name="[ra]">
       <summary> 	Right ascension (ICRS) of Chandra source. </summary>
-<unit>deg J2000</unit>
+<quantity>pos.eq.ra; pos.frame=icrs</quantity>
+<unit>deg</unit>
 </column>
     <column name="[dec]">
       <summary> Declination (ICRS) of Chandra source. </summary>
-<unit>deg J2000</unit>
+<quantity>pos.eq.dec; pos.frame=icrs</quantity>
+<unit>deg</unit>
 </column>
     <column name="[cx]">
       <summary> Cartesian X (J2000)</summary>
+<quantity>pos.cartesian.x; pos.eq; pos.frame=icrs</quantity>
 </column>
     <column name="[cy]">
       <summary> Cartesian Y (J2000)</summary>
+<quantity>pos.cartesian.y; pos.eq; pos.frame=icrs</quantity>
 </column>
     <column name="[cz]">
       <summary> Cartesian Z (J2000)</summary>
+<quantity>pos.cartesian.z; pos.eq; pos.frame=icrs</quantity>
 </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
+<quantity>pos.HTM; pos.eq; pos.frame=icrs</quantity>
 </column>
     <column name="[zoneid]">
       <summary> Zone ID </summary>
+<quantity>pos.zone; pos.eq; pos.frame=icrs</quantity>
 </column>
     <column name="[ePos]">
       <summary> [0.03/158] Position error radius at 95% confidence level. </summary>
+<quantity>stat.error;pos.errorEllipse</quantity>
 <unit> arcsec </unit>
 </column>
     <column name="[SN]">
       <summary> [3/] Source flux significance (highest). </summary>
+<quantity>stat.value; phot.flux</quantity>
 </column>
     <column name="[Fb]">
       <summary> Aperture-corrected ACIS net energy flux. The bands are designated as:
@@ -46,21 +57,24 @@ h = 2.0-7.0keV (ACIS hard)
 b = 0.5-7.0keV (ACIS broad-band)
 w = 0.1-10.keV (HRC wide)
 --------------------------------</summary>
-<unit> mW/m2 </unit>
+<quantity>phot.flux;em.X-ray</quantity>
+<unit> mW m-2 </unit>
 </column>
     <column name="[lower_Fb]">
       <summary> Lower limit of Fb. It may happen that the flux, determined from a maximum
 likelihood estimator, is outside the 1 sigma confidence interval of the flux probability
 density function; more details can be found from
 http://cxc.harvard.edu/csc/why/ap_vals_errs.html </summary>
-<unit> mW/m2 </unit>
+<quantity>phot.flux;em.X-ray;stat.min</quantity>
+<unit> mW m-2 </unit>
 </column>
     <column name="[upper_Fb]">
       <summary> Upper limit of Fb. It may happen that the flux, determined from a maximum
 likelihood estimator, is outside the 1 sigma confidence interval of the flux probability
 density function; more details can be found from
 http://cxc.harvard.edu/csc/why/ap_vals_errs.html </summary>
-<unit> mW/m2 </unit>
+<quantity>phot.flux;em.X-ray;stat.max</quantity>
+<unit> mW m-2 </unit>
 </column>
     <column name="[Fw]">
       <summary> Aperture-corrected HRC net energy flux. The bands are designated as:
@@ -72,18 +86,22 @@ h = 2.0-7.0keV (ACIS hard)
 b = 0.5-7.0keV (ACIS broad-band)
 w = 0.1-10.keV (HRC wide)
 --------------------------------</summary>
-<unit> mW/m2 </unit>
+<quantity>phot.flux;em.X-ray</quantity>
+<unit> mW m-2 </unit>
 </column>
     <column name="[lower_Fw]">
       <summary> Lower limit of Fw. </summary>
-<unit> mW/m2 </unit>
+<quantity>phot.flux;em.X-ray;stat.min</quantity>
+<unit> mW m-2 </unit>
 </column>
     <column name="[upper_Fw]">
       <summary> Upper limit of Fw. </summary>
-<unit> mW/m2 </unit>
+<quantity>phot.flux;em.X-ray;stat.max</quantity>
+<unit> mW m-2 </unit>
 </column>
     <column name="[hr2]">
-      <summary> The bands are designated as:
+      <summary> "hard" hardness ratio (Fh-Fm)/Fb
+The bands are designated as:
 --------------------------------
 u = 0.2-0.5keV (ACIS ultra-soft)
 s = 0.5-1.2keV (ACIS soft)
@@ -92,12 +110,15 @@ h = 2.0-7.0keV (ACIS hard)
 b = 0.5-7.0keV (ACIS broad-band)
 w = 0.1-10.keV (HRC wide)
 -------------------------------- </summary>
+<quantity>phot.flux;arith.ratio</quantity>
 </column>
     <column name="[lower_hr2]">
-      <summary>  </summary>
+      <summary> [-1/1] Lower limit of hr2 </summary>
+<quantity>phot.flux;arith.ratio;stat.min</quantity>
 </column>
     <column name="[upper_hr2]">
-      <summary>  </summary>
+      <summary>  [-1/1] Upper limit of hr2 </summary>
+<quantity>phot.flux;arith.ratio;stat.max</quantity>
 </column>
     <column name="[hr1]">
       <summary> [-1/1] "soft" hardness ratio (Fm-Fs)/Fb. The bands are designated as:
@@ -109,30 +130,36 @@ h = 2.0-7.0keV (ACIS hard)
 b = 0.5-7.0keV (ACIS broad-band)
 w = 0.1-10.keV (HRC wide)
 -------------------------------- </summary>
+<quantity>phot.flux;arith.ratio</quantity>
 </column>
     <column name="[lower_hr1]">
       <summary>  [-1/1] Lower limit of hr1. </summary>
+<quantity>phot.flux;arith.ratio;stat.min</quantity>
 </column>
     <column name="[upper_hr1]">
-      <summary> [-1/1] Upper limit of hr1 . </summary>
+      <summary> [-1/1] Upper limit of hr1. </summary>
+<quantity>phot.flux;arith.ratio;stat.max</quantity>
 </column>
     <column name="[fc]">
       <summary>  Confusion flag. The flags mean 0=false, 1=true:
 fc =	1 when source regions overlap
 fe =	1 when deconvolved source extent is inconsistent with a point source at the 90% confidence leve
 fs =	1 when in the source is saturated in all observations; source properties are unreliable. </summary>
+<quantity>meta.code</quantity>
 </column>
     <column name="[fe]">
       <summary> Extension flag. The flags mean 0=false, 1=true:
 fc =	1 when source regions overlap
 fe =	1 when deconvolved source extent is inconsistent with a point source at the 90% confidence leve
 fs =	1 when in the source is saturated in all observations; source properties are unreliable. </summary>
+<quantity>meta.code</quantity>
 </column>
     <column name="[fs]">
       <summary> Saturation flag. The flags mean 0=false, 1=true:
 fc =	1 when source regions overlap
 fe =	1 when deconvolved source extent is inconsistent with a point source at the 90% confidence leve
 fs =	1 when in the source is saturated in all observations; source properties are unreliable. </summary>
+<quantity>meta.code</quantity>
 </column>
     <column name="[Vab]">
       <summary> [0/10] ACIS intra-observation variability.
@@ -148,6 +175,7 @@ for the intra-observation variability. See section 3.12 for details. Values are:
 4 =	Likely to be variable
 5 =	Considered variable
 6-10 =	Definitely variable </summary>
+<quantity>src.var.index</quantity>
 </column>
     <column name="[Vib]">
       <summary> [0/8] ACIS inter-observation variability.
@@ -163,6 +191,7 @@ for the intra-observation variability. See section 3.12 for details. Values are:
 4 =	Likely to be variable
 5 =	Considered variable
 6-10 =	Definitely variable </summary>
+<quantity>src.var.index</quantity>
 </column>
     <column name="[Vaw]">
       <summary> [0/10] HRC intra-observation variability.
@@ -178,6 +207,7 @@ for the intra-observation variability. See section 3.12 for details. Values are:
 4 =	Likely to be variable
 5 =	Considered variable
 6-10 =	Definitely variable </summary>
+<quantity>src.var.index</quantity>
 </column>
     <column name="[Viw]">
       <summary> [0/8] HRC inter-observation variability.
@@ -193,6 +223,7 @@ for the intra-observation variability. See section 3.12 for details. Values are:
 4 =	Likely to be variable
 5 =	Considered variable
 6-10 =	Definitely variable </summary>
+<quantity>src.var.index</quantity>
 </column>
   </table>
 </metadata>

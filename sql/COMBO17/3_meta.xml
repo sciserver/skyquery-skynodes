@@ -2,68 +2,86 @@
   <table name="[dbo].[PhotoObj]">
     <column name="[cx]">
       <summary> Cartesian X (J2000)</summary>
+<quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[cy]">
       <summary> Cartesian Y (J2000)</summary>
+<quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[cz]">
       <summary> Cartesian Z (J2000)</summary>
+<quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
+<quantity>pos.HTM; pos.eq; pos.frame=J2000</quantity>
 </column>
     <column name="[zoneid]">
       <summary> Zone ID </summary>
+<quantity>pos.zone; pos.eq; pos.frame=J2000</quantity>
 </column>
     <column name="[objID]">
       <summary> Sequential number (unique object ID) </summary>
+<quantity>meta.id</quantity>
 </column>
     <column name="[RA]">
       <summary> Right ascension (J2000) Internal accuracy 0.15" </summary>
-<unit> deg (J2000) </unit>
+<quantity>pos.eq.ra;pos.frame=j2000</quantity>
+<unit> deg</unit>
 </column>
     <column name="[DEC]">
       <summary> Declination (J2000) Internal accuracy 0.15" </summary>
-<unit> deg (J2000) </unit>
+<quantity>pos.eq.dec;pos.frame=j2000</quantity>
+<unit> deg</unit>
 </column>
     <column name="[x_pos]">
       <summary> x-coordinate on image cdfs_r.fit </summary>
+<quantity>pos.cartesian.x;obs.image</quantity>
 <unit> pix </unit>
 </column>
     <column name="[y_pos]">
       <summary> y-coordinate on image cdfs_r.fit </summary>
+<quantity>pos.cartesian.y;obs.image</quantity>
 <unit> pix </unit>
 </column>
     <column name="[Rmag]">
       <summary> total magnitude in R </summary>
+<quantity>phot.mag;em.opt.R</quantity>
 <unit> mag </unit>
 </column>
     <column name="[e_Rmag]">
       <summary> mean error (1-sigma) of Rmag </summary>
+<quantity>stat.error;phot.mag;em.opt.R</quantity>
 <unit> mag </unit>
 </column>
     <column name="[Ap_Rmag]">
       <summary> aperture magnitude in R </summary>
+<quantity>phot.mag.aper;em.opt.R</quantity>
 <unit> mag </unit>
 </column>
     <column name="[ApD_Rmag]">
       <summary> aperture difference of Rmag Aperture difference on Rmag (=Rmag-Ap_Rmag, zero for point sources) </summary>
+<quantity>phot.mag.aper;arith.diff</quantity>
 <unit> mag </unit>
 </column>
     <column name="[mu_max]">
       <summary> central surface brightness in Rmag </summary>
+<quantity>phot.mag;em.opt.R</quantity>
 <unit> mag </unit>
 </column>
     <column name="[MajAxis]">
       <summary> major axis as observed in 1" seeing </summary>
+<quantity>phys.angSize.smajAxis</quantity>
 <unit> arcsec </unit>
 </column>
     <column name="[MinAxis]">
       <summary> minor axis as observed in 1" seeing </summary>
+<quantity>phys.angSize.sminAxis</quantity>
 <unit> arcsec </unit>
 </column>
     <column name="[PA]">
       <summary> position angle, measured West to North </summary>
+<quantity>pos.posAng</quantity>
 <unit> deg </unit>
 </column>
     <column name="[phot_flag]">
@@ -72,6 +90,7 @@ flags, bit 9-11 set by COMBO-17 photometry, bit 9 indicates only
 potential problem from bright neighbours or reflexes from the
 optics (check images), bit 10 indicates uncorrected hot pixels,
 bit 11 is set interactively when photometry is erroneous  </summary>
+<quantity>meta.code</quantity>
 </column>
     <column name="[var_flag]">
       <summary> variability flag (0=not variable). flag only set for objects which are detected with high S/N and
@@ -79,9 +98,11 @@ which show clear variability between different observing runs
 (magnitude difference greater 0.15 mag, at least one magnitude
 has to be measured with 10 sigma, difference has to be at least
 6 sigma) </summary>
+<quantity>meta.code; src.var</quantity>
 </column>
     <column name="[stellarity]">
       <summary> stellarity index from SExtractor </summary>
+<quantity>src.class.starGalaxy</quantity>
 </column>
     <column name="[MC_class]">
       <summary> multi-colour class. Definition of classes:
@@ -99,38 +120,48 @@ Seyfert 1),
 "Strange Objects"=very strange spectrum (very unusual intrinsic
 spectrum or strong photometric artifacts or
 uncorrected strong variability) </summary>
+<quantity>src.class.color</quantity>
 </column>
     <column name="[MC_z]">
       <summary> mean redshift in distribution of p(z) </summary>
+<quantity>src.redshift</quantity>
 </column>
     <column name="[e_MC_z]">
       <summary> mean error (1-sigma) of MC_z </summary>
+<quantity>stat.error;src.redshift</quantity>
 </column>
     <column name="[MC_z2]">
       <summary> alternative redshift if p(z) bimodal </summary>
+<quantity>src.redshift</quantity>
 </column>
     <column name="[e_MC_z2]">
       <summary> mean error (1-sigma) of MC_z2 </summary>
+<quantity>stat.error;src.redshift</quantity>
 </column>
     <column name="[MC_z_ml]">
       <summary> peak of redshift distribution p(z) </summary>
+<quantity>stat.value;src.redshift</quantity>
 </column>
     <column name="[dl]">
       <summary> luminosity distance of MC_z. H0=100km/s/Mpc, Omega_m=0.3, Omega_Lambda=0.7 </summary>
+<quantity>pos.distance</quantity>
 <unit> Mpc </unit>
 </column>
     <column name="[chi2red]">
       <summary> reduced Chi^2 of best-fitting template </summary>
+<quantity>stat.fit.chi2</quantity>
 </column>
     <column name="[UjMag]">
       <summary> Absolute Magnitude in Johnson U. Absolute restframe magnitude calculated from redshifted best_fit
 template, depending on redshift and filter extrapolation outside
 the COMBO-17 filter set can be necessary, only calculated for
 objects classified as galaxies. </summary>
+<quantity>phot.mag.abs;em.opt.Johnson.U</quantity>
 <unit> mag </unit>
 </column>
     <column name="[e_UjMag]">
       <summary> mean error (1-sigma) of UjMag </summary>
+<quantity>stat.error;phot.mag;em.opt.Johnson.U</quantity>
 <unit> mag </unit>
 </column>
     <column name="[BjMag]">
@@ -138,10 +169,12 @@ objects classified as galaxies. </summary>
 template, depending on redshift and filter extrapolation outside
 the COMBO-17 filter set can be necessary, only calculated for
 objects classified as galaxies. </summary>
+<quantity>phot.mag.abs;em.opt.Johnson.B</quantity>
 <unit> mag </unit>
 </column>
     <column name="[e_BjMag]">
       <summary> mean error (1-sigma) of BjMag </summary>
+<quantity>stat.error;opt.mag.abs;opt.Johnson.em.B</quantity>
 <unit> mag </unit>
 </column>
     <column name="[VjMag]">
@@ -149,10 +182,12 @@ objects classified as galaxies. </summary>
 template, depending on redshift and filter extrapolation outside
 the COMBO-17 filter set can be necessary, only calculated for
 objects classified as galaxies. </summary>
+<quantity>phot.mag.abs;em.opt.Johnson.V</quantity>
 <unit> mag </unit>
 </column>
     <column name="[e_VjMag]">
       <summary> mean error (1-sigma) of VjMag </summary>
+<quantity>stat.error;phot.mag.abs;em.opt.Johnson.V</quantity>
 <unit> mag </unit>
 </column>
     <column name="[usMag]">
@@ -160,10 +195,12 @@ objects classified as galaxies. </summary>
 template, depending on redshift and filter extrapolation outside
 the COMBO-17 filter set can be necessary, only calculated for
 objects classified as galaxies. </summary>
+<quantity>phot.mag.abs;em.opt.SDSS.u</quantity>
 <unit> mag </unit>
 </column>
     <column name="[e_usMag]">
       <summary> mean error (1-sigma) of usMag </summary>
+<quantity>stat.error;phot.mag.abs;em.opt.SDSS.u</quantity>
 <unit> mag </unit>
 </column>
     <column name="[gsMag]">
@@ -171,10 +208,12 @@ objects classified as galaxies. </summary>
 template, depending on redshift and filter extrapolation outside
 the COMBO-17 filter set can be necessary, only calculated for
 objects classified as galaxies. </summary>
+<quantity>phot.mag.abs;em.opt.SDSS.g</quantity>
 <unit> mag </unit>
 </column>
     <column name="[e_gsMag]">
       <summary> mean error (1-sigma) of gsMag </summary>
+<quantity>stat.error;phot.mag.abs;em.opt.SDSS.g</quantity>
 <unit> mag </unit>
 </column>
     <column name="[rsMag]">
@@ -182,10 +221,12 @@ objects classified as galaxies. </summary>
 template, depending on redshift and filter extrapolation outside
 the COMBO-17 filter set can be necessary, only calculated for
 objects classified as galaxies. </summary>
+<quantity>phot.mag.abs;em.opt.SDSS.r</quantity>
 <unit> mag </unit>
 </column>
     <column name="[e_rsMag]">
       <summary> mean error (1-sigma) of rsMag </summary>
+<quantity>stat.error;phot.mag.abs;em.opt.SDSS.r</quantity>
 <unit> mag </unit>
 </column>
     <column name="[UbMag]">
@@ -193,10 +234,12 @@ objects classified as galaxies. </summary>
 template, depending on redshift and filter extrapolation outside
 the COMBO-17 filter set can be necessary, only calculated for
 objects classified as galaxies. </summary>
+<quantity>phot.mag.abs;em.opt.Bessell.U</quantity>
 <unit> mag </unit>
 </column>
     <column name="[e_UbMag]">
       <summary> mean error (1-sigma) of UbMag </summary>
+<quantity>stat.error;phot.mag.abs;em.opt.Bessell.U</quantity>
 <unit> mag </unit>
 </column>
     <column name="[BbMag]">
@@ -204,10 +247,12 @@ objects classified as galaxies. </summary>
 template, depending on redshift and filter extrapolation outside
 the COMBO-17 filter set can be necessary, only calculated for
 objects classified as galaxies. </summary>
+<quantity>phot.mag.abs;em.opt.Bessell.B</quantity>
 <unit> mag </unit>
 </column>
     <column name="[e_BbMag]">
       <summary> mean error (1-sigma) of BbMag </summary>
+<quantity>stat.error;phot.mag.abs;em.opt.Bessell.B</quantity>
 <unit> mag </unit>
 </column>
     <column name="[VbMag]">
@@ -215,10 +260,12 @@ objects classified as galaxies. </summary>
 template, depending on redshift and filter extrapolation outside
 the COMBO-17 filter set can be necessary, only calculated for
 objects classified as galaxies. </summary>
+<quantity>phot.mag.abs;em.opt.Bessell.V</quantity>
 <unit> mag </unit>
 </column>
     <column name="[e_VbMag]">
       <summary> mean error (1-sigma) of VbMag </summary>
+<quantity>stat.error;phot.mag.abs;em.opt.Bessell.V</quantity>
 <unit> mag </unit>
 </column>
     <column name="[S280Mag]">
@@ -226,10 +273,12 @@ objects classified as galaxies. </summary>
 template, depending on redshift and filter extrapolation outside
 the COMBO-17 filter set can be necessary, only calculated for
 objects classified as galaxies. Synthetic UV continuum rectangular passband at 260-300 nm. </summary>
+<quantity>phot.mag.abs;em.UV.200-300nm</quantity>
 <unit> mag </unit>
 </column>
     <column name="[e_S280Mag]">
       <summary> mean error (1-sigma) of S280Mag </summary>
+<quantity>stat.error;phot.mag.abs;em.UV.200-300nm</quantity>
 <unit> mag </unit>
 </column>
     <column name="[S145Mag]">
@@ -237,10 +286,12 @@ objects classified as galaxies. Synthetic UV continuum rectangular passband at 2
 Absolute restframe magnitude in a synthetic narrow rectangular
 passband at 140-150 nm calculated from redshifted best_fit
 template, only calculated for objects classified as quasars </summary>
+<quantity>phot.mag.abs;em.UV.100-200nm</quantity>
 <unit> mag </unit>
 </column>
     <column name="[e_S145Mag]">
       <summary> mean error (1-sigma) of S145Mag </summary>
+<quantity>stat.error;phot.mag.abs;em.UV.100-200nm</quantity>
 <unit> mag </unit>
 </column>
     <column name="[W420F_E]">
@@ -253,11 +304,13 @@ medium-band filters at the WFI are denoted by
 (central wavelength/FWHM), the unit of the flux is photons per
 unit area, second and wavelength interval, it is already corrected
 for the gain of the CCD. </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[e_W420F_E]">
       <summary> mean error (1-sigma) of W420F_E </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>stat.error;phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[W462F_E]">
       <summary> flux in filter 462/14 in run E. Coding of observing runs:
@@ -269,11 +322,13 @@ medium-band filters at the WFI are denoted by
 (central wavelength/FWHM), the unit of the flux is photons per
 unit area, second and wavelength interval, it is already corrected
 for the gain of the CCD. </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[e_W462F_E]">
       <summary> mean error (1-sigma) of W462F_E </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>stat.error;phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[W485F_D]">
       <summary> flux in filter 485/31 in run D. Coding of observing runs:
@@ -285,11 +340,13 @@ medium-band filters at the WFI are denoted by
 (central wavelength/FWHM), the unit of the flux is photons per
 unit area, second and wavelength interval, it is already corrected
 for the gain of the CCD. </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[e_W485F_D]">
       <summary> mean error (1-sigma) of W485F_D </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>stat.error;phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[W518F_E]">
       <summary> flux in filter 518/16 in run E. Coding of observing runs:
@@ -301,11 +358,13 @@ medium-band filters at the WFI are denoted by
 (central wavelength/FWHM), the unit of the flux is photons per
 unit area, second and wavelength interval, it is already corrected
 for the gain of the CCD. </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[e_W518F_E]">
       <summary> mean error (1-sigma) of W518F_E </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>stat.error;phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[W571F_D]">
       <summary> flux in filter 571/25 in run D. Coding of observing runs:
@@ -317,11 +376,13 @@ medium-band filters at the WFI are denoted by
 (central wavelength/FWHM), the unit of the flux is photons per
 unit area, second and wavelength interval, it is already corrected
 for the gain of the CCD. </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[e_W571F_D]">
       <summary> mean error (1-sigma) of W571F_D </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>stat.error;phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[W571F_E]">
       <summary> flux in filter 571/25 in run E. Coding of observing runs:
@@ -333,11 +394,13 @@ medium-band filters at the WFI are denoted by
 (central wavelength/FWHM), the unit of the flux is photons per
 unit area, second and wavelength interval, it is already corrected
 for the gain of the CCD. </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[e_W571F_E]">
       <summary> mean error (1-sigma) of W571F_E </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>stat.error;phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[W571F_S]">
       <summary> combined flux in filter 571/25. Coding of observing runs:
@@ -349,11 +412,13 @@ medium-band filters at the WFI are denoted by
 (central wavelength/FWHM), the unit of the flux is photons per
 unit area, second and wavelength interval, it is already corrected
 for the gain of the CCD. Only applied to objects without variability flag. </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[e_W571F_S]">
       <summary> mean error (1-sigma) of W571F_S </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>stat.error;phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[W604F_E]">
       <summary> flux in filter 604/21 in run E. Coding of observing runs:
@@ -365,11 +430,13 @@ medium-band filters at the WFI are denoted by
 (central wavelength/FWHM), the unit of the flux is photons per
 unit area, second and wavelength interval, it is already corrected
 for the gain of the CCD. </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[e_W604F_E]">
       <summary> mean error (1-sigma) of W604F_E </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>stat.error;phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[W646F_D]">
       <summary> flux in filter 646/27 in run D. Coding of observing runs:
@@ -381,11 +448,13 @@ medium-band filters at the WFI are denoted by
 (central wavelength/FWHM), the unit of the flux is photons per
 unit area, second and wavelength interval, it is already corrected
 for the gain of the CCD. </summary>
-<unit>ct/m^2/s/nm  </unit>
+<quantity>phot.flux;em.UV.FUV</quantity>
+<unit>ct m-2 s-1 nm-1  </unit>
 </column>
     <column name="[e_W646F_D]">
       <summary> mean error (1-sigma) of W646F_D </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>stat.error;phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[W696F_E]">
       <summary> flux in filter 696/20 in run E. Coding of observing runs:
@@ -397,11 +466,13 @@ medium-band filters at the WFI are denoted by
 (central wavelength/FWHM), the unit of the flux is photons per
 unit area, second and wavelength interval, it is already corrected
 for the gain of the CCD. </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[e_W696F_E]">
       <summary> mean error (1-sigma) of W696F_E </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>stat.error;phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[W753F_E]">
       <summary> flux in filter 753/18 in run E. Coding of observing runs:
@@ -413,11 +484,13 @@ medium-band filters at the WFI are denoted by
 (central wavelength/FWHM), the unit of the flux is photons per
 unit area, second and wavelength interval, it is already corrected
 for the gain of the CCD. </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[e_W753F_E]">
       <summary> mean error (1-sigma) of W753F_E </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>stat.error;phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[W815F_E]">
       <summary> flux in filter 815/20 in run E. Coding of observing runs:
@@ -429,11 +502,13 @@ medium-band filters at the WFI are denoted by
 (central wavelength/FWHM), the unit of the flux is photons per
 unit area, second and wavelength interval, it is already corrected
 for the gain of the CCD. </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[e_W815F_E]">
       <summary> mean error (1-sigma) of W815F_E </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>stat.error;phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[W815F_G]">
       <summary> flux in filter 815/20 in run G. Coding of observing runs:
@@ -445,11 +520,13 @@ medium-band filters at the WFI are denoted by
 (central wavelength/FWHM), the unit of the flux is photons per
 unit area, second and wavelength interval, it is already corrected
 for the gain of the CCD. </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[e_W815F_G]">
       <summary> mean error (1-sigma) of W815F_G </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>stat.error;phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[W815F_S]">
       <summary> combined flux in filter 815/20. Coding of observing runs:
@@ -461,11 +538,13 @@ medium-band filters at the WFI are denoted by
 (central wavelength/FWHM), the unit of the flux is photons per
 unit area, second and wavelength interval, it is already corrected
 for the gain of the CCD. Only applied to objects without variability flag. </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[e_W815F_S]">
       <summary> mean error (1-sigma) of W815F_S </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>stat.error;phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[W856F_D]">
       <summary> flux in filter 856/14 in run D. Coding of observing runs:
@@ -477,11 +556,13 @@ medium-band filters at the WFI are denoted by
 (central wavelength/FWHM), the unit of the flux is photons per
 unit area, second and wavelength interval, it is already corrected
 for the gain of the CCD. </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[e_W856F_D]">
       <summary> mean error (1-sigma) of W856F_D </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>stat.error;phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[W914F_D]">
       <summary> flux in filter 914/27 in run D. Coding of observing runs:
@@ -493,11 +574,13 @@ medium-band filters at the WFI are denoted by
 (central wavelength/FWHM), the unit of the flux is photons per
 unit area, second and wavelength interval, it is already corrected
 for the gain of the CCD. </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[e_W914F_D]">
       <summary> mean error (1-sigma) of W914F_D </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>stat.error;phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[W914F_E]">
       <summary> flux in filter 914/27 in run E. Coding of observing runs:
@@ -509,11 +592,13 @@ medium-band filters at the WFI are denoted by
 (central wavelength/FWHM), the unit of the flux is photons per
 unit area, second and wavelength interval, it is already corrected
 for the gain of the CCD. </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[e_W914F_E]">
       <summary> mean error (1-sigma) of W914F_E </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>stat.error;phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[UF_F]">
       <summary> flux in filter U in run F. Coding of observing runs:
@@ -525,11 +610,13 @@ medium-band filters at the WFI are denoted by
 (central wavelength/FWHM), the unit of the flux is photons per
 unit area, second and wavelength interval, it is already corrected
 for the gain of the CCD. </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[e_UF_F]">
       <summary> mean error (1-sigma) of UF_F </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>stat.error;phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[UF_G]">
       <summary> flux in filter U in run G. Coding of observing runs:
@@ -541,11 +628,13 @@ medium-band filters at the WFI are denoted by
 (central wavelength/FWHM), the unit of the flux is photons per
 unit area, second and wavelength interval, it is already corrected
 for the gain of the CCD. </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[e_UF_G]">
       <summary> mean error (1-sigma) of UF_G </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>stat.error;phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[UF_S]">
       <summary> combined flux in filter U. Coding of observing runs:
@@ -557,11 +646,13 @@ medium-band filters at the WFI are denoted by
 (central wavelength/FWHM), the unit of the flux is photons per
 unit area, second and wavelength interval, it is already corrected
 for the gain of the CCD. Only applied to objects without variability flag. </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[e_UF_S]">
       <summary> mean error (1-sigma) of UF_S </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>stat.error;phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[BF_D]">
       <summary> flux in filter B in run D. Coding of observing runs:
@@ -573,11 +664,13 @@ medium-band filters at the WFI are denoted by
 (central wavelength/FWHM), the unit of the flux is photons per
 unit area, second and wavelength interval, it is already corrected
 for the gain of the CCD. </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[e_BF_D]">
       <summary> mean error (1-sigma) of BF_D </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>stat.error;phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[BF_F]">
       <summary> flux in filter B in run F. Coding of observing runs:
@@ -589,11 +682,13 @@ medium-band filters at the WFI are denoted by
 (central wavelength/FWHM), the unit of the flux is photons per
 unit area, second and wavelength interval, it is already corrected
 for the gain of the CCD. </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[e_BF_F]">
       <summary> mean error (1-sigma) of BF_F </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>stat.error;phot.flux;em.UV.FUV</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[BF_S]">
       <summary> combined flux in filter B . Coding of observing runs:
@@ -605,11 +700,13 @@ medium-band filters at the WFI are denoted by
 (central wavelength/FWHM), the unit of the flux is photons per
 unit area, second and wavelength interval, it is already corrected
 for the gain of the CCD. Only applied to objects without variability flag. </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>phot.flux;em.opt.B</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[e_BF_S]">
       <summary> mean error (1-sigma) of BF_S </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>stat.error;phot.flux;em.opt.B</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[VF_D]">
       <summary> flux in filter V in run D. Coding of observing runs:
@@ -621,11 +718,13 @@ medium-band filters at the WFI are denoted by
 (central wavelength/FWHM), the unit of the flux is photons per
 unit area, second and wavelength interval, it is already corrected
 for the gain of the CCD. </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>phot.flux;em.opt.V</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[e_VF_D]">
       <summary> mean error (1-sigma) of VF_D </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>stat.error;phot.flux;em.opt.V</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[RF_D]">
       <summary> flux in filter R in run D. Coding of observing runs:
@@ -637,11 +736,13 @@ medium-band filters at the WFI are denoted by
 (central wavelength/FWHM), the unit of the flux is photons per
 unit area, second and wavelength interval, it is already corrected
 for the gain of the CCD. </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>phot.flux;em.opt.R</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[e_RF_D]">
       <summary> mean error (1-sigma) of RF_D </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>stat.error;phot.flux;em.opt.R</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[RF_E]">
       <summary> flux in filter R in run E. Coding of observing runs:
@@ -653,11 +754,13 @@ medium-band filters at the WFI are denoted by
 (central wavelength/FWHM), the unit of the flux is photons per
 unit area, second and wavelength interval, it is already corrected
 for the gain of the CCD. </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>phot.flux;em.opt.R</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[e_RF_E]">
       <summary> mean error (1-sigma) of RF_E </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>stat.error;phot.flux;em.opt.R</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[RF_F]">
       <summary> flux in filter R in run F. Coding of observing runs:
@@ -669,11 +772,13 @@ medium-band filters at the WFI are denoted by
 (central wavelength/FWHM), the unit of the flux is photons per
 unit area, second and wavelength interval, it is already corrected
 for the gain of the CCD. </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>phot.flux;em.opt.R</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[e_RF_F]">
       <summary> mean error (1-sigma) of RF_F </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>stat.error;phot.flux;em.opt.R</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[RF_G]">
       <summary> flux in filter R in run G. Coding of observing runs:
@@ -685,11 +790,13 @@ medium-band filters at the WFI are denoted by
 (central wavelength/FWHM), the unit of the flux is photons per
 unit area, second and wavelength interval, it is already corrected
 for the gain of the CCD. </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>phot.flux;em.opt.R</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[e_RF_G]">
       <summary> mean error (1-sigma) of RF_G </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>stat.error;phot.flux;em.opt.R</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[RF_S]">
       <summary> combined flux in filter R. Coding of observing runs:
@@ -701,11 +808,13 @@ medium-band filters at the WFI are denoted by
 (central wavelength/FWHM), the unit of the flux is photons per
 unit area, second and wavelength interval, it is already corrected
 for the gain of the CCD. (12) </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>phot.flux;em.opt.R</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[e_RF_S]">
       <summary> mean error (1-sigma) of RF_S </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>stat.error;phot.flux;em.opt.</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[IF_D]">
       <summary> flux in filter I in run D. Coding of observing runs:
@@ -717,11 +826,13 @@ medium-band filters at the WFI are denoted by
 (central wavelength/FWHM), the unit of the flux is photons per
 unit area, second and wavelength interval, it is already corrected
 for the gain of the CCD. </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>phot.flux;em.opt.I</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
     <column name="[e_IF_D]">
       <summary> mean error (1-sigma) of IF_D </summary>
-<unit> ct/m^2/s/nm </unit>
+<quantity>stat.error;phot.flux;em.opt.I</quantity>
+<unit> ct m-2 s-1 nm-1 </unit>
 </column>
   </table>
 </metadata>

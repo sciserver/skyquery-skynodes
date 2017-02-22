@@ -150,7 +150,7 @@ CREATE TABLE dbo.IRC
 	--/ <summary> Number of events used to calculate the mean coordinates. If the source has more than two
 	--/ available S9W events, the position is estimated from S9W events only, else the position is
 	--/ estimated from L18W events, i.e.
-	--/ NDATA POS = NSCANC09 for NSCANC09 &ge; 2
+	--/ NDATA POS = NSCANC09 for NSCANC09 &#8805; 2
 	--/ NDATA POS = NSCANC18 for NSCANC09 &lt; 2 </summary>	--/ <quantity>meta.code.number</quantity>
 	[NDATA_POS] int NOT NULL,
 	
