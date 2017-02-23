@@ -41,16 +41,6 @@
       <summary> Zone ID </summary>
 <quantity>pos.zone; pos.eq; pos.frame=J2000</quantity>
 </column>
-    <column name="[oRA]">
-      <summary> RA offset (West is positive), B1950. </summary>
-<quantity>pos.eq.ra;arith.diff</quantity>
-<unit> arcsec </unit>
-</column>
-    <column name="[oDE]">
-      <summary> DE offset (North is positive), B1950 </summary>
-<quantity>pos.eq.ra;arith.diff</quantity>
-<unit> arcsec </unit>
-</column>
     <column name="[z]">
       <summary> Redshift  </summary>
 <quantity>src.redshift</quantity>

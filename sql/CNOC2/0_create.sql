@@ -32,14 +32,6 @@ CREATE TABLE dbo.SpecObj
 	--/ <summary> Zone ID </summary>	--/ <quantity>pos.zone; pos.eq; pos.frame=J2000</quantity>
 	[zoneid] int NOT NULL,
 
-	--/ <summary> RA offset (West is positive), B1950. </summary>	--/ <quantity>pos.eq.ra;arith.diff</quantity>
-	--/ <unit> arcsec </unit>
-	[oRA] real NOT NULL,
-
-	--/ <summary> DE offset (North is positive), B1950 </summary>	--/ <quantity>pos.eq.ra;arith.diff</quantity>
-	--/ <unit> arcsec </unit>
-	[oDE] real NOT NULL,
-
 	--/ <summary> Redshift  </summary>	--/ <quantity>src.redshift</quantity>
 	[z]  float NOT NULL,
 

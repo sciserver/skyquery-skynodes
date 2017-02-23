@@ -13,8 +13,6 @@ CREATE TABLE dbo.SpecObjRAW
 	[CNOC2sp] char(6) NOT NULL,
 	[ra] float NOT NULL,
 	[dec] float NOT NULL,
-	[oRA] real NOT NULL,
-	[oDE] real NOT NULL,
 	[z]  float NOT NULL,
 	[e_z]  int NOT NULL,
 	[Rval]  real NOT NULL,
@@ -115,14 +113,6 @@ CREATE TABLE dbo.SpecObj
 
 	--/ <summary> Zone ID </summary>
 	[zoneid] int NOT NULL,
-
-	--/ <summary> RA offset (West is positive), B1950. </summary>
-	--/ <unit> arcsec </unit>
-	[oRA] real NOT NULL,
-
-	--/ <summary> DE offset (North is positive), B1950 </summary>
-	--/ <unit> arcsec </unit>
-	[oDE] real NOT NULL,
 
 	--/ <summary> Redshift  </summary>
 	[z]  float NOT NULL,
@@ -384,11 +374,11 @@ GO
 -- INSERT DATA + CREATE HTMID, CX, CY, CZ
 
 INSERT dbo.SpecObj WITH (TABLOCKX)
-(objID, CNOC2sp, ra, dec, cx,cy,cz,htmid, zoneId, oRA, ODE, SpecObj.z, e_z, Rval, Sc, w_z, Imag, e_Imag, Ice, w_Imag, IWc, IWxy, 
+(objID, CNOC2sp, ra, dec, cx,cy,cz,htmid, zoneId, SpecObj.z, e_z, Rval, Sc, w_z, Imag, e_Imag, Ice, w_Imag, IWc, IWxy, 
 Rmag, e_Rmag, Rce, w_Rmag, RWc, RWxy, Vmag, e_Vmag, Vce, w_Vmag, VWc, VWxy, Bmag, e_Bmag, Bce, w_Bmag, 
 BWc, BWxy, Umag, e_Umag, Uce, w_Umag, UWc, UWxy, Pcl, Rkcor, xpos, ypos )
 SELECT objID, CNOC2sp, ra, dec, c.x AS  cx, c.y AS cy, c.z AS cz, SkyQuery_CODE_dev.htmid.FromXyz(c.x,c.y,c.z) AS htmid, 
-SkyQuery_CODE_dev.skyquery.ZoneIDFromDec(dec,4.0/3600.00000000) as zoneid, oRA, ODE, SpecObjRAW.z, e_z, Rval, Sc, w_z, 
+SkyQuery_CODE_dev.skyquery.ZoneIDFromDec(dec,4.0/3600.00000000) as zoneid, SpecObjRAW.z, e_z, Rval, Sc, w_z, 
 Imag, e_Imag, Ice, w_Imag, IWc, IWxy, Rmag, e_Rmag, Rce, w_Rmag, RWc, RWxy, Vmag, e_Vmag, Vce, 
 w_Vmag, VWc, VWxy, Bmag, e_Bmag, Bce, w_Bmag, BWc, BWxy, Umag, e_Umag, Uce, w_Umag, UWc, UWxy, Pcl, Rkcor, xpos, ypos
 
