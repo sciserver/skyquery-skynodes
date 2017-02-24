@@ -2,49 +2,63 @@
   <table name="[dbo].[PhotoObj]">
     <column name="[objID]">
       <summary> Numerical ID. </summary>
+<quantity>meta.record</quantity>
 </column>
     <column name="[csID]">
       <summary> Catalina Surveys identification (coded from the star's RA_2000 and DEC_2000 in the format: CSS_Jhhmmss.s+ddmmss). </summary>
+<quantity>meta.id</quantity>
 </column>
     <column name="[ra]">
-      <summary> Right ascension in decimal degrees (J2000). </summary>
-<unit>deg J2000</unit>
+      <summary> Right ascension in decimal degrees. </summary>
+<quantity>pos.eq.ra;</quantity>
+<unit>deg</unit>
 </column>
     <column name="[dec]">
-      <summary> Declination in decimal degrees (J2000). </summary>
-<unit>deg J2000</unit>
+      <summary> Declination in decimal degrees. </summary>
+<quantity>pos.eq.dec</quantity>
+<unit>deg</unit>
 </column>
     <column name="[cx]">
-      <summary> Cartesian X (J2000)</summary>
+      <summary> Cartesian X</summary>
+<quantity>pos.cartesian.x;pos.eq</quantity>
 </column>
     <column name="[cy]">
-      <summary> Cartesian Y (J2000)</summary>
+      <summary> Cartesian Y</summary>
+<quantity>pos.cartesian.y;pos.eq</quantity>
 </column>
     <column name="[cz]">
-      <summary> Cartesian Z (J2000)</summary>
+      <summary> Cartesian Z</summary>
+<quantity>pos.cartesian.z;pos.eq</quantity>
 </column>
     <column name="[htmid]">
-      <summary> HTM ID (J2000)</summary>
+      <summary> HTM ID</summary>
+<quantity>pos.HTM;pos.eq</quantity>
 </column>
     <column name="[zoneid]">
       <summary> Zone ID </summary>
+<quantity>pos.zone;pos.eq</quantity>
 </column>
     <column name="[V]">
       <summary> Magnitude in V band. </summary>
+<quantity>phot.mag;em.opt.V</quantity>
 <unit> mag </unit>
 </column>
     <column name="[Period]">
       <summary>  Period in days. </summary>
-<unit> days </unit>
+<quantity>time.period;src.var</quantity>
+<unit> d </unit>
 </column>
     <column name="[Amplitude]">
       <summary>  Amplitude of the variation. </summary>
+<quantity>src.var.amplitude</quantity>
 </column>
     <column name="[NumberObs]">
       <summary> Number of observations. </summary>
+<quantity>meta.number;obs</quantity>
 </column>
     <column name="[Type]">
       <summary> Variable type. </summary>
+<quantity>src.var.type</quantity>
 </column>
   </table>
 </metadata>

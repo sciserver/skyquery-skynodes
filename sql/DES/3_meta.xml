@@ -2,97 +2,126 @@
   <table name="[dbo].[PhotoObj]">
     <column name="[cx]">
       <summary> Cartesian X (J2000)</summary>
+<quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[cy]">
       <summary> Cartesian Y (J2000)</summary>
+<quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[cz]">
       <summary> Cartesian Z (J2000)</summary>
+<quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
+<quantity>pos.HTM;pos.eq;pos.frame=j2000</quantity>
 </column>
     <column name="[zoneid]">
       <summary> Zone ID </summary>
+<quantity>pos.zone;pos.eq;pos.frame=j2000</quantity>
 </column>
     <column name="[seqID]">
       <summary> sequential ID </summary>
+<quantity>meta.record</quantity>
 </column>
     <column name="[dtpropid]">
       <summary> NOAO proposal identification, or generic program identifier for data without assigned proposal ID. </summary>
+<quantity>meta.id</quantity>
 </column>
     <column name="[surveyid]">
       <summary> The survey ID. AS not all NOAO data re from surveys, this may be a blank value. </summary>
+<quantity>meta.id</quantity>
 </column>
     <column name="[release_date]">
       <summary> Date for public release of the data. </summary>
+<quantity>time.release</quantity>
 </column>
     <column name="[start_date]">
       <summary> Calendar data (not UT) at start of observing night. </summary>
+<quantity>time.start;obs</quantity>
 </column>
     <column name="[date_obs]">
       <summary> UT date and time, from DATE-OBS header keyword. Not available for all instruments. </summary>
+<quantity>time.epoch</quantity>
 </column>
     <column name="[dtpi]">
       <summary> Principal investigator </summary>
+<quantity>meta.id.PI</quantity>
 </column>
     <column name="[ra]">
       <summary> Right ascension </summary>
-<unit> deg (J2000) </unit>
+<quantity>pos.eq.ra;pos.frame=j2000</quantity>
+<unit> deg</unit>
 </column>
     <column name="[dec]">
       <summary> Declination </summary>
-<unit> deg (J2000) </unit>
+<quantity>pos.eq.ra;pos.frame=j2000</quantity>
+<unit> deg</unit>
 </column>
     <column name="[telescope]">
       <summary> Telescope </summary>
+<quantity>instr.tel</quantity>
 </column>
     <column name="[instrument]">
       <summary> Instrument </summary>
+<quantity>instr</quantity>
 </column>
     <column name="[filter]">
       <summary> Filter used for observation. Not available for all instruments. </summary>
+<quantity>instr.filter</quantity>
 </column>
     <column name="[exposure]">
       <summary> Exposure time. Not available for all instruments. </summary>
-<unit> sec </unit>
+<quantity>obs.exposure</quantity>
+<unit> s </unit>
 </column>
     <column name="[obstype]">
       <summary> Type of observation, from OBSTYPE header keyword. Not available for all instruments. </summary>
+<quantity>obs</quantity>
 </column>
     <column name="[obsmode]">
       <summary> A newer FITS keyword indicating the type of observation mode. Older files may sometimes lack any value for this. </summary>
+<quantity>obs</quantity>
 </column>
     <column name="[proctype]">
       <summary> Data processing type: Raw (raw data), INstCal(pipeline-calibrated single exposure), Resampled (calibrated image
 onto sky plane), Skysub (skysubstracted NEWFIRM image), Stack (coadded sum of a sequence of exposures), or MasterCal
 calibration file). </summary>
+<quantity>meta.dataset</quantity>
 </column>
     <column name="[prodtype]">
       <summary> Data product type: Image, Dqmask (data quality mask), Expmap (Exposure map for stacked images), png (preview image). </summary>
+<quantity>meta.dataset</quantity>
 </column>
     <column name="[seeing]">
       <summary> Average seeing FWHM in arcsec. AVailable for pipeline-processed imaging data only. </summary>
+<quantity>instr.obsty.seeing</quantity>
 <unit> arcsec </unit>
 </column>
     <column name="[depth]">
       <summary> Approximate 5-sigma photometric depth for piont sources. Available for pipeline-processed imaging data only. </summary>
+<quantity></quantity>
 </column>
     <column name="[dtacqnam]">
       <summary> Original data file name supplied at the telescope by the observer or data-taking system. </summary>
+<quantity>meta.id;meta.file</quantity>
 </column>
     <column name="[archive_file]">
       <summary> Filename assigned to a data file in the NOAO Science Archive. All files are renamed to unique names when they enter the </summary>
+<quantity>meta.id;meta.file</quantity>
 </column>
     <column name="[filesize]">
       <summary> File size in bytes </summary>
+<quantity>phys.size;meta.file</quantity>
 <unit> byte </unit>
 </column>
     <column name="[reference]">
       <summary> reference to fits file. </summary>
+<quantity>meta.ref;meta.file</quantity>
 </column>
     <column name="[md5sum]">
       <summary> md5sum is used to verify that a file has not changed as a result of a faulty file transfer, a disk error or non-malicious </summary>
+<quantity>meta</quantity>
 </column>
   </table>
 </metadata>

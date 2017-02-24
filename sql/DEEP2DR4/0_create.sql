@@ -3,77 +3,98 @@ CREATE TABLE dbo.SpecObj
 (
 
 	--/ <summary> Cartesian X (J2000)</summary>
+	--/ <quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
 	[cx] [float] NOT NULL,
 
 	--/ <summary> Cartesian Y (J2000)</summary>
+	--/ <quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
 	[cy] [float] NOT NULL,
 
 	--/ <summary> Cartesian Z (J2000)</summary>
+	--/ <quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
 	[cz] [float] NOT NULL,
 
 	--/ <summary> HTM ID (J2000)</summary>
+	--/ <quantity>pos.HTM; pos.eq; pos.frame=J2000</quantity>
 	[htmid] [bigint] NOT NULL,
 
 	--/ <summary> Zone ID </summary>
+	--/ <quantity>pos.zone; pos.eq; pos.frame=J2000</quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> DEEP2 object number </summary>
+	--/ <quantity>meta.id</quantity>
 	[objID] bigint NOT NULL,
 
 	--/ <summary> Right Ascension (in decimal degrees, J2000) </summary>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
 	--/ <unit> deg </unit>
 	[RA] float NOT NULL,
 
 	--/ <summary> Declination (in decimal degrees, J2000) </summary>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000</quantity>
 	--/ <unit> deg </unit>
 	[DEC] float NOT NULL,
 
 	--/ <summary> CFHT B-band magnitude (AB) from Coil et al. 2004 (2004ApJ...617..765C) </summary>
+	--/ <quantity>phot.mag;em.opt.B</quantity>
 	--/ <unit> mag </unit>
 	[MAGB] real NOT NULL,
 
 	--/ <summary> CFHT R-band magnitude (AB) from Coil et al. 2004 (2004ApJ...617..765C) </summary>
+	--/ <quantity>phot.mag;em.opt.R</quantity>
 	--/ <unit> mag </unit>
 	[MAGR] real NOT NULL,
 
 	--/ <summary> CFHT I-band magnitude (AB) from Coil et al. 2004 (2004ApJ...617..765C) </summary>
+	--/ <quantity>phot.mag;em.opt.I</quantity>
 	--/ <unit> mag </unit>
 	[MAGI] real NOT NULL,
 
 	--/ <summary> B-band magnitude error </summary>
+	--/ <quantity>stat.error;phot.mag;em.opt.B</quantity>
 	--/ <unit> mag </unit>
 	[MAGBERR] real NOT NULL,
 
 	--/ <summary> R-band magnitude error </summary>
+	--/ <quantity>stat.error;phot.mag;em.opt.R</quantity>
 	--/ <unit> mag </unit>
 	[MAGRERR] real NOT NULL,
 
 	--/ <summary> I-band magnitude error </summary>
+	--/ <quantity>stat.error;phot.mag;em.opt.I</quantity>
 	--/ <unit> mag </unit>
 	[MAGIERR] real NOT NULL,
 
 	--/ <summary> estimated R-band radius of object 
 	--/ (sigma of Guassian fit in units of pixels --- 0.207”/pix) </summary>
+	--/ <quantity>phys.size.radius;em.opt.R</quantity>
 	--/ <unit> pix </unit>
 	[RG] real NOT NULL,
 
 	--/ <summary> ellipticity defined as E2 = (1 - b/a) </summary>
+	--/ <quantity>src.ellipticity</quantity>
 	[E2] real NOT NULL,
 
 	--/ <summary> object PA (degrees E of N)  </summary>
+	--/ <quantity>pos.posAng</quantity>
 	--/ <unit> deg </unit>
 	[PA] real NOT NULL,
 
 	--/ <summary> the probability (0 - 1) that the sources is a galaxy for unresolved galaxies, 3 if resolved </summary>
+	--/ <quantity>stat.probability</quantity>
 	[PGAL] real NOT NULL,
 
 	--/ <summary> E(B-V) from Schlegel, Finkbeiner, and Davis dust map </summary>
+	--/ <quantity>phot.color.excess</quantity>
 	[SFD_EBV] real NOT NULL,
 
 	--/ <summary> absolute B-band magnitude (AB, h = 1) from Willmer et al. (2006ApJ...647..853W) </summary>
+	--/ <quantity>phot.mag.abs;em.opt.B</quantity>
 	[M_B] real NOT NULL,
 
 	--/ <summary> rest-frame U-B color (AB) from Willmer et al. 2006 (2006ApJ...647..853W) </summary>
+	--/ <quantity>phot.color;em.opt.U;em.opt.B</quantity>
 	[U_B] real NOT NULL,
 
 	--/ <summary> the 8-digit DEEP2 object id (not always the same as OBJNO). 
@@ -97,73 +118,91 @@ CREATE TABLE dbo.SpecObj
 	--/ which gives the pointing-specific id number. Thus, for a given entry in the 
 	--/ redshift catalog, the spec1d file will be named “spec1d.MASK.SLIT.OBJNAME.fits”, 
 	--/ following the formatting detailed here: http://deep.ps.uci.edu/DR4/spectra.html. </summary>
+	--/ <quantity>meta.id</quantity>
 	[OBJNAME] bigint NOT NULL,
 
 	--/ <summary> the DEEP2/DEEP3 slitmask number on which the object was observed </summary>
-	--/ <unit>  </unit>
+	--/ <quantity>meta.id;instr</quantity>
 	[MASK] bigint NOT NULL,
 
 	--/ <summary> the slitlet number (on mask MASKNAME) in which the object was placed </summary>
-	--/ <unit>  </unit>
+	--/ <quantity>meta.id;instr</quantity>
 	[SLIT] bigint NOT NULL,
 
 	--/ <summary> Date on which the mask was observed (YYYY-MM-DD) </summary>
+	--/ <quantity>time.epoch;obs</quantity>
 	[DATE] char(10) NOT NULL,
 
 	--/ <summary> Modified Julian date of observation </summary>
+	--/ <quantity>time.each;obs</quantity>
 	[MJD] real NOT NULL,
 
 	--/ <summary> RA of slit center </summary>
+	--/ <quantity>pos.eq.ra;instr</quantity>
 	--/ <unit> deg </unit>
 	[SLITRA] real NOT NULL,
 
 	--/ <summary> Dec of slit center </summary>
+	--/ <quantity>pos.eq.dec;instr</quantity>
 	--/ <unit> deg </unit>
 	[SLITDEC] real NOT NULL,
 
 	--/ <summary> PA (degrees E of N) of slit </summary>
+	--/ <quantity>pos.posAng;instr</quantity>
 	--/ <unit> deg </unit>
 	[SLITLEN] real NOT NULL,
 
 	--/ <summary> length of slit (arcsec) </summary>
+	--/ <quantity>phys.angSize;instr.param</quantity>
 	--/ <unit> arcsec </unit>
 	[SLITPA] real NOT NULL,
 
 	--/ <summary> observed best-fitting redshift </summary>
+	--/ <quantity>src.redshift</quantity>
 	[Z] real NOT NULL,
 
 	--/ <summary> best redshift (corrected for heliocentric motion) </summary>
+	--/ <quantity>src.redshift</quantity>
 	[ZBEST] real NOT NULL,
 
 	--/ <summary> redshift error (zerr &lt; 0 indicates problematic z fit) </summary>
+	--/ <quantity>stat.error;src.redshift</quantity>
 	[ZERR] real NOT NULL,
 
 	--/ <summary> redshift quality code, Q </summary>
+	--/ <quantity>meta.code.qual;src.redshift</quantity>
 	[ZQUALITY] int NOT NULL,
 
 	--/ <summary> type of best-fitting template (e.g., GALAXY or STAR). 
 	--/ 	It should be noted that the CLASS tag only indicates the best-fitting 
 	--/ 	template; many AGN (both broad- and narrow-line) in the DEEP2 sample 
 	--/ 	will have 'GALAXY' as their class.</summary>
+	--/ <quantity>src.class</quantity>
 	[CLASS] char(6) NOT NULL,
 
 	--/ <summary> coarse classification for stellar templates </summary>
+	--/ <quantity>src.class</quantity>
 	[SUBCLASS] char(6) NOT NULL,
 
 	--/ <summary> reduced chi-squared value for the redshift fit </summary>
+	--/ <quantity>stat.fit.chi2</quantity>
 	[RCHI2] real NOT NULL,
 
 	--/ <summary> degrees of freedom for redshift fit </summary>
+	--/ <quantity>stat.fit.dof</quantity>
 	[DOF] bigint NOT NULL,
 
 	--/ <summary> velocity dispersion in km/s </summary>
-	--/ <unit> km/s </unit>
+	--/ <quantity>phys.veloc.dispersion</quantity>
+	--/ <unit> km s-1 </unit>
 	[VDISP] real NOT NULL,
 
 	--/ <summary> error in velocity dispersion </summary>
+	--/ <quantity>stat.error;phys.veloc.dispersion</quantity>
 	[VDISPERR] real NOT NULL,
 
 	--/ <summary> comment field </summary>
+	--/ <quantity>meta.note</quantity>
 	[COMMENT] char(43) NOT NULL,
 
 	CONSTRAINT [PK_SpecObj] PRIMARY KEY CLUSTERED
