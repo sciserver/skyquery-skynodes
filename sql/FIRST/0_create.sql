@@ -8,6 +8,7 @@ GO
 CREATE TABLE dbo.PhotoObj 
 (
 	--/ <summary>FIRST primary key.</summary>
+	--/ <quantity>meta.id</quantity>
 	[objID] bigint NOT NULL,
 
 	--/ <summary> RA (right ascension, J2000). The accuracy of the position depends on the brightness and size of 
@@ -21,7 +22,8 @@ CREATE TABLE dbo.PhotoObj
 	--/ (The positional uncertainty is of course elliptical for elliptical sources.) The best possible positional 
 	--/ uncertainty is limited to about 0.1 arcsec by our ability to fit source positions in maps with 1.8 arcsec 
 	--/ pixels and by various calibration uncertainties. Systematic errors in the positions are smaller than 0.05 arcsec. </summary>
-	--/ <unit>deg J2000</unit>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[ra] float NOT NULL,
 
 	--/ <summary> Dec (declination, J2000). The accuracy of the position depends on the brightness and size of 
@@ -35,22 +37,28 @@ CREATE TABLE dbo.PhotoObj
 	--/ (The positional uncertainty is of course elliptical for elliptical sources.) The best possible positional 
 	--/ uncertainty is limited to about 0.1 arcsec by our ability to fit source positions in maps with 1.8 arcsec 
 	--/ pixels and by various calibration uncertainties. Systematic errors in the positions are smaller than 0.05 arcsec. </summary>
-	--/ <unit>deg J2000</unit>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[dec] float NOT NULL,
 
 	--/ <summary>Cartesian X (J2000)</summary>
+	--/ <quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
 	[cx] [float] NOT NULL,
 
 	--/ <summary>Cartesian Y (J2000)</summary>
+	--/ <quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
 	[cy] [float] NOT NULL,
 
 	--/ <summary>Cartesian Z (J2000)</summary>
+	--/ <quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
 	[cz] [float] NOT NULL,
 
 	--/ <summary>HTM ID (J2000)</summary>
+	--/ <quantity>pos.HTM;pos.eq;pos.frame=j2000</quantity>
 	[htmid] [float] NOT NULL,
 
 	--/ <summary> Zone ID </summary>
+	--/ <quantity>pos.zone;pos.eq;pos.frame=j2000</quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> Ps indicates the probability that the source is spurious (most commonly because it is a sidelobe 
@@ -74,6 +82,7 @@ CREATE TABLE dbo.PhotoObj
 	--/ sidelobe flagging approach. Nevertheless, we still recommend checking the images using the FIRST Cutout Server  
 	--/ if there is doubt about the reality of particular sources. This is easily done when using the FIRST Search  
 	--/ Engine to search the catalog, since each source selected in the search has a link to the Cutout Server. </summary>
+	--/ <quantity>stat.probability</quantity>
 	[Ps]  real NOT NULL,
 
 	--/ <summary> Fpeak is the peak flux density measured in mJy. It is derived by fitting an 
@@ -81,6 +90,7 @@ CREATE TABLE dbo.PhotoObj
 	--/ the peak flux density (see our Astrophysical Journal paper and our catalog paper for more details.)
 	--/ The uncertainty in Fpeak is given by the rms noise at the source position. For bright sources the accuracies of Fpeak is
 	--/ limited to about 5% by systematic effects. </summary>
+	--/ <quantity>phot.flux.density</quantity>
 	--/ <unit>mJy</unit>
 	[Fpeak] real NOT NULL,
 
@@ -91,6 +101,7 @@ CREATE TABLE dbo.PhotoObj
 	--/ considerably greater depending on the source size and morphology. For bright sources the accuracies of Fint 
 	--/ are limited to about 5% by systematic effects. Note that for sources that are not well-described by an elliptical Gaussian 
 	--/ model, Fint is not an accurate measure of the integrated flux density. </summary>
+	--/ <quantity>phot.flux.density</quantity>
 	--/ <unit>mJy</unit>
 	[Fint] real NOT NULL,
 
@@ -98,6 +109,7 @@ CREATE TABLE dbo.PhotoObj
 	--/ noise from all grid pointing images contributing to this coadded map position. Note that the significance of detection 
 	--/ for a source is (Fpeak-0.25)/Rms, not Fpeak/Rms, because of the CLEAN bias correction to the peak flux density. The catalog 
 	--/ includes only sources brighter than 5 Rms. </summary>
+	--/ <quantity>instr.det.noise</quantity>
 	--/ <unit>mJy</unit>
 	[RMS] real NOT NULL,
 
@@ -114,6 +126,7 @@ CREATE TABLE dbo.PhotoObj
 	--/ with point sources.) A simple empirical estimate of the uncertainty is
 	--/ Sigma(Size) = 10 arcsec  (1/SNR + 1/75)
 	--/ where SNR is the signal-to-noise ratio defined above. </summary>
+	--/ <quantity>phys.angSize.smajAxis</quantity>
 	--/ <unit>arcsec</unit>
 	[Maj] real NOT NULL,
 
@@ -130,26 +143,31 @@ CREATE TABLE dbo.PhotoObj
 	--/ with point sources.) An simple empirical estimate of the uncertainty is
 	--/ Sigma(Size) = 10 arcsec  (1/SNR + 1/75)
 	--/where SNR is the signal-to-noise ratio defined above. </summary>
+	--/ <quantity>phys.angSize.sminAxis</quantity>
 	--/ <unit>arcsec</unit>
 	[Min] real NOT NULL,
 
 	--/ <summary> PA gives the position angle (degrees east of north) derived from the elliptical Gaussian model for the source. Maj and Min 
 	--/ have been deconvolved to remove blurring by the elliptical Gaussian point-spread function. (The fitted parameters before 
 	--/ deconvolution are given in the fMaj, fMin, and fPA columns.) </summary>
+	--/ <quantity>pos.posAng</quantity>
 	[PA] real NOT NULL,
 
 	--/ <summary> fMaj gives the major axis (FWHM in arcsec) derived from the elliptical Gaussian model for the source. 
 	--/ This is a fitted size measured directly from the image; the elliptical point-spread function has not been deconvolved. </summary>
+	--/ <quantity>phys.angSize.smajAxis;stat.fit</quantity>
 	--/ <unit>arcsec</unit>
 	[fMaj] real NOT NULL,
 
 	--/ <summary> fMin gives the minor axis (FWHM in arcsec) derived from the elliptical Gaussian model for the source. This 
 	--/ is a fitted size measured directly from the image; the elliptical point-spread function has not been deconvolved. </summary>
+	--/ <quantity>phys.angSize.sminAxis;stat.fit</quantity>
 	--/ <unit>arcsec</unit>
 	[fMin] real NOT NULL,
 
 	--/ <summary> fPA gives the position angle (degrees east of north) derived from the elliptical Gaussian model for the source. 
 	--/ This a  fitted parameter measured directly from the image; the elliptical point-spread function has not been deconvolved. </summary>
+	--/ <quantity>pos.posAng;stat.fit</quantity>
 	--/ <unit>Degrees east of north</unit>
 	[fPA] real NOT NULL,
 
@@ -162,37 +180,45 @@ CREATE TABLE dbo.PhotoObj
 	--/ data taken in Spring 2011 and have both a slightly different central frequency (1.335 GHz instead of 1.400 GHz) and typically 
 	--/ higher noise levels than the older images. The X fields are images that neighbor the EVLA fields but differ from the previous 
 	--/ release in that they omit nearby EVLA observations from the co-adding of overlapping grid images. </summary>
+	--/ <quantity>meta.id;obs.field</quantity>
 	[Field] char(12) NOT NULL,
 	
 	--/ <summary> num_SDSS is giving the number of matches within a fiducial radius of 8 arcsec. A count of zero indicates there  
 	--/ are no sources within this radius (which is also indicated by a separation of 99.00 and a classification of '-'). For  
 	--/ SDSS, a count of -1 indicates that the FIRST source falls outside the SDSS DR10 survey area so that no SDSS data are  
 	--/ available. </summary>
+	--/ <quantity>meta.number;src</quantity>
 	[num_SDSS] smallint NOT NULL,
 
 	--/ <summary> Sep_SDDS is giving the separation for the nearest match from the FIRST position in arcsec. No sources within 
 	--/ 8 arcsec radius is indicated by a separation of 99.0. </summary>
+	--/ <quantity>pos.angDistance</quantity>
 	--/ <unit>arcsec</unit>
 	[Sep_SDSS] real NOT NULL,
 
 	--/ <summary>  i_SDSS is the given magnitude for i waveband. For SDSS, a magnitude of -1 indicates that the magnitude in 
 	--/ the DR10 catalog was given as -9999. </summary>
+	--/ <quantity>phot.mag;em.opt.SDSS.i</quantity>
 	[i_SDSS] real NOT NULL,
 
 	--/ <summary> Cl_SDSS is the morphological classification (s=stellar, g=nonstellar/galaxy). A classification of '-' indicates 
 	--/ there are no sources within 8 arcsec radius. </summary>
+	--/ <quantity>src.class</quantity>
 	[Cl_SDSS] char(1) NOT NULL,
 
 	--/ <summary> num_2MASS is giving the number of matches within a fiducial radius of 8 arcsec. A count of zero indicates there  
 	--/ are no sources within this radius (which is also indicated by a separation of 99.00 and a classification of '-'). </summary>
+	--/ <quantity>meta.number;src</quantity>
 	[num_2MASS] smallint NOT NULL,
 
 	--/ <summary> Sep_2MASS is giving the separation for the nearest match from the FIRST position in arcsec. No sources within 
 	--/ 8 arcsec radius is indicated by a separation of 99.0. </summary>
+	--/ <quantity>pos.angDistance;src</quantity>
 	--/ <unit>arcsec</unit>
 	[Sep_2MASS] real NOT NULL,
 
 	--/ <summary>  K_2MASS is the given magnitude for K waveband. </summary>
+	--/ <quantity>phot.mag;em.IR.K</quantity>
 	[K_2MASS] real NOT NULL,
 
 	--/ <summary> The Mean_yr, Mean_MJD and rms_MJD columns give information on the mean epoch of the FIRST flux density measurement. The FIRST survey consists of 
@@ -201,6 +227,7 @@ CREATE TABLE dbo.PhotoObj
 	--/ That means that each measurement is a weighted sum of multiple observations.
 	--/ The Epoch Mean columns give the weighted mean of all the contributing pointing epochs at the position of the source. It is 
 	--/ given both in decimal years (Mean_yr) and in MJD (Mean_MJD) for convenience. </summary>
+	--/ <quantity>time.epoch;obs</quantity>
 	[Mean_yr] real NOT NULL,
 
 	--/ <summary> The Mean_yr, Mean_MJD and rms_MJD columns give information on the mean epoch of the FIRST flux density measurement. The FIRST survey consists of 
@@ -209,6 +236,7 @@ CREATE TABLE dbo.PhotoObj
 	--/ That means that each measurement is a weighted sum of multiple observations.
 	--/ The Epoch Mean columns give the weighted mean of all the contributing pointing epochs at the position of the source. It is 
 	--/ given both in decimal years (Mean_yr) and in MJD (Mean_MJD) for convenience. </summary>
+	--/ <quantity>time.epoch;obs</quantity>
 	[Mean_MJD] float NOT NULL,
 
 	--/ <summary> The Mean_yr, Mean_MJD and rms_MJD columns give information on the mean epoch of the FIRST flux density measurement. The FIRST survey consists of 
@@ -230,6 +258,7 @@ CREATE TABLE dbo.PhotoObj
 	--/ 1 - 2 yrs	1%
 	--/ 2 - 5 yrs	2%
 	--/ &gt; 5 yrs	0.3% </summary>
+	--/ <quantity>stat.error;time.epoch;obs</quantity>
 	[rms_MJD] real NOT NULL,
  CONSTRAINT [PK_PhotoObj] PRIMARY KEY CLUSTERED 
 (

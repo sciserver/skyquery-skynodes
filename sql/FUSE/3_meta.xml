@@ -1,305 +1,216 @@
 <metadata>
   <table name="[dbo].[PhotoObj]">
-    <column name="[objID]">
-      <summary>A view of the SpecObj table so SkyNode queries will work</summary>
+    <summary>A view of the SpecObj table so SkyNode queries will work</summary>
 <remarks>Using the FUSE SkyNode for cross-matching requires it to have a table named PhotoPrimary.  Even though FUSE data is spectroscopic data, a PhotoPrimary view of the main SpecObj table is defined for this purpose.</remarks>
-<summary>Unique ID of each object</summary>
-</column>
-    <column name="[TELESCOP]">
-      <summary>
-      </summary>
-</column>
-    <column name="[ROOTNAME]">
-      <summary>Rootname of the observation ppppttooeee</summary>
-</column>
-    <column name="[PRGRM_ID]">
-      <summary>PROGRAM IDENTIFICATION</summary>
-</column>
-    <column name="[TARG_ID]">
-      <summary>Target ID</summary>
-</column>
-    <column name="[PR_INV_L]">
-      <summary> Last name of principal investigator</summary>
-</column>
-    <column name="[PR_INV_R]">
-      <summary> First name of principal investigator </summary>
-</column>
-    <column name="[TARGNAME]">
-      <summary>Target name on proposal</summary>
-</column>
-    <column name="[RA]">
-      <summary>Right ascension of the target</summary>
+<column name="[objID]"><summary>Unique ID of each object</summary>
+<quantity>meta.id</quantity>
+</column><column name="[TELESCOP]"><summary></summary>
+<quantity>instr.tel</quantity>
+</column><column name="[ROOTNAME]"><summary>Rootname of the observation ppppttooeee</summary>
+<quantity>meta.id;obs</quantity>
+</column><column name="[PRGRM_ID]"><summary>PROGRAM IDENTIFICATION</summary>
+<quantity>meta.id</quantity>
+</column><column name="[TARG_ID]"><summary>Target ID</summary>
+<quantity>meta.id;src</quantity>
+</column><column name="[PR_INV_L]"><summary> Last name of principal investigator</summary>
+<quantity>meta.id.PI</quantity>
+</column><column name="[PR_INV_R]"><summary> First name of principal investigator </summary>
+<quantity>meta.id.PI</quantity>
+</column><column name="[TARGNAME]"><summary>Target name on proposal</summary>
+<quantity>meta.id;src</quantity>
+</column><column name="[RA]"><summary>Right ascension of the target</summary>
+<quantity>pos.eq.ra;pos.frame=j2000</quantity>
 <unit>deg</unit>
-</column>
-    <column name="[DEC]">
-      <summary>Declination of the target</summary>
+</column><column name="[DEC]"><summary>Declination of the target</summary>
+<quantity>pos.eq.ra;pos.frame=j2000</quantity>
 <unit>deg</unit>
-</column>
-    <column name="[cx]">
-      <summary>Cartesian coordinate x</summary>
-</column>
-    <column name="[cy]">
-      <summary>Cartesian coordinate y</summary>
-</column>
-    <column name="[cz]">
-      <summary>Cartesian coordinate z</summary>
-</column>
-    <column name="[htmid]">
-      <summary>HTM ID</summary>
-</column>
-    <column name="[zoneid]">
-      <summary>Zone ID</summary>
-</column>
-    <column name="[APER_PA]">
-      <summary>Position angle of Y axis</summary>
+</column><column name="[cx]"><summary>Cartesian coordinate x</summary>
+<quantity>pos.cartesian.x;pos.eq;pos.frame=j2000</quantity>
+</column><column name="[cy]"><summary>Cartesian coordinate y</summary>
+<quantity>pos.cartesian.y;pos.eq;pos.frame=j2000</quantity>
+</column><column name="[cz]"><summary>Cartesian coordinate z</summary>
+<quantity>pos.cartesian.z;pos.eq;pos.frame=j2000</quantity>
+</column><column name="[htmid]"><summary>HTM ID</summary>
+<quantity>pos.HTM;pos.eq;pos.frame=j2000</quantity>
+</column><column name="[zoneid]"><summary>Zone ID</summary>
+<quantity>pos.zone;pos.eq;pos.frame=j2000</quantity>
+</column><column name="[APER_PA]"><summary>Position angle of Y axis</summary>
+<quantity>pos.posAng</quantity>
 <unit>deg</unit>
-</column>
-    <column name="[ELAT]">
-      <summary>Ecliptic latitud</summary>
+</column><column name="[ELAT]"><summary>Ecliptic latitude</summary>
+<quantity>pos.ecliptic.lat</quantity>
 <unit>deg</unit>
-</column>
-    <column name="[ELONG]">
-      <summary>Ecliptic longitud</summary>
+</column><column name="[ELONG]"><summary>Ecliptic longitude</summary>
+<quantity>pos.ecliptic.lon</quantity>
 <unit>deg</unit>
-</column>
-    <column name="[GLAT]">
-      <summary>Galactic latitud</summary>
+</column><column name="[GLAT]"><summary>Galactic latitude</summary>
+<quantity>pos.galactic.lat</quantity>
 <unit>deg</unit>
-</column>
-    <column name="[GLONG]">
-      <summary>Galactic longitud</summary>
+</column><column name="[GLONG]"><summary>Galactic longitude</summary>
+<quantity>pos.galactic.lon</quantity>
 <unit>deg</unit>
-</column>
-    <column name="[OBJCLASS]">
-      <summary>Object class</summary>
-</column>
-    <column name="[SP_TYPE]">
-      <summary> MK spectral type and luminosity class </summary>
-</column>
-    <column name="[SRC_TYPE]">
-      <summary>Point or Extended Continuum Emission</summary>
-</column>
-    <column name="[VMAG]">
-      <summary>Target V magnitud</summary>
-</column>
-    <column name="[EBV]">
-      <summary>Color excess</summary>
-</column>
-    <column name="[Z]">
-      <summary>Redshift</summary>
-</column>
-    <column name="[HIGH_PM]">
-      <summary>High proper motion target</summary>
-</column>
-    <column name="[MOV_TARG]">
-      <summary>Fixed or Moving target</summary>
-</column>
-    <column name="[DATEOBS]">
-      <summary>UT date of start of exposure yyyy-mm-dd</summary>
-</column>
-    <column name="[OBSSTART]">
-      <summary>Exposure start time - Modified Julian Date</summary>
-</column>
-    <column name="[OBSEND]">
-      <summary>Exposure end time - Modified Julian Date</summary>
-</column>
-    <column name="[OBSTIME]">
-      <summary> Total time after screening </summary>
+</column><column name="[OBJCLASS]"><summary>Object class</summary>
+<quantity>src.class</quantity>
+</column><column name="[SP_TYPE]"><summary> MK spectral type and luminosity class </summary>
+<quantity>src.spType;src.class.luminosity</quantity>
+</column><column name="[SRC_TYPE]"><summary>Point or Extended Continuum Emission</summary>
+<quantity>src.class</quantity>
+</column><column name="[VMAG]"><summary>Target V magnitude</summary>
+<quantity>phot.mag;em.opt.V</quantity>
+</column><column name="[EBV]"><summary>Color excess</summary>
+<quantity>phot.color.excess</quantity>
+</column><column name="[Z]"><summary>Redshift</summary>
+<quantity>src.redshift</quantity>
+</column><column name="[HIGH_PM]"><summary>High proper motion target</summary>
+<quantity>meta.note</quantity>
+</column><column name="[MOV_TARG]"><summary>Fixed or Moving target</summary>
+<quantity>meta.note</quantity>
+</column><column name="[DATEOBS]"><summary>UT date of start of exposure yyyy-mm-dd</summary>
+<quantity>time.start;obs.exposure</quantity>
+</column><column name="[OBSSTART]"><summary>Exposure start time - Modified Julian Date</summary>
+<quantity>time.start;obs.exposure</quantity>
+</column><column name="[OBSEND]"><summary>Exposure end time - Modified Julian Date</summary>
+<quantity>time.end;obs.exposure</quantity>
+</column><column name="[OBSTIME]"><summary> Total time after screening </summary>
+<quantity>time</quantity>
 <unit>s</unit>
-</column>
-    <column name="[RAWTIME]">
-      <summary>Exposure duration of raw data file</summary>
+</column><column name="[RAWTIME]"><summary>Exposure duration of raw data file</summary>
+<quantity>time;obs.exposure</quantity>
 <unit>s</unit>
-</column>
-    <column name="[OBSNIGHT]">
-      <summary>Night time after screening</summary>
+</column><column name="[OBSNIGHT]"><summary>Night time after screening</summary>
+<quantity>time</quantity>
 <unit>s</unit>
-</column>
-    <column name="[INSTMODE]">
-      <summary>Instrument mode TTAG or HIST</summary>
-</column>
-    <column name="[APERTURE]">
-      <summary>Planned target aperture</summary>
-</column>
-    <column name="[CF_VERS]">
-      <summary>CALFUSE pipeline version number</summary>
-</column>
-    <column name="[BANDWID]">
-      <summary>Bandwidth of the data</summary>
-<unit>Angstroms</unit>
-</column>
-    <column name="[CENTRWV]">
-      <summary>Central wavelenght of the data</summary>
-<unit>Angstroms</unit>
-</column>
-    <column name="[WAVEMIN]">
-      <summary>Minimun wavelenght of the data</summary>
-<unit>Angstroms</unit>
-</column>
-    <column name="[WAVEMAX]">
-      <summary>Maximun wavelenght of the data</summary>
-<unit>Angstroms</unit>
-</column>
-  </table>
+</column><column name="[INSTMODE]"><summary>Instrument mode TTAG or HIST</summary>
+<quantity>instr.bandpass</quantity>
+</column><column name="[APERTURE]"><summary>Planned target aperture</summary>
+<quantity>instr.param</quantity>
+</column><column name="[CF_VERS]"><summary>CALFUSE pipeline version number</summary>
+<quantity>meta.version</quantity>
+</column><column name="[BANDWID]"><summary>Bandwidth of the data</summary>
+<quantity>instr.bandwith</quantity>
+<unit>AA</unit>
+</column><column name="[CENTRWV]"><summary>Central wavelenght of the data</summary>
+<quantity>em.wl.central</quantity>
+<unit>AA</unit>
+</column><column name="[WAVEMIN]"><summary>Minimun wavelenght of the data</summary>
+<quantity>em.wl;stat.min</quantity>
+<unit>AA</unit>
+</column><column name="[WAVEMAX]"><summary>Maximun wavelenght of the data</summary>
+<quantity>em.wl;stat.max</quantity>
+<unit>AA</unit>
+</column></table>
   <table name="[dbo].[SpecLine]">
-    <column name="[ObjID]">
-      <summary>The flux for each spectral line is in this table</summary>
+    <summary>The flux for each spectral line is in this table</summary>
 <remarks></remarks>
-<summary></summary>
-</column>
-    <column name="[LineID]">
-      <summary>Unique ID for each spectral line</summary>
-</column>
-    <column name="[WAVE]">
-      <summary>Wavelength</summary>
-</column>
-    <column name="[FLUX]">
-      <summary>Flux</summary>
-</column>
-    <column name="[ERROR]">
-      <summary>Error</summary>
-</column>
-  </table>
+<column name="[ObjID]"><summary></summary>
+<quantity>meta.id</quantity>
+</column><column name="[LineID]"><summary>Unique ID for each spectral line</summary>
+<quantity>meta.id;spect.line</quantity>
+</column><column name="[WAVE]"><summary>Wavelength</summary>
+<quantity>em.wl</quantity>
+</column><column name="[FLUX]"><summary>Flux</summary>
+<quantity>phot.flux</quantity>
+</column><column name="[ERROR]"><summary>Error</summary>
+<quantity>stat.error</quantity>
+</column></table>
   <table name="[dbo].[SpecObj]">
-    <column name="[objID]">
-      <summary>The main table containing the astronomical data</summary>
+    <summary>The main table containing the astronomical data</summary>
 <remarks></remarks>
-<summary>Unique ID of each object</summary>
-</column>
-    <column name="[TELESCOP]">
-      <summary>
-      </summary>
-</column>
-    <column name="[ROOTNAME]">
-      <summary>Rootname of the observation ppppttooeee</summary>
-</column>
-    <column name="[PRGRM_ID]">
-      <summary>PROGRAM IDENTIFICATION</summary>
-</column>
-    <column name="[TARG_ID]">
-      <summary>Target ID</summary>
-</column>
-    <column name="[PR_INV_L]">
-      <summary> Last name of principal investigator</summary>
-</column>
-    <column name="[PR_INV_R]">
-      <summary> First name of principal investigator </summary>
-</column>
-    <column name="[TARGNAME]">
-      <summary>Target name on proposal</summary>
-</column>
-    <column name="[RA]">
-      <summary>Right ascension of the target</summary>
+<column name="[objID]"><summary>Unique ID of each object</summary>
+<quantity>meta.id</quantity>
+</column><column name="[TELESCOP]"><summary></summary>
+<quantity>instr.tel</quantity>
+</column><column name="[ROOTNAME]"><summary>Rootname of the observation ppppttooeee</summary>
+<quantity>meta.id;obs</quantity>
+</column><column name="[PRGRM_ID]"><summary>PROGRAM IDENTIFICATION</summary>
+<quantity>meta.id</quantity>
+</column><column name="[TARG_ID]"><summary>Target ID</summary>
+<quantity>meta.id;src</quantity>
+</column><column name="[PR_INV_L]"><summary> Last name of principal investigator</summary>
+<quantity>meta.id.PI</quantity>
+</column><column name="[PR_INV_R]"><summary> First name of principal investigator </summary>
+<quantity>meta.id.PI</quantity>
+</column><column name="[TARGNAME]"><summary>Target name on proposal</summary>
+<quantity>meta.id;src</quantity>
+</column><column name="[RA]"><summary>Right ascension of the target</summary>
+<quantity>pos.eq.ra;pos.frame=j2000</quantity>
 <unit>deg</unit>
-</column>
-    <column name="[DEC]">
-      <summary>Declination of the target</summary>
+</column><column name="[DEC]"><summary>Declination of the target</summary>
+<quantity>pos.eq.dec;pos.frame=j2000</quantity>
 <unit>deg</unit>
-</column>
-    <column name="[cx]">
-      <summary>Cartesian coordinate x</summary>
-</column>
-    <column name="[cy]">
-      <summary>Cartesian coordinate y</summary>
-</column>
-    <column name="[cz]">
-      <summary>Cartesian coordinate z</summary>
-</column>
-    <column name="[htmid]">
-      <summary>HTM ID</summary>
-</column>
-    <column name="[zoneid]">
-      <summary>Zone ID</summary>
-</column>
-    <column name="[APER_PA]">
-      <summary>Position angle of Y axis</summary>
+</column><column name="[cx]"><summary>Cartesian coordinate x</summary>
+<quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
+</column><column name="[cy]"><summary>Cartesian coordinate y</summary>
+<quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
+</column><column name="[cz]"><summary>Cartesian coordinate z</summary>
+<quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
+</column><column name="[htmid]"><summary>HTM ID</summary>
+<quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+</column><column name="[zoneid]"><summary>Zone ID</summary>
+<quantity>pos.zone;pos.eq; pos.frame=j2000</quantity>
+</column><column name="[APER_PA]"><summary>Position angle of Y axis</summary>
+<quantity>pos.posAng</quantity>
 <unit>deg</unit>
-</column>
-    <column name="[ELAT]">
-      <summary>Ecliptic latitud</summary>
+</column><column name="[ELAT]"><summary>Ecliptic latitude</summary>
+<quantity>pos.ecliptic.lat</quantity>
 <unit>deg</unit>
-</column>
-    <column name="[ELONG]">
-      <summary>Ecliptic longitud</summary>
+</column><column name="[ELONG]"><summary>Ecliptic longitude</summary>
+<quantity>pos.ecliptic.lon</quantity>
 <unit>deg</unit>
-</column>
-    <column name="[GLAT]">
-      <summary>Galactic latitud</summary>
+</column><column name="[GLAT]"><summary>Galactic latitude</summary>
+<quantity>pos.galactic.lat</quantity>
 <unit>deg</unit>
-</column>
-    <column name="[GLONG]">
-      <summary>Galactic longitud</summary>
+</column><column name="[GLONG]"><summary>Galactic longitude</summary>
+<quantity>pos.galactic.lon</quantity>
 <unit>deg</unit>
-</column>
-    <column name="[OBJCLASS]">
-      <summary>Object class</summary>
-</column>
-    <column name="[SP_TYPE]">
-      <summary> MK spectral type and luminosity class </summary>
-</column>
-    <column name="[SRC_TYPE]">
-      <summary>Point or Extended Continuum Emission</summary>
-</column>
-    <column name="[VMAG]">
-      <summary>Target V magnitud</summary>
-</column>
-    <column name="[EBV]">
-      <summary>Color excess</summary>
-</column>
-    <column name="[Z]">
-      <summary>Redshift</summary>
-</column>
-    <column name="[HIGH_PM]">
-      <summary>High proper motion target</summary>
-</column>
-    <column name="[MOV_TARG]">
-      <summary>Fixed or Moving target</summary>
-</column>
-    <column name="[DATEOBS]">
-      <summary>UT date of start of exposure yyyy-mm-dd</summary>
-</column>
-    <column name="[OBSSTART]">
-      <summary>Exposure start time - Modified Julian Date</summary>
-</column>
-    <column name="[OBSEND]">
-      <summary>Exposure end time - Modified Julian Date</summary>
-</column>
-    <column name="[OBSTIME]">
-      <summary> Total time after screening </summary>
+</column><column name="[OBJCLASS]"><summary>Object class</summary>
+<quantity>src.class</quantity>
+</column><column name="[SP_TYPE]"><summary> MK spectral type and luminosity class </summary>
+<quantity>src.spType;src.class.luminosity</quantity>
+</column><column name="[SRC_TYPE]"><summary>Point or Extended Continuum Emission</summary>
+<quantity>src.class</quantity>
+</column><column name="[VMAG]"><summary>Target V magnitud</summary>
+<quantity>phot.mag;em.opt.V</quantity>
+</column><column name="[EBV]"><summary>Color excess</summary>
+<quantity>phot.color.excess</quantity>
+</column><column name="[Z]"><summary>Redshift</summary>
+<quantity>str.redshift</quantity>
+</column><column name="[HIGH_PM]"><summary>High proper motion target</summary>
+<quantity>meta.note</quantity>
+</column><column name="[MOV_TARG]"><summary>Fixed or Moving target</summary>
+<quantity>meta.note</quantity>
+</column><column name="[DATEOBS]"><summary>UT date of start of exposure yyyy-mm-dd</summary>
+<quantity>time.start;obs.exposure</quantity>
+</column><column name="[OBSSTART]"><summary>Exposure start time - Modified Julian Date</summary>
+<quantity>time.start;obs.exposure</quantity>
+</column><column name="[OBSEND]"><summary>Exposure end time - Modified Julian Date</summary>
+<quantity>time.end;obs.exposure</quantity>
+</column><column name="[OBSTIME]"><summary> Total time after screening </summary>
+<quantity>time</quantity>
 <unit>s</unit>
-</column>
-    <column name="[RAWTIME]">
-      <summary>Exposure duration of raw data file</summary>
+</column><column name="[RAWTIME]"><summary>Exposure duration of raw data file</summary>
+<quantity>time;obs.exposure</quantity>
 <unit>s</unit>
-</column>
-    <column name="[OBSNIGHT]">
-      <summary>Night time after screening</summary>
+</column><column name="[OBSNIGHT]"><summary>Night time after screening</summary>
+<quantity>time</quantity>
 <unit>s</unit>
-</column>
-    <column name="[INSTMODE]">
-      <summary>Instrument mode TTAG or HIST</summary>
-</column>
-    <column name="[APERTURE]">
-      <summary>Planned target aperture</summary>
-</column>
-    <column name="[CF_VERS]">
-      <summary>CALFUSE pipeline version number</summary>
-</column>
-    <column name="[BANDWID]">
-      <summary>Bandwidth of the data</summary>
-<unit>Angstroms</unit>
-</column>
-    <column name="[CENTRWV]">
-      <summary>Central wavelenght of the data</summary>
-<unit>Angstroms</unit>
-</column>
-    <column name="[WAVEMIN]">
-      <summary>Minimun wavelenght of the data</summary>
-<unit>Angstroms</unit>
-</column>
-    <column name="[WAVEMAX]">
-      <summary>Maximun wavelenght of the data</summary>
-<unit>Angstroms</unit>
-</column>
-  </table>
+</column><column name="[INSTMODE]"><summary>Instrument mode TTAG or HIST</summary>
+<quantity>instr.bandpass</quantity>
+</column><column name="[APERTURE]"><summary>Planned target aperture</summary>
+<quantity>instr.param</quantity>
+</column><column name="[CF_VERS]"><summary>CALFUSE pipeline version number</summary>
+<quantity>meta.version</quantity>
+</column><column name="[BANDWID]"><summary>Bandwidth of the data</summary>
+<quantity>instr.bandwith</quantity>
+<unit>AA</unit>
+</column><column name="[CENTRWV]"><summary>Central wavelenght of the data</summary>
+<quantity>em.wl.central</quantity>
+<unit>AA</unit>
+</column><column name="[WAVEMIN]"><summary>Minimun wavelenght of the data</summary>
+<quantity>em.wl;stat.min</quantity>
+<unit>AA</unit>
+</column><column name="[WAVEMAX]"><summary>Maximun wavelenght of the data</summary>
+<quantity>em.wl;stat.max</quantity>
+<unit>AA</unit>
+</column></table>
 </metadata>

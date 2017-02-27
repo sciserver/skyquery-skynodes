@@ -2,29 +2,36 @@
 CREATE TABLE dbo.PhotoObj
 (
 	--/ <summary> Cartesian X (J2000)</summary>
+	--/ <quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
 	[cx] [float] NOT NULL,
 
 	--/ <summary> Cartesian Y (J2000)</summary>
+	--/ <quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
 	[cy] [float] NOT NULL,
 
 	--/ <summary> Cartesian Z (J2000)</summary>
+	--/ <quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
 	[cz] [float] NOT NULL,
 
 	--/ <summary> HTM ID (J2000)</summary>
+	--/ <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
 	[htmid] bigint NOT NULL,
 
 	--/ <summary> Zone ID </summary>
+	--/ <quantity>pos.ID; pos.eq; pos.frame=j2000</quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> This is the FOCAS catalog entry number. The numbers after the decimal point indicate the level of splitting.
 	--/ Both parents and daughters are included in the catalog shown here. Thus many objects are included repeatedly in the catalog,
 	--/ both as part of the parent and as a separate daughter entry. </summary>
+	--/ <quantity>meta.id</quantity>
 	[objID] char(14) NOT NULL,
 
 	--/ <summary> The x pixel position of each object, as defined by brightest pixel within the 3x3 pixel grid with the greatest 
 	--/ luminosity within the detection area. For objects with a bright off-center peak, this position can be significantly different 
 	--/ from the weighted center of the luminosity distribution within the detection area. For the HDF, such differences are typically 
 	--/ less than 0.1 arsces.</summary>
+	--/ <quantity>pos.cartesian.x;obs.image</quantity>
 	--/ <unit> pix </unit>
 	[x] real NOT NULL,
 
@@ -32,15 +39,18 @@ CREATE TABLE dbo.PhotoObj
 	--/ luminosity within the detection area. For objects with a bright off-center peak, this position can be significantly different 
 	--/ from the weighted center of the luminosity distribution within the detection area. For the HDF, such differences are typically 
 	--/ less than 0.1 arsces. </summary>
+	--/ <quantity>pos.cartesian.y;obs.image</quantity>
 	--/ <unit> pix </unit>
 	[y] real NOT NULL,
 
 	--/ <summary> Degrees of the right ascension corresponding to the x, y centers, epoch J2000. </summary>
-	--/ <unit> deg (J2000) </unit>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+	--/ <unit> deg</unit>
 	[ra] float NOT NULL,
 
 	--/ <summary> Degrees of the declination corresponding to the x, y centers, epoch J2000. </summary>
-	--/ <unit> deg (J2000)  </unit>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+	--/ <unit> deg  </unit>
 	[dec] float NOT NULL,
 
 	--/ <summary> Total magnitude. The magnitudes of the detected sources in the F606W image. 
@@ -52,9 +62,12 @@ CREATE TABLE dbo.PhotoObj
 	--/ area by at least a factor of two. For daughter objects, the total magnitude is divided
 	--/ between the daughters in proportion to their isophotal luminosities. The isophoal
 	--/ mangitudes correspond to the higher isophotes at which the object broke into multiple components. </summary>
+	--/ <quantity>phot.mag</quantity>	
+	--/ <unit>mag</unit>
 	[mt] real NOT NULL,
 
-	--/ <summary>  </summary>
+	--/ <summary> Tells if the value in the mt column is an upper/lower limit. </summary>
+	--/ <quantity>meta.note;phot.mag</quantity>
 	[mt_limit] char(5) NOT NULL,
 
 	--/ <summary> Isophotal magnitude. The magnitudes of the detected sources in the F606W image. 
@@ -66,9 +79,12 @@ CREATE TABLE dbo.PhotoObj
 	--/ area by at least a factor of two. For daughter objects, the total magnitude is divided
 	--/ between the daughters in proportion to their isophotal luminosities. The isophoal
 	--/ mangitudes correspond to the higher isophotes at which the object broke into multiple components.  </summary>
+	--/ <quantity>phot.mag.isophotal</quantity>
+	--/ <unit>mag</unit>
 	[mi] real NOT NULL,
 
-	--/ <summary>  </summary>
+	--/ <summary> Tells if the value in the mi column is an upper/lower limit. </summary>
+	--/ <quantity>meta.note;phot.mag.isophotal</quantity>
 	[mi_limit] char(5) NOT NULL,
 
 	--/ <summary> Colors within the detection area. These are essentially isophotal colors measured to a 
@@ -77,11 +93,12 @@ CREATE TABLE dbo.PhotoObj
 	--/ confusion with the ground based Johnson and Strömgren systems. Galaxies where one band is a non-detection,  
 	--/ as defined by having signal-to-noise ration S/N&lt;2 within one of the bands, are marked as upper or lower  
 	--/ limits (depending on which band drops out, see column xxx_limit). If both bands are upper limits, no color is given (-99). </summary>
-	--/ <unit> mag </unit>
+	--/ <quantity>phot.color;em.opt.U;em.opt.B</quantity>
 	[U_B] real NOT NULL,
 
 	--/ <summary> Galaxies where one band is a non-detection,  as defined by having signal-to-noise ratio S/N&lt;2 within one of the bands, 
 	--/ are marked as upper, lower or both limits (depending on which band drops out). </summary>
+	--/ <quantity>meta.note;phot.color</quantity>
 	[U_B_limit] char(5) NOT NULL,
 
 	--/ <summary> Colors within the detection area. These are essentially isophotal colors measured to a 
@@ -90,11 +107,12 @@ CREATE TABLE dbo.PhotoObj
 	--/ confusion with the ground based Johnson and Strömgren systems. Galaxies where one band is a non-detection,  
 	--/ as defined by having signal-to-noise ration S/N&lt;2 within one of the bands, are marked as upper or lower  
 	--/ limits (depending on which band drops out, see column xxx_limit). If both bands are upper limits, no color is given (-99).  </summary>
-	--/ <unit> mag </unit>
+	--/ <quantity>phot.color;em.opt.B;em.opt.V</quantity>
 	[B_V] real NOT NULL,
 
 	--/ <summary> Galaxies where one band is a non-detection,  as defined by having signal-to-noise ratio S/N&lt;2 within one of the bands, 
 	--/ are marked as upper, lower or both limits (depending on which band drops out). </summary>
+	--/ <quantity>meta.note;phot.color</quantity>
 	[B_V_limit] char(5) NOT NULL,
 
 	--/ <summary> Colors within the detection area. These are essentially isophotal colors measured to a 
@@ -103,36 +121,42 @@ CREATE TABLE dbo.PhotoObj
 	--/ confusion with the ground based Johnson and Strömgren systems. Galaxies where one band is a non-detection,  
 	--/ as defined by having signal-to-noise ration S/N&lt;2 within one of the bands, are marked as upper or lower  
 	--/ limits (depending on which band drops out, see column xxx_limit). If both bands are upper limits, no color is given (-99).  </summary>
-	--/ <unit> mag </unit>
+	--/ <quantity>phot.color;em.opt.V;em.opt.I</quantity>
 	[V_I] real NOT NULL,
 
 	--/ <summary> Galaxies where one band is a non-detection,  as defined by having signal-to-noise ratio S/N&lt;2 within one of the bands, 
 	--/ are marked as upper, lower or both limits (depending on which band drops out). </summary>
+	--/ <quantity>meta.note;phot.color</quantity>
 	[V_I_limit] char(5) NOT NULL,
 
 	--/ <summary> The signal-to-noise ratio of the detection in the summed F606W+F814W image, based on a semi-empirical noise model. (See 1996AJ....112.1335W) </summary>
+	--/ <quantity>stat.snr</quantity>
 	[SN] real NOT NULL,
 
 	--/ <summary> Area in pixels within the detection isophote. </summary>
+	--/ <quantity>phys.size.area</quantity>
 	--/ <unit> pix </unit>
 	[area] real NOT NULL,
 
 	--/ <summary> Intensity-weighted first-moment radius determined from pixels within the detection isophote. The radii are determined relative 
 	--/ to the x,y centers listed in the catalog. </summary>
+	--/ <quantity>phyas.angSize.radius</quantity>
 	--/ <unit> arcsec </unit>
 	[r1] real NOT NULL,
 
 	--/ <summary> The intensity-weighted axial ratio taken from the second moment of the light distribution </summary>
-	--/ <unit>  </unit>
+	--/ <quantity>phys.size.axisRatio</quantity>
 	[bpa] real NOT NULL,
 
 	--/ <summary> The intensity weighted position angle defined such that an object pointing North-South has Phi = 0, 
 	--/ and the position angle increase as the major axis of the object rotates toward the east. (For further details see 1996AJ....112.1335W .)</summary>
+	--/ <quantity>pos.posAng</quantity>
 	[PA] real NOT NULL,
 
 	--/ <summary> S indicates that the source is a single object (not split into subcomponents). B indicates that the outer 
 	--/ isophote of the source overlaps a chip boundary in one or more banpasses. F indicates that object components originally 
 	--/ detected by FOCAS were manually merged back into their parent. </summary>
+	--/ <quantity>meta.code</quantity>
 	[Flags] char(3) NOT NULL,
 
 	CONSTRAINT [PK_PhotoObj] PRIMARY KEY CLUSTERED

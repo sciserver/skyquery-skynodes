@@ -3,39 +3,50 @@ CREATE TABLE dbo.goodsNorth
 (
 
 	--/ <summary> Cartesian X (J2000)</summary>
+	--/ <quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
 	[cx] [float] NOT NULL,
 
 	--/ <summary> Cartesian Y (J2000)</summary>
+	--/ <quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
 	[cy] [float] NOT NULL,
 
 	--/ <summary> Cartesian Z (J2000)</summary>
+	--/ <quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
 	[cz] [float] NOT NULL,
 
 	--/ <summary> HTM ID (J2000)</summary>
+	--/ <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
 	[htmid] bigint NOT NULL,
 
 	--/ <summary> Sequential id </summary>
+	--/ <quantity>meta.record</quantity>
 	[objID] bigint NOT NULL,
 
 	--/ <summary> Zone ID (J2000)</summary>
+	--/ <quantity>pos.zone; pos.eq; pos.frame=j2000</quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> GOODS IAU coded object identifier </summary>
+	--/ <quantity>meta.id</quantity>
 	[IAU_name] char(25) NOT NULL,
 
 	--/ <summary> Right Ascension </summary>
-	--/ <unit> deg (J2000) </unit>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+	--/ <unit> deg </unit>
 	[ra] float NOT NULL,
 
 	--/ <summary> Declination </summary>
-	--/ <unit> deg (J2000) </unit>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+	--/ <unit> deg </unit>
 	[dec] float NOT NULL,
 
 	--/ <summary> IRAC 3.6 um flux density </summary>
+	--/ <quantity>phot.flux.density;em.IR.Herschel.IRAC36</quantity>
 	--/ <unit> uJy </unit>
 	[f3p6] real NOT NULL,
 
 	--/ <summary> Error on IRAC 3.6 um flux density </summary>
+	--/ <quantity>stat.error;phot.flux.density;em.IR.Herschel.IRAC36</quantity>
 	--/ <unit> uJy </unit>
 	[err3p6] real NOT NULL,
 
@@ -57,13 +68,16 @@ CREATE TABLE dbo.goodsNorth
 	--/ of 2 + 1 = 3. Regions with no data will have flag values 64 + 2 + 1 = 67.
 	--/ Regions with residual muxbleed (flag 16) and also &lt; 50% modal exposure time	--/ 
 	--/ (flag 1) will have flag 16 + 1 = 17. </summary>
+	--/ <quantity>meta.code;em.IR.Herschel.IRAC36</quantity>
 	[flag3p6] int NOT NULL,
 
 	--/ <summary> IRAC 4.5 um flux density </summary>
+	--/ <quantity>phot.flux.density;em.IR.Herschel.IRAC45</quantity>
 	--/ <unit> uJy </unit>
 	[f4p5] real NOT NULL,
 
-	--/ <summary> IRAC 4.5 um flux density </summary>
+	--/ <summary> IRAC 4.5 um flux density error</summary>
+	--/ <quantity>stat.error;phot.flux.density;em.IR.Herschel.IRAC45</quantity>
 	--/ <unit> uJy </unit>
 	[err4p5] real NOT NULL,
 
@@ -73,13 +87,16 @@ CREATE TABLE dbo.goodsNorth
 	--/ of 2 + 1 = 3. Regions with no data will have flag values 64 + 2 + 1 = 67.
 	--/ Regions with residual muxbleed (flag 16) and also &lt; 50% modal exposure time	--/ 
 	--/ (flag 1) will have flag 16 + 1 = 17. </summary>
+	--/ <quantity>meta.code;em.IR.Herschel.IRAC45</quantity>
 	[flag4p5] int NOT NULL,
 
 	--/ <summary> IRAC 5.8 um flux density </summary>
+	--/ <quantity>phot.flux.density;em.IR.Herschel.IRAC58</quantity>
 	--/ <unit> uJy </unit>
 	[f5p8] real NOT NULL,
 
 	--/ <summary> Error on IRAC 5.8 um flux density </summary>
+	--/ <quantity>stat.error;phot.flux.density;em.IR.Herschel.IRAC58</quantity>
 	--/ <unit> uJy </unit>
 	[err5p8] real NOT NULL,
 
@@ -89,13 +106,16 @@ CREATE TABLE dbo.goodsNorth
 	--/ of 2 + 1 = 3. Regions with no data will have flag values 64 + 2 + 1 = 67.
 	--/ Regions with residual muxbleed (flag 16) and also &lt; 50% modal exposure time	--/ 
 	--/ (flag 1) will have flag 16 + 1 = 17. </summary>
+	--/ <quantity>meta.code;em.IR.Herschel.IRAC58</quantity>
 	[flag5p8] int NOT NULL,
 
 	--/ <summary> IRAC 8.0 um flux density </summary>
+	--/ <quantity>phot.flux.density;em.IR.Herschel.IRAC80</quantity>
 	--/ <unit> uJy </unit>
 	[f8p0] real NOT NULL,
 
 	--/ <summary> Error on IRAC 8.0 um flux density </summary>
+	--/ <quantity>stat.error;phot.flux.density;em.IR.Herschel.IRAC80</quantity>
 	--/ <unit> uJy </unit>
 	[err8p0] real NOT NULL,
 
@@ -105,9 +125,11 @@ CREATE TABLE dbo.goodsNorth
 	--/ of 2 + 1 = 3. Regions with no data will have flag values 64 + 2 + 1 = 67.
 	--/ Regions with residual muxbleed (flag 16) and also &lt; 50% modal exposure time	--/ 
 	--/ (flag 1) will have flag 16 + 1 = 17. </summary>
+	--/ <quantity>meta.code;em.IR.Herschel.IRAC80</quantity>
 	[flag8p0] int NOT NULL,
 
 	--/ <summary> MIPS 24 um flux density </summary>
+	--/ <quantity>phot.flux.density;em.IR.Herschel.MIPS24</quantity>
 	--/ <unit> uJy </unit>
 	[f24] real NOT NULL,
 
@@ -120,6 +142,7 @@ CREATE TABLE dbo.goodsNorth
 	--/ made on regions with relatively homogeneous exposure time; therefore,
 	--/ uncertainties derived from these simulations are not suitable and hence not
 	--/ provided for sources situated outside these homogeneous exposure time regions. </summary>
+	--/ <quantity>stat.error;phot.flux.density;em.IR.Herschel.MIPS24</quantity>
 	--/ <unit> uJy </unit>
 	[err24_ima] real NOT NULL,
 
@@ -132,13 +155,16 @@ CREATE TABLE dbo.goodsNorth
 	--/ made on regions with relatively homogeneous exposure time; therefore,
 	--/ uncertainties derived from these simulations are not suitable and hence not
 	--/ provided for sources situated outside these homogeneous exposure time regions. </summary>
+	--/ <quantity>stat.error;phot.flux.density;em.IR.Herschel.MIPS24</quantity>
 	--/ <unit> uJy </unit>
 	[err24_sim] real NOT NULL,
 
 	--/ <summary> MIPS 24 um coverage map value (equal to sec/pixel) </summary>
+	--/ <quantity>obs.param;em.IR.Herschel.MIPS24</quantity>
 	[cov24] real NOT NULL,
 
 	--/ <summary>  MIPS 70 um flux density </summary>
+	--/ <quantity>phot.flux.density;em.IR.Herschel.MIPS70</quantity>
 	--/ <unit> uJy </unit>
 	[f70] real NOT NULL,
 
@@ -151,6 +177,7 @@ CREATE TABLE dbo.goodsNorth
 	--/ made on regions with relatively homogeneous exposure time; therefore,
 	--/ uncertainties derived from these simulations are not suitable and hence not
 	--/ provided for sources situated outside these homogeneous exposure time regions. </summary>
+	--/ <quantity>stat.error;phot.flux.density;em.IR.Herschel.MIPS70</quantity>
 	--/ <unit> uJy </unit>
 	[err70_ima] real NOT NULL,
 
@@ -163,13 +190,16 @@ CREATE TABLE dbo.goodsNorth
 	--/ made on regions with relatively homogeneous exposure time; therefore,
 	--/ uncertainties derived from these simulations are not suitable and hence not
 	--/ provided for sources situated outside these homogeneous exposure time regions. </summary>
+	--/ <quantity>stat.error;phot.flux.density;em.IR.Herschel.MIPS70</quantity>
 	--/ <unit> uJy </unit>
 	[err70_sim] real NOT NULL,
 
 	--/ <summary> MIPS 70 um coverage map value (equal to sec/pixel) </summary>
+	--/ <quantity>obs.param;em.IR.Herschel.MIPS70</quantity>
 	[cov70] real NOT NULL,
 
 	--/ <summary> PACS 100 um flux density </summary>
+	--/ <quantity>phot.flux.density;em.IR.Herschel.PACS100</quantity>
 	--/ <unit> uJy </unit>
 	[f100] real NOT NULL,
 
@@ -182,6 +212,7 @@ CREATE TABLE dbo.goodsNorth
 	--/ made on regions with relatively homogeneous exposure time; therefore,
 	--/ uncertainties derived from these simulations are not suitable and hence not
 	--/ provided for sources situated outside these homogeneous exposure time regions. </summary>
+	--/ <quantity>stat.error;phot.flux.density;em.IR.Herschel.PACS100</quantity>
 	--/ <unit> uJy </unit>
 	[err100_ima] real NOT NULL,
 
@@ -194,17 +225,21 @@ CREATE TABLE dbo.goodsNorth
 	--/ made on regions with relatively homogeneous exposure time; therefore,
 	--/ uncertainties derived from these simulations are not suitable and hence not
 	--/ provided for sources situated outside these homogeneous exposure time regions. </summary>
+	--/ <quantity>stat.error;phot.flux.density;em.IR.Herschel.PACS100</quantity>
 	--/ <unit> uJy </unit>
 	[err100_sim] real NOT NULL,
 
 	--/ <summary> PACS 100 um coverage map value (proportional to sec/pixel) </summary>
+	--/ <quantity>obs.param;em.IR.Herschel.PACS100</quantity>
 	[cov100] real NOT NULL,
 
 	--/ <summary> PACS 160 um flux density </summary>
+	--/ <quantity>phot.flux.density;em.IR.Herschel.PACS160</quantity>
 	--/ <unit> uJy </unit>
 	[f160] real NOT NULL,
 
 	--/ <summary> PACS 160 um flux error on residual map </summary>
+	--/ <quantity>stat.error;phot.flux.density;em.IR.Herschel.PACS160</quantity>
 	--/ <unit> uJy </unit>
 	[err160_ima] real NOT NULL,
 
@@ -217,21 +252,16 @@ CREATE TABLE dbo.goodsNorth
 	--/ made on regions with relatively homogeneous exposure time; therefore,
 	--/ uncertainties derived from these simulations are not suitable and hence not
 	--/ provided for sources situated outside these homogeneous exposure time regions. </summary>
+	--/ <quantity>stat.error;phot.flux.density;em.IR.Herschel.PACS160</quantity>
 	--/ <unit> uJy </unit>
 	[err160_sim] real NOT NULL,
 
-	--/ <summary> PACS 160 um coverage map value (proportional to sec/pixel).
-	--/ Please, read the GOODS Herschel release document for a complete description of
-	--/ the two noise estimations: errNNN_ima based on the residual map and errNNN_sim
-	--/ based on Monte-Carlo simulations. In particular, to be conservative, users
-	--/ should always use the highest uncertainty but not the quadratic combination of
-	--/ both since they are not independent. Also, the Monte-Carlo simulations were
-	--/ made on regions with relatively homogeneous exposure time; therefore,
-	--/ uncertainties derived from these simulations are not suitable and hence not
-	--/ provided for sources situated outside these homogeneous exposure time regions. </summary>
+	--/ <summary> PACS 160 um coverage map value (proportional to sec/pixel). </summary>
+	--/ <quantity>obs.params;</quantity>
 	[cov160] real NOT NULL,
 
 	--/ <summary> SPIRE 250 um flux density </summary>
+	--/ <quantity>phot.flux.density;em.IR.Herschel.SPIRE250</quantity>
 	--/ <unit> uJy </unit>
 	[f250] real NOT NULL,
 
@@ -244,6 +274,7 @@ CREATE TABLE dbo.goodsNorth
 	--/ made on regions with relatively homogeneous exposure time; therefore,
 	--/ uncertainties derived from these simulations are not suitable and hence not
 	--/ provided for sources situated outside these homogeneous exposure time regions. </summary>
+	--/ <quantity>stat.error;phot.flux.density;em.IR.Herschel.SPIRE250</quantity>
 	--/ <unit> uJy  </unit>
 	[err250_ima] real NOT NULL,
 
@@ -256,13 +287,16 @@ CREATE TABLE dbo.goodsNorth
 	--/ made on regions with relatively homogeneous exposure time; therefore,
 	--/ uncertainties derived from these simulations are not suitable and hence not
 	--/ provided for sources situated outside these homogeneous exposure time regions. </summary>
+	--/ <quantity>stat.error;phot.flux.density;em.IR.Herschel.SPIRE250</quantity>
 	--/ <unit> uJy  </unit>
 	[err250_sim] real NOT NULL,
 
 	--/ <summary> SPIRE 250 um coverage map value (proportional to sec/pixel) </summary>
+	--/ <quantity>obs.param;em.IR.Herschel.SPIRE250</quantity>
 	[cov250] real NOT NULL,
 
 	--/ <summary> SPIRE 350 um flux density </summary>
+	--/ <quantity>phot.flux.density;em.IR.Herschel.SPIRE350</quantity>
 	--/ <unit> uJy </unit>
 	[f350] real NOT NULL,
 
@@ -275,6 +309,7 @@ CREATE TABLE dbo.goodsNorth
 	--/ made on regions with relatively homogeneous exposure time; therefore,
 	--/ uncertainties derived from these simulations are not suitable and hence not
 	--/ provided for sources situated outside these homogeneous exposure time regions. </summary>
+	--/ <quantity>stat.error;phot.flux.density;em.IR.Herschel.SPIRE350</quantity>
 	--/ <unit> uJy </unit>
 	[err350_ima] real NOT NULL,
 
@@ -287,13 +322,16 @@ CREATE TABLE dbo.goodsNorth
 	--/ made on regions with relatively homogeneous exposure time; therefore,
 	--/ uncertainties derived from these simulations are not suitable and hence not
 	--/ provided for sources situated outside these homogeneous exposure time regions. </summary>
+	--/ <quantity>stat.error;phot.flux.density;em.IR.Herschel.SPIRE350</quantity>
 	--/ <unit> uJy </unit>
 	[err350_sim] real NOT NULL,
 
 	--/ <summary> SPIRE 350 um coverage map value (proportional to sec/pixel) </summary>
+	--/ <quantity>obs.param;em.IR.Herschel.SPIRE350</quantity>
 	[cov350] real NOT NULL,
 
 	--/ <summary> SPIRE 500 um flux density </summary>
+	--/ <quantity>phot.flux.density;em.IR.Herschel.SPIRE500</quantity>
 	--/ <unit> uJy </unit>
 	[f500] real NOT NULL,
 
@@ -306,6 +344,7 @@ CREATE TABLE dbo.goodsNorth
 	--/ made on regions with relatively homogeneous exposure time; therefore,
 	--/ uncertainties derived from these simulations are not suitable and hence not
 	--/ provided for sources situated outside these homogeneous exposure time regions. </summary>
+	--/ <quantity>stat.error;phot.flux.density;em.IR.Herschel.SPIRE500</quantity>
 	--/ <unit> uJy </unit>
 	[err500_ima] real NOT NULL,
 
@@ -318,10 +357,12 @@ CREATE TABLE dbo.goodsNorth
 	--/ made on regions with relatively homogeneous exposure time; therefore,
 	--/ uncertainties derived from these simulations are not suitable and hence not
 	--/ provided for sources situated outside these homogeneous exposure time regions. </summary>
+	--/ <quantity>stat.error;phot.flux.density;em.IR.Herschel.SPIRE500</quantity>
 	--/ <unit> uJy </unit>
 	[err500_sim] real NOT NULL,
 
 	--/ <summary> SPIRE 500 um coverage map value (proportional to sec/pixel) </summary>
+	--/ <quantity>obs.param;em.IR.Herschel.SPIRE500</quantity>
 	[cov500] real NOT NULL,
 
 	--/ <summary> Index measuring flux contamination from nearby sources. 
@@ -335,6 +376,7 @@ CREATE TABLE dbo.goodsNorth
 	--/ Where Neib24 (resp. Neib100, Neib160…) is the number of bright neighbours (see
 	--/ the GOODS Herschel release document) at 24 um (resp. 100 um 160 um...). On
 	--/ GOODS-South, it is assumed that Neib250 = Neib350 = Neib500 = 0. </summary>
+	--/ <quantity>meta.code.qual;phot.flux</quantity>
 	[clean_index] int NOT NULL,
 
 	CONSTRAINT [PK.goodsNorth] PRIMARY KEY CLUSTERED
@@ -352,39 +394,50 @@ CREATE TABLE dbo.goodsSouth
 (
 
 	--/ <summary> Cartesian X (J2000)</summary>
+	--/ <quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
 	[cx] [float] NOT NULL,
 
 	--/ <summary> Cartesian Y (J2000)</summary>
+	--/ <quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
 	[cy] [float] NOT NULL,
 
 	--/ <summary> Cartesian Z (J2000)</summary>
+	--/ <quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
 	[cz] [float] NOT NULL,
 
 	--/ <summary> HTM ID (J2000)</summary>
+	--/ <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
 	[htmid] bigint NOT NULL,
 
 	--/ <summary> Sequential id </summary>
+	--/ <quantity>meta.record</quantity>
 	[objID] bigint NOT NULL,
 
 	--/ <summary> Zone ID (J2000)</summary>
+	--/ <quantity>pos.zone; pos.eq; pos.frame=j2000</quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> GOODS IAU coded object identifier </summary>
+	--/ <quantity>meta.id</quantity>
 	[IAU_name] char(25) NOT NULL,
 
 	--/ <summary> Right Ascension </summary>
-	--/ <unit> deg (J2000) </unit>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+	--/ <unit> deg </unit>
 	[ra] float NOT NULL,
 
 	--/ <summary> Declination </summary>
-	--/ <unit> deg (J2000) </unit>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+	--/ <unit> deg </unit>
 	[dec] float NOT NULL,
 
 	--/ <summary> IRAC 3.6 um flux density </summary>
+	--/ <quantity>phot.flux.density;em.IR.Herschel.IRAC36</quantity>
 	--/ <unit> uJy </unit>
 	[f3p6] real NOT NULL,
 
 	--/ <summary> Error on IRAC 3.6 um flux density </summary>
+	--/ <quantity>stat.error;phot.flux.density;em.IR.Herschel.IRAC36</quantity>
 	--/ <unit> uJy </unit>
 	[err3p6] real NOT NULL,
 
@@ -406,13 +459,16 @@ CREATE TABLE dbo.goodsSouth
 	--/ of 2 + 1 = 3. Regions with no data will have flag values 64 + 2 + 1 = 67.
 	--/ Regions with residual muxbleed (flag 16) and also &lt; 50% modal exposure time	--/ 
 	--/ (flag 1) will have flag 16 + 1 = 17. </summary>
+	--/ <quantity>meta.code;em.IR.Herschel.IRAC36</quantity>
 	[flag3p6] int NOT NULL,
 
 	--/ <summary> IRAC 4.5 um flux density </summary>
+	--/ <quantity>phot.flux.density;em.IR.Herschel.IRAC45</quantity>
 	--/ <unit> uJy </unit>
 	[f4p5] real NOT NULL,
 
-	--/ <summary> IRAC 4.5 um flux density </summary>
+	--/ <summary> IRAC 4.5 um flux density error </summary>
+	--/ <quantity>stat.error;phot.flux.density;em.IR.Herschel.IRAC45</quantity>
 	--/ <unit> uJy </unit>
 	[err4p5] real NOT NULL,
 
@@ -422,13 +478,16 @@ CREATE TABLE dbo.goodsSouth
 	--/ of 2 + 1 = 3. Regions with no data will have flag values 64 + 2 + 1 = 67.
 	--/ Regions with residual muxbleed (flag 16) and also &lt; 50% modal exposure time	--/ 
 	--/ (flag 1) will have flag 16 + 1 = 17. </summary>
+	--/ <quantity>meta.code;em.IR.Herschel.IRAC45</quantity>
 	[flag4p5] int NOT NULL,
 
 	--/ <summary> IRAC 5.8 um flux density </summary>
+	--/ <quantity>phot.flux.density;em.IR.Herschel.IRAC58</quantity>
 	--/ <unit> uJy </unit>
 	[f5p8] real NOT NULL,
 
 	--/ <summary> Error on IRAC 5.8 um flux density </summary>
+	--/ <quantity>stat.error;phot.flux.density;em.IR.Herschel.IRAC58</quantity>
 	--/ <unit> uJy </unit>
 	[err5p8] real NOT NULL,
 
@@ -438,13 +497,16 @@ CREATE TABLE dbo.goodsSouth
 	--/ of 2 + 1 = 3. Regions with no data will have flag values 64 + 2 + 1 = 67.
 	--/ Regions with residual muxbleed (flag 16) and also &lt; 50% modal exposure time	--/ 
 	--/ (flag 1) will have flag 16 + 1 = 17. </summary>
+	--/ <quantity>meta.code;em.IR.Herschel.IRAC58</quantity>
 	[flag5p8] int NOT NULL,
 
 	--/ <summary> IRAC 8.0 um flux density </summary>
+	--/ <quantity>phot.flux.density;em.IR.Herschel.IRAC80</quantity>
 	--/ <unit> uJy </unit>
 	[f8p0] real NOT NULL,
 
 	--/ <summary> Error on IRAC 8.0 um flux density </summary>
+	--/ <quantity>stat.error;phot.flux.density;em.IR.Herschel.IRAC80</quantity>
 	--/ <unit> uJy </unit>
 	[err8p0] real NOT NULL,
 
@@ -454,9 +516,11 @@ CREATE TABLE dbo.goodsSouth
 	--/ of 2 + 1 = 3. Regions with no data will have flag values 64 + 2 + 1 = 67.
 	--/ Regions with residual muxbleed (flag 16) and also &lt; 50% modal exposure time	--/ 
 	--/ (flag 1) will have flag 16 + 1 = 17. </summary>
+	--/ <quantity>meta.code;em.IR.Herschel.IRAC80</quantity>
 	[flag8p0] int NOT NULL,
 
 	--/ <summary> MIPS 24 um flux density </summary>
+	--/ <quantity>phot.flux.density;em.IR.Herschel.MIPS24</quantity>
 	--/ <unit> uJy </unit>
 	[f24] real NOT NULL,
 
@@ -469,6 +533,7 @@ CREATE TABLE dbo.goodsSouth
 	--/ made on regions with relatively homogeneous exposure time; therefore,
 	--/ uncertainties derived from these simulations are not suitable and hence not
 	--/ provided for sources situated outside these homogeneous exposure time regions. </summary>
+	--/ <quantity>stat.error;phot.flux.density;em.IR.Herschel.MIPS24</quantity>
 	--/ <unit> uJy </unit>
 	[err24_ima] real NOT NULL,
 
@@ -481,13 +546,16 @@ CREATE TABLE dbo.goodsSouth
 	--/ made on regions with relatively homogeneous exposure time; therefore,
 	--/ uncertainties derived from these simulations are not suitable and hence not
 	--/ provided for sources situated outside these homogeneous exposure time regions. </summary>
+	--/ <quantity>stat.error;phot.flux.density;em.IR.Herschel.MIPS24</quantity>
 	--/ <unit> uJy </unit>
 	[err24_sim] real NOT NULL,
 
 	--/ <summary> MIPS 24 um coverage map value (equal to sec/pixel) </summary>
+	--/ <quantity>obs.param;em.IR.Herschel.MIPS24</quantity>
 	[cov24] real NOT NULL,
 
 	--/ <summary>  MIPS 70 um flux density </summary>
+	--/ <quantity>phot.flux.density;em.IR.Herschel.MIPS70</quantity>
 	--/ <unit> uJy </unit>
 	[f70] real NOT NULL,
 
@@ -500,6 +568,7 @@ CREATE TABLE dbo.goodsSouth
 	--/ made on regions with relatively homogeneous exposure time; therefore,
 	--/ uncertainties derived from these simulations are not suitable and hence not
 	--/ provided for sources situated outside these homogeneous exposure time regions. </summary>
+	--/ <quantity>stat.error;phot.flux.density;em.IR.Herschel.MIPS70</quantity>
 	--/ <unit> uJy </unit>
 	[err70_ima] real NOT NULL,
 
@@ -512,13 +581,16 @@ CREATE TABLE dbo.goodsSouth
 	--/ made on regions with relatively homogeneous exposure time; therefore,
 	--/ uncertainties derived from these simulations are not suitable and hence not
 	--/ provided for sources situated outside these homogeneous exposure time regions. </summary>
+	--/ <quantity>stat.error;phot.flux.density;em.IR.Herschel.MIPS70</quantity>
 	--/ <unit> uJy </unit>
 	[err70_sim] real NOT NULL,
 
 	--/ <summary> MIPS 70 um coverage map value (equal to sec/pixel) </summary>
+	--/ <quantity>obs.param;em.IR.Herschel.MIPS70</quantity>
 	[cov70] real NOT NULL,
 
 	--/ <summary> PACS 100 um flux density </summary>
+	--/ <quantity>phot.flux.density;em.IR.Herschel.PACS100</quantity>
 	--/ <unit> uJy </unit>
 	[f100] real NOT NULL,
 
@@ -531,6 +603,7 @@ CREATE TABLE dbo.goodsSouth
 	--/ made on regions with relatively homogeneous exposure time; therefore,
 	--/ uncertainties derived from these simulations are not suitable and hence not
 	--/ provided for sources situated outside these homogeneous exposure time regions. </summary>
+	--/ <quantity>stat.error;phot.flux.density;em.IR.Herschel.PACS100</quantity>
 	--/ <unit> uJy </unit>
 	[err100_ima] real NOT NULL,
 
@@ -543,17 +616,29 @@ CREATE TABLE dbo.goodsSouth
 	--/ made on regions with relatively homogeneous exposure time; therefore,
 	--/ uncertainties derived from these simulations are not suitable and hence not
 	--/ provided for sources situated outside these homogeneous exposure time regions. </summary>
+	--/ <quantity>stat.error;phot.flux.density;em.IR.Herschel.PACS100</quantity>
 	--/ <unit> uJy </unit>
 	[err100_sim] real NOT NULL,
 
 	--/ <summary> PACS 100 um coverage map value (proportional to sec/pixel) </summary>
+	--/ <quantity>obs.param;phot.flux.density;em.IR.Herschel.PACS100</quantity>
 	[cov100] real NOT NULL,
 
 	--/ <summary> PACS 160 um flux density </summary>
+	--/ <quantity>phot.flux.density;em.IR.Herschel.PACS160</quantity>
 	--/ <unit> uJy </unit>
 	[f160] real NOT NULL,
 
-	--/ <summary> PACS 160 um flux error on residual map </summary>
+	--/ <summary> PACS 160 um flux error on residual map
+	--/ Please, read the GOODS Herschel release document for a complete description of
+	--/ the two noise estimations: errNNN_ima based on the residual map and errNNN_sim
+	--/ based on Monte-Carlo simulations. In particular, to be conservative, users
+	--/ should always use the highest uncertainty but not the quadratic combination of
+	--/ both since they are not independent. Also, the Monte-Carlo simulations were
+	--/ made on regions with relatively homogeneous exposure time; therefore,
+	--/ uncertainties derived from these simulations are not suitable and hence not
+	--/ provided for sources situated outside these homogeneous exposure time regions. </summary>
+	--/ <quantity>stat.error;phot.flux.density;em.IR.Herschel.PACS160</quantity>
 	--/ <unit> uJy </unit>
 	[err160_ima] real NOT NULL,
 
@@ -566,18 +651,12 @@ CREATE TABLE dbo.goodsSouth
 	--/ made on regions with relatively homogeneous exposure time; therefore,
 	--/ uncertainties derived from these simulations are not suitable and hence not
 	--/ provided for sources situated outside these homogeneous exposure time regions. </summary>
+	--/ <quantity>stat.error;phot.flux.density;em.IR.Herschel.PACS160</quantity>
 	--/ <unit> uJy </unit>
 	[err160_sim] real NOT NULL,
 
-	--/ <summary> PACS 160 um coverage map value (proportional to sec/pixel).
-	--/ Please, read the GOODS Herschel release document for a complete description of
-	--/ the two noise estimations: errNNN_ima based on the residual map and errNNN_sim
-	--/ based on Monte-Carlo simulations. In particular, to be conservative, users
-	--/ should always use the highest uncertainty but not the quadratic combination of
-	--/ both since they are not independent. Also, the Monte-Carlo simulations were
-	--/ made on regions with relatively homogeneous exposure time; therefore,
-	--/ uncertainties derived from these simulations are not suitable and hence not
-	--/ provided for sources situated outside these homogeneous exposure time regions. </summary>
+	--/ <summary> PACS 160 um coverage map value (proportional to sec/pixel). </summary>
+	--/ <quantity>obs.param;phot.flux.density;em.IR.Herschel.PACS160</quantity>
 	[cov160] real NOT NULL,
 
 	--/ <summary> Index measuring flux contamination from nearby sources. 
@@ -591,6 +670,7 @@ CREATE TABLE dbo.goodsSouth
 	--/ Where Neib24 (resp. Neib100, Neib160…) is the number of bright neighbours (see
 	--/ the GOODS Herschel release document) at 24 um (resp. 100 um 160 um...). On
 	--/ GOODS-South, it is assumed that Neib250 = Neib350 = Neib500 = 0. </summary>
+	--/ <quantity>meta.code.qual;phot.flux</quantity>
 	[clean_index] int NOT NULL,
 
 	CONSTRAINT [PK.goodsSouth] PRIMARY KEY CLUSTERED
