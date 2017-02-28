@@ -2,78 +2,98 @@
   <table name="[dbo].[KIC]">
     <column name="[cx]">
       <summary> Cartesian X (J2000)</summary>
+<quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[cy]">
       <summary> Cartesian Y (J2000)</summary>
+<quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[cz]">
       <summary> Cartesian Z (J2000)</summary>
+<quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
+<quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[zoneid]">
       <summary> Zone ID </summary>
+<quantity>pos.zone; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[seqID]">
       <summary> sequential number </summary>
+<quantity>meta.record</quantity>
 </column>
     <column name="[RA]">
       <summary> Right Ascension </summary>
-<unit> deg (J2000) </unit>
+<quantity>pos.eq.ra;pos.frame=j2000</quantity>
+<unit> deg </unit>
 </column>
     <column name="[DEC]">
       <summary> Declination </summary>
-<unit> deg (J2000) </unit>
+<quantity>pos.eq.dec;pos.frame=j2000</quantity>
+<unit> deg </unit>
 </column>
     <column name="[pmra]">
       <summary> RA proper motion (KIC targets only) </summary>
-<unit> arcsec/yr </unit>
+<quantity>pos.pm;ps.eq.ra</quantity>
+<unit> arcsec yr-1 </unit>
 </column>
     <column name="[pmdec]">
       <summary> Dec proper motion (KIC targets only) </summary>
-<unit> arcsec/yr </unit>
+<quantity>pos.pm;ps.eq.dec</quantity>
+<unit> arcsec yr-1 </unit>
 </column>
     <column name="[umag]">
       <summary> u-band Sloan magnitude from the Kepler Input Catalog accurate to 0.04 magnitude </summary>
+<quantity>phot.mag;em.opt.SDSS.u</quantity>
 <unit> mag </unit>
 </column>
     <column name="[gmag]">
       <summary> g-band Sloan magnitude from the Kepler Input Catalog </summary>
+<quantity>phot.mag;em.opt.SDSS.g</quantity>
 <unit> mag </unit>
 </column>
     <column name="[rmag]">
       <summary> r-band Sloan magnitude from the Kepler Input Catalog </summary>
+<quantity>phot.mag;em.opt.SDSS.r</quantity>
 <unit> mag </unit>
 </column>
     <column name="[imag]">
       <summary> i-band Sloan magnitude from the Kepler Input Catalog </summary>
+<quantity>phot.mag;em.opt.SDSS.i</quantity>
 <unit> mag </unit>
 </column>
     <column name="[zmag]">
       <summary> z-band Sloan magnitude accurate to 0.03 magnitude from the Kepler Input Catalog </summary>
+<quantity>phot.mag;em.opt.SDSS.z</quantity>
 <unit> mag </unit>
 </column>
     <column name="[gredmag]">
       <summary> GRed-band Sloan magnitude from the Kepler Input Catalog </summary>
+<quantity>phot.mag</quantity>
 <unit> mag </unit>
 </column>
     <column name="[d51mag]">
       <summary> D51 magnitude from the Kepler Input Catalog </summary>
+<quantity>phot.mag</quantity>
 <unit> mag </unit>
 </column>
     <column name="[jmag]">
       <summary> 2MASS J-band magnitude. . In some cases KIC values were replaced with values based on cross-correlations performed by
 (See 2mass_conflict_flag). </summary>
+<quantity>phot.mag;phot.IR.2MASS.J</quantity>
 <unit> mag </unit>
 </column>
     <column name="[hmag]">
       <summary> 2MASS H-band magnitude. In some cases KIC values were replaced with values based on cross-correlations performed by
 </summary>
+<quantity>phot.mag;phot.IR.2MASS.H</quantity>
 <unit> mag </unit>
 </column>
     <column name="[kmag]">
       <summary> 2MASS K-band magnitude. In some cases KIC values were replaced with values based on cross-correlations performed by </summary>
+<quantity>phot.mag;phot.IR.2MASS.K</quantity>
 <unit> mag </unit>
 </column>
     <column name="[kepmag]">
@@ -83,106 +103,134 @@ the Sloan-like g and r magnitudes according to the following prescription: if on
 less than or equal to 0.8 kepmag = 0.8r + 0.2g, while for color greater than 0.8 kepmag = 0.9r + 0.1g. Empirical
 for presumed constant stars suggest that the r.m.s. for this quantity is slightly larger 0.02 mags. except for very
 and bright stars. </summary>
+<quantity>phot.mag</quantity>
 <unit> mag </unit>
 </column>
     <column name="[kepler_id]">
       <summary> Unique Kepler ID. Also used in Kepler Target Catalog and in naming data files. Note there are 4,374,730 entries in the
 joined table </summary>
+<quantity>meta.id;meta.main</quantity>
 </column>
     <column name="[tmid]">
-      <summary> A unique identification number which was defined during final processing to identify a 2Mass catalog entry. The
-identification number is referred to as pts_key/cntr. See the User's Guide to the 2Mass All Sky Data Release, at
-for information on the pts_key/cntr field. </summary>
+      <summary> Unique integer designation for 2MASS catalog provided by KIC </summary>
+<quantity>meta.id.cross</quantity>
 </column>
     <column name="[scpid]">
       <summary> SCP processing ID (KIC targets only) </summary>
+<quantity>meta.id</quantity>
 </column>
     <column name="[altid]">
       <summary> ID from alternate source catalog (see Alt ID Source entry) (KIC targets only) </summary>
+<quantity>meta.id</quantity>
 </column>
     <column name="[altsource]">
       <summary> Source catalog that was used for deriving stellar parameters (KIC targets only) </summary>
+<quantity>meta.table</quantity>
 </column>
     <column name="[galaxy]">
       <summary> A flag where 0 = star and 1 = galaxy. The original USNO-B catalog codes these with 11 values, depending on the degree that
 image profile was consistent with a point source. The USNO-B codes were star = 6-11 and galaxy = 0-5. (KIC targets only) </summary>
+<quantity>meta.code;src.class</quantity>
 </column>
     <column name="[blend]">
       <summary> Isolated/blended indicator (never used) </summary>
+<quantity>meta.code</quantity>
 </column>
     <column name="[variable]">
       <summary> Constant/variable indicator based on data from the General Catalog of Variable Stars. (Additional catalogs will be
 in future versions.) (KIC targets only)	 </summary>
+<quantity>meta.code;src.var</quantity>
 </column>
     <column name="[teff]">
       <summary> Derived Effective Temperature accurate to 200 K (KIC targets only) </summary>
+<quantity>phys.temperature</quantity>
 <unit> K </unit>
 </column>
     <column name="[logg]">
       <summary> Derived Log10 surface gravity accurate to 0.5 dex (KIC targets only) </summary>
+<quantity>phys.gravity</quantity>
 </column>
     <column name="[feh]">
       <summary> Derived Log10 Fe/H metallicity accurate to 0.5 dex. (KIC targets only) </summary>
+<quantity>phys.abund.Fe</quantity>
 </column>
     <column name="[ebminusv]">
       <summary> Derived Excess B-V reddening accurate to 0.1 magnitude (KIC targets only) </summary>
+<quantity>phot.color.excess</quantity>
 <unit> mag </unit>
 </column>
     <column name="[av]">
       <summary> Derived A-V extinction (KIC targets only) </summary>
+<quantity>phys.absorption</quantity>
 </column>
     <column name="[radius]">
       <summary> Estimated Stellar Radius (solar = 1.0) (KIC targets only) </summary>
+<quantity>phys.size.radius;src</quantity>
 </column>
     <column name="[cq]">
       <summary> Source of Kepler-band magnitude. (KIC targets only) </summary>
+<quantity>meta.table</quantity>
 </column>
     <column name="[pq]">
       <summary> Photometry quality indicator. (KIC targets only) </summary>
+<quantity>meta.code.qual;phot</quantity>
 </column>
     <column name="[aq]">
       <summary> Astrophysics quality indicator. Placeholder for SCP values not yet determined. (KIC targets only) </summary>
+<quantity>meta.code.qual;phys</quantity>
 </column>
     <column name="[catkey]">
       <summary> Unique integer key to CATKEY database table (not currently available). (KIC targets only) </summary>
+<quantity>meta.id;meta.table</quantity>
 </column>
     <column name="[scpkey]">
       <summary> Unique integer key to SCPKEY database table (not currently available). (KIC targets only) </summary>
+<quantity>meta.id;meta.table</quantity>
 </column>
     <column name="[parallax]">
       <summary> Parallax in arcsec (KIC targets only) </summary>
+<quantity>pos.parallax</quantity>
 <unit> arcsec </unit>
 </column>
     <column name="[glon]">
       <summary> Galactic Longitude (KIC targets only) </summary>
+<quantity>pos.galactic.lon</quantity>
 <unit> deg </unit>
 </column>
     <column name="[glat]">
       <summary> Galactic Latitude (KIC targets only) </summary>
+<quantity>pos.galactic.lat</quantity>
 <unit> deg </unit>
 </column>
     <column name="[pmtotal]">
       <summary> Total proper motion accurate to 20 mas/yr (KIC targets only) </summary>
-<unit> mas/yr </unit>
+<quantity>pos.pm</quantity>
+<unit> mas yr-1 </unit>
 </column>
     <column name="[grcolor]">
       <summary> gmag - rmag color </summary>
+<quantity>phot.color;em.opt.SDSS.g;em.opt.SDSS.r</quantity>
 <unit> mag </unit>
 </column>
     <column name="[jkcolor]">
       <summary> gmag - imag color </summary>
+<quantity>phot.color;em.opt.SDSS.g;em.opt.SDSS.i</quantity>
 <unit> mag </unit>
 </column>
     <column name="[gkcolor]">
       <summary> gmag - Kmag color </summary>
+<quantity>phot.color;em.opt.SDSS.g;em.IR.K</quantity>
 <unit> mag </unit>
 </column>
     <column name="[fov_flag]">
-      <summary>  </summary>
+      <summary> Field of view flag </summary>
+<quantity>meta.code;isntr.fov</quantity>
 </column>
     <column name="[tm_designation]">
-      <summary> 2MASS K-band magnitude. In some cases KIC values were replaced with values based on cross-correlations performed by
-(See 2mass_conflict_flag). </summary>
+      <summary> A unique identification number which was defined during final processing to identify a 2Mass catalog entry. The
+identification number is referred to as pts_key/cntr. See the User's Guide to the 2Mass All Sky Data Release, at
+for information on the pts_key/cntr field. </summary>
+<quantity>meta.id.cross</quantity>
 </column>
   </table>
 </metadata>

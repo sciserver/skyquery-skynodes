@@ -3,408 +3,623 @@
     <summary> The main Photo table for the NOAO Deep Field catalog containing the individual band detections </summary>
 <remarks> The main Photo table for the NOAO Deep Field catalog containing detections in   the individual bands. The merged catalog  will be located in the PhotoObjAll table </remarks>
 <column name="[OBJID]"><summary>unique object id, hashed from BAND, FIELD and NUMBER</summary>
+<quantity>meta.id;meta.main</quantity>
 </column><column name="[BAND]"><summary>Designates filter</summary>
+<quantity>instr.filter</quantity>
 </column><column name="[FIELD]"><summary>Field identifier</summary>
+<quantity>meta.id;obs.field</quantity>
 </column><column name="[X_IMAGE]"><summary>Object position along x</summary>
-<unit>pixel</unit>
+<quantity>pos.cartesian.x;instr.det</quantity>
+<unit>pix</unit>
 </column><column name="[Y_IMAGE]"><summary>Object position along y</summary>
-<unit>pixel</unit>
+<quantity>pos.cartesian.y;instr.det</quantity>
+<unit>pix</unit>
 </column><column name="[XPEAK_IMAGE]"><summary>x-coordinate of the brightest pixel</summary>
-<unit>pixel</unit>
+<quantity>pos.cartesian.x;instr.det</quantity>
+<unit>pix</unit>
 </column><column name="[YPEAK_IMAGE]"><summary>y-coordinate of the brightest pixel</summary>
+<quantity>pos.cartesian.y;instr.det</quantity>
 <unit>pixel</unit>
 </column><column name="[NUMBER]"><summary>Running object number</summary>
+<quantity>meta.id</quantity>
 </column><column name="[FLUX_ISO]"><summary>Isophotal flux</summary>
+<quantity>phot.flux.isophotal</quantity>
 <unit>count</unit>
 </column><column name="[FLUXERR_ISO]"><summary>RMS error for isophotal flux</summary>
+<quantity>stat.error;phot.flux.isophotal</quantity>
 <unit>count</unit>
 </column><column name="[MAG_ISO]"><summary>Isophotal magnitude</summary>
+<quantity>phot.mag.isophotal</quantity>
 <unit>mag</unit>
 </column><column name="[MAGERR_ISO]"><summary>RMS error for isophotal magnitude</summary>
+<quantity>stat.error;phot.mag.isophotal</quantity>
 <unit>mag</unit>
 </column><column name="[MAG_ISOCOR]"><summary>Corrected isophotal magnitude</summary>
+<quantity>phot.mag.isophotal</quantity>
 <unit>mag</unit>
 </column><column name="[MAGERR_ISOCOR]"><summary>RMS error for corrected isophotal magnitude</summary>
+<quantity>stat.error;phot.mag.isophotal</quantity>
 <unit>mag</unit>
 </column><column name="[FLUX_APER_01]"><summary>Flux vector within fixed circular aperture(s)</summary>
+<quantity>phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUX_APER_02]"><summary>Flux vector within fixed circular aperture(s)</summary>
+<quantity>phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUX_APER_03]"><summary>Flux vector within fixed circular aperture(s)</summary>
+<quantity>phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUX_APER_04]"><summary>Flux vector within fixed circular aperture(s)</summary>
+<quantity>phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUX_APER_05]"><summary>Flux vector within fixed circular aperture(s)</summary>
+<quantity>phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUX_APER_06]"><summary>Flux vector within fixed circular aperture(s)</summary>
+<quantity>phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUX_APER_07]"><summary>Flux vector within fixed circular aperture(s)</summary>
+<quantity>phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUX_APER_08]"><summary>Flux vector within fixed circular aperture(s)</summary>
+<quantity>phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUX_APER_09]"><summary>Flux vector within fixed circular aperture(s)</summary>
+<quantity>phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUX_APER_10]"><summary>Flux vector within fixed circular aperture(s)</summary>
+<quantity>phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUX_APER_15]"><summary>Flux vector within fixed circular aperture(s)</summary>
+<quantity>phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUX_APER_20]"><summary>Flux vector within fixed circular aperture(s)</summary>
+<quantity>phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUXERR_APER_01]"><summary>RMS error vector for aperture flux(es)</summary>
+<quantity>stat.error;phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUXERR_APER_02]"><summary>RMS error vector for aperture flux(es)</summary>
+<quantity>stat.error;phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUXERR_APER_03]"><summary>RMS error vector for aperture flux(es)</summary>
+<quantity>stat.error;phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUXERR_APER_04]"><summary>RMS error vector for aperture flux(es)</summary>
+<quantity>stat.error;phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUXERR_APER_05]"><summary>RMS error vector for aperture flux(es)</summary>
+<quantity>stat.error;phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUXERR_APER_06]"><summary>RMS error vector for aperture flux(es)</summary>
+<quantity>stat.error;phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUXERR_APER_07]"><summary>RMS error vector for aperture flux(es)</summary>
+<quantity>stat.error;phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUXERR_APER_08]"><summary>RMS error vector for aperture flux(es)</summary>
+<quantity>stat.error;phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUXERR_APER_09]"><summary>RMS error vector for aperture flux(es)</summary>
+<quantity>stat.error;phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUXERR_APER_10]"><summary>RMS error vector for aperture flux(es)</summary>
+<quantity>stat.error;phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUXERR_APER_15]"><summary>RMS error vector for aperture flux(es)</summary>
+<quantity>stat.error;phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUXERR_APER_20]"><summary>RMS error vector for aperture flux(es)</summary>
+<quantity>stat.error;phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[MAG_APER_01]"><summary>Fixed aperture magnitude vector</summary>
+<quantity>phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAG_APER_02]"><summary>Fixed aperture magnitude vector</summary>
+<quantity>phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAG_APER_03]"><summary>Fixed aperture magnitude vector</summary>
+<quantity>phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAG_APER_04]"><summary>Fixed aperture magnitude vector</summary>
+<quantity>phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAG_APER_05]"><summary>Fixed aperture magnitude vector</summary>
+<quantity>phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAG_APER_06]"><summary>Fixed aperture magnitude vector</summary>
+<quantity>phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAG_APER_07]"><summary>Fixed aperture magnitude vector</summary>
+<quantity>phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAG_APER_08]"><summary>Fixed aperture magnitude vector</summary>
+<quantity>phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAG_APER_09]"><summary>Fixed aperture magnitude vector</summary>
+<quantity>phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAG_APER_10]"><summary>Fixed aperture magnitude vector</summary>
+<quantity>phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAG_APER_15]"><summary>Fixed aperture magnitude vector</summary>
+<quantity>phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAG_APER_20]"><summary>Fixed aperture magnitude vector</summary>
+<quantity>phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAGERR_APER_01]"><summary>RMS error vector for fixed aperture mag.</summary>
+<quantity>stat.error;phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAGERR_APER_02]"><summary>RMS error vector for fixed aperture mag.</summary>
+<quantity>stat.error;phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAGERR_APER_03]"><summary>RMS error vector for fixed aperture mag.</summary>
+<quantity>stat.error;phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAGERR_APER_04]"><summary>RMS error vector for fixed aperture mag.</summary>
+<quantity>stat.error;phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAGERR_APER_05]"><summary>RMS error vector for fixed aperture mag.</summary>
+<quantity>stat.error;phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAGERR_APER_06]"><summary>RMS error vector for fixed aperture mag.</summary>
+<quantity>stat.error;phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAGERR_APER_07]"><summary>RMS error vector for fixed aperture mag.</summary>
+<quantity>stat.error;phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAGERR_APER_08]"><summary>RMS error vector for fixed aperture mag.</summary>
+<quantity>stat.error;phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAGERR_APER_09]"><summary>RMS error vector for fixed aperture mag.</summary>
+<quantity>stat.error;phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAGERR_APER_10]"><summary>RMS error vector for fixed aperture mag.</summary>
+<quantity>stat.error;phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAGERR_APER_15]"><summary>RMS error vector for fixed aperture mag.</summary>
+<quantity>stat.error;phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAGERR_APER_20]"><summary>RMS error vector for fixed aperture mag.</summary>
+<quantity>stat.error;phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAG_AUTO]"><summary>Kron-like elliptical aperture magnitude</summary>
+<quantity>phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAGERR_AUTO]"><summary>RMS error for AUTO magnitude</summary>
+<quantity>stat.error;phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[KRON_RADIUS]"><summary>Kron apertures in units of A or B</summary>
+<quantity>phys.angSize</quantity>
 </column><column name="[BACKGROUND]"><summary>Background at centroid position</summary>
+<quantity>instr.background</quantity>
 <unit>count</unit>
 </column><column name="[THRESHOLD]"><summary>Detection threshold above background</summary>
+<quantity>instr.sensitivity</quantity>
 <unit>count</unit>
 </column><column name="[FLUX_MAX]"><summary>Peak flux above background</summary>
+<quantity>phot.flux;stat.max</quantity>
 <unit>count</unit>
 </column><column name="[ISOAREA_IMAGE]"><summary>Isophotal area above Analysis threshold</summary>
-<unit>pixel**2</unit>
+<quantity>phys.angSize.area</quantity>
+<unit>pixel+2</unit>
 </column><column name="[RA]"><summary>Right ascension of barycenter (J2000)</summary>
+<quantity>pos.eq.ra;pos.frame=j2000</quantity>
 <unit>deg</unit>
 </column><column name="[DEC]"><summary>Declination of barycenter (J2000)</summary>
+<quantity>pos.eq.dec;pos.frame=j2000</quantity>
 <unit>deg</unit>
 </column><column name="[cx]"><summary>Cartesian coordinate x</summary>
+<quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
 </column><column name="[cy]"><summary>Cartesian coordinate y</summary>
+<quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
 </column><column name="[cz]"><summary>Cartesian coordinate z</summary>
+<quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
 </column><column name="[htmid]"><summary>HTM ID</summary>
+<quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
 </column><column name="[zoneid]"><summary>Zone ID</summary>
+<quantity>pos.zone</quantity>
 </column><column name="[ALPHAPEAK_J2000]"><summary>Right ascension of brightest pix (J2000)</summary>
+<quantity>pos.eq.ra;pos.frame=j2000</quantity>
 <unit>deg</unit>
 </column><column name="[DELTAPEAK_J2000]"><summary>Declination of brightest pix (J2000)</summary>
+<quantity>pos.eq.dec;pos.frame=j2000</quantity>
 <unit>deg</unit>
 </column><column name="[X2_IMAGE]"><summary>Variance along x</summary>
-<unit>pixel**2</unit>
+<quantity>stat.variance</quantity>
+<unit>pixel+2</unit>
 </column><column name="[Y2_IMAGE]"><summary>Variance along y</summary>
-<unit>pixel**2</unit>
+<quantity>stat.variance</quantity>
+<unit>pixel+2</unit>
 </column><column name="[XY_IMAGE]"><summary>Covariance between x and y</summary>
-<unit>pixel**2</unit>
+<quantity>stat.covariance</quantity>
+<unit>pixel+2</unit>
 </column><column name="[CXX_IMAGE]"><summary>Cxx object ellipse parameter</summary>
-<unit>pixel**(-2)</unit>
+<quantity>src.ellipticity</quantity>
+<unit>pixel-2</unit>
 </column><column name="[CYY_IMAGE]"><summary>Cyy object ellipse parameter</summary>
-<unit>pixel**(-2)</unit>
+<quantity>src.ellipticity</quantity>
+<unit>pixel-2</unit>
 </column><column name="[CXY_IMAGE]"><summary>Cxy object ellipse parameter</summary>
-<unit>pixel**(-2)</unit>
+<quantity>src.ellipticity</quantity>
+<unit>pixel-2</unit>
 </column><column name="[CXX_WORLD]"><summary>Cxx object ellipse parameter (WORLD units)</summary>
-<unit>deg**(-2)</unit>
+<quantity>src.ellipticity</quantity>
+<unit>deg-2</unit>
 </column><column name="[CYY_WORLD]"><summary>Cyy object ellipse parameter (WORLD units)</summary>
-<unit>deg**(-2)</unit>
+<quantity>src.ellipticity</quantity>
+<unit>deg-2</unit>
 </column><column name="[CXY_WORLD]"><summary>Cxy object ellipse parameter (WORLD units)</summary>
-<unit>deg**(-2)</unit>
+<quantity>src.ellipticity</quantity>
+<unit>deg-2</unit>
 </column><column name="[A_IMAGE]"><summary>Profile RMS along major axis</summary>
+<quantity>stat.error;phys.angSize.smajAxis</quantity>
 <unit>pixel</unit>
 </column><column name="[B_IMAGE]"><summary>Profile RMS along minor axis</summary>
+<quantity>stat.error;phys.angSize.sminAxis</quantity>
 <unit>pixel</unit>
 </column><column name="[A_WORLD]"><summary>Profile RMS along major axis (world units)</summary>
+<quantity>stat.error;phys.angSize.smajAxis</quantity>
 <unit>deg</unit>
 </column><column name="[B_WORLD]"><summary>Profile RMS along minor axis (world units)</summary>
+<quantity>stat.error;phys.angSize.sminAxis</quantity>
 <unit>deg</unit>
 </column><column name="[THETA_IMAGE]"><summary>Position angle (CCW/x)</summary>
+<quantity>pos.posAng</quantity>
 <unit>deg</unit>
 </column><column name="[THETA_WORLD]"><summary>Position angle (CCW/world-x)</summary>
+<quantity>pos.posAng</quantity>
 <unit>deg</unit>
 </column><column name="[ELONGATION]"><summary>A_IMAGE/B_IMAGE</summary>
+<quantity>phys.angSize.axisRatio</quantity>
 </column><column name="[ELLIPTICITY]"><summary>1 - B_IMAGE/A_IMAGE</summary>
+<quantity>src.ellipticity</quantity>
 </column><column name="[ERRX2_IMAGE]"><summary>Variance of position along x</summary>
-<unit>pixel**2</unit>
+<quantity>stat.variance</quantity>
+<unit>pixel+2</unit>
 </column><column name="[ERRY2_IMAGE]"><summary>Variance of position along y</summary>
-<unit>pixel**2</unit>
+<quantity>stat.variance</quantity>
+<unit>pixel+2</unit>
 </column><column name="[ERRXY_IMAGE]"><summary>Covariance of position between x and y</summary>
-<unit>pixel**2</unit>
+<quantity>stat.covariance</quantity>
+<unit>pixel+2</unit>
 </column><column name="[ERRA_IMAGE]"><summary>RMS position error along major axis</summary>
+<quantity>stat.error;phys.angSize.smajAxis</quantity>
 <unit>pixel</unit>
 </column><column name="[ERRB_IMAGE]"><summary>RMS position error along minor axis</summary>
+<quantity>stat.error;phys.angSize.sminAxis</quantity>
 <unit>pixel</unit>
 </column><column name="[ERRTHETA_IMAGE]"><summary>Error ellipse position angle (CCW/x)</summary>
+<quantity>stat.error;pos.posAng</quantity>
 <unit>deg</unit>
 </column><column name="[FWHM_IMAGE]"><summary>FWHM assuming a gaussian core</summary>
+<quantity>phys.angSize</quantity>
 <unit>pixel</unit>
 </column><column name="[FLAGS]"><summary>Extraction flags</summary>
+<quantity>meta.code</quantity>
 </column><column name="[IMAFLAGS_ISO]"><summary>FLAG-image flags OR'ed over the iso. profile</summary>
+<quantity>meta.code</quantity>
 </column><column name="[CLASS_STAR]"><summary>S/G classifier output</summary>
+<quantity>src.class.starGalaxy</quantity>
 </column></table>
   <table name="[dbo].[PhotoObjK]">
     <summary> The main Photo table for the NOAO Deep Field catalog containing the individual band detections </summary>
 <remarks> The main Photo table for the NOAO Deep Field catalog containing detections in   the individual bands. The merged catalog  will be located in the PhotoObjAll table </remarks>
 <column name="[OBJID]"><summary>unique object id, hashed from BAND, FIELD and NUMBER</summary>
+<quantity>meta.id;meta.main</quantity>
 </column><column name="[BAND]"><summary>Designates filter</summary>
+<quantity>instr.filter</quantity>
 </column><column name="[FIELD]"><summary>Field identifier</summary>
+<quantity>meta.id;obs.field</quantity>
 </column><column name="[X_IMAGE]"><summary>Object position along x</summary>
+<quantity>pos.cartesian.x;instr.det</quantity>
 <unit>pixel</unit>
 </column><column name="[Y_IMAGE]"><summary>Object position along y</summary>
+<quantity>pos.cartesian.y;instr.det</quantity>
 <unit>pixel</unit>
 </column><column name="[XPEAK_IMAGE]"><summary>x-coordinate of the brightest pixel</summary>
+<quantity>pos.cartesian.x;instr.det</quantity>
 <unit>pixel</unit>
 </column><column name="[YPEAK_IMAGE]"><summary>y-coordinate of the brightest pixel</summary>
+<quantity>pos.cartesian.y;instr.det</quantity>
 <unit>pixel</unit>
 </column><column name="[NUMBER]"><summary>Running object number</summary>
+<quantity>meta.id</quantity>
 </column><column name="[FLUX_ISO]"><summary>Isophotal flux</summary>
+<quantity>phot.flux.isophotal</quantity>
 <unit>count</unit>
 </column><column name="[FLUXERR_ISO]"><summary>RMS error for isophotal flux</summary>
+<quantity>stat.error;phot.flux.isophotal</quantity>
 <unit>count</unit>
 </column><column name="[MAG_ISO]"><summary>Isophotal magnitude</summary>
+<quantity>phot.mag.isophotal</quantity>
 <unit>mag</unit>
 </column><column name="[MAGERR_ISO]"><summary>RMS error for isophotal magnitude</summary>
+<quantity>stat.error;phot.mag.isophotal</quantity>
 <unit>mag</unit>
 </column><column name="[MAG_ISOCOR]"><summary>Corrected isophotal magnitude</summary>
+<quantity>phot.mag.isophotal</quantity>
 <unit>mag</unit>
 </column><column name="[MAGERR_ISOCOR]"><summary>RMS error for corrected isophotal magnitude</summary>
+<quantity>stat.error;phot.mag.isophotal</quantity>
 <unit>mag</unit>
 </column><column name="[FLUX_APER_01]"><summary>Flux vector within fixed circular aperture(s)</summary>
+<quantity>phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUX_APER_02]"><summary>Flux vector within fixed circular aperture(s)</summary>
+<quantity>phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUX_APER_03]"><summary>Flux vector within fixed circular aperture(s)</summary>
+<quantity>phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUX_APER_04]"><summary>Flux vector within fixed circular aperture(s)</summary>
+<quantity>phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUX_APER_05]"><summary>Flux vector within fixed circular aperture(s)</summary>
+<quantity>phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUX_APER_06]"><summary>Flux vector within fixed circular aperture(s)</summary>
+<quantity>phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUX_APER_07]"><summary>Flux vector within fixed circular aperture(s)</summary>
+<quantity>phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUX_APER_08]"><summary>Flux vector within fixed circular aperture(s)</summary>
+<quantity>phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUX_APER_09]"><summary>Flux vector within fixed circular aperture(s)</summary>
+<quantity>phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUX_APER_10]"><summary>Flux vector within fixed circular aperture(s)</summary>
+<quantity>phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUX_APER_15]"><summary>Flux vector within fixed circular aperture(s)</summary>
+<quantity>phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUX_APER_20]"><summary>Flux vector within fixed circular aperture(s)</summary>
+<quantity>phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUXERR_APER_01]"><summary>RMS error vector for aperture flux(es)</summary>
+<quantity>stat.error;phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUXERR_APER_02]"><summary>RMS error vector for aperture flux(es)</summary>
+<quantity>stat.error;phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUXERR_APER_03]"><summary>RMS error vector for aperture flux(es)</summary>
+<quantity>stat.error;phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUXERR_APER_04]"><summary>RMS error vector for aperture flux(es)</summary>
+<quantity>stat.error;phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUXERR_APER_05]"><summary>RMS error vector for aperture flux(es)</summary>
+<quantity>stat.error;phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUXERR_APER_06]"><summary>RMS error vector for aperture flux(es)</summary>
+<quantity>stat.error;phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUXERR_APER_07]"><summary>RMS error vector for aperture flux(es)</summary>
+<quantity>stat.error;phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUXERR_APER_08]"><summary>RMS error vector for aperture flux(es)</summary>
+<quantity>stat.error;phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUXERR_APER_09]"><summary>RMS error vector for aperture flux(es)</summary>
+<quantity>stat.error;phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUXERR_APER_10]"><summary>RMS error vector for aperture flux(es)</summary>
+<quantity>stat.error;phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUXERR_APER_15]"><summary>RMS error vector for aperture flux(es)</summary>
+<quantity>stat.error;phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[FLUXERR_APER_20]"><summary>RMS error vector for aperture flux(es)</summary>
+<quantity>stat.error;phot.flux.aper</quantity>
 <unit>count</unit>
 </column><column name="[MAG_APER_01]"><summary>Fixed aperture magnitude vector</summary>
+<quantity>phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAG_APER_02]"><summary>Fixed aperture magnitude vector</summary>
+<quantity>phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAG_APER_03]"><summary>Fixed aperture magnitude vector</summary>
+<quantity>phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAG_APER_04]"><summary>Fixed aperture magnitude vector</summary>
+<quantity>phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAG_APER_05]"><summary>Fixed aperture magnitude vector</summary>
+<quantity>phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAG_APER_06]"><summary>Fixed aperture magnitude vector</summary>
+<quantity>phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAG_APER_07]"><summary>Fixed aperture magnitude vector</summary>
+<quantity>phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAG_APER_08]"><summary>Fixed aperture magnitude vector</summary>
+<quantity>phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAG_APER_09]"><summary>Fixed aperture magnitude vector</summary>
+<quantity>phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAG_APER_10]"><summary>Fixed aperture magnitude vector</summary>
+<quantity>phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAG_APER_15]"><summary>Fixed aperture magnitude vector</summary>
+<quantity>phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAG_APER_20]"><summary>Fixed aperture magnitude vector</summary>
+<quantity>phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAGERR_APER_01]"><summary>RMS error vector for fixed aperture mag.</summary>
+<quantity>stat.error;phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAGERR_APER_02]"><summary>RMS error vector for fixed aperture mag.</summary>
+<quantity>stat.error;phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAGERR_APER_03]"><summary>RMS error vector for fixed aperture mag.</summary>
+<quantity>stat.error;phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAGERR_APER_04]"><summary>RMS error vector for fixed aperture mag.</summary>
+<quantity>stat.error;phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAGERR_APER_05]"><summary>RMS error vector for fixed aperture mag.</summary>
+<quantity>stat.error;phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAGERR_APER_06]"><summary>RMS error vector for fixed aperture mag.</summary>
+<quantity>stat.error;phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAGERR_APER_07]"><summary>RMS error vector for fixed aperture mag.</summary>
+<quantity>stat.error;phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAGERR_APER_08]"><summary>RMS error vector for fixed aperture mag.</summary>
+<quantity>stat.error;phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAGERR_APER_09]"><summary>RMS error vector for fixed aperture mag.</summary>
+<quantity>stat.error;phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAGERR_APER_10]"><summary>RMS error vector for fixed aperture mag.</summary>
+<quantity>stat.error;phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAGERR_APER_15]"><summary>RMS error vector for fixed aperture mag.</summary>
+<quantity>stat.error;phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAGERR_APER_20]"><summary>RMS error vector for fixed aperture mag.</summary>
+<quantity>stat.error;phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAG_AUTO]"><summary>Kron-like elliptical aperture magnitude</summary>
+<quantity>phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[MAGERR_AUTO]"><summary>RMS error for AUTO magnitude</summary>
+<quantity>stat.error;phot.mag.aper</quantity>
 <unit>mag</unit>
 </column><column name="[KRON_RADIUS]"><summary>Kron apertures in units of A or B</summary>
+<quantity>phys.angSize</quantity>
 </column><column name="[BACKGROUND]"><summary>Background at centroid position</summary>
+<quantity>instr.background</quantity>
 <unit>count</unit>
 </column><column name="[THRESHOLD]"><summary>Detection threshold above background</summary>
+<quantity>instr.sensitivity</quantity>
 <unit>count</unit>
 </column><column name="[FLUX_MAX]"><summary>Peak flux above background</summary>
+<quantity>phot.flux;stat.max</quantity>
 <unit>count</unit>
 </column><column name="[ISOAREA_IMAGE]"><summary>Isophotal area above Analysis threshold</summary>
-<unit>pixel**2</unit>
+<quantity>phys.angSize.area</quantity>
+<unit>pixel+2</unit>
 </column><column name="[RA]"><summary>Right ascension of barycenter (J2000)</summary>
+<quantity>pos.eq.ra;pos.frame=j2000</quantity>
 <unit>deg</unit>
 </column><column name="[DEC]"><summary>Declination of barycenter (J2000)</summary>
+<quantity>pos.eq.dec;pos.frame=j2000</quantity>
 <unit>deg</unit>
 </column><column name="[cx]"><summary>Cartesian coordinate x</summary>
+<quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
 </column><column name="[cy]"><summary>Cartesian coordinate y</summary>
+<quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
 </column><column name="[cz]"><summary>Cartesian coordinate z</summary>
+<quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
 </column><column name="[htmid]"><summary>Unique HTM ID</summary>
+<quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
 </column><column name="[zoneid]"><summary>Unique HTM ID</summary>
+<quantity>pos.zone</quantity>
 </column><column name="[ALPHAPEAK_J2000]"><summary>Right ascension of brightest pix (J2000)</summary>
+<quantity>pos.eq.ra;pos.frame=j2000</quantity>
 <unit>deg</unit>
 </column><column name="[DELTAPEAK_J2000]"><summary>Declination of brightest pix (J2000)</summary>
+<quantity>pos.eq.dec;pos.frame=j2000</quantity>
 <unit>deg</unit>
 </column><column name="[X2_IMAGE]"><summary>Variance along x</summary>
-<unit>pixel**2</unit>
+<quantity>stat.variance</quantity>
+<unit>pixel+2</unit>
 </column><column name="[Y2_IMAGE]"><summary>Variance along y</summary>
-<unit>pixel**2</unit>
+<quantity>stat.variance</quantity>
+<unit>pixel+2</unit>
 </column><column name="[XY_IMAGE]"><summary>Covariance between x and y</summary>
-<unit>pixel**2</unit>
+<quantity>stat.covariance</quantity>
+<unit>pixel+2</unit>
 </column><column name="[CXX_IMAGE]"><summary>Cxx object ellipse parameter</summary>
-<unit>pixel**(-2)</unit>
+<quantity>src.ellipticity</quantity>
+<unit>pixel-2</unit>
 </column><column name="[CYY_IMAGE]"><summary>Cyy object ellipse parameter</summary>
-<unit>pixel**(-2)</unit>
+<quantity>src.ellipticity</quantity>
+<unit>pixel-2</unit>
 </column><column name="[CXY_IMAGE]"><summary>Cxy object ellipse parameter</summary>
-<unit>pixel**(-2)</unit>
+<quantity>src.ellipticity</quantity>
+<unit>pixel-2</unit>
 </column><column name="[CXX_WORLD]"><summary>Cxx object ellipse parameter (WORLD units)</summary>
-<unit>deg**(-2)</unit>
+<quantity>src.ellipticity</quantity>
+<unit>deg-2</unit>
 </column><column name="[CYY_WORLD]"><summary>Cyy object ellipse parameter (WORLD units)</summary>
-<unit>deg**(-2)</unit>
+<quantity>src.ellipticity</quantity>
+<unit>deg-2</unit>
 </column><column name="[CXY_WORLD]"><summary>Cxy object ellipse parameter (WORLD units)</summary>
-<unit>deg**(-2)</unit>
+<quantity>src.ellipticity</quantity>
+<unit>deg-2</unit>
 </column><column name="[A_IMAGE]"><summary>Profile RMS along major axis</summary>
+<quantity>stat.error;phys.angSize.smajAxis</quantity>
 <unit>pixel</unit>
 </column><column name="[B_IMAGE]"><summary>Profile RMS along minor axis</summary>
+<quantity>stat.error;phys.angSize.sminAxis</quantity>
 <unit>pixel</unit>
 </column><column name="[A_WORLD]"><summary>Profile RMS along major axis (world units)</summary>
+<quantity>stat.error;phys.angSize.smajAxis</quantity>
 <unit>deg</unit>
 </column><column name="[B_WORLD]"><summary>Profile RMS along minor axis (world units)</summary>
+<quantity>stat.error;phys.angSize.sminAxis</quantity>
 <unit>deg</unit>
 </column><column name="[THETA_IMAGE]"><summary>Position angle (CCW/x)</summary>
+<quantity>pos.posAng</quantity>
 <unit>deg</unit>
 </column><column name="[THETA_WORLD]"><summary>Position angle (CCW/world-x)</summary>
+<quantity>&gt;pos.posAng</quantity>
 <unit>deg</unit>
 </column><column name="[ELONGATION]"><summary>A_IMAGE/B_IMAGE</summary>
+<quantity>phys.angSize.axisRatio</quantity>
 </column><column name="[ELLIPTICITY]"><summary>1 - B_IMAGE/A_IMAGE</summary>
+<quantity>src.ellipticity</quantity>
 </column><column name="[ERRX2_IMAGE]"><summary>Variance of position along x</summary>
-<unit>pixel**2</unit>
+<quantity>stat.variance</quantity>
+<unit>pixel+2</unit>
 </column><column name="[ERRY2_IMAGE]"><summary>Variance of position along y</summary>
-<unit>pixel**2</unit>
+<quantity>stat.variance</quantity>
+<unit>pixel+2</unit>
 </column><column name="[ERRXY_IMAGE]"><summary>Covariance of position between x and y</summary>
-<unit>pixel**2</unit>
+<quantity>stat.covariance</quantity>
+<unit>pixel+2</unit>
 </column><column name="[ERRA_IMAGE]"><summary>RMS position error along major axis</summary>
+<quantity>stat.error;phys.angSize.smajAxis</quantity>
 <unit>pixel</unit>
 </column><column name="[ERRB_IMAGE]"><summary>RMS position error along minor axis</summary>
+<quantity>stat.error;phys.angSize.sminAxis</quantity>
 <unit>pixel</unit>
 </column><column name="[ERRTHETA_IMAGE]"><summary>Error ellipse position angle (CCW/x)</summary>
+<quantity>stat.error;pos.posAng</quantity>
 <unit>deg</unit>
 </column><column name="[FWHM_IMAGE]"><summary>FWHM assuming a gaussian core</summary>
+<quantity>phys.angSize</quantity>
 <unit>pixel</unit>
 </column><column name="[FLAGS]"><summary>Extraction flags</summary>
+<quantity>meta.code</quantity>
 </column><column name="[IMAFLAGS_ISO]"><summary>FLAG-image flags OR'ed over the iso. profile</summary>
+<quantity>meta.code</quantity>
 </column><column name="[CLASS_STAR]"><summary>S/G classifier output</summary>
+<quantity>src.class.starGalaxy</quantity>
 </column></table>
   <table name="[dbo].[Neighbors]">
     <summary> All PhotoObjAll pairs within 2 arcseconds  </summary>
 <remarks> SDSS objects within 2 arcsec and their match parameters stored here.   The two halves of the pair come from different bands. The first  half of the pair  </remarks>
 <column name="[objID]"><summary>The unique objId of the center object</summary>
+<quantity>meta.id</quantity>
 </column><column name="[neighborObjID]"><summary>The objId of the neighbor</summary>
+<quantity>meta.id</quantity>
 </column><column name="[distance]"><summary>Distance between center and neighbor</summary>
-<unit>arcmins</unit>
+<quantity>pos.angDistance</quantity>
+<unit>arcmin</unit>
 </column><column name="[band]"><summary>Filter band of the center</summary>
+<quantity>instr.filter</quantity>
 </column><column name="[neighborBand]"><summary>Filter band of the neighbor</summary>
+<quantity>instr.filter</quantity>
 </column></table>
 </metadata>
