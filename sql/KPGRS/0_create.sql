@@ -98,12 +98,12 @@ CREATE TABLE dbo.SpecObj
 	[Note] char(1) NOT NULL,
 
 	--/ <summary> Right ascension (1950) </summary>
-	--/ <quantity>pos.eq.ra;pos.frame=j1950</quantity>
+	--/ <quantity>pos.eq.ra;pos.frame=b1950</quantity>
 	--/ <unit> h:m:s </unit>
 	[RA1950] char(11) NOT NULL,
 
 	--/ <summary> Declination (1950) </summary>
-	--/ <quantity>pos.eq.dec.ra;pos.frame=j1950</quantity>
+	--/ <quantity>pos.eq.dec.ra;pos.frame=b1950</quantity>
 	--/ <unit> d:m:s </unit>
 	[DE1950] char(11) NOT NULL,
 

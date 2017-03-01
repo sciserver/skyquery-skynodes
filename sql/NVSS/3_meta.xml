@@ -3,44 +3,71 @@
     <summary>The main PhotoObj table for the NVSS catalog</summary>
 <remarks>The main PhotoObj table for the NVSS catalog</remarks>
 <column name="[objID]"><summary>unique object identifier</summary>
+<quantity>meta.id;meta.main</quantity>
 </column><column name="[ra]"><summary>J2000 right ascension</summary>
+<quantity>pos.eq.ra;pos.frame=j2000</quantity>
 <unit>deg</unit>
 </column><column name="[dec]"><summary>J2000 declination</summary>
+<quantity>pos.eq.dec;pos.frame=j2000</quantity>
 <unit>deg</unit>
 </column><column name="[cx]"><summary>cartesian x coordinate</summary>
-</column><column name="[cy]"><summary>cartesian x coordinate</summary>
-</column><column name="[cz]"><summary>cartesian x coordinate</summary>
+<quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
+</column><column name="[cy]"><summary>cartesian y coordinate</summary>
+<quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
+</column><column name="[cz]"><summary>cartesian z coordinate</summary>
+<quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
 </column><column name="[htmid]"><summary>htmid for spatial searches</summary>
-</column><column name="[zoneid]"><summary>htmid for spatial searches</summary>
+<quantity>pos.htm; pos.eq; pos.frame=j2000</quantity>
+</column><column name="[zoneid]"><summary> Zone ID</summary>
+<quantity>pos.zone</quantity>
 </column><column name="[raErr]"><summary>Estimate of J2000 right ascension standard deviation</summary>
+<quantity>stat.stdev;pos.eq.ra</quantity>
 <unit>deg</unit>
 </column><column name="[decErr]"><summary>Estimate of J2000 declination standard deviation</summary>
+<quantity>stat.stdev;pos.eq.dec</quantity>
 <unit>deg</unit>
 </column><column name="[flux]"><summary>Strength of the source</summary>
+<quantity>phot.flux</quantity>
 <unit>mJy</unit>
 </column><column name="[fluxErr]"><summary>Standard deviation estimate of the flux</summary>
+<quantity>stat.stdev;phot.flux</quantity>
 <unit>mJy</unit>
 </column><column name="[major]"><summary>Major axis size of the source</summary>
+<quantity>phys.angSize.smajAxis</quantity>
 </column><column name="[majorErr]"><summary>Estimated standard deviation of the major axis size (nulls allowed)</summary>
+<quantity>stat.stdev;phys.angSize.smajAxis</quantity>
 </column><column name="[minor]"><summary>Minor axis size of the source</summary>
+<quantity>phys.angSize.sminAxis</quantity>
 </column><column name="[minorErr]"><summary>Estimated standard deviation of the minor axis size (nulls allowed)</summary>
+<quantity>stat.stdev;phys.angSize.sminAxis</quantity>
 </column><column name="[pa]"><summary>Orientation of the major axis on the sky (from N through E) (nulls allowed)</summary>
+<quantity>pos.posAng</quantity>
 <unit>deg</unit>
 </column><column name="[paErr]"><summary>Standard deviation estimate of Pa</summary>
+<quantity>stat.stdev;pos.posAng</quantity>
 <unit>deg</unit>
 </column><column name="[res]"><summary>Code indicating structure more complex than can be fitted by the Gaussian model(P=peak, R=RMS, S=integrated) (nulls allowed)</summary>
+<quantity>meta.code</quantity>
 </column><column name="[resOff]"><summary>offending value (nulls allowed)</summary>
-<unit>100s of mJy</unit>
+<quantity></quantity>
+<unit>10e2 mJy</unit>
 </column><column name="[p_flux]"><summary>Integrated linearly polarized flux density (nulls allowed)</summary>
+<quantity>phot.flux.density</quantity>
 <unit>mJy</unit>
 </column><column name="[p_fluxErr]"><summary>Standard deviation estimate of the integrated linearly polarized flux density (nulls allowed)</summary>
+<quantity>stat.stdev;phot.flux.density</quantity>
 <unit>mJy</unit>
 </column><column name="[p_ang]"><summary>Position angle of the "E" vectors on the sky if the source was detected in linear polarization (nulls allowed)</summary>
+<quantity>pos.posAng</quantity>
 <unit>deg</unit>
 </column><column name="[p_angErr]"><summary>Standard deviation estimate of p_ang (nulls allowed)</summary>
+<quantity>stat.stdev;pos.posAng</quantity>
 <unit>deg</unit>
 </column><column name="[field]"><summary>Name of the original survey image field</summary>
+<quantity>meta.id;obs.field</quantity>
 </column><column name="[x_pix]"><summary>X(Ra) pixel numbers of the center of the component</summary>
+<quantity>pos.cartesian.x;instr.det</quantity>
 </column><column name="[y_pix]"><summary>Y(Dec) pixel numbers of the center of the component</summary>
+<quantity>pos.cartesian.y;instr.det</quantity>
 </column></table>
 </metadata>

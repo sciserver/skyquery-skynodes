@@ -98,12 +98,12 @@ X: not targeted by the mask, but accidentally fell within a slitlet or slit targ
 </column>
     <column name="[RA1950]">
       <summary> Right ascension (1950) </summary>
-<quantity>pos.eq.ra;pos.frame=j1950</quantity>
+<quantity>pos.eq.ra;pos.frame=b1950</quantity>
 <unit> h:m:s </unit>
 </column>
     <column name="[DE1950]">
       <summary> Declination (1950) </summary>
-<quantity>pos.eq.dec.ra;pos.frame=j1950</quantity>
+<quantity>pos.eq.dec.ra;pos.frame=b1950</quantity>
 <unit> d:m:s </unit>
 </column>
   </table>

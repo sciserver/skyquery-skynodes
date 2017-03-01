@@ -2,142 +2,184 @@
   <table name="[dbo].[VariableStars]">
     <column name="[cx]">
       <summary> Cartesian X (J2000)</summary>
+<quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[cy]">
       <summary> Cartesian Y (J2000)</summary>
+<quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[cz]">
       <summary> Cartesian Z (J2000)</summary>
+<quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
+<quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[zoneid]">
       <summary> Zone ID </summary>
+<quantity>pos.zone</quantity>
 </column>
     <column name="[ID]">
       <summary> OGLE-III ID </summary>
+<quantity>meta.id;meta.main</quantity>
 </column>
     <column name="[Field]">
       <summary> Field Name </summary>
+<quantity>meta.id;obs.field</quantity>
 </column>
     <column name="[StarID]">
-      <summary>  </summary>
+      <summary> Star ID </summary>
+<quantity>meta.id</quantity>
 </column>
     <column name="[Type]">
       <summary> Type </summary>
+<quantity>src.class</quantity>
 </column>
     <column name="[Subtype]">
       <summary>  </summary>
+<quantity>src.class</quantity>
 </column>
     <column name="[ra]">
       <summary> Right Ascension </summary>
-<unit> deg (J2000) </unit>
+<quantity>pos.eq.ra;pos.frame=j2000</quantity>
+<unit> deg </unit>
 </column>
     <column name="[dec]">
       <summary> Declination </summary>
-<unit> deg (J2000) </unit>
+<quantity>pos.eq.dec;pos.frame=j2000</quantity>
+<unit> deg </unit>
 </column>
     <column name="[ID_OGLE_II]">
       <summary> OGLE-II ID </summary>
+<quantity>meta.id.cross</quantity>
 </column>
     <column name="[ID_MACHO]">
       <summary> MACHO ID </summary>
-<unit> ASAS ID </unit>
+<quantity>meta.id.cross</quantity>
 </column>
     <column name="[ID_ASAS]">
-      <summary> GCVS ID </summary>
-<unit> OTHER ID </unit>
+      <summary> ASAS ID </summary>
+<quantity>meta.id.cross</quantity>
 </column>
     <column name="[ID_GCVS]">
       <summary> GCVS ID </summary>
+<quantity>meta.id.cross</quantity>
 </column>
     <column name="[ID_OTHER]">
       <summary> OTHER ID </summary>
+<quantity>meta.id.cross</quantity>
 </column>
     <column name="[I]">
       <summary> Mean I-band magnitude </summary>
+<quantity>phot.mag;em.opt.I;stat.mean</quantity>
 <unit> mag </unit>
 </column>
     <column name="[V]">
       <summary> Mean V-band magnitude </summary>
+<quantity>phot.mag;em.opt.V;stat.mean</quantity>
 <unit> mag </unit>
 </column>
     <column name="[P_1]">
       <summary> Period </summary>
+<quantity>time.period</quantity>
 <unit>d</unit>
 </column>
     <column name="[dP_1]">
       <summary> I-band amplitude </summary>
+<quantity>src.var.amplitude;em.opt.I</quantity>
 </column>
     <column name="[T0_1]">
       <summary>  </summary>
+<quantity></quantity>
 </column>
     <column name="[A_1]">
       <summary>  </summary>
+<quantity></quantity>
 </column>
     <column name="[R21_1]">
       <summary>  </summary>
+<quantity></quantity>
 </column>
     <column name="[phi21_1]">
       <summary>  </summary>
+<quantity></quantity>
 </column>
     <column name="[R31_1]">
       <summary>  </summary>
+<quantity></quantity>
 </column>
     <column name="[phi31_1]">
       <summary>  </summary>
+<quantity></quantity>
 </column>
     <column name="[P_2]">
       <summary>  </summary>
+<quantity>time.period</quantity>
 </column>
     <column name="[dP_2]">
       <summary>  </summary>
+<quantity>src.var.amplitude</quantity>
 </column>
     <column name="[T0_2]">
       <summary>  </summary>
+<quantity></quantity>
 </column>
     <column name="[A_2]">
       <summary>  </summary>
+<quantity></quantity>
 </column>
     <column name="[R21_2]">
       <summary>  </summary>
+<quantity></quantity>
 </column>
     <column name="[phi21_2]">
       <summary>  </summary>
+<quantity></quantity>
 </column>
     <column name="[R31_2]">
       <summary>  </summary>
+<quantity></quantity>
 </column>
     <column name="[phi31_2]">
       <summary>  </summary>
+<quantity></quantity>
 </column>
     <column name="[P_3]">
       <summary>  </summary>
+<quantity>time.period</quantity>
 </column>
     <column name="[dP_3]">
       <summary>  </summary>
+<quantity>src.var.amplitude</quantity>
 </column>
     <column name="[T0_3]">
       <summary>  </summary>
+<quantity></quantity>
 </column>
     <column name="[A_3]">
       <summary>  </summary>
+<quantity></quantity>
 </column>
     <column name="[R21_3]">
       <summary>  </summary>
+<quantity></quantity>
 </column>
     <column name="[phi21_3]">
       <summary>  </summary>
+<quantity></quantity>
 </column>
     <column name="[R31_3]">
       <summary>  </summary>
+<quantity></quantity>
 </column>
     <column name="[phi31_3]">
       <summary>  </summary>
+<quantity></quantity>
 </column>
     <column name="[Remarks]">
-      <summary>  </summary>
+      <summary> Remarks </summary>
+<quantity>meta.note</quantity>
 </column>
   </table>
 </metadata>
