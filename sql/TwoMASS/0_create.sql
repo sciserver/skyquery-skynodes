@@ -204,113 +204,113 @@ CREATE TABLE [dbo].[PhotoPSC](
 	[k_psfchi] [real] NOT NULL, 
 
 	--/ <summary>J standard aperture magnitude or BF aperture-photometry mag</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>phot.mag.aper;em.IR.J</quantity>
 	--/ <unit>mag</unit>
 	[j_m_stdap] [real] NOT NULL, 
 
 	--/ <summary>J standard ap. mag/BF ap.-photometry mag uncertainty</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;phot.mag.aper;em.IR.J</quantity>
 	--/ <unit>mag</unit>
 	[j_msig_stdap] [real] NOT NULL, 
 
 	--/ <summary>H standard aperture magnitude or BF aperture-photometry mag</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>phot.mag.aper;em.IR.H</quantity>
 	--/ <unit>mag</unit>
 	[h_m_stdap] [real] NOT NULL, 
 
 	--/ <summary>H standard ap. mag/BF ap.-photometry mag uncertainty</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;phot.mag.aper;em.IR.</quantity>
 	--/ <unit>mag</unit>
 	[h_msig_stdap] [real] NOT NULL, 
 
 	--/ <summary>K standard aperture magnitude or BF aperture-photometry mag</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>phot.mag.aper;em.IR.K</quantity>
 	--/ <unit>mag</unit>
 	[k_m_stdap] [real] NOT NULL, 
 
 	--/ <summary>K standard ap. mag/BF ap.-photometry mag uncertainty</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;phot.mag.aper;em.IR.</quantity>
 	--/ <unit>mag</unit>
 	[k_msig_stdap] [real] NOT NULL, 
 
 	--/ <summary>distance from the source to the nearest North or South scan edge</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>pos.angDistance;instr.det</quantity>
 	--/ <unit>arcsec</unit>
 	[dist_edge_ns] [int] NOT NULL, 
 
 	--/ <summary>distance from the source to the nearest East or West scan edge</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>pos.angDistance;instr.det</quantity>
 	--/ <unit>arcsec</unit>
 	[dist_edge_ew] [int] NOT NULL, 
 
 	--/ <summary>two character flag that specifies to which scan edges a source lies closest</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code;instr.det</quantity>
 	[dist_edge_flg] [varchar](32) NOT NULL, 
 
 	--/ <summary>duplicate source flag</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.multip</quantity>
 	[dup_src] [smallint] NOT NULL, 
 
 	--/ <summary>use source flag</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code</quantity>
 	[use_src] [smallint] NOT NULL, 
 
 	--/ <summary>catalog identifier of an optical source from either the Tycho 2 or USNO-A2.0 catalog</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.id;meta.table</quantity>
 	[a] [char](1) NOT NULL, 
 
 	--/ <summary>distance in arcsec relative to associated optical source</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>pos.angDistance</quantity>
 	--/ <unit>arcsec</unit>
 	[dist_opt] [real] NOT NULL, 
 
 	--/ <summary>position angle relative to assocaited optical source</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>pos.posAng</quantity>
 	--/ <unit>deg</unit>
 	[phi_opt] [smallint] NOT NULL, 
 
 	--/ <summary>catalog blue mag of associated optical source</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>phot.mag;em.opt.B</quantity>
 	--/ <unit>mag</unit>
 	[b_m_opt] [real] NOT NULL, 
 
 	--/ <summary>catalog red magnitude of the associated optical source</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>poht.mag;em.opt</quantity>
 	--/ <unit>mag</unit>
 	[vr_m_opt] [real] NOT NULL, 
 
 	--/ <summary>number of optical sources within 5 arcsec of 2MASS src</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.number;src</quantity>
 	[nopt_mchs] [smallint] NOT NULL, 
 
 	--/ <summary>unique identification number of the record in the XSC that corresponds to this point source</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.id</quantity>
 	[ext_key] [int] NOT NULL, 
 
 	--/ <summary>unique identification number of the record in the Scan Information Table</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.id</quantity>
 	[scan_key] [int] NOT NULL, 
 
 	--/ <summary>unique identification number of the record in the Atlas Image Data Table</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.id</quantity>
 	[coadd_key] [int] NOT NULL, 
 
 	--/ <summary>sequence number of the Atlas Image in which the position of this source falls</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.id;obs.image</quantity>
 	[coadd] [smallint] NOT NULL, 
 
 	--/ <summary>default J-H mag color</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>phot.color;em.IR.J;em.IR.H</quantity>
 	--/ <unit>mag</unit>
 	[j_h] [real] NOT NULL, 
 
 	--/ <summary>default H-K mag color</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>phot.color;em.IR.K;em.IR.K</quantity>
 	--/ <unit>mag</unit>
 	[h_k] [real] NOT NULL, 
 
 	--/ <summary>default J-K mag color</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>phot.color;em.IR.J;em.IR.K</quantity>
 	--/ <unit>mag</unit>
 	[j_k] [real] NOT NULL 
 ) ON [PRIMARY]
