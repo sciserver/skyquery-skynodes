@@ -50,7 +50,7 @@
 <quantity>meta.code</quantity>
 </column><column name="[resOff]"><summary>offending value (nulls allowed)</summary>
 <quantity></quantity>
-<unit>10e2 mJy</unit>
+<unit>1e2 mJy</unit>
 </column><column name="[p_flux]"><summary>Integrated linearly polarized flux density (nulls allowed)</summary>
 <quantity>phot.flux.density</quantity>
 <unit>mJy</unit>

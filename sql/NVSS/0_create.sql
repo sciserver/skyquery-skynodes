@@ -88,7 +88,7 @@ CREATE TABLE [dbo].[PhotoObj](
 
 	--/ <summary>offending value (nulls allowed)</summary>
 	--/ <quantity></quantity>
-	--/ <unit>10e2 mJy</unit>
+	--/ <unit>1e2 mJy</unit>
 	[resOff] [smallint] NULL, 
 
 	--/ <summary>Integrated linearly polarized flux density (nulls allowed)</summary>

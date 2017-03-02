@@ -40,12 +40,12 @@
 </column>
     <column name="[f3p6]">
       <summary> IRAC 3.6 um flux density </summary>
-<quantity>phot.flux.density;em.IR.Herschel.IRAC36</quantity>
+<quantity>phot.flux.density;em.IR.Spitzer.IRAC36</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[err3p6]">
       <summary> Error on IRAC 3.6 um flux density </summary>
-<quantity>stat.error;phot.flux.density;em.IR.Herschel.IRAC36</quantity>
+<quantity>stat.error;phot.flux.density;em.IR.Spitzer.IRAC36</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[flag3p6]">
@@ -65,16 +65,16 @@ exposure time (flag value 1). Therefore, those sources will have flag values
 of 2 + 1 = 3. Regions with no data will have flag values 64 + 2 + 1 = 67.
 Regions with residual muxbleed (flag 16) and also &lt; 50% modal exposure time	--/
 (flag 1) will have flag 16 + 1 = 17. </summary>
-<quantity>meta.code;em.IR.Herschel.IRAC36</quantity>
+<quantity>meta.code;em.IR.Spitzer.IRAC36</quantity>
 </column>
     <column name="[f4p5]">
       <summary> IRAC 4.5 um flux density </summary>
-<quantity>phot.flux.density;em.IR.Herschel.IRAC45</quantity>
+<quantity>phot.flux.density;em.IR.Spitzer.IRAC45</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[err4p5]">
       <summary> IRAC 4.5 um flux density error</summary>
-<quantity>stat.error;phot.flux.density;em.IR.Herschel.IRAC45</quantity>
+<quantity>stat.error;phot.flux.density;em.IR.Spitzer.IRAC45</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[flag4p5]">
@@ -84,16 +84,16 @@ exposure time (flag value 1). Therefore, those sources will have flag values
 of 2 + 1 = 3. Regions with no data will have flag values 64 + 2 + 1 = 67.
 Regions with residual muxbleed (flag 16) and also &lt; 50% modal exposure time	--/
 (flag 1) will have flag 16 + 1 = 17. </summary>
-<quantity>meta.code;em.IR.Herschel.IRAC45</quantity>
+<quantity>meta.code;em.IR.Spitzer.IRAC45</quantity>
 </column>
     <column name="[f5p8]">
       <summary> IRAC 5.8 um flux density </summary>
-<quantity>phot.flux.density;em.IR.Herschel.IRAC58</quantity>
+<quantity>phot.flux.density;em.IR.Spitzer.IRAC58</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[err5p8]">
       <summary> Error on IRAC 5.8 um flux density </summary>
-<quantity>stat.error;phot.flux.density;em.IR.Herschel.IRAC58</quantity>
+<quantity>stat.error;phot.flux.density;em.IR.Spitzer.IRAC58</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[flag5p8]">
@@ -103,16 +103,16 @@ exposure time (flag value 1). Therefore, those sources will have flag values
 of 2 + 1 = 3. Regions with no data will have flag values 64 + 2 + 1 = 67.
 Regions with residual muxbleed (flag 16) and also &lt; 50% modal exposure time	--/
 (flag 1) will have flag 16 + 1 = 17. </summary>
-<quantity>meta.code;em.IR.Herschel.IRAC58</quantity>
+<quantity>meta.code;em.IR.Spitzer.IRAC58</quantity>
 </column>
     <column name="[f8p0]">
       <summary> IRAC 8.0 um flux density </summary>
-<quantity>phot.flux.density;em.IR.Herschel.IRAC80</quantity>
+<quantity>phot.flux.density;em.IR.Spitzer.IRAC80</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[err8p0]">
       <summary> Error on IRAC 8.0 um flux density </summary>
-<quantity>stat.error;phot.flux.density;em.IR.Herschel.IRAC80</quantity>
+<quantity>stat.error;phot.flux.density;em.IR.Spitzer.IRAC80</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[flag8p0]">
@@ -122,11 +122,11 @@ exposure time (flag value 1). Therefore, those sources will have flag values
 of 2 + 1 = 3. Regions with no data will have flag values 64 + 2 + 1 = 67.
 Regions with residual muxbleed (flag 16) and also &lt; 50% modal exposure time	--/
 (flag 1) will have flag 16 + 1 = 17. </summary>
-<quantity>meta.code;em.IR.Herschel.IRAC80</quantity>
+<quantity>meta.code;em.IR.Spitzer.IRAC80</quantity>
 </column>
     <column name="[f24]">
       <summary> MIPS 24 um flux density </summary>
-<quantity>phot.flux.density;em.IR.Herschel.MIPS24</quantity>
+<quantity>phot.flux.density;em.IR.Spitzer.MIPS24</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[err24_ima]">
@@ -139,7 +139,7 @@ both since they are not independent. Also, the Monte-Carlo simulations were
 made on regions with relatively homogeneous exposure time; therefore,
 uncertainties derived from these simulations are not suitable and hence not
 provided for sources situated outside these homogeneous exposure time regions. </summary>
-<quantity>stat.error;phot.flux.density;em.IR.Herschel.MIPS24</quantity>
+<quantity>stat.error;phot.flux.density;em.IR.Spitzer.MIPS24</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[err24_sim]">
@@ -152,16 +152,16 @@ both since they are not independent. Also, the Monte-Carlo simulations were
 made on regions with relatively homogeneous exposure time; therefore,
 uncertainties derived from these simulations are not suitable and hence not
 provided for sources situated outside these homogeneous exposure time regions. </summary>
-<quantity>stat.error;phot.flux.density;em.IR.Herschel.MIPS24</quantity>
+<quantity>stat.error;phot.flux.density;em.IR.Spitzer.MIPS24</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[cov24]">
       <summary> MIPS 24 um coverage map value (equal to sec/pixel) </summary>
-<quantity>obs.param;em.IR.Herschel.MIPS24</quantity>
+<quantity>obs.param;em.IR.Spitzer.MIPS24</quantity>
 </column>
     <column name="[f70]">
       <summary>  MIPS 70 um flux density </summary>
-<quantity>phot.flux.density;em.IR.Herschel.MIPS70</quantity>
+<quantity>phot.flux.density;em.IR.Spitzer.MIPS70</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[err70_ima]">
@@ -174,7 +174,7 @@ both since they are not independent. Also, the Monte-Carlo simulations were
 made on regions with relatively homogeneous exposure time; therefore,
 uncertainties derived from these simulations are not suitable and hence not
 provided for sources situated outside these homogeneous exposure time regions. </summary>
-<quantity>stat.error;phot.flux.density;em.IR.Herschel.MIPS70</quantity>
+<quantity>stat.error;phot.flux.density;em.IR.Spitzer.MIPS70</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[err70_sim]">
@@ -187,12 +187,12 @@ both since they are not independent. Also, the Monte-Carlo simulations were
 made on regions with relatively homogeneous exposure time; therefore,
 uncertainties derived from these simulations are not suitable and hence not
 provided for sources situated outside these homogeneous exposure time regions. </summary>
-<quantity>stat.error;phot.flux.density;em.IR.Herschel.MIPS70</quantity>
+<quantity>stat.error;phot.flux.density;em.IR.Spitzer.MIPS70</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[cov70]">
       <summary> MIPS 70 um coverage map value (equal to sec/pixel) </summary>
-<quantity>obs.param;em.IR.Herschel.MIPS70</quantity>
+<quantity>obs.param;em.IR.Spitzer.MIPS70</quantity>
 </column>
     <column name="[f100]">
       <summary> PACS 100 um flux density </summary>
@@ -415,12 +415,12 @@ GOODS-South, it is assumed that Neib250 = Neib350 = Neib500 = 0. </summary>
 </column>
     <column name="[f3p6]">
       <summary> IRAC 3.6 um flux density </summary>
-<quantity>phot.flux.density;em.IR.Herschel.IRAC36</quantity>
+<quantity>phot.flux.density;em.IR.Spitzer.IRAC36</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[err3p6]">
       <summary> Error on IRAC 3.6 um flux density </summary>
-<quantity>stat.error;phot.flux.density;em.IR.Herschel.IRAC36</quantity>
+<quantity>stat.error;phot.flux.density;em.IR.Spitzer.IRAC36</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[flag3p6]">
@@ -440,16 +440,16 @@ exposure time (flag value 1). Therefore, those sources will have flag values
 of 2 + 1 = 3. Regions with no data will have flag values 64 + 2 + 1 = 67.
 Regions with residual muxbleed (flag 16) and also &lt; 50% modal exposure time	--/
 (flag 1) will have flag 16 + 1 = 17. </summary>
-<quantity>meta.code;em.IR.Herschel.IRAC36</quantity>
+<quantity>meta.code;em.IR.Spitzer.IRAC36</quantity>
 </column>
     <column name="[f4p5]">
       <summary> IRAC 4.5 um flux density </summary>
-<quantity>phot.flux.density;em.IR.Herschel.IRAC45</quantity>
+<quantity>phot.flux.density;em.IR.Spitzer.IRAC45</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[err4p5]">
       <summary> IRAC 4.5 um flux density error </summary>
-<quantity>stat.error;phot.flux.density;em.IR.Herschel.IRAC45</quantity>
+<quantity>stat.error;phot.flux.density;em.IR.Spitzer.IRAC45</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[flag4p5]">
@@ -459,16 +459,16 @@ exposure time (flag value 1). Therefore, those sources will have flag values
 of 2 + 1 = 3. Regions with no data will have flag values 64 + 2 + 1 = 67.
 Regions with residual muxbleed (flag 16) and also &lt; 50% modal exposure time	--/
 (flag 1) will have flag 16 + 1 = 17. </summary>
-<quantity>meta.code;em.IR.Herschel.IRAC45</quantity>
+<quantity>meta.code;em.IR.Spitzer.IRAC45</quantity>
 </column>
     <column name="[f5p8]">
       <summary> IRAC 5.8 um flux density </summary>
-<quantity>phot.flux.density;em.IR.Herschel.IRAC58</quantity>
+<quantity>phot.flux.density;em.IR.Spitzer.IRAC58</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[err5p8]">
       <summary> Error on IRAC 5.8 um flux density </summary>
-<quantity>stat.error;phot.flux.density;em.IR.Herschel.IRAC58</quantity>
+<quantity>stat.error;phot.flux.density;em.IR.Spitzer.IRAC58</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[flag5p8]">
@@ -478,16 +478,16 @@ exposure time (flag value 1). Therefore, those sources will have flag values
 of 2 + 1 = 3. Regions with no data will have flag values 64 + 2 + 1 = 67.
 Regions with residual muxbleed (flag 16) and also &lt; 50% modal exposure time	--/
 (flag 1) will have flag 16 + 1 = 17. </summary>
-<quantity>meta.code;em.IR.Herschel.IRAC58</quantity>
+<quantity>meta.code;em.IR.Spitzer.IRAC58</quantity>
 </column>
     <column name="[f8p0]">
       <summary> IRAC 8.0 um flux density </summary>
-<quantity>phot.flux.density;em.IR.Herschel.IRAC80</quantity>
+<quantity>phot.flux.density;em.IR.Spitzer.IRAC80</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[err8p0]">
       <summary> Error on IRAC 8.0 um flux density </summary>
-<quantity>stat.error;phot.flux.density;em.IR.Herschel.IRAC80</quantity>
+<quantity>stat.error;phot.flux.density;em.IR.Spitzer.IRAC80</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[flag8p0]">
@@ -497,11 +497,11 @@ exposure time (flag value 1). Therefore, those sources will have flag values
 of 2 + 1 = 3. Regions with no data will have flag values 64 + 2 + 1 = 67.
 Regions with residual muxbleed (flag 16) and also &lt; 50% modal exposure time	--/
 (flag 1) will have flag 16 + 1 = 17. </summary>
-<quantity>meta.code;em.IR.Herschel.IRAC80</quantity>
+<quantity>meta.code;em.IR.Spitzer.IRAC80</quantity>
 </column>
     <column name="[f24]">
       <summary> MIPS 24 um flux density </summary>
-<quantity>phot.flux.density;em.IR.Herschel.MIPS24</quantity>
+<quantity>phot.flux.density;em.IR.Spitzer.MIPS24</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[err24_ima]">
@@ -514,7 +514,7 @@ both since they are not independent. Also, the Monte-Carlo simulations were
 made on regions with relatively homogeneous exposure time; therefore,
 uncertainties derived from these simulations are not suitable and hence not
 provided for sources situated outside these homogeneous exposure time regions. </summary>
-<quantity>stat.error;phot.flux.density;em.IR.Herschel.MIPS24</quantity>
+<quantity>stat.error;phot.flux.density;em.IR.Spitzer.MIPS24</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[err24_sim]">
@@ -527,16 +527,16 @@ both since they are not independent. Also, the Monte-Carlo simulations were
 made on regions with relatively homogeneous exposure time; therefore,
 uncertainties derived from these simulations are not suitable and hence not
 provided for sources situated outside these homogeneous exposure time regions. </summary>
-<quantity>stat.error;phot.flux.density;em.IR.Herschel.MIPS24</quantity>
+<quantity>stat.error;phot.flux.density;em.IR.Spitzer.MIPS24</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[cov24]">
       <summary> MIPS 24 um coverage map value (equal to sec/pixel) </summary>
-<quantity>obs.param;em.IR.Herschel.MIPS24</quantity>
+<quantity>obs.param;em.IR.Spitzer.MIPS24</quantity>
 </column>
     <column name="[f70]">
       <summary>  MIPS 70 um flux density </summary>
-<quantity>phot.flux.density;em.IR.Herschel.MIPS70</quantity>
+<quantity>phot.flux.density;em.IR.Spitzer.MIPS70</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[err70_ima]">
@@ -549,7 +549,7 @@ both since they are not independent. Also, the Monte-Carlo simulations were
 made on regions with relatively homogeneous exposure time; therefore,
 uncertainties derived from these simulations are not suitable and hence not
 provided for sources situated outside these homogeneous exposure time regions. </summary>
-<quantity>stat.error;phot.flux.density;em.IR.Herschel.MIPS70</quantity>
+<quantity>stat.error;phot.flux.density;em.IR.Spitzer.MIPS70</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[err70_sim]">
@@ -562,12 +562,12 @@ both since they are not independent. Also, the Monte-Carlo simulations were
 made on regions with relatively homogeneous exposure time; therefore,
 uncertainties derived from these simulations are not suitable and hence not
 provided for sources situated outside these homogeneous exposure time regions. </summary>
-<quantity>stat.error;phot.flux.density;em.IR.Herschel.MIPS70</quantity>
+<quantity>stat.error;phot.flux.density;em.IR.Spitzer.MIPS70</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[cov70]">
       <summary> MIPS 70 um coverage map value (equal to sec/pixel) </summary>
-<quantity>obs.param;em.IR.Herschel.MIPS70</quantity>
+<quantity>obs.param;em.IR.Spitzer.MIPS70</quantity>
 </column>
     <column name="[f100]">
       <summary> PACS 100 um flux density </summary>
