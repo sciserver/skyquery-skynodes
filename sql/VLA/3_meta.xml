@@ -2,79 +2,100 @@
   <table name="[dbo].[GOODSN]">
     <column name="[cx]">
       <summary> Cartesian X (J2000)</summary>
+<quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[cy]">
       <summary> Cartesian Y (J2000)</summary>
+<quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[cz]">
       <summary> Cartesian Z (J2000)</summary>
+<quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
+<quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[zoneid]">
       <summary> Zone ID </summary>
+<quantity>pos.zone</quantity>
 </column>
     <column name="[objID]">
       <summary> Sequential id </summary>
+<quantity>meta.record</quantity>
 </column>
     <column name="[Name]">
       <summary> Catalog Source Number </summary>
+<quantity>meta.id</quantity>
 </column>
     <column name="[RA]">
       <summary> Right Ascension </summary>
-<unit> deg (J2000) </unit>
+<quantity>pos.eq.ra;pos.frame=j2000</quantity>
+<unit> deg </unit>
 </column>
     <column name="[e_RAs]">
       <summary> Error in the Right Ascension </summary>
-<unit> arcsec (J2000) </unit>
+<quantity>stat.errorpos.eq.ra;pos.frame=j2000;</quantity>
+<unit> arcsec</unit>
 </column>
     <column name="[DEC]">
       <summary> Declination </summary>
-<unit> deg (J2000) </unit>
+<quantity>pos.eq.dec;pos.frame=j2000</quantity>
+<unit> deg  </unit>
 </column>
     <column name="[e_DECs]">
       <summary> Error in the Declination </summary>
-<unit>  arcsec (J2000) </unit>
+<quantity>stat.error;pos.eq.dec;pos.frame=j2000</quantity>
+<unit>  arcsec </unit>
 </column>
     <column name="[SN]">
       <summary> Peak Signal/Noise Ratio </summary>
+<quantity>stat.snr</quantity>
 </column>
     <column name="[Peak]">
       <summary> Observed peak brightness. In units of microJanskeys/beam and
 uncorrected for primary beam or bandwidth smearing. </summary>
+<quantity>phot.flux</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[e_Peak]">
       <summary> Error in Observed peak brightness  </summary>
+<quantity>stat.error;phot.flux</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[Total]">
       <summary> Total Flux Density </summary>
+<quantity>phot.flux.density</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[e_Total]">
       <summary> Error in Total Flux Density </summary>
+<quantity>stat.error;phot.flux.density</quantity>
 <unit> uJy </unit>
 </column>
     <column name="[bmaj]">
       <summary> Fitted Gaussian Major Axis FWHM </summary>
+<quantity>phys.angSize.smajAxis</quantity>
 <unit> arcsec </unit>
 </column>
     <column name="[bmin]">
       <summary> Fitted Gaussian Minor Axis FWHM </summary>
+<quantity>phys.angSize.sminAxis</quantity>
 <unit> arcsec </unit>
 </column>
     <column name="[PA]">
       <summary> Fitted Position Angle </summary>
+<quantity>pos.posAng</quantity>
 <unit> deg </unit>
 </column>
     <column name="[ulim]">
       <summary> bmaj-upper limit if bmaj=0.0. Or maximum size for very resolved sources. </summary>
+<quantity>phys.angSize.sminAxis;stat.max</quantity>
 <unit> arcsec </unit>
 </column>
     <column name="[beam]">
       <summary> map beam size </summary>
+<quantity>phys.angSize</quantity>
 <unit> arcsec </unit>
 </column>
   </table>

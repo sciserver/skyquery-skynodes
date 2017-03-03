@@ -2,199 +2,253 @@
   <table name="[dbo].[SpecObj]">
     <column name="[cx]">
       <summary> Cartesian X (J2000)</summary>
+<quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[cy]">
       <summary> Cartesian Y (J2000)</summary>
+<quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[cz]">
       <summary> Cartesian Z (J2000)</summary>
+<quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
+<quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[zoneid]">
       <summary> Zone ID </summary>
+<quantity>pos.zone</quantity>
 </column>
     <column name="[Name]">
       <summary> Source name (JHHMMSS.ss+DDMMSS.s) (not identical to SDSS name) </summary>
+<quantity>meta.id;meta.main</quantity>
 </column>
     <column name="[n_Name]">
       <summary> r indicates several observations in repeats file </summary>
+<quantity>meta.code.multip</quantity>
 </column>
     <column name="[RA]">
       <summary> Right ascension in decimal degrees (J2000) </summary>
-<unit> deg (J2000) </unit>
+<quantity>pos.eq.ra;pos.frame=j2000</quantity>
+<unit> deg </unit>
 </column>
     <column name="[DEC]">
       <summary> Declination in decimal degrees (J2000) </summary>
-<unit> deg (J2000) </unit>
+<quantity>pos.eq.deg;pos.frame=j2000</quantity>
+<unit> deg </unit>
 </column>
     <column name="[Pr]">
       <summary> [3/6] Configuration priority for 2dF </summary>
+<quantity>meta.code</quantity>
 </column>
     <column name="[Run]">
       <summary> SDSS Run number </summary>
+<quantity>meta.id</quantity>
 </column>
     <column name="[Rerun]">
       <summary> SDSS Rerun number </summary>
+<quantity>meta.id</quantity>
 </column>
     <column name="[Camcol]">
       <summary> SDSS camera number </summary>
+<quantity>meta.id;instr.det</quantity>
 </column>
     <column name="[Field]">
       <summary> SDSS Field number </summary>
+<quantity>meta.id;obs.field</quantity>
 </column>
     <column name="[ID]">
       <summary> SDSS object id within a field </summary>
+<quantity>meta.id.cross</quantity>
 </column>
     <column name="[umag]">
       <summary> SDSS PSF u magnitude. No extinction correction </summary>
+<quantity>phot.mag.psf;em.opt.SDSS.u</quantity>
 <unit> mag </unit>
 </column>
     <column name="[e_umag]">
       <summary>  rms uncertainty on umag </summary>
+<quantity>stat.error;phot.mag.psf;em.opt.SDSS.u</quantity>
 <unit> mag </unit>
 </column>
     <column name="[gmag]">
       <summary> SDSS PSF g magnitude. No extinction correction. </summary>
+<quantity>phot.mag.psf;em.opt.SDSS.g</quantity>
 <unit> mag </unit>
 </column>
     <column name="[e_gmag]">
       <summary> rms uncertainty on gmag </summary>
+<quantity>stat.error;phot.mag.psf;em.opt.SDSS.g</quantity>
 <unit> mag </unit>
 </column>
     <column name="[rmag]">
       <summary> SDSS PSF r magnitude. No extinction correction. </summary>
+<quantity>phot.mag.psf;em.opt.SDSS.r</quantity>
 <unit> mag </unit>
 </column>
     <column name="[e_rmag]">
       <summary> rms uncertainty on rmag </summary>
+<quantity>stat.error;phot.mag.psf;em.opt.SDSS.r</quantity>
 <unit> mag </unit>
 </column>
     <column name="[imag]">
       <summary> SDSS PSF i magnitude. No extinction correction. </summary>
+<quantity>phot.mag.psf;em.opt.SDSS.i</quantity>
 <unit> mag </unit>
 </column>
     <column name="[e_imag]">
       <summary> rms uncertainty on imag </summary>
+<quantity>stat.error;phot.mag.psf;em.opt.SDSS.i</quantity>
 <unit> mag </unit>
 </column>
     <column name="[zmag]">
       <summary> SDSS PSF z magnitude. No extinction correction. </summary>
-<unit> rms uncertainty on zmag </unit>
+<quantity>phot.mag.psf;em.opt.SDSS.z</quantity>
+<unit> mag </unit>
 </column>
     <column name="[e_zmag]">
-      <summary> mag </summary>
+      <summary> rms uncertainty on zmag </summary>
+<quantity>stat.error;phot.mag.psf;em.opt.SDSS.z</quantity>
 <unit> mag </unit>
 </column>
     <column name="[ured]">
       <summary> Extinction in u band </summary>
+<quantity>phys.absorption.gal;em.opt.SDSS.u</quantity>
 <unit> mag </unit>
 </column>
     <column name="[gred]">
       <summary> Extinction in g band </summary>
+<quantity>phys.absorption.gal;em.opt.SDSS.g</quantity>
 <unit> mag </unit>
 </column>
     <column name="[rred]">
       <summary> Extinction in r band </summary>
+<quantity>phys.absorption.gal;em.opt.SDSS.r</quantity>
 <unit> mag </unit>
 </column>
     <column name="[ired]">
       <summary> Extinction in i band  </summary>
+<quantity>phys.absorption.gal;em.opt.SDSS.i</quantity>
 <unit> mag </unit>
 </column>
     <column name="[zred]">
       <summary> Extinction in z band  </summary>
+<quantity>phys.absorption.gal;em.opt.SDSS.z</quantity>
 <unit> mag </unit>
 </column>
     <column name="[SpG]">
       <summary> SDSS Bayesian star-galaxy classification probability </summary>
+<quantity>stat.probability;src.class.starGalaxy</quantity>
 </column>
     <column name="[Cl]">
       <summary> [3,6] SDSS Object image morphology classification. 3 = galaxy, 6 = star </summary>
+<quantity>src.class.starGalaxy</quantity>
 </column>
     <column name="[zem_S]">
       <summary> SDSS emission spectroscopic redshift </summary>
+<quantity>src.redshift;spect</quantity>
 </column>
     <column name="[q_zem_S]">
       <summary> [0/1] SDSS spectroscopic quality flag, from 0 (bad) to 1 (good)  </summary>
+<quantity>meta.code.qual;spect</quantity>
 </column>
     <column name="[ID_S]">
       <summary> SDSS spectroscopic classification </summary>
+<quantity>src.class;spect</quantity>
 </column>
     <column name="[bj]">
       <summary> 2QZ bJ magnitude (Smith et al. 2005MNRAS.359...57S)  </summary>
+<quantity>phot.mag;em.opt.B</quantity>
 <unit> mag </unit>
 </column>
     <column name="[zem2q]">
       <summary> 2QZ emission spectroscopic redshift (Croom et al., Cat. VII/241) </summary>
+<quantity>src.redshift;spect</quantity>
 </column>
     <column name="[q_zem2q]">
       <summary> 2QZ redshift quality flag. Quality flag is:
 1=	high-quality ID or redshift
 2=	poor-quality ID or redshift
 3=	no ID or redshift assignment </summary>
+<quantity>meta.code.qual;src.redshift</quantity>
 </column>
     <column name="[ID2q]">
       <summary> 2QZ spectroscopic classification  </summary>
+<quantity>src.class;spect</quantity>
 </column>
     <column name="[q_ID2q]">
       <summary> 2QZ ID quality flag. Quality flag is:
 1=	high-quality ID or redshift
 2=	poor-quality ID or redshift
 3=	no ID or redshift assignment </summary>
+<quantity>meta.code.qual;src.class</quantity>
 </column>
     <column name="[TwoQZ]">
       <summary> 2QZ name (JHHMMSS.s+DDMMSS, Cat. VII/241) </summary>
+<quantity>meta.id.cross</quantity>
 </column>
     <column name="[z2S]">
       <summary> 2SLAQ spectroscopic redshift </summary>
+<quantity>src.redshift</quantity>
 </column>
     <column name="[q_z2S]">
       <summary> 2SLAQ redshift quality flag. Quality flag is:
 1=	high-quality ID or redshift
 2=	poor-quality ID or redshift
 3=	no ID or redshift assignment </summary>
+<quantity>meta.code.qual;src.redshift</quantity>
 </column>
     <column name="[ID2S]">
       <summary> 2SLAQ spectroscopic ID (i.e. QSO, NELG, star etc.) </summary>
+<quantity>src.class;spect</quantity>
 </column>
     <column name="[q_ID2S]">
       <summary> 2SLAQ ID quality flag. Quality flag is:
 1=	high-quality ID or redshift
 2=	poor-quality ID or redshift
 3=	no ID or redshift assignment </summary>
+<quantity>meta.code.qual;src.class</quantity>
 </column>
     <column name="[Date]">
       <summary> 2SLAQ spectroscopic observation date </summary>
+<quantity>time.epoch;obs</quantity>
 <unit> "Y:M:D" </unit>
 </column>
     <column name="[Fl2S]">
       <summary> 2SLAQ spectroscopic field  </summary>
+<quantity>meta.id;obs.field</quantity>
 </column>
     <column name="[Fb2S]">
       <summary> [0/357] 2SLAQ spectroscopic fibre number </summary>
+<quantity>meta.id;instr.param</quantity>
 </column>
     <column name="[SpN]">
       <summary> 2SLAQ spectroscopic S/N in a 4000-5000Å band </summary>
+<quantity>stat.snr</quantity>
 </column>
     <column name="[dmag]">
       <summary> 2SLAQ (gm mag)-(fibre mag) relative to mean zero point in field </summary>
+<quantity>phot.mag</quantity>
 <unit> mag </unit>
 </column>
     <column name="[FX]">
       <summary> RASS X-ray flux (in 10–13erg/cm2/s) </summary>
-<unit> 10-16W/m2 </unit>
+<quantity>phot.flux;em.X-ray</quantity>
+<unit> 1e-16 W m-2 </unit>
 </column>
     <column name="[F1p4]">
       <summary> FIRST 1.4 GHz Radio flux </summary>
+<quantity>phot.flux;em.radio.750-1500MHz</quantity>
 <unit> mJy </unit>
 </column>
     <column name="[n_F1p4]">
       <summary> [0/3] FIRST morphology,  </summary>
+<quantity>src.morph</quantity>
 </column>
     <column name="[Com]">
       <summary> 2SLAQ comment on spectrum </summary>
+<quantity>meta.comment</quantity>
 </column>
   </table>
 </metadata>

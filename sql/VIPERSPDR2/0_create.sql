@@ -2,18 +2,23 @@
 CREATE TABLE dbo.PhotoObj
 (
 	--/ <summary> Cartesian X (J2000)</summary>
+	--/ <quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
 	[cx] [float] NOT NULL,
 
 	--/ <summary> Cartesian Y (J2000)</summary>
+	--/ <quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
 	[cy] [float] NOT NULL,
 
 	--/ <summary> Cartesian Z (J2000)</summary>
+	--/ <quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
 	[cz] [float] NOT NULL,
 
 	--/ <summary> HTM ID (J2000)</summary>
+	--/ <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
 	[htmid] bigint NOT NULL,
 
 	--/ <summary> Zone ID (J2000)</summary>
+	--/ <quantity>pos.zone</quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> VIPERS object name, according to IAU standards. The name is composed of the prefix VIPERS plus the internal 
@@ -24,6 +29,7 @@ CREATE TABLE dbo.PhotoObj
 	--/     tt identifies the CFHTLS tile number where the object is located,  
 	--/     xxxxxx is the original CFHTLS ID within the tile.  
 	--/ The correspondence between our tile identifier and the official CFHTLS tile name is provided in Guzzo et al. 2014 </summary>
+	--/ <quantity>meta.id;meta.main</quantity>
 	[id_IAU] char(16) NOT NULL,
 
 	--/ <summary> Internal identification number. The internal id number (num) is in the form  
@@ -33,24 +39,30 @@ CREATE TABLE dbo.PhotoObj
 	--/     tt identifies the CFHTLS tile number where the object is located,  
 	--/     xxxxxx is the original CFHTLS ID within the tile.  
 	--/ The correspondence between our tile identifier and the official CFHTLS tile name is provided in Guzzo et al. 2014 </summary>
+	--/ <quantity>meta.id</quantity>
 	[num] bigint NOT NULL,
 
 	--/ <summary> Object ID in the VIPERS Multi-Lambda catalog. Objects not matched to a T0005 counterpart have this ID set to -1. </summary>
+	--/ <quantity>meta.id.cross</quantity>
 	[id_T07] bigint NOT NULL,
 
 	--/ <summary> Right Ascension </summary>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
 	--/ <unit> deg </unit>
 	[ra] float NOT NULL,
 
 	--/ <summary> Declination </summary>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000</quantity>
 	--/ <unit> deg </unit>
 	[dec] float NOT NULL,
 
 	--/ <summary> i_AB selection magnitude. The selection magnitude comes from CFHTLS T0005 catalogue </summary>
+	--/ <quantity>phot.mag</quantity>
 	--/ <unit> mag </unit>
 	[selmag] real NOT NULL,
 
 	--/ <summary> i_AB selection magnitude error. </summary>
+	--/ <quantity>stat.error;phot.mag</quantity>
 	--/ <unit> mag </unit>
 	[errselmag] real NOT NULL,
 
@@ -66,6 +78,7 @@ CREATE TABLE dbo.PhotoObj
 	--/ where E(B-V) is the extinction factor (color excess).  
 	--/ When an object has not been observed in a given band, magnitude and error are set equal to -99. When a magnitude (and its 
 	--/ could not be measured, these values are set to 99. </summary>
+	--/ <quantity>phot.mag.redFree;em.opt.SDSS.u</quantity>
 	--/ <unit> mag </unit>
 	[u] real NOT NULL,
 
@@ -81,6 +94,7 @@ CREATE TABLE dbo.PhotoObj
 	--/ where E(B-V) is the extinction factor (color excess).  
 	--/ When an object has not been observed in a given band, magnitude and error are set equal to -99. When a magnitude (and its 
 	--/ could not be measured, these values are set to 99. </summary>
+	--/ <quantity>phot.mag.redFree;em.opt.SDSS.g</quantity>
 	--/ <unit> mag </unit>
 	[g] real NOT NULL,
 
@@ -96,6 +110,7 @@ CREATE TABLE dbo.PhotoObj
 	--/ where E(B-V) is the extinction factor (color excess).  
 	--/ When an object has not been observed in a given band, magnitude and error are set equal to -99. When a magnitude (and its 
 	--/ could not be measured, these values are set to 99. </summary>
+	--/ <quantity>phot.mag.redFree;em.opt.SDSS.r</quantity>
 	--/ <unit> mag </unit>
 	[r] real NOT NULL,
 
@@ -111,6 +126,7 @@ CREATE TABLE dbo.PhotoObj
 	--/ where E(B-V) is the extinction factor (color excess).  
 	--/ When an object has not been observed in a given band, magnitude and error are set equal to -99. When a magnitude (and its 
 	--/ could not be measured, these values are set to 99. </summary>
+	--/ <quantity>phot.mag.redFree;em.opt.SDSS.i</quantity>
 	--/ <unit> mag </unit>
 	[i] real NOT NULL,
 
@@ -126,26 +142,32 @@ CREATE TABLE dbo.PhotoObj
 	--/ where E(B-V) is the extinction factor (color excess).  
 	--/ When an object has not been observed in a given band, magnitude and error are set equal to -99. When a magnitude (and its 
 	--/ could not be measured, these values are set to 99. </summary>
+	--/ <quantity>phot.mag.redFree;em.opt.SDSS.z</quantity>
 	--/ <unit> mag </unit>
 	[z] real NOT NULL,
 
 	--/ <summary> u magnitude error </summary>
+	--/ <quantity>stat.error;phot.mag.redFree;em.opt.SDSS.u</quantity>
 	--/ <unit> mag </unit>
 	[erru] real NOT NULL,
 
 	--/ <summary> g magnitude error </summary>
+	--/ <quantity>stat.error;phot.mag.redFree;em.opt.SDSS.g</quantity>
 	--/ <unit> mag </unit>
 	[errg] real NOT NULL,
 
 	--/ <summary> r magnitude error </summary>
+	--/ <quantity>stat.error;phot.mag.redFree;em.opt.SDSS.r</quantity>
 	--/ <unit> mag </unit>
 	[errr] real NOT NULL,
 
 	--/ <summary> i magnitude error </summary>
+	--/ <quantity>stat.error;phot.mag.redFree;em.opt.SDSS.i</quantity>
 	--/ <unit> mag </unit>
 	[erri] real NOT NULL,
 
 	--/ <summary> z magnitude error </summary>
+	--/ <quantity>stat.error;phot.mag.redFree;em.opt.SDSS.z</quantity>
 	--/ <unit> mag </unit>
 	[errz] real NOT NULL,
 
@@ -160,18 +182,22 @@ CREATE TABLE dbo.PhotoObj
 	--/ When a magnitude (and its error) could not be measured, these values are set to 99. 
 	--/ Objects observed in i band, have y magniudes set to -99.99. 
 	--/ Objects observed in y band instead of i band, have i magniudes set to -99.99. </summary>
+	--/ <quantity>phot.mag.isophotal;em.opt.SDSS.u</quantity>
 	--/ <unit> mag </unit>
 	[u_T07] real NOT NULL,
 
 	--/ <summary> Magnitudes from the VIPERS Multi-Lambda Survey. See u_T107 for details. </summary>
+	--/ <quantity>phot.mag.isophotal;em.opt.SDSS.g</quantity>
 	--/ <unit> mag </unit>
 	[g_T07] real NOT NULL,
 
 	--/ <summary> Magnitudes from the VIPERS Multi-Lambda Survey. See u_T107 for details. </summary>
+	--/ <quantity>phot.mag.isophotal;em.opt.SDSS.r</quantity>
 	--/ <unit> mag </unit>
 	[r_T07] real NOT NULL,
 
 	--/ <summary> Magnitudes from the VIPERS Multi-Lambda Survey. See u_T107 for details. </summary>
+	--/ <quantity>phot.mag.isophotal;em.opt.SDSS.i</quantity>
 	--/ <unit> mag </unit>
 	[i_T07] real NOT NULL,
 
@@ -188,66 +214,82 @@ CREATE TABLE dbo.PhotoObj
 	--/     18.0 &lt;selmag &lt;22.5  
 	--/ and  
 	--/     0 &lt;g-i &lt;3.5 </summary>
+	--/ <quantity>phot.mag.isophotal;em.opt.SDSS.i</quantity>
 	--/ <unit> mag </unit>
 	[iy_T07] real NOT NULL,
 
 	--/ <summary> Magnitudes from the VIPERS Multi-Lambda Survey. See u_T107 for details. </summary>
+	--/ <quantity>phot.mag.isophotal;em.opt.SDSS.z</quantity>
 	--/ <unit> mag </unit>
 	[z_T07] real NOT NULL,
 
 	--/ <summary> Magnitude error </summary>
+	--/ <quantity>stat.error;phot.mag.isophotal;em.opt.SDSS.u</quantity>
 	--/ <unit> mag </unit>
 	[erru_T07] real NOT NULL,
 
 	--/ <summary> Magnitude error </summary>
+	--/ <quantity>stat.error;phot.mag.isophotal;em.opt.SDSS.g</quantity>
 	--/ <unit> mag </unit>
 	[errg_T07] real NOT NULL,
 
 	--/ <summary> Magnitude error </summary>
+	--/ <quantity>stat.error;phot.mag.isophotal;em.opt.SDSS.r</quantity>
 	--/ <unit> mag </unit>
 	[errr_T07] real NOT NULL,
 
 	--/ <summary> Magnitude error </summary>
+	--/ <quantity>stat.error;phot.mag.isophotal;em.opt.SDSS.i</quantity>
 	--/ <unit> mag </unit>
 	[erri_T07] real NOT NULL,
 
 	--/ <summary> Magnitude error </summary>
+	--/ <quantity>stat.error;phot.mag.isophotal;em.opt.SDSS.i</quantity>
 	--/ <unit> mag </unit>
 	[erriy_T07] real NOT NULL,
 
 	--/ <summary> Magnitude error </summary>
+	--/ <quantity></quantity>
 	--/ <unit> mag </unit>
 	[errz_T07] real NOT NULL,
 
 	--/ <summary> magnitude K_video (only for W1) is from the VIDEO VISTA survey. </summary>
+	--/ <quantity>phot.mag.isophotal;em.IR.K</quantity>
 	--/ <unit> mag </unit>
 	[K_video] real NOT NULL,
 
 	--/ <summary> magnitude Ks is from WIRCAM data </summary>
+	--/ <quantity>phot.mag.isophotal;em.IR.K</quantity>
 	--/ <unit> mag </unit>
 	[Ks] real NOT NULL,
 
 	--/ <summary> magnitudes FUV and NUV are from GALEX </summary>
+	--/ <quantity>phot.mag.isophotal;em.UV.FUV</quantity>
 	--/ <unit> mag </unit>
 	[FUV] real NOT NULL,
 
 	--/ <summary> magnitudes FUV and NUV are from GALEX </summary>
+	--/ <quantity>phot.mag.isophotal;em.UV</quantity>
 	--/ <unit> mag </unit>
 	[NUV] real NOT NULL,
 
 	--/ <summary> Magnitude error. </summary>
+	--/ <quantity>stat.error;phot.mag.isophotal;em.IR.K</quantity>
 	--/ <unit> mag </unit>
 	[errK_video] real NOT NULL,
 
 	--/ <summary> Magnitude error. </summary>
+	--/ <quantity>stat.error;phot.mag.isophotal;em.IR.K</quantity>
 	--/ <unit> mag </unit>
 	[errKs] real NOT NULL,
 
 	--/ <summary> Magnitude error. </summary>
+	--/ <quantity>stat.error;phot.mag.isophotal;em.UV.FUV</quantity>
 	--/ <unit> mag </unit>
 	[errFUV] real NOT NULL,
 
 	--/ <summary> Magnitude error. </summary>
+	--/ <quantity>stat.error;phot.mag.isophotal;em.UV</quantity>
 	--/ <unit> mag </unit>
 	[errNUV] real NOT NULL,
 
@@ -257,6 +299,7 @@ CREATE TABLE dbo.PhotoObj
 	--/     u-gcorr = u-g - DeltaUG 
 	--/     g-rcorr = g-r - DeltaGR 
 	--/     r-icorr = r-i - DeltaRI </summary>
+	--/ <quantity>phot.color;em.opt.SDSS.u;em.opt.SDSS.g</quantity>
 	[DeltaUG] real NOT NULL,
 
 	--/ <summary> 	Tile-to-tile colors offsets used in the targets sample selection applied to the CFHTLS T005 data (see Guzzo et al. 
@@ -265,6 +308,7 @@ CREATE TABLE dbo.PhotoObj
 	--/     u-gcorr = u-g - DeltaUG 
 	--/     g-rcorr = g-r - DeltaGR 
 	--/     r-icorr = r-i - DeltaRI </summary>
+	--/ <quantity>phot.color;em.opt.SDSS.g;em.opt.SDSS.r</quantity>
 	[DeltaGR] real NOT NULL,
 
 	--/ <summary> 	Tile-to-tile colors offsets used in the targets sample selection applied to the CFHTLS T005 data (see Guzzo et al. 
@@ -273,16 +317,20 @@ CREATE TABLE dbo.PhotoObj
 	--/     u-gcorr = u-g - DeltaUG 
 	--/     g-rcorr = g-r - DeltaGR 
 	--/     r-icorr = r-i - DeltaRI </summary>
+	--/ <quantity>phot.color;em.opt.SDSS.r;em.opt.SDSS.i</quantity>
 	[DeltaRI] real NOT NULL,
 
 	--/ <summary> extinction factor (color excess) E(B-V) derived from Schlegel's maps </summary>
+	--/ <quantity>phot.color.excess</quantity>
 	[ebv] real NOT NULL,
 
 	--/ <summary> radius enclosing half the object light as from CFHTLS T0005 catalogue, measured in pixels </summary>
+	--/ <quantity>phys.angSize</quantity>
 	--/ <unit> pixel </unit>
 	[r2] real NOT NULL,
 
 	--/ <summary> radius enclosing half the object light as from CFHTLS T0007 catalogue, measured in pixels </summary>
+	--/ <quantity>phys.angSize</quantity>
 	--/ <unit> pixel </unit>
 	[r2_T07] real NOT NULL,
 
@@ -302,15 +350,18 @@ CREATE TABLE dbo.PhotoObj
 	--/ -88: problematic object, possibly saturated image 
 	--/  
 	--/ -99: problematic object, missing photometric data </summary>
+	--/ <quantity>meta.code</quantity>
 	[classFlag] int NOT NULL,
 
 	--/ <summary> Flag indicating whether the object falls within the photometric mask. 1 if the object is inside the mask, 0 if it is 
 	--/ Objects outside the photometric mask have a less reliable photometry </summary>
+	--/ <quantity>meta.code;phot</quantity>
 	[photoMask] tinyint NOT NULL,
 
 	--/ <summary> Flag indicating whether the object falls within the spectroscopic mask. 1 if the object is inside the mask, 0 if it is 
 	--/ Objects outside the spectroscopic mask have not entered the mask preparation phase (see Garilli et al. 2014 for 
 	--/ </summary>
+	--/ <quantity>meta.code;spect</quantity>
 	[spectroMask] tinyint NOT NULL,
 
 	CONSTRAINT [PK_PhotoObj] PRIMARY KEY CLUSTERED
@@ -327,18 +378,23 @@ GO
 CREATE TABLE dbo.SpecObj
 (
 	--/ <summary> Cartesian X (J2000)</summary>
+	--/ <quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
 	[cx] [float] NOT NULL,
 
 	--/ <summary> Cartesian Y (J2000)</summary>
+	--/ <quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
 	[cy] [float] NOT NULL,
 
 	--/ <summary> Cartesian Z (J2000)</summary>
+	--/ <quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
 	[cz] [float] NOT NULL,
 
 	--/ <summary> HTM ID (J2000)</summary>
+	--/ <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
 	[htmid] bigint NOT NULL,
 
 	--/ <summary> Zone ID (J2000)</summary>
+	--/ <quantity>pos.zone</quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> VIPERS object name, according to IAU standards. The name is composed of the prefix VIPERS plus the internal 
@@ -349,6 +405,7 @@ CREATE TABLE dbo.SpecObj
 	--/ tt identifies the CFHTLS tile number where the object is located,  
 	--/ xxxxxx is the original CFHTLS ID within the tile.  
 	--/ The correspondence between our tile identifier and the official CFHTLS tile name is provided in Guzzo et al 2014 </summary>
+	--/ <quantity>meta.id;meta.main</quantity>
 	[id_IAU] char(16) NOT NULL,
 
 	--/ <summary> The internal id number (num) is in the form  
@@ -358,31 +415,39 @@ CREATE TABLE dbo.SpecObj
 	--/ tt identifies the CFHTLS tile number where the object is located,  
 	--/ xxxxxx is the original CFHTLS ID within the tile.  
 	--/ The correspondence between our tile identifier and the official CFHTLS tile name is provided in Guzzo et al 2014 </summary>
+	--/ <quantity>meta.id</quantity>
 	[num] bigint NOT NULL,
 
 	--/ <summary> right ascension </summary>
-	--/ <unit> deg (J2000) </unit>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+	--/ <unit> deg </unit>
 	[ra] float NOT NULL,
 
 	--/ <summary> declination </summary>
-	--/ <unit> deg (J2000) </unit>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+	--/ <unit> deg </unit>
 	[dec] float NOT NULL,
 
 	--/ <summary> i_AB selection magnitude. The selection magnitude comes from CFHTLS T0005 catalogues </summary>
+	--/ <quantity>phot.mag</quantity>
 	--/ <unit> mag </unit>
 	[selmag] real NOT NULL,
 
 	--/ <summary> i_AB selection magnitude error. </summary>
+	--/ <quantity>stat.error;phot.mag</quantity>
 	--/ <unit> mag </unit>
 	[errselmag] real NOT NULL,
 
 	--/ <summary>  </summary>
+	--/ <quantity>meta.note</quantity>
 	[pointing] char(6) NOT NULL,
 
 	--/ <summary>  </summary>
+	--/ <quantity>meta.code</quantity>
 	[quadrant] tinyint NOT NULL,
 
 	--/ <summary> Spectroscopic redshift. </summary>
+	--/ <quantity>src.redshift;spect</quantity>
 	[zspec] real NOT NULL,
 
 	--/ <summary> Redshift measurement quality flag 
@@ -422,17 +487,21 @@ CREATE TABLE dbo.SpecObj
 	--/ and 0.05 is twice the median scatter of the comparison between spectroscopic and photometric redshifts.  
 	--/ .2 spectroscopic redshift is NOT compatible with photometric redshift 
 	--/ .1 no photometric redshift available </summary>
+	--/ <quantity>meta.code;src.redshift</quantity>
 	[zflg] real NOT NULL,
 
 	--/ <summary> Normalization factor. The spectrum has been multiplied by this value to be normalized to the selmag value. </summary>
+	--/ <quantity>stat.value</quantity>
 	[norm] real NOT NULL,
 
 	--/ <summary> Observing epoch. epoch=1 objects have been observed before VIMOS refurbishing in summer 2010, epoch=2 objects have 
 	--/ observed after summer 2010 </summary>
+	--/ <quantity>time.epoch;obs</quantity>
 	[epoch] tinyint NOT NULL,
 
 	--/ <summary> Flag indicating whether the object falls within the photometric mask. 1 if the object is inside the mask, 0 if it is 
 	--/ Objects outside the photometric mask have a less reliable photometry </summary>
+	--/ <quantity>meta.code;phot</quantity>
 	[photoMask] tinyint NOT NULL,
 
 	--/ <summary> The Target Sampling Rate (TSR) is defined as the ratio of the observed objects over the number of possible targets: 
@@ -440,6 +509,7 @@ CREATE TABLE dbo.SpecObj
 	--/ TSR has been computed in small rectangular apertures to take into account the shadowing effect of MOS slits in the 
 	--/ of the galaxy distribution. TSR and is needed to take into account the fact that not all the possible targets can be 
 	--/ in the single pass strategy adopted in VIPERS. See Scodeggio et al. 2016 for details </summary>
+	--/ <quantity>meta.code;obs;arith.ratio</quantity>
 	[tsr] real NOT NULL,
 
 	--/ <summary> The Spectroscopic Success Rate (SSR) is defined as the ratio of the galaxies with a successfully measured redshift 
@@ -447,6 +517,7 @@ CREATE TABLE dbo.SpecObj
 	--/ SSR is a function of the apparent magnitude (since to bright objects correspond spectra with high signal-to-noise, 
 	--/ which the redshift can be more easily measured), of the galaxy luminosity and rest-frame color and of the overall 
 	--/ quality, quantified via the mean SSR for all galaxies in that quadrant. See Scodeggio et al. 2016 for detail </summary>
+	--/ <quantity>meta.code;spect</quantity>
 	[ssr] real NOT NULL,
 
 	--/ <summary> The VIPERS galaxy target selection flag, based on the CFHTLS T005 catalogue, where 
@@ -465,6 +536,7 @@ CREATE TABLE dbo.SpecObj
 	--/ -88: problematic object, possibly saturated image 
 	--/  
 	--/ -99: problematic object, missing photometric data </summary>
+	--/ <quantity>meta.code</quantity>
 	[classFlag] int NOT NULL,
 
 	CONSTRAINT [PK_SpecObj] PRIMARY KEY CLUSTERED

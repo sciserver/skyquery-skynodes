@@ -2,47 +2,59 @@
 CREATE TABLE dbo.SpecObj
 (
 	--/ <summary> Cartesian X (J2000)</summary>
+	--/ <quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
 	[cx] [float] NOT NULL,
 
 	--/ <summary> Cartesian Y (J2000)</summary>
+	--/ <quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
 	[cy] [float] NOT NULL,
 
 	--/ <summary> Cartesian Z (J2000)</summary>
+	--/ <quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
 	[cz] [float] NOT NULL,
 
 	--/ <summary> HTM ID (J2000)</summary>
+	--/ <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
 	[htmid] bigint NOT NULL,
 
 	--/ <summary> Zone ID </summary>
+	--/ <quantity>pos.zone</quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> Sequential ID </summary>
+	--/ <quantity>meta.record</quantity>
 	[seqID] bigint NOT NULL,
 
 	--/ <summary> Right ascension (J2000) </summary>
-	--/ <unit> deg (J2000) </unit>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+	--/ <unit> deg </unit>
 	[RA] float NOT NULL,
 
 	--/ <summary> Declination (J2000)  </summary>
-	--/ <unit> deg (J2000) </unit>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+	--/ <unit> deg </unit>
 	[DEC] float NOT NULL,
 
 	--/ <summary> B magnitude (Zwicky magnitude)  </summary>
+	--/ <quantity>phot.mag;em.opt.B</quantity>
 	--/ <unit> mag </unit>
 	[Bmag] real NOT NULL,
 
 	--/ <summary> Heliocentric redshift  </summary>
-	--/ <unit> km/s </unit>
+	--/ <quantity>src.redshift;pos.heliocentric</quantity>
+	--/ <unit> km s-1 </unit>
 	[z] int NOT NULL,
 
 	--/ <summary> rms uncertainty on z  </summary>
-	--/ <unit> km/s </unit>
+	--/ <quantity>stat.error;src.redshift;pos.heliocentric</quantity>
+	--/ <unit> km s-1 </unit>
 	[e_z] smallint NOT NULL,
 
 	--/ <summary> [ABE] Spectral characteristics. the symbol means: 
 	--/ A:absorption 
 	--/ E:emission 
 	--/ B:both emission and absorption </summary>
+	--/ <quantity>meta.note</quantity>
 	[T] char(1) NOT NULL,
 
 	--/ <summary> [0/4] UZC class 0-4. the UZC class is defined as:
@@ -66,30 +78,38 @@ CREATE TABLE dbo.SpecObj
 	--/ 
 	--/ 
 	--/ 4:No "hit" at all for a positional difference less than 180", i.e., there is no match for a Zwicky galaxy. </summary>
+	--/ <quantity>meta.code.qual</quantity>
 	[U] tinyint NOT NULL,
 
 	--/ <summary> Number of UZC neighboring galaxies, within 3' </summary>
+	--/ <quantity>meta.number;src</quantity>
 	[N] tinyint NOT NULL,
 
 	--/ <summary> Zwicky label based on 1950 positions </summary>
+	--/ <quantity>meta.ref</quantity>
 	[Zname] char(12) NOT NULL,
 
 	--/ <summary> [FMTXZ] Origin of the redshift measurement. Code for the origin of the redshift measurement taken at the CfA: Z for 
 	--/ M for the MMT (4.5m Multiple Mirror Telescope) F for FAST spectra taken from our own and from other projects X flags a 
 	--/ spectrum for Z-machine (FAST) measurements and 
 	--/ indicatesa low S/N match with a spectrum at c&lt;100km/s. </summary>
+	--/ <quantity>meta.ref;src.redshift</quantity>
 	[f_z] char(1) NOT NULL,
 
 	--/ <summary> Reference code detailed in file refs.dat (blank for CfA unpublished data) </summary>
+	--/ <quantity>meta.ref</quantity>
 	[r_z] int NOT NULL,
 
 	--/ <summary> Other name </summary>
+	--/ <quantity>meta.id</quantity>
 	[Name] char(11) NOT NULL,
 
 	--/ <summary> [*] UZC multiplicity, * if multiple </summary>
+	--/ <quantity>meta.code.multip</quantity>
 	[UZC] char(1) NOT NULL,
 
 	--/ <summary> [PTG] NED multiplicity: Pair, Triple, Group  </summary>
+	--/ <quantity>meta.code.multip</quantity>
 	[mul] char(1) NOT NULL,
 
 	CONSTRAINT [PK_SpecObj] PRIMARY KEY CLUSTERED

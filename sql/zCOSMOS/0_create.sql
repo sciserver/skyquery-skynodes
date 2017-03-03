@@ -1,32 +1,41 @@
 CREATE TABLE dbo.SpecObj 
 (
 	--/ <summary> zCOSMOS identification number.</summary>
+	--/ <quantity>meta.id;meta.main</quantity>
 	[objID] bigint NOT NULL,
 
 	--/ <summary> Right ascension in decimal degrees (J2000). </summary>
-	--/ <unit>deg J2000</unit>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[ra] float NOT NULL,
 
 	--/ <summary> Declination in decimal degrees (J2000). </summary>
-	--/ <unit>deg J2000</unit>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[dec] float NOT NULL,
 
 	--/ <summary>Cartesian X (J2000)</summary>
+	--/ <quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
 	[cx] [float] NOT NULL,
 
 	--/ <summary>Cartesian Y (J2000)</summary>
+	--/ <quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
 	[cy] [float] NOT NULL,
 
 	--/ <summary>Cartesian Z (J2000)</summary>
+	--/ <quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
 	[cz] [float] NOT NULL,
 
 	--/ <summary>HTM ID (J2000)</summary>
+	--/ <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
 	[htmid] bigint NOT NULL,
 
 	--/ <summary> Zone ID </summary>
+	--/ <quantity>pos.zone</quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> Redshift. </summary>
+	--/ <quantity>src.redshift</quantity>
 	[z]  real NOT NULL,
 
 	--/ <summary> Confidence Class indicating reliability. 
@@ -65,9 +74,11 @@ CREATE TABLE dbo.SpecObj
 	--/       1 (+10) = Broad line AGN
 	--/       2 (+20) = Secondary targets
 	--/       ---------------------------</summary>
+	--/ <quantity>stat.value</quantity>
 	[CC] real NOT NULL,
 
 	--/ <summary> Selection magnitude F814W, in AB system </summary>
+	--/ <quantity>phot.mag</quantity>
 	--/ <unit>mag</unit>
 	[Imag] real NOT NULL,
 

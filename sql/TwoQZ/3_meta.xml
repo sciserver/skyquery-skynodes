@@ -1,58 +1,102 @@
 <metadata>
   <table name="[dbo].[SpecObj]">
     <summary>The main PhotoObj table for the 2QZ catalog</summary>
+<quantity></quantity>
 <remarks>The main PhotoObj table for the 2QZ catalog</remarks>
 <column name="[objID]"><summary>unique object identifier</summary>
+<quantity>meta.id;meta.main</quantity>
 </column><column name="[name]"><summary>IAU format object name</summary>
+<quantity>meta.id</quantity>
 </column><column name="[ra]"><summary>J2000 right ascension</summary>
+<quantity>pos.eq.ra;pos.frame=j2000</quantity>
 <unit>deg</unit>
 </column><column name="[dec]"><summary>J2000 declination</summary>
+<quantity>pos.eq.dec;pos.frame=j2000</quantity>
 <unit>deg</unit>
 </column><column name="[cx]"><summary>Cartesian coordinate x</summary>
+<quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
 </column><column name="[cy]"><summary>Cartesian coordinate y</summary>
+<quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
 </column><column name="[cz]"><summary>Cartesian coordinate z</summary>
+<quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
 </column><column name="[htmid]"><summary>HTM ID</summary>
+<quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
 </column><column name="[zoneid]"><summary>Zone ID</summary>
+<quantity>pos.zone</quantity>
 </column><column name="[cat_num]"><summary>Internal catalogue object number</summary>
+<quantity>meta.id</quantity>
 </column><column name="[cat_name]"><summary>Internal catalogue object name</summary>
+<quantity>meta.id</quantity>
 </column><column name="[sector]"><summary>Name of the sector this object inhabits</summary>
+<quantity>meta.id</quantity>
 </column><column name="[raB1950]"><summary>Right ascension B1950</summary>
+<quantity>pos.eq.ra;pos.frame=b1950</quantity>
 <unit>deg</unit>
 </column><column name="[decB1950]"><summary>Declination B1950</summary>
+<quantity>pos.eq.dec;pos.frame=b1950</quantity>
 <unit>deg</unit>
 </column><column name="[UKST]"><summary>UKST survey field number</summary>
+<quantity>meta.id;obs.field</quantity>
 </column><column name="[x_apm]"><summary>APM scan X position (~8 micron pixels)</summary>
+<quantity>pos.cartesian.x;instr.det</quantity>
 </column><column name="[y_apm]"><summary>APM scan Y position (~8 micron pixels)</summary>
+<quantity>pos.cartesian.y;instr.det</quantity>
 </column><column name="[raBrad]"><summary></summary>
+<quantity>pos.eq.ra</quantity>
 <unit>rad</unit>
 </column><column name="[decBrad]"><summary></summary>
+<quantity>pos.eq.dec</quantity>
 <unit>rad</unit>
 </column><column name="[bj]"><summary></summary>
+<quantity>phot.mag;em.opt.B</quantity>
 <unit>mag</unit>
 </column><column name="[u_bj]"><summary>u-bj colour</summary>
+<quantity>phot.color;em.opt.U;em.opt.B</quantity>
 </column><column name="[bj_r]"><summary>bj-r colour [incl. r upper limits as (bj-rlim-10)]</summary>
+<quantity>phot.color;em.opt.B;em.opt.R</quantity>
 </column><column name="[n_obs]"><summary>Number of observations made with 2dF</summary>
+<quantity>meta.number;os</quantity>
 </column><column name="[z1]"><summary>Redshift (Obs.#1)</summary>
+<quantity>src.redshift</quantity>
 </column><column name="[q1]"><summary>Identification quality x 10 + redshift quality</summary>
+<quantity>meta.code.qual;src.redshift</quantity>
 </column><column name="[id1]"><summary>Identification</summary>
+<quantity>meta.class;spect</quantity>
 </column><column name="[date1]"><summary>Observation date</summary>
+<quantity>time.epoch;obs</quantity>
 </column><column name="[fld1]"><summary>2dF field number x 10 + spectrograph number</summary>
+<quantity>meta.id</quantity>
 </column><column name="[fibre1]"><summary>2dF fibre number (in spectrograph)</summary>
+<quantity>meta.id;instr.param</quantity>
 </column><column name="[SN1]"><summary>Signal-to-noise ratio in the 4000-5000A band</summary>
+<quantity>stat.snr</quantity>
 </column><column name="[z2]"><summary>Redshift (Obs.#2)</summary>
+<quantity>src.redshift</quantity>
 </column><column name="[q2]"><summary>Identification quality x 10 + redshift quality</summary>
+<quantity>meta.code.qual;src.redshift</quantity>
 </column><column name="[id2]"><summary>Identification</summary>
+<quantity>meta.class;spect</quantity>
 </column><column name="[date2]"><summary>Observation date</summary>
+<quantity>time.epoch;obs</quantity>
 </column><column name="[fld2]"><summary>2dF field number x 10 + spectrograph number</summary>
+<quantity>meta.id</quantity>
 </column><column name="[fibre2]"><summary>2dF fibre number (in spectrograph)</summary>
+<quantity>met.id;instr.param</quantity>
 </column><column name="[SN2]"><summary>Signal-to-noise ratio in the 4000-5000A band</summary>
+<quantity>stat.snr</quantity>
 </column><column name="[zprev]"><summary>Previously known redshift (Veron-Cetty &amp; Veron 2000)</summary>
+<quantity>src.redshift</quantity>
 </column><column name="[radio]"><summary>NVSS radio flux</summary>
+<quantity>phot.flux;em.radio</quantity>
 <unit>mJy</unit>
 </column><column name="[Xray]"><summary>RASS  x-ray flux, 0.2-2.4keV (x10-13 erg s-1 cm-2)</summary>
+<quantity>phot.flux;em.X-ray.soft</quantity>
 <unit>keV</unit>
 </column><column name="[dust]"><summary>E_{B-V} (Schlegel, Finkbeiner &amp; Davis 1998)</summary>
+<quantity>phot.color.excess</quantity>
 </column><column name="[comm1]"><summary>Specific comments on observation 1</summary>
+<quantity>meta.note</quantity>
 </column><column name="[comm2]"><summary>Specific comments on observation 2</summary>
+<quantity>meta.note</quantity>
 </column></table>
 </metadata>

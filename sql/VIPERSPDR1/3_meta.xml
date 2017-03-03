@@ -2,18 +2,23 @@
   <table name="[dbo].[PhotoObj]">
     <column name="[cx]">
       <summary> Cartesian X (J2000)</summary>
+<quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[cy]">
       <summary> Cartesian Y (J2000)</summary>
+<quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[cz]">
       <summary> Cartesian Z (J2000)</summary>
+<quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
+<quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[zoneid]">
       <summary> Zone ID (J2000)</summary>
+<quantity>pos.zone</quantity>
 </column>
     <column name="[id_IAU]">
       <summary> VIPERS object name, according to IAU standards. The name is composed of
@@ -26,6 +31,7 @@ tt identifies the CFHTLS tile number where the object is located,
 xxxxxx is the original CFHTLS ID within the tile.
 The correspondence between our tile identifier and the official CFHTLS
 tile name is provided in Guzzo et al. 2013. </summary>
+<quantity>meta.id;meta.main</quantity>
 </column>
     <column name="[num]">
       <summary> VIPERS object name, according to IAU standards. The name is composed of
@@ -38,22 +44,27 @@ tt identifies the CFHTLS tile number where the object is located,
 xxxxxx is the original CFHTLS ID within the tile.
 The correspondence between our tile identifier and the official CFHTLS
 tile name is provided in Guzzo et al. 2013. </summary>
+<quantity>meta.id</quantity>
 </column>
     <column name="[ra]">
       <summary> Right ascension </summary>
-<unit> deg (J2000) </unit>
+<quantity>pos.eq.ra;pos.frame=j2000</quantity>
+<unit> deg </unit>
 </column>
     <column name="[dec]">
       <summary> Declination </summary>
-<unit> deg (J2000) </unit>
+<quantity>pos.eq.dec;pos.frame=j2000</quantity>
+<unit> deg </unit>
 </column>
     <column name="[selmag]">
       <summary> i_AB selection magnitude. The selection magnitude comes from
 CFHTLS T0005 catalogue. </summary>
+<quantity>phot.mag</quantity>
 <unit> mag </unit>
 </column>
     <column name="[errselmag]">
       <summary> i_AB selection magnitude error </summary>
+<quantity>stat.error;phot.mag</quantity>
 <unit> mag </unit>
 </column>
     <column name="[u]">
@@ -74,6 +85,7 @@ where E(B-V) is the extinction factor (color excess).
 When an object has not been observed in a given band, magnitude and
 error are set equal to -99. When a magnitude (and its error) could not
 be measured, these values are set to 99. </summary>
+<quantity>phot.mag.redFree;em.opt.SDSS.u</quantity>
 <unit> mag </unit>
 </column>
     <column name="[g]">
@@ -94,6 +106,7 @@ where E(B-V) is the extinction factor (color excess).
 When an object has not been observed in a given band, magnitude and
 error are set equal to -99. When a magnitude (and its error) could not
 be measured, these values are set to 99. </summary>
+<quantity>phot.mag.redFree;em.opt.SDSS.g</quantity>
 <unit> mag </unit>
 </column>
     <column name="[r]">
@@ -114,6 +127,7 @@ where E(B-V) is the extinction factor (color excess).
 When an object has not been observed in a given band, magnitude and
 error are set equal to -99. When a magnitude (and its error) could not
 be measured, these values are set to 99. </summary>
+<quantity>phot.mag.redFree;em.opt.SDSS.r</quantity>
 <unit> mag </unit>
 </column>
     <column name="[i]">
@@ -134,6 +148,7 @@ where E(B-V) is the extinction factor (color excess).
 When an object has not been observed in a given band, magnitude and
 error are set equal to -99. When a magnitude (and its error) could not
 be measured, these values are set to 99. </summary>
+<quantity>phot.mag.redFree;em.opt.SDSS.i</quantity>
 <unit> mag </unit>
 </column>
     <column name="[z]">
@@ -154,26 +169,32 @@ where E(B-V) is the extinction factor (color excess).
 When an object has not been observed in a given band, magnitude and
 error are set equal to -99. When a magnitude (and its error) could not
 be measured, these values are set to 99. </summary>
+<quantity>phot.mag.redFree;em.opt.SDSS.z</quantity>
 <unit> mag </unit>
 </column>
     <column name="[erru]">
       <summary> Error of u magnitude. </summary>
+<quantity>stat.error;phot.mag.redFree;em.opt.SDSS.u</quantity>
 <unit> mag </unit>
 </column>
     <column name="[errg]">
       <summary> Error of g magnitude. </summary>
+<quantity>stat.error;phot.mag.redFree;em.opt.SDSS.g</quantity>
 <unit> mag </unit>
 </column>
     <column name="[errr]">
       <summary> Error of r magnitude. </summary>
+<quantity>stat.error;phot.mag.redFree;em.opt.SDSS.r</quantity>
 <unit> mag </unit>
 </column>
     <column name="[erri]">
       <summary> Error of i magnitude. </summary>
+<quantity>stat.error;phot.mag.redFree;em.opt.SDSS.i</quantity>
 <unit> mag </unit>
 </column>
     <column name="[errz]">
       <summary> Error of z magnitude. </summary>
+<quantity>stat.error;phot.mag.redFree;em.opt.SDSS.z</quantity>
 <unit> mag </unit>
 </column>
     <column name="[u_T07]">
@@ -189,6 +210,7 @@ values are set to 99.
 
 Objects observed in y band instead of i band, have i magniudes set to
 -99.99. </summary>
+<quantity>phot.mag.redFree;em.opt.SDSS.u</quantity>
 <unit> mag </unit>
 </column>
     <column name="[g_T07]">
@@ -204,6 +226,7 @@ values are set to 99.
 
 Objects observed in y band instead of i band, have i magniudes set to
 -99.99. </summary>
+<quantity>phot.mag.redFree;em.opt.SDSS.g</quantity>
 <unit> mag </unit>
 </column>
     <column name="[r_T07]">
@@ -219,6 +242,7 @@ values are set to 99.
 
 Objects observed in y band instead of i band, have i magniudes set to
 -99.99. </summary>
+<quantity>phot.mag.redFree;em.opt.SDSS.r</quantity>
 <unit> mag </unit>
 </column>
     <column name="[i_T07]">
@@ -234,6 +258,7 @@ values are set to 99.
 
 Objects observed in y band instead of i band, have i magniudes set to
 -99.99. </summary>
+<quantity>phot.mag.redFree;em.opt.SDSS.i</quantity>
 <unit> mag </unit>
 </column>
     <column name="[iy_T07]">
@@ -249,6 +274,7 @@ values are set to 99.
 
 Objects observed in y band instead of i band, have i magniudes set to
 -99.99. </summary>
+<quantity>phot.mag.redFree;em.opt.SDSS.i</quantity>
 <unit> mag </unit>
 </column>
     <column name="[z_T07]">
@@ -264,30 +290,37 @@ values are set to 99.
 
 Objects observed in y band instead of i band, have i magniudes set to
 -99.99. </summary>
+<quantity>phot.mag.redFree;em.opt.SDSS.z</quantity>
 <unit> mag </unit>
 </column>
     <column name="[erru_T07]">
       <summary> Error of u_T07 magnitude. </summary>
+<quantity>stat.error;phot.mag.redFree;em.opt.SDSS.u</quantity>
 <unit> mag </unit>
 </column>
     <column name="[errg_T07]">
       <summary> Error of g_T07 magnitude. </summary>
+<quantity>stat.error;phot.mag.redFree;em.opt.SDSS.g</quantity>
 <unit> mag </unit>
 </column>
     <column name="[errr_T07]">
       <summary> Error of r_T07 magnitude. </summary>
+<quantity>stat.error;phot.mag.redFree;em.opt.SDSS.r</quantity>
 <unit> mag </unit>
 </column>
     <column name="[erri_T07]">
       <summary> Error of i_T07 magnitude. </summary>
+<quantity>stat.error;phot.mag.redFree;em.opt.SDSS.i</quantity>
 <unit> mag </unit>
 </column>
     <column name="[erriy_T07]">
       <summary> Error of iy_T07 magnitude. </summary>
+<quantity>stat.error;phot.mag.redFree;em.opt.SDSS.i</quantity>
 <unit> mag </unit>
 </column>
     <column name="[errz_T07]">
       <summary> Error of z_T07 magnitude. </summary>
+<quantity>stat.error;phot.mag.redFree;em.opt.SDSS.z</quantity>
 <unit> mag </unit>
 </column>
     <column name="[DeltaUG]">
@@ -300,6 +333,7 @@ colors derived from the magnitudes listed in the database:
 u-g_corr = u-g - DeltaUG
 g-r_corr = g-r - DeltaGR
 r-i_corr = r-i - DeltaRI </summary>
+<quantity>phot.color;em.opt.SDSS.u;em.opt.SDSS.g</quantity>
 </column>
     <column name="[DeltaGR]">
       <summary> Tile-to-tile colors offsets used in the targets sample selection applied
@@ -311,6 +345,7 @@ colors derived from the magnitudes listed in the database:
 u-g_corr = u-g - DeltaUG
 g-r_corr = g-r - DeltaGR
 r-i_corr = r-i - DeltaRI </summary>
+<quantity>phot.color;em.opt.SDSS.g;em.opt.SDSS.r</quantity>
 </column>
     <column name="[DeltaRI]">
       <summary> Tile-to-tile colors offsets used in the targets sample selection applied
@@ -322,19 +357,23 @@ colors derived from the magnitudes listed in the database:
 u-g_corr = u-g - DeltaUG
 g-r_corr = g-r - DeltaGR
 r-i_corr = r-i - DeltaRI </summary>
+<quantity>phot.color;em.opt.SDSS.r;em.opt.SDSS.i</quantity>
 </column>
     <column name="[E_BV]">
       <summary> Extinction factor (color excess) E(B-V) derived from Schlegel's maps. </summary>
+<quantity></quantity>
 </column>
     <column name="[r2]">
       <summary>
 Radius enclosing half the object light as from CFHTLS T0005 catalogue,
 measured in pixels </summary>
+<quantity>phys.angSize</quantity>
 <unit> pixel </unit>
 </column>
     <column name="[r2_T07]">
       <summary> Radius enclosing half the object light as from CFHTLS T0007 catalogue,
 measured in pixels </summary>
+<quantity>phys.angSize</quantity>
 <unit> pixel </unit>
 </column>
     <column name="[classFlag]">
@@ -357,6 +396,7 @@ separation criteria
 1: object with colors compatible with most galaxies at z &gt; 0.5
 
 See section 4 and Fig. 3 in Guzzo et al. 2013. </summary>
+<quantity>meta.code</quantity>
 </column>
     <column name="[agnFlag]">
       <summary>
@@ -365,34 +405,42 @@ otherwise. An object is an AGN candidate if it is stellar-like
 (classFlag = -1) and exhibits colours that are clearly different from
 those of the main stellar sequence (see equations 2 and 3 and Section
 2.2 in Garilli et al. 2013) </summary>
+<quantity>meta.code</quantity>
 </column>
     <column name="[photoMask]">
       <summary> Flag indicating whether the object falls within the photometric mask. 1
 if the object is inside the mask, 0 if it is outside. Objects outside
 the photometric mask have a less reliable photometry. </summary>
+<quantity>meta.code;phot</quantity>
 </column>
     <column name="[spectroMask]">
       <summary> Flag indicating whether the object falls within the spectroscopic mask.
 1 if the object is inside the mask, 0 if it is outside. Objects outside
 the spectroscopic mask have not entered the mask preparation phase (see
 Garilli et al. 2013 for details) </summary>
+<quantity>meta.code;spect</quantity>
 </column>
   </table>
   <table name="[dbo].[SpecObj]">
     <column name="[cx]">
       <summary> Cartesian X (J2000)</summary>
+<quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[cy]">
       <summary> Cartesian Y (J2000)</summary>
+<quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[cz]">
       <summary> Cartesian Z (J2000)</summary>
+<quantity>pos.cartesian.t; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
+<quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[zoneid]">
       <summary> Zone ID </summary>
+<quantity>pos.zone</quantity>
 </column>
     <column name="[id_IAU]">
       <summary> VIPERS object name, according to IAU standards. The name is composed of
@@ -409,6 +457,7 @@ xxxxxx is the original CFHTLS ID within the tile.
 
 The correspondence between our tile identifier and the official CFHTLS
 tile name is provided in Guzzo et al. 2013. </summary>
+<quantity>meta.id;meta.main</quantity>
 </column>
     <column name="[num]">
       <summary> VIPERS object name, according to IAU standards. The name is composed of
@@ -425,29 +474,36 @@ xxxxxx is the original CFHTLS ID within the tile.
 
 Thecorrespondence between our tile identifier and the official CFHTLS
 tile name is provided in Guzzo et al. 2013. </summary>
+<quantity>meta.id</quantity>
 </column>
     <column name="[ra]">
       <summary> Right Ascension </summary>
-<unit> deg (J2000) </unit>
+<quantity>pos.eq.ra;pos.frame=j2000</quantity>
+<unit> deg </unit>
 </column>
     <column name="[dec]">
       <summary> Declination </summary>
-<unit> deg (J2000) </unit>
+<quantity>pos.eq.dec;pos.frame=j2000</quantity>
+<unit> deg </unit>
 </column>
     <column name="[selmag]">
       <summary> i_AB selection magnitude. The selection magnitude comes from
 CFHTLS T0005 catalogues. </summary>
+<quantity>phot.mag</quantity>
 <unit> mag </unit>
 </column>
     <column name="[errselmag]">
       <summary> i_AB selection magnitude error. </summary>
+<quantity>stat.error;phot.mag</quantity>
 <unit> mag </unit>
 </column>
     <column name="[pointing]">
       <summary>  </summary>
+<quantity>meta.note</quantity>
 </column>
     <column name="[quadrant]">
       <summary>  </summary>
+<quantity>meta.code</quantity>
 </column>
     <column name="[zflg]">
       <summary> The integer part of the flag has the following meaning:
@@ -510,20 +566,24 @@ spectroscopic and photometric redshifts.
 .2 spectroscopic redshift is NOT compatible with photometric
 redshift
 .1 no photometric redshift available </summary>
+<quantity>meta.code;src.redshift</quantity>
 </column>
     <column name="[zspec]">
       <summary> Spectroscopic redshift. A conventional zpsec value of 9.9999 is assigned
 in case a redshift could not be measured. </summary>
+<quantity>src.redshift;spect</quantity>
 </column>
     <column name="[epoch]">
       <summary> Observing epoch. epoch=1 objects have been observed before VIMOS
 refurbishing in summer 2010, epoch=2 objects have been observed after
 summer 2010. </summary>
+<quantity>time.epoch</quantity>
 </column>
     <column name="[photoMask]">
       <summary> Flag indicating whether the object falls within the photometric mask. 1
 if the object is inside the mask, 0 if it is outside. Objects outside
 the photometric mask have a less reliable photometry </summary>
+<quantity>meta.code;phot</quantity>
 </column>
     <column name="[tsr]">
       <summary> The Target Sampling Rate is defined as the ratio of the observed objects
@@ -542,6 +602,7 @@ TSR is = -1 for serendipitous targets (flags 2*.*), and observed objects
 not fulfilling the selection criterion for z&gt;0.5 galaxies (i.e. AGN);
 TSR = -99 for objects outside the considered area and selection
 magnitude range (i.e. either i&lt;17.5 or i&gt;22.5). </summary>
+<quantity>meta.code</quantity>
 </column>
     <column name="[ssr]">
       <summary> The SSR is defined as the ratio of the galaxies with a successfully
@@ -558,6 +619,7 @@ confidence redshift measurements (flags 1.*), spectroscopic BLAGN (flags
 (zspec&gt;3);
 SSR = -99 for objects outside the considered area and selection
 magnituderange (i.e. either i&lt;17.5 or i&gt;22.5). </summary>
+<quantity>meta.code</quantity>
 </column>
   </table>
 </metadata>

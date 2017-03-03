@@ -2,47 +2,59 @@
   <table name="[dbo].[SpecObj]">
     <column name="[cx]">
       <summary> Cartesian X (J2000)</summary>
+<quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[cy]">
       <summary> Cartesian Y (J2000)</summary>
+<quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[cz]">
       <summary> Cartesian Z (J2000)</summary>
+<quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
+<quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[zoneid]">
       <summary> Zone ID </summary>
+<quantity>pos.zone</quantity>
 </column>
     <column name="[seqID]">
       <summary> Sequential ID </summary>
+<quantity>meta.record</quantity>
 </column>
     <column name="[RA]">
       <summary> Right ascension (J2000) </summary>
-<unit> deg (J2000) </unit>
+<quantity>pos.eq.ra;pos.frame=j2000</quantity>
+<unit> deg </unit>
 </column>
     <column name="[DEC]">
       <summary> Declination (J2000)  </summary>
-<unit> deg (J2000) </unit>
+<quantity>pos.eq.dec;pos.frame=j2000</quantity>
+<unit> deg </unit>
 </column>
     <column name="[Bmag]">
       <summary> B magnitude (Zwicky magnitude)  </summary>
+<quantity>phot.mag;em.opt.B</quantity>
 <unit> mag </unit>
 </column>
     <column name="[z]">
       <summary> Heliocentric redshift  </summary>
-<unit> km/s </unit>
+<quantity>src.redshift;pos.heliocentric</quantity>
+<unit> km s-1 </unit>
 </column>
     <column name="[e_z]">
       <summary> rms uncertainty on z  </summary>
-<unit> km/s </unit>
+<quantity>stat.error;src.redshift;pos.heliocentric</quantity>
+<unit> km s-1 </unit>
 </column>
     <column name="[T]">
       <summary> [ABE] Spectral characteristics. the symbol means:
 A:absorption
 E:emission
 B:both emission and absorption </summary>
+<quantity>meta.note</quantity>
 </column>
     <column name="[U]">
       <summary> [0/4] UZC class 0-4. the UZC class is defined as:
@@ -66,30 +78,38 @@ the match of the GSC object to the Zwicky galaxy.
 
 
 4:No "hit" at all for a positional difference less than 180", i.e., there is no match for a Zwicky galaxy. </summary>
+<quantity>meta.code.qual</quantity>
 </column>
     <column name="[N]">
       <summary> Number of UZC neighboring galaxies, within 3' </summary>
+<quantity>meta.number;src</quantity>
 </column>
     <column name="[Zname]">
       <summary> Zwicky label based on 1950 positions </summary>
+<quantity>meta.ref</quantity>
 </column>
     <column name="[f_z]">
       <summary> [FMTXZ] Origin of the redshift measurement. Code for the origin of the redshift measurement taken at the CfA: Z for
 M for the MMT (4.5m Multiple Mirror Telescope) F for FAST spectra taken from our own and from other projects X flags a
 spectrum for Z-machine (FAST) measurements and
 indicatesa low S/N match with a spectrum at c&lt;100km/s. </summary>
+<quantity>meta.ref;src.redshift</quantity>
 </column>
     <column name="[r_z]">
       <summary> Reference code detailed in file refs.dat (blank for CfA unpublished data) </summary>
+<quantity>meta.ref</quantity>
 </column>
     <column name="[Name]">
       <summary> Other name </summary>
+<quantity>meta.id</quantity>
 </column>
     <column name="[UZC]">
       <summary> [*] UZC multiplicity, * if multiple </summary>
+<quantity>meta.code.multip</quantity>
 </column>
     <column name="[mul]">
       <summary> [PTG] NED multiplicity: Pair, Triple, Group  </summary>
+<quantity>meta.code.multip</quantity>
 </column>
   </table>
 </metadata>

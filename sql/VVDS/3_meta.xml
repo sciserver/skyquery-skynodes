@@ -2,35 +2,45 @@
   <table name="[dbo].[SpecObj]">
     <column name="[cx]">
       <summary> Cartesian X (J2000)</summary>
+<quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[cy]">
       <summary> Cartesian Y (J2000)</summary>
+<quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[cz]">
       <summary> Cartesian Z (J2000)</summary>
+<quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
+<quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
 </column>
     <column name="[zoneid]">
       <summary> Zone ID </summary>
+<quantity>pos.zone</quantity>
 </column>
     <column name="[ID]">
       <summary> Observation identification </summary>
+<quantity>meta.id;meta.main</quantity>
 </column>
     <column name="[RA]">
       <summary> Right ascension (J2000) </summary>
-<unit> deg (J2000) </unit>
+<quantity>pos.eq.ra;pos.frame=j2000</quantity>
+<unit> deg </unit>
 </column>
     <column name="[DEC]">
       <summary> Declination (J2000) </summary>
-<unit> deg (J2000) </unit>
+<quantity>pos.eq.dec;pos.frame=j2000</quantity>
+<unit> deg </unit>
 </column>
     <column name="[Jname]">
       <summary> Name based on J2000 position </summary>
+<quantity>meta.id</quantity>
 </column>
     <column name="[z]">
       <summary> Redshift (Z) </summary>
+<quantity>src.redshift</quantity>
 </column>
     <column name="[q_z]">
       <summary> [1,219] Redshift quality. The last (rightmost) digit characterises the quality of the redshift:
@@ -45,9 +55,11 @@ objects which have been targeted in the VIMOS spectral slit. To this quality val
 +20=	a secondary identified target, i.e. an object which is present by chance in the spectral slit in addition of the
 target; thus the secondary object is not ensured to be fully centered within the slit.
 +210=	secondary QSO identified target </summary>
+<quantity>meta.code.qual;src.redshift</quantity>
 </column>
     <column name="[phf]">
       <summary> [0,1] Photometry is 0=questionable, 1=OK </summary>
+<quantity>meta.code.qual;phot</quantity>
 </column>
     <column name="[UEmag]">
       <summary>  AB magnitude in ESO U/360 filter. the two U filters differ slightly:
@@ -55,10 +67,12 @@ target; thus the secondary object is not ensured to be fully centered within the
 FWHM of 73nm, has his highest wavelength close to 400nm.
 –the Loiano U filter has a central wavelength of 362nm and a
 FWHM of 53nm; it also presents a red leak around 720nm </summary>
+<quantity>phot.mag;em.opt.U</quantity>
 <unit> mag </unit>
 </column>
     <column name="[e_UEmag]">
       <summary> Mean error on UEmag </summary>
+<quantity>stat.error;phot.mag;em.opt.U</quantity>
 <unit> mag </unit>
 </column>
     <column name="[ULmag]">
@@ -67,58 +81,72 @@ FWHM of 53nm; it also presents a red leak around 720nm </summary>
 FWHM of 73nm, has his highest wavelength close to 400nm.
 –the Loiano U filter has a central wavelength of 362nm and a
 FWHM of 53nm; it also presents a red leak around 720nm </summary>
+<quantity>phot.mag;em.opt.U</quantity>
 <unit> mag </unit>
 </column>
     <column name="[e_ULmag]">
       <summary> Mean error on ULmag </summary>
+<quantity>stat.error;phot.mag;em.opt.U</quantity>
 <unit> mag </unit>
 </column>
     <column name="[Bmag]">
       <summary> AB magnitude in B filter </summary>
+<quantity>phot.mag;em.opt.B</quantity>
 <unit> mag </unit>
 </column>
     <column name="[e_Bmag]">
       <summary> Mean error on Bmag </summary>
+<quantity>stat.error;phot.mag;em.opt.B</quantity>
 <unit> mag </unit>
 </column>
     <column name="[Vmag]">
       <summary> AB magnitude in V filter </summary>
+<quantity>phot.mag;em.opt.V</quantity>
 <unit> mag </unit>
 </column>
     <column name="[e_Vmag]">
       <summary> Mean error on Vmag </summary>
+<quantity>stat.error;phot.mag;em.opt.V</quantity>
 <unit> mag </unit>
 </column>
     <column name="[Rmag]">
       <summary> AB magnitude in R filter  </summary>
+<quantity>phot.mag;em.opt.R</quantity>
 <unit> mag </unit>
 </column>
     <column name="[e_Rmag]">
       <summary> Mean error on Rmag </summary>
+<quantity>stat.error;phot.mag;em.opt.R</quantity>
 <unit> mag </unit>
 </column>
     <column name="[Imag]">
       <summary> AB magnitude in I filter </summary>
+<quantity>phot.mag;em.opt.I</quantity>
 <unit> mag </unit>
 </column>
     <column name="[e_Imag]">
       <summary> Mean error on Imag  </summary>
+<quantity>stat.error;phot.mag;em.opt.I</quantity>
 <unit> mag </unit>
 </column>
     <column name="[Jmag]">
       <summary> AB magnitude in J filter </summary>
+<quantity>phot.mag;em.IR.J</quantity>
 <unit> mag </unit>
 </column>
     <column name="[e_Jmag]">
       <summary> Mean error on Jmag </summary>
+<quantity>stat.error;phot.mag;em.IR.J</quantity>
 <unit> mag </unit>
 </column>
     <column name="[Kmag]">
       <summary> AB magnitude in K filter </summary>
+<quantity>phot.mag;em.IR.K</quantity>
 <unit> mag </unit>
 </column>
     <column name="[e_Kmag]">
       <summary> Mean error on Kmag </summary>
+<quantity>stat.error;phot.mag;em.IR.K</quantity>
 <unit> mag </unit>
 </column>
   </table>
