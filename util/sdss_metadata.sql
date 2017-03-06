@@ -40,8 +40,8 @@ DECLARE @text varchar(7200)
 
 DECLARE tables_cursor
 CURSOR FOR
-SELECT TOP 10 name FROM sys.objects
-WHERE name IN (SELECT name FROM BestDR12..DBObjects WHERE type IN ('U'))
+SELECT name FROM sys.objects
+WHERE name IN (SELECT name FROM BestDR12..DBObjects WHERE access = 'U')
 ORDER BY name
 
 OPEN tables_cursor
