@@ -9629,76 +9629,159 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
+--/ <summary> The photometrically estimated redshifts for all objects in the GalaxyTag view. </summary>
+--/ <remarks> Estimation is based on a robust fit on spectroscopically observed objects  with similar colors and r magnitude.&lt;br>  Please see the &lt;b>Photometric Redshifts&lt;/b> entry in Algorithms for more  information about this table. &lt;br>  &lt;i>NOTE: This table may be empty initially because the values  are computed in a separate calculation after the main data release.&lt;/i> </remarks>
 CREATE TABLE [dbo].[Photoz](
 
+	--/ <summary>unique ID pointing to GalaxyTag table</summary>
+	--/ <quantity>meta.id</quantity>
 	[objID] [bigint] NOT NULL,
 
+	--/ <summary>photometric redshift; estimated by robust fit to nearest neighbors in a reference set</summary>
+	--/ <quantity>src.redshift;phot</quantity>
 	[z] [real] NOT NULL,
 
+	--/ <summary>estimated error of the photometric redshift; if zErr=-9999, the fit failed, but the neighbors' average redshift might still be available</summary>
+	--/ <quantity>stat.error;src.redshift;phot</quantity>
 	[zErr] [real] NOT NULL,
 
+	--/ <summary>number of nearest neighbors after excluding the outliers; maximal value is 100, a much smaller value indicates a poor estimate</summary>
+	--/ <quantity>meta.number</quantity>
 	[nnCount] [smallint] NOT NULL,
 
+	--/ <summary>gives the color space bounding volume of the nnCount nearest neighbors; a large value indicates a poor estimate</summary>
+	--/ <quantity></quantity>
 	[nnVol] [real] NOT NULL,
 
+	--/ <summary></summary>
+	--/ <quantity></quantity>
 	[nnIsInside] [smallint] NOT NULL,
 
+	--/ <summary>objID of the (first) nearest neighbor</summary>
+	--/ <quantity>meta.id</quantity>
 	[nnObjID] [bigint] NOT NULL,
 
+	--/ <summary>spectroscopic redshift	of the (first) nearest neighbor</summary>
+	--/ <quantity>src.redshift</quantity>
 	[nnSpecz] [real] NOT NULL,
 
+	--/ <summary>objID of the farthest neighbor</summary>
+	--/ <quantity>meta.id</quantity>
 	[nnFarObjID] [bigint] NOT NULL,
 
+	--/ <summary>average redshift of the nearest neighbors; if significantly different from z, this might be a better estimate than z</summary>
+	--/ <quantity>src.redshift;stat.mean</quantity>
 	[nnAvgZ] [real] NOT NULL,
 
+	--/ <summary>the distance modulus for Omega=0.2739, Lambda=0.726, h=0.705 cosmology</summary>
+	--/ <quantity>phot.mag.distMod</quantity>
 	[distMod] [real] NOT NULL,
 
+	--/ <summary>the luminosity distance in Mpc for Omega=0.2739, Lambda=0.726, h=0.705 cosmology</summary>
+	--/ <quantity>pos.distance.lum</quantity>
 	[lumDist] [real] NOT NULL,
 
+	--/ <summary>the chi-square value for the minimum chi-square template fit (non-reduced, 4 degrees of freedom)</summary>
+	--/ <quantity>stat.fit.chi2</quantity>
 	[chisq] [real] NOT NULL,
 
+	--/ <summary>the residual Euclidean norm value for the minimum chi-square template fit</summary>
+	--/ <quantity>stat.fit.param</quantity>
 	[rnorm] [real] NOT NULL,
 
+	--/ <summary></summary>
+	--/ <quantity></quantity>
 	[nTemplates] [int] NOT NULL,
 
+	--/ <summary>synthetic u' magnitude calculated from the fitted template</summary>
+	--/ <quantity>phot.mag;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[synthU] [real] NOT NULL,
 
+	--/ <summary>synthetic g' magnitude calculated from the fitted template</summary>
+	--/ <quantity>phot.mag;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[synthG] [real] NOT NULL,
 
+	--/ <summary>synthetic r' magnitude calculated from the fitted template</summary>
+	--/ <quantity>phot.mag;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[synthR] [real] NOT NULL,
 
+	--/ <summary>synthetic i' magnitude calculated from the fitted template</summary>
+	--/ <quantity>phot.mag;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[synthI] [real] NOT NULL,
 
+	--/ <summary>synthetic z' magnitude calculated from the fitted template</summary>
+	--/ <quantity>phot.mag;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[synthZ] [real] NOT NULL,
 
+	--/ <summary>k correction for z=0</summary>
+	--/ <quantity>phot.mag.kc;em.opt.SDSS.u</quantity>
 	[kcorrU] [real] NOT NULL,
 
+	--/ <summary>k correction for z=0</summary>
+	--/ <quantity>phot.mag.kc;em.opt.SDSS.g</quantity>
 	[kcorrG] [real] NOT NULL,
 
+	--/ <summary>k correction for z=0</summary>
+	--/ <quantity>phot.mag.kc;em.opt.SDSS.r</quantity>
 	[kcorrR] [real] NOT NULL,
 
+	--/ <summary>k correction for z=0</summary>
+	--/ <quantity>phot.mag.kc;em.opt.SDSS.i</quantity>
 	[kcorrI] [real] NOT NULL,
 
+	--/ <summary>k correction for z=0</summary>
+	--/ <quantity>phot.mag.kc;em.opt.SDSS.z</quantity>
 	[kcorrZ] [real] NOT NULL,
 
+	--/ <summary>k correction for z=0.1</summary>
+	--/ <quantity>phot.mag.kc;em.opt.SDSS.u</quantity>
 	[kcorrU01] [real] NOT NULL,
 
+	--/ <summary>k correction for z=0.1</summary>
+	--/ <quantity>phot.mag.kc;em.opt.SDSS.g</quantity>
 	[kcorrG01] [real] NOT NULL,
 
+	--/ <summary>k correction for z=0.1</summary>
+	--/ <quantity>phot.mag.kc;em.opt.SDSS.r</quantity>
 	[kcorrR01] [real] NOT NULL,
 
+	--/ <summary>k correction for z=0.1</summary>
+	--/ <quantity>phot.mag.kc;em.opt.SDSS.i</quantity>
 	[kcorrI01] [real] NOT NULL,
 
+	--/ <summary>k correction for z=0.1</summary>
+	--/ <quantity>phot.mag.kc;em.opt.SDSS.z</quantity>
 	[kcorrZ01] [real] NOT NULL,
 
+	--/ <summary>rest frame u' abs magnitude</summary>
+	--/ <quantity>phot.mag.abs;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[absMagU] [real] NOT NULL,
 
+	--/ <summary>rest frame g' abs magnitude</summary>
+	--/ <quantity>phot.mag.abs;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[absMagG] [real] NOT NULL,
 
+	--/ <summary>rest frame r' abs magnitude</summary>
+	--/ <quantity>phot.mag.abs;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[absMagR] [real] NOT NULL,
 
+	--/ <summary>rest frame i' abs magnitude</summary>
+	--/ <quantity>phot.mag.abs;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[absMagI] [real] NOT NULL,
 
+	--/ <summary>rest frame z' abs magnitude</summary>
+	--/ <quantity>phot.mag.abs;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[absMagZ] [real] NOT NULL,
  CONSTRAINT [pk_Photoz_objID] PRIMARY KEY CLUSTERED 
 (
@@ -9714,60 +9797,126 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[PhotozRF](
 
+	--/ <summary>unique ID pointing to GalaxyTag table</summary>
+	--/ <quantity>meta.id</quantity>
 	[objID] [bigint] NOT NULL,
 
+	--/ <summary>photometric redshift; estimated by robust fit to nearest neighbors in a reference set</summary>
+	--/ <quantity>src.redshift;phot</quantity>
 	[z] [real] NOT NULL,
 
+	--/ <summary>estimated error of the photometric redshift; if zErr=-9999, the fit failed, but the neighbors' average redshift might still be available</summary>
+	--/ <quantity>stat.error;src.redshift;phot</quantity>
 	[zErr] [real] NOT NULL,
 
+	--/ <summary>the distance modulus for Omega=0.2739, Lambda=0.726, h=0.705 cosmology</summary>
+	--/ <quantity>phot.mag.distMod</quantity>
 	[distMod] [real] NOT NULL,
 
+	--/ <summary>the luminosity distance in Mpc for Omega=0.2739, Lambda=0.726, h=0.705 cosmology</summary>
+	--/ <quantity>pos.distance.lum</quantity>
 	[lumDist] [real] NOT NULL,
 
+	--/ <summary>the chi-square value for the minimum chi-square template fit (non-reduced, 4 degrees of freedom)</summary>
+	--/ <quantity>stat.fit.chi2</quantity>
 	[chisq] [real] NOT NULL,
 
+	--/ <summary>the residual Euclidean norm value for the minimum chi-square template fit</summary>
+	--/ <quantity>stat.fit.param</quantity>
 	[rnorm] [real] NOT NULL,
 
+	--/ <summary></summary>
+	--/ <quantity></quantity>
 	[nTemplates] [int] NOT NULL,
 
+	--/ <summary>synthetic u' magnitude calculated from the fitted template</summary>
+	--/ <quantity>phot.mag;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[synthU] [real] NOT NULL,
 
+	--/ <summary>synthetic g' magnitude calculated from the fitted template</summary>
+	--/ <quantity>phot.mag;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[synthG] [real] NOT NULL,
 
+	--/ <summary>synthetic r' magnitude calculated from the fitted template</summary>
+	--/ <quantity>phot.mag;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[synthR] [real] NOT NULL,
 
+	--/ <summary>synthetic i' magnitude calculated from the fitted template</summary>
+	--/ <quantity>phot.mag;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[synthI] [real] NOT NULL,
 
+	--/ <summary>synthetic z' magnitude calculated from the fitted template</summary>
+	--/ <quantity>phot.mag;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[synthZ] [real] NOT NULL,
 
+	--/ <summary>k correction for z=0</summary>
+	--/ <quantity>phot.mag.kc;em.opt.SDSS.u</quantity>
 	[kcorrU] [real] NOT NULL,
 
+	--/ <summary>k correction for z=0</summary>
+	--/ <quantity>phot.mag.kc;em.opt.SDSS.g</quantity>
 	[kcorrG] [real] NOT NULL,
 
+	--/ <summary>k correction for z=0</summary>
+	--/ <quantity>phot.mag.kc;em.opt.SDSS.r</quantity>
 	[kcorrR] [real] NOT NULL,
 
+	--/ <summary>k correction for z=0</summary>
+	--/ <quantity>phot.mag.kc;em.opt.SDSS.i</quantity>
 	[kcorrI] [real] NOT NULL,
 
+	--/ <summary>k correction for z=0</summary>
+	--/ <quantity>phot.mag.kc;em.opt.SDSS.z</quantity>
 	[kcorrZ] [real] NOT NULL,
 
+	--/ <summary>k correction for z=0.1</summary>
+	--/ <quantity>phot.mag.kc;em.opt.SDSS.u</quantity>
 	[kcorrU01] [real] NOT NULL,
 
+	--/ <summary>k correction for z=0.1</summary>
+	--/ <quantity>phot.mag.kc;em.opt.SDSS.g</quantity>
 	[kcorrG01] [real] NOT NULL,
 
+	--/ <summary>k correction for z=0.1</summary>
+	--/ <quantity>phot.mag.kc;em.opt.SDSS.r</quantity>
 	[kcorrR01] [real] NOT NULL,
 
+	--/ <summary>k correction for z=0.1</summary>
+	--/ <quantity>phot.mag.kc;em.opt.SDSS.i</quantity>
 	[kcorrI01] [real] NOT NULL,
 
+	--/ <summary>k correction for z=0.1</summary>
+	--/ <quantity>phot.mag.kc;em.opt.SDSS.z</quantity>
 	[kcorrZ01] [real] NOT NULL,
 
+	--/ <summary>rest frame u' abs magnitude</summary>
+	--/ <quantity>phot.mag.abs;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[absMagU] [real] NOT NULL,
 
+	--/ <summary>rest frame g' abs magnitude</summary>
+	--/ <quantity>phot.mag.abs;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[absMagG] [real] NOT NULL,
 
+	--/ <summary>rest frame r' abs magnitude</summary>
+	--/ <quantity>phot.mag.abs;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[absMagR] [real] NOT NULL,
 
+	--/ <summary>rest frame i' abs magnitude</summary>
+	--/ <quantity>phot.mag.abs;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[absMagI] [real] NOT NULL,
 
+	--/ <summary>rest frame z' abs magnitude</summary>
+	--/ <quantity>phot.mag.abs;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[absMagZ] [real] NOT NULL,
  CONSTRAINT [pk_PhotozRF_objID] PRIMARY KEY CLUSTERED 
 (
