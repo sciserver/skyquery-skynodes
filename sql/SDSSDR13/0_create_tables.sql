@@ -1,6 +1,6 @@
 ﻿USE [SkyNode_SDSSDR13]
 GO
-/****** Object:  Table [dbo].[apogeeDesign]	Script Date: 4/1/2015 5:51:43 AM ******/
+/****** Object:  Table [dbo].[apogeeDesign]    Script Date: 4/1/2015 5:51:43 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -121,7 +121,7 @@ CREATE TABLE [dbo].[apogeeDesign](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[apogeeField]	Script Date: 4/1/2015 5:51:43 AM ******/
+/****** Object:  Table [dbo].[apogeeField]    Script Date: 4/1/2015 5:51:43 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -159,7 +159,7 @@ CREATE TABLE [dbo].[apogeeField](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[apogeeObject]	Script Date: 4/1/2015 5:51:43 AM ******/
+/****** Object:  Table [dbo].[apogeeObject]    Script Date: 4/1/2015 5:51:43 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -418,7 +418,7 @@ CREATE TABLE [dbo].[apogeeObject](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[apogeePlate]	Script Date: 4/1/2015 5:51:43 AM ******/
+/****** Object:  Table [dbo].[apogeePlate]    Script Date: 4/1/2015 5:51:43 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -517,7 +517,7 @@ CREATE TABLE [dbo].[apogeePlate](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[apogeeStar]	Script Date: 4/1/2015 5:51:43 AM ******/
+/****** Object:  Table [dbo].[apogeeStar]    Script Date: 4/1/2015 5:51:43 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -731,7 +731,7 @@ CREATE TABLE [dbo].[apogeeStar](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[apogeeStarAllVisit]	Script Date: 4/1/2015 5:51:43 AM ******/
+/****** Object:  Table [dbo].[apogeeStarAllVisit]    Script Date: 4/1/2015 5:51:43 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -760,7 +760,7 @@ CREATE TABLE [dbo].[apogeeStarAllVisit](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[apogeeStarVisit]	Script Date: 4/1/2015 5:51:43 AM ******/
+/****** Object:  Table [dbo].[apogeeStarVisit]    Script Date: 4/1/2015 5:51:43 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -788,7 +788,7 @@ CREATE TABLE [dbo].[apogeeStarVisit](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[apogeeVisit]	Script Date: 4/1/2015 5:51:43 AM ******/
+/****** Object:  Table [dbo].[apogeeVisit]    Script Date: 4/1/2015 5:51:43 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -988,7 +988,7 @@ CREATE TABLE [dbo].[apogeeVisit](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[aspcapStar]	Script Date: 4/1/2015 5:51:43 AM ******/
+/****** Object:  Table [dbo].[aspcapStar]    Script Date: 4/1/2015 5:51:43 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1530,7 +1530,7 @@ CREATE TABLE [dbo].[aspcapStar](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[aspcapStarCovar]	Script Date: 4/1/2015 5:51:43 AM ******/
+/****** Object:  Table [dbo].[aspcapStarCovar]    Script Date: 4/1/2015 5:51:43 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1575,7 +1575,7 @@ CREATE TABLE [dbo].[aspcapStarCovar](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[DataConstants]	Script Date: 4/1/2015 5:51:43 AM ******/
+/****** Object:  Table [dbo].[DataConstants]    Script Date: 4/1/2015 5:51:43 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1612,7 +1612,7 @@ CREATE TABLE [dbo].[DataConstants](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[detectionIndex]	Script Date: 4/1/2015 5:51:43 AM ******/
+/****** Object:  Table [dbo].[detectionIndex]    Script Date: 4/1/2015 5:51:43 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1645,7 +1645,7 @@ CREATE TABLE [dbo].[detectionIndex](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[emissionLinesPort]	Script Date: 4/1/2015 5:51:43 AM ******/
+/****** Object:  Table [dbo].[emissionLinesPort]    Script Date: 4/1/2015 5:51:43 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3667,7 +3667,7 @@ CREATE TABLE [dbo].[emissionLinesPort](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[Field]	Script Date: 4/1/2015 5:51:43 AM ******/
+/****** Object:  Table [dbo].[Field]    Script Date: 4/1/2015 5:51:43 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5584,7 +5584,7 @@ CREATE TABLE [dbo].[Field](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[FieldProfile]	Script Date: 4/1/2015 5:51:43 AM ******/
+/****** Object:  Table [dbo].[FieldProfile]    Script Date: 4/1/2015 5:51:43 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5618,7 +5618,7 @@ CREATE TABLE [dbo].[FieldProfile](
 
 	--/ <summary>links to the field object</summary>
 	--/ <quantity>meta.id</quantity>
-	[fieldID] [bigint] NOT NULL
+	[fieldID] [bigint] NOT NULL,
  CONSTRAINT [pk_FieldProfile_fieldID_bin_band] PRIMARY KEY CLUSTERED 
 (
 	[fieldID] ASC,
@@ -5628,7 +5628,7 @@ CREATE TABLE [dbo].[FieldProfile](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Frame]	Script Date: 4/1/2015 5:51:43 AM ******/
+/****** Object:  Table [dbo].[Frame]    Script Date: 4/1/2015 5:51:43 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5670,7 +5670,7 @@ CREATE TABLE [dbo].[Frame](
 
 	--/ <summary>Strip number (N or S)</summary>
 	--/ <quantity>meta.id;obs.param</quantity>
-	[strip] varchar(32) NOT NULL,
+	[strip] [varchar](32) NOT NULL,
 
 	--/ <summary>Astrometric coefficient</summary>
 	--/ <quantity>obs.param;pos</quantity>
@@ -5784,7 +5784,7 @@ CREATE TABLE [dbo].[Frame](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[galSpecExtra]	Script Date: 4/1/2015 5:51:43 AM ******/
+/****** Object:  Table [dbo].[galSpecExtra]    Script Date: 4/1/2015 5:51:43 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5998,7 +5998,7 @@ CREATE TABLE [dbo].[galSpecExtra](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[galSpecIndx]	Script Date: 4/1/2015 5:51:43 AM ******/
+/****** Object:  Table [dbo].[galSpecIndx]    Script Date: 4/1/2015 5:51:43 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7104,7 +7104,7 @@ CREATE TABLE [dbo].[galSpecIndx](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[galSpecInfo]	Script Date: 4/1/2015 5:51:43 AM ******/
+/****** Object:  Table [dbo].[galSpecInfo]    Script Date: 4/1/2015 5:51:43 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7152,15 +7152,15 @@ CREATE TABLE [dbo].[galSpecInfo](
 
 	--/ <summary>Text version of primary target (GALAXY/QA/QSO/ROSAT_D)</summary>
 	--/ <quantity>meta.note</quantity>
-	[targettype] varchar(32) NOT NULL,
+	[targettype] [varchar](32) NOT NULL,
 
 	--/ <summary>Schlegel classification of spectrum ... code is only run where this is set to "GALAXY"</summary>
 	--/ <quantity>src.class</quantity>
-	[spectrotype] varchar(32) NOT NULL,
+	[spectrotype] [varchar](32) NOT NULL,
 
 	--/ <summary>Schlegel subclass from PCA analysis -- not alwasy correct!! AGN/BROADLINE/STARBURST/STARFORMING</summary>
 	--/ <quantity>src.class</quantity>
-	[subclass] varchar(32) NOT NULL,
+	[subclass] [varchar](32) NOT NULL,
 
 	--/ <summary>Redshift from Schlegel</summary>
 	--/ <quantity>src.redshift</quantity>
@@ -7194,7 +7194,7 @@ CREATE TABLE [dbo].[galSpecInfo](
 
 	--/ <summary>Data Release (dr1/dr2/dr3/dr4)</summary>
 	--/ <quantity>meta.version</quantity>
-	[release] varchar(32) NOT NULL,
+	[release] [varchar](32) NOT NULL,
 
 	--/ <summary>has "reliable" line measurements and physical parameters</summary>
 	--/ <quantity>meta.code</quantity>
@@ -7208,7 +7208,7 @@ CREATE TABLE [dbo].[galSpecInfo](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[galSpecLine]	Script Date: 4/1/2015 5:51:43 AM ******/
+/****** Object:  Table [dbo].[galSpecLine]    Script Date: 4/1/2015 5:51:43 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -8152,7 +8152,7 @@ CREATE TABLE [dbo].[galSpecLine](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[HalfSpace]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[HalfSpace]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -8196,7 +8196,7 @@ CREATE TABLE [dbo].[HalfSpace](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[marvelsStar]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[marvelsStar]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -8210,27 +8210,27 @@ CREATE TABLE [dbo].[marvelsStar](
 
 	--/ <summary>The primary name of the star (STARNAME)</summary>
 	--/ <quantity>meta.id</quantity>
-	[STARNAME] varchar(64) NOT NULL,
+	[STARNAME] [varchar](64) NOT NULL,
 
 	--/ <summary>2MASS Star Catalog Name</summary>
 	--/ <quantity>meta.id.cross</quantity>
-	[TWOMASS_NAME] varchar(64) NOT NULL,
+	[TWOMASS_NAME] [varchar](64) NOT NULL,
 
 	--/ <summary>Plate Name</summary>
 	--/ <quantity>meta.id;instr.det</quantity>
-	[Plate] varchar(32) NOT NULL,
+	[Plate] [varchar](32) NOT NULL,
 
 	--/ <summary>Guide Star Catalog Name</summary>
 	--/ <quantity>meta.id.cross</quantity>
-	[GSC_Name] varchar(64) NOT NULL,
+	[GSC_Name] [varchar](64) NOT NULL,
 
 	--/ <summary>Tycho Star Catalog Name</summary>
 	--/ <quantity>meta.id.cross</quantity>
-	[TYC_Name] varchar(64) NOT NULL,
+	[TYC_Name] [varchar](64) NOT NULL,
 
 	--/ <summary>Hipparcos Star Catalog Name</summary>
 	--/ <quantity>meta.id.cross</quantity>
-	[HIP_Name] varchar(62) NOT NULL,
+	[HIP_Name] [varchar](62) NOT NULL,
 
 	--/ <summary>Star Right Ascension (in degrees)</summary>
 	--/ <quantity>pos.eq.ra</quantity>
@@ -8269,15 +8269,15 @@ CREATE TABLE [dbo].[marvelsStar](
 
 	--/ <summary>Hipparcos Spectral type 1</summary>
 	--/ <quantity>src.spType</quantity>
-	[SP1] varchar(16) NOT NULL,
+	[SP1] [varchar](16) NOT NULL,
 
 	--/ <summary>Hipparcos Spectral type 2</summary>
 	--/ <quantity>src.spType</quantity>
-	[SP2] varchar(16) NOT NULL,
+	[SP2] [varchar](16) NOT NULL,
 
 	--/ <summary>Luminosity Class from SSPP* (Mainseq/Giant/Refstar) Refstar means it is a known planet host (different method used for year34 - see docs)</summary>
 	--/ <quantity>src.class.luminosity</quantity>
-	[RPM_LOG_g] varchar(32) NOT NULL,
+	[RPM_LOG_g] [varchar](32) NOT NULL,
 
 	--/ <summary>SSPP* effective temperature (in Kelvin) (different method used for year34 - see docs)</summary>
 	--/ <quantity>phys.temperature.effective</quantity>
@@ -8416,7 +8416,7 @@ CREATE TABLE [dbo].[marvelsStar](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[marvelsVelocityCurveUF1D]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[marvelsVelocityCurveUF1D]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -8430,7 +8430,7 @@ CREATE TABLE [dbo].[marvelsVelocityCurveUF1D](
 
 	--/ <summary>The primary name of the star (STARNAME)</summary>
 	--/ <quantity>meta.id;</quantity>
-	[STARNAME] varchar(64) NOT NULL,
+	[STARNAME] [varchar](64) NOT NULL,
 
 	--/ <summary>The flux centered Julian Date</summary>
 	--/ <quantity>time.epoch</quantity>
@@ -8471,27 +8471,27 @@ CREATE TABLE [dbo].[marvelsVelocityCurveUF1D](
 
 	--/ <summary>Name of the aggregated file for this epoch</summary>
 	--/ <quantity>meta.id;meta.file</quantity>
-	[EPOCHFILE] varchar(256) NOT NULL,
+	[EPOCHFILE] [varchar](256) NOT NULL,
 
 	--/ <summary>Number of the MJD that was used as the template</summary>
 	--/ <quantity>meta.id;meta.file</quantity>
-	[TEMPLATEFILE] varchar(256) NOT NULL,
+	[TEMPLATEFILE] [varchar](256) NOT NULL,
 
 	--/ <summary>Plate Name composed from RA and DEC (From image header)</summary>
 	--/ <quantity>meta.id;instr.det</quantity>
-	[RADECID] varchar(32) NOT NULL,
+	[RADECID] [varchar](32) NOT NULL,
 
 	--/ <summary>Plate Name (From image header)</summary>
 	--/ <quantity>meta.id;instr.det</quantity>
-	[OBJECT] varchar(32) NOT NULL,
+	[OBJECT] [varchar](32) NOT NULL,
 
 	--/ <summary>Exposure Type (Valid values include STAR/TIO/THAR etc.) (From image header)</summary>
 	--/ <quantity>meta.note;obs.exposure</quantity>
-	[EXPTYPE] varchar(32) NOT NULL,
+	[EXPTYPE] [varchar](32) NOT NULL,
 
 	--/ <summary>Plate Name (From image header)</summary>
 	--/ <quantity>meta.id;instr.det</quantity>
-	[PLATEID] varchar(32) NOT NULL,
+	[PLATEID] [varchar](32) NOT NULL,
 
 	--/ <summary>Id of the cartridge used for this image (From image header)</summary>
 	--/ <quantity>meta.id;instr.param</quantity>
@@ -8503,19 +8503,19 @@ CREATE TABLE [dbo].[marvelsVelocityCurveUF1D](
 
 	--/ <summary>UT of observation Format is YYYY-MM-DDThh:mm:ss.ss (From image header)</summary>
 	--/ <quantity>time.epoch;obs</quantity>
-	[DATE-OBS] varchar(64) NOT NULL,
+	[DATE-OBS] [varchar](64) NOT NULL,
 
 	--/ <summary>Start &amp; Stop of Exposure (From image header)</summary>
 	--/ <quantity>time.start;time.end</quantity>
-	[TIME] varchar(64) NOT NULL,
+	[TIME] [varchar](64) NOT NULL,
 
 	--/ <summary>UTC of Start of Exposure (From image header)</summary>
 	--/ <quantity>time.epoch;obs</quantity>
-	[UTC-OBS] varchar(32) NOT NULL,
+	[UTC-OBS] [varchar](32) NOT NULL,
 
 	--/ <summary>LST of Start of Exposure (From image header)</summary>
 	--/ <quantity>time.start;obs.exposure</quantity>
-	[LST-OBS] varchar(32) NOT NULL,
+	[LST-OBS] [varchar](32) NOT NULL,
 
 	--/ <summary>Julian date at start of observation (From image header)</summary>
 	--/ <quantity>time.start;obs</quantity>
@@ -8573,7 +8573,7 @@ CREATE TABLE [dbo].[marvelsVelocityCurveUF1D](
 
 	--/ <summary>Exp. Quality Flag (OK/UNSURE/JUNK) (From image header)</summary>
 	--/ <quantity>meta.code.qual;obs</quantity>
-	[OBSFLAG] varchar(16) NOT NULL,
+	[OBSFLAG] [varchar](16) NOT NULL,
 
 	--/ <summary>Average counts per pixel in the image (in counts) (From image header)</summary>
 	--/ <quantity>phot.count;stat.mean</quantity>
@@ -8828,7 +8828,7 @@ CREATE TABLE [dbo].[marvelsVelocityCurveUF1D](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[Mask]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[Mask]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -8885,7 +8885,7 @@ CREATE TABLE [dbo].[Mask](
 
 	--/ <summary>Area descriptor for the mask object</summary>
 	--/ <quantity></quantity>
-	[area] varchar(4096) NOT NULL,
+	[area] [varchar](4096) NOT NULL,
 
 	--/ <summary>enumerated type of mask</summary>
 	--/ <quantity></quantity>
@@ -8924,7 +8924,7 @@ CREATE TABLE [dbo].[Mask](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[MaskedObject]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[MaskedObject]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -8953,7 +8953,7 @@ CREATE TABLE [dbo].[MaskedObject](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[PhotoObjDR7]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[PhotoObjDR7]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -8968,322 +8968,323 @@ CREATE TABLE [dbo].[PhotoObjDR7](
 	[dr7objid] [bigint] NOT NULL,
 
 	--/ <summary>Unique DR8 identifier composed from [skyVersion,rerun,run,camcol,field,obj].</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.id</quantity>
 	[dr8objid] [bigint] NOT NULL,
 
 	--/ <summary>Distance in arcmin between the DR7 and DR8 positions</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>pos.angDistance</quantity>
+	--/ <unit>arcmin</unit>
 	[distance] [float] NOT NULL,
 
 	--/ <summary>DR7 mode, 1: primary, 2: secondary, 3: family object.</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code</quantity>
 	[modeDR7] [tinyint] NOT NULL,
 
 	--/ <summary>DR8 mode, 1: primary, 2: secondary, 3: family object.</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code</quantity>
 	[modeDR8] [tinyint] NOT NULL,
 
 	--/ <summary>0 = OPDB target, 1 = OPDB best</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code</quantity>
 	[skyVersion] [tinyint] NOT NULL,
 
 	--/ <summary>Run number</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.id</quantity>
 	[run] [smallint] NOT NULL,
 
 	--/ <summary>Rerun number</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.id</quantity>
 	[rerun] [smallint] NOT NULL,
 
 	--/ <summary>Camera column</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.id;instr.det</quantity>
 	[camcol] [tinyint] NOT NULL,
 
 	--/ <summary>Field number</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.id;obs.field</quantity>
 	[field] [smallint] NOT NULL,
 
 	--/ <summary>The object id within a field. Usually changes between reruns of the same field.</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.id</quantity>
 	[obj] [smallint] NOT NULL,
 
 	--/ <summary>Number of children if this is a composite object that has been deblended. BRIGHT (in a flags sense) objects also have nchild == 1, the non-BRIGHT sibling.</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.id</quantity>
 	[nChild] [smallint] NOT NULL,
 
 	--/ <summary>Morphological type classification of the object.</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>src.class;src.morph</quantity>
 	[type] [smallint] NOT NULL,
 
 	--/ <summary>Probability that the object is a star. Currently 0 if type == 3 (galaxy), 1 if type == 6 (star).</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.probability;src.class.starGalaxy</quantity>
 	[probPSF] [real] NOT NULL,
 
 	--/ <summary>Flag to indicate whether object is inside a mask and why</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code</quantity>
 	[insideMask] [tinyint] NOT NULL,
 
 	--/ <summary>Photo Object Attribute Flags</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code</quantity>
 	[flags] [bigint] NOT NULL,
 
 	--/ <summary>PSF flux</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>phot.mag.PSF;em.opt.SDSS.u</quantity>
 	--/ <unit>mag</unit>
 	[psfMag_u] [real] NOT NULL,
 
 	--/ <summary>PSF flux</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>phot.mag.PSF;em.opt.SDSS.g</quantity>
 	--/ <unit>mag</unit>
 	[psfMag_g] [real] NOT NULL,
 
 	--/ <summary>PSF flux</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>phot.mag.PSF;em.opt.SDSS.r</quantity>
 	--/ <unit>mag</unit>
 	[psfMag_r] [real] NOT NULL,
 
 	--/ <summary>PSF flux</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>phot.mag.PSF;em.opt.SDSS.i</quantity>
 	--/ <unit>mag</unit>
 	[psfMag_i] [real] NOT NULL,
 
 	--/ <summary>PSF flux</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>phot.mag.PSF;em.opt.SDSS.z</quantity>
 	--/ <unit>mag</unit>
 	[psfMag_z] [real] NOT NULL,
 
 	--/ <summary>PSF flux error</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;phot.mag.PSF;em.opt.SDSS.u</quantity>
 	--/ <unit>mag</unit>
 	[psfMagErr_u] [real] NOT NULL,
 
 	--/ <summary>PSF flux error</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;phot.mag.PSF;em.opt.SDSS.g</quantity>
 	--/ <unit>mag</unit>
 	[psfMagErr_g] [real] NOT NULL,
 
 	--/ <summary>PSF flux error</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;phot.mag.PSF;em.opt.SDSS.r</quantity>
 	--/ <unit>mag</unit>
 	[psfMagErr_r] [real] NOT NULL,
 
 	--/ <summary>PSF flux error</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;phot.mag.PSF;em.opt.SDSS.i</quantity>
 	--/ <unit>mag</unit>
 	[psfMagErr_i] [real] NOT NULL,
 
 	--/ <summary>PSF flux error</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;phot.mag.PSF;em.opt.SDSS.z</quantity>
 	--/ <unit>mag</unit>
 	[psfMagErr_z] [real] NOT NULL,
 
 	--/ <summary>Petrosian flux</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>phot.mag.petrosian;em.opt.SDSS.u</quantity>
 	--/ <unit>mag</unit>
 	[petroMag_u] [real] NOT NULL,
 
 	--/ <summary>Petrosian flux</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>phot.mag.petrosian;em.opt.SDSS.g</quantity>
 	--/ <unit>mag</unit>
 	[petroMag_g] [real] NOT NULL,
 
 	--/ <summary>Petrosian flux</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>phot.mag.petrosian;em.opt.SDSS.r</quantity>
 	--/ <unit>mag</unit>
 	[petroMag_r] [real] NOT NULL,
 
 	--/ <summary>Petrosian flux</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>phot.mag.petrosian;em.opt.SDSS.i</quantity>
 	--/ <unit>mag</unit>
 	[petroMag_i] [real] NOT NULL,
 
 	--/ <summary>Petrosian flux</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>phot.mag.petrosian;em.opt.SDSS.z</quantity>
 	--/ <unit>mag</unit>
 	[petroMag_z] [real] NOT NULL,
 
 	--/ <summary>Petrosian flux error</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;phot.mag.petrosian;em.opt.SDSS.u</quantity>
 	--/ <unit>mag</unit>
 	[petroMagErr_u] [real] NOT NULL,
 
 	--/ <summary>Petrosian flux error</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;phot.mag.petrosian;em.opt.SDSS.g</quantity>
 	--/ <unit>mag</unit>
 	[petroMagErr_g] [real] NOT NULL,
 
 	--/ <summary>Petrosian flux error</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;phot.mag.petrosian;em.opt.SDSS.r</quantity>
 	--/ <unit>mag</unit>
 	[petroMagErr_r] [real] NOT NULL,
 
 	--/ <summary>Petrosian flux error</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;phot.mag.petrosian;em.opt.SDSS.i</quantity>
 	--/ <unit>mag</unit>
 	[petroMagErr_i] [real] NOT NULL,
 
 	--/ <summary>Petrosian flux error</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;phot.mag.petrosian;em.opt.SDSS.z</quantity>
 	--/ <unit>mag</unit>
 	[petroMagErr_z] [real] NOT NULL,
 
 	--/ <summary>Radius containing 50% of Petrosian flux</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>phys.angSize;em.opt.SDSS.r</quantity>
 	--/ <unit>arcsec</unit>
 	[petroR50_r] [real] NOT NULL,
 
 	--/ <summary>Radius containing 90% of Petrosian flux</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>phys.angSize;em.opt.SDSS.r</quantity>
 	--/ <unit>arcsec</unit>
 	[petroR90_r] [real] NOT NULL,
 
 	--/ <summary>better of DeV/Exp magnitude fit</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>phot.mag;meta.modelled;em.opt.SDSS.u</quantity>
 	--/ <unit>mag</unit>
 	[modelMag_u] [real] NOT NULL,
 
 	--/ <summary>better of DeV/Exp magnitude fit</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>phot.mag;meta.modelled;em.opt.SDSS.g</quantity>
 	--/ <unit>mag</unit>
 	[modelMag_g] [real] NOT NULL,
 
 	--/ <summary>better of DeV/Exp magnitude fit</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>phot.mag;meta.modelled;em.opt.SDSS.r</quantity>
 	--/ <unit>mag</unit>
 	[modelMag_r] [real] NOT NULL,
 
 	--/ <summary>better of DeV/Exp magnitude fit</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>phot.mag;meta.modelled;em.opt.SDSS.i</quantity>
 	--/ <unit>mag</unit>
 	[modelMag_i] [real] NOT NULL,
 
 	--/ <summary>better of DeV/Exp magnitude fit</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>phot.mag;meta.modelled;em.opt.SDSS.z</quantity>
 	--/ <unit>mag</unit>
 	[modelMag_z] [real] NOT NULL,
 
 	--/ <summary>better of DeV/Exp magnitude fit error</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;phot.mag;meta.modelled;em.opt.SDSS.u</quantity>
 	--/ <unit>mag</unit>
 	[modelMagErr_u] [real] NOT NULL,
 
 	--/ <summary>better of DeV/Exp magnitude fit error</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;phot.mag;meta.modelled;em.opt.SDSS.g</quantity>
 	--/ <unit>mag</unit>
 	[modelMagErr_g] [real] NOT NULL,
 
 	--/ <summary>better of DeV/Exp magnitude fit error</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;phot.mag;meta.modelled;em.opt.SDSS.r</quantity>
 	--/ <unit>mag</unit>
 	[modelMagErr_r] [real] NOT NULL,
 
 	--/ <summary>better of DeV/Exp magnitude fit error</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;phot.mag;meta.modelled;em.opt.SDSS.i</quantity>
 	--/ <unit>mag</unit>
 	[modelMagErr_i] [real] NOT NULL,
 
 	--/ <summary>better of DeV/Exp magnitude fit error</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;phot.mag;meta.modelled;em.opt.SDSS.z</quantity>
 	--/ <unit>mag</unit>
 	[modelMagErr_z] [real] NOT NULL,
 
 	--/ <summary>Adaptive (&lt;r^2&gt; + &lt;c^2&gt;)</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>obs.param</quantity>
 	[mRrCc_r] [real] NOT NULL,
 
 	--/ <summary>Error in adaptive (&lt;r^2&gt; + &lt;c^2&gt;)</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;obs.param</quantity>
 	[mRrCcErr_r] [real] NOT NULL,
 
 	--/ <summary>Star ln(likelihood)</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.likelihood;em.opt.SDSS.r</quantity>
 	[lnLStar_r] [real] NOT NULL,
 
 	--/ <summary>Exponential disk fit ln(likelihood)</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.likelihood;em.opt.SDSS.r</quantity>
 	[lnLExp_r] [real] NOT NULL,
 
 	--/ <summary>DeVaucouleurs fit ln(likelihood)</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.likelihood;em.opt.SDSS.r</quantity>
 	[lnLDeV_r] [real] NOT NULL,
 
 	--/ <summary>Status of the object in the survey</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.status</quantity>
 	[status] [int] NOT NULL,
 
 	--/ <summary>J2000 right ascension (r')</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000;em.opt.SDSS.r</quantity>
 	--/ <unit>deg</unit>
 	[ra] [float] NOT NULL,
 
 	--/ <summary>J2000 declination (r')</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000;em.opt.SDSS.r</quantity>
 	--/ <unit>deg</unit>
 	[dec] [float] NOT NULL,
 
 	--/ <summary>unit vector for ra+dec</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
 	[cx] [float] NOT NULL,
 
 	--/ <summary>unit vector for ra+dec</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
 	[cy] [float] NOT NULL,
 
 	--/ <summary>unit vector for ra+dec</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
 	[cz] [float] NOT NULL,
 
 	--/ <summary>20-deep hierarchical trangular mesh ID of this object</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
 	[htmID] [bigint] NOT NULL,
 
 	--/ <summary>zone.id</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>pos.zone</quantity>
 	[zoneID] [bigint] NOT NULL,
 
 	--/ <summary>Bit mask of primary target categories the object was selected in.</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code</quantity>
 	[primTarget] [int] NOT NULL,
 
 	--/ <summary>Bit mask of secondary target categories the object was selected in.</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code</quantity>
 	[secTarget] [int] NOT NULL,
 
 	--/ <summary>Extinction in each filter</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>phys.absorption.gal;em.opt.SDSS.u</quantity>
 	--/ <unit>mag</unit>
 	[extinction_u] [real] NOT NULL,
 
 	--/ <summary>Extinction in each filter</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>phys.absorption.gal;em.opt.SDSS.g</quantity>
 	--/ <unit>mag</unit>
 	[extinction_g] [real] NOT NULL,
 
 	--/ <summary>Extinction in each filter</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>phys.absorption.gal;em.opt.SDSS.r</quantity>
 	--/ <unit>mag</unit>
 	[extinction_r] [real] NOT NULL,
 
 	--/ <summary>Extinction in each filter</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>phys.absorption.gal;em.opt.SDSS.i</quantity>
 	--/ <unit>mag</unit>
 	[extinction_i] [real] NOT NULL,
 
 	--/ <summary>Extinction in each filter</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>phys.absorption.gal;em.opt.SDSS.z</quantity>
 	--/ <unit>mag</unit>
 	[extinction_z] [real] NOT NULL,
 
 	--/ <summary>Link to the field this object is in</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.id;obs.field</quantity>
 	[fieldID] [bigint] NOT NULL,
 
 	--/ <summary>Pointer to the spectrum of object, if exists, else 0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.id;spect</quantity>
 	[SpecObjID] [bigint] NOT NULL,
 
 	--/ <summary>computed: =SQRT(mRrCc_r/2.0)</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>obs.param</quantity>
 	[size] [real] NOT NULL,
  CONSTRAINT [pk_PhotoOBJDR7_DR8OBJID] PRIMARY KEY CLUSTERED 
 (
@@ -9292,7 +9293,7 @@ CREATE TABLE [dbo].[PhotoObjDR7](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[PhotoPrimaryDR7]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[PhotoPrimaryDR7]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -9301,142 +9302,320 @@ GO
 --/ <remarks> This is a unique match between a DR8 photoprimary and a DR7 photoprimary,   and matches between different run/camcol/field are allowed.  The match  radius is 1 arcsec.  The table contains the DR8 and DR7 objids, the  distance between them and the DR7 phototag quantities. </remarks>
 CREATE TABLE [dbo].[PhotoPrimaryDR7](
 
+	--/ <summary>Unique DR7 identifier composed from [skyVersion,rerun,run,camcol,field,obj].</summary>
+	--/ <quantity>meta.id</quantity>
 	[dr7objid] [bigint] NOT NULL,
 
+	--/ <summary>Unique DR8 identifier composed from [skyVersion,rerun,run,camcol,field,obj].</summary>
+	--/ <quantity>meta.id</quantity>
 	[dr8objid] [bigint] NOT NULL,
 
+	--/ <summary>Distance in arcmin between the DR7 and DR8 positions</summary>
+	--/ <quantity>pos.angDistance</quantity>
+	--/ <unit>arcmin</unit>
 	[distance] [float] NULL,
 
+	--/ <summary>0 = OPDB target, 1 = OPDB best</summary>
+	--/ <quantity>meta.code</quantity>
 	[skyVersion] [tinyint] NULL,
 
+	--/ <summary>Run number</summary>
+	--/ <quantity>meta.id</quantity>
 	[run] [smallint] NULL,
 
+	--/ <summary>Rerun number</summary>
+	--/ <quantity>meta.id</quantity>
 	[rerun] [smallint] NULL,
 
+	--/ <summary>Camera column</summary>
+	--/ <quantity>meta.id;instr.det</quantity>
 	[camcol] [tinyint] NULL,
 
+	--/ <summary>Field number</summary>
+	--/ <quantity>meta.id;obs.field</quantity>
 	[field] [smallint] NULL,
 
+	--/ <summary>The object id within a field. Usually changes between reruns of the same field.</summary>
+	--/ <quantity>meta.id</quantity>
 	[obj] [smallint] NULL,
 
+	--/ <summary>Number of children if this is a composite object that has been deblended. BRIGHT (in a flags sense) objects also have nchild == 1, the non-BRIGHT sibling.</summary>
+	--/ <quantity>meta.id</quantity>
 	[nChild] [smallint] NULL,
 
+	--/ <summary>Morphological type classification of the object.</summary>
+	--/ <quantity>src.class;src.morph</quantity>
 	[type] [smallint] NULL,
 
+	--/ <summary>Probability that the object is a star. Currently 0 if type == 3 (galaxy), 1 if type == 6 (star).</summary>
+	--/ <quantity>stat.probability;src.class.starGalaxy</quantity>
 	[probPSF] [real] NULL,
 
+	--/ <summary>Flag to indicate whether object is inside a mask and why</summary>
+	--/ <quantity>meta.code</quantity>
 	[insideMask] [tinyint] NULL,
 
+	--/ <summary>Photo Object Attribute Flags</summary>
+	--/ <quantity>meta.code</quantity>
 	[flags] [bigint] NULL,
 
+	--/ <summary>PSF flux</summary>
+	--/ <quantity>phot.mag.PSF;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[psfMag_u] [real] NULL,
 
+	--/ <summary>PSF flux</summary>
+	--/ <quantity>phot.mag.PSF;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[psfMag_g] [real] NULL,
 
+	--/ <summary>PSF flux</summary>
+	--/ <quantity>phot.mag.PSF;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[psfMag_r] [real] NULL,
 
+	--/ <summary>PSF flux</summary>
+	--/ <quantity>phot.mag.PSF;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[psfMag_i] [real] NULL,
 
+	--/ <summary>PSF flux</summary>
+	--/ <quantity>phot.mag.PSF;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[psfMag_z] [real] NULL,
 
+	--/ <summary>PSF flux error</summary>
+	--/ <quantity>stat.error;phot.mag.PSF;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[psfMagErr_u] [real] NULL,
 
+	--/ <summary>PSF flux error</summary>
+	--/ <quantity>stat.error;phot.mag.PSF;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[psfMagErr_g] [real] NULL,
 
+	--/ <summary>PSF flux error</summary>
+	--/ <quantity>stat.error;phot.mag.PSF;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[psfMagErr_r] [real] NULL,
 
+	--/ <summary>PSF flux error</summary>
+	--/ <quantity>stat.error;phot.mag.PSF;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[psfMagErr_i] [real] NULL,
 
+	--/ <summary>PSF flux error</summary>
+	--/ <quantity>stat.error;phot.mag.PSF;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[psfMagErr_z] [real] NULL,
 
+	--/ <summary>Petrosian flux</summary>
+	--/ <quantity>phot.mag.petrosian;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[petroMag_u] [real] NULL,
 
+	--/ <summary>Petrosian flux</summary>
+	--/ <quantity>phot.mag.petrosian;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[petroMag_g] [real] NULL,
 
+	--/ <summary>Petrosian flux</summary>
+	--/ <quantity>phot.mag.petrosian;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[petroMag_r] [real] NULL,
 
+	--/ <summary>Petrosian flux</summary>
+	--/ <quantity>phot.mag.petrosian;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[petroMag_i] [real] NULL,
 
+	--/ <summary>Petrosian flux</summary>
+	--/ <quantity>phot.mag.petrosian;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[petroMag_z] [real] NULL,
 
+	--/ <summary>Petrosian flux error</summary>
+	--/ <quantity>stat.error;phot.mag.petrosian;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[petroMagErr_u] [real] NULL,
 
+	--/ <summary>Petrosian flux error</summary>
+	--/ <quantity>stat.error;phot.mag.petrosian;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[petroMagErr_g] [real] NULL,
 
+	--/ <summary>Petrosian flux error</summary>
+	--/ <quantity>stat.error;phot.mag.petrosian;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[petroMagErr_r] [real] NULL,
 
+	--/ <summary>Petrosian flux error</summary>
+	--/ <quantity>stat.error;phot.mag.petrosian;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[petroMagErr_i] [real] NULL,
 
+	--/ <summary>Petrosian flux error</summary>
+	--/ <quantity>stat.error;phot.mag.petrosian;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[petroMagErr_z] [real] NULL,
 
+	--/ <summary>Radius containing 50% of Petrosian flux</summary>
+	--/ <quantity>phys.angSize;em.opt.SDSS.r</quantity>
+	--/ <unit>arcsec</unit>
 	[petroR50_r] [real] NULL,
 
+	--/ <summary>Radius containing 90% of Petrosian flux</summary>
+	--/ <quantity>phys.angSize;em.opt.SDSS.r</quantity>
+	--/ <unit>arcsec</unit>
 	[petroR90_r] [real] NULL,
 
+	--/ <summary>better of DeV/Exp magnitude fit</summary>
+	--/ <quantity>phot.mag;meta.modelled;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[modelMag_u] [real] NULL,
 
+	--/ <summary>better of DeV/Exp magnitude fit</summary>
+	--/ <quantity>phot.mag;meta.modelled;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[modelMag_g] [real] NULL,
 
+	--/ <summary>better of DeV/Exp magnitude fit</summary>
+	--/ <quantity>phot.mag;meta.modelled;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[modelMag_r] [real] NULL,
 
+	--/ <summary>better of DeV/Exp magnitude fit</summary>
+	--/ <quantity>phot.mag;meta.modelled;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[modelMag_i] [real] NULL,
 
+	--/ <summary>better of DeV/Exp magnitude fit</summary>
+	--/ <quantity>phot.mag;meta.modelled;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[modelMag_z] [real] NULL,
 
+	--/ <summary>better of DeV/Exp magnitude fit error</summary>
+	--/ <quantity>stat.error;phot.mag;meta.modelled;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[modelMagErr_u] [real] NULL,
 
+	--/ <summary>better of DeV/Exp magnitude fit error</summary>
+	--/ <quantity>stat.error;phot.mag;meta.modelled;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[modelMagErr_g] [real] NULL,
 
+	--/ <summary>better of DeV/Exp magnitude fit error</summary>
+	--/ <quantity>stat.error;phot.mag;meta.modelled;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[modelMagErr_r] [real] NULL,
 
+	--/ <summary>better of DeV/Exp magnitude fit error</summary>
+	--/ <quantity>stat.error;phot.mag;meta.modelled;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[modelMagErr_i] [real] NULL,
 
+	--/ <summary>better of DeV/Exp magnitude fit error</summary>
+	--/ <quantity>stat.error;phot.mag;meta.modelled;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[modelMagErr_z] [real] NULL,
 
+	--/ <summary>Adaptive (&lt;r^2&gt; + &lt;c^2&gt;)</summary>
+	--/ <quantity>obs.param</quantity>
 	[mRrCc_r] [real] NULL,
 
+	--/ <summary>Error in adaptive (&lt;r^2&gt; + &lt;c^2&gt;)</summary>
+	--/ <quantity>stat.error;obs.param</quantity>
 	[mRrCcErr_r] [real] NULL,
 
+	--/ <summary>Star ln(likelihood)</summary>
+	--/ <quantity>stat.likelihood;em.opt.SDSS.r</quantity>
 	[lnLStar_r] [real] NULL,
 
+	--/ <summary>Exponential disk fit ln(likelihood)</summary>
+	--/ <quantity>stat.likelihood;em.opt.SDSS.r</quantity>
 	[lnLExp_r] [real] NULL,
 
+	--/ <summary>DeVaucouleurs fit ln(likelihood)</summary>
+	--/ <quantity>stat.likelihood;em.opt.SDSS.r</quantity>
 	[lnLDeV_r] [real] NULL,
 
+	--/ <summary>Status of the object in the survey</summary>
+	--/ <quantity>meta.code.status</quantity>
 	[status] [int] NULL,
 
+	--/ <summary>J2000 right ascension (r')</summary>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000;em.opt.SDSS.r</quantity>
+	--/ <unit>deg</unit>
 	[ra] [float] NULL,
 
+	--/ <summary>J2000 declination (r')</summary>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000;em.opt.SDSS.r</quantity>
+	--/ <unit>deg</unit>
 	[dec] [float] NULL,
 
+	--/ <summary>unit vector for ra+dec</summary>
+	--/ <quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
 	[cx] [float] NULL,
 
+	--/ <summary>unit vector for ra+dec</summary>
+	--/ <quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
 	[cy] [float] NULL,
 
+	--/ <summary>unit vector for ra+dec</summary>
+	--/ <quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
 	[cz] [float] NULL,
 
+	--/ <summary>Bit mask of primary target categories the object was selected in.</summary>
+	--/ <quantity>meta.code</quantity>
 	[primTarget] [int] NULL,
 
+	--/ <summary>Bit mask of secondary target categories the object was selected in.</summary>
+	--/ <quantity>meta.code</quantity>
 	[secTarget] [int] NULL,
 
+	--/ <summary>Extinction in each filter</summary>
+	--/ <quantity>phys.absorption.gal;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[extinction_u] [real] NULL,
 
+	--/ <summary>Extinction in each filter</summary>
+	--/ <quantity>phys.absorption.gal;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[extinction_g] [real] NULL,
 
+	--/ <summary>Extinction in each filter</summary>
+	--/ <quantity>phys.absorption.gal;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[extinction_r] [real] NULL,
 
+	--/ <summary>Extinction in each filter</summary>
+	--/ <quantity>phys.absorption.gal;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[extinction_i] [real] NULL,
 
+	--/ <summary>Extinction in each filter</summary>
+	--/ <quantity>phys.absorption.gal;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[extinction_z] [real] NULL,
 
+	--/ <summary>20-deep hierarchical trangular mesh ID of this object</summary>
+	--/ <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
 	[htmID] [bigint] NULL,
 
+	--/ <summary>zone.id</summary>
+	--/ <quantity>pos.zone</quantity>
 	[zoneID] [bigint] NULL,
 
+	--/ <summary>Link to the field this object is in</summary>
+	--/ <quantity>meta.id;obs.field</quantity>
 	[fieldID] [bigint] NULL,
 
+	--/ <summary>Pointer to the spectrum of object, if exists, else 0</summary>
+	--/ <quantity>meta.id;spect</quantity>
 	[SpecObjID] [bigint] NULL,
 
+	--/ <summary>computed: =SQRT(mRrCc_r/2.0)</summary>
+	--/ <quantity>obs.param</quantity>
 	[size] [real] NULL,
  CONSTRAINT [pk_PhotoPrimaryDR7_DR8OBJID] PRIMARY KEY CLUSTERED 
 (
@@ -9445,7 +9624,7 @@ CREATE TABLE [dbo].[PhotoPrimaryDR7](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Photoz]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[Photoz]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -9528,7 +9707,7 @@ CREATE TABLE [dbo].[Photoz](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[PhotozRF]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[PhotozRF]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -9597,7 +9776,7 @@ CREATE TABLE [dbo].[PhotozRF](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[PhotozRFTemplateCoeff]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[PhotozRFTemplateCoeff]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -9617,7 +9796,7 @@ CREATE TABLE [dbo].[PhotozRFTemplateCoeff](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[PhotozTemplateCoeff]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[PhotozTemplateCoeff]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -9637,7 +9816,7 @@ CREATE TABLE [dbo].[PhotozTemplateCoeff](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Plate2Target]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[Plate2Target]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -9655,7 +9834,7 @@ CREATE TABLE [dbo].[Plate2Target](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[PlateX]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[PlateX]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -9938,7 +10117,7 @@ CREATE TABLE [dbo].[PlateX](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[ProperMotions]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[ProperMotions]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -9989,7 +10168,7 @@ CREATE TABLE [dbo].[ProperMotions](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Region]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[Region]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -10018,7 +10197,7 @@ CREATE TABLE [dbo].[Region](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[Region2Box]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[Region2Box]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -10038,7 +10217,7 @@ CREATE TABLE [dbo].[Region2Box](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[RegionArcs]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[RegionArcs]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -10084,7 +10263,7 @@ CREATE TABLE [dbo].[RegionArcs](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[RegionPatch]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[RegionPatch]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -10117,12 +10296,12 @@ CREATE TABLE [dbo].[RegionPatch](
 	[convexid] ASC,
 	[patchid] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY] [TEXTIMAGE_ON] PRIMARY
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[RegionTypes]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[RegionTypes]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -10138,7 +10317,7 @@ CREATE TABLE [dbo].[RegionTypes](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[Rmatrix]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[Rmatrix]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -10166,7 +10345,7 @@ CREATE TABLE [dbo].[Rmatrix](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[Run]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[Run]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -10238,7 +10417,7 @@ CREATE TABLE [dbo].[Run](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[RunShift]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[RunShift]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -10255,7 +10434,7 @@ CREATE TABLE [dbo].[RunShift](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[sdssBestTarget2Sector]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[sdssBestTarget2Sector]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -10277,7 +10456,7 @@ CREATE TABLE [dbo].[sdssBestTarget2Sector](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[SDSSConstants]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[SDSSConstants]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -10302,7 +10481,7 @@ CREATE TABLE [dbo].[SDSSConstants](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[sdssImagingHalfSpaces]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[sdssImagingHalfSpaces]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -10338,7 +10517,7 @@ CREATE TABLE [dbo].[sdssImagingHalfSpaces](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[sdssPolygon2Field]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[sdssPolygon2Field]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -10358,7 +10537,7 @@ CREATE TABLE [dbo].[sdssPolygon2Field](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[sdssPolygons]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[sdssPolygons]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -10385,7 +10564,7 @@ CREATE TABLE [dbo].[sdssPolygons](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[sdssSector]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[sdssSector]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -10407,7 +10586,7 @@ CREATE TABLE [dbo].[sdssSector](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[sdssSector2Tile]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[sdssSector2Tile]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -10427,7 +10606,7 @@ CREATE TABLE [dbo].[sdssSector2Tile](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[sdssTargetParam]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[sdssTargetParam]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -10454,7 +10633,7 @@ CREATE TABLE [dbo].[sdssTargetParam](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[sdssTileAll]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[sdssTileAll]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -10491,7 +10670,7 @@ CREATE TABLE [dbo].[sdssTileAll](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[sdssTiledTargetAll]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[sdssTiledTargetAll]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -10550,7 +10729,7 @@ CREATE TABLE [dbo].[sdssTiledTargetAll](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[sdssTilingGeometry]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[sdssTilingGeometry]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -10597,7 +10776,7 @@ CREATE TABLE [dbo].[sdssTilingGeometry](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[sdssTilingInfo]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[sdssTilingInfo]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -10625,7 +10804,7 @@ CREATE TABLE [dbo].[sdssTilingInfo](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[sdssTilingRun]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[sdssTilingRun]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -10656,7 +10835,7 @@ CREATE TABLE [dbo].[sdssTilingRun](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[segueTargetAll]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[segueTargetAll]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -10721,7 +10900,7 @@ CREATE TABLE [dbo].[segueTargetAll](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[SpecDR7]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[SpecDR7]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -10884,7 +11063,7 @@ CREATE TABLE [dbo].[SpecDR7](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[SpecObjAll]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[SpecObjAll]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -11283,7 +11462,7 @@ CREATE TABLE [dbo].[SpecObjAll](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[SpecPhotoAll]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[SpecPhotoAll]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -11546,7 +11725,7 @@ CREATE TABLE [dbo].[SpecPhotoAll](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[sppLines]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[sppLines]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -12267,7 +12446,7 @@ CREATE TABLE [dbo].[sppLines](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[sppParams]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[sppParams]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -12596,7 +12775,7 @@ CREATE TABLE [dbo].[sppParams](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[sppTargets]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[sppTargets]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -12830,7 +13009,7 @@ CREATE TABLE [dbo].[sppTargets](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[stellarMassFSPSGranEarlyDust]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[stellarMassFSPSGranEarlyDust]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -13009,7 +13188,7 @@ CREATE TABLE [dbo].[stellarMassFSPSGranEarlyDust](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[stellarMassFSPSGranEarlyNoDust]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[stellarMassFSPSGranEarlyNoDust]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -13188,7 +13367,7 @@ CREATE TABLE [dbo].[stellarMassFSPSGranEarlyNoDust](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[stellarMassFSPSGranWideDust]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[stellarMassFSPSGranWideDust]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -13367,7 +13546,7 @@ CREATE TABLE [dbo].[stellarMassFSPSGranWideDust](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[stellarMassFSPSGranWideNoDust]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[stellarMassFSPSGranWideNoDust]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -13546,7 +13725,7 @@ CREATE TABLE [dbo].[stellarMassFSPSGranWideNoDust](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[stellarMassPassivePort]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[stellarMassPassivePort]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -13631,7 +13810,7 @@ CREATE TABLE [dbo].[stellarMassPassivePort](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[stellarMassPCAWiscBC03]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[stellarMassPCAWiscBC03]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -13704,7 +13883,7 @@ CREATE TABLE [dbo].[stellarMassPCAWiscBC03](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[stellarMassPCAWiscM11]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[stellarMassPCAWiscM11]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -13777,7 +13956,7 @@ CREATE TABLE [dbo].[stellarMassPCAWiscM11](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[stellarMassStarformingPort]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[stellarMassStarformingPort]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -13862,7 +14041,7 @@ CREATE TABLE [dbo].[stellarMassStarformingPort](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[StripeDefs]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[StripeDefs]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -13891,7 +14070,7 @@ CREATE TABLE [dbo].[StripeDefs](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[thingIndex]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[thingIndex]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -13924,7 +14103,7 @@ CREATE TABLE [dbo].[thingIndex](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[zoo2MainPhotoz]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[zoo2MainPhotoz]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -14403,7 +14582,7 @@ CREATE TABLE [dbo].[zoo2MainPhotoz](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[zoo2MainSpecz]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[zoo2MainSpecz]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -14884,7 +15063,7 @@ CREATE TABLE [dbo].[zoo2MainSpecz](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[zoo2Stripe82Coadd1]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[zoo2Stripe82Coadd1]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -15367,7 +15546,7 @@ CREATE TABLE [dbo].[zoo2Stripe82Coadd1](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[zoo2Stripe82Coadd2]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[zoo2Stripe82Coadd2]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -15850,7 +16029,7 @@ CREATE TABLE [dbo].[zoo2Stripe82Coadd2](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[zoo2Stripe82Normal]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[zoo2Stripe82Normal]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -16331,7 +16510,7 @@ CREATE TABLE [dbo].[zoo2Stripe82Normal](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[zooConfidence]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[zooConfidence]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -16376,7 +16555,7 @@ CREATE TABLE [dbo].[zooConfidence](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[zooMirrorBias]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[zooMirrorBias]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -16439,7 +16618,7 @@ CREATE TABLE [dbo].[zooMirrorBias](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[zooMonochromeBias]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[zooMonochromeBias]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -16486,7 +16665,7 @@ CREATE TABLE [dbo].[zooMonochromeBias](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[zooNoSpec]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[zooNoSpec]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -16531,7 +16710,7 @@ CREATE TABLE [dbo].[zooNoSpec](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[zooSpec]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[zooSpec]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -16588,7 +16767,7 @@ CREATE TABLE [dbo].[zooSpec](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Table [dbo].[zooVotes]	Script Date: 4/1/2015 5:51:44 AM ******/
+/****** Object:  Table [dbo].[zooVotes]    Script Date: 4/1/2015 5:51:44 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
