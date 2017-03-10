@@ -8964,7 +8964,7 @@ GO
 CREATE TABLE [dbo].[PhotoObjDR7](
 
 	--/ <summary>Unique DR7 identifier composed from [skyVersion,rerun,run,camcol,field,obj].</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.id</quantity>
 	[dr7objid] bigint NOT NULL,
 
 	--/ <summary>Unique DR8 identifier composed from [skyVersion,rerun,run,camcol,field,obj].</summary>
