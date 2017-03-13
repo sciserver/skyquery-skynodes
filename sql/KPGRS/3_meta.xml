@@ -2,15 +2,15 @@
   <table name="[dbo].[SpecObj]">
     <column name="[cx]">
       <summary> Cartesian X </summary>
-<quantity>pos.cartesian.x; pos.eq; pos.frame=icrs</quantity>
+<quantity>pos.eq.x; pos.frame=icrs</quantity>
 </column>
     <column name="[cy]">
       <summary> Cartesian Y </summary>
-<quantity>pos.cartesian.y; pos.eq; pos.frame=icrs</quantity>
+<quantity>pos.eq.y; pos.frame=icrs</quantity>
 </column>
     <column name="[cz]">
       <summary> Cartesian Z </summary>
-<quantity>pos.cartesian.z; pos.eq; pos.frame=icrs</quantity>
+<quantity>pos.eq.z; pos.frame=icrs</quantity>
 </column>
     <column name="[htmid]">
       <summary> HTM ID </summary>

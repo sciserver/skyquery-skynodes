@@ -16,15 +16,15 @@
 </column>
     <column name="[cx]">
       <summary>Cartesian X (J2000)</summary>
-<quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
+<quantity>pos.eq.x;pos.frame=j2000</quantity>
 </column>
     <column name="[cy]">
       <summary>Cartesian Y (J2000)</summary>
-<quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
+<quantity>pos.eq.y;pos.frame=j2000</quantity>
 </column>
     <column name="[cz]">
       <summary>Cartesian Z (J2000)</summary>
-<quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
+<quantity>pos.eq.z;pos.frame=j2000</quantity>
 </column>
     <column name="[htmid]">
       <summary>HTM ID (J2000)</summary>

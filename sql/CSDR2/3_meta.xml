@@ -20,15 +20,15 @@
 </column>
     <column name="[cx]">
       <summary> Cartesian X</summary>
-<quantity>pos.cartesian.x;pos.eq</quantity>
+<quantity>pos.eq.x</quantity>
 </column>
     <column name="[cy]">
       <summary> Cartesian Y</summary>
-<quantity>pos.cartesian.y;pos.eq</quantity>
+<quantity>pos.eq.y</quantity>
 </column>
     <column name="[cz]">
       <summary> Cartesian Z</summary>
-<quantity>pos.cartesian.z;pos.eq</quantity>
+<quantity>pos.eq.z</quantity>
 </column>
     <column name="[htmid]">
       <summary> HTM ID</summary>

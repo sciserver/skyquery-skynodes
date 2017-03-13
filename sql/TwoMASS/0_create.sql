@@ -19,15 +19,15 @@ CREATE TABLE [dbo].[PhotoPSC](
 
     
 	--/ <summary>Cartesian coordinate x</summary>
-	--/ <quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.x;pos.frame=j2000</quantity>
 	[cx] [float] NULL, 
 	
 	--/ <summary>Cartesian coordinate y</summary>
-	--/ <quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.y;pos.frame=j2000</quantity>
 	[cy] [float] NULL, 
 	
 	--/ <summary>Cartesian coordinate z</summary>
-	--/ <quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.z;pos.frame=j2000</quantity>
 	[cz] [float] NULL, 
 	
 	--/ <summary>Unique HTM ID</summary>
@@ -346,15 +346,15 @@ CREATE TABLE [dbo].[PhotoXSC](
 	[dec] [float] NOT NULL,
 	
 	--/ <summary> Cartesian X (J2000)</summary>
-	--/ <quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.x;pos.frame=j2000</quantity>
 	[cx] [float] NOT NULL, 
 
 	--/ <summary> Cartesian Y (J2000)</summary>
-	--/ <quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.y;pos.frame=j2000</quantity>
 	[cy] [float] NOT NULL, 
 
 	--/ <summary> Cartesian Z (J2000)</summary>
-	--/ <quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.z;pos.frame=j2000</quantity>
 	[cz] [float] NOT NULL, 
 
 	--/ <summary> HTM ID (J2000)</summary>

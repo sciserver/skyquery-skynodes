@@ -15,11 +15,11 @@
 <quantity>pos.eq.dec;pos.frame=j2000</quantity>
 <unit>deg</unit>
 </column><column name="[cx]"><summary>unit vector of spherical co-ordinate</summary>
-<quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
+<quantity>pos.eq.x;pos.frame=j2000</quantity>
 </column><column name="[cy]"><summary>unit vector of spherical co-ordinate</summary>
-<quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
+<quantity>pos.eq.y;pos.frame=j2000</quantity>
 </column><column name="[cz]"><summary>unit vector of spherical co-ordinate</summary>
-<quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
+<quantity>pos.eq.z;pos.frame=j2000</quantity>
 </column><column name="[htmID]"><summary>HTM index, 20 digits, for co-ordinate</summary>
 <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
 </column><column name="[zoneID]"><summary>ZoneID</summary>

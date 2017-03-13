@@ -2,15 +2,15 @@
 CREATE TABLE dbo.SpecObj
 (
 	--/ <summary> Cartesian X (ICRS)</summary>
-	--/ <quantity>pos.cartesian.x; pos.eq; pos.frame=icrs</quantity>
+	--/ <quantity>pos.eq.x; pos.frame=icrs</quantity>
 	[cx] [float] NOT NULL,
 
 	--/ <summary> Cartesian Y (ICRS)</summary>
-	--/ <quantity>pos.cartesian.y; pos.eq; pos.frame=icrs</quantity>
+	--/ <quantity>pos.eq.y; pos.frame=icrs</quantity>
 	[cy] [float] NOT NULL,
 
 	--/ <summary> Cartesian Z (ICRS)</summary>
-	--/ <quantity>pos.cartesian.z; pos.eq; pos.frame=icrs</quantity>
+	--/ <quantity>pos.eq.z; pos.frame=icrs</quantity>
 	[cz] [float] NOT NULL,
 
 	--/ <summary> HTM ID (ICRS)</summary>
