@@ -572,19 +572,19 @@ CREATE TABLE [dbo].[apogeeStar](
 	[dec] [float] NOT NULL,
 
 	--/ <summary> Cartesian X (J2000)</summary>
-	--/ <quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.x;pos.frame=j2000</quantity>
 	[cx] [float] NOT NULL,
 
 	--/ <summary> Cartesian Y (J2000)</summary>
-	--/ <quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.y;pos.frame=j2000</quantity>
 	[cy] [float] NOT NULL,
 
 	--/ <summary> Cartesian Z (J2000)</summary>
-	--/ <quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.z;pos.frame=j2000</quantity>
 	[cz] [float] NOT NULL,
 
 	--/ <summary> HTM ID (J2000)</summary>
-	--/ <quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.x;pos.frame=j2000</quantity>
 	[htmID] [bigint] NOT NULL,
 
 	--/ <summary> Zone ID</summary>
@@ -1671,7 +1671,7 @@ CREATE TABLE [dbo].[emissionLinesPort](
 
 	--/ <summary>MJD of observation</summary>
 	--/ <quantity>time.epoch;obs</quantity>
-	--/ <unit>days</unit>
+	--/ <unit>d</unit>
 	[mjd] [int] NOT NULL,
 
 	--/ <summary>Right ascension of fiber, J2000</summary>
@@ -5753,15 +5753,15 @@ CREATE TABLE [dbo].[Frame](
 	[dec] [float] NOT NULL,
 
 	--/ <summary>Cartesian x of frame center</summary>
-	--/ <quantity>pos.cartesian.x;pos.eq</quantity>
+	--/ <quantity>pos.eq.x</quantity>
 	[cx] [float] NOT NULL,
 
 	--/ <summary>Cartesian y of frame center</summary>
-	--/ <quantity>pos.cartesian.y;pos.eq</quantity>
+	--/ <quantity>pos.eq.y</quantity>
 	[cy] [float] NOT NULL,
 
 	--/ <summary>Cartesian z of frame center</summary>
-	--/ <quantity>pos.cartesian.r;pos.eq</quantity>
+	--/ <quantity>pos.eq.r</quantity>
 	[cz] [float] NOT NULL,
 
 	--/ <summary>The htmID for point at frame center</summary>
@@ -8897,15 +8897,15 @@ CREATE TABLE [dbo].[Mask](
 	[seeing] [real] NOT NULL,
 
 	--/ <summary>unit vector for ra+dec</summary>
-	--/ <quantity>pos.cartesian.x; pos.eq</quantity>
+	--/ <quantity>pos.eq.x</quantity>
 	[cx] [float] NOT NULL,
 
 	--/ <summary>unit vector for ra+dec</summary>
-	--/ <quantity>pos.cartesian.y; pos.eq</quantity>
+	--/ <quantity>pos.eq.y</quantity>
 	[cy] [float] NOT NULL,
 
 	--/ <summary>unit vector for ra+dec</summary>
-	--/ <quantity>pos.cartesian.z; pos.eq</quantity>
+	--/ <quantity>pos.eq.z</quantity>
 	[cz] [float] NOT NULL,
 
 	--/ <summary>20-deep hierarchical trangular mesh ID of this object</summary>
@@ -9223,15 +9223,15 @@ CREATE TABLE [dbo].[PhotoObjDR7](
 	[dec] [float] NOT NULL,
 
 	--/ <summary>unit vector for ra+dec</summary>
-	--/ <quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.x;pos.frame=j2000</quantity>
 	[cx] [float] NOT NULL,
 
 	--/ <summary>unit vector for ra+dec</summary>
-	--/ <quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.y;pos.frame=j2000</quantity>
 	[cy] [float] NOT NULL,
 
 	--/ <summary>unit vector for ra+dec</summary>
-	--/ <quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.z;pos.frame=j2000</quantity>
 	[cz] [float] NOT NULL,
 
 	--/ <summary>20-deep hierarchical trangular mesh ID of this object</summary>
@@ -9554,15 +9554,15 @@ CREATE TABLE [dbo].[PhotoPrimaryDR7](
 	[dec] [float] NULL,
 
 	--/ <summary>unit vector for ra+dec</summary>
-	--/ <quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.x;pos.frame=j2000</quantity>
 	[cx] [float] NULL,
 
 	--/ <summary>unit vector for ra+dec</summary>
-	--/ <quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.y;pos.frame=j2000</quantity>
 	[cy] [float] NULL,
 
 	--/ <summary>unit vector for ra+dec</summary>
-	--/ <quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.z;pos.frame=j2000</quantity>
 	[cz] [float] NULL,
 
 	--/ <summary>Bit mask of primary target categories the object was selected in.</summary>
@@ -9930,12 +9930,21 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
+--/ <summary></summary>
+--/ <remarks></remarks>
 CREATE TABLE [dbo].[PhotozRFTemplateCoeff](
 
+	--/ <summary>primary key</summary>
+	--/ <quantity>meta.id</quantity>
 	[objID] [bigint] NOT NULL,
 
+	--/ <summary>template id</summary>
+	--/ <quantity>meta.id</quantity>
 	[templateID] [int] NOT NULL,
 
+	--/ <summary></summary>
+	--/ <quantity></quantity>
 	[coeff] [real] NOT NULL,
  CONSTRAINT [pk_PhotozRFTemplateCoeff_objID_t] PRIMARY KEY CLUSTERED 
 (
@@ -9952,10 +9961,16 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[PhotozTemplateCoeff](
 
+	--/ <summary>primary key</summary>
+	--/ <quantity>meta.id</quantity>
 	[objID] [bigint] NOT NULL,
 
+	--/ <summary>template ID</summary>
+	--/ <quantity>meta.id</quantity>
 	[templateID] [int] NOT NULL,
 
+	--/ <summary></summary>
+	--/ <quantity></quantity>
 	[coeff] [real] NOT NULL,
  CONSTRAINT [pk_PhotozTemplateCoeff_objID_tem] PRIMARY KEY CLUSTERED 
 (
@@ -9970,15 +9985,29 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
+--/ <summary> Which objects are in the coverage area of which plates? </summary>
+--/ <remarks> This table has an entry for each case of a target from the   sppTargets table having been targetable by a given plate.  Can be joined with plateX on the PLATEID column, and with  sppTargets on the OBJID column. Some plates are included  that were never observed; the PLATEID values for these   will not match any entries in the plateX table. </remarks>
 CREATE TABLE [dbo].[Plate2Target](
 
+	--/ <summary>primary key</summary>
+	--/ <quantity>meta.id;meta.main</quantity>
 	[plate2targetid] [int] NOT NULL,
 
+	--/ <summary>plate number</summary>
+	--/ <quantity>meta.id;instr.det</quantity>
 	[plate] [int] NOT NULL,
 
+	--/ <summary>plate identification number in plateX</summary>
+	--/ <quantity></quantity>
 	[plateid] [bigint] NOT NULL,
 
+	--/ <summary>object identification number in sppTargets</summary>
+	--/ <quantity>meta.id.cross</quantity>
 	[objid] [bigint] NOT NULL,
+
+	--/ <summary>Load Version</summary>
+	--/ <quantity>meta.version</quantity>
 	[loadVersion] [int] NOT NULL
 ) ON [PRIMARY]
 
@@ -9990,272 +10019,576 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+--/ <summary> Contains data from a given plate used for spectroscopic observations. </summary>
+--/ <remarks> Each SDSS spectrograph plate has 640 observed spectra, whereas each BOSS   spectrograph plate has 1000 observed spectra.  </remarks>
 CREATE TABLE [dbo].[PlateX](
 
+	--/ <summary>Unique ID, composite of plate number and MJD</summary>
+	--/ <quantity>meta.id;meta.main</quantity>
 	[plateID] [bigint] NOT NULL,
 
+	--/ <summary>Name of release that this plate/mjd/rerun was first distributed in</summary>
+	--/ <quantity>meta.id</quantity>
 	[firstRelease] [varchar](32) NOT NULL,
 
+	--/ <summary>Plate number</summary>
+	--/ <quantity>meta.id</quantity>
 	[plate] [smallint] NOT NULL,
 
+	--/ <summary>MJD of observation (last)</summary>
+	--/ <quantity>time.epoch;obs</quantity>
+	--/ <unit>d</unit>
 	[mjd] [int] NOT NULL,
 
+	--/ <summary>List of contributing MJDs [from spPlate header]</summary>
+	--/ <quantity>time.epoch</quantity>
 	[mjdList] [varchar](512) NOT NULL,
 
+	--/ <summary>Name of survey [from platelist product]</summary>
+	--/ <quantity>meta.id</quantity>
 	[survey] [varchar](32) NOT NULL,
 
+	--/ <summary>Name of program [from platelist product]</summary>
+	--/ <quantity>meta.id</quantity>
 	[programName] [varchar](32) NOT NULL,
 
+	--/ <summary>Instrument used (SDSS or BOSS spectrograph)</summary>
+	--/ <quantity>instr</quantity>
 	[instrument] [varchar](32) NOT NULL,
 
+	--/ <summary>Name of tiling chunk  [from platelist product]</summary>
+	--/ <quantity>meta.id;instr.param</quantity>
 	[chunk] [varchar](32) NOT NULL,
 
+	--/ <summary>Drilling run for plate [from platelist product]</summary>
+	--/ <quantity>meta.note</quantity>
 	[plateRun] [varchar](32) NOT NULL,
 
+	--/ <summary>Comments on the plate design from plate plans [from platelist product]</summary>
+	--/ <quantity>meta.note</quantity>
 	[designComments] [varchar](128) NOT NULL,
 
+	--/ <summary>Characterization of plate quality</summary>
+	--/ <quantity>meta.code.qual</quantity>
 	[plateQuality] [varchar](32) NOT NULL,
 
+	--/ <summary>Comments on reason for plate quality</summary>
+	--/ <quantity>meta.note</quantity>
 	[qualityComments] [varchar](100) NOT NULL,
 
+	--/ <summary>Overall signal to noise measure for plate (only set for SDSS plates)</summary>
+	--/ <quantity>stat.snr</quantity>
 	[plateSN2] [real] NOT NULL,
 
+	--/ <summary>Dereddened overall signal to noise measure for plate (only set for BOSS plates)</summary>
+	--/ <quantity>stat.snr</quantity>
 	[deredSN2] [real] NOT NULL,
 
+	--/ <summary>RA, J2000 [from spPlate header]</summary>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[ra] [float] NOT NULL,
 
+	--/ <summary>Dec, J2000 [from spPlate header]</summary>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[dec] [float] NOT NULL,
 
+	--/ <summary>2D reduction rerun of plate</summary>
+	--/ <quantity>meta.note</quantity>
 	[run2d] [varchar](32) NOT NULL,
 
+	--/ <summary>1D reduction rerun of plate</summary>
+	--/ <quantity>meta.note</quantity>
 	[run1d] [varchar](32) NOT NULL,
 
+	--/ <summary>SSPP reduction rerun of plate  ("none" if not run)</summary>
+	--/ <quantity>meta.note</quantity>
 	[runsspp] [varchar](32) NOT NULL,
 
+	--/ <summary>Tile number for SDSS-I, -II plates (-1 for SDSS-III) [from platelist product]</summary>
+	--/ <quantity>meta.id</quantity>
 	[tile] [smallint] NOT NULL,
 
+	--/ <summary>Design number number for SDSS-III plates (-1 for SDSS-I, -II) [from platelist product]</summary>
+	--/ <quantity>meta.id</quantity>
 	[designID] [int] NOT NULL,
 
+	--/ <summary>Location number number for SDSS-III plates (-1 for SDSS-I, -II) [from platelist product]</summary>
+	--/ <quantity>meta.id</quantity>
 	[locationID] [int] NOT NULL,
 
+	--/ <summary>IOP Version [from spPlate header]</summary>
+	--/ <quantity>meta.version</quantity>
 	[iopVersion] [varchar](64) NOT NULL,
 
+	--/ <summary>Camera code version  [from spPlate header]</summary>
+	--/ <quantity>meta.version;instr.det</quantity>
 	[camVersion] [varchar](64) NOT NULL,
 
+	--/ <summary>Time in string format [from spPlate header]</summary>
+	--/ <quantity>time.epoch</quantity>
 	[taiHMS] [varchar](64) NOT NULL,
 
+	--/ <summary>Date of 1st row [from spPlate header]</summary>
+	--/ <quantity>time.epoch</quantity>
 	[dateObs] [varchar](32) NOT NULL,
 
+	--/ <summary>Time System [from spPlate header]</summary>
+	--/ <quantity>meta.code</quantity>
 	[timeSys] [varchar](8) NOT NULL,
 
+	--/ <summary>x of Normal unit vector in J2000</summary>
+	--/ <quantity>pos.eq.x;pos.frame=j2000</quantity>
 	[cx] [float] NOT NULL,
 
+	--/ <summary>y of Normal unit vector in J2000</summary>
+	--/ <quantity>pos.eq.y;pos.frame=j2000</quantity>
 	[cy] [float] NOT NULL,
 
+	--/ <summary>z of Normal unit vector in J2000</summary>
+	--/ <quantity>pos.eq.z;pos.frame=j2000</quantity>
 	[cz] [float] NOT NULL,
 
+	--/ <summary>ID of cartridge used for the observation [from spPlate header]</summary>
+	--/ <quantity>meta.id</quantity>
 	[cartridgeID] [smallint] NOT NULL,
 
+	--/ <summary>Mean time (TAI) [from spPlate header]</summary>
+	--/ <quantity>time.epoch;obs;stat.mean</quantity>
+	--/ <unit>s</unit>
 	[tai] [float] NOT NULL,
 
+	--/ <summary>Beginning time (TAI) [from spPlate header]</summary>
+	--/ <quantity>time.start</quantity>
+	--/ <unit>s</unit>
 	[taiBegin] [float] NOT NULL,
 
+	--/ <summary>Ending time (TAI) [from spPlate header]</summary>
+	--/ <quantity>time.end</quantity>
+	--/ <unit>s</unit>
 	[taiEnd] [float] NOT NULL,
 
+	--/ <summary>Airmass at central TAI time [from spPlate header]</summary>
+	--/ <quantity>obs.airmass</quantity>
 	[airmass] [real] NOT NULL,
 
+	--/ <summary>Map MJD [from spPlate header]</summary>
+	--/ <quantity>time.epoch</quantity>
+	--/ <unit>d</unit>
 	[mapMjd] [int] NOT NULL,
 
+	--/ <summary>ID of mapping file [from spPlate header]</summary>
+	--/ <quantity>meta.id;meta.file</quantity>
 	[mapName] [varchar](32) NOT NULL,
 
+	--/ <summary>Full name of mapping file [from spPlate header]</summary>
+	--/ <quantity>meta.id;meta.file</quantity>
 	[plugFile] [varchar](32) NOT NULL,
 
+	--/ <summary>Total Exposure time [from spPlate header]</summary>
+	--/ <quantity>time.duration;obs.exposure</quantity>
+	--/ <unit>s</unit>
 	[expTime] [real] NOT NULL,
 
+	--/ <summary>exposure time in B1 spectrograph [from spPlate header]</summary>
+	--/ <quantity>time.duration;obs.exposure</quantity>
+	--/ <unit>s</unit>
 	[expTimeB1] [real] NOT NULL,
 
+	--/ <summary>exposure time in B2 spectrograph [from spPlate header]</summary>
+	--/ <quantity>time.duration;obs.exposure</quantity>
+	--/ <unit>s</unit>
 	[expTimeB2] [real] NOT NULL,
 
+	--/ <summary>exposure time in R1 spectrograph [from spPlate header]</summary>
+	--/ <quantity>time.duration;obs.exposure</quantity>
+	--/ <unit>s</unit>
 	[expTimeR1] [real] NOT NULL,
 
+	--/ <summary>exposure time in R2 spectrograph [from spPlate header]</summary>
+	--/ <quantity>time.duration;obs.exposure</quantity>
+	--/ <unit>s</unit>
 	[expTimeR2] [real] NOT NULL,
 
+	--/ <summary>idlspec2d version used during 2d reduction [from spPlate header]</summary>
+	--/ <quantity>meta.version</quantity>
 	[vers2d] [varchar](32) NOT NULL,
 
+	--/ <summary>idlspec2d version used during combination of multiple exposures [from spPlate header]</summary>
+	--/ <quantity>meta.version</quantity>
 	[verscomb] [varchar](32) NOT NULL,
 
+	--/ <summary>idlspec2d version used during redshift fitting [from spPlate header]</summary>
+	--/ <quantity>meta.version</quantity>
 	[vers1d] [varchar](32) NOT NULL,
 
+	--/ <summary>Signal to noise measure for MS turnoff stars on plate (-9999 if not appropriate)</summary>
+	--/ <quantity>stat.snr</quantity>
 	[snturnoff] [real] NOT NULL,
 
+	--/ <summary>Number of MS turnoff stars on plate</summary>
+	--/ <quantity>meta.number</quantity>
 	[nturnoff] [real] NOT NULL,
 
+	--/ <summary>Number of exposures total [from spPlate header]</summary>
+	--/ <quantity>meta.number</quantity>
 	[nExp] [smallint] NOT NULL,
 
+	--/ <summary>Number of exposures in B1 spectrograph  [from spPlate header]</summary>
+	--/ <quantity>meta.number</quantity>
 	[nExpB1] [smallint] NOT NULL,
 
+	--/ <summary>Number of exposures in B2 spectrograph  [from spPlate header]</summary>
+	--/ <quantity>meta.number</quantity>
 	[nExpB2] [smallint] NOT NULL,
 
+	--/ <summary>Number of exposures in R1 spectrograph  [from spPlate header]</summary>
+	--/ <quantity>meta.number</quantity>
 	[nExpR1] [smallint] NOT NULL,
 
+	--/ <summary>Number of exposures in R2 spectrograph  [from spPlate header]</summary>
+	--/ <quantity>meta.number</quantity>
 	[nExpR2] [smallint] NOT NULL,
 
+	--/ <summary>(S/N)^2 at g=20.20 for spectrograph #1 [from spPlate header]</summary>
+	--/ <quantity>stat.value;em.opt.SDSS.g</quantity>
 	[sn1_g] [real] NOT NULL,
 
+	--/ <summary>(S/N)^2 at r=20.25 for spectrograph #1 [from spPlate header]</summary>
+	--/ <quantity>stat.value;em.opt.SDSS.r</quantity>
 	[sn1_r] [real] NOT NULL,
 
+	--/ <summary>(S/N)^2 at i=19.90 for spectrograph #1 [from spPlate header]</summary>
+	--/ <quantity>stat.value;em.opt.SDSS.i</quantity>
 	[sn1_i] [real] NOT NULL,
 
+	--/ <summary>(S/N)^2 at g=20.20 for spectrograph #2 [from spPlate header]</summary>
+	--/ <quantity>stat.value;em.opt.SDSS.g</quantity>
 	[sn2_g] [real] NOT NULL,
 
+	--/ <summary>(S/N)^2 at r=20.25 for spectrograph #2 [from spPlate header]</summary>
+	--/ <quantity>stat.value;em.opt.SDSS.r</quantity>
 	[sn2_r] [real] NOT NULL,
 
+	--/ <summary>(S/N)^2 at i=19.90 for spectrograph #2 [from spPlate header]</summary>
+	--/ <quantity>stat.value;em.opt.SDSS.i</quantity>
 	[sn2_i] [real] NOT NULL,
 
+	--/ <summary>Dereddened (S/N)^2 at g=20.20 for spectrograph #1 [from spPlate header]</summary>
+	--/ <quantity>stat.value;em.opt.SDSS.g</quantity>
 	[dered_sn1_g] [real] NOT NULL,
 
+	--/ <summary>Dereddened (S/N)^2 at r=20.25 for spectrograph #1 [from spPlate header]</summary>
+	--/ <quantity>stat.value;em.opt.SDSS.r</quantity>
 	[dered_sn1_r] [real] NOT NULL,
 
+	--/ <summary>Dereddened (S/N)^2 at i=19.90 for spectrograph #1 [from spPlate header]</summary>
+	--/ <quantity>stat.value;em.opt.SDSS.i</quantity>
 	[dered_sn1_i] [real] NOT NULL,
 
+	--/ <summary>Dereddened (S/N)^2 at g=20.20 for spectrograph #2 [from spPlate header]</summary>
+	--/ <quantity>stat.value;em.opt.SDSS.g</quantity>
 	[dered_sn2_g] [real] NOT NULL,
 
+	--/ <summary>Dereddened (S/N)^2 at r=20.25 for spectrograph #2 [from spPlate header]</summary>
+	--/ <quantity>stat.value;em.opt.SDSS.r</quantity>
 	[dered_sn2_r] [real] NOT NULL,
 
+	--/ <summary>Dereddened (S/N)^2 at i=19.90 for spectrograph #2 [from spPlate header]</summary>
+	--/ <quantity>stat.value;em.opt.SDSS.i</quantity>
 	[dered_sn2_i] [real] NOT NULL,
 
+	--/ <summary>Heliocentric velocity correction [from spPlate header]</summary>
+	--/ <quantity>spect.dopplerVeloc;pos.heliocentric</quantity>
+	--/ <unit>km s-1</unit>
 	[helioRV] [real] NOT NULL,
 
+	--/ <summary>Mean g-band mag difference (spectro - photo) for standards [from spPlate header]</summary>
+	--/ <quantity>phot.mag;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[gOffStd] [real] NOT NULL,
 
+	--/ <summary>Standard deviation of g-band mag difference (spectro - photo) for standards [from spPlate header]</summary>
+	--/ <quantity>stat.stdev;phot.mag;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[gRMSStd] [real] NOT NULL,
 
+	--/ <summary>Mean r-band mag difference (spectro - photo) for standards [from spPlate header]</summary>
+	--/ <quantity>phot.mag;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[rOffStd] [real] NOT NULL,
 
+	--/ <summary>Standard deviation of r-band mag difference (spectro - photo) for standards [from spPlate header]</summary>
+	--/ <quantity>stat.stdev;phot.mag;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[rRMSStd] [real] NOT NULL,
 
+	--/ <summary>Mean i-band mag difference (spectro - photo) for standards [from spPlate header]</summary>
+	--/ <quantity>phot.mag;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[iOffStd] [real] NOT NULL,
 
+	--/ <summary>Standard deviation of i-band mag difference (spectro - photo) for standards [from spPlate header]</summary>
+	--/ <quantity>stat.stdev;phot.mag;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[iRMSStd] [real] NOT NULL,
 
+	--/ <summary>Mean g-band mag difference (spectro - photo) for standards [from spPlate header]</summary>
+	--/ <quantity>phot.mag;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[grOffStd] [real] NOT NULL,
 
+	--/ <summary>Standard deviation of g-band mag difference (spectro - photo) for standards [from spPlate header]</summary>
+	--/ <quantity>stat.stdev;phot.mag;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[grRMSStd] [real] NOT NULL,
 
+	--/ <summary>Mean r-band mag difference (spectro - photo) for standards [from spPlate header]</summary>
+	--/ <quantity>phot.mag;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[riOffStd] [real] NOT NULL,
 
+	--/ <summary>Standard deviation of r-band mag difference (spectro - photo) for standards [from spPlate header]</summary>
+	--/ <quantity>stat.stdev;phot.mag;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[riRMSStd] [real] NOT NULL,
 
+	--/ <summary>Mean g-band mag difference (spectro - photo) for galaxies [from spPlate header]</summary>
+	--/ <quantity>phot.mag;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[gOffGal] [real] NOT NULL,
 
+	--/ <summary>Standard deviation of g-band mag difference (spectro - photo) for galaxies [from spPlate header]</summary>
+	--/ <quantity>stat.stdev;phot.mag;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[gRMSGal] [real] NOT NULL,
 
+	--/ <summary>Mean r-band mag difference (spectro - photo) for galaxies [from spPlate header]</summary>
+	--/ <quantity>phot.mag;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[rOffGal] [real] NOT NULL,
 
+	--/ <summary>Standard deviation of r-band mag difference (spectro - photo) for galaxies [from spPlate header]</summary>
+	--/ <quantity>stat.stdev;phot.mag;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[rRMSGal] [real] NOT NULL,
 
+	--/ <summary>Mean i-band mag difference (spectro - photo) for galaxies [from spPlate header]</summary>
+	--/ <quantity>phot.mag;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[iOffGal] [real] NOT NULL,
 
+	--/ <summary>Standard deviation of i-band mag difference (spectro - photo) for galaxies [from spPlate header]</summary>
+	--/ <quantity>stat.stdev;phot.mag;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[iRMSGal] [real] NOT NULL,
 
+	--/ <summary>Mean g-band mag difference (spectro - photo) for galaxies [from spPlate header]</summary>
+	--/ <quantity>phot.mag;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[grOffGal] [real] NOT NULL,
 
+	--/ <summary>Standard deviation of g-band mag difference (spectro - photo) for galaxies [from spPlate header]</summary>
+	--/ <quantity>stat.stdev;phot.mag;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[grRMSGal] [real] NOT NULL,
 
+	--/ <summary>Mean r-band mag difference (spectro - photo) for galaxies [from spPlate header]</summary>
+	--/ <quantity>phot.mag;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[riOffGal] [real] NOT NULL,
 
+	--/ <summary>Standard deviation of r-band mag difference (spectro - photo) for galaxies [from spPlate header]</summary>
+	--/ <quantity>stat.stdev;phot.mag;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[riRMSGal] [real] NOT NULL,
 
+	--/ <summary>Number of guider camera frames taken during the exposure [from spPlate header]</summary>
+	--/ <quantity>meta.number</quantity>
 	[nGuide] [int] NOT NULL,
 
+	--/ <summary>20th-percentile of seeing during exposure (arcsec) [from spPlate header]</summary>
+	--/ <quantity>instr.obsty.seeing</quantity>
 	[seeing20] [real] NOT NULL,
 
+	--/ <summary>50th-percentile of seeing during exposure (arcsec) [from spPlate header]</summary>
+	--/ <quantity>instr.obsty.seeing</quantity>
 	[seeing50] [real] NOT NULL,
 
+	--/ <summary>80th-percentile of seeing during exposure (arcsec) [from spPlate header]</summary>
+	--/ <quantity>instr.obsty.seeing</quantity>
 	[seeing80] [real] NOT NULL,
 
+	--/ <summary>20th-percentile of RMS offset of guide fibers (arcsec) [from spPlate header]</summary>
+	--/ <quantity>instr.obsty.seeing</quantity>
 	[rmsoff20] [real] NOT NULL,
 
+	--/ <summary>50th-percentile of RMS offset of guide fibers (arcsec) [from spPlate header]</summary>
+	--/ <quantity>instr.obsty.seeing</quantity>
 	[rmsoff50] [real] NOT NULL,
 
+	--/ <summary>80th-percentile of RMS offset of guide fibers (arcsec) [from spPlate header]</summary>
+	--/ <quantity>instr.obsty.seeing</quantity>
 	[rmsoff80] [real] NOT NULL,
 
+	--/ <summary>Air temperature in the dome [from spPlate header]</summary>
+	--/ <quantity>phys.temperature;instr</quantity>
+	--/ <unit>Celsius</unit>
 	[airtemp] [real] NOT NULL,
 
+	--/ <summary>Were the SFD dust maps applied to the output spectrum? (0 = no, 1 = yes)</summary>
+	--/ <quantity>meta.code</quantity>
 	[sfd_used] [tinyint] NOT NULL,
 
+	--/ <summary>sigma of gaussian fit to spatial profile[from spPlate header]</summary>
+	--/ <quantity>stat.error;stat.fit</quantity>
 	[xSigma] [real] NOT NULL,
 
+	--/ <summary>minimum of xSigma for all exposures [from spPlate header]</summary>
+	--/ <quantity>stat.error;stat.min</quantity>
 	[xSigMin] [real] NOT NULL,
 
+	--/ <summary>maximum of xSigma for all exposures [from spPlate header]</summary>
+	--/ <quantity>stat.error;stat.max</quantity>
 	[xSigMax] [real] NOT NULL,
 
+	--/ <summary>sigma of gaussian fit to arc-line profiles in wavelength direction [from spPlate header]</summary>
+	--/ <quantity>stat.error;stat.fit</quantity>
 	[wSigma] [real] NOT NULL,
 
+	--/ <summary>minimum of wSigma for all exposures [from spPlate header]</summary>
+	--/ <quantity>stat.error;stat.min</quantity>
 	[wSigMin] [real] NOT NULL,
 
+	--/ <summary>maximum of wSigma for all exposures [from spPlate header]</summary>
+	--/ <quantity>stat.error;stat.max</quantity>
 	[wSigMax] [real] NOT NULL,
 
+	--/ <summary>[from spPlate header]</summary>
+	--/ <quantity>stat.fit.chi2</quantity>
 	[xChi2] [real] NOT NULL,
 
+	--/ <summary>[from spPlate header]</summary>
+	--/ <quantity>stat.fit.chi2;stat.min</quantity>
 	[xChi2Min] [real] NOT NULL,
 
+	--/ <summary>[from spPlate header]</summary>
+	--/ <quantity>stat.fit.chi2;stat.max</quantity>
 	[xChi2Max] [real] NOT NULL,
 
+	--/ <summary>average chi-squared from sky subtraction from all exposures [from spPlate header]</summary>
+	--/ <quantity>stat.fit.chi2;stat.mean</quantity>
 	[skyChi2] [real] NOT NULL,
 
+	--/ <summary>minimum skyChi2 over all exposures [from spPlate header]</summary>
+	--/ <quantity>stat.fit.chi2;stat.min</quantity>
 	[skyChi2Min] [real] NOT NULL,
 
+	--/ <summary>maximum skyChi2 over all exposures [from spPlate header]</summary>
+	--/ <quantity>stat.fit.chi2;stat.max</quantity>
 	[skyChi2Max] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels that are bad (total) [from spPlate header]</summary>
+	--/ <quantity>meta.number;arith.ratio;instr.pixel</quantity>
 	[fBadPix] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels that are bad (spectrograph #1) [from spPlate header]</summary>
+	--/ <quantity>meta.number;arith.ratio;instr.pixel</quantity>
 	[fBadPix1] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels that are bad (spectrograph #2) [from spPlate header]</summary>
+	--/ <quantity>meta.number;arith.ratio;instr.pixel</quantity>
 	[fBadPix2] [real] NOT NULL,
 
+	--/ <summary>Status of 2D extraction</summary>
+	--/ <quantity>meta.code.status</quantity>
 	[status2d] [varchar](32) NOT NULL,
 
+	--/ <summary>Status of combination of multiple MJDs</summary>
+	--/ <quantity>meta.code.status</quantity>
 	[statuscombine] [varchar](32) NOT NULL,
 
+	--/ <summary>Status of 1D reductions</summary>
+	--/ <quantity>meta.code.status</quantity>
 	[status1d] [varchar](32) NOT NULL,
 
+	--/ <summary>Number of objects total [calculated from spZbest file]</summary>
+	--/ <quantity>meta.code.status</quantity>
 	[nTotal] [int] NOT NULL,
 
+	--/ <summary>Number of objects classified as galaxy [calculated from spZbest file]</summary>
+	--/ <quantity>meta.number</quantity>
 	[nGalaxy] [int] NOT NULL,
 
+	--/ <summary>Number of objects classified as QSO [calculated from spZbest file]</summary>
+	--/ <quantity>meta.number</quantity>
 	[nQSO] [int] NOT NULL,
 
+	--/ <summary>Number of objects classified as Star [calculated from spZbest file]</summary>
+	--/ <quantity>meta.number</quantity>
 	[nStar] [int] NOT NULL,
 
+	--/ <summary>Number of sky objects  [calculated from spZbest file]</summary>
+	--/ <quantity>meta.number</quantity>
 	[nSky] [int] NOT NULL,
 
+	--/ <summary>Number of objects with zWarning set non-zero (such objects still classified as star, galaxy or QSO) [calculated from spZbest file]</summary>
+	--/ <quantity>meta.number</quantity>
 	[nUnknown] [int] NOT NULL,
 
+	--/ <summary>is this plateX entry the best observation of the plate</summary>
+	--/ <quantity>meta.code</quantity>
 	[isBest] [tinyint] NOT NULL,
 
+	--/ <summary>is this plateX entry both good and the best observation of the plate</summary>
+	--/ <quantity>meta.code</quantity>
 	[isPrimary] [tinyint] NOT NULL,
 
+	--/ <summary>is this plate the best representative  of its tile (only set for "legacy" program plates)</summary>
+	--/ <quantity>meta.code</quantity>
 	[isTile] [tinyint] NOT NULL,
 
+	--/ <summary>hour angle of design [from plPlugMapM file]</summary>
+	--/ <quantity>pos.eq.ha</quantity>
+	--/ <unit>deg</unit>
 	[ha] [real] NOT NULL,
 
+	--/ <summary>MJD designed for [from plPlugMapM file]</summary>
+	--/ <quantity>time.epoch</quantity>
 	[mjdDesign] [int] NOT NULL,
 
+	--/ <summary>cartridge position angle [from plPlugMapM file]</summary>
+	--/ <quantity>pos.posAng</quantity>
 	[theta] [real] NOT NULL,
 
+	--/ <summary>version of fiber scanning software [from plPlugMapM file]</summary>
+	--/ <quantity>meta.version</quantity>
 	[fscanVersion] [varchar](32) NOT NULL,
 
+	--/ <summary>version of fiber mapping software [from plPlugMapM file]</summary>
+	--/ <quantity>meta.version</quantity>
 	[fmapVersion] [varchar](32) NOT NULL,
 
+	--/ <summary>'slow', 'fast', or 'extreme' [from plPlugMapM file]</summary>
+	--/ <quantity>meta.note</quantity>
 	[fscanMode] [varchar](32) NOT NULL,
 
+	--/ <summary>speed of scan [from plPlugMapM file]</summary>
+	--/ <quantity>obs.param</quantity>
 	[fscanSpeed] [int] NOT NULL,
 
+	--/ <summary>20 deep Hierarchical Triangular Mesh ID</summary>
+	--/ <quantity>pos.HTM</quantity>
 	[htmID] [bigint] NOT NULL,
 
+	--/ <summary>Zone ID</summary>
+	--/ <quantity>pos.zone</quantity>
 	[zoneID] [bigint] NOT NULL,
 
+	--/ <summary>Load Version</summary>
+	--/ <quantity>meta.version</quantity>
 	[loadVersion] [int] NOT NULL,
  CONSTRAINT [pk_PlateX_plateID] PRIMARY KEY CLUSTERED 
 (
@@ -10271,44 +10604,101 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
+--/ <summary> Proper motions combining SDSS and recalibrated USNO-B astrometry. </summary>
+--/ <remarks> These results are based on the technique described in  Munn et al. 2004, AJ, 127, 3034 </remarks>
 CREATE TABLE [dbo].[ProperMotions](
 
+	--/ <summary>Distance between this object and the nearest matching USNO-B object.</summary>
+	--/ <quantity>pos.angDistance</quantity>
+	--/ <unit>arcsec</unit>
 	[delta] [real] NOT NULL,
 
+	--/ <summary>Number of objects in USNO-B which matched this object within a 1 arcsec radius.  If negative, then the nearest matching USNO-B object itself matched more than 1 SDSS object.</summary>
+	--/ <quantity>meta.number</quantity>
 	[match] [int] NOT NULL,
 
+	--/ <summary>Proper motion in galactic longitude.</summary>
+	--/ <quantity>pos.pm;pos.galactic.lon</quantity>
+	--/ <unit>mas year-1</unit>
 	[pmL] [real] NOT NULL,
 
+	--/ <summary>Proper motion in galactic latitude.</summary>
+	--/ <quantity>pos.pm;pos.galactic.lat</quantity>
+	--/ <unit>mas year-1</unit>
 	[pmB] [real] NOT NULL,
 
+	--/ <summary>Proper motion in right ascension.</summary>
+	--/ <quantity>pos.pm;pos.eq.ra</quantity>
+	--/ <unit>mas year-1</unit>
 	[pmRa] [real] NOT NULL,
 
+	--/ <summary>Proper motion in declination.</summary>
+	--/ <quantity>pos.pm;pos.eq.dec</quantity>
+	--/ <unit>mas year-1</unit>
 	[pmDec] [real] NOT NULL,
 
+	--/ <summary>Error in proper motion in right ascension.</summary>
+	--/ <quantity>stat.error;pos.pm;pos.eq.ra</quantity>
+	--/ <unit>mas year-1</unit>
 	[pmRaErr] [real] NOT NULL,
 
+	--/ <summary>Error in proper motion in declination.</summary>
+	--/ <quantity>stat.error;pos.pm;pos.eq.dec</quantity>
+	--/ <unit>mas year-1</unit>
 	[pmDecErr] [real] NOT NULL,
 
+	--/ <summary>RMS residual for the proper motion fit in r.a.</summary>
+	--/ <quantity>stat.fit.residual</quantity>
+	--/ <unit>mas</unit>
 	[sigRa] [real] NOT NULL,
 
+	--/ <summary>RMS residual for the proper motion fit in dec.</summary>
+	--/ <quantity>stat.error;stat.fit.residual</quantity>
+	--/ <unit>mas</unit>
 	[sigDec] [real] NOT NULL,
 
+	--/ <summary>Number of detections used in the fit including the SDSS detection (thus, the number of plates the object was detected on in USNO-B plus one).</summary>
+	--/ <quantity>meta.nubmer</quantity>
 	[nFit] [int] NOT NULL,
 
+	--/ <summary>Recalibrated USNO-B O magnitude,  recalibrated to SDSS g</summary>
+	--/ <quantity>phot.mag</quantity>
+	--/ <unit>mag</unit>
 	[O] [real] NOT NULL,
 
+	--/ <summary>Recalibrated USNO-B E magnitude,  recalibrated to SDSS r</summary>
+	--/ <quantity>phot.mag</quantity>
+	--/ <unit>mag</unit>
 	[E] [real] NOT NULL,
 
+	--/ <summary>Recalibrated USNO-B J magnitude,  recalibrated to SDSS g</summary>
+	--/ <quantity>phot.mag</quantity>
+	--/ <unit>mag</unit>
 	[J] [real] NOT NULL,
 
+	--/ <summary>Recalibrated USNO-B F magnitude,  recalibrated to SDSS r</summary>
+	--/ <quantity>phot.mag</quantity>
+	--/ <unit>mag</unit>
 	[F] [real] NOT NULL,
 
+	--/ <summary>Recalibrated USNO-B N magnitude,  recalibrated to SDSS i</summary>
+	--/ <quantity>phot.mag</quantity>
+	--/ <unit>mag</unit>
 	[N] [real] NOT NULL,
 
+	--/ <summary>Distance to the nearest neighbor with g &lt; 20</summary>
+	--/ <quantity>pos.angDistance</quantity>
+	--/ <unit>arcsec</unit>
 	[dist20] [real] NOT NULL,
 
+	--/ <summary>Distance to the nearest neighbor with g &lt; 22</summary>
+	--/ <quantity>pos.angDistance</quantity>
+	--/ <unit>arcsec</unit>
 	[dist22] [real] NOT NULL,
 
+	--/ <summary>unique id, points to photoObj</summary>
+	--/ <quantity>meta.id</quantity>
 	[objid] [bigint] NOT NULL,
  CONSTRAINT [pk_ProperMotions_objID] PRIMARY KEY CLUSTERED 
 (
