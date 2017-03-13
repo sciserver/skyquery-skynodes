@@ -16,13 +16,13 @@ CREATE TABLE dbo.PhotoObj
 	--/ <unit>deg</unit>
 	[dec] float NOT NULL,
 
-	--/ <summary> Cartesian X (J2000)</summary>	--/ <quantity>pos.cartesian.x; pos.eq; pos.frame=icrs</quantity>
+	--/ <summary> Cartesian X (J2000)</summary>	--/ <quantity>pos.eq.x; pos.frame=icrs</quantity>
 	[cx] [float] NOT NULL,
 
-	--/ <summary> Cartesian Y (J2000)</summary>	--/ <quantity>pos.cartesian.y; pos.eq; pos.frame=icrs</quantity>
+	--/ <summary> Cartesian Y (J2000)</summary>	--/ <quantity>pos.eq.y; pos.frame=icrs</quantity>
 	[cy] [float] NOT NULL,
 
-	--/ <summary> Cartesian Z (J2000)</summary>	--/ <quantity>pos.cartesian.z; pos.eq; pos.frame=icrs</quantity>
+	--/ <summary> Cartesian Z (J2000)</summary>	--/ <quantity>pos.eq.z; pos.frame=icrs</quantity>
 	[cz] [float] NOT NULL,
 
 	--/ <summary> HTM ID (J2000)</summary>	--/ <quantity>pos.HTM; pos.eq; pos.frame=icrs</quantity>

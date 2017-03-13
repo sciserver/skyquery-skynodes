@@ -1,13 +1,13 @@
 -- CREATE PhotoObj TABLE
 CREATE TABLE dbo.PhotoObj
 (
-	--/ <summary> Cartesian X (J2000)</summary>	--/ <quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
+	--/ <summary> Cartesian X (J2000)</summary>	--/ <quantity>pos.eq.x;pos.frame=j2000</quantity>
 	[cx] [float] NOT NULL,
 
-	--/ <summary> Cartesian Y (J2000)</summary>	--/ <quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
+	--/ <summary> Cartesian Y (J2000)</summary>	--/ <quantity>pos.eq.y;pos.frame=j2000</quantity>
 	[cy] [float] NOT NULL,
 
-	--/ <summary> Cartesian Z (J2000)</summary>	--/ <quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
+	--/ <summary> Cartesian Z (J2000)</summary>	--/ <quantity>pos.eq.z;pos.frame=j2000</quantity>
 	[cz] [float] NOT NULL,
 
 	--/ <summary> HTM ID (J2000)</summary>	--/ <quantity>pos.HTM; pos.eq; pos.frame=J2000</quantity>

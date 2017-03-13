@@ -353,15 +353,15 @@ CREATE TABLE [dbo].[PhotoObj](
 	[DEC] [float] NOT NULL, 
 
 	--/ <summary>Cartesian coordinate x</summary>
-	--/ <quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.x;pos.frame=j2000</quantity>
 	[cx] [float] NOT NULL, 
 
 	--/ <summary>Cartesian coordinate y</summary>
-	--/ <quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.y;pos.frame=j2000</quantity>
 	[cy] [float] NOT NULL, 
 
 	--/ <summary>Cartesian coordinate z</summary>
-	--/ <quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.z;pos.frame=j2000</quantity>
 	[cz] [float] NOT NULL, 
 
 	--/ <summary>HTM ID</summary>
@@ -881,15 +881,15 @@ CREATE TABLE [dbo].[PhotoObjK]
 	[DEC] [float] NOT NULL, 
 
 	--/ <summary>Cartesian coordinate x</summary>
-	--/ <quantity>pos.cartesian.x; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.x;pos.frame=j2000</quantity>
 	[cx] [float] NOT NULL, 
 
 	--/ <summary>Cartesian coordinate y</summary>
-	--/ <quantity>pos.cartesian.y; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.y;pos.frame=j2000</quantity>
 	[cy] [float] NOT NULL, 
 
 	--/ <summary>Cartesian coordinate z</summary>
-	--/ <quantity>pos.cartesian.z; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.z;pos.frame=j2000</quantity>
 	[cz] [float] NOT NULL, 
 
 	--/ <summary>Unique HTM ID</summary>

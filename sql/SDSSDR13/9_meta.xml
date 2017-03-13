@@ -453,11 +453,11 @@ The table has the following  views:
 <quantity>pos.eq.dec;pos.frame=j2000</quantity>
 <unit>deg</unit>
 </column><column name="cx"><summary>unit vector for ra+dec</summary>
-<quantity>pos.cartesian.x;pos.eq;pos.frame=j2000</quantity>
+<quantity>pos.eq.x;pos.frame=j2000</quantity>
 </column><column name="cy"><summary>unit vector for ra+dec</summary>
-<quantity>pos.cartesian.y;pos.eq;pos.frame=j2000</quantity>
+<quantity>pos.eq.y;pos.frame=j2000</quantity>
 </column><column name="cz"><summary>unit vector for ra+dec</summary>
-<quantity>pos.cartesian.z;pos.eq;pos.frame=j2000</quantity>
+<quantity>pos.eq.z;pos.frame=j2000</quantity>
 </column><column name="raErr"><summary>Error in RA (* cos(Dec), that is, proper units)</summary>
 <quantity>stat.error;pos.eq.ra;pos.frame=j2000</quantity>
 <unit>arcsec</unit>
