@@ -11513,30 +11513,59 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
+--/ <summary> Contains information about each individual tile on the sky. </summary>
+--/ <remarks> Each 'tile' corresponds to an SDSS-I or -II spectroscopic observation.  The tile covers a region of the 1.49 deg in radius, and corresponds to  one or more observed plates.  At the time the tile was created, all of   the 'tiled target' categories (galaxies, quasars, and some very special  categories of star) were assigned fibers; later other targets were   assigned fibers on the plate. </remarks>
 CREATE TABLE [dbo].[sdssTileAll](
 
+	--/ <summary>(unique) tile number</summary>
+	--/ <quantity>meta.id</quantity>
 	[tile] [smallint] NOT NULL,
 
+	--/ <summary>run of the tiling software</summary>
+	--/ <quantity>meta.id</quantity>
 	[tileRun] [smallint] NOT NULL,
 
+	--/ <summary>right ascension of tile center</summary>
+	--/ <quantity>pos.eq.ra</quantity>
+	--/ <unit>deg</unit>
 	[raCen] [float] NOT NULL,
 
+	--/ <summary>declination of the tile center</summary>
+	--/ <quantity>pos.eq.dec</quantity>
+	--/ <unit>deg</unit>
 	[decCen] [float] NOT NULL,
 
+	--/ <summary>htm tree info</summary>
+	--/ <quantity>pos.HTM</quantity>
 	[htmID] [bigint] NOT NULL,
 
+	--/ <summary>zone ID</summary>
+	--/ <quantity>pos.zone</quantity>
 	[zoneID] [bigint] NOT NULL,
 
+	--/ <summary>x projection of vector on unit sphere</summary>
+	--/ <quantity>pos.eq.x</quantity>
 	[cx] [float] NOT NULL,
 
+	--/ <summary>y projection of vector on unit sphere</summary>
+	--/ <quantity>pos.eq.y</quantity>
 	[cy] [float] NOT NULL,
 
+	--/ <summary>z projection of vector on unit sphere</summary>
+	--/ <quantity>pos.eq.z</quantity>
 	[cz] [float] NOT NULL,
 
+	--/ <summary>1: this tile later "untiled," releasing targets to be assigned to another tile, 0: otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[untiled] [tinyint] NOT NULL,
 
+	--/ <summary>number of targets assigned to this tile</summary>
+	--/ <quantity>meta.number</quantity>
 	[nTargets] [int] NOT NULL,
 
+	--/ <summary>Load Version</summary>
+	--/ <quantity>meta.version</quantity>
 	[loadVersion] [int] NOT NULL,
  CONSTRAINT [pk_sdssTileAll_tile] PRIMARY KEY CLUSTERED 
 (
@@ -11550,52 +11579,103 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
+--/ <summary> Information on all targets run through tiling for SDSS-I and SDSS-II </summary>
+--/ <remarks> This table is the full list of all targets that were run through  the SDSS tiling routines. targetID refers to the SDSS object  ID associated with the CAS DR7.  </remarks>
 CREATE TABLE [dbo].[sdssTiledTargetAll](
 
+	--/ <summary>Unique SDSS identifier composed from [skyVersion=0,rerun,run,camcol,field,obj].</summary>
+	--/ <quantity>meta.id</quantity>
 	[targetID] [bigint] NOT NULL,
 
+	--/ <summary>Drift scan run number for targeting</summary>
+	--/ <quantity>meta.id</quantity>
 	[run] [smallint] NOT NULL,
 
+	--/ <summary>Reprocessing number for targeting</summary>
+	--/ <quantity>meta.id</quantity>
 	[rerun] [smallint] NOT NULL,
 
+	--/ <summary>Camera column number for targeting</summary>
+	--/ <quantity>meta.id;instr.det</quantity>
 	[camcol] [smallint] NOT NULL,
 
+	--/ <summary>Field number for targeting</summary>
+	--/ <quantity>meta.id;obs.field</quantity>
 	[field] [smallint] NOT NULL,
 
+	--/ <summary>Object id number for targeting</summary>
+	--/ <quantity>meta.id</quantity>
 	[obj] [smallint] NOT NULL,
 
+	--/ <summary>right ascension</summary>
+	--/ <quantity>pos.eq.ra</quantity>
+	--/ <unit>deg</unit>
 	[ra] [float] NOT NULL,
 
+	--/ <summary>declination</summary>
+	--/ <quantity>pos.eq.dec</quantity>
+	--/ <unit>deg</unit>
 	[dec] [float] NOT NULL,
 
+	--/ <summary>htm tree info</summary>
+	--/ <quantity>pos.HTM</quantity>
 	[htmID] [bigint] NOT NULL,
 
+	--/ <summary>zone ID</summary>
+	--/ <quantity>pos.zone</quantity>
 	[zoneID] [bigint] NOT NULL,
 
+	--/ <summary>x projection of vector on unit sphere</summary>
+	--/ <quantity>pos.eq.x</quantity>
 	[cx] [float] NOT NULL,
 
+	--/ <summary>y projection of vector on unit sphere</summary>
+	--/ <quantity>pos.eq.y</quantity>
 	[cy] [float] NOT NULL,
 
+	--/ <summary>z projection of vector on unit sphere</summary>
+	--/ <quantity>pos.eq.z</quantity>
 	[cz] [float] NOT NULL,
 
+	--/ <summary>primary target bitmask</summary>
+	--/ <quantity>meta.code</quantity>
 	[primTarget] [int] NOT NULL,
 
+	--/ <summary>secondary target bitmask</summary>
+	--/ <quantity>meta.code</quantity>
 	[secTarget] [int] NOT NULL,
 
+	--/ <summary>tiling priority level (lower means higher priority)</summary>
+	--/ <quantity>meta.code</quantity>
 	[tiPriority] [int] NOT NULL,
 
+	--/ <summary>First tile number this object was assigned to</summary>
+	--/ <quantity>meta.id</quantity>
 	[tileAll] [int] NOT NULL,
 
+	--/ <summary>Combined value of tiling results bitmask</summary>
+	--/ <quantity>meta.code</quantity>
 	[tiMaskAll] [smallint] NOT NULL,
 
+	--/ <summary>unique ID of collisionGroup</summary>
+	--/ <quantity>meta.id</quantity>
 	[collisionGroupAll] [int] NOT NULL,
 
+	--/ <summary>hashed ID of photometric object in best version of the sky</summary>
+	--/ <quantity>meta.id;phot</quantity>
 	[photoObjID] [bigint] NOT NULL,
 
+	--/ <summary>hashed ID of spectroscopic object in best version of the sky</summary>
+	--/ <quantity>meta.id;spect</quantity>
 	[specObjID] [bigint] NOT NULL,
 
+	--/ <summary>ID of tiling region, 0 if unset</summary>
+	--/ <quantity>meta.id</quantity>
 	[regionID] [int] NOT NULL,
 
+	--/ <summary>Load Version</summary>
+	--/ <quantity>meta.version</quantity>
 	[loadVersion] [int] NOT NULL,
  CONSTRAINT [pk_sdssTiledTargetAll_targetID] PRIMARY KEY CLUSTERED 
 (
@@ -11611,36 +11691,76 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+--/ <summary> Information about boundary and mask regions in SDSS-I and SDSS-II </summary>
+--/ <remarks> This table contains both tiling boundary and mask information. </remarks>
 CREATE TABLE [dbo].[sdssTilingGeometry](
 
+	--/ <summary>unique identifier for this tilingRegion</summary>
+	--/ <quantity>meta.id</quantity>
 	[tilingGeometryID] [int] NOT NULL,
 
+	--/ <summary>run of tiling software</summary>
+	--/ <quantity>meta.id</quantity>
 	[tileRun] [smallint] NOT NULL,
 
+	--/ <summary>stripe containing the boundary</summary>
+	--/ <quantity>meta.id</quantity>
 	[stripe] [int] NOT NULL,
 
+	--/ <summary>b: official stripe boundaries should be included, x: use the full rectangle</summary>
+	--/ <quantity>meta.code</quantity>
 	[nsbx] [varchar](1) NOT NULL,
 
+	--/ <summary>1: tiling mask, 0: tiling boundary</summary>
+	--/ <quantity>meta.code</quantity>
 	[isMask] [tinyint] NOT NULL,
 
+	--/ <summary>specifies coordinate system for the boundaries</summary>
+	--/ <quantity>meta.code</quantity>
 	[coordType] [int] NOT NULL,
 
+	--/ <summary>first lower bound</summary>
+	--/ <quantity></quantity>
+	--/ <unit>deg</unit>
 	[lambdamu_0] [float] NOT NULL,
 
+	--/ <summary>first upper bound</summary>
+	--/ <quantity></quantity>
+	--/ <unit>deg</unit>
 	[lambdamu_1] [float] NOT NULL,
 
+	--/ <summary>second lower bound</summary>
+	--/ <quantity></quantity>
+	--/ <unit>deg</unit>
 	[etanu_0] [float] NOT NULL,
 
+	--/ <summary>second upper bound</summary>
+	--/ <quantity></quantity>
+	--/ <unit>deg</unit>
 	[etanu_1] [float] NOT NULL,
 
+	--/ <summary>minimum survey latitude for this stripe for region in which primaries are selected (-9999 if no limit)</summary>
+	--/ <quantity></quantity>
+	--/ <unit>deg</unit>
 	[lambdaLimit_0] [float] NOT NULL,
 
+	--/ <summary>maximum survey latitude for this stripe for region in which primaries are selected (-9999 if no limit)</summary>
+	--/ <quantity></quantity>
+	--/ <unit>deg</unit>
 	[lambdaLimit_1] [float] NOT NULL,
 
+	--/ <summary>version of target software within this boundary</summary>
+	--/ <quantity>meta.version</quantity>
 	[targetVersion] [varchar](32) NOT NULL,
 
+	--/ <summary>area of sky covered by this boundary that was not covered by previous boundaries</summary>
+	--/ <quantity>phys.angSize.area</quantity>
+	--/ <unit>deg+2</unit>
 	[firstArea] [float] NOT NULL,
 
+	--/ <summary>Load Version</summary>
+	--/ <quantity>meta.version</quantity>
 	[loadVersion] [int] NOT NULL,
  CONSTRAINT [pk_sdssTilingGeometry_tilingGeom] PRIMARY KEY CLUSTERED 
 (
@@ -11656,20 +11776,37 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
+--/ <summary> Results of individual tiling runs for each tiled target </summary>
+--/ <remarks> This table has entry for each time a target was input into  the SDSS tiling routines. targetID refers to the SDSS object  ID associated with the CAS DR7. To get target information,  join this table with sdssTiledTargets on targetID. </remarks>
 CREATE TABLE [dbo].[sdssTilingInfo](
 
+	--/ <summary>Unique SDSS identifier composed from [skyVersion=0,rerun,run,camcol,field,obj].</summary>
+	--/ <quantity>meta.id</quantity>
 	[targetID] [bigint] NOT NULL,
 
+	--/ <summary>Run of tiling software</summary>
+	--/ <quantity>meta.id</quantity>
 	[tileRun] [smallint] NOT NULL,
 
+	--/ <summary>Unique ID of objects within tiling run</summary>
+	--/ <quantity>meta.id</quantity>
 	[tid] [int] NOT NULL,
 
+	--/ <summary>Value of tiling results bitmask for this run</summary>
+	--/ <quantity>meta.code</quantity>
 	[tiMask] [smallint] NOT NULL,
 
+	--/ <summary>unique ID of collisionGroup in this tiling run</summary>
+	--/ <quantity>meta.id</quantity>
 	[collisionGroup] [int] NOT NULL,
 
+	--/ <summary>Tile this object was assigned to in this run</summary>
+	--/ <quantity>meta.id</quantity>
 	[tile] [int] NOT NULL,
 
+	--/ <summary>Load Version</summary>
+	--/ <quantity>meta.version</quantity>
 	[loadVersion] [int] NOT NULL,
  CONSTRAINT [pk_sdssTilingInfo_tileRun_target] PRIMARY KEY CLUSTERED 
 (
@@ -11686,20 +11823,37 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+--/ <summary> Contains basic information for a run of tiling  Contains basic information for a run of tiling </summary>
+--/ <remarks>  </remarks>
 CREATE TABLE [dbo].[sdssTilingRun](
 
+	--/ <summary>(unique) tiling run number</summary>
+	--/ <quantity>meta.id</quantity>
 	[tileRun] [smallint] NOT NULL,
 
+	--/ <summary>version of ctile software</summary>
+	--/ <quantity>meta.version</quantity>
 	[ctileVersion] [varchar](32) NOT NULL,
 
+	--/ <summary>unique id for tiling run</summary>
+	--/ <quantity>meta.id</quantity>
 	[tilepId] [varchar](32) NOT NULL,
 
+	--/ <summary>character string of program</summary>
+	--/ <quantity>meta.id</quantity>
 	[programName] [varchar](32) NOT NULL,
 
+	--/ <summary>bit mask for target types to be tiled</summary>
+	--/ <quantity>meta.code</quantity>
 	[primTargetMask] [int] NOT NULL,
 
+	--/ <summary>bit mask for target types to be tiled</summary>
+	--/ <quantity>meta.code</quantity>
 	[secTargetMask] [int] NOT NULL,
 
+	--/ <summary>Load Version</summary>
+	--/ <quantity>meta.version</quantity>
 	[loadVersion] [int] NOT NULL,
  CONSTRAINT [pk_sdssTilingRun_tileRun] PRIMARY KEY CLUSTERED 
 (
@@ -11715,58 +11869,132 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
+--/ <summary> SEGUE-1 and SEGUE-2 target selection run on all imaging data </summary>
+--/ <remarks> This table gives the results for SEGUE target selection algorithms  for the full photometric catalog. The target flags in these files   are not the ones actually used for the SEGUE-1 and SEGUE-2 survey.	Instead, they are derived from the final photometric data set from   DR8. Only objects designated RUN_PRIMARY have target selection   flags set.  </remarks>
 CREATE TABLE [dbo].[segueTargetAll](
 
+	--/ <summary>unique id, points to photoObj</summary>
+	--/ <quantity>meta.id</quantity>
 	[objid] [bigint] NOT NULL,
 
+	--/ <summary>SEGUE-1 primary target selection flag</summary>
+	--/ <quantity>meta.code</quantity>
 	[segue1_target1] [int] NOT NULL,
 
+	--/ <summary>SEGUE-1 secondary target selection flag</summary>
+	--/ <quantity>meta.code</quantity>
 	[segue1_target2] [int] NOT NULL,
 
+	--/ <summary>SEGUE-2 primary target selection flag</summary>
+	--/ <quantity>meta.code</quantity>
 	[segue2_target1] [int] NOT NULL,
 
+	--/ <summary>SEGUE-2 secondary target selection flag</summary>
+	--/ <quantity>meta.code</quantity>
 	[segue2_target2] [int] NOT NULL,
 
+	--/ <summary>SEGUE-1 and -2 target selection color: -0.436*uMag+1.129*gMag-0.119*rMag-0.574*iMag+0.1984 (Lenz et al.1998)</summary>
+	--/ <quantity>phot.color</quantity>
+	--/ <unit>mag</unit>
 	[lcolor] [real] NOT NULL,
 
+	--/ <summary>SEGUE-1 target selection color: -0.249*uMag+0.794*gMag-0.555*rMag+0.234+0.011*p1s-0.010 (Helmi et al. 2003)</summary>
+	--/ <quantity>phot.color</quantity>
+	--/ <unit>mag</unit>
 	[scolor] [real] NOT NULL,
 
+	--/ <summary>SEGUE-1 target selection color: 0.91*umg+0.415*umg-1.280 (Helmi et al. 2003)</summary>
+	--/ <quantity>phot.color</quantity>
+	--/ <unit>mag</unit>
 	[p1s] [real] NOT NULL,
 
+	--/ <summary>sqrt(PMRA*PMRA+PMDEC*PMDEC), in mas/year</summary>
+	--/ <quantity>pos.pm</quantity>
+	--/ <unit>mas yr-1</unit>
 	[totalpm] [real] NOT NULL,
 
+	--/ <summary>reduced proper motion, gMag+5*log10(TOTALPM/1000)+5</summary>
+	--/ <quantity>pos.pm</quantity>
+	--/ <unit>mag</unit>
 	[hg] [real] NOT NULL,
 
+	--/ <summary>4.471+7.907*imz-0.837*imz*imz used in SEGUE-1 target selection, unused in SEGUE-2</summary>
+	--/ <quantity>phot.mag.abs</quantity>
+	--/ <unit>mag</unit>
 	[Mi] [real] NOT NULL,
 
+	--/ <summary>10^((iMag-Mi+5)/5.0) used in SEGUE-1 target selection, unused in SEGUE-2</summary>
+	--/ <quantity>phot.mag.distMod</quantity>
+	--/ <unit>mag</unit>
 	[disti] [real] NOT NULL,
 
+	--/ <summary>reduced pm (uncorr r): PSFMAG_r+5*log10(TOTALPM/1000)+5</summary>
+	--/ <quantity>pos.pm</quantity>
+	--/ <unit>mag</unit>
 	[Hr] [real] NOT NULL,
 
+	--/ <summary>V-I from VMAG_TRANS-(iMag-0.337*rmi-0.37)</summary>
+	--/ <quantity>phot.color;em.opt.V;em.opt.I</quantity>
+	--/ <unit>mag</unit>
 	[vmi_trans1] [real] NOT NULL,
 
+	--/ <summary>V-I from 0.877*gmr+0.358</summary>
+	--/ <quantity>phot.color;em.opt.V;em.opt.I</quantity>
+	--/ <unit>mag</unit>
 	[vmi_trans2] [real] NOT NULL,
 
+	--/ <summary>V mag from gMag - 0.587*gmr -0.011</summary>
+	--/ <quantity>phot.mag;em.opt.V</quantity>
+	--/ <unit>mag</unit>
 	[vmag_trans] [real] NOT NULL,
 
+	--/ <unit>mag</unit>
 	[Mv_trans] [real] NOT NULL,
 
+	--/ <summary>10^(dmV/5.-2.) where VMAG_TRANS-(3.37*VMI_TRANS1+2.89)</summary>
+	--/ <quantity>phot.mag.distMod</quantity>
+	--/ <unit>kpc</unit>
 	[distv_kpc] [real] NOT NULL,
 
+	--/ <summary>transvere velocity, km/s, derived from TOTALPM and DISTV_KPC, in a frame at rest w.r.t the Galaxy</summary>
+	--/ <quantity>phys.veloc.transvere</quantity>
+	--/ <unit>km s-1</unit>
 	[vtrans_galrest] [real] NOT NULL,
 
+	--/ <summary>derived PM (mas/year) perpendicular to the Galactocentric radial vector, assuming all motion is along a Galactocentric radial vector, in a frame at rest w.r.t the Galaxy</summary>
+	--/ <quantity>pos.pm</quantity>
+	--/ <unit>mas yr-1</unit>
 	[mutrans_galradrest] [real] NOT NULL,
 
+	--/ <summary>derived PM (mas/year) along the Galactocentric radial vector, assuming all motion is along a Galactocentric radial vector, in a frame at rest w.r.t the Galaxy</summary>
+	--/ <quantity>pos.pm</quantity>
+	--/ <unit>mas yr-1</unit>
 	[murad_galradrest] [real] NOT NULL,
 
+	--/ <summary>total velocity, km/s, derived from TOTALPM and DISTV_KPC, in a frame at rest w.r.t the Galaxy</summary>
+	--/ <quantity>phys.veloc</quantity>
+	--/ <unit>km s-1</unit>
 	[vtot_galradrest] [real] NOT NULL,
 
+	--/ <summary>5.7 + 10.0*(GMR - 0.375)</summary>
+	--/ <quantity>phot.mag</quantity>
+	--/ <unit>mag</unit>
 	[mg_tohv] [real] NOT NULL,
 
+	--/ <summary>transverse velocity in Galactocentric coords, using the distance estimate from MG_TOHV which is appropriate for old stars near the MSTO and corrected for peculiar solar motion 16.6 km/s toward RA,Dec 267.5,28.1</summary>
+	--/ <quantity>phys.veloc.transvere</quantity>
+	--/ <unit>km s-1</unit>
 	[vtrans_tohv] [real] NOT NULL,
 
+	--/ <summary>Estimate of the 1-sigma error in total proper motion at this r magnitude.  Formula is sqrt(4.56*4.56 + frate*2.30*2.30), where frate is 10^(0.4*(rMag-19.5)).  The constants come from the Munn et al. 2004 (AJ, 127, 3034) paper describing the recalibration of USNOB with SDSS.</summary>
+	--/ <quantity>stat.error;pos.pm</quantity>
+	--/ <unit>mas yr-1</unit>
 	[pm1sigma_tohv] [real] NOT NULL,
 
+	--/ <summary>The corresponding 1-sigma error in the transverse velocity based on PM1SIGMA_TOHV and the the distance estimate using MG_TOHV</summary>
+	--/ <quantity></quantity>
+	--/ <unit>km s-1</unit>
 	[v1sigmaerr_tohv] [real] NOT NULL,
  CONSTRAINT [pk_segueTargetAll_objID] PRIMARY KEY CLUSTERED 
 (
@@ -11780,156 +12008,355 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
+--/ <summary> Contains the spatial cross-match between DR8 SpecObjAll and DR7 primaries. </summary>
+--/ <remarks> This is a unique match between a DR8 SpecObjAll and a DR7 photoprimary   within 1 arcsec.  DR7 PhotoTag columns and relevant DR7 ProperMotions are  also included for convenience. </remarks>
 CREATE TABLE [dbo].[SpecDR7](
 
+	--/ <summary>Unique DR8 ID based on PLATE, MJD, FIBERID, RUN2D</summary>
+	--/ <quantity>meta.id</quantity>
 	[specObjID] [bigint] NOT NULL,
 
+	--/ <summary>Unique DR7 PhotoPrimary ID composed from [skyVersion,rerun,run,camcol,field,obj].</summary>
+	--/ <quantity>meta.id</quantity>
 	[dr7ObjID] [bigint] NOT NULL,
 
+	--/ <summary>J2000 right ascension (r')</summary>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[ra] [float] NOT NULL,
 
+	--/ <summary>J2000 declination (r')</summary>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[dec] [float] NOT NULL,
 
+	--/ <summary>unit vector for ra+dec</summary>
+	--/ <quantity>pos.eq.x;pos.frame=j2000</quantity>
 	[cx] [float] NOT NULL,
 
+	--/ <summary>unit vector for ra+dec</summary>
+	--/ <quantity>pos.eq.y;pos.frame=j2000</quantity>
 	[cy] [float] NOT NULL,
 
+	--/ <summary>unit vector for ra+dec</summary>
+	--/ <quantity>pos.eq.z;pos.frame=j2000</quantity>
 	[cz] [float] NOT NULL,
 
+	--/ <summary>0 = OPDB target, 1 = OPDB best</summary>
+	--/ <quantity>meta.code</quantity>
 	[skyVersion] [tinyint] NOT NULL,
 
+	--/ <summary>Run number</summary>
+	--/ <quantity>meta.id</quantity>
 	[run] [smallint] NOT NULL,
 
+	--/ <summary>Rerun number</summary>
+	--/ <quantity>meta.id</quantity>
 	[rerun] [smallint] NOT NULL,
 
+	--/ <summary>Camera column</summary>
+	--/ <quantity>meta.id;instr.det</quantity>
 	[camcol] [tinyint] NOT NULL,
 
+	--/ <summary>Field number</summary>
+	--/ <quantity>meta.id;obs.field</quantity>
 	[field] [smallint] NOT NULL,
 
+	--/ <summary>The object id within a field. Usually changes between reruns of the same field.</summary>
+	--/ <quantity>meta.id</quantity>
 	[obj] [smallint] NOT NULL,
 
+	--/ <summary>Number of children if this is a composite object that has been deblended. BRIGHT (in a flags sense) objects also have nchild == 1, the non-BRIGHT sibling.</summary>
+	--/ <quantity>meta.number</quantity>
 	[nChild] [smallint] NOT NULL,
 
+	--/ <summary>Morphological type classification of the object.</summary>
+	--/ <quantity>src.morph.tpye</quantity>
 	[type] [smallint] NOT NULL,
 
+	--/ <summary>Probability that the object is a star. Currently 0 if type == 3 (galaxy), 1 if type == 6 (star).</summary>
+	--/ <quantity>stat.probability;src.class.starGalaxy</quantity>
 	[probPSF] [real] NOT NULL,
 
+	--/ <summary>Flag to indicate whether object is inside a mask and why</summary>
+	--/ <quantity>meta.code</quantity>
 	[insideMask] [tinyint] NOT NULL,
 
+	--/ <summary>Photo Object Attribute Flags</summary>
+	--/ <quantity>meta.code</quantity>
 	[flags] [bigint] NOT NULL,
 
+	--/ <summary>PSF flux</summary>
+	--/ <quantity>phot.mag;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[psfMag_u] [real] NOT NULL,
 
+	--/ <summary>PSF flux</summary>
+	--/ <quantity>phot.mag;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[psfMag_g] [real] NOT NULL,
 
+	--/ <summary>PSF flux</summary>
+	--/ <quantity>phot.mag;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[psfMag_r] [real] NOT NULL,
 
+	--/ <summary>PSF flux</summary>
+	--/ <quantity>phot.mag;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[psfMag_i] [real] NOT NULL,
 
+	--/ <summary>PSF flux</summary>
+	--/ <quantity>phot.mag;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[psfMag_z] [real] NOT NULL,
 
+	--/ <summary>PSF flux error</summary>
+	--/ <quantity>stat.error;phot.mag;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[psfMagErr_u] [real] NOT NULL,
 
+	--/ <summary>PSF flux error</summary>
+	--/ <quantity>stat.error;phot.mag;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[psfMagErr_g] [real] NOT NULL,
 
+	--/ <summary>PSF flux error</summary>
+	--/ <quantity>stat.error;phot.mag;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[psfMagErr_r] [real] NOT NULL,
 
+	--/ <summary>PSF flux error</summary>
+	--/ <quantity>stat.error;phot.mag;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[psfMagErr_i] [real] NOT NULL,
 
+	--/ <summary>PSF flux error</summary>
+	--/ <quantity>stat.error;phot.mag;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[psfMagErr_z] [real] NOT NULL,
 
+	--/ <summary>Petrosian flux</summary>
+	--/ <quantity>phot.mag.petrosian;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[petroMag_u] [real] NOT NULL,
 
+	--/ <summary>Petrosian flux</summary>
+	--/ <quantity>phot.mag.petrosian;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[petroMag_g] [real] NOT NULL,
 
+	--/ <summary>Petrosian flux</summary>
+	--/ <quantity>phot.mag.petrosian;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[petroMag_r] [real] NOT NULL,
 
+	--/ <summary>Petrosian flux</summary>
+	--/ <quantity>phot.mag.petrosian;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[petroMag_i] [real] NOT NULL,
 
+	--/ <summary>Petrosian flux</summary>
+	--/ <quantity>phot.mag.petrosian;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[petroMag_z] [real] NOT NULL,
 
+	--/ <summary>Petrosian flux error</summary>
+	--/ <quantity>stat.error;phot.mag.petrosian;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[petroMagErr_u] [real] NOT NULL,
 
+	--/ <summary>Petrosian flux error</summary>
+	--/ <quantity>stat.error;phot.mag.petrosian;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[petroMagErr_g] [real] NOT NULL,
 
+	--/ <summary>Petrosian flux error</summary>
+	--/ <quantity>stat.error;phot.mag.petrosian;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[petroMagErr_r] [real] NOT NULL,
 
+	--/ <summary>Petrosian flux error</summary>
+	--/ <quantity>stat.error;phot.mag.petrosian;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[petroMagErr_i] [real] NOT NULL,
 
+	--/ <summary>Petrosian flux error</summary>
+	--/ <quantity>stat.error;phot.mag.petrosian;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[petroMagErr_z] [real] NOT NULL,
 
+	--/ <summary>Radius containing 50% of Petrosian flux</summary>
+	--/ <quantity>phys.angSize;em.opt.SDSS.r</quantity>
+	--/ <unit>arcsec</unit>
 	[petroR50_r] [real] NOT NULL,
 
+	--/ <summary>Radius containing 90% of Petrosian flux</summary>
+	--/ <quantity>phys.angSize;em.opt.SDSS.r</quantity>
+	--/ <unit>arcsec</unit>
 	[petroR90_r] [real] NOT NULL,
 
+	--/ <summary>better of DeV/Exp magnitude fit</summary>
+	--/ <quantity>phot.mag;meta.modelled;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[modelMag_u] [real] NOT NULL,
 
+	--/ <summary>better of DeV/Exp magnitude fit</summary>
+	--/ <quantity>phot.mag;meta.modelled;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[modelMag_g] [real] NOT NULL,
 
+	--/ <summary>better of DeV/Exp magnitude fit</summary>
+	--/ <quantity>phot.mag;meta.modelled;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[modelMag_r] [real] NOT NULL,
 
+	--/ <summary>better of DeV/Exp magnitude fit</summary>
+	--/ <quantity>phot.mag;meta.modelled;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[modelMag_i] [real] NOT NULL,
 
+	--/ <summary>better of DeV/Exp magnitude fit</summary>
+	--/ <quantity>phot.mag;meta.modelled;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[modelMag_z] [real] NOT NULL,
 
+	--/ <summary>better of DeV/Exp magnitude fit error</summary>
+	--/ <quantity>stat.error;phot.mag;meta.modelled;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[modelMagErr_u] [real] NOT NULL,
 
+	--/ <summary>better of DeV/Exp magnitude fit error</summary>
+	--/ <quantity>stat.error;phot.mag;meta.modelled;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[modelMagErr_g] [real] NOT NULL,
 
+	--/ <summary>better of DeV/Exp magnitude fit error</summary>
+	--/ <quantity>stat.error;phot.mag;meta.modelled;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[modelMagErr_r] [real] NOT NULL,
 
+	--/ <summary>better of DeV/Exp magnitude fit error</summary>
+	--/ <quantity>stat.error;phot.mag;meta.modelled;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[modelMagErr_i] [real] NOT NULL,
 
+	--/ <summary>better of DeV/Exp magnitude fit error</summary>
+	--/ <quantity>stat.error;phot.mag;meta.modelled;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[modelMagErr_z] [real] NOT NULL,
 
+	--/ <summary>Adaptive (&lt;r^2&gt; + &lt;c^2&gt;)</summary>
+	--/ <quantity>obs.param;em.opt.SDSS.r</quantity>
 	[mRrCc_r] [real] NOT NULL,
 
+	--/ <summary>Error in adaptive (&lt;r^2&gt; + &lt;c^2&gt;)</summary>
+	--/ <quantity>stat.error;obs.param;em.opt.SDSS.r</quantity>
 	[mRrCcErr_r] [real] NOT NULL,
 
+	--/ <summary>Star ln(likelihood)</summary>
+	--/ <quantity>stat.likelihood;em.opt.SDSS.r</quantity>
 	[lnLStar_r] [real] NOT NULL,
 
+	--/ <summary>Exponential disk fit ln(likelihood)</summary>
+	--/ <quantity>stat.likelihood;em.opt.SDSS.r</quantity>
 	[lnLExp_r] [real] NOT NULL,
 
+	--/ <summary>DeVaucouleurs fit ln(likelihood)</summary>
+	--/ <quantity>stat.likelihood;em.opt.SDSS.r</quantity>
 	[lnLDeV_r] [real] NOT NULL,
 
+	--/ <summary>Status of the object in the survey</summary>
+	--/ <quantity>meta.code.status</quantity>
 	[status] [int] NOT NULL,
 
+	--/ <summary>Bit mask of primary target categories the object was selected in.</summary>
+	--/ <quantity>meta.code</quantity>
 	[primTarget] [int] NOT NULL,
 
+	--/ <summary>Bit mask of secondary target categories the object was selected in.</summary>
+	--/ <quantity>meta.code</quantity>
 	[secTarget] [int] NOT NULL,
 
+	--/ <summary>Extinction in each filter</summary>
+	--/ <quantity>phys.absorption.gal;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[extinction_u] [real] NOT NULL,
 
+	--/ <summary>Extinction in each filter</summary>
+	--/ <quantity>phys.absorption.gal;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[extinction_g] [real] NOT NULL,
 
+	--/ <summary>Extinction in each filter</summary>
+	--/ <quantity>phys.absorption.gal;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[extinction_r] [real] NOT NULL,
 
+	--/ <summary>Extinction in each filter</summary>
+	--/ <quantity>phys.absorption.gal;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[extinction_i] [real] NOT NULL,
 
+	--/ <summary>Extinction in each filter</summary>
+	--/ <quantity>phys.absorption.gal;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[extinction_z] [real] NOT NULL,
 
+	--/ <summary>20-deep hierarchical trangular mesh ID of this object</summary>
+	--/ <quantity>pos.HTM</quantity>
 	[htmID] [bigint] NOT NULL,
 
+	--/ <summary>Zone ID</summary>
+	--/ <quantity>pos.zone</quantity>
 	[zoneID] [bigint] NOT NULL,
 
+	--/ <summary>Link to the field this object is in</summary>
+	--/ <quantity>meta.id;obs.field</quantity>
 	[fieldID] [bigint] NOT NULL,
 
+	--/ <summary>computed: =SQRT(mRrCc_r/2.0)</summary>
+	--/ <quantity>phys.size</quantity>
 	[size] [real] NOT NULL,
 
+	--/ <summary>Proper motion in right ascension.</summary>
+	--/ <quantity>pos.pm;pos.eq.ra</quantity>
+	--/ <unit>mas yr-1</unit>
 	[pmRa] [real] NOT NULL,
 
+	--/ <summary>Proper motion in declination.</summary>
+	--/ <quantity>pos.pm;pos.eq.dec</quantity>
+	--/ <unit>mas yr-1</unit>
 	[pmDec] [real] NOT NULL,
 
+	--/ <summary>Proper motion in galactic longitude.</summary>
+	--/ <quantity>pos.pm;pos.galactic.lon</quantity>
+	--/ <unit>mas yr-1</unit>
 	[pmL] [real] NOT NULL,
 
+	--/ <summary>Proper motion in galactic latitude.</summary>
+	--/ <quantity>pos.pm;pos.galactic.lat</quantity>
+	--/ <unit>mas yr-1</unit>
 	[pmB] [real] NOT NULL,
 
+	--/ <summary>Error in proper motion in right ascension.</summary>
+	--/ <quantity>stat.error;pos.eq.ra</quantity>
+	--/ <unit>mas yr-1</unit>
 	[pmRaErr] [real] NOT NULL,
 
+	--/ <summary>Error in proper motion in declination.</summary>
+	--/ <quantity>stat.error;pos.eq.dec</quantity>
+	--/ <unit>mas yr-1</unit>
 	[pmDecErr] [real] NOT NULL,
 
+	--/ <summary>Distance between this object and the nearest matching USNO-B object.</summary>
+	--/ <quantity>pos.angDistance</quantity>
+	--/ <unit>arcsec</unit>
 	[delta] [real] NOT NULL,
 
+	--/ <summary>Number of objects in USNO-B which matched this object within a 1 arcsec radius.  If negative, then the nearest matching USNO-B object itself matched more than 1 SDSS object.</summary>
+	--/ <quantity>meta.number</quantity>
 	[match] [int] NOT NULL,
  CONSTRAINT [pk_specDR7_SpecObjID] PRIMARY KEY CLUSTERED 
 (
