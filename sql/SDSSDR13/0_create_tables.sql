@@ -10714,18 +10714,41 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+--/ <summary> Definition of the different regions </summary>
+--/ <remarks> We have various boundaries in the survey, represented  by equations of 3D planes, intersecting the unit sphere,  describing great and small circles, respectively. This  table stores the description of a region, the details  are in the HalfSpace table.  &lt;ul>  &lt;li>CHUNK - the boundary of a given Chunk  &lt;li>STRIPE - the boundary of the whole stripe  &lt;li>STAVE - the unique boundary of the whole stripe,  agrees with STRIPE for Southern stripes  &lt;li>PRIMARY - the primary region of a given CHUNK  &lt;li>SEGMENT - the idealized boundary of a segment  &lt;li>CAMCOL - the real boundary of a segment  &lt;li>PLATE - the boundary of a plate  &lt;li>TILE - the boundary of a circular tile  &lt;li>TIGEOM - the boundary of a Tiling Run, also includes	  inverse regions, which must be excluded  &lt;li>RUN - the union of the CAMCOLs making up a Run  &lt;li>WEDGE -- intersection of tiles as booleans.  &lt;li>TILEBOX -- intersection of TIGEOM respecting masks (these are positive convex TIGEOM)  &lt;li>SKYBOX  -- intersection and union of TILEBOX to cover the sky with positive disjoin convex regions.	&lt;li>SECTORLETS -- intersection of Skyboxes with wedges.  These are the areas that have targets.  &lt;li>SECTORS -- collects together all the sectorlets with the same covering (and excluded) tiles.   &lt;br> See also the RegionConvex and Halfspace tables  </remarks>
 CREATE TABLE [dbo].[Region](
 
+	--/ <summary></summary>
+	--/ <quantity>meta.id</quantity>
 	[regionid] [bigint] NOT NULL,
 
+	--/ <summary>key of the region pointing into other tables</summary>
+	--/ <quantity>meta.id</quantity>
 	[id] [bigint] NOT NULL,
 
+	--/ <summary>type of the region (STRIPE|STAVE|...)</summary>
+	--/ <quantity>meta.note</quantity>
 	[type] [varchar](16) NOT NULL,
 
+	--/ <summary>description of the region</summary>
+	--/ <quantity>meta.note</quantity>
 	[comment] [varchar](1024) NOT NULL,
+	--/ <summary>0: region, 1: to be excluded</summary>
+	--/ <quantity>meta.code</quantity>
 	[ismask] [tinyint] NOT NULL DEFAULT ((0)),
+
+	--/ <summary>area of region</summary>
+	--/ <quantity>phys.angSize.area</quantity>
+	--/ <unit>deg+2</unit>
 	[area] [float] NOT NULL DEFAULT ((0)),
+
+	--/ <summary>the string representation of the region</summary>
+	--/ <quantity>meta.note</quantity>
 	[regionString] [varchar](max) NULL DEFAULT (''),
+
+	--/ <summary>the precompiled XML description of region</summary>
+	--/ <quantity>meta.file</quantity>
 	[regionBinary] [varbinary](max) NULL DEFAULT (0x00),
  CONSTRAINT [pk_Region_regionId] PRIMARY KEY CLUSTERED 
 (
@@ -10743,13 +10766,25 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+--/ <summary> Tracks the parentage which regions contribute to which boxes </summary>
+--/ <remarks> For the sector computation, Region2Box tracks the parentage  of which regions contribute to which boxs.  TileRegions contribute to TileBoxes  TileRegions and TileBoxes contribute to SkyBoxes  Wedges and SkyBoxes contribute to Sectorlets  Sectorlets contribute to Sectors </remarks>
 CREATE TABLE [dbo].[Region2Box](
 
+	--/ <summary>type of parent, (TIGEOM)</summary>
+	--/ <quantity>meta.note</quantity>
 	[regionType] [varchar](16) NOT NULL,
 
+	--/ <summary>the object id of the other parent region</summary>
+	--/ <quantity>meta.id</quantity>
 	[id] [bigint] NOT NULL,
 
+	--/ <summary>type of child (TILEBOX, SKYBOX)</summary>
+	--/ <quantity>meta.note</quantity>
 	[boxType] [varchar](16) NOT NULL,
+
+	--/ <summary>regionid of child</summary>
+	--/ <quantity>meta.id</quantity>
 	[boxid] [bigint] NOT NULL
 ) ON [PRIMARY]
 
@@ -10761,37 +10796,74 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
+--/ <summary> Contains the arcs of a Region with their endpoints </summary>
+--/ <remarks> An arc has two endpoints, specified via their equatorial  coordinates, and the equation of the circle (x,y,z,c) of  the arc. The arc is directed, the first point is the  beginning, the second is the end. The arc belongs to a   Region, a Convex and a patch. A patch is a contigous area   of the sky. Within a patch the consecutive arcids represent   a counterclockwise ordering of the vertices. </remarks>
 CREATE TABLE [dbo].[RegionArcs](
 
-	[arcid] [int]  NOT NULL,
+	--/ <summary>unique id of the arc</summary>
+	--/ <quantity>meta.id</quantity>
+	[arcid] [int] NOT NULL,
 
+	--/ <summary>unique region identifier</summary>
+	--/ <quantity>meta.id</quantity>
 	[regionid] [bigint] NOT NULL,
 
+	--/ <summary>convex identifier</summary>
+	--/ <quantity>meta.id</quantity>
 	[convexid] [bigint] NOT NULL,
 
+	--/ <summary>id of the constraint</summary>
+	--/ <quantity>meta.id</quantity>
 	[constraintid] [bigint] NOT NULL,
 
+	--/ <summary>id of the patch</summary>
+	--/ <quantity>meta.id</quantity>
 	[patch] [int] NOT NULL,
 
+	--/ <summary>state (3: bounding circle, 2:root, 1: hole)</summary>
+	--/ <quantity>meta.code.status</quantity>
 	[state] [int] NOT NULL,
 
+	--/ <summary>0:hide, 1: draw</summary>
+	--/ <quantity>meta.code.status</quantity>
 	[draw] [int] NOT NULL,
 
+	--/ <summary>ra of starting point of arc</summary>
+	--/ <quantity>pos.eq.ra</quantity>
 	[ra1] [float] NOT NULL,
 
+	--/ <summary>dec of starting point of arc</summary>
+	--/ <quantity>pos.eq.dec</quantity>
 	[dec1] [float] NOT NULL,
 
+	--/ <summary>ra of end point of arc</summary>
+	--/ <quantity>pos.eq.ra</quantity>
 	[ra2] [float] NOT NULL,
 
+	--/ <summary>dec of end point of arc</summary>
+	--/ <quantity>pos.eq.dec</quantity>
 	[dec2] [float] NOT NULL,
 
+	--/ <summary>x of constraint normal vector</summary>
+	--/ <quantity>pos.cartesian.x</quantity>
 	[x] [float] NOT NULL,
 
+	--/ <summary>y of constraint normal vector</summary>
+	--/ <quantity>pos.cartesian.y</quantity>
 	[y] [float] NOT NULL,
 
+	--/ <summary>z of constraint normal vector</summary>
+	--/ <quantity>pos.cartesian.z</quantity>
 	[z] [float] NOT NULL,
 
+	--/ <summary>offset of constraint</summary>
+	--/ <quantity></quantity>
 	[c] [float] NOT NULL,
+
+	--/ <summary>length of arc in degrees</summary>
+	--/ <quantity>phys.angSize</quantity>
+	--/ <unit>deg</unit>
 	[length] [float] NOT NULL DEFAULT ((0.0)),
  CONSTRAINT [pk_RegionArcs_regionId_convexid_] PRIMARY KEY CLUSTERED 
 (
@@ -10809,25 +10881,73 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+--/ <summary> Defines the attributes of the patches of a given region </summary>
+--/ <remarks> Regions are the union of convex hulls and are defined in the Region table.  Convexes are the intersection of halfspaces defined by the HalfSpace table.   Each convex is then broken up into a set of Patches, with their own  bounding circle.  See also the Region table </remarks>
 CREATE TABLE [dbo].[RegionPatch](
 
+	--/ <summary>Unique Region ID</summary>
+	--/ <quantity>meta.id</quantity>
 	[regionid] [bigint] NOT NULL,
 
+	--/ <summary>Unique Convex ID</summary>
+	--/ <quantity>meta.id</quantity>
 	[convexid] [bigint] NOT NULL,
 
+	--/ <summary>Unique patch number</summary>
+	--/ <quantity>meta.id</quantity>
 	[patchid] [int] NOT NULL,
 
+	--/ <summary>CAMCOL, RUN, STAVE, TILE, TILEBOX, SKYBOX, WEDGE, SECTOR...</summary>
+	--/ <quantity>meta.note</quantity>
 	[type] [varchar](16) NOT NULL,
+
+	--/ <summary>radius of bounding circle centered at ra, dec</summary>
+	--/ <quantity>phys.angSize</quantity>
+	--/ <unit>arcmin</unit>
 	[radius] [float] NOT NULL DEFAULT ((0)),
+
+	--/ <summary>right ascension of observation</summary>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[ra] [float] NOT NULL DEFAULT ((0)),
+
+	--/ <summary>declination of observation</summary>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[dec] [float] NOT NULL DEFAULT ((0)),
+
+	--/ <summary>x of centerpoint Normal unit vector in J2000</summary>
+	--/ <quantity>pos.eq.x;pos.frame=j2000</quantity>
 	[x] [float] NOT NULL DEFAULT ((0)),
+
+	--/ <summary>y of centerpoint Normal unit vector in J2000</summary>
+	--/ <quantity>pos.eq.y;pos.frame=j2000</quantity>
 	[y] [float] NOT NULL DEFAULT ((0)),
+
+	--/ <summary>z of centerpoint Normal unit vector in J2000</summary>
+	--/ <quantity>pos.eq.z;pos.frame=j2000</quantity>
 	[z] [float] NOT NULL DEFAULT ((0)),
+
+	--/ <summary>offset of the equation of plane</summary>
+	--/ <quantity></quantity>
 	[c] [float] NOT NULL DEFAULT ((0)),
+
+	--/ <summary>20 deep Hierarchical Triangular Mesh ID of centerpoint</summary>
+	--/ <quantity>pos.HTM;pos.eq</quantity>
 	[htmid] [bigint] NOT NULL DEFAULT ((0)),
+
+	--/ <summary>20 deep Hierarchical Triangular Mesh ID of centerpoint</summary>
+	--/ <quantity>pos.zone</quantity>
 	[zoneid] [bigint] NOT NULL DEFAULT ((0)),
+
+	--/ <summary>area of the patch</summary>
+	--/ <quantity>phys.angSize.area</quantity>
+	--/ <unit>deg+2</unit>
 	[area] [float] NOT NULL DEFAULT ((0)),
+
+	--/ <summary>{x,y,z,c}+ representation of the convex of the patch</summary>
+	--/ <quantity>meta.note</quantity>
 	[convexString] [varchar](max) NULL DEFAULT (''),
  CONSTRAINT [pk_RegionPatch_regionid_convexid] PRIMARY KEY CLUSTERED 
 (
@@ -10847,9 +10967,17 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+--/ <summary></summary>
+--/ <remarks></remarks>
 CREATE TABLE [dbo].[RegionTypes](
 
+	--/ <summary></summary>
+	--/ <quantity>meta.note</quantity>
 	[type] [varchar](16) NOT NULL,
+	
+	--/ <summary></summary>
+	--/ <quantity>phys.angSize</quantity>
 	[radius] [float] NOT NULL
 ) ON [PRIMARY]
 
@@ -10863,6 +10991,9 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+--/ <summary> Contains various rotation matrices between spherical coordinate systems </summary>
+--/ <remarks>   The mode field is a 3-letter code indicating the transformation:  &lt;ul>&lt;li>	  S2J - Survey-to-J2000   &lt;/li>	  &lt;li>	  G2J - Galactic-to-J2000 &lt;/li>	  &lt;li>	  J2G - J2000-to-Galactic &lt;/li>	  &lt;li>	  J2S - J2000-to-Survey   &lt;/li>  &lt;/ul> </remarks>
 CREATE TABLE [dbo].[Rmatrix](
 
 	[mode] [varchar](16) NOT NULL,
@@ -10891,65 +11022,141 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+--/ <summary> Contains the basic parameters associated with a run </summary>
+--/ <remarks> A run corresponds to a single drift scan.  </remarks>
 CREATE TABLE [dbo].[Run](
 
+	--/ <summary>0 = OPDB target, 1 = OPDB best XXX</summary>
+	--/ <quantity>meta.version</quantity>
 	[skyVersion] [tinyint] NOT NULL,
 
+	--/ <summary>Run number</summary>
+	--/ <quantity>meta.id</quantity>
 	[run] [smallint] NOT NULL,
 
+	--/ <summary>Rerun number</summary>
+	--/ <quantity>meta.id</quantity>
 	[rerun] [smallint] NOT NULL,
 
+	--/ <summary>MJD of observation</summary>
+	--/ <quantity>time.epoch</quantity>
+	--/ <unit>d</unit>
 	[mjd] [int] NOT NULL,
 
+	--/ <summary>Human-readable date of observation</summary>
+	--/ <quantity>time.epoch</quantity>
 	[datestring] [varchar](32) NOT NULL,
 
+	--/ <summary>Stripe number</summary>
+	--/ <quantity>meta.id</quantity>
 	[stripe] [int] NOT NULL,
 
+	--/ <summary>Strip (N or S)</summary>
+	--/ <quantity>meta.code</quantity>
 	[strip] [varchar](32) NOT NULL,
 
+	--/ <summary>boresight offset perpendicular to great circle</summary>
+	--/ <quantity>pos.angDistance</quantity>
+	--/ <unit>deg</unit>
 	[xBore] [float] NOT NULL,
 
+	--/ <summary>Starting field number of full run (what MU_REF, MJD_REF refer to)</summary>
+	--/ <quantity>meta.id</quantity>
 	[fieldRef] [int] NOT NULL,
 
+	--/ <summary>last field of full run</summary>
+	--/ <quantity>meta.id</quantity>
 	[lastField] [int] NOT NULL,
 
+	--/ <summary>type of drift scan (from apacheraw, bias, calibration, engineering, ignore, and science)</summary>
+	--/ <quantity>meta.note</quantity>
 	[flavor] [varchar](32) NOT NULL,
 
+	--/ <summary>binning amount perpendicular to scan direction</summary>
+	--/ <quantity>meta.number</quantity>
+	--/ <unit>pix</unit>
 	[xBin] [int] NOT NULL,
 
+	--/ <summary>binning amount in scan direction</summary>
+	--/ <quantity>meta.number</quantity>
+	--/ <unit>pix</unit>
 	[yBin] [int] NOT NULL,
 
+	--/ <summary>number of rows in output idR</summary>
+	--/ <quantity>meta.number</quantity>
+	--/ <unit>pix</unit>
 	[nRow] [int] NOT NULL,
 
+	--/ <summary>MJD at row 0 of reference frame</summary>
+	--/ <quantity>time.epoch</quantity>
+	--/ <unit>days</unit>
 	[mjdRef] [float] NOT NULL,
 
+	--/ <summary>mu value at row 0 of reference field</summary>
+	--/ <quantity>obs.param</quantity>
+	--/ <unit>deg</unit>
 	[muRef] [float] NOT NULL,
 
+	--/ <summary>linestart rate betweeen each (binned) row</summary>
+	--/ <quantity>arith.rate</quantity>
+	--/ <unit>microsec</unit>
 	[lineStart] [int] NOT NULL,
 
+	--/ <summary>tracking rate</summary>
+	--/ <quantity>arith.rate</quantity>
+	--/ <unit>arcsec/sec</unit>
 	[tracking] [float] NOT NULL,
 
+	--/ <summary>node of great circle, that is, its RA on the J2000 equator</summary>
+	--/ <quantity>src.orbital.node</quantity>
 	[node] [float] NOT NULL,
 
+	--/ <summary>inclination of great circle relative to J2000 equator</summary>
+	--/ <quantity>src.orbital.inclination</quantity>
 	[incl] [float] NOT NULL,
 
+	--/ <summary>comments on the run</summary>
+	--/ <quantity>meta.note</quantity>
 	[comments] [varchar](128) NOT NULL,
 
+	--/ <summary>quadratic term in coarse astrometric solution</summary>
+	--/ <quantity></quantity>
+	--/ <unit>arcsec/hr^2</unit>
 	[qterm] [real] NOT NULL,
 
+	--/ <summary>maximum residual from great circle in scan direction</summary>
+	--/ <quantity>stat.fit.residual;stat.max</quantity>
+	--/ <unit>arcsec</unit>
 	[maxMuResid] [real] NOT NULL,
 
+	--/ <summary>maximum residual from great circle perpendicular to scan direction</summary>
+	--/ <quantity>stat.fit.residual;stat.max</quantity>
+	--/ <unit>arcsec</unit>
 	[maxNuResid] [real] NOT NULL,
 
+	--/ <summary>starting field for reduced data</summary>
+	--/ <quantity>meta.id</quantity>
 	[startField] [int] NOT NULL,
 
+	--/ <summary>ending field for reduced data</summary>
+	--/ <quantity>meta.id</quantity>
 	[endField] [int] NOT NULL,
 
+	--/ <summary>photo version used</summary>
+	--/ <quantity>meta.version</quantity>
 	[photoVersion] [varchar](32) NOT NULL,
 
+	--/ <summary>dervish version used</summary>
+	--/ <quantity>meta.version</quantity>
 	[dervishVersion] [varchar](32) NOT NULL,
 
+	--/ <summary>astrom version used</summary>
+	--/ <quantity>meta.version</quantity>
 	[astromVersion] [varchar](32) NOT NULL,
+
+	--/ <summary>version of SAS used to produce CSV for this run</summary>
+	--/ <quantity>meta.version</quantity>
 	[sasVersion] [varchar](32) NOT NULL
 ) ON [PRIMARY]
 
@@ -10961,10 +11168,18 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
+--/ <summary> The table contains values of the various manual nu shifts for runs </summary>
+--/ <remarks> In the early runs the telescope was sometimes not tracking  correctly. The boundaries of some of the runs had thus to be shifted  by a small amount, determined by hand. This table contains  these manual corrections. These should be applied to the  nu values derived for these runs. Only those runs are here,  for which such a correction needs to be applied. </remarks>
 CREATE TABLE [dbo].[RunShift](
 
+	--/ <summary>Run id</summary>
+	--/ <quantity>meta.id</quantity>
 	[run] [int] NOT NULL,
 
+	--/ <summary>The nu shift applied</summary>
+	--/ <quantity>obs.param</quantity>
+	--/ <unit>deg</unit>
 	[shift] [float] NOT NULL,
  CONSTRAINT [pk_RunShift_run] PRIMARY KEY CLUSTERED 
 (
@@ -10978,19 +11193,39 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
+--/ <summary> Map PhotoObj which are potential targets to sectors  </summary>
+--/ <remarks> PhotoObj should only appear once in this list because any ra,dec  should belong to a unique sector </remarks>
 CREATE TABLE [dbo].[sdssBestTarget2Sector](
 
+	--/ <summary>ID of the best PhotoObj</summary>
+	--/ <quantity>meta.id</quantity>
 	[objID] [bigint] NOT NULL,
 
+	--/ <summary>ID of the sector</summary>
+	--/ <quantity>meta.id</quantity>
 	[regionID] [bigint] NOT NULL,
 
+	--/ <summary>Status of the object in the survey</summary>
+	--/ <quantity>meta.code.status</quantity>
 	[status] [int] NOT NULL,
 
+	--/ <summary>Bit mask of primary target categories the object was selected in.</summary>
+	--/ <quantity>meta.code</quantity>
 	[primTarget] [int] NOT NULL,
 
+	--/ <summary>Bit mask of secondary target categories the object was selected in.</summary>
+	--/ <quantity>meta.code</quantity>
 	[secTarget] [int] NOT NULL,
 
+	--/ <summary>Petrosian flux</summary>
+	--/ <quantity>phot.mag.petrosian;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[petroMag_r] [real] NOT NULL,
+
+	--/ <summary>Extinction in each filter</summary>
+	--/ <quantity>phys.absorption.gal;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[extinction_r] [real] NOT NULL
 ) ON [PRIMARY]
 
@@ -11002,14 +11237,25 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+--/ <summary> This table contains most relevant survey constants and their physical units </summary>
+--/ <remarks></remarks>
 CREATE TABLE [dbo].[SDSSConstants](
 
+	--/ <summary>Name of the constant</summary>
+	--/ <quantity>meta.id</quantity>
 	[name] [varchar](32) NOT NULL,
 
+	--/ <summary>The numerical value in float</summary>
+	--/ <quantity>meta.code</quantity>
 	[value] [float] NOT NULL,
 
+	--/ <summary>Its physical unit</summary>
+	--/ <quantity>meta.unit</quantity>
 	[unit] [varchar](32) NOT NULL,
 
+	--/ <summary>Short description</summary>
+	--/ <quantity>meta.note</quantity>
 	[description] [varchar](2000) NOT NULL,
  CONSTRAINT [pk_SDSSConstants_name] PRIMARY KEY CLUSTERED 
 (
@@ -11025,26 +11271,49 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
+--/ <summary> Half-spaces (caps) describing the SDSS imaging geometry </summary>
+--/ <remarks> Each row in this table corresponds to a single polygon  in the SDSS imaging data window function. </remarks>
 CREATE TABLE [dbo].[sdssImagingHalfSpaces](
 
+	--/ <summary>integer description of polygon</summary>
+	--/ <quantity>meta.id</quantity>
 	[sdssPolygonID] [int] NOT NULL,
 
+	--/ <summary>x-component of normal vector</summary>
+	--/ <quantity>pos.cartesian.x</quantity>
 	[x] [float] NOT NULL,
 
+	--/ <summary>y-component of normal vector</summary>
+	--/ <quantity>pos.cartesian.y</quantity>
 	[y] [float] NOT NULL,
 
+	--/ <summary>z-component of normal vector</summary>
+	--/ <quantity>pos.cartesian.z</quantity>
 	[z] [float] NOT NULL,
 
+	--/ <summary>offset from center along normal</summary>
+	--/ <quantity>pos.angDistance</quantity>
 	[c] [float] NOT NULL,
 
+	--/ <summary>mangle version of x-component</summary>
+	--/ <quantity>pos.cartesian.x</quantity>
 	[xMangle] [float] NOT NULL,
 
+	--/ <summary>mangle version of y-component</summary>
+	--/ <quantity>pos.cartesian.y</quantity>
 	[yMangle] [float] NOT NULL,
 
+	--/ <summary>mangle version of z-component</summary>
+	--/ <quantity>pos.cartesian.z</quantity>
 	[zMangle] [float] NOT NULL,
 
+	--/ <summary>mangle version of offset from center</summary>
+	--/ <quantity>pos.angDistance</quantity>
 	[cMangle] [float] NOT NULL,
 
+	--/ <summary>Load Version</summary>
+	--/ <quantity>meta.version</quantity>
 	[loadVersion] [int] NOT NULL,
  CONSTRAINT [pk_sdssImagingHalfspaces_sdssPol] PRIMARY KEY CLUSTERED 
 (
@@ -11061,12 +11330,21 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
+--/ <summary> Matched list of polygons and fields </summary>
+--/ <remarks> Each row in this table corresponds to  </remarks>
 CREATE TABLE [dbo].[sdssPolygon2Field](
 
+	--/ <summary>integer designator of polygon</summary>
+	--/ <quantity>meta.id</quantity>
 	[sdssPolygonID] [int] NOT NULL,
 
+	--/ <summary>field identification</summary>
+	--/ <quantity>meta.id;obs.field</quantity>
 	[fieldID] [bigint] NOT NULL,
 
+	--/ <summary>Load Version</summary>
+	--/ <quantity>meta.version</quantity>
 	[loadVersion] [int] NOT NULL,
  CONSTRAINT [pk_sdssPolygon2Field_sdssPolygon] PRIMARY KEY CLUSTERED 
 (
@@ -11081,20 +11359,40 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
+--/ <summary> Polygons describing SDSS imaging data window function </summary>
+--/ <remarks> Each row in this table corresponds to a single polygon  in the SDSS imaging data window function. </remarks>
 CREATE TABLE [dbo].[sdssPolygons](
 
+	--/ <summary>integer description of polygon</summary>
+	--/ <quantity>meta.id</quantity>
 	[sdssPolygonID] [int] NOT NULL,
 
+	--/ <summary>number of fields in the polygon</summary>
+	--/ <quantity>meta.id;obs.field</quantity>
 	[nField] [int] NOT NULL,
 
+	--/ <summary>ID of primary field in this polygon</summary>
+	--/ <quantity>meta.id;obs.field</quantity>
 	[primaryFieldID] [bigint] NOT NULL,
 
+	--/ <summary>RA (J2000 deg) in approximate center of polygon</summary>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[ra] [float] NOT NULL,
 
+	--/ <summary>Dec (J2000 deg) in approximate center of polygon</summary>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[dec] [float] NOT NULL,
 
+	--/ <summary>area of polygon</summary>
+	--/ <quantity>phys.angSize.area</quantity>
+	--/ <unit>deg+2</unit>
 	[area] [float] NOT NULL,
 
+	--/ <summary>Load Version</summary>
+	--/ <quantity>meta.version</quantity>
 	[loadVersion] [int] NOT NULL,
  CONSTRAINT [pk_sdssPolygons_sdssPolygonID] PRIMARY KEY CLUSTERED 
 (
@@ -11110,15 +11408,30 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+--/ <summary> Stores the information about set of unique Sector regions </summary>
+--/ <remarks> A Sector is defined as a distinct intersection of tiles and  TilingGeometries, characterized by a unique combination of  intersecting tiles and a list of tilingVersions. The sampling  rate for any targets is unambgously defined by the number of  tiles involved (nTiles) and the combination of targetVersion. </remarks>
 CREATE TABLE [dbo].[sdssSector](
 
+	--/ <summary>unique, sequential ID</summary>
+	--/ <quantity>meta.id</quantity>
 	[regionID] [bigint] NOT NULL,
 
+	--/ <summary>number of overlapping tiles</summary>
+	--/ <quantity>meta.number</quantity>
 	[nTiles] [int] NOT NULL,
 
+	--/ <summary>list of tiles in Sector</summary>
+	--/ <quantity>meta.note</quantity>
 	[tiles] [varchar](256) NOT NULL,
 
+	--/ <summary>the version of target selection ran over the sector -/K ID_VERSION</summary>
+	--/ <quantity>meta.version</quantity>
 	[targetVersion] [varchar](64) NOT NULL,
+
+	--/ <summary>area of this overlap region</summary>
+	--/ <quantity>phys.angSize.area</quantity>
+	--/ <unit>deg+2</unit>
 	[area] [real] NOT NULL
 ) ON [PRIMARY]
 
@@ -11132,13 +11445,25 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+--/ <summary> Match tiles to sectors, wedges adn sectorlets, and vice versa. </summary>
+--/ <remarks> This table is designed to be queried in either direction - one can get  all the tiles associated with a sector, or one can find all the sectors  to which a tile belongs. </remarks>
 CREATE TABLE [dbo].[sdssSector2Tile](
 
+	--/ <summary>ID of the sector</summary>
+	--/ <quantity>meta.id</quantity>
 	[regionID] [bigint] NOT NULL,
 
+	--/ <summary>type of the sector</summary>
+	--/ <quantity>meta.note</quantity>
 	[type] [varchar](16) NOT NULL,
 
+	--/ <summary>tile number</summary>
+	--/ <quantity>meta.id</quantity>
 	[tile] [smallint] NOT NULL,
+
+	--/ <summary>flag that shows sign of tile (1 is negative)</summary>
+	--/ <quantity>meta.code</quantity>
 	[isMask] [int] NOT NULL
 ) ON [PRIMARY]
 
@@ -11152,14 +11477,25 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+--/ <summary> Contains the parameters used for a version of the target selection code </summary>
+--/ <remarks> </remarks>
 CREATE TABLE [dbo].[sdssTargetParam](
 
+	--/ <summary>version of target selection software</summary>
+	--/ <quantity>meta.version</quantity>
 	[targetVersion] [varchar](32) NOT NULL,
 
+	--/ <summary>version of target selection software</summary>
+	--/ <quantity>meta.version</quantity>
 	[paramFile] [varchar](32) NOT NULL,
 
+	--/ <summary>parameter name</summary>
+	--/ <quantity>meta.id</quantity>
 	[name] [varchar](32) NOT NULL,
 
+	--/ <summary>value used for the parameter</summary>
+	--/ <quantity>meta.note</quantity>
 	[value] [varchar](512) NOT NULL,
  CONSTRAINT [pk_sdssTargetParam_targetVersion] PRIMARY KEY CLUSTERED 
 (
