@@ -20,15 +20,15 @@
 </column>
     <column name="[cx]">
       <summary> Cartesian X (J2000)</summary>
-<quantity>pos.cartesian.x</quantity>
+<quantity>pos.eq.x</quantity>
 </column>
     <column name="[cy]">
       <summary> Cartesian Y (J2000)</summary>
-<quantity>pos.cartesian.y</quantity>
+<quantity>pos.eq.y</quantity>
 </column>
     <column name="[cz]">
       <summary> Cartesian Z (J2000)</summary>
-<quantity>pos.cartesian.z</quantity>
+<quantity>pos.eq.z</quantity>
 </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
