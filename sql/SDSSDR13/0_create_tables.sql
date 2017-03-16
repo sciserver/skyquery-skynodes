@@ -13929,7 +13929,7 @@ CREATE TABLE [dbo].[sppLines](
 	[KP18cont] [real] NOT NULL,
 
 	--/ <summary>Ca II K line index error in the lind band at 3933.7 with band widths of 18.0</summary>
-	--/ <quantitystat.error;spect.line.index></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[KP18err] [real] NOT NULL,
 
@@ -13948,1467 +13948,1467 @@ CREATE TABLE [dbo].[sppLines](
 	[KP6cont] [real] NOT NULL,
 
 	--/ <summary>Ca II K line index error in the lind band at 3933.7 with band widths of 6.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[KP6err] [real] NOT NULL,
 
 	--/ <summary>Ca II K pixel quality check =0, good, =1 bad at 3933.7 with band widths of 6.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[KP6mask] [tinyint] NOT NULL,
 
 	--/ <summary>Ca II K line index from local continuum at 3933.6 with band widths of 30.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaIIKside] [real] NOT NULL,
 
 	--/ <summary>Ca II K line index from global continuum at 3933.6 with band widths of 30.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaIIKcont] [real] NOT NULL,
 
 	--/ <summary>Ca II K line index error in the lind band at 3933.6 with band widths of 30.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaIIKerr] [real] NOT NULL,
 
 	--/ <summary>Ca II K pixel quality check =0, good, =1 bad at 3933.6 with band widths of 30.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[CaIIKmask] [tinyint] NOT NULL,
 
 	--/ <summary>Ca II H and K line index from local continuum at 3962.0 with band widths of 75.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaIIHKside] [real] NOT NULL,
 
 	--/ <summary>Ca II H and K line index from global continuum at 3962.0 with band widths of 75.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaIIHKcont] [real] NOT NULL,
 
 	--/ <summary>Ca II H and K line index error in the lind band at 3962.0 with band widths of 75.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaIIHKerr] [real] NOT NULL,
 
 	--/ <summary>Ca II H and K pixel quality check =0, good, =1 bad at 3962.0 with band widths of 75.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[CaIIHKmask] [tinyint] NOT NULL,
 
 	--/ <summary>Hepsilon line index from local continuum at 3970.0 with band widths of 50.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hepsside] [real] NOT NULL,
 
 	--/ <summary>Hepsilon line index from global continuum at 3970.0 with band widths of 50.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hepscont] [real] NOT NULL,
 
 	--/ <summary>Hepsilon line index error in the lind band at 3970.0 with band widths of 50.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hepserr] [real] NOT NULL,
 
 	--/ <summary>Hepsilon pixel quality check =0, good, =1 bad at 3970.0 with band widths of 50.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[Hepsmask] [tinyint] NOT NULL,
 
 	--/ <summary>Ca II K line index from local continuum at 3933.7 with band widths of 16.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[KP16side] [real] NOT NULL,
 
 	--/ <summary>Ca II K line index from global continuum at 3933.7 with band widths of 16.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[KP16cont] [real] NOT NULL,
 
 	--/ <summary>Ca II K line index error in the lind band at 3933.7 with band widths of 16.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[KP16err] [real] NOT NULL,
 
 	--/ <summary>Ca II K pixel quality check =0, good, =1 bad at 3933.7 with band widths of 16.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[KP16mask] [tinyint] NOT NULL,
 
 	--/ <summary>Sr II line index from local continuum at 4077.0 with band widths of 8.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[SrII1side] [real] NOT NULL,
 
 	--/ <summary>Sr II line index from global continuum at 4077.0 with band widths of 8.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[SrII1cont] [real] NOT NULL,
 
 	--/ <summary>Sr II line index error in the lind band at 4077.0 with band widths of 8.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[SrII1err] [real] NOT NULL,
 
 	--/ <summary>Sr II pixel quality check =0, good, =1 bad at 4077.0 with band widths of 8.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[SrII1mask] [tinyint] NOT NULL,
 
 	--/ <summary>He I line index from local continuum at 4026.2 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[HeI121side] [real] NOT NULL,
 
 	--/ <summary>He I line index from global continuum at 4026.2 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[HeI121cont] [real] NOT NULL,
 
 	--/ <summary>He I line index error in the lind band at 4026.2 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[HeI121err] [real] NOT NULL,
 
 	--/ <summary>He I pixel quality check =0, good, =1 bad at 4026.2 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[HeI121mask] [tinyint] NOT NULL,
 
 	--/ <summary>Hdelta line index from local continuum at 4101.8 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hdelta12side] [real] NOT NULL,
 
 	--/ <summary>Hdelta line index from global continuum at 4101.8 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hdelta12cont] [real] NOT NULL,
 
 	--/ <summary>Hdelta line index error in the lind band at 4101.8 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hdelta12err] [real] NOT NULL,
 
 	--/ <summary>Hdelta pixel quality check =0, good, =1 bad at 4101.8 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[Hdelta12mask] [tinyint] NOT NULL,
 
 	--/ <summary>Hdelta line index from local continuum at 4101.8 with band widths of 24.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hdelta24side] [real] NOT NULL,
 
 	--/ <summary>Hdelta line index from global continuum at 4101.8 with band widths of 24.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hdelta24cont] [real] NOT NULL,
 
 	--/ <summary>Hdelta line index error in the lind band at 4101.8 with band widths of 24.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hdelta24err] [real] NOT NULL,
 
 	--/ <summary>Hdelta pixel quality check =0, good, =1 bad at 4101.8 with band widths of 24.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[Hdelta24mask] [tinyint] NOT NULL,
 
 	--/ <summary>Hdelta line index from local continuum at 4101.8 with band widths of 48.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hdelta48side] [real] NOT NULL,
 
 	--/ <summary>Hdelta line index from global continuum at 4101.8 with band widths of 48.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hdelta48cont] [real] NOT NULL,
 
 	--/ <summary>Hdelta line index error in the lind band at 4101.8 with band widths of 48.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hdelta48err] [real] NOT NULL,
 
 	--/ <summary>Hdelta pixel quality check =0, good, =1 bad at 4101.8 with band widths of 48.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[Hdelta48mask] [tinyint] NOT NULL,
 
 	--/ <summary>Hdelta line index from local continuum at 4102.0 with band widths of 64.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hdeltaside] [real] NOT NULL,
 
 	--/ <summary>Hdelta line index from global continuum at 4102.0 with band widths of 64.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hdeltacont] [real] NOT NULL,
 
 	--/ <summary>Hdelta line index error in the lind band at 4102.0 with band widths of 64.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hdeltaerr] [real] NOT NULL,
 
 	--/ <summary>Hdelta pixel quality check =0, good, =1 bad at 4102.0 with band widths of 64.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[Hdeltamask] [tinyint] NOT NULL,
 
 	--/ <summary>Ca I line index from local continuum at 4226.0 with band widths of 4.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaI4side] [real] NOT NULL,
 
 	--/ <summary>Ca I line index from global continuum at 4226.0 with band widths of 4.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaI4cont] [real] NOT NULL,
 
 	--/ <summary>Ca I line index error in the lind band at 4226.0 with band widths of 4.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaI4err] [real] NOT NULL,
 
 	--/ <summary>Ca I pixel quality check =0, good, =1 bad at 4226.0 with band widths of 4.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[CaI4mask] [tinyint] NOT NULL,
 
 	--/ <summary>Ca I line index from local continuum at 4226.7 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaI12side] [real] NOT NULL,
 
 	--/ <summary>Ca I line index from global continuum at 4226.7 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaI12cont] [real] NOT NULL,
 
 	--/ <summary>Ca I line index error in the lind band at 4226.7 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaI12err] [real] NOT NULL,
 
 	--/ <summary>Ca I pixel quality check =0, good, =1 bad at 4226.7 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[CaI12mask] [tinyint] NOT NULL,
 
 	--/ <summary>Ca I line index from local continuum at 4226.7 with band widths of 24.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaI24side] [real] NOT NULL,
 
 	--/ <summary>Ca I line index from global continuum at 4226.7 with band widths of 24.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaI24cont] [real] NOT NULL,
 
 	--/ <summary>Ca I line index error in the lind band at 4226.7 with band widths of 24.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaI24err] [real] NOT NULL,
 
 	--/ <summary>Ca I pixel quality check =0, good, =1 bad at 4226.7 with band widths of 24.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[CaI24mask] [tinyint] NOT NULL,
 
 	--/ <summary>Ca I line index from local continuum at 4226.7 with band widths of 6.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaI6side] [real] NOT NULL,
 
 	--/ <summary>Ca I line index from global continuum at 4226.7 with band widths of 6.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaI6cont] [real] NOT NULL,
 
 	--/ <summary>Ca I line index error in the lind band at 4226.7 with band widths of 6.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaI6err] [real] NOT NULL,
 
 	--/ <summary>Ca I pixel quality check =0, good, =1 bad at 4226.7 with band widths of 6.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[CaI6mask] [tinyint] NOT NULL,
 
 	--/ <summary>G band line index from local continuum at 4305.0 with band widths of 15.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Gside] [real] NOT NULL,
 
 	--/ <summary>G band line index from global continuum at 4305.0 with band widths of 15.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Gcont] [real] NOT NULL,
 
 	--/ <summary>G band line index error in the lind band at 4305.0 with band widths of 15.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Gerr] [real] NOT NULL,
 
 	--/ <summary>G band pixel quality check =0, good, =1 bad at 4305.0 with band widths of 15.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[Gmask] [tinyint] NOT NULL,
 
 	--/ <summary>Hgamma line index from local continuum at 4340.5 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hgamma12side] [real] NOT NULL,
 
 	--/ <summary>Hgamma line index from global continuum at 4340.5 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hgamma12cont] [real] NOT NULL,
 
 	--/ <summary>Hgamma line index error in the lind band at 4340.5 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hgamma12err] [real] NOT NULL,
 
 	--/ <summary>Hgamma pixel quality check =0, good, =1 bad at 4340.5 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[Hgamma12mask] [tinyint] NOT NULL,
 
 	--/ <summary>Hgamma line index from local continuum at 4340.5 with band widths of 24.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hgamma24side] [real] NOT NULL,
 
 	--/ <summary>Hgamma line index from global continuum at 4340.5 with band widths of 24.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hgamma24cont] [real] NOT NULL,
 
 	--/ <summary>Hgamma line index error in the lind band at 4340.5 with band widths of 24.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hgamma24err] [real] NOT NULL,
 
 	--/ <summary>Hgamma pixel quality check =0, good, =1 bad at 4340.5 with band widths of 24.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[Hgamma24mask] [tinyint] NOT NULL,
 
 	--/ <summary>Hgamma line index from local continuum at 4340.5 with band widths of 48.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hgamma48side] [real] NOT NULL,
 
 	--/ <summary>Hgamma line index from global continuum at 4340.5 with band widths of 48.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hgamma48cont] [real] NOT NULL,
 
 	--/ <summary>Hgamma line index error in the lind band at 4340.5 with band widths of 48.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hgamma48err] [real] NOT NULL,
 
 	--/ <summary>Hgamma pixel quality check =0, good, =1 bad at 4340.5 with band widths of 48.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[Hgamma48mask] [tinyint] NOT NULL,
 
 	--/ <summary>Hgamma line index from local continuum at 4340.5 with band widths of 54.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hgammaside] [real] NOT NULL,
 
 	--/ <summary>Hgamma line index from global continuum at 4340.5 with band widths of 54.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hgammacont] [real] NOT NULL,
 
 	--/ <summary>Hgamma line index error in the lind band at 4340.5 with band widths of 54.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hgammaerr] [real] NOT NULL,
 
 	--/ <summary>Hgamma pixel quality check =0, good, =1 bad at 4340.5 with band widths of 54.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[Hgammamask] [tinyint] NOT NULL,
 
 	--/ <summary>He I line index from local continuum at 4471.7 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[HeI122side] [real] NOT NULL,
 
 	--/ <summary>He I line index from global continuum at 4471.7 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[HeI122cont] [real] NOT NULL,
 
 	--/ <summary>He I line index error in the lind band at 4471.7 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[HeI122err] [real] NOT NULL,
 
 	--/ <summary>He I pixel quality check =0, good, =1 bad at 4471.7 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[HeI122mask] [tinyint] NOT NULL,
 
 	--/ <summary>G band line index from local continuum at 4305.0 with band widths of 26.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Gblueside] [real] NOT NULL,
 
 	--/ <summary>G band line index from global continuum at 4305.0 with band widths of 26.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Gbluecont] [real] NOT NULL,
 
 	--/ <summary>G band line index error in the lind band at 4305.0 with band widths of 26.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Gblueerr] [real] NOT NULL,
 
 	--/ <summary>G band pixel quality check =0, good, =1 bad at 4305.0 with band widths of 26.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[Gbluemask] [tinyint] NOT NULL,
 
 	--/ <summary>G band line index from local continuum at 4321.0 with band widths of 28.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Gwholeside] [real] NOT NULL,
 
 	--/ <summary>G band line index from global continuum at 4321.0 with band widths of 28.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Gwholecont] [real] NOT NULL,
 
 	--/ <summary>G band line index error in the lind band at 4321.0 with band widths of 28.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Gwholeerr] [real] NOT NULL,
 
 	--/ <summary>G band pixel quality check =0, good, =1 bad at 4321.0 with band widths of 28.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[Gwholemask] [tinyint] NOT NULL,
 
 	--/ <summary>Ba line index from local continuum at 4554.0 with band widths of 6.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Baside] [real] NOT NULL,
 
 	--/ <summary>Ba line index from global continuum at 4554.0 with band widths of 6.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Bacont] [real] NOT NULL,
 
 	--/ <summary>Ba line index error in the lind band at 4554.0 with band widths of 6.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Baerr] [real] NOT NULL,
 
 	--/ <summary>Ba pixel quality check =0, good, =1 bad at 4554.0 with band widths of 6.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[Bamask] [tinyint] NOT NULL,
 
 	--/ <summary>C12C13 band line index from local continuum at 4737.0 with band widths of 36.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[C12C13side] [real] NOT NULL,
 
 	--/ <summary>C12C13 band line index from global continuum at 4737.0 with band widths of 36.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[C12C13cont] [real] NOT NULL,
 
 	--/ <summary>C12C13 band line index error in the lind band at 4737.0 with band widths of 36.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[C12C13err] [real] NOT NULL,
 
 	--/ <summary>C12C13 band pixel quality check =0, good, =1 bad at 4737.0 with band widths of 36.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[C12C13mask] [tinyint] NOT NULL,
 
 	--/ <summary>C2 band line index from local continuum at 4618.0 with band widths of 256.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CC12side] [real] NOT NULL,
 
 	--/ <summary>C2 band line index from global continuum at 4618.0 with band widths of 256.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CC12cont] [real] NOT NULL,
 
 	--/ <summary>C2 band line index error in the lind band at 4618.0 with band widths of 256.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CC12err] [real] NOT NULL,
 
 	--/ <summary>C2 band pixel quality check =0, good, =1 bad at 4618.0 with band widths of 256.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[CC12mask] [tinyint] NOT NULL,
 
 	--/ <summary>Metallic line index from local continuum at 4584.0 with band widths of 442.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[metal1side] [real] NOT NULL,
 
 	--/ <summary>Metallic line index from global continuum at 4584.0 with band widths of 442.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[metal1cont] [real] NOT NULL,
 
 	--/ <summary>Metlllic line index error in the lind band at 4584.0 with band widths of 442.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[metal1err] [real] NOT NULL,
 
 	--/ <summary>Metal1ic pixel quality check =0, good, =1 bad at 4584.0 with band widths of 442.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[metal1mask] [tinyint] NOT NULL,
 
 	--/ <summary>Hbeta line index from local continuum at 4862.3 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hbeta12side] [real] NOT NULL,
 
 	--/ <summary>Hbeta line index from global continuum at 4862.3 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hbeta12cont] [real] NOT NULL,
 
 	--/ <summary>Hbeta line index error in the lind band at 4862.3 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hbeta12err] [real] NOT NULL,
 
 	--/ <summary>Hbeta pixel quality check =0, good, =1 bad at 4862.3 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[Hbeta12mask] [tinyint] NOT NULL,
 
 	--/ <summary>Hbeta line index from local continuum at 4862.3 with band widths of 24.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hbeta24side] [real] NOT NULL,
 
 	--/ <summary>Hbeta line index from global continuum at 4862.3 with band widths of 24.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hbeta24cont] [real] NOT NULL,
 
 	--/ <summary>Hbeta line index error in the lind band at 4862.3 with band widths of 24.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hbeta24err] [real] NOT NULL,
 
 	--/ <summary>Hbeta pixel quality check =0, good, =1 bad at 4862.3 with band widths of 24.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[Hbeta24mask] [tinyint] NOT NULL,
 
 	--/ <summary>Hbeta line index from local continuum at 4862.3 with band widths of 48.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hbeta48side] [real] NOT NULL,
 
 	--/ <summary>Hbeta line index from global continuum at 4862.3 with band widths of 48.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hbeta48cont] [real] NOT NULL,
 
 	--/ <summary>Hbeta line index error in the lind band at 4862.3 with band widths of 48.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hbeta48err] [real] NOT NULL,
 
 	--/ <summary>Hbeta pixel quality check =0, good, =1 bad at 4862.3 with band widths of 48.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[Hbeta48mask] [tinyint] NOT NULL,
 
 	--/ <summary>Hbeta line index from local continuum at 4862.3 with band widths of 60.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hbetaside] [real] NOT NULL,
 
 	--/ <summary>Hbeta line index from global continuum at 4862.3 with band widths of 60.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hbetacont] [real] NOT NULL,
 
 	--/ <summary>Hbeta line index error in the lind band at 4862.3 with band widths of 60.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Hbetaerr] [real] NOT NULL,
 
 	--/ <summary>Hbeta pixel quality check =0, good, =1 bad at 4862.3 with band widths of 60.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[Hbetamask] [tinyint] NOT NULL,
 
 	--/ <summary>C2 band line index from local continuum at 5052.0 with band widths of 204.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[C2side] [real] NOT NULL,
 
 	--/ <summary>C2 band line index from global continuum at 5052.0 with band widths of 204.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[C2cont] [real] NOT NULL,
 
 	--/ <summary>C2 band line index error in the lind band at 5052.0 with band widths of 204.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[C2err] [real] NOT NULL,
 
 	--/ <summary>C2 band pixel quality check =0, good, =1 bad at 5052.0 with band widths of 204.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[C2mask] [tinyint] NOT NULL,
 
 	--/ <summary>C2 and Mg I line index from local continuum at 5069.0 with band widths of 238.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[C2MgIside] [real] NOT NULL,
 
 	--/ <summary>C2 and Mg I line index from global continuum at 5069.0 with band widths of 238.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[C2MgIcont] [real] NOT NULL,
 
 	--/ <summary>C2 and Mg I line index error in the lind band at 5069.0 with band widths of 238.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[C2MgIerr] [real] NOT NULL,
 
 	--/ <summary>C2 and Mg I pixel quality check =0, good, =1 bad at 5069.0 with band widths of 238.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[C2MgImask] [tinyint] NOT NULL,
 
 	--/ <summary>MgH, Mg I, and C2 line index from local continuum at 5085.0 with band widths of 270.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[MgHMgIC2side] [real] NOT NULL,
 
 	--/ <summary>MgH, Mg I, and C2 line index from global continuum at 5085.0 with band widths of 270.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[MgHMgIC2cont] [real] NOT NULL,
 
 	--/ <summary>MgH, Mg I, and C2 line index error in the lind band at 5085.0 with band widths of 270.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[MgHMgIC2err] [real] NOT NULL,
 
 	--/ <summary>MgH, Mg I, and C2 pixel quality check =0, good, =1 bad at 5085.0 with band widths of 270.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[MgHMgIC2mask] [tinyint] NOT NULL,
 
 	--/ <summary>MgH and Mg I line index from local continuum at 5198.0 with band widths of 44.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[MgHMgIside] [real] NOT NULL,
 
 	--/ <summary>MgH and Mg I line index from global continuum at 5198.0 with band widths of 44.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[MgHMgIcont] [real] NOT NULL,
 
 	--/ <summary>MgH and Mg I line index error in the lind band at 5198.0 with band widths of 44.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[MgHMgIerr] [real] NOT NULL,
 
 	--/ <summary>MgH_MgI pixel quality check =0, good, =1 bad at 5198.0 with band widths of 44.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[MgHMgImask] [tinyint] NOT NULL,
 
 	--/ <summary>MgH line index from local continuum at 5210.0 with band widths of 20.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[MgHside] [real] NOT NULL,
 
 	--/ <summary>MgH line index from global continuum at 5210.0 with band widths of 20.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[MgHcont] [real] NOT NULL,
 
 	--/ <summary>MgH line index error in the lind band at 5210.0 with band widths of 20.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[MgHerr] [real] NOT NULL,
 
 	--/ <summary>MgH pixel quality check =0, good, =1 bad at 5210.0 with band widths of 20.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[MgHmask] [tinyint] NOT NULL,
 
 	--/ <summary>Cr I line index from local continuum at 5206.0 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CrIside] [real] NOT NULL,
 
 	--/ <summary>Cr I line index from global continuum at 5206.0 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CrIcont] [real] NOT NULL,
 
 	--/ <summary>Cr I line index error in the lind band at 5206.0 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CrIerr] [real] NOT NULL,
 
 	--/ <summary>Cr I pixel quality check =0, good, =1 bad at 5206.0 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[CrImask] [tinyint] NOT NULL,
 
 	--/ <summary>Mg I and Fe II line index from local continuum at 5175.0 with band widths of 20.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[MgIFeIIside] [real] NOT NULL,
 
 	--/ <summary>Mg I and Fe II line index from global continuum at 5175.0 with band widths of 20.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[MgIFeIIcont] [real] NOT NULL,
 
 	--/ <summary>Mg I and Fe II line index error in the lind band at 5175.0 with band widths of 20.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[MgIFeIIerr] [real] NOT NULL,
 
 	--/ <summary>Mg I and Fe II pixel quality check =0, good, =1 bad at 5175.0 with band widths of 20.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[MgIFeIImask] [tinyint] NOT NULL,
 
 	--/ <summary>Mg I line index from local continuum at 5183.0 with band widths of 2.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[MgI2side] [real] NOT NULL,
 
 	--/ <summary>Mg I line index from global continuum at 5183.0 with band widths of 2.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[MgI2cont] [real] NOT NULL,
 
 	--/ <summary>Mg I line index error in the lind band at 5183.0 with band widths of 2.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[MgI2err] [real] NOT NULL,
 
 	--/ <summary>Mg I pixel quality check =0, good, =1 bad at 5183.0 with band widths of 2.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[MgI2mask] [tinyint] NOT NULL,
 
 	--/ <summary>Mg I line index from local continuum at 5170.5 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[MgI121side] [real] NOT NULL,
 
 	--/ <summary>Mg I line index from global continuum at 5170.5 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[MgI121cont] [real] NOT NULL,
 
 	--/ <summary>Mg I line index error in the lind band at 5170.5 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[MgI121err] [real] NOT NULL,
 
 	--/ <summary>Mg I pixel quality check =0, good, =1 bad at 5170.5 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[MgI121mask] [tinyint] NOT NULL,
 
 	--/ <summary>Mg I line index from local continuum at 5176.5 with band widths of 24.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[MgI24side] [real] NOT NULL,
 
 	--/ <summary>Mg I line index from global continuum at 5176.5 with band widths of 24.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[MgI24cont] [real] NOT NULL,
 
 	--/ <summary>Mg I line index error in the lind band at 5176.5 with band widths of 24.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[MgI24err] [real] NOT NULL,
 
 	--/ <summary>Mg I pixel quality check =0, good, =1 bad at 5176.5 with band widths of 24.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[MgI24mask] [tinyint] NOT NULL,
 
 	--/ <summary>Mg I line index from local continuum at 5183.5 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[MgI122side] [real] NOT NULL,
 
 	--/ <summary>Mg I line index from global continuum at 5183.5 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[MgI122cont] [real] NOT NULL,
 
 	--/ <summary>Mg I line index error in the lind band at 5183.5 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[MgI122err] [real] NOT NULL,
 
 	--/ <summary>Mg I pixel quality check =0, good, =1 bad at 5183.5 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[MgI122mask] [tinyint] NOT NULL,
 
 	--/ <summary>Na I line index from local continuum at 5890.0 with band widths of 20.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[NaI20side] [real] NOT NULL,
 
 	--/ <summary>Na I line index from global continuum at 5890.0 with band widths of 20.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[NaI20cont] [real] NOT NULL,
 
 	--/ <summary>Na I line index error in the lind band at 5890.0 with band widths of 20.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[NaI20err] [real] NOT NULL,
 
 	--/ <summary>Na I pixel quality check =0, good, =1 bad at 5890.0 with band widths of 20.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[NaI20mask] [tinyint] NOT NULL,
 
 	--/ <summary>Na line index from local continuum at 5892.9 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Na12side] [real] NOT NULL,
 
 	--/ <summary>Na line index from global continuum at 5892.9 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Na12cont] [real] NOT NULL,
 
 	--/ <summary>Na line index error in the lind band at 5892.9 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Na12err] [real] NOT NULL,
 
 	--/ <summary>Na pixel quality check =0, good, =1 bad at 5892.9 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[Na12mask] [tinyint] NOT NULL,
 
 	--/ <summary>Na line index from local continuum at 5892.9 with band widths of 24.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Na24side] [real] NOT NULL,
 
 	--/ <summary>Na line index from global continuum at 5892.9 with band widths of 24.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Na24cont] [real] NOT NULL,
 
 	--/ <summary>Na line index error in the lind band at 5892.9 with band widths of 24.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Na24err] [real] NOT NULL,
 
 	--/ <summary>Na pixel quality check =0, good, =1 bad at 5892.9 with band widths of 24.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[Na24mask] [tinyint] NOT NULL,
 
 	--/ <summary>Halpha line index from local continuum at 6562.8 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Halpha12side] [real] NOT NULL,
 
 	--/ <summary>Halpha line index from global continuum at 6562.8 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Halpha12cont] [real] NOT NULL,
 
 	--/ <summary>Halpha line index error in the lind band at 6562.8 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Halpha12err] [real] NOT NULL,
 
 	--/ <summary>Halpha pixel quality check =0, good, =1 bad at 6562.8 with band widths of 12.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[Halpha12mask] [tinyint] NOT NULL,
 
 	--/ <summary>Halpha line index from local continuum at 6562.8 with band widths of 24.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Halpha24side] [real] NOT NULL,
 
 	--/ <summary>Halpha line index from global continuum at 6562.8 with band widths of 24.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Halpha24cont] [real] NOT NULL,
 
 	--/ <summary>Halpha line index error in the lind band at 6562.8 with band widths of 24.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Halpha24err] [real] NOT NULL,
 
 	--/ <summary>Halpha pixel quality check =0, good, =1 bad at 6562.8 with band widths of 24.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[Halpha24mask] [tinyint] NOT NULL,
 
 	--/ <summary>Halpha line index from local continuum at 6562.8 with band widths of 48.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Halpha48side] [real] NOT NULL,
 
 	--/ <summary>Halpha line index from global continuum at 6562.8 with band widths of 48.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Halpha48cont] [real] NOT NULL,
 
 	--/ <summary>Halpha line index error in the lind band at 6562.8 with band widths of 48.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Halpha48err] [real] NOT NULL,
 
 	--/ <summary>Halpha pixel quality check =0, good, =1 bad at 6562.8 with band widths of 48.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[Halpha48mask] [tinyint] NOT NULL,
 
 	--/ <summary>Halpha line index from local continuum at 6562.8 with band widths of 70.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Halpha70side] [real] NOT NULL,
 
 	--/ <summary>Halpha line index from global continuum at 6562.8 with band widths of 70.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Halpha70cont] [real] NOT NULL,
 
 	--/ <summary>Halpha line index error in the lind band at 6562.8 with band widths of 70.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Halpha70err] [real] NOT NULL,
 
 	--/ <summary>Halpha pixel quality check =0, good, =1 bad at 6562.8 with band widths of 70.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[Halpha70mask] [tinyint] NOT NULL,
 
 	--/ <summary>CaH line index from local continuum at 6788.0 with band widths of 505.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaHside] [real] NOT NULL,
 
 	--/ <summary>CaH line index from global continuum at 6788.0 with band widths of 505.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaHcont] [real] NOT NULL,
 
 	--/ <summary>CaH line index error in the lind band at 6788.0 with band widths of 505.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaHerr] [real] NOT NULL,
 
 	--/ <summary>CaH pixel quality check =0, good, =1 bad at 6788.0 with band widths of 505.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[CaHmask] [tinyint] NOT NULL,
 
 	--/ <summary>TiO line index from local continuum at 7209.0 with band widths of 333.3</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[TiOside] [real] NOT NULL,
 
 	--/ <summary>TiO line index from global continuum at 7209.0 with band widths of 333.3</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[TiOcont] [real] NOT NULL,
 
 	--/ <summary>TiO line index error in the lind band at 7209.0 with band widths of 333.3</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[TiOerr] [real] NOT NULL,
 
 	--/ <summary>TiO pixel quality check =0, good, =1 bad at 7209.0 with band widths of 333.3</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[TiOmask] [tinyint] NOT NULL,
 
 	--/ <summary>CN line index from local continuum at 6890.0 with band widths of 26.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CNside] [real] NOT NULL,
 
 	--/ <summary>CN line index from global continuum at 6890.0 with band widths of 26.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CNcont] [real] NOT NULL,
 
 	--/ <summary>CN line index error in the lind band at 6890.0 with band widths of 26.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CNerr] [real] NOT NULL,
 
 	--/ <summary>CN pixel quality check =0, good, =1 bad at 6890.0 with band widths of 26.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[CNmask] [tinyint] NOT NULL,
 
 	--/ <summary>O I triplet line index from local continuu at 7775.0 with band widths of 30.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[OItripside] [real] NOT NULL,
 
 	--/ <summary>O I triplet line index from global continuum at 7775.0 with band widths of 30.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[OItripcont] [real] NOT NULL,
 
 	--/ <summary>O I triplet line index error in the lind band at 7775.0 with band widths of 30.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[OItriperr] [real] NOT NULL,
 
 	--/ <summary>O I triplet pixel quality check =0, good, =1 bad at 7775.0 with band widths of 30.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[OItripmask] [tinyint] NOT NULL,
 
 	--/ <summary>K I line index from local continuum at 7687.0 with band widths of 34.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[KI34side] [real] NOT NULL,
 
 	--/ <summary>K I line index from global continuum at 7687.0 with band widths of 34.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[KI34cont] [real] NOT NULL,
 
 	--/ <summary>K I line index error in the lind band at 7687.0 with band widths of 34.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[KI34err] [real] NOT NULL,
 
 	--/ <summary>K I pixel quality check =0, good, =1 bad at 7687.0 with band widths of 34.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[KI34mask] [tinyint] NOT NULL,
 
 	--/ <summary>K I line index from local continuum at 7688.0 with band widths of 95.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[KI95side] [real] NOT NULL,
 
 	--/ <summary>K I line index from global continuum at 7688.0 with band widths of 95.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[KI95cont] [real] NOT NULL,
 
 	--/ <summary>K I line index error in the lind band at 7688.0 with band widths of 95.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[KI95err] [real] NOT NULL,
 
 	--/ <summary>K I pixel quality check =0, good, =1 bad at 7688.0 with band widths of 95.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[KI95mask] [tinyint] NOT NULL,
 
 	--/ <summary>Na I line index from local continuum at 8187.5 with band widths of 15.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[NaI15side] [real] NOT NULL,
 
 	--/ <summary>Na I line index from global continuum at 8187.5 with band widths of 15.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[NaI15cont] [real] NOT NULL,
 
 	--/ <summary>Na I line index error in the lind band at 8187.5 with band widths of 15.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[NaI15err] [real] NOT NULL,
 
 	--/ <summary>Na I pixel quality check =0, good, =1 bad at 8187.5 with band widths of 15.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[NaI15mask] [tinyint] NOT NULL,
 
 	--/ <summary>Na I line index from local continuum at 8190.2 with band widths of 33.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[NaIredside] [real] NOT NULL,
 
 	--/ <summary>Na I line index from global continuum at 8190.2 with band widths of 33.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[NaIredcont] [real] NOT NULL,
 
 	--/ <summary>Na I line index error in the lind band at 8190.2 with band widths of 33.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[NaIrederr] [real] NOT NULL,
 
 	--/ <summary>Na I pixel quality check =0, good, =1 bad at 8190.2 with band widths of 33.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[NaIredmask] [tinyint] NOT NULL,
 
 	--/ <summary>Ca II triplet line index from local continuum at 8498.0 with band widths of 26.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaII26side] [real] NOT NULL,
 
 	--/ <summary>Ca II triplet line index from global continuum at 8498.0 with band widths of 26.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaII26cont] [real] NOT NULL,
 
 	--/ <summary>Ca II triplet line index error in the lind band at 8498.0 with band widths of 26.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaII26err] [real] NOT NULL,
 
 	--/ <summary>Ca II triplet pixel quality check =0, good, =1 bad at 8498.0 with band widths of 26.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[CaII26mask] [tinyint] NOT NULL,
 
 	--/ <summary>Paschen line index from local continuum at 8467.5 with band widths of 13.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Paschen13side] [real] NOT NULL,
 
 	--/ <summary>Paschen line index from global continuum at 8467.5 with band widths of 13.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Paschen13cont] [real] NOT NULL,
 
 	--/ <summary>Paschen line index error in the lind band at 8467.5 with band widths of 13.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Paschen13err] [real] NOT NULL,
 
 	--/ <summary>Paschen pixel quality check =0, good, =1 bad at 8467.5 with band widths of 13.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[Paschen13mask] [tinyint] NOT NULL,
 
 	--/ <summary>Ca II triplet line index from local continuum at 8498.5 with band widths of 29.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaII29side] [real] NOT NULL,
 
 	--/ <summary>Ca II triplet line index from global continuum at 8498.5 with band widths of 29.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaII29cont] [real] NOT NULL,
 
 	--/ <summary>Ca II triplet line index error in the lind band at 8498.5 with band widths of 29.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaII29err] [real] NOT NULL,
 
 	--/ <summary>Ca II triplet pixel quality check =0, good, =1 bad at 8498.5 with band widths of 29.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[CaII29mask] [tinyint] NOT NULL,
 
 	--/ <summary>Ca II triplet line index from local continuum at 8542.0 with band widths of 40.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaII401side] [real] NOT NULL,
 
 	--/ <summary>Ca II triplet line index from global continuum at 8542.0 with band widths of 40.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaII401cont] [real] NOT NULL,
 
 	--/ <summary>Ca II triplet line index error in the lind band at 8542.0 with band widths of 40.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaII401err] [real] NOT NULL,
 
 	--/ <summary>Ca II triplet pixel quality check =0, good, =1 bad at 8542.0 with band widths of 40.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[CaII401mask] [tinyint] NOT NULL,
 
 	--/ <summary>Ca II triplet_1 line index from local continuum at 8542.0 with band widths of 16.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaII161side] [real] NOT NULL,
 
 	--/ <summary>Ca II triplet_1 line index from global continuum at 8542.0 with band widths of 16.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaII161cont] [real] NOT NULL,
 
 	--/ <summary>Ca II triplet_1 line index error in the lind band at 8542.0 with band widths of 16.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaII161err] [real] NOT NULL,
 
 	--/ <summary>Ca II triplet_1 pixel quality check =0, good, =1 bad at 8542.0 with band widths of 16.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[CaII161mask] [tinyint] NOT NULL,
 
 	--/ <summary>Paschen line index from local continuum at 8598.0 with band widths of 42.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Paschen421side] [real] NOT NULL,
 
 	--/ <summary>Paschen line index from global continuum at 8598.0 with band widths of 42.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Paschen421cont] [real] NOT NULL,
 
 	--/ <summary>Paschen line index error in the lind band at 8598.0 with band widths of 42.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Paschen421err] [real] NOT NULL,
 
 	--/ <summary>Paschen pixel quality check =0, good, =1 bad at 8598.0 with band widths of 42.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[Paschen421mask] [tinyint] NOT NULL,
 
 	--/ <summary>Ca II triplet line index from local continuum at 8662.1 with band widths of 16.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaII162side] [real] NOT NULL,
 
 	--/ <summary>Ca II triplet line index from global continuum at 8662.1 with band widths of 16.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaII162cont] [real] NOT NULL,
 
 	--/ <summary>Ca II triplet line index error in the lind band at 8662.1 with band widths of 16.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaII162err] [real] NOT NULL,
 
 	--/ <summary>Ca II triplet pixel quality check =0, good, =1 bad at 8662.1 with band widths of 16.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[CaII162mask] [tinyint] NOT NULL,
 
 	--/ <summary>Ca II triplet line index from local continuum at 8662.0 with band widths of 40.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaII402side] [real] NOT NULL,
 
 	--/ <summary>Ca II triplet line index from global continuum at 8662.0 with band widths of 40.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaII402cont] [real] NOT NULL,
 
 	--/ <summary>Ca II triplet line index error in the lind band at 8662.0 with band widths of 40.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[CaII402err] [real] NOT NULL,
 
 	--/ <summary>Ca II triplet pixel quality check =0, good, =1 bad at 8662.0 with band widths of 40.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[CaII402mask] [tinyint] NOT NULL,
 
 	--/ <summary>Paschen line index from local continuum at 8751.0 with band widths of 42.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Paschen422side] [real] NOT NULL,
 
 	--/ <summary>Paschen line index from global continuum at 8751.0 with band widths of 42.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Paschen422cont] [real] NOT NULL,
 
 	--/ <summary>Paschen line index error in the lind band at 8751.0 with band widths of 42.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[Paschen422err] [real] NOT NULL,
 
 	--/ <summary>Paschen pixel quality check =0, good, =1 bad at 8751.0 with band widths of 42.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[Paschen422mask] [tinyint] NOT NULL,
 
 	--/ <summary>TiO5 line index from local continuum at 7134.4 with band widths of 5.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	[TiO5side] [real] NOT NULL,
 
 	--/ <summary>TiO5 line index from global continuum at 7134.4 with band widths of 5.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	[TiO5cont] [real] NOT NULL,
 
 	--/ <summary>TiO5 line index error in the lind band at 7134.4 with band widths of 5.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	[TiO5err] [real] NOT NULL,
 
 	--/ <summary>TiO5 pixel quality check =0, good, =1 bad at 7134.4 with band widths of 5.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[TiO5mask] [tinyint] NOT NULL,
 
 	--/ <summary>TiO8 line index from local continuum at 8457.3 with band widths of 30.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	[TiO8side] [real] NOT NULL,
 
 	--/ <summary>TiO8 line index from global continuum at 8457.3 with band widths of 30.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	[TiO8cont] [real] NOT NULL,
 
 	--/ <summary>TiO8 line index error in the lind band at 8457.3 with band widths of 30.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	[TiO8err] [real] NOT NULL,
 
 	--/ <summary>TiO8 pixel quality check =0, good, =1 bad at 8457.3 with band widths of 30.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[TiO8mask] [tinyint] NOT NULL,
 
 	--/ <summary>CaH1 line index from local continuum at 6386.7 with band widths of 10.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	[CaH1side] [real] NOT NULL,
 
 	--/ <summary>CaH1 line index from global continuum at 6386.7 with band widths of 10.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	[CaH1cont] [real] NOT NULL,
 
 	--/ <summary>CaH1 line index error in the lind band at 6386.7 with band widths of 10.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	[CaH1err] [real] NOT NULL,
 
 	--/ <summary>CaH1 pixel quality check =0, good, =1 bad at 6386.7 with band widths of 10.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[CaH1mask] [tinyint] NOT NULL,
 
 	--/ <summary>CaH2 line index from local continuum at 6831.9 with band widths of 32.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	[CaH2side] [real] NOT NULL,
 
 	--/ <summary>CaH2 line index from global continuum at 6831.9 with band widths of 32.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	[CaH2cont] [real] NOT NULL,
 
 	--/ <summary>CaH2 line index error in the lind band at 6831.9 with band widths of 32.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	[CaH2err] [real] NOT NULL,
 
 	--/ <summary>CaH2 pixel quality check =0, good, =1 bad at 6831.9 with band widths of 32.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[CaH2mask] [tinyint] NOT NULL,
 
 	--/ <summary>CaH3 line index from local continuum at 6976.9 with band widths of 30.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	[CaH3side] [real] NOT NULL,
 
 	--/ <summary>CaH3 line index from global continuum at 6976.9 with band widths of 30.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	[CaH3cont] [real] NOT NULL,
 
 	--/ <summary>CaH3 line index error in the lind band at 6976.9 with band widths of 30.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	[CaH3err] [real] NOT NULL,
 
 	--/ <summary>CaH3 pixel quality check =0, good, =1 bad at 6976.9 with band widths of 30.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[CaH3mask] [tinyint] NOT NULL,
 
 	--/ <summary>CN line index at 3839</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	[UVCNside] [real] NOT NULL,
 
 	--/ <summary>CN line index at 3839</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	[UVCNcont] [real] NOT NULL,
 
 	--/ <summary>CN line index error at 3829</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	[UVCNerr] [real] NOT NULL,
 
 	--/ <summary>CN pixel quality check =0, good, =1 bad at 3839</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[UVCNmask] [tinyint] NOT NULL,
 
 	--/ <summary>CN line index at 4142</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	[BLCNside] [real] NOT NULL,
 
 	--/ <summary>CN line index at 4142</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	[BLCNcont] [real] NOT NULL,
 
 	--/ <summary>CN line index error at 4142</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	[BLCNerr] [real] NOT NULL,
 
 	--/ <summary>CN pixel quality check =0, good, =1 bad at 4142</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[BLCNmask] [tinyint] NOT NULL,
 
 	--/ <summary>Fe I line index at 4045.8 with band widths of 2.5</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[FEI1side] [real] NOT NULL,
 
 	--/ <summary>Fe I line index at 4045.8 with band widths of 2.5</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[FEI1cont] [real] NOT NULL,
 
 	--/ <summary>Fe I line index error at 4045.8 with band widths of 2.5</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[FEI1err] [real] NOT NULL,
 
 	--/ <summary>Fe I pixel quality check =0, good, =1 bad at 4045.8 with band widths of 2.5</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[FEI1mask] [tinyint] NOT NULL,
 
 	--/ <summary>Fe I line index at 4063.6 with band widths of 2.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[FEI2side] [real] NOT NULL,
 
 	--/ <summary>Fe I line index at 4063.6 with band widths of 2.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[FEI2cont] [real] NOT NULL,
 
 	--/ <summary>Fe I line index error at 4063.6 with band widths of 2.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[FEI2err] [real] NOT NULL,
 
 	--/ <summary>Fe I pixel quality check =0, good, =1 bad at 4063.6 with band widths of 2.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[FEI2mask] [tinyint] NOT NULL,
 
 	--/ <summary>Fe I line index at 4071.7 with band widths of 2.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[FEI3side] [real] NOT NULL,
 
 	--/ <summary>Fe I line index at 4071.7 with band widths of 2.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[FEI3cont] [real] NOT NULL,
 
 	--/ <summary>Fe I line index error at 4071.7 with band widths of 2.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[FEI3err] [real] NOT NULL,
 
 	--/ <summary>Fe I pixel quality check =0, good, =1 bad at 4071.7 with band widths of 2.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[FEI3mask] [tinyint] NOT NULL,
 
 	--/ <summary>Sr II line index at 4077.7 with band widths of 2.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[SRII2side] [real] NOT NULL,
 
 	--/ <summary>Sr II line index at 4077.7 with band widths of 2.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[SRII2cont] [real] NOT NULL,
 
 	--/ <summary>Sr II line index error at 4077.7 with band widths of 2.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	--/ <unit>AA</unit>
 	[SRII2err] [real] NOT NULL,
 
 	--/ <summary>Sr II pixel quality check =0, good, =1 bad at 4077.7 with band widths of 2.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[SRII2mask] [tinyint] NOT NULL,
 
 	--/ <summary>Fe I line index at 4679.5 with band widths of 87.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	[FEI4side] [real] NOT NULL,
 
 	--/ <summary>Fe I line index at 4679.5 with band widths of 87.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	[FEI4cont] [real] NOT NULL,
 
 	--/ <summary>Fe I line index error at 4679.5 with band widths of 87.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	[FEI4err] [real] NOT NULL,
 
 	--/ <summary>Fe I pixel quality check =0, good, =1 bad at 4679.5 with band widths of 87.0</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[FEI4mask] [tinyint] NOT NULL,
 
 	--/ <summary>Fe I line index at 5267.4 with band widths of 38.8</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	[FEI5side] [real] NOT NULL,
 
 	--/ <summary>Fe I line index at 5267.4 with band widths of 38.8</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>spect.line.index</quantity>
 	[FEI5cont] [real] NOT NULL,
 
 	--/ <summary>Fe I line index error at 5267.4 with band widths of 38.8</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>stat.error;spect.line.index</quantity>
 	[FEI5err] [real] NOT NULL,
 
 	--/ <summary>Fe I pixel quality check =0, good, =1 bad at 5267.4 with band widths of 38.8</summary>
-	--/ <quantity></quantity>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[FEI5mask] [tinyint] NOT NULL,
  CONSTRAINT [pk_sppLines_specObjID] PRIMARY KEY CLUSTERED 
 (
