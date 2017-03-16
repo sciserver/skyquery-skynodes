@@ -12372,387 +12372,809 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+--/ <summary> Contains the measured parameters for a spectrum. </summary>
+--/ <remarks> This is a base table containing &lt;b>ALL&lt;/b> the spectroscopic  information, including a lot of duplicate and bad data. Use  the &lt;b>SpecObj&lt;/b> view instead, which has the data properly  filtered for cleanliness. These tables contain both the BOSS  and SDSS spectrograph data.  NOTE: The RA and Dec in this table refer to the DR8 coordinates,  which have errors in the region north of 41 deg in Dec.  This change does not affect the matching to the photometric  catalog. </remarks>
 CREATE TABLE [dbo].[SpecObjAll](
 
+	--/ <summary>Unique database ID based on PLATE, MJD, FIBERID, RUN2D</summary>
+	--/ <quantity>meta.id</quantity>
 	[specObjID] [bigint] NOT NULL,
 
+	--/ <summary>Object ID of photoObj match (position-based)</summary>
+	--/ <quantity>meta.id</quantity>
 	[bestObjID] [bigint] NOT NULL,
 
+	--/ <summary>Object ID of photoObj match (flux-based)</summary>
+	--/ <quantity>meta.id</quantity>
 	[fluxObjID] [bigint] NOT NULL,
 
+	--/ <summary>Object ID of original target</summary>
+	--/ <quantity>meta.id</quantity>
 	[targetObjID] [bigint] NOT NULL,
 
+	--/ <summary>Database ID of Plate</summary>
+	--/ <quantity>meta.id;instr.det</quantity>
 	[plateID] [bigint] NOT NULL,
 
+	--/ <summary>Best version of spectrum at this location (defines default view SpecObj)</summary>
+	--/ <quantity>meta.code</quantity>
 	[sciencePrimary] [smallint] NOT NULL,
 
+	--/ <summary>Best version of spectrum at this location, among Legacy plates</summary>
+	--/ <quantity>meta.code</quantity>
 	[legacyPrimary] [smallint] NOT NULL,
 
+	--/ <summary>Best version of spectrum at this location, among SEGUE plates</summary>
+	--/ <quantity>meta.code</quantity>
 	[seguePrimary] [smallint] NOT NULL,
 
+	--/ <summary>Best version of spectrum at this location, among SEGUE-1 plates</summary>
+	--/ <quantity>meta.code</quantity>
 	[segue1Primary] [smallint] NOT NULL,
 
+	--/ <summary>Best version of spectrum at this location, among SEGUE-2 plates</summary>
+	--/ <quantity>meta.code</quantity>
 	[segue2Primary] [smallint] NOT NULL,
 
+	--/ <summary>Best version of spectrum at this location, among BOSS plates</summary>
+	--/ <quantity>meta.code</quantity>
 	[bossPrimary] [smallint] NOT NULL,
 
+	--/ <summary>Best version of spectrum at this location among SDSS plates (defines default view SpecObj)</summary>
+	--/ <quantity>meta.code</quantity>
 	[sdssPrimary] [smallint] NOT NULL,
 
+	--/ <summary>Index of BOSS observation in spAll flat file</summary>
+	--/ <quantity>meta.id</quantity>
 	[bossSpecObjID] [int] NOT NULL,
 
+	--/ <summary>Name of first release this object was associated with</summary>
+	--/ <quantity>meta.id</quantity>
 	[firstRelease] [varchar](32) NOT NULL,
 
+	--/ <summary>Survey name</summary>
+	--/ <quantity>meta.id</quantity>
 	[survey] [varchar](32) NOT NULL,
 
+	--/ <summary>Instrument used (SDSS or BOSS spectrograph)</summary>
+	--/ <quantity>instr</quantity>
 	[instrument] [varchar](32) NOT NULL,
 
+	--/ <summary>Program name</summary>
+	--/ <quantity>meta.id</quantity>
 	[programname] [varchar](32) NOT NULL,
 
+	--/ <summary>Chunk name</summary>
+	--/ <quantity>meta.id</quantity>
 	[chunk] [varchar](32) NOT NULL,
 
+	--/ <summary>Plate drill run name</summary>
+	--/ <quantity>meta.id</quantity>
 	[platerun] [varchar](32) NOT NULL,
 
+	--/ <summary>MJD of observation</summary>
+	--/ <quantity>time.epoch</quantity>
+	--/ <unit>d</unit>
 	[mjd] [int] NOT NULL,
 
+	--/ <summary>Plate number</summary>
+	--/ <quantity>meta.id;instr.det</quantity>
 	[plate] [smallint] NOT NULL,
 
+	--/ <summary>Fiber ID</summary>
+	--/ <quantity>meta.id;instr.param</quantity>
 	[fiberID] [smallint] NOT NULL,
 
+	--/ <summary>1D Reduction version of spectrum</summary>
+	--/ <quantity>meta.version</quantity>
 	[run1d] [varchar](32) NOT NULL,
 
+	--/ <summary>2D Reduction version of spectrum</summary>
+	--/ <quantity>meta.version</quantity>
 	[run2d] [varchar](32) NOT NULL,
 
+	--/ <summary>Tile number</summary>
+	--/ <quantity>meta.id</quantity>
 	[tile] [int] NOT NULL,
 
+	--/ <summary>Design ID number</summary>
+	--/ <quantity>meta.id</quantity>
 	[designID] [int] NOT NULL,
 
+	--/ <summary>for Legacy program, target selection information at plate design</summary>
+	--/ <quantity>meta.code</quantity>
 	[legacy_target1] [bigint] NOT NULL,
 
+	--/ <summary>for Legacy program target selection information at plate design, secondary/qa/calibration</summary>
+	--/ <quantity>meta.code</quantity>
 	[legacy_target2] [bigint] NOT NULL,
 
+	--/ <summary>for Special program target selection information at plate design</summary>
+	--/ <quantity>meta.code</quantity>
 	[special_target1] [bigint] NOT NULL,
 
+	--/ <summary>for Special program target selection information at plate design, secondary/qa/calibration</summary>
+	--/ <quantity>meta.code</quantity>
 	[special_target2] [bigint] NOT NULL,
 
+	--/ <summary>SEGUE-1 target selection information at plate design, primary science selection</summary>
+	--/ <quantity>meta.code</quantity>
 	[segue1_target1] [bigint] NOT NULL,
 
+	--/ <summary>SEGUE-1 target selection information at plate design, secondary/qa/calib selection</summary>
+	--/ <quantity>meta.code</quantity>
 	[segue1_target2] [bigint] NOT NULL,
 
+	--/ <summary>SEGUE-2 target selection information at plate design, primary science selection</summary>
+	--/ <quantity>meta.code</quantity>
 	[segue2_target1] [bigint] NOT NULL,
 
+	--/ <summary>SEGUE-2 target selection information at plate design, secondary/qa/calib selection</summary>
+	--/ <quantity>meta.code</quantity>
 	[segue2_target2] [bigint] NOT NULL,
 
+	--/ <summary>BOSS target selection information at plate</summary>
+	--/ <quantity>meta.code</quantity>
 	[boss_target1] [bigint] NOT NULL,
 
+	--/ <summary>EBOSS target selection information at plate</summary>
+	--/ <quantity>meta.code</quantity>
 	[eboss_target0] [bigint] NOT NULL,
 
+	--/ <summary>BOSS ancillary science target selection information at plate design</summary>
+	--/ <quantity>meta.code</quantity>
 	[ancillary_target1] [bigint] NOT NULL,
 
+	--/ <summary>BOSS ancillary target selection information at plate design</summary>
+	--/ <quantity>meta.code</quantity>
 	[ancillary_target2] [bigint] NOT NULL,
 
+	--/ <summary>target selection information at plate design, primary science selection (for backwards compatibility)</summary>
+	--/ <quantity>meta.code</quantity>
 	[primTarget] [bigint] NOT NULL,
 
+	--/ <summary>target selection information at plate design, secondary/qa/calib selection  (for backwards compatibility)</summary>
+	--/ <quantity>meta.code</quantity>
 	[secTarget] [bigint] NOT NULL,
 
+	--/ <summary>which spectrograph (1,2)</summary>
+	--/ <quantity>meta.id;instr.det</quantity>
 	[spectrographID] [smallint] NOT NULL,
 
+	--/ <summary>For Legacy, SEGUE-2 and BOSS science targets, type of object targeted as (target bits contain full information and are recommended)</summary>
+	--/ <quantity>meta.code</quantity>
 	[sourceType] [varchar](128) NOT NULL,
 
+	--/ <summary>Nature of target: SCIENCE, STANDARD, or SKY</summary>
+	--/ <quantity>meta.note</quantity>
 	[targetType] [varchar](128) NOT NULL,
 
+	--/ <summary>DR8 Right ascension of fiber, J2000</summary>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[ra] [float] NOT NULL,
 
+	--/ <summary>DR8 Declination of fiber, J2000</summary>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[dec] [float] NOT NULL,
 
+	--/ <summary>x of Normal unit vector in J2000</summary>
+	--/ <quantity>pos.eq.x;pos.frame=j2000</quantity>
 	[cx] [float] NOT NULL,
 
+	--/ <summary>y of Normal unit vector in J2000</summary>
+	--/ <quantity>pos.eq.y;pos.frame=j2000</quantity>
 	[cy] [float] NOT NULL,
 
+	--/ <summary>z of Normal unit vector in J2000</summary>
+	--/ <quantity>pos.eq.z;pos.frame=j2000</quantity>
 	[cz] [float] NOT NULL,
 
+	--/ <summary>X focal plane position (+RA direction)</summary>
+	--/ <quantity>pos.cartesian.x;instr.param</quantity>
+	--/ <unit>mm</unit>
 	[xFocal] [real] NOT NULL,
 
+	--/ <summary>Y focal plane position (+Dec direction)</summary>
+	--/ <quantity>pos.cartesian.y;instr.param</quantity>
+	--/ <unit>mm</unit>
 	[yFocal] [real] NOT NULL,
 
+	--/ <summary>Effective wavelength that hole was drilled for (accounting for atmopheric refraction)</summary>
+	--/ <quantity>wm.wl.effective</quantity>
+	--/ <unit>AA</unit>
 	[lambdaEff] [real] NOT NULL,
 
+	--/ <summary>Set to 1 if this hole was designated a "blue fiber", 0 if designated a "red fiber" (high redshift LRGs are preferentially in "red fibers")</summary>
+	--/ <quantity>meta.code;instr.param</quantity>
 	[blueFiber] [int] NOT NULL,
 
+	--/ <summary>Washer thickness used (for backstopping BOSS quasar targets, so they are closer to 4000 Angstrom focal plan)</summary>
+	--/ <quantity>phys.size;instr.param</quantity>
+	--/ <unit>um</unit>
 	[zOffset] [real] NOT NULL,
 
+	--/ <summary>Final Redshift</summary>
+	--/ <quantity>src.redshift</quantity>
 	[z] [real] NOT NULL,
 
+	--/ <summary>Redshift error</summary>
+	--/ <quantity>stat.error;src.redshift</quantity>
 	[zErr] [real] NOT NULL,
 
+	--/ <summary>Bitmask of warning values; 0 means all is well</summary>
+	--/ <quantity>meta.code;src.redshift</quantity>
 	[zWarning] [int] NOT NULL,
 
+	--/ <summary>Spectroscopic class (GALAXY, QSO, or STAR)</summary>
+	--/ <quantity>src.class</quantity>
 	[class] [varchar](32) NOT NULL,
 
+	--/ <summary>Spectroscopic subclass</summary>
+	--/ <quantity>src.class</quantity>
 	[subClass] [varchar](32) NOT NULL,
 
+	--/ <summary>Reduced chi-squared of best fit</summary>
+	--/ <quantity>stat.fit.chi2</quantity>
 	[rChi2] [real] NOT NULL,
 
+	--/ <summary>Degrees of freedom in best fit</summary>
+	--/ <quantity>stat.fit.dof</quantity>
 	[DOF] [real] NOT NULL,
 
+	--/ <summary>Difference in reduced chi-squared between best and second best fit</summary>
+	--/ <quantity>stat.fit.chi2;arith.diff</quantity>
 	[rChi2Diff] [real] NOT NULL,
 
+	--/ <summary>Best redshift when excluding QSO fit in BOSS spectra (right redshift to use for galaxy targets)</summary>
+	--/ <quantity>src.redshift</quantity>
 	[z_noqso] [real] NOT NULL,
 
+	--/ <summary>Error in "z_noqso" redshift (BOSS spectra only)</summary>
+	--/ <quantity>stat.error;src.redshift</quantity>
 	[zErr_noqso] [real] NOT NULL,
 
-	[zWarning_noqso] [real] NOT NULL,
+	--/ <summary>Warnings in "z_noqso" redshift (BOSS spectra only)</summary>
+	--/ <quantity>meta.code;src.redshift</quantity>
+	[zWarning_noqso] [int] NOT NULL,
 
+	--/ <summary>Classification in "z_noqso" redshift</summary>
+	--/ <quantity>src.class</quantity>
 	[class_noqso] [varchar](32) NOT NULL,
 
+	--/ <summary>Sub-classification in "z_noqso" redshift</summary>
+	--/ <quantity>src.class</quantity>
 	[subClass_noqso] [varchar](32) NOT NULL,
 
+	--/ <summary>Reduced chi-squared difference from next best redshift, for "z_noqso" redshift</summary>
+	--/ <quantity>stat.fit.chi2;arith.diff</quantity>
 	[rChi2Diff_noqso] [real] NOT NULL,
 
+	--/ <summary>Person-assigned redshift, if this object has been inspected</summary>
+	--/ <quantity>src.redshift</quantity>
 	[z_person] [real] NOT NULL,
 
+	--/ <summary>Person-assigned classification, if this object has been inspected</summary>
+	--/ <quantity>src.class</quantity>
 	[class_person] [varchar](32) NOT NULL,
 
+	--/ <summary>Comments from person for inspected objects</summary>
+	--/ <quantity>meta.note</quantity>
 	[comments_person] [varchar](200) NOT NULL,
 
+	--/ <summary>File name of best fit template source</summary>
+	--/ <quantity>meta.id;meta.file</quantity>
 	[tFile] [varchar](32) NOT NULL,
 
+	--/ <summary>Which column of the template file corresponds to template #0</summary>
+	--/ <quantity>meta.id;meta.table</quantity>
 	[tColumn_0] [smallint] NOT NULL,
 
+	--/ <summary>Which column of the template file corresponds to template #1</summary>
+	--/ <quantity>meta.id;meta.table</quantity>
 	[tColumn_1] [smallint] NOT NULL,
 
+	--/ <summary>Which column of the template file corresponds to template #2</summary>
+	--/ <quantity>meta.id;meta.table</quantity>
 	[tColumn_2] [smallint] NOT NULL,
 
+	--/ <summary>Which column of the template file corresponds to template #3</summary>
+	--/ <quantity>meta.id;meta.table</quantity>
 	[tColumn_3] [smallint] NOT NULL,
 
+	--/ <summary>Which column of the template file corresponds to template #4</summary>
+	--/ <quantity>meta.id;meta.table</quantity>
 	[tColumn_4] [smallint] NOT NULL,
 
+	--/ <summary>Which column of the template file corresponds to template #5</summary>
+	--/ <quantity>meta.id;meta.table</quantity>
 	[tColumn_5] [smallint] NOT NULL,
 
+	--/ <summary>Which column of the template file corresponds to template #6</summary>
+	--/ <quantity>meta.id;meta.table</quantity>
 	[tColumn_6] [smallint] NOT NULL,
 
+	--/ <summary>Which column of the template file corresponds to template #7</summary>
+	--/ <quantity>meta.id;meta.table</quantity>
 	[tColumn_7] [smallint] NOT NULL,
 
+	--/ <summary>Which column of the template file corresponds to template #8</summary>
+	--/ <quantity>meta.id;meta.table</quantity>
 	[tColumn_8] [smallint] NOT NULL,
 
+	--/ <summary>Which column of the template file corresponds to template #9</summary>
+	--/ <quantity>meta.id;meta.table</quantity>
 	[tColumn_9] [smallint] NOT NULL,
 
+	--/ <summary>Number of polynomial terms used in the fit</summary>
+	--/ <quantity>meta.number</quantity>
 	[nPoly] [real] NOT NULL,
 
+	--/ <summary>Coefficient for template #0 of fit</summary>
+	--/ <quantity>stat.fit.param</quantity>
 	[theta_0] [real] NOT NULL,
 
+	--/ <summary>Coefficient for template #1 of fit</summary>
+	--/ <quantity>stat.fit.param</quantity>
 	[theta_1] [real] NOT NULL,
 
+	--/ <summary>Coefficient for template #2 of fit</summary>
+	--/ <quantity>stat.fit.param</quantity>
 	[theta_2] [real] NOT NULL,
 
+	--/ <summary>Coefficient for template #3 of fit</summary>
+	--/ <quantity>stat.fit.param</quantity>
 	[theta_3] [real] NOT NULL,
 
+	--/ <summary>Coefficient for template #4 of fit</summary>
+	--/ <quantity>stat.fit.param</quantity>
 	[theta_4] [real] NOT NULL,
 
+	--/ <summary>Coefficient for template #5 of fit</summary>
+	--/ <quantity>stat.fit.param</quantity>
 	[theta_5] [real] NOT NULL,
 
+	--/ <summary>Coefficient for template #6 of fit</summary>
+	--/ <quantity>stat.fit.param</quantity>
 	[theta_6] [real] NOT NULL,
 
+	--/ <summary>Coefficient for template #7 of fit</summary>
+	--/ <quantity>stat.fit.param</quantity>
 	[theta_7] [real] NOT NULL,
 
+	--/ <summary>Coefficient for template #8 of fit</summary>
+	--/ <quantity>stat.fit.param</quantity>
 	[theta_8] [real] NOT NULL,
 
+	--/ <summary>Coefficient for template #9 of fit</summary>
+	--/ <quantity>stat.fit.param</quantity>
 	[theta_9] [real] NOT NULL,
 
+	--/ <summary>Velocity dispersion</summary>
+	--/ <quantity>phys.veloc.dispersion</quantity>
+	--/ <unit>km s-1</unit>
 	[velDisp] [real] NOT NULL,
 
+	--/ <summary>Error in velocity dispersion</summary>
+	--/ <quantity>stat.error;phys.veloc.dispersion</quantity>
+	--/ <unit>km s-1</unit>
 	[velDispErr] [real] NOT NULL,
 
+	--/ <summary>Redshift associated with best fit velocity dispersion</summary>
+	--/ <quantity>src.redshift</quantity>
 	[velDispZ] [real] NOT NULL,
 
+	--/ <summary>Error in redshift associated with best fit velocity dispersion</summary>
+	--/ <quantity>stat.error;src.redshift</quantity>
 	[velDispZErr] [real] NOT NULL,
 
+	--/ <summary>Chi-squared associated with velocity dispersion fit</summary>
+	--/ <quantity>stat.fit.chi2</quantity>
 	[velDispChi2] [real] NOT NULL,
 
+	--/ <summary>Number of pixels overlapping best template in velocity dispersion fit</summary>
+	--/ <quantity>meta.number;instr.pixel</quantity>
 	[velDispNPix] [int] NOT NULL,
 
+	--/ <summary>Number of degrees of freedom in velocity dispersion fit</summary>
+	--/ <quantity>stat.fit.dof</quantity>
 	[velDispDOF] [int] NOT NULL,
 
+	--/ <summary>Minimum observed (vacuum) wavelength</summary>
+	--/ <quantity>em.wl;stat.min</quantity>
+	--/ <unit>Angstroms</unit>
 	[waveMin] [real] NOT NULL,
 
+	--/ <summary>Maximum observed (vacuum) wavelength</summary>
+	--/ <quantity>em.wl;stat.max</quantity>
+	--/ <unit>Angstroms</unit>
 	[waveMax] [real] NOT NULL,
 
+	--/ <summary>Coverage in wavelength, in units of log10 wavelength</summary>
+	--/ <quantity>stat.value</quantity>
 	[wCoverage] [real] NOT NULL,
 
+	--/ <summary>Median signal-to-noise over all good pixels in u-band</summary>
+	--/ <quantity>stat.snr;stat.median;em.opt.SDSS.u</quantity>
 	[snMedian_u] [real] NOT NULL,
 
+	--/ <summary>Median signal-to-noise over all good pixels in g-band</summary>
+	--/ <quantity>stat.snr;stat.median;em.opt.SDSS.g</quantity>
 	[snMedian_g] [real] NOT NULL,
 
+	--/ <summary>Median signal-to-noise over all good pixels in r-band</summary>
+	--/ <quantity>stat.snr;stat.median;em.opt.SDSS.r</quantity>
 	[snMedian_r] [real] NOT NULL,
 
+	--/ <summary>Median signal-to-noise over all good pixels in i-band</summary>
+	--/ <quantity>stat.snr;stat.median;em.opt.SDSS.i</quantity>
 	[snMedian_i] [real] NOT NULL,
 
+	--/ <summary>Median signal-to-noise over all good pixels in z-band</summary>
+	--/ <quantity>stat.snr;stat.median;em.opt.SDSS.z</quantity>
 	[snMedian_z] [real] NOT NULL,
 
+	--/ <summary>Median signal-to-noise over all good pixels</summary>
+	--/ <quantity>stat.snr;stat.median</quantity>
 	[snMedian] [real] NOT NULL,
 
+	--/ <summary>68-th percentile value of abs(chi) of the best-fit synthetic spectrum to the actual spectrum (around 1.0 for a good fit)</summary>
+	--/ <quantity>stat.fit.chi2</quantity>
 	[chi68p] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels deviant by more than 1 sigma relative to best-fit</summary>
+	--/ <quantity>meta.number;instr.pixel;arith.ratio</quantity>
 	[fracNSigma_1] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels deviant by more than 2 sigma relative to best-fit</summary>
+	--/ <quantity>meta.number;instr.pixel;arith.ratio</quantity>
 	[fracNSigma_2] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels deviant by more than 3 sigma relative to best-fit</summary>
+	--/ <quantity>meta.number;instr.pixel;arith.ratio</quantity>
 	[fracNSigma_3] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels deviant by more than 4 sigma relative to best-fit</summary>
+	--/ <quantity>meta.number;instr.pixel;arith.ratio</quantity>
 	[fracNSigma_4] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels deviant by more than 5 sigma relative to best-fit</summary>
+	--/ <quantity>meta.number;instr.pixel;arith.ratio</quantity>
 	[fracNSigma_5] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels deviant by more than 6 sigma relative to best-fit</summary>
+	--/ <quantity>meta.number;instr.pixel;arith.ratio</quantity>
 	[fracNSigma_6] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels deviant by more than 7 sigma relative to best-fit</summary>
+	--/ <quantity>meta.number;instr.pixel;arith.ratio</quantity>
 	[fracNSigma_7] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels deviant by more than 8 sigma relative to best-fit</summary>
+	--/ <quantity>meta.number;instr.pixel;arith.ratio</quantity>
 	[fracNSigma_8] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels deviant by more than 9 sigma relative to best-fit</summary>
+	--/ <quantity>meta.number;instr.pixel;arith.ratio</quantity>
 	[fracNSigma_9] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels deviant by more than 10 sigma relative to best-fit</summary>
+	--/ <quantity>meta.number;instr.pixel;arith.ratio</quantity>
 	[fracNSigma_10] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels high by more than 1 sigma relative to best-fit</summary>
+	--/ <quantity>meta.number;instr.pixel;arith.ratio</quantity>
 	[fracNSigHi_1] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels high by more than 2 sigma relative to best-fit</summary>
+	--/ <quantity>meta.number;instr.pixel;arith.ratio</quantity>
 	[fracNSigHi_2] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels high by more than 3 sigma relative to best-fit</summary>
+	--/ <quantity>meta.number;instr.pixel;arith.ratio</quantity>
 	[fracNSigHi_3] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels high by more than 4 sigma relative to best-fit</summary>
+	--/ <quantity>meta.number;instr.pixel;arith.ratio</quantity>
 	[fracNSigHi_4] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels high by more than 5 sigma relative to best-fit</summary>
+	--/ <quantity>meta.number;instr.pixel;arith.ratio</quantity>
 	[fracNSigHi_5] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels high by more than 6 sigma relative to best-fit</summary>
+	--/ <quantity>meta.number;instr.pixel;arith.ratio</quantity>
 	[fracNSigHi_6] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels high by more than 7 sigma relative to best-fit</summary>
+	--/ <quantity>meta.number;instr.pixel;arith.ratio</quantity>
 	[fracNSigHi_7] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels high by more than 8 sigma relative to best-fit</summary>
+	--/ <quantity>meta.number;instr.pixel;arith.ratio</quantity>
 	[fracNSigHi_8] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels high by more than 9 sigma relative to best-fit</summary>
+	--/ <quantity>meta.number;instr.pixel;arith.ratio</quantity>
 	[fracNSigHi_9] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels high by more than 10 sigma relative to best-fit</summary>
+	--/ <quantity>meta.number;instr.pixel;arith.ratio</quantity>
 	[fracNSigHi_10] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels low by more than 1 sigma relative to best-fit</summary>
+	--/ <quantity>meta.number;instr.pixel;arith.ratio</quantity>
 	[fracNSigLo_1] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels low by more than 2 sigma relative to best-fit</summary>
+	--/ <quantity>meta.number;instr.pixel;arith.ratio</quantity>
 	[fracNSigLo_2] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels low by more than 3 sigma relative to best-fit</summary>
+	--/ <quantity>meta.number;instr.pixel;arith.ratio</quantity>
 	[fracNSigLo_3] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels low by more than 4 sigma relative to best-fit</summary>
+	--/ <quantity>meta.number;instr.pixel;arith.ratio</quantity>
 	[fracNSigLo_4] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels low by more than 5 sigma relative to best-fit</summary>
+	--/ <quantity>meta.number;instr.pixel;arith.ratio</quantity>
 	[fracNSigLo_5] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels low by more than 6 sigma relative to best-fit</summary>
+	--/ <quantity>meta.number;instr.pixel;arith.ratio</quantity>
 	[fracNSigLo_6] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels low by more than 7 sigma relative to best-fit</summary>
+	--/ <quantity>meta.number;instr.pixel;arith.ratio</quantity>
 	[fracNSigLo_7] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels low by more than 8 sigma relative to best-fit</summary>
+	--/ <quantity>meta.number;instr.pixel;arith.ratio</quantity>
 	[fracNSigLo_8] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels low by more than 9 sigma relative to best-fit</summary>
+	--/ <quantity>meta.number;instr.pixel;arith.ratio</quantity>
 	[fracNSigLo_9] [real] NOT NULL,
 
+	--/ <summary>Fraction of pixels low by more than 10 sigma relative to best-fit</summary>
+	--/ <quantity>meta.number;instr.pixel;arith.ratio</quantity>
 	[fracNSigLo_10] [real] NOT NULL,
 
+	--/ <summary>Spectrum projected onto u filter</summary>
+	--/ <quantity>phot.flux;em.opt.SDSS.u</quantity>
+	--/ <unit>nmgy</unit>
 	[spectroFlux_u] [real] NOT NULL,
 
+	--/ <summary>Spectrum projected onto g filter</summary>
+	--/ <quantity>phot.flux;em.opt.SDSS.g</quantity>
+	--/ <unit>nmgy</unit>
 	[spectroFlux_g] [real] NOT NULL,
 
+	--/ <summary>Spectrum projected onto r filter</summary>
+	--/ <quantity>phot.flux;em.opt.SDSS.r</quantity>
+	--/ <unit>nmgy</unit>
 	[spectroFlux_r] [real] NOT NULL,
 
+	--/ <summary>Spectrum projected onto i filter</summary>
+	--/ <quantity>phot.flux;em.opt.SDSS.i</quantity>
+	--/ <unit>nmgy</unit>
 	[spectroFlux_i] [real] NOT NULL,
 
+	--/ <summary>Spectrum projected onto z filter</summary>
+	--/ <quantity>phot.flux;em.opt.SDSS.z</quantity>
+	--/ <unit>nmgy</unit>
 	[spectroFlux_z] [real] NOT NULL,
 
+	--/ <summary>Best-fit template spectrum projected onto u filter</summary>
+	--/ <quantity>phot.flux;em.opt.SDSS.u</quantity>
+	--/ <unit>nmgy</unit>
 	[spectroSynFlux_u] [real] NOT NULL,
 
+	--/ <summary>Best-fit template spectrum projected onto g filter</summary>
+	--/ <quantity>phot.flux;em.opt.SDSS.g</quantity>
+	--/ <unit>nmgy</unit>
 	[spectroSynFlux_g] [real] NOT NULL,
 
+	--/ <summary>Best-fit template spectrum projected onto r filter</summary>
+	--/ <quantity>phot.flux;em.opt.SDSS.r</quantity>
+	--/ <unit>nmgy</unit>
 	[spectroSynFlux_r] [real] NOT NULL,
 
+	--/ <summary>Best-fit template spectrum projected onto i filter</summary>
+	--/ <quantity>phot.flux;em.opt.SDSS.i</quantity>
+	--/ <unit>nmgy</unit>
 	[spectroSynFlux_i] [real] NOT NULL,
 
+	--/ <summary>Best-fit template spectrum projected onto z filter</summary>
+	--/ <quantity>phot.flux;em.opt.SDSS.z</quantity>
+	--/ <unit>nmgy</unit>
 	[spectroSynFlux_z] [real] NOT NULL,
 
+	--/ <summary>Inverse variance of spectrum projected onto u filter</summary>
+	--/ <quantity>stat.variance;phot.flux;em.opt.SDSS.u</quantity>
+	--/ <unit>nmgy-2</unit>
 	[spectroFluxIvar_u] [real] NOT NULL,
 
+	--/ <summary>Inverse variance of spectrum projected onto g filter</summary>
+	--/ <quantity>stat.variance;phot.flux;em.opt.SDSS.g</quantity>
+	--/ <unit>nmgy-2</unit>
 	[spectroFluxIvar_g] [real] NOT NULL,
 
+	--/ <summary>Inverse variance of spectrum projected onto r filter</summary>
+	--/ <quantity>stat.variance;phot.flux;em.opt.SDSS.r</quantity>
+	--/ <unit>nmgy-2</unit>
 	[spectroFluxIvar_r] [real] NOT NULL,
 
+	--/ <summary>Inverse variance of spectrum projected onto i filter</summary>
+	--/ <quantity>stat.variance;phot.flux;em.opt.SDSS.i</quantity>
+	--/ <unit>nmgy-2</unit>
 	[spectroFluxIvar_i] [real] NOT NULL,
 
+	--/ <summary>Inverse variance of spectrum projected onto z filter</summary>
+	--/ <quantity>stat.variance;phot.flux;em.opt.SDSS.z</quantity>
+	--/ <unit>nmgy-2</unit>
 	[spectroFluxIvar_z] [real] NOT NULL,
 
+	--/ <summary>Inverse variance of best-fit template spectrum projected onto u filter</summary>
+	--/ <quantity>stat.variance;phot.flux;em.opt.SDSS.u</quantity>
+	--/ <unit>nmgy-2</unit>
 	[spectroSynFluxIvar_u] [real] NOT NULL,
 
+	--/ <summary>Inverse variance of best-fit template spectrum projected onto g filter</summary>
+	--/ <quantity>stat.variance;phot.flux;em.opt.SDSS.g</quantity>
+	--/ <unit>nmgy-2</unit>
 	[spectroSynFluxIvar_g] [real] NOT NULL,
 
+	--/ <summary>Inverse variance of best-fit template spectrum projected onto r filter</summary>
+	--/ <quantity>stat.variance;phot.flux;em.opt.SDSS.r</quantity>
+	--/ <unit>nmgy-2</unit>
 	[spectroSynFluxIvar_r] [real] NOT NULL,
 
+	--/ <summary>Inverse variance of best-fit template spectrum projected onto i filter</summary>
+	--/ <quantity>stat.variance;phot.flux;em.opt.SDSS.i</quantity>
+	--/ <unit>nmgy-2</unit>
 	[spectroSynFluxIvar_i] [real] NOT NULL,
 
+	--/ <summary>Inverse variance of best-fit template spectrum projected onto z filter</summary>
+	--/ <quantity>stat.variance;phot.flux;em.opt.SDSS.z</quantity>
+	--/ <unit>nmgy-2</unit>
 	[spectroSynFluxIvar_z] [real] NOT NULL,
 
+	--/ <summary>Sky spectrum projected onto u filter</summary>
+	--/ <quantity>phot.flux;em.opt.SDSS.u</quantity>
+	--/ <unit>nmgy</unit>
 	[spectroSkyFlux_u] [real] NOT NULL,
 
+	--/ <summary>Sky spectrum projected onto g filter</summary>
+	--/ <quantity>phot.flux;em.opt.SDSS.g</quantity>
+	--/ <unit>nmgy</unit>
 	[spectroSkyFlux_g] [real] NOT NULL,
 
+	--/ <summary>Sky spectrum projected onto r filter</summary>
+	--/ <quantity>phot.flux;em.opt.SDSS.r</quantity>
+	--/ <unit>nmgy</unit>
 	[spectroSkyFlux_r] [real] NOT NULL,
 
+	--/ <summary>Sky spectrum projected onto i filter</summary>
+	--/ <quantity>phot.flux;em.opt.SDSS.i</quantity>
+	--/ <unit>nmgy</unit>
 	[spectroSkyFlux_i] [real] NOT NULL,
 
+	--/ <summary>Sky spectrum projected onto z filter</summary>
+	--/ <quantity>phot.flux;em.opt.SDSS.z</quantity>
+	--/ <unit>nmgy</unit>
 	[spectroSkyFlux_z] [real] NOT NULL,
 
+	--/ <summary>For each bit, records whether any pixel in the spectrum has that bit set in its ANDMASK</summary>
+	--/ <quantity>meta.code</quantity>
 	[anyAndMask] [int] NOT NULL,
 
+	--/ <summary>For each bit, records whether any pixel in the spectrum has that bit set in its ORMASK</summary>
+	--/ <quantity>meta.code</quantity>
 	[anyOrMask] [int] NOT NULL,
 
+	--/ <summary>Overall signal-to-noise-squared measure for plate (only set for SDSS spectrograph)</summary>
+	--/ <quantity>stat.snr</quantity>
 	[plateSN2] [real] NOT NULL,
 
+	--/ <summary>Dereddened signal-to-noise-squared measure for plate (only set for BOSS spectrograph)</summary>
+	--/ <quantity>stat.snr</quantity>
 	[deredSN2] [real] NOT NULL,
 
+	--/ <summary>Signal to noise measure for MS turnoff stars on plate (-9999 if not appropriate)</summary>
+	--/ <quantity>stat.snr</quantity>
 	[snTurnoff] [real] NOT NULL,
 
+	--/ <summary>(S/N)^2 at g=20.20 for spectrograph #1</summary>
+	--/ <quantity>stat.value;em.opt.SDSS.g</quantity>
 	[sn1_g] [real] NOT NULL,
 
+	--/ <summary>(S/N)^2 at r=20.25 for spectrograph #1</summary>
+	--/ <quantity>stat.value;em.opt.SDSS.r</quantity>
 	[sn1_r] [real] NOT NULL,
 
+	--/ <summary>(S/N)^2 at i=19.90 for spectrograph #1</summary>
+	--/ <quantity>stat.value;em.opt.SDSS.i</quantity>
 	[sn1_i] [real] NOT NULL,
 
+	--/ <summary>(S/N)^2 at g=20.20 for spectrograph #2</summary>
+	--/ <quantity>stat.value;em.opt.SDSS.g</quantity>
 	[sn2_g] [real] NOT NULL,
 
+	--/ <summary>(S/N)^2 at r=20.25 for spectrograph #2</summary>
+	--/ <quantity>stat.value;em.opt.SDSS.r</quantity>
 	[sn2_r] [real] NOT NULL,
 
+	--/ <summary>(S/N)^2 at i=19.90 for spectrograph #2</summary>
+	--/ <quantity>stat.value;em.opt.SDSS.i</quantity>
 	[sn2_i] [real] NOT NULL,
 
+	--/ <summary>File name for best-fit Elodie star</summary>
+	--/ <quantity>meta.id;meta.file</quantity>
 	[elodieFileName] [varchar](32) NOT NULL,
 
+	--/ <summary>Star name (mostly Henry Draper names)</summary>
+	--/ <quantity>meta.id</quantity>
 	[elodieObject] [varchar](32) NOT NULL,
 
+	--/ <summary>Spectral type</summary>
+	--/ <quantity>src.spType</quantity>
 	[elodieSpType] [varchar](32) NOT NULL,
 
+	--/ <summary>(B-V) color</summary>
+	--/ <quantity>phot.color;em.opt.B;em.opt.V</quantity>
+	--/ <unit>mag</unit>
 	[elodieBV] [real] NOT NULL,
 
+	--/ <summary>Effective temperature</summary>
+	--/ <quantity>phys.temperature.effective</quantity>
+	--/ <unit>Kelvin</unit>
 	[elodieTEff] [real] NOT NULL,
 
+	--/ <summary>log10(gravity)</summary>
+	--/ <quantity>phys.gravity</quantity>
 	[elodieLogG] [real] NOT NULL,
 
+	--/ <summary>Metallicity ([Fe/H])</summary>
+	--/ <quantity>phys.abund.Fe</quantity>
 	[elodieFeH] [real] NOT NULL,
 
+	--/ <summary>Redshift</summary>
+	--/ <quantity>src.redshift</quantity>
 	[elodieZ] [real] NOT NULL,
 
+	--/ <summary>Redshift error (negative for invalid fit)</summary>
+	--/ <quantity>stat.error;src.redshift</quantity>
 	[elodieZErr] [real] NOT NULL,
 
+	--/ <summary>Standard deviation in redshift among the 12 best-fit stars</summary>
+	--/ <quantity>stat.stdev;src.redshift</quantity>
 	[elodieZModelErr] [real] NOT NULL,
 
+	--/ <summary>Reduced chi^2</summary>
+	--/ <quantity>stat.fit.chi2</quantity>
 	[elodieRChi2] [real] NOT NULL,
 
+	--/ <summary>Degrees of freedom for fit</summary>
+	--/ <quantity>stat.fit.dof</quantity>
 	[elodieDOF] [real] NOT NULL,
 
+	--/ <summary>20 deep Hierarchical Triangular Mesh ID</summary>
+	--/ <quantity>pos.HTM</quantity>
 	[htmID] [bigint] NOT NULL,
 
+	--/ <summary>Zone ID</summary>
+	--/ <quantity>pos.zone</quantity>
 	[zoneID] [bigint] NOT NULL,
 
+	--/ <summary>Load Version</summary>
+	--/ <quantity>meta.version</quantity>
 	[loadVersion] [int] NOT NULL,
+	
 	--[img] [varbinary](max) NOT NULL DEFAULT (0x1111),
  CONSTRAINT [pk_SpecObjAll_specObjID] PRIMARY KEY CLUSTERED 
 (
@@ -12771,252 +13193,566 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+--/ <summary> The combined spectro and photo parameters of an object in SpecObjAll </summary>
+--/ <remarks> This is a precomputed join between the PhotoObjAll and SpecObjAll tables.  The photo attibutes included cover about the same as PhotoTag.  The table also includes certain attributes from Tiles. </remarks>
 CREATE TABLE [dbo].[SpecPhotoAll](
 
+	--/ <summary>Unique ID</summary>
+	--/ <quantity>meta.id</quantity>
 	[specObjID] [bigint] NOT NULL,
 
+	--/ <summary>MJD of observation</summary>
+	--/ <quantity>time.epoch</quantity>
+	--/ <unit>MJD</unit>
 	[mjd] [int] NOT NULL,
 
+	--/ <summary>Plate ID</summary>
+	--/ <quantity>meta.id;instr.det</quantity>
 	[plate] [smallint] NOT NULL,
 
+	--/ <summary>Tile ID</summary>
+	--/ <quantity>meta.id</quantity>
 	[tile] [smallint] NOT NULL,
 
+	--/ <summary>Fiber ID</summary>
+	--/ <quantity>meta.ind;instr.param</quantity>
 	[fiberID] [smallint] NOT NULL,
 
+	--/ <summary>Final Redshift</summary>
+	--/ <quantity>src.redshift</quantity>
 	[z] [real] NOT NULL,
 
+	--/ <summary>Redshift error</summary>
+	--/ <quantity>stat.error;redshift</quantity>
 	[zErr] [real] NOT NULL,
 
+	--/ <summary>Spectroscopic class (GALAXY, QSO, or STAR)</summary>
+	--/ <quantity>src.class</quantity>
 	[class] [varchar](32) NOT NULL,
 
+	--/ <summary>Spectroscopic subclass</summary>
+	--/ <quantity>src.class</quantity>
 	[subClass] [varchar](32) NOT NULL,
 
+	--/ <summary>Warning Flags</summary>
+	--/ <quantity>meta.code;src.redshift</quantity>
 	[zWarning] [int] NOT NULL,
 
+	--/ <summary>ra in J2000 from SpecObj</summary>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[ra] [float] NOT NULL,
 
+	--/ <summary>dec in J2000 from SpecObj</summary>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[dec] [float] NOT NULL,
 
+	--/ <summary>x of Normal unit vector in J2000</summary>
+	--/ <quantity>pos.eq.x;pos.frame=j2000</quantity>
 	[cx] [float] NOT NULL,
 
+	--/ <summary>y of Normal unit vector in J2000</summary>
+	--/ <quantity>pos.eq.y;pos.frame=j2000</quantity>
 	[cy] [float] NOT NULL,
 
+	--/ <summary>z of Normal unit vector in J2000</summary>
+	--/ <quantity>pos.eq.z;pos.frame=j2000</quantity>
 	[cz] [float] NOT NULL,
 
+	--/ <summary>20 deep Hierarchical Triangular Mesh ID</summary>
+	--/ <quantity>pos.HTM;pos.frame=j2000</quantity>
 	[htmID] [bigint] NOT NULL,
 
+	--/ <summary>Zone ID</summary>
+	--/ <quantity>pos.zone</quantity>
 	[zoneID] [bigint] NOT NULL,
 
+	--/ <summary>Best version of spectrum at this location (defines default view SpecObj)</summary>
+	--/ <quantity>meta.code</quantity>
 	[sciencePrimary] [smallint] NOT NULL,
 
+	--/ <summary>Best version of spectrum at this location, among Legacy plates</summary>
+	--/ <quantity>meta.code</quantity>
 	[legacyPrimary] [smallint] NOT NULL,
 
+	--/ <summary>Best version of spectrum at this location, among SEGUE plates (defines default view SpecObj)</summary>
+	--/ <quantity>meta.code</quantity>
 	[seguePrimary] [smallint] NOT NULL,
 
+	--/ <summary>Best version of spectrum at this location, among SEGUE-1 plates</summary>
+	--/ <quantity>meta.code</quantity>
 	[segue1Primary] [smallint] NOT NULL,
 
+	--/ <summary>Best version of spectrum at this location, among SEGUE-2 plates</summary>
+	--/ <quantity>meta.code</quantity>
 	[segue2Primary] [smallint] NOT NULL,
 
+	--/ <summary>Best version of spectrum at this location, among BOSS plates</summary>
+	--/ <quantity>meta.code</quantity>
 	[bossPrimary] [smallint] NOT NULL,
 
+	--/ <summary>Best version of spectrum at this location among SDSS plates</summary>
+	--/ <quantity>meta.code</quantity>
 	[sdssPrimary] [smallint] NOT NULL,
 
+	--/ <summary>Survey name</summary>
+	--/ <quantity>mtea.id</quantity>
 	[survey] [varchar](32) NOT NULL,
 
+	--/ <summary>Program name</summary>
+	--/ <quantity>meta.id</quantity>
 	[programname] [varchar](32) NOT NULL,
 
+	--/ <summary>for Legacy program, target selection information at plate design</summary>
+	--/ <quantity>meta.code</quantity>
 	[legacy_target1] [bigint] NOT NULL,
 
+	--/ <summary>for Legacy program target selection information at plate design, secondary/qa/calibration</summary>
+	--/ <quantity>meta.code</quantity>
 	[legacy_target2] [bigint] NOT NULL,
 
+	--/ <summary>for Special program target selection information at plate design</summary>
+	--/ <quantity>meta.code</quantity>
 	[special_target1] [bigint] NOT NULL,
 
+	--/ <summary>for Special program target selection information at plate design, secondary/qa/calibration</summary>
+	--/ <quantity>meta.code</quantity>
 	[special_target2] [bigint] NOT NULL,
 
+	--/ <summary>SEGUE-1 target selection information at plate design, primary science selection</summary>
+	--/ <quantity>meta.code</quantity>
 	[segue1_target1] [bigint] NOT NULL,
 
+	--/ <summary>SEGUE-1 target selection information at plate design, secondary/qa/calib selection</summary>
+	--/ <quantity>meta.code</quantity>
 	[segue1_target2] [bigint] NOT NULL,
 
+	--/ <summary>SEGUE-2 target selection information at plate design, primary science selection</summary>
+	--/ <quantity>meta.code</quantity>
 	[segue2_target1] [bigint] NOT NULL,
 
+	--/ <summary>SEGUE-2 target selection information at plate design, secondary/qa/calib selection</summary>
+	--/ <quantity>meta.code</quantity>
 	[segue2_target2] [bigint] NOT NULL,
 
+	--/ <summary>BOSS target selection information at plate</summary>
+	--/ <quantity>meta.code</quantity>
 	[boss_target1] [bigint] NOT NULL,
 
+	--/ <summary>BOSS ancillary science target selection information at plate design</summary>
+	--/ <quantity>meta.code</quantity>
 	[ancillary_target1] [bigint] NOT NULL,
 
+	--/ <summary>BOSS ancillary target selection information at plate design</summary>
+	--/ <quantity>meta.code</quantity>
 	[ancillary_target2] [bigint] NOT NULL,
 
+	--/ <summary>Link to plate on which the spectrum was taken</summary>
+	--/ <quantity>meta.id</quantity>
 	[plateID] [bigint] NOT NULL,
 
+	--/ <summary>type of object targeted as</summary>
+	--/ <quantity>meta.note</quantity>
 	[sourceType] [varchar](32) NOT NULL,
 
+	--/ <summary>ID of target PhotoObj</summary>
+	--/ <quantity>meta.id</quantity>
 	[targetObjID] [bigint] NOT NULL,
 
+	--/ <summary>Unique SDSS identifier composed from [skyVersion,rerun,run,camcol,field,obj].</summary>
+	--/ <quantity>meta.id</quantity>
 	[objID] [bigint] NULL,
 
+	--/ <summary>0 = OPDB target, 1 = OPDB best</summary>
+	--/ <quantity>meta.version</quantity>
 	[skyVersion] [int] NULL,
 
+	--/ <summary>Run number</summary>
+	--/ <quantity>meta.id</quantity>
 	[run] [int] NULL,
 
+	--/ <summary>Rerun number</summary>
+	--/ <quantity>meta.id</quantity>
 	[rerun] [int] NULL,
 
+	--/ <summary>Camera column</summary>
+	--/ <quantity>meta.id;instr.det</quantity>
 	[camcol] [int] NULL,
 
+	--/ <summary>Field number</summary>
+	--/ <quantity>meta.id;obs.field</quantity>
 	[field] [int] NULL,
 
+	--/ <summary>The object id within a field. Usually changes between reruns of the same field.</summary>
+	--/ <quantity>meta.id</quantity>
 	[obj] [int] NULL,
 
+	--/ <summary>1: primary, 2: secondary, 3: family object.</summary>
+	--/ <quantity>meta.code</quantity>
 	[mode] [int] NULL,
 
+	--/ <summary>Number of children if this is a deblened composite object. BRIGHT (in a flags sense) objects also have nchild==1, the non-BRIGHT sibling.</summary>
+	--/ <quantity>meta.number</quantity>
 	[nChild] [int] NULL,
 
+	--/ <summary>Morphological type classification of the object.</summary>
+	--/ <quantity>src.class</quantity>
 	[type] [int] NULL,
 
+	--/ <summary>Photo Object Attribute Flags</summary>
+	--/ <quantity>meta.code</quantity>
 	[flags] [bigint] NULL,
 
+	--/ <summary>PSF flux</summary>
+	--/ <quantity>phot.mag.psf;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[psfMag_u] [real] NULL,
 
+	--/ <summary>PSF flux</summary>
+	--/ <quantity>phot.mag.psf;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[psfMag_g] [real] NULL,
 
+	--/ <summary>PSF flux</summary>
+	--/ <quantity>phot.mag.psf;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[psfMag_r] [real] NULL,
 
+	--/ <summary>PSF flux</summary>
+	--/ <quantity>phot.mag.psf;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[psfMag_i] [real] NULL,
 
+	--/ <summary>PSF flux</summary>
+	--/ <quantity>phot.mag.psf;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[psfMag_z] [real] NULL,
 
+	--/ <summary>PSF flux error</summary>
+	--/ <quantity>stat.error;phot.mag.psf;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[psfMagErr_u] [real] NULL,
 
+	--/ <summary>PSF flux error</summary>
+	--/ <quantity>stat.error;phot.mag.psf;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[psfMagErr_g] [real] NULL,
 
+	--/ <summary>PSF flux error</summary>
+	--/ <quantity>stat.error;phot.mag.psf;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[psfMagErr_r] [real] NULL,
 
+	--/ <summary>PSF flux error</summary>
+	--/ <quantity>stat.error;phot.mag.psf;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[psfMagErr_i] [real] NULL,
 
+	--/ <summary>PSF flux error</summary>
+	--/ <quantity>stat.error;phot.mag.psf;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[psfMagErr_z] [real] NULL,
 
+	--/ <summary>Flux in 3 arcsec diameter fiber radius</summary>
+	--/ <quantity>phot.mag.fiber;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[fiberMag_u] [real] NULL,
 
+	--/ <summary>Flux in 3 arcsec diameter fiber radius</summary>
+	--/ <quantity>phot.mag.fiber;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[fiberMag_g] [real] NULL,
 
+	--/ <summary>Flux in 3 arcsec diameter fiber radius</summary>
+	--/ <quantity>phot.mag.fiber;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[fiberMag_r] [real] NULL,
 
+	--/ <summary>Flux in 3 arcsec diameter fiber radius</summary>
+	--/ <quantity>phot.mag.fiber;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[fiberMag_i] [real] NULL,
 
+	--/ <summary>Flux in 3 arcsec diameter fiber radius</summary>
+	--/ <quantity>phot.mag.fiber;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[fiberMag_z] [real] NULL,
 
+	--/ <summary>Flux in 3 arcsec diameter fiber radius error</summary>
+	--/ <quantity>stat.error;phot.mag.fiber;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[fiberMagErr_u] [real] NULL,
 
+	--/ <summary>Flux in 3 arcsec diameter fiber radius error</summary>
+	--/ <quantity>stat.error;phot.mag.fiber;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[fiberMagErr_g] [real] NULL,
 
+	--/ <summary>Flux in 3 arcsec diameter fiber radius error</summary>
+	--/ <quantity>stat.error;phot.mag.fiber;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[fiberMagErr_r] [real] NULL,
 
+	--/ <summary>Flux in 3 arcsec diameter fiber radius error</summary>
+	--/ <quantity>stat.error;phot.mag.fiber;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[fiberMagErr_i] [real] NULL,
 
+	--/ <summary>Flux in 3 arcsec diameter fiber radius error</summary>
+	--/ <quantity>stat.error;phot.mag.fiber;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[fiberMagErr_z] [real] NULL,
 
+	--/ <summary>Petrosian flux</summary>
+	--/ <quantity>phot.mag.petrosian;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[petroMag_u] [real] NULL,
 
+	--/ <summary>Petrosian flux</summary>
+	--/ <quantity>phot.mag.petrosian;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[petroMag_g] [real] NULL,
 
+	--/ <summary>Petrosian flux</summary>
+	--/ <quantity>phot.mag.petrosian;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[petroMag_r] [real] NULL,
 
+	--/ <summary>Petrosian flux</summary>
+	--/ <quantity>phot.mag.petrosian;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[petroMag_i] [real] NULL,
 
+	--/ <summary>Petrosian flux</summary>
+	--/ <quantity>phot.mag.petrosian;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[petroMag_z] [real] NULL,
 
+	--/ <summary>Petrosian flux error</summary>
+	--/ <quantity>stat.error;phot.mag.petrosian;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[petroMagErr_u] [real] NULL,
 
+	--/ <summary>Petrosian flux error</summary>
+	--/ <quantity>stat.error;phot.mag.petrosian;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[petroMagErr_g] [real] NULL,
 
+	--/ <summary>Petrosian flux error</summary>
+	--/ <quantity>stat.error;phot.mag.petrosian;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[petroMagErr_r] [real] NULL,
 
+	--/ <summary>Petrosian flux error</summary>
+	--/ <quantity>stat.error;phot.mag.petrosian;em.opt.SDSS.</quantity>
+	--/ <unit>mag</unit>
 	[petroMagErr_i] [real] NULL,
 
+	--/ <summary>Petrosian flux error</summary>
+	--/ <quantity>stat.error;phot.mag.petrosian;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[petroMagErr_z] [real] NULL,
 
+	--/ <summary>better of DeV/Exp magnitude fit</summary>
+	--/ <quantity>phot.mag;meta.modelled;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[modelMag_u] [real] NULL,
 
+	--/ <summary>better of DeV/Exp magnitude fit</summary>
+	--/ <quantity>phot.mag;meta.modelled;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[modelMag_g] [real] NULL,
 
+	--/ <summary>better of DeV/Exp magnitude fit</summary>
+	--/ <quantity>phot.mag;meta.modelled;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[modelMag_r] [real] NULL,
 
+	--/ <summary>better of DeV/Exp magnitude fit</summary>
+	--/ <quantity>phot.mag;meta.modelled;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[modelMag_i] [real] NULL,
 
+	--/ <summary>better of DeV/Exp magnitude fit</summary>
+	--/ <quantity>phot.mag;meta.modelled;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[modelMag_z] [real] NULL,
 
+	--/ <summary>better of DeV/Exp magnitude fit error</summary>
+	--/ <quantity>stat.error;phot.mag;meta.modelled;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[modelMagErr_u] [real] NULL,
 
+	--/ <summary>better of DeV/Exp magnitude fit error</summary>
+	--/ <quantity>stat.error;phot.mag;meta.modelled;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[modelMagErr_g] [real] NULL,
 
+	--/ <summary>better of DeV/Exp magnitude fit error</summary>
+	--/ <quantity>stat.error;phot.mag;meta.modelled;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[modelMagErr_r] [real] NULL,
 
+	--/ <summary>better of DeV/Exp magnitude fit error</summary>
+	--/ <quantity>stat.error;phot.mag;meta.modelled;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[modelMagErr_i] [real] NULL,
 
+	--/ <summary>better of DeV/Exp magnitude fit error</summary>
+	--/ <quantity>stat.error;phot.mag;meta.modelled;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[modelMagErr_z] [real] NULL,
 
+	--/ <summary>DeV+Exp magnitude</summary>
+	--/ <quantity>phot.mag;meta.modelled;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[cModelMag_u] [real] NULL,
 
+	--/ <summary>DeV+Exp magnitude</summary>
+	--/ <quantity>phot.mag;meta.modelled;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[cModelMag_g] [real] NULL,
 
+	--/ <summary>DeV+Exp magnitude</summary>
+	--/ <quantity>phot.mag;meta.modelled;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[cModelMag_r] [real] NULL,
 
+	--/ <summary>DeV+Exp magnitude</summary>
+	--/ <quantity>phot.mag;meta.modelled;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[cModelMag_i] [real] NULL,
 
+	--/ <summary>DeV+Exp magnitude</summary>
+	--/ <quantity>phot.mag;meta.modelled;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[cModelMag_z] [real] NULL,
 
+	--/ <summary>DeV+Exp magnitude error</summary>
+	--/ <quantity>stat.error;phot.mag;meta.modelled;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[cModelMagErr_u] [real] NULL,
 
+	--/ <summary>DeV+Exp magnitude error</summary>
+	--/ <quantity>stat.error;phot.mag;meta.modelled;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[cModelMagErr_g] [real] NULL,
 
+	--/ <summary>DeV+Exp magnitude error</summary>
+	--/ <quantity>stat.error;phot.mag;meta.modelled;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[cModelMagErr_r] [real] NULL,
 
+	--/ <summary>DeV+Exp magnitude error</summary>
+	--/ <quantity>stat.error;phot.mag;meta.modelled;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[cModelMagErr_i] [real] NULL,
 
+	--/ <summary>DeV+Exp magnitude error</summary>
+	--/ <quantity>stat.error;phot.mag;meta.modelled;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[cModelMagErr_z] [real] NULL,
 
+	--/ <summary>Adaptive (&lt;r^2&gt; + &lt;c^2&gt;)</summary>
+	--/ <quantity>instr.param</quantity>
 	[mRrCc_r] [real] NULL,
 
+	--/ <summary>Error in adaptive (&lt;r^2&gt; + &lt;c^2&gt;)</summary>
+	--/ <quantity>stat.error;instr.param</quantity>
 	[mRrCcErr_r] [real] NULL,
 
+	--/ <summary>Quality of field (0-1)</summary>
+	--/ <quantity>meta.code.qual;obs.field</quantity>
 	[score] [real] NULL,
 
+	--/ <summary>Resolve status of object</summary>
+	--/ <quantity>meta.code.status</quantity>
 	[resolveStatus] [int] NULL,
 
+	--/ <summary>Calibration status in u-band</summary>
+	--/ <quantity>meta.code.status;obs.calib;em.opt.SDSS.u</quantity>
 	[calibStatus_u] [int] NULL,
 
+	--/ <summary>Calibration status in g-band</summary>
+	--/ <quantity>meta.code.status;obs.calib;em.opt.SDSS.g</quantity>
 	[calibStatus_g] [int] NULL,
 
+	--/ <summary>Calibration status in r-band</summary>
+	--/ <quantity>meta.code.status;obs.calib;em.opt.SDSS.r</quantity>
 	[calibStatus_r] [int] NULL,
 
+	--/ <summary>Calibration status in i-band</summary>
+	--/ <quantity>meta.code.status;obs.calib;em.opt.SDSS.i</quantity>
 	[calibStatus_i] [int] NULL,
 
+	--/ <summary>Calibration status in z-band</summary>
+	--/ <quantity>meta.code.status;obs.calib;em.opt.SDSS.z</quantity>
 	[calibStatus_z] [int] NULL,
 
+	--/ <summary>J2000 right ascension (r') from Best</summary>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[photoRa] [float] NULL,
 
+	--/ <summary>J2000 declination (r') from Best</summary>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[photoDec] [float] NULL,
 
+	--/ <summary>Reddening in each filter</summary>
+	--/ <quantity>phys.absorption.gal;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[extinction_u] [real] NULL,
 
+	--/ <summary>Reddening in each filter</summary>
+	--/ <quantity>phys.absorption.gal;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[extinction_g] [real] NULL,
 
+	--/ <summary>Reddening in each filter</summary>
+	--/ <quantity>phys.absorption.gal;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[extinction_r] [real] NULL,
 
+	--/ <summary>Reddening in each filter</summary>
+	--/ <quantity>phys.absorption.gal;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[extinction_i] [real] NULL,
 
+	--/ <summary>Reddening in each filter</summary>
+	--/ <quantity>phys.absorption.gal;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[extinction_z] [real] NULL,
 
+	--/ <summary>Link to the field this object is in</summary>
+	--/ <quantity>meta.id;obs.field</quantity>
 	[fieldID] [bigint] NULL,
 
+	--/ <summary>Simplified mag, corrected for reddening: modelMag-reddening</summary>
+	--/ <quantity>phot.mag.reddFree;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[dered_u] [real] NULL,
 
+	--/ <summary>Simplified mag, corrected for reddening: modelMag-reddening</summary>
+	--/ <quantity>phot.mag.reddFree;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[dered_g] [real] NULL,
 
+	--/ <summary>Simplified mag, corrected for reddening: modelMag-reddening</summary>
+	--/ <quantity>phot.mag.reddFree;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[dered_r] [real] NULL,
 
+	--/ <summary>Simplified mag, corrected for reddening: modelMag-reddening</summary>
+	--/ <quantity>phot.mag.reddFree;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[dered_i] [real] NULL,
 
+	--/ <summary>Simplified mag, corrected for reddening: modelMag-reddening</summary>
+	--/ <quantity>phot.mag.reddFree;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[dered_z] [real] NULL,
  CONSTRAINT [pk_SpecPhotoAll_specObjID] PRIMARY KEY CLUSTERED 
 (
@@ -13034,710 +13770,1645 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+--/ <summary> Contains outputs from the SEGUE Stellar Parameter Pipeline (SSPP). </summary>
+--/ <remarks> Spectra for over 500,000 Galactic stars of all common spectral types are  available with DR8. These Spectra were processed with a pipeline called the  SEGUE Stellar Parameter Pipeline (SSPP, Lee et al. 2008) that computes line indices for a wide  range of common features at the radial velocity of the star in  question. Note that the line indices for TiO5, TiO8, CaH1, CaH2, and CaH3 are calculated following  the prescription given by the Hammer program (Covey et al. 2007). UVCN and BLCN line indices are computed  by he equations given in Smith & Norris (1982), and FeI_4 and FeI_5 indices by the recipe in Friel (1987).  FeI_1, FeI_2, FeI_3, and SrII line indices are only computed from the local continuum.  Thus, these line indices calculated from different methods report the same values for both the local continuum and  the global continuum. These outputs are stored in this table, and indexed on the   specObjID key index parameter for queries joining to other   tables such as specobjall and photoobjall.  See the Sample Queries in  SkyServer for examples of such queries. </remarks>
 CREATE TABLE [dbo].[sppLines](
 
+	--/ <summary>id number</summary>
+	--/ <quantity>meta.id</quantity>
 	[SPECOBJID] [bigint] NOT NULL,
 
+	--/ <summary>Object ID of photoObj match (flux-based)</summary>
+	--/ <quantity>meta.id</quantity>
 	[bestObjID] [bigint] NOT NULL,
 
+	--/ <summary>targeted object ID</summary>
+	--/ <quantity>meta.id</quantity>
 	[TARGETOBJID] [bigint] NOT NULL,
 
+	--/ <summary>Best version of spectrum at this location (defines default view SpecObj)</summary>
+	--/ <quantity>meta.code</quantity>
 	[sciencePrimary] [smallint] NOT NULL,
 
+	--/ <summary>Best version of spectrum at this location, among Legacy plates</summary>
+	--/ <quantity>meta.code</quantity>
 	[legacyPrimary] [smallint] NOT NULL,
 
+	--/ <summary>Best version of spectrum at this location, among SEGUE plates (defines default view SpecObj)</summary>
+	--/ <quantity>meta.code</quantity>
 	[seguePrimary] [smallint] NOT NULL,
 
+	--/ <summary>Plate number</summary>
+	--/ <quantity>meta.id;instr.det</quantity>
 	[PLATE] [bigint] NOT NULL,
 
+	--/ <summary>Modified Julian Date</summary>
+	--/ <quantity>time.epoch</quantity>
 	[MJD] [bigint] NOT NULL,
 
+	--/ <summary>Fiber ID</summary>
+	--/ <quantity>meta.id;instr.param</quantity>
 	[FIBER] [bigint] NOT NULL,
 
+	--/ <summary>Name of 2D rerun</summary>
+	--/ <quantity>meta.id</quantity>
 	[RUN2D] [varchar](32) NOT NULL,
 
+	--/ <summary>Name of 1D rerun</summary>
+	--/ <quantity>meta.id</quantity>
 	[RUN1D] [varchar](32) NOT NULL,
 
+	--/ <summary>Name of SSPP rerun</summary>
+	--/ <quantity>meta.id</quantity>
 	[RUNSSPP] [varchar](32) NOT NULL,
 
+	--/ <summary>Hzeta line index from local continuum at 3889.0 with band widths of 3.0</summary>
+	--/ <quantity>spect.line.index</quantity>
+	--/ <unit>AA</unit>
 	[H83side] [real] NOT NULL,
 
+	--/ <summary>Hzeta line index from global continuum at 3889.0 with band widths of 3.0</summary>
+	--/ <quantity>spect.line.index</quantity>
+	--/ <unit>AA</unit>
 	[H83cont] [real] NOT NULL,
 
+	--/ <summary>Hzeta line index error in the lind band at 3889.0 with band widths of 3.0</summary>
+	--/ <quantity>stat.error;spect.line.index</quantity>
+	--/ <unit>AA</unit>
 	[H83err] [real] NOT NULL,
 
+	--/ <summary>Hzeta pixel quality check, =0 good, =1 bad at 3889.0 with band widths of 3.0</summary>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[H83mask] [tinyint] NOT NULL,
 
+	--/ <summary>Hzeta line index from local continuum at 3889.1 with band widths of 12.0</summary>
+	--/ <quantity>spect.line.index</quantity>
+	--/ <unit>AA</unit>
 	[H812side] [real] NOT NULL,
 
+	--/ <summary>Hzeta line index from global continuum at 3889.1 with band widths of 12.0</summary>
+	--/ <quantity>spect.line.index</quantity>
+	--/ <unit>AA</unit>
 	[H812cont] [real] NOT NULL,
 
+	--/ <summary>Hzeta line index error in the lind band at 3889.1 with band widths of 12.0</summary>
+	--/ <quantity>stat.error;spect.line.index</quantity>
+	--/ <unit>AA</unit>
 	[H812err] [real] NOT NULL,
 
+	--/ <summary>Hzeta pixel quality check, =0 good, =1 bad at 3889.1 with band widths of 12.0</summary>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[H812mask] [tinyint] NOT NULL,
 
+	--/ <summary>Hzeta line index from local continuum at 3889.1 with band widths of 24.0</summary>
+	--/ <quantity>spect.line.index</quantity>
+	--/ <unit>AA</unit>
 	[H824side] [real] NOT NULL,
 
+	--/ <summary>Hzeta line index from global continuum at 3889.1 with band widths of 24.0</summary>
+	--/ <quantity>spect.line.index</quantity>
+	--/ <unit>AA</unit>
 	[H824cont] [real] NOT NULL,
 
+	--/ <summary>Hzeta line index error in the lind band at 3889.1 with band widths of 24.0</summary>
+	--/ <quantity>stat.error;spect.line.index</quantity>
+	--/ <unit>AA</unit>
 	[H824err] [real] NOT NULL,
 
+	--/ <summary>Hzeta pixel quality check, =0 good, =1 bad at 3889.1 with band widths of 24.0</summary>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[H824mask] [tinyint] NOT NULL,
 
+	--/ <summary>Hzeta line index from local continuum at 3889.1 with band widths of 48.0</summary>
+	--/ <quantity>spect.line.index</quantity>
+	--/ <unit>AA</unit>
 	[H848side] [real] NOT NULL,
 
+	--/ <summary>Hzeta line index from global continuum at 3889.1 with band widths of 48.0</summary>
+	--/ <quantity>spect.line.index</quantity>
+	--/ <unit>AA</unit>
 	[H848cont] [real] NOT NULL,
 
+	--/ <summary>Hzeta line index error in the lind band at 3889.1 with band widths of 48.0</summary>
+	--/ <quantity>stat.error;spect.line.index</quantity>
+	--/ <unit>AA</unit>
 	[H848err] [real] NOT NULL,
 
+	--/ <summary>Hzeta pixel quality check, =0 good, =1 bad at 3889.1 with band widths of 48.0</summary>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[H848mask] [tinyint] NOT NULL,
 
+	--/ <summary>Ca II K line index from local continuum at 3933.7 with band widths of 12.0</summary>
+	--/ <quantity>spect.line.index</quantity>
+	--/ <unit>AA</unit>
 	[KP12side] [real] NOT NULL,
 
+	--/ <summary>Ca II K line index from global continuum at 3933.7 with band widths of 12.0</summary>
+	--/ <quantity>spect.line.index</quantity>
+	--/ <unit>AA</unit>
 	[KP12cont] [real] NOT NULL,
 
+	--/ <summary>Ca II K line index error in the lind band at 3933.7 with band widths of 12.0</summary>
+	--/ <quantity>stat.error;spect.line.index</quantity>
+	--/ <unit>AA</unit>
 	[KP12err] [real] NOT NULL,
 
+	--/ <summary>Ca II K pixel quality check, =0 good, =1 bad at 3933.7 with band widths of 12.0</summary>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[KP12mask] [tinyint] NOT NULL,
 
+	--/ <summary>Ca II K line index from local continuum at 3933.7 with band widths of 18.0</summary>
+	--/ <quantity>spect.line.index</quantity>
+	--/ <unit>AA</unit>
 	[KP18side] [real] NOT NULL,
 
+	--/ <summary>Ca II K line index from global continuum at 3933.7 with band widths of 18.0</summary>
+	--/ <quantity>spect.line.index</quantity>
+	--/ <unit>AA</unit>
 	[KP18cont] [real] NOT NULL,
 
+	--/ <summary>Ca II K line index error in the lind band at 3933.7 with band widths of 18.0</summary>
+	--/ <quantitystat.error;spect.line.index></quantity>
+	--/ <unit>AA</unit>
 	[KP18err] [real] NOT NULL,
 
+	--/ <summary>Ca II K pixel quality check =0, good, =1 bad at 3933.7 with band widths of 18.0</summary>
+	--/ <quantity>meta.code.qual;instr.pixel</quantity>
 	[KP18mask] [tinyint] NOT NULL,
 
+	--/ <summary>Ca II K line index from local continuum at 3933.7 with band widths of 6.0</summary>
+	--/ <quantity>spect.line.index</quantity>
+	--/ <unit>AA</unit>
 	[KP6side] [real] NOT NULL,
 
+	--/ <summary>Ca II K line index from global continuum at 3933.7 with band widths of 6.0</summary>
+	--/ <quantity>spect.line.index</quantity>
+	--/ <unit>AA</unit>
 	[KP6cont] [real] NOT NULL,
 
+	--/ <summary>Ca II K line index error in the lind band at 3933.7 with band widths of 6.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[KP6err] [real] NOT NULL,
 
+	--/ <summary>Ca II K pixel quality check =0, good, =1 bad at 3933.7 with band widths of 6.0</summary>
+	--/ <quantity></quantity>
 	[KP6mask] [tinyint] NOT NULL,
 
+	--/ <summary>Ca II K line index from local continuum at 3933.6 with band widths of 30.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaIIKside] [real] NOT NULL,
 
+	--/ <summary>Ca II K line index from global continuum at 3933.6 with band widths of 30.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaIIKcont] [real] NOT NULL,
 
+	--/ <summary>Ca II K line index error in the lind band at 3933.6 with band widths of 30.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaIIKerr] [real] NOT NULL,
 
+	--/ <summary>Ca II K pixel quality check =0, good, =1 bad at 3933.6 with band widths of 30.0</summary>
+	--/ <quantity></quantity>
 	[CaIIKmask] [tinyint] NOT NULL,
 
+	--/ <summary>Ca II H and K line index from local continuum at 3962.0 with band widths of 75.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaIIHKside] [real] NOT NULL,
 
+	--/ <summary>Ca II H and K line index from global continuum at 3962.0 with band widths of 75.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaIIHKcont] [real] NOT NULL,
 
+	--/ <summary>Ca II H and K line index error in the lind band at 3962.0 with band widths of 75.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaIIHKerr] [real] NOT NULL,
 
+	--/ <summary>Ca II H and K pixel quality check =0, good, =1 bad at 3962.0 with band widths of 75.0</summary>
+	--/ <quantity></quantity>
 	[CaIIHKmask] [tinyint] NOT NULL,
 
+	--/ <summary>Hepsilon line index from local continuum at 3970.0 with band widths of 50.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hepsside] [real] NOT NULL,
 
+	--/ <summary>Hepsilon line index from global continuum at 3970.0 with band widths of 50.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hepscont] [real] NOT NULL,
 
+	--/ <summary>Hepsilon line index error in the lind band at 3970.0 with band widths of 50.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hepserr] [real] NOT NULL,
 
+	--/ <summary>Hepsilon pixel quality check =0, good, =1 bad at 3970.0 with band widths of 50.0</summary>
+	--/ <quantity></quantity>
 	[Hepsmask] [tinyint] NOT NULL,
 
+	--/ <summary>Ca II K line index from local continuum at 3933.7 with band widths of 16.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[KP16side] [real] NOT NULL,
 
+	--/ <summary>Ca II K line index from global continuum at 3933.7 with band widths of 16.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[KP16cont] [real] NOT NULL,
 
+	--/ <summary>Ca II K line index error in the lind band at 3933.7 with band widths of 16.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[KP16err] [real] NOT NULL,
 
+	--/ <summary>Ca II K pixel quality check =0, good, =1 bad at 3933.7 with band widths of 16.0</summary>
+	--/ <quantity></quantity>
 	[KP16mask] [tinyint] NOT NULL,
 
+	--/ <summary>Sr II line index from local continuum at 4077.0 with band widths of 8.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[SrII1side] [real] NOT NULL,
 
+	--/ <summary>Sr II line index from global continuum at 4077.0 with band widths of 8.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[SrII1cont] [real] NOT NULL,
 
+	--/ <summary>Sr II line index error in the lind band at 4077.0 with band widths of 8.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[SrII1err] [real] NOT NULL,
 
+	--/ <summary>Sr II pixel quality check =0, good, =1 bad at 4077.0 with band widths of 8.0</summary>
+	--/ <quantity></quantity>
 	[SrII1mask] [tinyint] NOT NULL,
 
+	--/ <summary>He I line index from local continuum at 4026.2 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[HeI121side] [real] NOT NULL,
 
+	--/ <summary>He I line index from global continuum at 4026.2 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[HeI121cont] [real] NOT NULL,
 
+	--/ <summary>He I line index error in the lind band at 4026.2 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[HeI121err] [real] NOT NULL,
 
+	--/ <summary>He I pixel quality check =0, good, =1 bad at 4026.2 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
 	[HeI121mask] [tinyint] NOT NULL,
 
+	--/ <summary>Hdelta line index from local continuum at 4101.8 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hdelta12side] [real] NOT NULL,
 
+	--/ <summary>Hdelta line index from global continuum at 4101.8 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hdelta12cont] [real] NOT NULL,
 
+	--/ <summary>Hdelta line index error in the lind band at 4101.8 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hdelta12err] [real] NOT NULL,
 
+	--/ <summary>Hdelta pixel quality check =0, good, =1 bad at 4101.8 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
 	[Hdelta12mask] [tinyint] NOT NULL,
 
+	--/ <summary>Hdelta line index from local continuum at 4101.8 with band widths of 24.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hdelta24side] [real] NOT NULL,
 
+	--/ <summary>Hdelta line index from global continuum at 4101.8 with band widths of 24.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hdelta24cont] [real] NOT NULL,
 
+	--/ <summary>Hdelta line index error in the lind band at 4101.8 with band widths of 24.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hdelta24err] [real] NOT NULL,
 
+	--/ <summary>Hdelta pixel quality check =0, good, =1 bad at 4101.8 with band widths of 24.0</summary>
+	--/ <quantity></quantity>
 	[Hdelta24mask] [tinyint] NOT NULL,
 
+	--/ <summary>Hdelta line index from local continuum at 4101.8 with band widths of 48.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hdelta48side] [real] NOT NULL,
 
+	--/ <summary>Hdelta line index from global continuum at 4101.8 with band widths of 48.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hdelta48cont] [real] NOT NULL,
 
+	--/ <summary>Hdelta line index error in the lind band at 4101.8 with band widths of 48.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hdelta48err] [real] NOT NULL,
 
+	--/ <summary>Hdelta pixel quality check =0, good, =1 bad at 4101.8 with band widths of 48.0</summary>
+	--/ <quantity></quantity>
 	[Hdelta48mask] [tinyint] NOT NULL,
 
+	--/ <summary>Hdelta line index from local continuum at 4102.0 with band widths of 64.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hdeltaside] [real] NOT NULL,
 
+	--/ <summary>Hdelta line index from global continuum at 4102.0 with band widths of 64.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hdeltacont] [real] NOT NULL,
 
+	--/ <summary>Hdelta line index error in the lind band at 4102.0 with band widths of 64.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hdeltaerr] [real] NOT NULL,
 
+	--/ <summary>Hdelta pixel quality check =0, good, =1 bad at 4102.0 with band widths of 64.0</summary>
+	--/ <quantity></quantity>
 	[Hdeltamask] [tinyint] NOT NULL,
 
+	--/ <summary>Ca I line index from local continuum at 4226.0 with band widths of 4.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaI4side] [real] NOT NULL,
 
+	--/ <summary>Ca I line index from global continuum at 4226.0 with band widths of 4.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaI4cont] [real] NOT NULL,
 
+	--/ <summary>Ca I line index error in the lind band at 4226.0 with band widths of 4.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaI4err] [real] NOT NULL,
 
+	--/ <summary>Ca I pixel quality check =0, good, =1 bad at 4226.0 with band widths of 4.0</summary>
+	--/ <quantity></quantity>
 	[CaI4mask] [tinyint] NOT NULL,
 
+	--/ <summary>Ca I line index from local continuum at 4226.7 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaI12side] [real] NOT NULL,
 
+	--/ <summary>Ca I line index from global continuum at 4226.7 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaI12cont] [real] NOT NULL,
 
+	--/ <summary>Ca I line index error in the lind band at 4226.7 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaI12err] [real] NOT NULL,
 
+	--/ <summary>Ca I pixel quality check =0, good, =1 bad at 4226.7 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
 	[CaI12mask] [tinyint] NOT NULL,
 
+	--/ <summary>Ca I line index from local continuum at 4226.7 with band widths of 24.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaI24side] [real] NOT NULL,
 
+	--/ <summary>Ca I line index from global continuum at 4226.7 with band widths of 24.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaI24cont] [real] NOT NULL,
 
+	--/ <summary>Ca I line index error in the lind band at 4226.7 with band widths of 24.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaI24err] [real] NOT NULL,
 
+	--/ <summary>Ca I pixel quality check =0, good, =1 bad at 4226.7 with band widths of 24.0</summary>
+	--/ <quantity></quantity>
 	[CaI24mask] [tinyint] NOT NULL,
 
+	--/ <summary>Ca I line index from local continuum at 4226.7 with band widths of 6.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaI6side] [real] NOT NULL,
 
+	--/ <summary>Ca I line index from global continuum at 4226.7 with band widths of 6.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaI6cont] [real] NOT NULL,
 
+	--/ <summary>Ca I line index error in the lind band at 4226.7 with band widths of 6.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaI6err] [real] NOT NULL,
 
+	--/ <summary>Ca I pixel quality check =0, good, =1 bad at 4226.7 with band widths of 6.0</summary>
+	--/ <quantity></quantity>
 	[CaI6mask] [tinyint] NOT NULL,
 
+	--/ <summary>G band line index from local continuum at 4305.0 with band widths of 15.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Gside] [real] NOT NULL,
 
+	--/ <summary>G band line index from global continuum at 4305.0 with band widths of 15.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Gcont] [real] NOT NULL,
 
+	--/ <summary>G band line index error in the lind band at 4305.0 with band widths of 15.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Gerr] [real] NOT NULL,
 
+	--/ <summary>G band pixel quality check =0, good, =1 bad at 4305.0 with band widths of 15.0</summary>
+	--/ <quantity></quantity>
 	[Gmask] [tinyint] NOT NULL,
 
+	--/ <summary>Hgamma line index from local continuum at 4340.5 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hgamma12side] [real] NOT NULL,
 
+	--/ <summary>Hgamma line index from global continuum at 4340.5 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hgamma12cont] [real] NOT NULL,
 
+	--/ <summary>Hgamma line index error in the lind band at 4340.5 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hgamma12err] [real] NOT NULL,
 
+	--/ <summary>Hgamma pixel quality check =0, good, =1 bad at 4340.5 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
 	[Hgamma12mask] [tinyint] NOT NULL,
 
+	--/ <summary>Hgamma line index from local continuum at 4340.5 with band widths of 24.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hgamma24side] [real] NOT NULL,
 
+	--/ <summary>Hgamma line index from global continuum at 4340.5 with band widths of 24.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hgamma24cont] [real] NOT NULL,
 
+	--/ <summary>Hgamma line index error in the lind band at 4340.5 with band widths of 24.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hgamma24err] [real] NOT NULL,
 
+	--/ <summary>Hgamma pixel quality check =0, good, =1 bad at 4340.5 with band widths of 24.0</summary>
+	--/ <quantity></quantity>
 	[Hgamma24mask] [tinyint] NOT NULL,
 
+	--/ <summary>Hgamma line index from local continuum at 4340.5 with band widths of 48.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hgamma48side] [real] NOT NULL,
 
+	--/ <summary>Hgamma line index from global continuum at 4340.5 with band widths of 48.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hgamma48cont] [real] NOT NULL,
 
+	--/ <summary>Hgamma line index error in the lind band at 4340.5 with band widths of 48.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hgamma48err] [real] NOT NULL,
 
+	--/ <summary>Hgamma pixel quality check =0, good, =1 bad at 4340.5 with band widths of 48.0</summary>
+	--/ <quantity></quantity>
 	[Hgamma48mask] [tinyint] NOT NULL,
 
+	--/ <summary>Hgamma line index from local continuum at 4340.5 with band widths of 54.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hgammaside] [real] NOT NULL,
 
+	--/ <summary>Hgamma line index from global continuum at 4340.5 with band widths of 54.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hgammacont] [real] NOT NULL,
 
+	--/ <summary>Hgamma line index error in the lind band at 4340.5 with band widths of 54.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hgammaerr] [real] NOT NULL,
 
+	--/ <summary>Hgamma pixel quality check =0, good, =1 bad at 4340.5 with band widths of 54.0</summary>
+	--/ <quantity></quantity>
 	[Hgammamask] [tinyint] NOT NULL,
 
+	--/ <summary>He I line index from local continuum at 4471.7 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[HeI122side] [real] NOT NULL,
 
+	--/ <summary>He I line index from global continuum at 4471.7 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[HeI122cont] [real] NOT NULL,
 
+	--/ <summary>He I line index error in the lind band at 4471.7 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[HeI122err] [real] NOT NULL,
 
+	--/ <summary>He I pixel quality check =0, good, =1 bad at 4471.7 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
 	[HeI122mask] [tinyint] NOT NULL,
 
+	--/ <summary>G band line index from local continuum at 4305.0 with band widths of 26.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Gblueside] [real] NOT NULL,
 
+	--/ <summary>G band line index from global continuum at 4305.0 with band widths of 26.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Gbluecont] [real] NOT NULL,
 
+	--/ <summary>G band line index error in the lind band at 4305.0 with band widths of 26.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Gblueerr] [real] NOT NULL,
 
+	--/ <summary>G band pixel quality check =0, good, =1 bad at 4305.0 with band widths of 26.0</summary>
+	--/ <quantity></quantity>
 	[Gbluemask] [tinyint] NOT NULL,
 
+	--/ <summary>G band line index from local continuum at 4321.0 with band widths of 28.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Gwholeside] [real] NOT NULL,
 
+	--/ <summary>G band line index from global continuum at 4321.0 with band widths of 28.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Gwholecont] [real] NOT NULL,
 
+	--/ <summary>G band line index error in the lind band at 4321.0 with band widths of 28.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Gwholeerr] [real] NOT NULL,
 
+	--/ <summary>G band pixel quality check =0, good, =1 bad at 4321.0 with band widths of 28.0</summary>
+	--/ <quantity></quantity>
 	[Gwholemask] [tinyint] NOT NULL,
 
+	--/ <summary>Ba line index from local continuum at 4554.0 with band widths of 6.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Baside] [real] NOT NULL,
 
+	--/ <summary>Ba line index from global continuum at 4554.0 with band widths of 6.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Bacont] [real] NOT NULL,
 
+	--/ <summary>Ba line index error in the lind band at 4554.0 with band widths of 6.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Baerr] [real] NOT NULL,
 
+	--/ <summary>Ba pixel quality check =0, good, =1 bad at 4554.0 with band widths of 6.0</summary>
+	--/ <quantity></quantity>
 	[Bamask] [tinyint] NOT NULL,
 
+	--/ <summary>C12C13 band line index from local continuum at 4737.0 with band widths of 36.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[C12C13side] [real] NOT NULL,
 
+	--/ <summary>C12C13 band line index from global continuum at 4737.0 with band widths of 36.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[C12C13cont] [real] NOT NULL,
 
+	--/ <summary>C12C13 band line index error in the lind band at 4737.0 with band widths of 36.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[C12C13err] [real] NOT NULL,
 
+	--/ <summary>C12C13 band pixel quality check =0, good, =1 bad at 4737.0 with band widths of 36.0</summary>
+	--/ <quantity></quantity>
 	[C12C13mask] [tinyint] NOT NULL,
 
+	--/ <summary>C2 band line index from local continuum at 4618.0 with band widths of 256.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CC12side] [real] NOT NULL,
 
+	--/ <summary>C2 band line index from global continuum at 4618.0 with band widths of 256.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CC12cont] [real] NOT NULL,
 
+	--/ <summary>C2 band line index error in the lind band at 4618.0 with band widths of 256.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CC12err] [real] NOT NULL,
 
+	--/ <summary>C2 band pixel quality check =0, good, =1 bad at 4618.0 with band widths of 256.0</summary>
+	--/ <quantity></quantity>
 	[CC12mask] [tinyint] NOT NULL,
 
+	--/ <summary>Metallic line index from local continuum at 4584.0 with band widths of 442.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[metal1side] [real] NOT NULL,
 
+	--/ <summary>Metallic line index from global continuum at 4584.0 with band widths of 442.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[metal1cont] [real] NOT NULL,
 
+	--/ <summary>Metlllic line index error in the lind band at 4584.0 with band widths of 442.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[metal1err] [real] NOT NULL,
 
+	--/ <summary>Metal1ic pixel quality check =0, good, =1 bad at 4584.0 with band widths of 442.0</summary>
+	--/ <quantity></quantity>
 	[metal1mask] [tinyint] NOT NULL,
 
+	--/ <summary>Hbeta line index from local continuum at 4862.3 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hbeta12side] [real] NOT NULL,
 
+	--/ <summary>Hbeta line index from global continuum at 4862.3 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hbeta12cont] [real] NOT NULL,
 
+	--/ <summary>Hbeta line index error in the lind band at 4862.3 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hbeta12err] [real] NOT NULL,
 
+	--/ <summary>Hbeta pixel quality check =0, good, =1 bad at 4862.3 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
 	[Hbeta12mask] [tinyint] NOT NULL,
 
+	--/ <summary>Hbeta line index from local continuum at 4862.3 with band widths of 24.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hbeta24side] [real] NOT NULL,
 
+	--/ <summary>Hbeta line index from global continuum at 4862.3 with band widths of 24.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hbeta24cont] [real] NOT NULL,
 
+	--/ <summary>Hbeta line index error in the lind band at 4862.3 with band widths of 24.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hbeta24err] [real] NOT NULL,
 
+	--/ <summary>Hbeta pixel quality check =0, good, =1 bad at 4862.3 with band widths of 24.0</summary>
+	--/ <quantity></quantity>
 	[Hbeta24mask] [tinyint] NOT NULL,
 
+	--/ <summary>Hbeta line index from local continuum at 4862.3 with band widths of 48.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hbeta48side] [real] NOT NULL,
 
+	--/ <summary>Hbeta line index from global continuum at 4862.3 with band widths of 48.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hbeta48cont] [real] NOT NULL,
 
+	--/ <summary>Hbeta line index error in the lind band at 4862.3 with band widths of 48.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hbeta48err] [real] NOT NULL,
 
+	--/ <summary>Hbeta pixel quality check =0, good, =1 bad at 4862.3 with band widths of 48.0</summary>
+	--/ <quantity></quantity>
 	[Hbeta48mask] [tinyint] NOT NULL,
 
+	--/ <summary>Hbeta line index from local continuum at 4862.3 with band widths of 60.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hbetaside] [real] NOT NULL,
 
+	--/ <summary>Hbeta line index from global continuum at 4862.3 with band widths of 60.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hbetacont] [real] NOT NULL,
 
+	--/ <summary>Hbeta line index error in the lind band at 4862.3 with band widths of 60.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Hbetaerr] [real] NOT NULL,
 
+	--/ <summary>Hbeta pixel quality check =0, good, =1 bad at 4862.3 with band widths of 60.0</summary>
+	--/ <quantity></quantity>
 	[Hbetamask] [tinyint] NOT NULL,
 
+	--/ <summary>C2 band line index from local continuum at 5052.0 with band widths of 204.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[C2side] [real] NOT NULL,
 
+	--/ <summary>C2 band line index from global continuum at 5052.0 with band widths of 204.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[C2cont] [real] NOT NULL,
 
+	--/ <summary>C2 band line index error in the lind band at 5052.0 with band widths of 204.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[C2err] [real] NOT NULL,
 
+	--/ <summary>C2 band pixel quality check =0, good, =1 bad at 5052.0 with band widths of 204.0</summary>
+	--/ <quantity></quantity>
 	[C2mask] [tinyint] NOT NULL,
 
+	--/ <summary>C2 and Mg I line index from local continuum at 5069.0 with band widths of 238.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[C2MgIside] [real] NOT NULL,
 
+	--/ <summary>C2 and Mg I line index from global continuum at 5069.0 with band widths of 238.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[C2MgIcont] [real] NOT NULL,
 
+	--/ <summary>C2 and Mg I line index error in the lind band at 5069.0 with band widths of 238.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[C2MgIerr] [real] NOT NULL,
 
+	--/ <summary>C2 and Mg I pixel quality check =0, good, =1 bad at 5069.0 with band widths of 238.0</summary>
+	--/ <quantity></quantity>
 	[C2MgImask] [tinyint] NOT NULL,
 
+	--/ <summary>MgH, Mg I, and C2 line index from local continuum at 5085.0 with band widths of 270.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[MgHMgIC2side] [real] NOT NULL,
 
+	--/ <summary>MgH, Mg I, and C2 line index from global continuum at 5085.0 with band widths of 270.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[MgHMgIC2cont] [real] NOT NULL,
 
+	--/ <summary>MgH, Mg I, and C2 line index error in the lind band at 5085.0 with band widths of 270.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[MgHMgIC2err] [real] NOT NULL,
 
+	--/ <summary>MgH, Mg I, and C2 pixel quality check =0, good, =1 bad at 5085.0 with band widths of 270.0</summary>
+	--/ <quantity></quantity>
 	[MgHMgIC2mask] [tinyint] NOT NULL,
 
+	--/ <summary>MgH and Mg I line index from local continuum at 5198.0 with band widths of 44.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[MgHMgIside] [real] NOT NULL,
 
+	--/ <summary>MgH and Mg I line index from global continuum at 5198.0 with band widths of 44.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[MgHMgIcont] [real] NOT NULL,
 
+	--/ <summary>MgH and Mg I line index error in the lind band at 5198.0 with band widths of 44.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[MgHMgIerr] [real] NOT NULL,
 
+	--/ <summary>MgH_MgI pixel quality check =0, good, =1 bad at 5198.0 with band widths of 44.0</summary>
+	--/ <quantity></quantity>
 	[MgHMgImask] [tinyint] NOT NULL,
 
+	--/ <summary>MgH line index from local continuum at 5210.0 with band widths of 20.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[MgHside] [real] NOT NULL,
 
+	--/ <summary>MgH line index from global continuum at 5210.0 with band widths of 20.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[MgHcont] [real] NOT NULL,
 
+	--/ <summary>MgH line index error in the lind band at 5210.0 with band widths of 20.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[MgHerr] [real] NOT NULL,
 
+	--/ <summary>MgH pixel quality check =0, good, =1 bad at 5210.0 with band widths of 20.0</summary>
+	--/ <quantity></quantity>
 	[MgHmask] [tinyint] NOT NULL,
 
+	--/ <summary>Cr I line index from local continuum at 5206.0 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CrIside] [real] NOT NULL,
 
+	--/ <summary>Cr I line index from global continuum at 5206.0 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CrIcont] [real] NOT NULL,
 
+	--/ <summary>Cr I line index error in the lind band at 5206.0 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CrIerr] [real] NOT NULL,
 
+	--/ <summary>Cr I pixel quality check =0, good, =1 bad at 5206.0 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
 	[CrImask] [tinyint] NOT NULL,
 
+	--/ <summary>Mg I and Fe II line index from local continuum at 5175.0 with band widths of 20.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[MgIFeIIside] [real] NOT NULL,
 
+	--/ <summary>Mg I and Fe II line index from global continuum at 5175.0 with band widths of 20.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[MgIFeIIcont] [real] NOT NULL,
 
+	--/ <summary>Mg I and Fe II line index error in the lind band at 5175.0 with band widths of 20.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[MgIFeIIerr] [real] NOT NULL,
 
+	--/ <summary>Mg I and Fe II pixel quality check =0, good, =1 bad at 5175.0 with band widths of 20.0</summary>
+	--/ <quantity></quantity>
 	[MgIFeIImask] [tinyint] NOT NULL,
 
+	--/ <summary>Mg I line index from local continuum at 5183.0 with band widths of 2.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[MgI2side] [real] NOT NULL,
 
+	--/ <summary>Mg I line index from global continuum at 5183.0 with band widths of 2.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[MgI2cont] [real] NOT NULL,
 
+	--/ <summary>Mg I line index error in the lind band at 5183.0 with band widths of 2.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[MgI2err] [real] NOT NULL,
 
+	--/ <summary>Mg I pixel quality check =0, good, =1 bad at 5183.0 with band widths of 2.0</summary>
+	--/ <quantity></quantity>
 	[MgI2mask] [tinyint] NOT NULL,
 
+	--/ <summary>Mg I line index from local continuum at 5170.5 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[MgI121side] [real] NOT NULL,
 
+	--/ <summary>Mg I line index from global continuum at 5170.5 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[MgI121cont] [real] NOT NULL,
 
+	--/ <summary>Mg I line index error in the lind band at 5170.5 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[MgI121err] [real] NOT NULL,
 
+	--/ <summary>Mg I pixel quality check =0, good, =1 bad at 5170.5 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
 	[MgI121mask] [tinyint] NOT NULL,
 
+	--/ <summary>Mg I line index from local continuum at 5176.5 with band widths of 24.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[MgI24side] [real] NOT NULL,
 
+	--/ <summary>Mg I line index from global continuum at 5176.5 with band widths of 24.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[MgI24cont] [real] NOT NULL,
 
+	--/ <summary>Mg I line index error in the lind band at 5176.5 with band widths of 24.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[MgI24err] [real] NOT NULL,
 
+	--/ <summary>Mg I pixel quality check =0, good, =1 bad at 5176.5 with band widths of 24.0</summary>
+	--/ <quantity></quantity>
 	[MgI24mask] [tinyint] NOT NULL,
 
+	--/ <summary>Mg I line index from local continuum at 5183.5 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[MgI122side] [real] NOT NULL,
 
+	--/ <summary>Mg I line index from global continuum at 5183.5 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[MgI122cont] [real] NOT NULL,
 
+	--/ <summary>Mg I line index error in the lind band at 5183.5 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[MgI122err] [real] NOT NULL,
 
+	--/ <summary>Mg I pixel quality check =0, good, =1 bad at 5183.5 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
 	[MgI122mask] [tinyint] NOT NULL,
 
+	--/ <summary>Na I line index from local continuum at 5890.0 with band widths of 20.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[NaI20side] [real] NOT NULL,
 
+	--/ <summary>Na I line index from global continuum at 5890.0 with band widths of 20.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[NaI20cont] [real] NOT NULL,
 
+	--/ <summary>Na I line index error in the lind band at 5890.0 with band widths of 20.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[NaI20err] [real] NOT NULL,
 
+	--/ <summary>Na I pixel quality check =0, good, =1 bad at 5890.0 with band widths of 20.0</summary>
+	--/ <quantity></quantity>
 	[NaI20mask] [tinyint] NOT NULL,
 
+	--/ <summary>Na line index from local continuum at 5892.9 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Na12side] [real] NOT NULL,
 
+	--/ <summary>Na line index from global continuum at 5892.9 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Na12cont] [real] NOT NULL,
 
+	--/ <summary>Na line index error in the lind band at 5892.9 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Na12err] [real] NOT NULL,
 
+	--/ <summary>Na pixel quality check =0, good, =1 bad at 5892.9 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
 	[Na12mask] [tinyint] NOT NULL,
 
+	--/ <summary>Na line index from local continuum at 5892.9 with band widths of 24.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Na24side] [real] NOT NULL,
 
+	--/ <summary>Na line index from global continuum at 5892.9 with band widths of 24.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Na24cont] [real] NOT NULL,
 
+	--/ <summary>Na line index error in the lind band at 5892.9 with band widths of 24.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Na24err] [real] NOT NULL,
 
+	--/ <summary>Na pixel quality check =0, good, =1 bad at 5892.9 with band widths of 24.0</summary>
+	--/ <quantity></quantity>
 	[Na24mask] [tinyint] NOT NULL,
 
+	--/ <summary>Halpha line index from local continuum at 6562.8 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Halpha12side] [real] NOT NULL,
 
+	--/ <summary>Halpha line index from global continuum at 6562.8 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Halpha12cont] [real] NOT NULL,
 
+	--/ <summary>Halpha line index error in the lind band at 6562.8 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Halpha12err] [real] NOT NULL,
 
+	--/ <summary>Halpha pixel quality check =0, good, =1 bad at 6562.8 with band widths of 12.0</summary>
+	--/ <quantity></quantity>
 	[Halpha12mask] [tinyint] NOT NULL,
 
+	--/ <summary>Halpha line index from local continuum at 6562.8 with band widths of 24.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Halpha24side] [real] NOT NULL,
 
+	--/ <summary>Halpha line index from global continuum at 6562.8 with band widths of 24.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Halpha24cont] [real] NOT NULL,
 
+	--/ <summary>Halpha line index error in the lind band at 6562.8 with band widths of 24.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Halpha24err] [real] NOT NULL,
 
+	--/ <summary>Halpha pixel quality check =0, good, =1 bad at 6562.8 with band widths of 24.0</summary>
+	--/ <quantity></quantity>
 	[Halpha24mask] [tinyint] NOT NULL,
 
+	--/ <summary>Halpha line index from local continuum at 6562.8 with band widths of 48.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Halpha48side] [real] NOT NULL,
 
+	--/ <summary>Halpha line index from global continuum at 6562.8 with band widths of 48.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Halpha48cont] [real] NOT NULL,
 
+	--/ <summary>Halpha line index error in the lind band at 6562.8 with band widths of 48.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Halpha48err] [real] NOT NULL,
 
+	--/ <summary>Halpha pixel quality check =0, good, =1 bad at 6562.8 with band widths of 48.0</summary>
+	--/ <quantity></quantity>
 	[Halpha48mask] [tinyint] NOT NULL,
 
+	--/ <summary>Halpha line index from local continuum at 6562.8 with band widths of 70.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Halpha70side] [real] NOT NULL,
 
+	--/ <summary>Halpha line index from global continuum at 6562.8 with band widths of 70.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Halpha70cont] [real] NOT NULL,
 
+	--/ <summary>Halpha line index error in the lind band at 6562.8 with band widths of 70.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Halpha70err] [real] NOT NULL,
 
+	--/ <summary>Halpha pixel quality check =0, good, =1 bad at 6562.8 with band widths of 70.0</summary>
+	--/ <quantity></quantity>
 	[Halpha70mask] [tinyint] NOT NULL,
 
+	--/ <summary>CaH line index from local continuum at 6788.0 with band widths of 505.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaHside] [real] NOT NULL,
 
+	--/ <summary>CaH line index from global continuum at 6788.0 with band widths of 505.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaHcont] [real] NOT NULL,
 
+	--/ <summary>CaH line index error in the lind band at 6788.0 with band widths of 505.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaHerr] [real] NOT NULL,
 
+	--/ <summary>CaH pixel quality check =0, good, =1 bad at 6788.0 with band widths of 505.0</summary>
+	--/ <quantity></quantity>
 	[CaHmask] [tinyint] NOT NULL,
 
+	--/ <summary>TiO line index from local continuum at 7209.0 with band widths of 333.3</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[TiOside] [real] NOT NULL,
 
+	--/ <summary>TiO line index from global continuum at 7209.0 with band widths of 333.3</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[TiOcont] [real] NOT NULL,
 
+	--/ <summary>TiO line index error in the lind band at 7209.0 with band widths of 333.3</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[TiOerr] [real] NOT NULL,
 
+	--/ <summary>TiO pixel quality check =0, good, =1 bad at 7209.0 with band widths of 333.3</summary>
+	--/ <quantity></quantity>
 	[TiOmask] [tinyint] NOT NULL,
 
+	--/ <summary>CN line index from local continuum at 6890.0 with band widths of 26.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CNside] [real] NOT NULL,
 
+	--/ <summary>CN line index from global continuum at 6890.0 with band widths of 26.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CNcont] [real] NOT NULL,
 
+	--/ <summary>CN line index error in the lind band at 6890.0 with band widths of 26.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CNerr] [real] NOT NULL,
 
+	--/ <summary>CN pixel quality check =0, good, =1 bad at 6890.0 with band widths of 26.0</summary>
+	--/ <quantity></quantity>
 	[CNmask] [tinyint] NOT NULL,
 
+	--/ <summary>O I triplet line index from local continuu at 7775.0 with band widths of 30.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[OItripside] [real] NOT NULL,
 
+	--/ <summary>O I triplet line index from global continuum at 7775.0 with band widths of 30.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[OItripcont] [real] NOT NULL,
 
+	--/ <summary>O I triplet line index error in the lind band at 7775.0 with band widths of 30.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[OItriperr] [real] NOT NULL,
 
+	--/ <summary>O I triplet pixel quality check =0, good, =1 bad at 7775.0 with band widths of 30.0</summary>
+	--/ <quantity></quantity>
 	[OItripmask] [tinyint] NOT NULL,
 
+	--/ <summary>K I line index from local continuum at 7687.0 with band widths of 34.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[KI34side] [real] NOT NULL,
 
+	--/ <summary>K I line index from global continuum at 7687.0 with band widths of 34.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[KI34cont] [real] NOT NULL,
 
+	--/ <summary>K I line index error in the lind band at 7687.0 with band widths of 34.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[KI34err] [real] NOT NULL,
 
+	--/ <summary>K I pixel quality check =0, good, =1 bad at 7687.0 with band widths of 34.0</summary>
+	--/ <quantity></quantity>
 	[KI34mask] [tinyint] NOT NULL,
 
+	--/ <summary>K I line index from local continuum at 7688.0 with band widths of 95.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[KI95side] [real] NOT NULL,
 
+	--/ <summary>K I line index from global continuum at 7688.0 with band widths of 95.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[KI95cont] [real] NOT NULL,
 
+	--/ <summary>K I line index error in the lind band at 7688.0 with band widths of 95.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[KI95err] [real] NOT NULL,
 
+	--/ <summary>K I pixel quality check =0, good, =1 bad at 7688.0 with band widths of 95.0</summary>
+	--/ <quantity></quantity>
 	[KI95mask] [tinyint] NOT NULL,
 
+	--/ <summary>Na I line index from local continuum at 8187.5 with band widths of 15.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[NaI15side] [real] NOT NULL,
 
+	--/ <summary>Na I line index from global continuum at 8187.5 with band widths of 15.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[NaI15cont] [real] NOT NULL,
 
+	--/ <summary>Na I line index error in the lind band at 8187.5 with band widths of 15.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[NaI15err] [real] NOT NULL,
 
+	--/ <summary>Na I pixel quality check =0, good, =1 bad at 8187.5 with band widths of 15.0</summary>
+	--/ <quantity></quantity>
 	[NaI15mask] [tinyint] NOT NULL,
 
+	--/ <summary>Na I line index from local continuum at 8190.2 with band widths of 33.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[NaIredside] [real] NOT NULL,
 
+	--/ <summary>Na I line index from global continuum at 8190.2 with band widths of 33.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[NaIredcont] [real] NOT NULL,
 
+	--/ <summary>Na I line index error in the lind band at 8190.2 with band widths of 33.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[NaIrederr] [real] NOT NULL,
 
+	--/ <summary>Na I pixel quality check =0, good, =1 bad at 8190.2 with band widths of 33.0</summary>
+	--/ <quantity></quantity>
 	[NaIredmask] [tinyint] NOT NULL,
 
+	--/ <summary>Ca II triplet line index from local continuum at 8498.0 with band widths of 26.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaII26side] [real] NOT NULL,
 
+	--/ <summary>Ca II triplet line index from global continuum at 8498.0 with band widths of 26.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaII26cont] [real] NOT NULL,
 
+	--/ <summary>Ca II triplet line index error in the lind band at 8498.0 with band widths of 26.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaII26err] [real] NOT NULL,
 
+	--/ <summary>Ca II triplet pixel quality check =0, good, =1 bad at 8498.0 with band widths of 26.0</summary>
+	--/ <quantity></quantity>
 	[CaII26mask] [tinyint] NOT NULL,
 
+	--/ <summary>Paschen line index from local continuum at 8467.5 with band widths of 13.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Paschen13side] [real] NOT NULL,
 
+	--/ <summary>Paschen line index from global continuum at 8467.5 with band widths of 13.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Paschen13cont] [real] NOT NULL,
 
+	--/ <summary>Paschen line index error in the lind band at 8467.5 with band widths of 13.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Paschen13err] [real] NOT NULL,
 
+	--/ <summary>Paschen pixel quality check =0, good, =1 bad at 8467.5 with band widths of 13.0</summary>
+	--/ <quantity></quantity>
 	[Paschen13mask] [tinyint] NOT NULL,
 
+	--/ <summary>Ca II triplet line index from local continuum at 8498.5 with band widths of 29.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaII29side] [real] NOT NULL,
 
+	--/ <summary>Ca II triplet line index from global continuum at 8498.5 with band widths of 29.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaII29cont] [real] NOT NULL,
 
+	--/ <summary>Ca II triplet line index error in the lind band at 8498.5 with band widths of 29.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaII29err] [real] NOT NULL,
 
+	--/ <summary>Ca II triplet pixel quality check =0, good, =1 bad at 8498.5 with band widths of 29.0</summary>
+	--/ <quantity></quantity>
 	[CaII29mask] [tinyint] NOT NULL,
 
+	--/ <summary>Ca II triplet line index from local continuum at 8542.0 with band widths of 40.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaII401side] [real] NOT NULL,
 
+	--/ <summary>Ca II triplet line index from global continuum at 8542.0 with band widths of 40.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaII401cont] [real] NOT NULL,
 
+	--/ <summary>Ca II triplet line index error in the lind band at 8542.0 with band widths of 40.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaII401err] [real] NOT NULL,
 
+	--/ <summary>Ca II triplet pixel quality check =0, good, =1 bad at 8542.0 with band widths of 40.0</summary>
+	--/ <quantity></quantity>
 	[CaII401mask] [tinyint] NOT NULL,
 
+	--/ <summary>Ca II triplet_1 line index from local continuum at 8542.0 with band widths of 16.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaII161side] [real] NOT NULL,
 
+	--/ <summary>Ca II triplet_1 line index from global continuum at 8542.0 with band widths of 16.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaII161cont] [real] NOT NULL,
 
+	--/ <summary>Ca II triplet_1 line index error in the lind band at 8542.0 with band widths of 16.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaII161err] [real] NOT NULL,
 
+	--/ <summary>Ca II triplet_1 pixel quality check =0, good, =1 bad at 8542.0 with band widths of 16.0</summary>
+	--/ <quantity></quantity>
 	[CaII161mask] [tinyint] NOT NULL,
 
+	--/ <summary>Paschen line index from local continuum at 8598.0 with band widths of 42.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Paschen421side] [real] NOT NULL,
 
+	--/ <summary>Paschen line index from global continuum at 8598.0 with band widths of 42.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Paschen421cont] [real] NOT NULL,
 
+	--/ <summary>Paschen line index error in the lind band at 8598.0 with band widths of 42.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Paschen421err] [real] NOT NULL,
 
+	--/ <summary>Paschen pixel quality check =0, good, =1 bad at 8598.0 with band widths of 42.0</summary>
+	--/ <quantity></quantity>
 	[Paschen421mask] [tinyint] NOT NULL,
 
+	--/ <summary>Ca II triplet line index from local continuum at 8662.1 with band widths of 16.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaII162side] [real] NOT NULL,
 
+	--/ <summary>Ca II triplet line index from global continuum at 8662.1 with band widths of 16.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaII162cont] [real] NOT NULL,
 
+	--/ <summary>Ca II triplet line index error in the lind band at 8662.1 with band widths of 16.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaII162err] [real] NOT NULL,
 
+	--/ <summary>Ca II triplet pixel quality check =0, good, =1 bad at 8662.1 with band widths of 16.0</summary>
+	--/ <quantity></quantity>
 	[CaII162mask] [tinyint] NOT NULL,
 
+	--/ <summary>Ca II triplet line index from local continuum at 8662.0 with band widths of 40.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaII402side] [real] NOT NULL,
 
+	--/ <summary>Ca II triplet line index from global continuum at 8662.0 with band widths of 40.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaII402cont] [real] NOT NULL,
 
+	--/ <summary>Ca II triplet line index error in the lind band at 8662.0 with band widths of 40.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[CaII402err] [real] NOT NULL,
 
+	--/ <summary>Ca II triplet pixel quality check =0, good, =1 bad at 8662.0 with band widths of 40.0</summary>
+	--/ <quantity></quantity>
 	[CaII402mask] [tinyint] NOT NULL,
 
+	--/ <summary>Paschen line index from local continuum at 8751.0 with band widths of 42.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Paschen422side] [real] NOT NULL,
 
+	--/ <summary>Paschen line index from global continuum at 8751.0 with band widths of 42.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Paschen422cont] [real] NOT NULL,
 
+	--/ <summary>Paschen line index error in the lind band at 8751.0 with band widths of 42.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[Paschen422err] [real] NOT NULL,
 
+	--/ <summary>Paschen pixel quality check =0, good, =1 bad at 8751.0 with band widths of 42.0</summary>
+	--/ <quantity></quantity>
 	[Paschen422mask] [tinyint] NOT NULL,
 
+	--/ <summary>TiO5 line index from local continuum at 7134.4 with band widths of 5.0</summary>
+	--/ <quantity></quantity>
 	[TiO5side] [real] NOT NULL,
 
+	--/ <summary>TiO5 line index from global continuum at 7134.4 with band widths of 5.0</summary>
+	--/ <quantity></quantity>
 	[TiO5cont] [real] NOT NULL,
 
+	--/ <summary>TiO5 line index error in the lind band at 7134.4 with band widths of 5.0</summary>
+	--/ <quantity></quantity>
 	[TiO5err] [real] NOT NULL,
 
+	--/ <summary>TiO5 pixel quality check =0, good, =1 bad at 7134.4 with band widths of 5.0</summary>
+	--/ <quantity></quantity>
 	[TiO5mask] [tinyint] NOT NULL,
 
+	--/ <summary>TiO8 line index from local continuum at 8457.3 with band widths of 30.0</summary>
+	--/ <quantity></quantity>
 	[TiO8side] [real] NOT NULL,
 
+	--/ <summary>TiO8 line index from global continuum at 8457.3 with band widths of 30.0</summary>
+	--/ <quantity></quantity>
 	[TiO8cont] [real] NOT NULL,
 
+	--/ <summary>TiO8 line index error in the lind band at 8457.3 with band widths of 30.0</summary>
+	--/ <quantity></quantity>
 	[TiO8err] [real] NOT NULL,
 
+	--/ <summary>TiO8 pixel quality check =0, good, =1 bad at 8457.3 with band widths of 30.0</summary>
+	--/ <quantity></quantity>
 	[TiO8mask] [tinyint] NOT NULL,
 
+	--/ <summary>CaH1 line index from local continuum at 6386.7 with band widths of 10.0</summary>
+	--/ <quantity></quantity>
 	[CaH1side] [real] NOT NULL,
 
+	--/ <summary>CaH1 line index from global continuum at 6386.7 with band widths of 10.0</summary>
+	--/ <quantity></quantity>
 	[CaH1cont] [real] NOT NULL,
 
+	--/ <summary>CaH1 line index error in the lind band at 6386.7 with band widths of 10.0</summary>
+	--/ <quantity></quantity>
 	[CaH1err] [real] NOT NULL,
 
+	--/ <summary>CaH1 pixel quality check =0, good, =1 bad at 6386.7 with band widths of 10.0</summary>
+	--/ <quantity></quantity>
 	[CaH1mask] [tinyint] NOT NULL,
 
+	--/ <summary>CaH2 line index from local continuum at 6831.9 with band widths of 32.0</summary>
+	--/ <quantity></quantity>
 	[CaH2side] [real] NOT NULL,
 
+	--/ <summary>CaH2 line index from global continuum at 6831.9 with band widths of 32.0</summary>
+	--/ <quantity></quantity>
 	[CaH2cont] [real] NOT NULL,
 
+	--/ <summary>CaH2 line index error in the lind band at 6831.9 with band widths of 32.0</summary>
+	--/ <quantity></quantity>
 	[CaH2err] [real] NOT NULL,
 
+	--/ <summary>CaH2 pixel quality check =0, good, =1 bad at 6831.9 with band widths of 32.0</summary>
+	--/ <quantity></quantity>
 	[CaH2mask] [tinyint] NOT NULL,
 
+	--/ <summary>CaH3 line index from local continuum at 6976.9 with band widths of 30.0</summary>
+	--/ <quantity></quantity>
 	[CaH3side] [real] NOT NULL,
 
+	--/ <summary>CaH3 line index from global continuum at 6976.9 with band widths of 30.0</summary>
+	--/ <quantity></quantity>
 	[CaH3cont] [real] NOT NULL,
 
+	--/ <summary>CaH3 line index error in the lind band at 6976.9 with band widths of 30.0</summary>
+	--/ <quantity></quantity>
 	[CaH3err] [real] NOT NULL,
 
+	--/ <summary>CaH3 pixel quality check =0, good, =1 bad at 6976.9 with band widths of 30.0</summary>
+	--/ <quantity></quantity>
 	[CaH3mask] [tinyint] NOT NULL,
 
+	--/ <summary>CN line index at 3839</summary>
+	--/ <quantity></quantity>
 	[UVCNside] [real] NOT NULL,
 
+	--/ <summary>CN line index at 3839</summary>
+	--/ <quantity></quantity>
 	[UVCNcont] [real] NOT NULL,
 
+	--/ <summary>CN line index error at 3829</summary>
+	--/ <quantity></quantity>
 	[UVCNerr] [real] NOT NULL,
 
+	--/ <summary>CN pixel quality check =0, good, =1 bad at 3839</summary>
+	--/ <quantity></quantity>
 	[UVCNmask] [tinyint] NOT NULL,
 
+	--/ <summary>CN line index at 4142</summary>
+	--/ <quantity></quantity>
 	[BLCNside] [real] NOT NULL,
 
+	--/ <summary>CN line index at 4142</summary>
+	--/ <quantity></quantity>
 	[BLCNcont] [real] NOT NULL,
 
+	--/ <summary>CN line index error at 4142</summary>
+	--/ <quantity></quantity>
 	[BLCNerr] [real] NOT NULL,
 
+	--/ <summary>CN pixel quality check =0, good, =1 bad at 4142</summary>
+	--/ <quantity></quantity>
 	[BLCNmask] [tinyint] NOT NULL,
 
+	--/ <summary>Fe I line index at 4045.8 with band widths of 2.5</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[FEI1side] [real] NOT NULL,
 
+	--/ <summary>Fe I line index at 4045.8 with band widths of 2.5</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[FEI1cont] [real] NOT NULL,
 
+	--/ <summary>Fe I line index error at 4045.8 with band widths of 2.5</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[FEI1err] [real] NOT NULL,
 
+	--/ <summary>Fe I pixel quality check =0, good, =1 bad at 4045.8 with band widths of 2.5</summary>
+	--/ <quantity></quantity>
 	[FEI1mask] [tinyint] NOT NULL,
 
+	--/ <summary>Fe I line index at 4063.6 with band widths of 2.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[FEI2side] [real] NOT NULL,
 
+	--/ <summary>Fe I line index at 4063.6 with band widths of 2.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[FEI2cont] [real] NOT NULL,
 
+	--/ <summary>Fe I line index error at 4063.6 with band widths of 2.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[FEI2err] [real] NOT NULL,
 
+	--/ <summary>Fe I pixel quality check =0, good, =1 bad at 4063.6 with band widths of 2.0</summary>
+	--/ <quantity></quantity>
 	[FEI2mask] [tinyint] NOT NULL,
 
+	--/ <summary>Fe I line index at 4071.7 with band widths of 2.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[FEI3side] [real] NOT NULL,
 
+	--/ <summary>Fe I line index at 4071.7 with band widths of 2.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[FEI3cont] [real] NOT NULL,
 
+	--/ <summary>Fe I line index error at 4071.7 with band widths of 2.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[FEI3err] [real] NOT NULL,
 
+	--/ <summary>Fe I pixel quality check =0, good, =1 bad at 4071.7 with band widths of 2.0</summary>
+	--/ <quantity></quantity>
 	[FEI3mask] [tinyint] NOT NULL,
 
+	--/ <summary>Sr II line index at 4077.7 with band widths of 2.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[SRII2side] [real] NOT NULL,
 
+	--/ <summary>Sr II line index at 4077.7 with band widths of 2.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[SRII2cont] [real] NOT NULL,
 
+	--/ <summary>Sr II line index error at 4077.7 with band widths of 2.0</summary>
+	--/ <quantity></quantity>
+	--/ <unit>AA</unit>
 	[SRII2err] [real] NOT NULL,
 
+	--/ <summary>Sr II pixel quality check =0, good, =1 bad at 4077.7 with band widths of 2.0</summary>
+	--/ <quantity></quantity>
 	[SRII2mask] [tinyint] NOT NULL,
 
+	--/ <summary>Fe I line index at 4679.5 with band widths of 87.0</summary>
+	--/ <quantity></quantity>
 	[FEI4side] [real] NOT NULL,
 
+	--/ <summary>Fe I line index at 4679.5 with band widths of 87.0</summary>
+	--/ <quantity></quantity>
 	[FEI4cont] [real] NOT NULL,
 
+	--/ <summary>Fe I line index error at 4679.5 with band widths of 87.0</summary>
+	--/ <quantity></quantity>
 	[FEI4err] [real] NOT NULL,
 
+	--/ <summary>Fe I pixel quality check =0, good, =1 bad at 4679.5 with band widths of 87.0</summary>
+	--/ <quantity></quantity>
 	[FEI4mask] [tinyint] NOT NULL,
 
+	--/ <summary>Fe I line index at 5267.4 with band widths of 38.8</summary>
+	--/ <quantity></quantity>
 	[FEI5side] [real] NOT NULL,
 
+	--/ <summary>Fe I line index at 5267.4 with band widths of 38.8</summary>
+	--/ <quantity></quantity>
 	[FEI5cont] [real] NOT NULL,
 
+	--/ <summary>Fe I line index error at 5267.4 with band widths of 38.8</summary>
+	--/ <quantity></quantity>
 	[FEI5err] [real] NOT NULL,
 
+	--/ <summary>Fe I pixel quality check =0, good, =1 bad at 5267.4 with band widths of 38.8</summary>
+	--/ <quantity></quantity>
 	[FEI5mask] [tinyint] NOT NULL,
  CONSTRAINT [pk_sppLines_specObjID] PRIMARY KEY CLUSTERED 
 (
