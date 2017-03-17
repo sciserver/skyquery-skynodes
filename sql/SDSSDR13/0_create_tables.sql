@@ -11957,8 +11957,8 @@ CREATE TABLE [dbo].[segueTargetAll](
 	--/ <unit>kpc</unit>
 	[distv_kpc] [real] NOT NULL,
 
-	--/ <summary>transvere velocity, km/s, derived from TOTALPM and DISTV_KPC, in a frame at rest w.r.t the Galaxy</summary>
-	--/ <quantity>phys.veloc.transvere</quantity>
+	--/ <summary>transverse velocity, km/s, derived from TOTALPM and DISTV_KPC, in a frame at rest w.r.t the Galaxy</summary>
+	--/ <quantity>phys.veloc.transverse</quantity>
 	--/ <unit>km s-1</unit>
 	[vtrans_galrest] [real] NOT NULL,
 
@@ -11983,7 +11983,7 @@ CREATE TABLE [dbo].[segueTargetAll](
 	[mg_tohv] [real] NOT NULL,
 
 	--/ <summary>transverse velocity in Galactocentric coords, using the distance estimate from MG_TOHV which is appropriate for old stars near the MSTO and corrected for peculiar solar motion 16.6 km/s toward RA,Dec 267.5,28.1</summary>
-	--/ <quantity>phys.veloc.transvere</quantity>
+	--/ <quantity>phys.veloc.transverse</quantity>
 	--/ <unit>km s-1</unit>
 	[vtrans_tohv] [real] NOT NULL,
 
@@ -15426,6 +15426,9 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+--/ <summary> Contains outputs from the SEGUE Stellar Parameter Pipeline (SSPP). </summary>
+--/ <remarks> Spectra for over 500,000 Galactic stars of all common spectral types are  available with DR8. These Spectra were processed with a pipeline called the  SEGUE Stellar Parameter Pipeline' (SSPP, Lee et al. 2008) that computes   standard stellar atmospheric parameters such as  [Fe/H], log g and Teff for   each star by a variety of methods. These outputs are stored in this table, and  indexed on the  specObjID' key index parameter for queries joining to  other tables such as specobjall and photoobjall. bestobjid is also added (and indexed?)  Note that all values of -9999 indicate missing or no values.  See the Sample Queries in SkyServer for examples of such queries.  </remarks>
 CREATE TABLE [dbo].[sppParams](
 
 	--/ <summary>id number, match in specObjAll</summary>
@@ -16141,140 +16144,307 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+--/ <summary> Derived quantities calculated by the SEGUE-2 target selection pipeline. </summary>
+--/ <remarks> There are one of these files per plate. The file has one HDU.  That HDU has one row for every object in photoObjAll that is  classified as a star inside a 94.4 arcmin radius of the center of the  plate.  The data for each object are elements of the photoObjAll, specObjAll,   sppPrams and propermotions tables taken unaltered from the CAS and derived   quantities calculated by the segue-2 target selection code.  Appended to the  end are the two target selection bitmasks, segue2_target1 and segue2_target2,   as set by the target selection code.&lt;br> &lt;br>  &lt;i>Columns from OBJID through PSFMAGERR_:&lt;/i> &lt;br>  These are taken directly from photoObjAll &lt;br>  &lt;br>  &lt;i>Columns from PLATEID through SEGUE2_TARGET2:&lt;/i> &lt;br>  These are taken from the specObjAll and sppParams tables for any  objects in this file that have matches in that specObjAll.  For  objects without matches in specObjAll, values are set to -9999.  The names from SpecObjAll are unchanged. &lt;br> &lt;br>  &lt;i>Columns from MATCH through DIST20: &lt;/i>&lt;br>  These are taken from the propermotions table, the USNOB proper  motions as recalibrated with the SDSS by Jeff Munn.  For objects  without matches in the ProperMotions table, values are set to -9999.  The names are unchanged from the propermotions table. &lt;br> &lt;br>  &lt;i>Columns from uMAG0 through VTOT_GALRADREST:&lt;/i> &lt;br>  These are the derived quanitites calculated  by the procedure  calderivedquantities in derivedquant.pro in the segue-2 target  selection code.  With the addition of these, this file contains all  the quanitites that the selection code operates on when choosing targets.&lt;br> &lt;br>  &lt;i>Columns MG_TOHV through V1SIGMAERR_TOHV:&lt;/i> &lt;br>  These were added for the November 2008 drilling run and after.  The earlier files will be retrofit (eventually). </remarks>
 CREATE TABLE [dbo].[sppTargets](
 
+	--/ <summary>Object ID matching DR8</summary>
+	--/ <quantity>meta.id</quantity>
 	[OBJID] [bigint] NOT NULL,
 
+	--/ <summary>Run number</summary>
+	--/ <quantity>meta.id</quantity>
 	[RUN] [bigint] NOT NULL,
 
+	--/ <summary>Rerun number</summary>
+	--/ <quantity>meta.id</quantity>
 	[RERUN] [bigint] NOT NULL,
 
+	--/ <summary>Camera column number</summary>
+	--/ <quantity>meta.id;instr.det</quantity>
 	[CAMCOL] [bigint] NOT NULL,
 
+	--/ <summary>Field number</summary>
+	--/ <quantity>meta.id;obs.field</quantity>
 	[FIELD] [bigint] NOT NULL,
 
+	--/ <summary>Object</summary>
+	--/ <quantity>meta.id</quantity>
 	[OBJ] [bigint] NOT NULL,
 
+	--/ <summary>RA</summary>
+	--/ <quantity>pos.eq.ra</quantity>
+	--/ <unit>deg</unit>
 	[RA] [float] NOT NULL,
 
+	--/ <summary>Dec</summary>
+	--/ <quantity>pos.eq.dec</quantity>
+	--/ <unit>deg</unit>
 	[DEC] [float] NOT NULL,
 
+	--/ <summary>Galactic longitude</summary>
+	--/ <quantity>pos.galactic.lon</quantity>
+	--/ <unit>deg</unit>
 	[L] [float] NOT NULL,
 
+	--/ <summary>Galactic latitude</summary>
+	--/ <quantity>pos.galactic.lat</quantity>
+	--/ <unit>deg</unit>
 	[B] [float] NOT NULL,
 
+	--/ <summary>u band fiber magnitudue</summary>
+	--/ <quantity>phot.mag.fiber;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[FIBERMAG_u] [real] NOT NULL,
 
+	--/ <summary>g band fiber magnitudue</summary>
+	--/ <quantity>phot.mag.fiber;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[FIBERMAG_g] [real] NOT NULL,
 
+	--/ <summary>r band fiber magnitudue</summary>
+	--/ <quantity>phot.mag.fiber;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[FIBERMAG_r] [real] NOT NULL,
 
+	--/ <summary>i band fiber magnitudue</summary>
+	--/ <quantity>phot.mag.fiber;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[FIBERMAG_i] [real] NOT NULL,
 
+	--/ <summary>z band fiber magnitudue</summary>
+	--/ <quantity>phot.mag.fiber;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[FIBERMAG_z] [real] NOT NULL,
 
+	--/ <summary>u band PSF magnitude</summary>
+	--/ <quantity>phot.mag.psf;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[PSFMAG_u] [real] NOT NULL,
 
+	--/ <summary>g band PSF magnitude</summary>
+	--/ <quantity>phot.mag.psf;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[PSFMAG_g] [real] NOT NULL,
 
+	--/ <summary>r band PSF magnitude</summary>
+	--/ <quantity>phot.mag.psf;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[PSFMAG_r] [real] NOT NULL,
 
+	--/ <summary>i band PSF magnitude</summary>
+	--/ <quantity>phot.mag.psf;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[PSFMAG_i] [real] NOT NULL,
 
+	--/ <summary>z band PSF magnitude</summary>
+	--/ <quantity>phot.mag.psf;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[PSFMAG_z] [real] NOT NULL,
 
+	--/ <summary>u band extinction</summary>
+	--/ <quantity>phys.absorption.gal;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[EXTINCTION_u] [real] NOT NULL,
 
+	--/ <summary>g band extinction</summary>
+	--/ <quantity>phys.absorption.gal;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[EXTINCTION_g] [real] NOT NULL,
 
+	--/ <summary>r band extinction</summary>
+	--/ <quantity>phys.absorption.gal;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[EXTINCTION_r] [real] NOT NULL,
 
+	--/ <summary>i band extinction</summary>
+	--/ <quantity>phys.absorption.gal;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[EXTINCTION_i] [real] NOT NULL,
 
+	--/ <summary>z band extinction</summary>
+	--/ <quantity>phys.absorption.gal;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[EXTINCTION_z] [real] NOT NULL,
 
+	--/ <summary>row centroid</summary>
+	--/ <quantity>pos.cartesian.x</quantity>
+	--/ <unit>pix</unit>
 	[ROWC] [int] NOT NULL,
 
+	--/ <summary>column centroid</summary>
+	--/ <quantity>pos.cartesian.y</quantity>
+	--/ <unit>pix</unit>
 	[COLC] [int] NOT NULL,
 
+	--/ <summary>object type from photometric reductions</summary>
+	--/ <quantity>src.class</quantity>
 	[TYPE] [int] NOT NULL,
 
+	--/ <summary>combined flags from all bands</summary>
+	--/ <quantity>meta.code</quantity>
 	[FLAGS] [bigint] NOT NULL,
 
+	--/ <summary>u band flag</summary>
+	--/ <quantity>meta.code;em.opt.SDSS.u</quantity>
 	[FLAGS_u] [bigint] NOT NULL,
 
+	--/ <summary>g band flag</summary>
+	--/ <quantity>meta.code;em.opt.SDSS.g</quantity>
 	[FLAGS_g] [bigint] NOT NULL,
 
+	--/ <summary>r band flag</summary>
+	--/ <quantity>meta.code;em.opt.SDSS.r</quantity>
 	[FLAGS_r] [bigint] NOT NULL,
 
+	--/ <summary>i band flag</summary>
+	--/ <quantity>meta.code;em.opt.SDSS.i</quantity>
 	[FLAGS_i] [bigint] NOT NULL,
 
+	--/ <summary>z band flag</summary>
+	--/ <quantity>meta.code;em.opt.SDSS.z</quantity>
 	[FLAGS_z] [bigint] NOT NULL,
 
+	--/ <summary>Error in u band PSF magnitude</summary>
+	--/ <quantity>stat.error;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[PSFMAGERR_u] [real] NOT NULL,
 
+	--/ <summary>Error in g band PSF magnitude</summary>
+	--/ <quantity>stat.error;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[PSFMAGERR_g] [real] NOT NULL,
 
+	--/ <summary>Error in r band PSF magnitude</summary>
+	--/ <quantity>stat.error;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[PSFMAGERR_r] [real] NOT NULL,
 
+	--/ <summary>Error in i band PSF magnitude</summary>
+	--/ <quantity>stat.error;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[PSFMAGERR_i] [real] NOT NULL,
 
+	--/ <summary>Error in z band PSF magnitude</summary>
+	--/ <quantity>stat.error;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[PSFMAGERR_z] [real] NOT NULL,
 
+	--/ <summary>Hash of plate and MJD</summary>
+	--/ <quantity>meta.id</quantity>
 	[PLATEID] [bigint] NOT NULL,
 
+	--/ <summary>Spectroscopic object ID</summary>
+	--/ <quantity>meta.id;spect</quantity>
 	[SPECOBJID] [bigint] NOT NULL,
 
+	--/ <summary>Plate number</summary>
+	--/ <quantity>meta.id;instr.det</quantity>
 	[PLATE] [bigint] NOT NULL,
 
+	--/ <summary>Modified Julian Date</summary>
+	--/ <quantity>time.epoch</quantity>
 	[MJD] [bigint] NOT NULL,
 
+	--/ <summary>Fiber number</summary>
+	--/ <quantity>meta.id;instr.param</quantity>
 	[FIBERID] [bigint] NOT NULL,
 
+	--/ <summary>Original plate ID hash (if targeted based on previous spectrum)</summary>
+	--/ <quantity>meta.id;instr.det</quantity>
 	[ORIGINALPLATEID] [bigint] NOT NULL,
 
+	--/ <summary>Original spectroscopic object ID (if targeted based on previous spectrum)</summary>
+	--/ <quantity>meta.id;spect</quantity>
 	[ORIGINALSPECOBJID] [bigint] NOT NULL,
 
+	--/ <summary>Original plate number   (if targeted based on previous spectrum)</summary>
+	--/ <quantity>meta.id;instr.det</quantity>
 	[ORIGINALPLATE] [bigint] NOT NULL,
 
+	--/ <summary>Original Modified Julian Date   (if targeted based on previous spectrum)</summary>
+	--/ <quantity>time.epoch</quantity>
 	[ORIGINALMJD] [bigint] NOT NULL,
 
+	--/ <summary>Original fiber number	(if targeted based on previous spectrum)(if targeted based on previous spectrum)</summary>
+	--/ <quantity></quantity>
 	[ORIGINALFIBERID] [bigint] NOT NULL,
 
+	--/ <summary>Best object ID</summary>
+	--/ <quantity>meta.id</quantity>
 	[BESTOBJID] [bigint] NOT NULL,
 
+	--/ <summary>Target object ID</summary>
+	--/ <quantity>meta.id</quantity>
 	[TARGETOBJID] [bigint] NOT NULL,
 
+	--/ <summary>Primary target</summary>
+	--/ <quantity>meta.id</quantity>
 	[PRIMTARGET] [int] NOT NULL,
 
+	--/ <summary>Secondary target</summary>
+	--/ <quantity>meta.id</quantity>
 	[SECTARGET] [int] NOT NULL,
 
+	--/ <summary>SEGUE-1 target selection information at plate design, primary science selection</summary>
+	--/ <quantity>meta.code</quantity>
 	[SEGUE1_TARGET1] [bigint] NOT NULL,
 
+	--/ <summary>SEGUE-1 target selection information at plate design, secondary/qa/calib selection</summary>
+	--/ <quantity>meta.code</quantity>
 	[SEGUE1_TARGET2] [bigint] NOT NULL,
 
+	--/ <summary>bitmask that records the category or categories for which this object passed the selection criteria</summary>
+	--/ <quantity>meta.code</quantity>
 	[SEGUE2_TARGET1] [int] NOT NULL,
 
+	--/ <summary>bitmask that records the category or categories of "standards" for the pipeline, special calibration targets like Stetson standards or globular cluster stars, for which this object passed the selection criteria</summary>
+	--/ <quantity>meta.code</quantity>
 	[SEGUE2_TARGET2] [int] NOT NULL,
 
+	--/ <summary>??</summary>
+	--/ <quantity></quantity>
 	[MATCH] [bigint] NOT NULL,
 
+	--/ <summary>??</summary>
+	--/ <quantity></quantity>
 	[DELTA] [float] NOT NULL,
 
+	--/ <summary>Proper motion in Galactic longitude</summary>
+	--/ <quantity>pos.pm;pos.galactic.lon</quantity>
+	--/ <unit>mas yr-1</unit>
 	[PML] [float] NOT NULL,
 
+	--/ <summary>Proper motion in Galactic latitude</summary>
+	--/ <quantity>pos.pm;pos.galactic.lat</quantity>
+	--/ <unit>mas yr-1</unit>
 	[PMB] [float] NOT NULL,
 
+	--/ <summary>Proper motion in RA</summary>
+	--/ <quantity>pos.pm;pos.eq.ra</quantity>
+	--/ <unit>mas yr-1</unit>
 	[PMRA] [float] NOT NULL,
 
+	--/ <summary>Proper motion in DEC</summary>
+	--/ <quantity>pos.pm;pos.eq.dec</quantity>
+	--/ <unit>mas yr-1</unit>
 	[PMDEC] [float] NOT NULL,
 
+	--/ <summary>Proper motion error in RA</summary>
+	--/ <quantity>stat.error;pos.eq.ra</quantity>
+	--/ <unit>mas yr-1</unit>
 	[PMRAERR] [float] NOT NULL,
 
+	--/ <summary>Proper motion error in DEC</summary>
+	--/ <quantity>stat.error;pos.eq.dec</quantity>
+	--/ <unit>mas yr-1</unit>
 	[PMDECERR] [float] NOT NULL,
 
+	--/ <unit>mas yr-1</unit>
 	[PMSIGRA] [float] NOT NULL,
 
+	--/ <unit>mas yr-1</unit>
 	[PMSIGDEC] [float] NOT NULL,
 
 	[NFIT] [int] NOT NULL,
@@ -16283,85 +16453,208 @@ CREATE TABLE [dbo].[sppTargets](
 
 	[DIST20] [float] NOT NULL,
 
+	--/ <summary>u extinction-corrected (SFD 98) psf magnitude</summary>
+	--/ <quantity>phot.mag.psf.redFree;em.opt.SDSS.u</quantity>
+	--/ <unit>mag</unit>
 	[uMAG0] [real] NOT NULL,
 
+	--/ <summary>g extinction-corrected (SFD 98) psf magnitude</summary>
+	--/ <quantity>phot.mag.psf.redFree;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[gMAG0] [real] NOT NULL,
 
+	--/ <summary>r extinction-corrected (SFD 98) psf magnitude</summary>
+	--/ <quantity>phot.mag.psf.redFree;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[rMAG0] [real] NOT NULL,
 
+	--/ <summary>i extinction-corrected (SFD 98) psf magnitude</summary>
+	--/ <quantity>phot.mag.psf.redFree;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[iMAG0] [real] NOT NULL,
 
+	--/ <summary>z extinction-corrected (SFD 98) psf magnitude</summary>
+	--/ <quantity>phot.mag.psf.redFree;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[zMAG0] [real] NOT NULL,
 
+	--/ <summary>u-g, extinction corrected magnitudes</summary>
+	--/ <quantity>phot.color;em.opt.SDSS.u;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[umg0] [real] NOT NULL,
 
+	--/ <summary>g-r, extinction corrected magnitudes</summary>
+	--/ <quantity>phot.color;em.opt.SDSS.g;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[gmr0] [real] NOT NULL,
 
+	--/ <summary>r-i, extinction corrected magnitudes</summary>
+	--/ <quantity>phot.color;em.opt.SDSS.r;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[rmi0] [real] NOT NULL,
 
+	--/ <summary>i-z, extinction corrected magnitudes</summary>
+	--/ <quantity>phot.color;em.opt.SDSS.i;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[imz0] [real] NOT NULL,
 
+	--/ <summary>g-i, extinction corrected magnitudes</summary>
+	--/ <quantity>phot.color;em.opt.SDSS.g;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[gmi0] [real] NOT NULL,
 
+	--/ <summary>PSFMAGERR_u and PSFMAGERR_g added in quadrature</summary>
+	--/ <quantity>stat.erro;phot.color;em.opt.SDSS.u;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[umgERR] [real] NOT NULL,
 
+	--/ <summary>PSFMAGERR_g and PSFMAGERR_r added in quadrature</summary>
+	--/ <quantity>stat.erro;phot.color;em.opt.SDSS.g;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[gmrERR] [real] NOT NULL,
 
+	--/ <summary>PSFMAGERR_r and PSFMAGERR_i added in quadrature</summary>
+	--/ <quantity>stat.erro;phot.color;em.opt.SDSS.r;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[rmiERR] [real] NOT NULL,
 
+	--/ <summary>PSFMAGERR_i and PSFMAGERR_z added in quadrature</summary>
+	--/ <quantity>stat.erro;phot.color;em.opt.SDSS.i;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[imzERR] [real] NOT NULL,
 
+	--/ <summary>psfmag_u-psfmag_g, no extinction correction</summary>
+	--/ <quantity>phot.color;em.opt.SDSS.u;em.opt.SDSS.g</quantity>
+	--/ <unit>mag</unit>
 	[PSFMAG_umg] [real] NOT NULL,
 
+	--/ <summary>psfmag_g-psfmag_r, no extinction correction</summary>
+	--/ <quantity>phot.color;em.opt.SDSS.g;em.opt.SDSS.r</quantity>
+	--/ <unit>mag</unit>
 	[PSFMAG_gmr] [real] NOT NULL,
 
+	--/ <summary>psfmag_r-psfmag_i, no extinction correction</summary>
+	--/ <quantity>phot.color;em.opt.SDSS.r;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[PSFMAG_rmi] [real] NOT NULL,
 
+	--/ <summary>psfmag_i-psfmag_z, no extinction correction</summary>
+	--/ <quantity>phot.color;em.opt.SDSS.i;em.opt.SDSS.z</quantity>
+	--/ <unit>mag</unit>
 	[PSFMAG_imz] [real] NOT NULL,
 
+	--/ <summary>psfmag_g-psfmag_i, no extinction correction</summary>
+	--/ <quantity>phot.color;em.opt.SDSS.g;em.opt.SDSS.i</quantity>
+	--/ <unit>mag</unit>
 	[PSFMAG_gmi] [real] NOT NULL,
 
+	--/ <summary>-0.436*uMag+1.129*gMag-0.119*rMag-0.574*iMag+0.1984 (Lenz et al.1998)</summary>
+	--/ <quantity>phot.color</quantity>
+	--/ <unit>mag</unit>
 	[lcolor] [real] NOT NULL,
 
+	--/ <summary>-0.249*uMag+0.794*gMag-0.555*rMag+0.234+0.011*p1s-0.010 (Helmi et al. 2003) used in SEGUE-1 target selection, unused in SEGUE-2</summary>
+	--/ <quantity>phot.color</quantity>
+	--/ <unit>mag</unit>
 	[scolor] [real] NOT NULL,
 
+	--/ <summary>0.91*umg+0.415*umg-1.280 (Helmi et al. 2003) used in SEGUE-1 target selection, unused in SEGUE-2</summary>
+	--/ <quantity>phot.color</quantity>
+	--/ <unit>mag</unit>
 	[p1s] [real] NOT NULL,
 
+	--/ <summary>sqrt(PMRA*PMRA+PMDEC*PMDEC), in mas/year</summary>
+	--/ <quantity>pos.pm</quantity>
+	--/ <unit>mas yr-1</unit>
 	[TOTALPM] [real] NOT NULL,
 
+	--/ <summary>reduced proper motion, gMag+5*log10(TOTALPM/1000)+5</summary>
+	--/ <quantity>pos.pm</quantity>
+	--/ <unit>mag</unit>
 	[Hg] [real] NOT NULL,
 
+	--/ <summary>4.471+7.907*imz-0.837*imz*imz used in SEGUE-1 target selection, unused in SEGUE-2</summary>
+	--/ <quantity>phot.color</quantity>
+	--/ <unit>mag</unit>
 	[Mi] [real] NOT NULL,
 
+	--/ <summary>10^((iMag-Mi+5)/5.0) used in SEGUE-1 target selection, unused in SEGUE-2</summary>
+	--/ <quantity>phot.mag</quantity>
+	--/ <unit>mag</unit>
 	[DISTi] [real] NOT NULL,
 
+	--/ <summary>reduced pm (uncorr r): PSFMAG_r+5*log10(TOTALPM/1000)+5</summary>
+	--/ <quantity>pos.pm</quantity>
+	--/ <unit>mag</unit>
 	[Hr] [real] NOT NULL,
 
+	--/ <summary>V-I from VMAG_TRANS-(iMag-0.337*rmi-0.37)</summary>
+	--/ <quantity>phot.color;em.opt.V;em.opt.I</quantity>
+	--/ <unit>mag</unit>
 	[VMI_TRANS1] [real] NOT NULL,
 
+	--/ <summary>V-I from 0.877*gmr+0.358</summary>
+	--/ <quantity>phot.color;em.opt.V;em.opt.I</quantity>
+	--/ <unit>mag</unit>
 	[VMI_TRANS2] [real] NOT NULL,
 
+	--/ <summary>V mag from gMag - 0.587*gmr -0.011</summary>
+	--/ <quantity>phot.mag;em.opt.V</quantity>
+	--/ <unit>mag</unit>
 	[VMAG_TRANS] [real] NOT NULL,
 
+	--/ <summary>not stuffed</summary>
+	--/ <quantity></quantity>
+	--/ <unit>mag</unit>
 	[MV_TRANS] [real] NOT NULL,
 
+	--/ <summary>10^(dmV/5.-2.) where VMAG_TRANS-(3.37*VMI_TRANS1+2.89)</summary>
+	--/ <quantity></quantity>
+	--/ <unit>kpc</unit>
 	[DISTV_KPC] [real] NOT NULL,
 
+	--/ <summary>transverse velocity, km/s, derived from TOTALPM and DISTV_KPC, in a frame at rest w.r.t the Galaxy</summary>
+	--/ <quantity>phys.veloc.transverse</quantity>
+	--/ <unit>km s-1</unit>
 	[VTRANS_GALREST] [real] NOT NULL,
 
+	--/ <summary>derived PM (mas/year) perpendicular to the Galactocentric radial vector, assuming all motion is along a Galactocentric radial vector, in a frame at rest w.r.t the Galaxy</summary>
+	--/ <quantity>pos.pm</quantity>
+	--/ <unit>mas yr-1</unit>
 	[MUTRANS_GALRADREST] [real] NOT NULL,
 
+	--/ <summary>derived PM (mas/year) along the Galactocentric radial vector, assuming all motion is along a Galactocentric radial vector, in a frame at rest w.r.t the Galaxy</summary>
+	--/ <quantity>pos.pm</quantity>
+	--/ <unit>mas yr-1</unit>
 	[MURAD_GALRADREST] [real] NOT NULL,
 
+	--/ <summary>total velocioty, km/s, derived from TOTALPM and DISTV_KPC, in a frame at rest w.r.t the Galaxy</summary>
+	--/ <quantity>phys.veloc</quantity>
+	--/ <unit>km s-1</unit>
 	[VTOT_GALRADREST] [real] NOT NULL,
 
+	--/ <summary>5.7 + 10.0*(GMR - 0.375)</summary>
+	--/ <quantity>phot.mag</quantity>
+	--/ <unit>mag</unit>
 	[MG_TOHV] [real] NOT NULL,
 
+	--/ <summary>transverse velocity in Galactocentric coords, using the distance estimate from MG_TOHV which is appropriate for old stars near the MSTO and corrected for peculiar solar motion 16.6 km/s toward RA,Dec 267.5,28.1</summary>
+	--/ <quantity>phys.veloc.transverse</quantity>
+	--/ <unit>km s-1</unit>
 	[VTRANS_TOHV] [real] NOT NULL,
 
+	--/ <summary>Estimate of the 1-sigma error in total proper motion at this r magnitude.  Formula is sqrt(4.56*4.56 + frate*2.30*2.30), where frate is 10^(0.4*(rMag-19.5)).  The constants come from the Munn et al. 2004 (AJ, 127, 3034) paper describing the recalibration of USNOB with SDSS.</summary>
+	--/ <quantity>stat.error;pos.pm;em.opt.SDSS.r</quantity>
+	--/ <unit>mas yr-1</unit>
 	[PM1SIGMA_TOHV] [real] NOT NULL,
 
+	--/ <summary>The corresponding 1-sigma error in the transverse velocity based on PM1SIGMA_TOHV and the the distance estimate using MG_TOHV</summary>
+	--/ <quantity>stat.error;phys.veloc.transverse</quantity>
+	--/ <unit>km s-1</unit>
 	[V1SIGMAERR_TOHV] [real] NOT NULL,
+
+	--/ <summary>version of target used</summary>
+	--/ <quantity>meta.version</quantity>
 	[TARGET_VERSION] [varchar](100) NULL
 ) ON [PRIMARY]
 
@@ -16373,172 +16666,367 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
+--/ <summary> Estimated stellar masses for SDSS and BOSS galaxies (Granada method, early-star-formation with dust) </summary>
+--/ <remarks> Stellar masses using FSPS models of &lt;a href='http://adsabs.harvard.edu/abs/2009ApJ...699..486C'>Conroy et al. (2009)&lt;/a>  fit to SDSS photometry in ugriz.  The fit is carried out on extinction corrected model magnitudes that are scaled   to the i-band c-model magnitude. This 'early-star-formation' version restricts the assumption about  when the star-formation in the galaxy could occur to within 2 Gyrs of the Big Bang.  This version also fits for   dust extinction. </remarks>
 CREATE TABLE [dbo].[stellarMassFSPSGranEarlyDust](
 
+	--/ <summary>Unique ID</summary>
+	--/ <quantity>meta.id</quantity>
 	[specObjID] [bigint] NOT NULL,
 
+	--/ <summary>Plate number</summary>
+	--/ <quantity>meta.id;instr.det</quantity>
 	[plate] [smallint] NULL,
 
+	--/ <summary>Fiber ID</summary>
+	--/ <quantity>meta.id;instr.param</quantity>
 	[fiberID] [smallint] NULL,
 
+	--/ <summary>MJD of observation</summary>
+	--/ <quantity>time.epoch;obs</quantity>
+	--/ <unit>d</unit>
 	[MJD] [int] NULL,
 
+	--/ <summary>Right ascension of fiber, J2000</summary>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[ra] [float] NULL,
 
+	--/ <summary>Declination of fiber, J2000</summary>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[dec] [float] NULL,
 
+	--/ <summary>Redshift used (corresponds to z_noqso in specObjAll)</summary>
+	--/ <quantity>src.redshift</quantity>
 	[z] [real] NULL,
 
+	--/ <summary>Error in z (corresponds to zErr_noqso in specObjAll)</summary>
+	--/ <quantity>stat.error;src.redshift</quantity>
 	[z_err] [real] NULL,
 
+	--/ <summary>K+E corrections at z_0=0.55 in the u-band</summary>
+	--/ <quantity>phot.mag.kc;em.opt.SDSS.u</quantity>
 	[ke_u] [float] NULL,
 
+	--/ <summary>K+E corrections at z_0=0.55 in the g-band</summary>
+	--/ <quantity>phot.mag.kc;em.opt.SDSS.g</quantity>
 	[ke_g] [float] NULL,
 
+	--/ <summary>K+E corrections at z_0=0.55 in the r-band</summary>
+	--/ <quantity>phot.mag.kc;em.opt.SDSS.r</quantity>
 	[ke_r] [float] NULL,
 
+	--/ <summary>K+E corrections at z_0=0.55 in the i-band</summary>
+	--/ <quantity>phot.mag.kc;em.opt.SDSS.i</quantity>
 	[ke_i] [float] NULL,
 
+	--/ <summary>K+E corrections at z_0=0.55 in the z-band</summary>
+	--/ <quantity>phot.mag.kc;em.opt.SDSS.z</quantity>
 	[ke_z] [float] NULL,
 
+	--/ <summary>Cmodel absolute magnitudes in the u-band, K+E corrected at z_0=0.55</summary>
+	--/ <quantity>phot.mag.abs;em.opt.SDSS.u</quantity>
 	[cModelAbsMag_u] [float] NULL,
 
+	--/ <summary>Cmodel absolute magnitudes in the g-band, K+E corrected at z_0=0.55</summary>
+	--/ <quantity>phot.mag.abs;em.opt.SDSS.g</quantity>
 	[cModelAbsMag_g] [float] NULL,
 
+	--/ <summary>Cmodel absolute magnitudes in the r-band, K+E corrected at z_0=0.55</summary>
+	--/ <quantity>phot.mag.abs;em.opt.SDSS.r</quantity>
 	[cModelAbsMag_r] [float] NULL,
 
+	--/ <summary>Cmodel absolute magnitudes in the i-band, K+E corrected at z_0=0.55</summary>
+	--/ <quantity>phot.mag.abs;em.opt.SDSS.i</quantity>
 	[cModelAbsMag_i] [float] NULL,
 
+	--/ <summary>Cmodel absolute magnitudes in the z-band, K+E corrected at z_0=0.55</summary>
+	--/ <quantity>phot.mag.abs;em.opt.SDSS.z</quantity>
 	[cModelAbsMag_z] [float] NULL,
 
+	--/ <summary>Mass-to-light ratio in the u-band, K+E corrected at z_0=0.55</summary>
+	--/ <quantity>phys.composition.massLightRatio;em.opt.SDSS.u</quantity>
 	[m2l_u] [float] NULL,
 
+	--/ <summary>Mass-to-light ratio in the g-band, K+E corrected at z_0=0.55</summary>
+	--/ <quantity>phys.composition.massLightRatio;em.opt.SDSS.g</quantity>
 	[m2l_g] [float] NULL,
 
+	--/ <summary>Mass-to-light ratio in the r-band, K+E corrected at z_0=0.55</summary>
+	--/ <quantity>phys.composition.massLightRatio;em.opt.SDSS.r</quantity>
 	[m2l_r] [float] NULL,
 
+	--/ <summary>Mass-to-light ratio in the i-band, K+E corrected at z_0=0.55</summary>
+	--/ <quantity>phys.composition.massLightRatio;em.opt.SDSS.i</quantity>
 	[m2l_i] [float] NULL,
 
+	--/ <summary>Mass-to-light ratio in the z-band, K+E corrected at z_0=0.55</summary>
+	--/ <quantity>phys.composition.massLightRatio;em.opt.SDSS.z</quantity>
 	[m2l_z] [float] NULL,
 
+	--/ <summary>Median Mass-to-light ratio in the u-band, K+E corrected at z_0=0.55. It corresponds to the value of PDF at which 50% of the M/L probability is accumulated</summary>
+	--/ <quantity>phys.composition.massLightRatio;stat.median;em.opt.SDSS.u</quantity>
 	[m2l_median_u] [float] NULL,
 
+	--/ <summary>Median Mass-to-light ratio in the g-band, K+E corrected at z_0=0.55. It corresponds to the value of PDF at which 50% of the M/L probability is accumulated</summary>
+	--/ <quantity>phys.composition.massLightRatio;stat.median;em.opt.SDSS.g</quantity>
 	[m2l_median_g] [float] NULL,
 
+	--/ <summary>Median Mass-to-light ratio in the r-band, K+E corrected at z_0=0.55. It corresponds to the value of PDF at which 50% of the M/L probability is accumulated</summary>
+	--/ <quantity>phys.composition.massLightRatio;stat.median;em.opt.SDSS.r</quantity>
 	[m2l_median_r] [float] NULL,
 
+	--/ <summary>Median Mass-to-light ratio in the i-band, K+E corrected at z_0=0.55. It corresponds to the value of PDF at which 50% of the M/L probability is accumulated</summary>
+	--/ <quantity>phys.composition.massLightRatio;stat.median;em.opt.SDSS.i</quantity>
 	[m2l_median_i] [float] NULL,
 
+	--/ <summary>Median Mass-to-light ratio in the z-band, K+E corrected at z_0=0.55. It corresponds to the value of PDF at which 50% of the M/L probability is accumulated</summary>
+	--/ <quantity>phys.composition.massLightRatio;stat.median;em.opt.SDSS.z</quantity>
 	[m2l_median_z] [float] NULL,
 
+	--/ <summary>1-sigma error associated to M2L_Median in the u-band</summary>
+	--/ <quantity>stat.error;phys.composition.massLightRatio;stat.median;em.opt.SDSS.u</quantity>
 	[m2l_err_u] [float] NULL,
 
+	--/ <summary>1-sigma error associated to M2L_Median in the g-band</summary>
+	--/ <quantity>stat.error;phys.composition.massLightRatio;stat.median;em.opt.SDSS.g</quantity>
 	[m2l_err_g] [float] NULL,
 
+	--/ <summary>1-sigma error associated to M2L_Median in the r-band</summary>
+	--/ <quantity>stat.error;phys.composition.massLightRatio;stat.median;em.opt.SDSS.r</quantity>
 	[m2l_err_r] [float] NULL,
 
+	--/ <summary>1-sigma error associated to M2L_Median in the i-band</summary>
+	--/ <quantity>stat.error;phys.composition.massLightRatio;stat.median;em.opt.SDSS.i</quantity>
 	[m2l_err_i] [float] NULL,
 
+	--/ <summary>1-sigma error associated to M2L_Median in the z-band</summary>
+	--/ <quantity>stat.error;phys.composition.massLightRatio;stat.median;em.opt.SDSS.z</quantity>
 	[m2l_err_z] [float] NULL,
 
+	--/ <summary>Minimum Mass-to-light ratio (lower 68% confidence level) in the u-band</summary>
+	--/ <quantity>phys.composition.massLightRatio;stat.min;em.opt.SDSS.u</quantity>
 	[m2l_min_u] [float] NULL,
 
+	--/ <summary>Minimum Mass-to-light ratio (lower 68% confidence level) in the g-band</summary>
+	--/ <quantity>phys.composition.massLightRatio;stat.min;em.opt.SDSS.g</quantity>
 	[m2l_min_g] [float] NULL,
 
+	--/ <summary>Minimum Mass-to-light ratio (lower 68% confidence level) in the r-band</summary>
+	--/ <quantity>phys.composition.massLightRatio;stat.min;em.opt.SDSS.r</quantity>
 	[m2l_min_r] [float] NULL,
 
+	--/ <summary>Minimum Mass-to-light ratio (lower 68% confidence level) in the i-band</summary>
+	--/ <quantity>phys.composition.massLightRatio;stat.min;em.opt.SDSS.i</quantity>
 	[m2l_min_i] [float] NULL,
 
+	--/ <summary>Minimum Mass-to-light ratio (lower 68% confidence level) in the z-band</summary>
+	--/ <quantity>phys.composition.massLightRatio;stat.min;em.opt.SDSS.z</quantity>
 	[m2l_min_z] [float] NULL,
 
+	--/ <summary>Maximum Mass-to-light ratio (higher 68% confidence level) in the u-band</summary>
+	--/ <quantity>phys.composition.massLightRatio;stat.max;em.opt.SDSS.u</quantity>
 	[m2l_max_u] [float] NULL,
 
+	--/ <summary>Maximum Mass-to-light ratio (higher 68% confidence level) in the g-band</summary>
+	--/ <quantity>phys.composition.massLightRatio;stat.max;em.opt.SDSS.g</quantity>
 	[m2l_max_g] [float] NULL,
 
+	--/ <summary>Maximum Mass-to-light ratio (higher 68% confidence level) in the r-band</summary>
+	--/ <quantity>phys.composition.massLightRatio;stat.max;em.opt.SDSS.r</quantity>
 	[m2l_max_r] [float] NULL,
 
+	--/ <summary>Maximum Mass-to-light ratio (higher 68% confidence level) in the i-band</summary>
+	--/ <quantity>phys.composition.massLightRatio;stat.max;em.opt.SDSS.i</quantity>
 	[m2l_max_i] [float] NULL,
 
+	--/ <summary>Maximum Mass-to-light ratio (higher 68% confidence level) in the z-band</summary>
+	--/ <quantity>phys.composition.massLightRatio;stat.max;em.opt.SDSS.z</quantity>
 	[m2l_max_z] [float] NULL,
 
+	--/ <summary>Best-fit stellar mass of galaxy</summary>
+	--/ <quantity>phys.mass</quantity>
+	--/ <unit>dex M_sol</unit>
 	[logMass] [float] NULL,
 
+	--/ <summary>Median stellar mass of galaxy. It corresponds to the value of PDF at which 50% of the stellar mass probability is accumulated (log base 10 in solar masses)</summary>
+	--/ <quantity>phys.mass;stat.median</quantity>
+	--/ <unit>dex M_sol</unit>
 	[logMass_median] [float] NULL,
 
+	--/ <summary>1-sigma error associated with LogMass_Median</summary>
+	--/ <quantity>stat.error;phys.mass</quantity>
+	--/ <unit>dex M_sol</unit>
 	[logMass_err] [float] NULL,
 
+	--/ <summary>Minimum stellar mass (lower 68% confidence level)</summary>
+	--/ <quantity>phys.mass;stat.min</quantity>
+	--/ <unit>dex M_sol</unit>
 	[logMass_min] [float] NULL,
 
+	--/ <summary>Maximum stellar mass (higher 68% confidence level)</summary>
+	--/ <quantity>phys.mass;stat.max</quantity>
+	--/ <unit>dex M_sol</unit>
 	[logMass_max] [float] NULL,
 
+	--/ <summary>Unreduced chi-square of best fit</summary>
+	--/ <quantity>stat.fit.chi2</quantity>
 	[chi2] [float] NULL,
 
+	--/ <summary>Number of filters used in the fit (default is 5 for ugriz)</summary>
+	--/ <quantity>meta.number</quantity>
 	[nFilter] [smallint] NULL,
 
+	--/ <summary>Best-fit look-back formation time</summary>
+	--/ <quantity>time.age</quantity>
+	--/ <unit>Gyr</unit>
 	[t_age] [float] NULL,
 
+	--/ <summary>Mean look-back formation time</summary>
+	--/ <quantity>time.age;stat.mean</quantity>
+	--/ <unit>Gyr</unit>
 	[t_age_mean] [float] NULL,
 
+	--/ <summary>1-sigma error for look-back formation time</summary>
+	--/ <quantity>stat.error;time.age</quantity>
+	--/ <unit>Gyr</unit>
 	[t_age_err] [float] NULL,
 
+	--/ <summary>Minimum value (lower 68% confidence level) for look-back formation time</summary>
+	--/ <quantity>time.age;stat.min</quantity>
+	--/ <unit>Gyr</unit>
 	[t_age_min] [float] NULL,
 
+	--/ <summary>Maximum value (higher 68% confidence level) for look-back formation time</summary>
+	--/ <quantity>time.age;stat.max</quantity>
+	--/ <unit>Gyr</unit>
 	[t_age_max] [float] NULL,
 
+	--/ <summary>Best-fit metallicity, where Z_sun=0.019</summary>
+	--/ <quantity>phys.abund.Z</quantity>
 	[metallicity] [float] NULL,
 
+	--/ <summary>Mean metallicity</summary>
+	--/ <quantity>phys.abund.Z;stat.mean</quantity>
 	[metallicity_mean] [float] NULL,
 
+	--/ <summary>1-sigma error for metallicity</summary>
+	--/ <quantity>stat.error;phys.abund.Z</quantity>
 	[metallicity_err] [float] NULL,
 
+	--/ <summary>Minimum value (lower 68% confidence level) for metallicity</summary>
+	--/ <quantity>phys.abund.Z;stat.min</quantity>
 	[metallicity_min] [float] NULL,
 
+	--/ <summary>Maximum value (higher 68% confidence level) for metallicity</summary>
+	--/ <quantity>phys.abund.Z;stat.max</quantity>
 	[metallicity_max] [float] NULL,
 
+	--/ <summary>Best-fit value for dust attenuation around young stars</summary>
+	--/ <quantity>phys.absorption</quantity>
 	[dust1] [float] NULL,
 
+	--/ <summary>Mean value for dust attenuation around young stars</summary>
+	--/ <quantity>phys.absorption;stat.mean</quantity>
 	[dust1_mean] [float] NULL,
 
+	--/ <summary>1-sigma error for dust attenuation around young stars</summary>
+	--/ <quantity>stat.error;phys.absorption</quantity>
 	[dust1_err] [float] NULL,
 
+	--/ <summary>Minimum value dust attenuation around young stars (lower 68% confidence level)</summary>
+	--/ <quantity>phys.absorption;stat.min</quantity>
 	[dust1_min] [float] NULL,
 
+	--/ <summary>Maximum value dust attenuation around young stars (higher 68% confidence level)</summary>
+	--/ <quantity>phys.absorption;stat.max</quantity>
 	[dust1_max] [float] NULL,
 
+	--/ <summary>Best-fit value for dust attenuation around old stars</summary>
+	--/ <quantity>phys.absorption</quantity>
 	[dust2] [float] NULL,
 
+	--/ <summary>Mean value for dust attenuation around old stars</summary>
+	--/ <quantity>phys.absorption;stat.mean</quantity>
 	[dust2_mean] [float] NULL,
 
+	--/ <summary>1-sigma error for dust attenuation around old stars</summary>
+	--/ <quantity>stat.error;phys.absorption</quantity>
 	[dust2_err] [float] NULL,
 
+	--/ <summary>Minimum value for dust attenuation around old stars (lower 68% confidence level)</summary>
+	--/ <quantity>phys.absorption;stat.min</quantity>
 	[dust2_min] [float] NULL,
 
+	--/ <summary>Maximum value for dust attenuation around old stars (higher 68% confidence level)</summary>
+	--/ <quantity>phys.absorption;stat.max</quantity>
 	[dust2_max] [float] NULL,
 
+	--/ <summary>Best-fit star formation history e-folding time (tau)</summary>
+	--/ <quantity>time.duration</quantity>
+	--/ <unit>Gyr</unit>
 	[tau] [float] NULL,
 
+	--/ <summary>Mean star formation history e-folding time (tau)</summary>
+	--/ <quantity>time.duration;stat.mean</quantity>
+	--/ <unit>Gyr</unit>
 	[tau_mean] [float] NULL,
 
+	--/ <summary>1-sigma star formation history e-folding time (tau)</summary>
+	--/ <quantity>stat.error;time.duration</quantity>
+	--/ <unit>Gyr</unit>
 	[tau_err] [float] NULL,
 
+	--/ <summary>Minimum value (lower 68% confidence level) for star formation history e-folding time (tau)</summary>
+	--/ <quantity>time.duration;stat.min</quantity>
+	--/ <unit>Gyr</unit>
 	[tau_min] [float] NULL,
 
+	--/ <summary>Maximum value (higher 68% confidence level) for star formation history e-folding time (tau)</summary>
+	--/ <quantity>time.duration;stat.max</quantity>
+	--/ <unit>Gyr</unit>
 	[tau_max] [float] NULL,
 
+	--/ <summary>Best-fit mass-weighted average age of the stellar population</summary>
+	--/ <quantity>time.age</quantity>
+	--/ <unit>Gyr</unit>
 	[age] [float] NULL,
 
+	--/ <summary>Mean mass-weighted average age of the stellar population</summary>
+	--/ <quantity>time.age;stat.mean</quantity>
+	--/ <unit>Gyr</unit>
 	[age_mean] [float] NULL,
 
+	--/ <summary>Minimum value (lower 68% confidence level) for mass-weighted average age of the stellar population</summary>
+	--/ <quantity>time.age;stat.min</quantity>
+	--/ <unit>Gyr</unit>
 	[age_min] [float] NULL,
 
+	--/ <summary>Maximum value (higher 68% confidence level) for mass-weighted average age of the stellar population</summary>
+	--/ <quantity>time.age;stat.max</quantity>
+	--/ <unit>Gyr</unit>
 	[age_max] [float] NULL,
 
+	--/ <summary>Best-fit specific star formation rate</summary>
+	--/ <quantity>phys.SFR</quantity>
+	--/ <unit>log Gyr&lt;sup>-1&lt;/sup></unit>
 	[ssfr] [float] NULL,
 
+	--/ <summary>Mean specific star formation rate</summary>
+	--/ <quantity>phys.SFR;stat.mean</quantity>
+	--/ <unit>log Gyr&lt;sup>-1&lt;/sup></unit>
 	[ssfr_mean] [float] NULL,
 
+	--/ <summary>Minimum value (lower 68% confidence level) for specific star formation rate</summary>
+	--/ <quantity>phys.SFR;stat.min</quantity>
+	--/ <unit>log Gyr&lt;sup>-1&lt;/sup></unit>
 	[ssfr_min] [float] NULL,
 
+	--/ <summary>Maximum value (higher 68% confidence level) for specific star formation rate</summary>
+	--/ <quantity>phys.SFR;stat.max</quantity>
+	--/ <unit>log Gyr&lt;sup>-1&lt;/sup></unit>
 	[ssfr_max] [float] NULL,
  CONSTRAINT [pk_stellarMassFSPSGranEarlyDust_] PRIMARY KEY CLUSTERED 
 (
@@ -16552,172 +17040,367 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
+--/ <summary> Estimated stellar masses for SDSS and BOSS galaxies (Granada method, early-star-formation with dust) </summary>
+--/ <remarks> Stellar masses using FSPS models of &lt;a href='http://adsabs.harvard.edu/abs/2009ApJ...699..486C'>Conroy et al. (2009)&lt;/a>  fit to SDSS photometry in ugriz.  The fit is carried out on extinction corrected model magnitudes that are scaled   to the i-band c-model magnitude. This 'early-star-formation' version restricts the assumption about  when the star-formation in the galaxy could occur to within 2 Gyrs of the Big Bang.  This version assumes  no dust extinction. </remarks>
 CREATE TABLE [dbo].[stellarMassFSPSGranEarlyNoDust](
 
+	--/ <summary>Unique ID</summary>
+	--/ <quantity>meta.id</quantity>
 	[specObjID] [bigint] NOT NULL,
 
+	--/ <summary>Plate number</summary>
+	--/ <quantity>meta.id;instr.det</quantity>
 	[plate] [smallint] NULL,
 
+	--/ <summary>Fiber ID</summary>
+	--/ <quantity>meta.id;instr.param</quantity>
 	[fiberID] [smallint] NULL,
 
+	--/ <summary>MJD of observation</summary>
+	--/ <quantity>time.epoch;obs</quantity>
+	--/ <unit>days</unit>
 	[MJD] [int] NULL,
 
+	--/ <summary>Right ascension of fiber, J2000</summary>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[ra] [float] NULL,
 
+	--/ <summary>Declination of fiber, J2000</summary>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[dec] [float] NULL,
 
+	--/ <summary>Redshift used (corresponds to z_noqso in specObjAll)</summary>
+	--/ <quantity>src.redshift</quantity>
 	[z] [real] NULL,
 
+	--/ <summary>Error in z (corresponds to zErr_noqso in specObjAll)</summary>
+	--/ <quantity>stat.error;src.redshift</quantity>
 	[z_err] [real] NULL,
 
+	--/ <summary>K+E corrections at z_0=0.55 in the u-band</summary>
+	--/ <quantity></quantity>
 	[ke_u] [float] NULL,
 
+	--/ <summary>K+E corrections at z_0=0.55 in the g-band</summary>
+	--/ <quantity></quantity>
 	[ke_g] [float] NULL,
 
+	--/ <summary>K+E corrections at z_0=0.55 in the r-band</summary>
+	--/ <quantity></quantity>
 	[ke_r] [float] NULL,
 
+	--/ <summary>K+E corrections at z_0=0.55 in the i-band</summary>
+	--/ <quantity></quantity>
 	[ke_i] [float] NULL,
 
+	--/ <summary>K+E corrections at z_0=0.55 in the z-band</summary>
+	--/ <quantity></quantity>
 	[ke_z] [float] NULL,
 
+	--/ <summary>Cmodel absolute magnitudes in the u-band, K+E corrected at z_0=0.55</summary>
+	--/ <quantity></quantity>
 	[cModelAbsMag_u] [float] NULL,
 
+	--/ <summary>Cmodel absolute magnitudes in the g-band, K+E corrected at z_0=0.55</summary>
+	--/ <quantity></quantity>
 	[cModelAbsMag_g] [float] NULL,
 
+	--/ <summary>Cmodel absolute magnitudes in the r-band, K+E corrected at z_0=0.55</summary>
+	--/ <quantity></quantity>
 	[cModelAbsMag_r] [float] NULL,
 
+	--/ <summary>Cmodel absolute magnitudes in the i-band, K+E corrected at z_0=0.55</summary>
+	--/ <quantity></quantity>
 	[cModelAbsMag_i] [float] NULL,
 
+	--/ <summary>Cmodel absolute magnitudes in the z-band, K+E corrected at z_0=0.55</summary>
+	--/ <quantity></quantity>
 	[cModelAbsMag_z] [float] NULL,
 
+	--/ <summary>Mass-to-light ratio in the u-band, K+E corrected at z_0=0.55</summary>
+	--/ <quantity></quantity>
 	[m2l_u] [float] NULL,
 
+	--/ <summary>Mass-to-light ratio in the g-band, K+E corrected at z_0=0.55</summary>
+	--/ <quantity></quantity>
 	[m2l_g] [float] NULL,
 
+	--/ <summary>Mass-to-light ratio in the r-band, K+E corrected at z_0=0.55</summary>
+	--/ <quantity></quantity>
 	[m2l_r] [float] NULL,
 
+	--/ <summary>Mass-to-light ratio in the i-band, K+E corrected at z_0=0.55</summary>
+	--/ <quantity></quantity>
 	[m2l_i] [float] NULL,
 
+	--/ <summary>Mass-to-light ratio in the z-band, K+E corrected at z_0=0.55</summary>
+	--/ <quantity></quantity>
 	[m2l_z] [float] NULL,
 
+	--/ <summary>Median Mass-to-light ratio in the u-band, K+E corrected at z_0=0.55. It corresponds to the value of PDF at which 50% of the M/L probability is accumulated</summary>
+	--/ <quantity></quantity>
 	[m2l_median_u] [float] NULL,
 
+	--/ <summary>Median Mass-to-light ratio in the g-band, K+E corrected at z_0=0.55. It corresponds to the value of PDF at which 50% of the M/L probability is accumulated</summary>
+	--/ <quantity></quantity>
 	[m2l_median_g] [float] NULL,
 
+	--/ <summary>Median Mass-to-light ratio in the r-band, K+E corrected at z_0=0.55. It corresponds to the value of PDF at which 50% of the M/L probability is accumulated</summary>
+	--/ <quantity></quantity>
 	[m2l_median_r] [float] NULL,
 
+	--/ <summary>Median Mass-to-light ratio in the i-band, K+E corrected at z_0=0.55. It corresponds to the value of PDF at which 50% of the M/L probability is accumulated</summary>
+	--/ <quantity></quantity>
 	[m2l_median_i] [float] NULL,
 
+	--/ <summary>Median Mass-to-light ratio in the z-band, K+E corrected at z_0=0.55. It corresponds to the value of PDF at which 50% of the M/L probability is accumulated</summary>
+	--/ <quantity></quantity>
 	[m2l_median_z] [float] NULL,
 
+	--/ <summary>1-sigma error associated to M2L_Median in the u-band</summary>
+	--/ <quantity></quantity>
 	[m2l_err_u] [float] NULL,
 
+	--/ <summary>1-sigma error associated to M2L_Median in the g-band</summary>
+	--/ <quantity></quantity>
 	[m2l_err_g] [float] NULL,
 
+	--/ <summary>1-sigma error associated to M2L_Median in the r-band</summary>
+	--/ <quantity></quantity>
 	[m2l_err_r] [float] NULL,
 
+	--/ <summary>1-sigma error associated to M2L_Median in the i-band</summary>
+	--/ <quantity></quantity>
 	[m2l_err_i] [float] NULL,
 
+	--/ <summary>1-sigma error associated to M2L_Median in the z-band</summary>
+	--/ <quantity></quantity>
 	[m2l_err_z] [float] NULL,
 
+	--/ <summary>Minimum Mass-to-light ratio (lower 68% confidence level) in the u-band</summary>
+	--/ <quantity></quantity>
 	[m2l_min_u] [float] NULL,
 
+	--/ <summary>Minimum Mass-to-light ratio (lower 68% confidence level) in the g-band</summary>
+	--/ <quantity></quantity>
 	[m2l_min_g] [float] NULL,
 
+	--/ <summary>Minimum Mass-to-light ratio (lower 68% confidence level) in the r-band</summary>
+	--/ <quantity></quantity>
 	[m2l_min_r] [float] NULL,
 
+	--/ <summary>Minimum Mass-to-light ratio (lower 68% confidence level) in the i-band</summary>
+	--/ <quantity></quantity>
 	[m2l_min_i] [float] NULL,
 
+	--/ <summary>Minimum Mass-to-light ratio (lower 68% confidence level) in the z-band</summary>
+	--/ <quantity></quantity>
 	[m2l_min_z] [float] NULL,
 
+	--/ <summary>Maximum Mass-to-light ratio (higher 68% confidence level) in the u-band</summary>
+	--/ <quantity></quantity>
 	[m2l_max_u] [float] NULL,
 
+	--/ <summary>Maximum Mass-to-light ratio (higher 68% confidence level) in the g-band</summary>
+	--/ <quantity></quantity>
 	[m2l_max_g] [float] NULL,
 
+	--/ <summary>Maximum Mass-to-light ratio (higher 68% confidence level) in the r-band</summary>
+	--/ <quantity></quantity>
 	[m2l_max_r] [float] NULL,
 
+	--/ <summary>Maximum Mass-to-light ratio (higher 68% confidence level) in the i-band</summary>
+	--/ <quantity></quantity>
 	[m2l_max_i] [float] NULL,
 
+	--/ <summary>Maximum Mass-to-light ratio (higher 68% confidence level) in the z-band</summary>
+	--/ <quantity></quantity>
 	[m2l_max_z] [float] NULL,
 
+	--/ <summary>Best-fit stellar mass of galaxy</summary>
+	--/ <quantity></quantity>
+	--/ <unit>dex (solar masses)</unit>
 	[logMass] [float] NULL,
 
+	--/ <summary>Median stellar mass of galaxy. It corresponds to the value of PDF at which 50% of the stellar mass probability is accumulated (log base 10 in solar masses)</summary>
+	--/ <quantity></quantity>
+	--/ <unit>dex (solar masses)</unit>
 	[logMass_median] [float] NULL,
 
+	--/ <summary>1-sigma error associated with LogMass_Median</summary>
+	--/ <quantity></quantity>
+	--/ <unit>dex (solar masses)</unit>
 	[logMass_err] [float] NULL,
 
+	--/ <summary>Minimum stellar mass (lower 68% confidence level)</summary>
+	--/ <quantity></quantity>
+	--/ <unit>dex (solar masses)</unit>
 	[logMass_min] [float] NULL,
 
+	--/ <summary>Maximum stellar mass (higher 68% confidence level)</summary>
+	--/ <quantity></quantity>
+	--/ <unit>dex (solar masses)</unit>
 	[logMass_max] [float] NULL,
 
+	--/ <summary>Unreduced chi-square of best fit</summary>
+	--/ <quantity></quantity>
 	[chi2] [float] NULL,
 
+	--/ <summary>Number of filters used in the fit (default is 5 for ugriz)</summary>
+	--/ <quantity></quantity>
 	[nFilter] [smallint] NULL,
 
+	--/ <summary>Best-fit look-back formation time</summary>
+	--/ <quantity></quantity>
+	--/ <unit>Gyr</unit>
 	[t_age] [float] NULL,
 
+	--/ <summary>Mean look-back formation time</summary>
+	--/ <quantity></quantity>
+	--/ <unit>Gyr</unit>
 	[t_age_mean] [float] NULL,
 
+	--/ <summary>1-sigma error for look-back formation time</summary>
+	--/ <quantity></quantity>
+	--/ <unit>Gyr</unit>
 	[t_age_err] [float] NULL,
 
+	--/ <summary>Minimum value (lower 68% confidence level) for look-back formation time</summary>
+	--/ <quantity></quantity>
+	--/ <unit>Gyr</unit>
 	[t_age_min] [float] NULL,
 
+	--/ <summary>Maximum value (higher 68% confidence level) for look-back formation time</summary>
+	--/ <quantity></quantity>
+	--/ <unit>Gyr</unit>
 	[t_age_max] [float] NULL,
 
+	--/ <summary>Best-fit metallicity, where Z_sun=0.019</summary>
+	--/ <quantity></quantity>
 	[metallicity] [float] NULL,
 
+	--/ <summary>Mean metallicity</summary>
+	--/ <quantity></quantity>
 	[metallicity_mean] [float] NULL,
 
+	--/ <summary>1-sigma error for metallicity</summary>
+	--/ <quantity></quantity>
 	[metallicity_err] [float] NULL,
 
+	--/ <summary>Minimum value (lower 68% confidence level) for metallicity</summary>
+	--/ <quantity></quantity>
 	[metallicity_min] [float] NULL,
 
+	--/ <summary>Maximum value (higher 68% confidence level) for metallicity</summary>
+	--/ <quantity></quantity>
 	[metallicity_max] [float] NULL,
 
+	--/ <summary>Best-fit value for dust attenuation around young stars</summary>
+	--/ <quantity></quantity>
 	[dust1] [float] NULL,
 
+	--/ <summary>Mean value for dust attenuation around young stars</summary>
+	--/ <quantity></quantity>
 	[dust1_mean] [float] NULL,
 
+	--/ <summary>1-sigma error for dust attenuation around young stars</summary>
+	--/ <quantity></quantity>
 	[dust1_err] [float] NULL,
 
+	--/ <summary>Minimum value dust attenuation around young stars (lower 68% confidence level)</summary>
+	--/ <quantity></quantity>
 	[dust1_min] [float] NULL,
 
+	--/ <summary>Maximum value dust attenuation around young stars (higher 68% confidence level)</summary>
+	--/ <quantity></quantity>
 	[dust1_max] [float] NULL,
 
+	--/ <summary>Best-fit value for dust attenuation around old stars</summary>
+	--/ <quantity></quantity>
 	[dust2] [float] NULL,
 
+	--/ <summary>Mean value for dust attenuation around old stars</summary>
+	--/ <quantity></quantity>
 	[dust2_mean] [float] NULL,
 
+	--/ <summary>1-sigma error for dust attenuation around old stars</summary>
+	--/ <quantity></quantity>
 	[dust2_err] [float] NULL,
 
+	--/ <summary>Minimum value for dust attenuation around old stars (lower 68% confidence level)</summary>
+	--/ <quantity></quantity>
 	[dust2_min] [float] NULL,
 
+	--/ <summary>Maximum value for dust attenuation around old stars (higher 68% confidence level)</summary>
+	--/ <quantity></quantity>
 	[dust2_max] [float] NULL,
 
+	--/ <summary>Best-fit star formation history e-folding time (tau)</summary>
+	--/ <quantity></quantity>
+	--/ <unit>Gyr</unit>
 	[tau] [float] NULL,
 
+	--/ <summary>Mean star formation history e-folding time (tau)</summary>
+	--/ <quantity></quantity>
+	--/ <unit>Gyr</unit>
 	[tau_mean] [float] NULL,
 
+	--/ <summary>1-sigma star formation history e-folding time (tau)</summary>
+	--/ <quantity></quantity>
+	--/ <unit>Gyr</unit>
 	[tau_err] [float] NULL,
 
+	--/ <summary>Minimum value (lower 68% confidence level) for star formation history e-folding time (tau)</summary>
+	--/ <quantity></quantity>
+	--/ <unit>Gyr</unit>
 	[tau_min] [float] NULL,
 
+	--/ <summary>Maximum value (higher 68% confidence level) for star formation history e-folding time (tau)</summary>
+	--/ <quantity></quantity>
+	--/ <unit>Gyr</unit>
 	[tau_max] [float] NULL,
 
+	--/ <summary>Best-fit mass-weighted average age of the stellar population</summary>
+	--/ <quantity></quantity>
+	--/ <unit>Gyr</unit>
 	[age] [float] NULL,
 
+	--/ <summary>Mean mass-weighted average age of the stellar population</summary>
+	--/ <quantity></quantity>
+	--/ <unit>Gyr</unit>
 	[age_mean] [float] NULL,
 
+	--/ <summary>Minimum value (lower 68% confidence level) for mass-weighted average age of the stellar population</summary>
+	--/ <quantity></quantity>
+	--/ <unit>Gyr</unit>
 	[age_min] [float] NULL,
 
+	--/ <summary>Maximum value (higher 68% confidence level) for mass-weighted average age of the stellar population</summary>
+	--/ <quantity></quantity>
+	--/ <unit>Gyr</unit>
 	[age_max] [float] NULL,
 
+	--/ <summary>Best-fit specific star formation rate</summary>
+	--/ <quantity></quantity>
+	--/ <unit>log Gyr&lt;sup>-1&lt;/sup></unit>
 	[ssfr] [float] NULL,
 
+	--/ <summary>Mean specific star formation rate</summary>
+	--/ <quantity></quantity>
+	--/ <unit>log Gyr&lt;sup>-1&lt;/sup></unit>
 	[ssfr_mean] [float] NULL,
 
+	--/ <summary>Minimum value (lower 68% confidence level) for specific star formation rate</summary>
+	--/ <quantity></quantity>
+	--/ <unit>log Gyr&lt;sup>-1&lt;/sup></unit>
 	[ssfr_min] [float] NULL,
 
+	--/ <summary>Maximum value (higher 68% confidence level) for specific star formation rate</summary>
+	--/ <quantity></quantity>
+	--/ <unit>log Gyr&lt;sup>-1&lt;/sup></unit>
 	[ssfr_max] [float] NULL,
  CONSTRAINT [pk_stellarMassFSPSGranEarlyNoDus] PRIMARY KEY CLUSTERED 
 (
