@@ -8298,7 +8298,7 @@ CREATE TABLE [dbo].[marvelsStar](
 
 	--/ <summary>Error in GSC V Magnitude (in mags)</summary>
 	--/ <quantity>stat.error;phot.mag;em.opt.V</quantity>
-	--/ <unit></unit>
+	--/ <unit>mag</unit>
 	[GSC_V_E] [real] NOT NULL,
 
 	--/ <summary>Error in 2MASS J Magnitude (in mags)</summary>
@@ -8364,7 +8364,7 @@ CREATE TABLE [dbo].[marvelsStar](
 	[GSC_PM_DEC] [float] NOT NULL,
 
 	--/ <summary>Error in GSC Proper Motion in RA pmra * cos(dec) (in mas)</summary>
-	--/ <unit></unit>
+	--/ <unit>mag</unit>
 	--/ <quantity>stat.error;pos.pm;pos.eq.ra</quantity>
 	[GSC_PM_RA_E] [float] NOT NULL,
 
@@ -8375,7 +8375,7 @@ CREATE TABLE [dbo].[marvelsStar](
 
 	--/ <summary>Tycho B Magnitude (in mag)</summary>
 	--/ <quantity>phot.mag;em.opt.B</quantity>
-	--/ <unit></unit>
+	--/ <unit>mag</unit>
 	[TYC_B] [real] NOT NULL,
 
 	--/ <summary>Error in Tycho B Magnitude (in mag)</summary>
@@ -8390,7 +8390,7 @@ CREATE TABLE [dbo].[marvelsStar](
 
 	--/ <summary>Error in Tycho V Magnitude (in mag)</summary>
 	--/ <quantity>stat.error;phot.mag;em.opt.V</quantity>
-	--/ <unit></unit>
+	--/ <unit>mag</unit>
 	[TYC_V_E] [real] NOT NULL,
 
 	--/ <summary>Hipparcos Parallax (in mas)</summary>
@@ -12638,7 +12638,7 @@ CREATE TABLE [dbo].[SpecObjAll](
 
 	--/ <summary>Warnings in "z_noqso" redshift (BOSS spectra only)</summary>
 	--/ <quantity>meta.code;src.redshift</quantity>
-	[zWarning_noqso] [int] NOT NULL,
+	[zWarning_noqso] [real] NOT NULL,
 
 	--/ <summary>Classification in "z_noqso" redshift</summary>
 	--/ <quantity>src.class</quantity>
@@ -13772,7 +13772,7 @@ SET ANSI_PADDING ON
 GO
 
 --/ <summary> Contains outputs from the SEGUE Stellar Parameter Pipeline (SSPP). </summary>
---/ <remarks> Spectra for over 500,000 Galactic stars of all common spectral types are  available with DR8. These Spectra were processed with a pipeline called the  SEGUE Stellar Parameter Pipeline (SSPP, Lee et al. 2008) that computes line indices for a wide  range of common features at the radial velocity of the star in  question. Note that the line indices for TiO5, TiO8, CaH1, CaH2, and CaH3 are calculated following  the prescription given by the Hammer program (Covey et al. 2007). UVCN and BLCN line indices are computed  by he equations given in Smith & Norris (1982), and FeI_4 and FeI_5 indices by the recipe in Friel (1987).  FeI_1, FeI_2, FeI_3, and SrII line indices are only computed from the local continuum.  Thus, these line indices calculated from different methods report the same values for both the local continuum and  the global continuum. These outputs are stored in this table, and indexed on the   specObjID key index parameter for queries joining to other   tables such as specobjall and photoobjall.  See the Sample Queries in  SkyServer for examples of such queries. </remarks>
+--/ <remarks> Spectra for over 500,000 Galactic stars of all common spectral types are  available with DR8. These Spectra were processed with a pipeline called the  SEGUE Stellar Parameter Pipeline (SSPP, Lee et al. 2008) that computes line indices for a wide  range of common features at the radial velocity of the star in  question. Note that the line indices for TiO5, TiO8, CaH1, CaH2, and CaH3 are calculated following  the prescription given by the Hammer program (Covey et al. 2007). UVCN and BLCN line indices are computed  by he equations given in Smith &amp; Norris (1982), and FeI_4 and FeI_5 indices by the recipe in Friel (1987).  FeI_1, FeI_2, FeI_3, and SrII line indices are only computed from the local continuum.  Thus, these line indices calculated from different methods report the same values for both the local continuum and  the global continuum. These outputs are stored in this table, and indexed on the   specObjID key index parameter for queries joining to other   tables such as specobjall and photoobjall.  See the Sample Queries in  SkyServer for examples of such queries. </remarks>
 CREATE TABLE [dbo].[sppLines](
 
 	--/ <summary>id number</summary>
@@ -15428,316 +15428,702 @@ SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[sppParams](
 
+	--/ <summary>id number, match in specObjAll</summary>
+	--/ <quantity>meta.id</quantity>
 	[SPECOBJID] [bigint] NOT NULL,
 
+	--/ <summary>Object ID of best PhotoObj match (flux-based)</summary>
+	--/ <quantity>meta.id</quantity>
 	[BESTOBJID] [bigint] NOT NULL,
 
+	--/ <summary>Object ID of best PhotoObj match (position-based)</summary>
+	--/ <quantity>meta.id</quantity>
 	[FLUXOBJID] [bigint] NOT NULL,
 
+	--/ <summary>targeted object ID</summary>
+	--/ <quantity>meta.id</quantity>
 	[TARGETOBJID] [bigint] NOT NULL,
 
+	--/ <summary>Database ID of Plate (match in plateX)</summary>
+	--/ <quantity>meta.id</quantity>
 	[PLATEID] [bigint] NOT NULL,
 
+	--/ <summary>Best version of spectrum at this location (defines default view SpecObj)</summary>
+	--/ <quantity>meta.code</quantity>
 	[sciencePrimary] [smallint] NOT NULL,
 
+	--/ <summary>Best version of spectrum at this location, among Legacy plates</summary>
+	--/ <quantity>meta.code</quantity>
 	[legacyPrimary] [smallint] NOT NULL,
 
+	--/ <summary>Best version of spectrum at this location, among SEGUE plates (defines default view SpecObj)</summary>
+	--/ <quantity>meta.code</quantity>
 	[seguePrimary] [smallint] NOT NULL,
 
+	--/ <summary>Name of first release this object was associated with</summary>
+	--/ <quantity>meta.id</quantity>
 	[FIRSTRELEASE] [varchar](32) NOT NULL,
 
+	--/ <summary>Survey name</summary>
+	--/ <quantity>meta.id</quantity>
 	[SURVEY] [varchar](32) NOT NULL,
 
+	--/ <summary>Program name</summary>
+	--/ <quantity>meta.id</quantity>
 	[PROGRAMNAME] [varchar](32) NOT NULL,
 
+	--/ <summary>Chunk name</summary>
+	--/ <quantity>meta.id</quantity>
 	[CHUNK] [varchar](32) NOT NULL,
 
+	--/ <summary>Plate drill run name</summary>
+	--/ <quantity>meta.id</quantity>
 	[PLATERUN] [varchar](32) NOT NULL,
 
+	--/ <summary>Modified Julian Date of observation</summary>
+	--/ <quantity>time.epoch;obs</quantity>
 	[MJD] [bigint] NOT NULL,
 
+	--/ <summary>Plate number</summary>
+	--/ <quantity>meta.id;instr.det</quantity>
 	[PLATE] [bigint] NOT NULL,
 
+	--/ <summary>Fiber number (1-640)</summary>
+	--/ <quantity>meta.id;instr.param</quantity>
 	[FIBERID] [bigint] NOT NULL,
 
+	--/ <summary>Name of 2D rerun</summary>
+	--/ <quantity>meta.id</quantity>
 	[RUN2D] [varchar](32) NOT NULL,
 
+	--/ <summary>Name of 1D rerun</summary>
+	--/ <quantity>meta.id</quantity>
 	[RUN1D] [varchar](32) NOT NULL,
 
+	--/ <summary>Name of SSPP rerun</summary>
+	--/ <quantity>meta.id</quantity>
 	[RUNSSPP] [varchar](32) NOT NULL,
 
+	--/ <summary>ASCII translation of target selection information as determined at the time the plate was designed</summary>
+	--/ <quantity>meta.note</quantity>
 	[TARGETSTRING] [varchar](32) NOT NULL,
 
+	--/ <summary>Target selection information at plate design, primary science selection (for backwards compatibility)</summary>
+	--/ <quantity>meta.code</quantity>
 	[PRIMTARGET] [bigint] NOT NULL,
 
+	--/ <summary>Target selection information at plate design, secondary/qa/calib selection (for backwards compatibility)</summary>
+	--/ <quantity>meta.code</quantity>
 	[SECTARGET] [bigint] NOT NULL,
 
+	--/ <summary>Legacy target selection information at plate design, primary science selection</summary>
+	--/ <quantity>meta.code</quantity>
 	[LEGACY_TARGET1] [bigint] NOT NULL,
 
+	--/ <summary>Legacy target selection information at plate design, secondary/qa/calib selection</summary>
+	--/ <quantity>meta.code</quantity>
 	[LEGACY_TARGET2] [bigint] NOT NULL,
 
+	--/ <summary>Special program target selection information at plate design, primary science selection</summary>
+	--/ <quantity>meta.code</quantity>
 	[SPECIAL_TARGET1] [bigint] NOT NULL,
 
+	--/ <summary>Special program target selection information at plate design, secondary/qa/calib selection</summary>
+	--/ <quantity>meta.code</quantity>
 	[SPECIAL_TARGET2] [bigint] NOT NULL,
 
+	--/ <summary>SEGUE-1 target selection information at plate design, primary science selection</summary>
+	--/ <quantity>meta.code</quantity>
 	[SEGUE1_TARGET1] [bigint] NOT NULL,
 
+	--/ <summary>SEGUE-1 target selection information at plate design, secondary/qa/calib selection</summary>
+	--/ <quantity>meta.code</quantity>
 	[SEGUE1_TARGET2] [bigint] NOT NULL,
 
+	--/ <summary>SEGUE-2 target selection information at plate design, primary science selection</summary>
+	--/ <quantity>meta.code</quantity>
 	[SEGUE2_TARGET1] [bigint] NOT NULL,
 
+	--/ <summary>SEGUE-2 target selection information at plate design, secondary/qa/calib selection</summary>
+	--/ <quantity>meta.code</quantity>
 	[SEGUE2_TARGET2] [bigint] NOT NULL,
 
+	--/ <summary>Spectral Type from HAMMER</summary>
+	--/ <quantity>src.spType</quantity>
 	[SPECTYPEHAMMER] [varchar](32) NOT NULL,
 
+	--/ <summary>SpecBS sub-classification</summary>
+	--/ <quantity>src.spType</quantity>
 	[SPECTYPESUBCLASS] [varchar](32) NOT NULL,
 
+	--/ <summary>Flag with combination of four letters among BCdDEgGhHlnNSV, n=normal</summary>
+	--/ <quantity>meta.code</quantity>
 	[FLAG] [varchar](32) NOT NULL,
 
+	--/ <summary>Adopted Teff, bi-weigth average of estimators with indicator variable of 1</summary>
+	--/ <quantity>phys.temperature.effective;stat.mean</quantity>
+	--/ <unit>K</unit>
 	[TEFFADOP] [real] NOT NULL,
 
+	--/ <summary>Number of estimators used in bi-weight average</summary>
+	--/ <quantity>meta.number</quantity>
 	[TEFFADOPN] [tinyint] NOT NULL,
 
+	--/ <summary>Error in the adopted temperature</summary>
+	--/ <quantity>stat.error;phys.temperature.effective;stat.mean</quantity>
+	--/ <unit>K</unit>
 	[TEFFADOPUNC] [real] NOT NULL,
 
+	--/ <summary>Teff estimate from HA24</summary>
+	--/ <quantity>phys.temperature.effective</quantity>
+	--/ <unit>K</unit>
 	[TEFFHA24] [real] NOT NULL,
 
+	--/ <summary>Teff estimate from HD24</summary>
+	--/ <quantity>phys.temperature.effective</quantity>
+	--/ <unit>K</unit>
 	[TEFFHD24] [real] NOT NULL,
 
+	--/ <summary>Teff estimate from NGS1</summary>
+	--/ <quantity>phys.temperature.effective</quantity>
+	--/ <unit>K</unit>
 	[TEFFNGS1] [real] NOT NULL,
 
+	--/ <summary>Teff estimate from ANNSR</summary>
+	--/ <quantity>phys.temperature.effective</quantity>
+	--/ <unit>K</unit>
 	[TEFFANNSR] [real] NOT NULL,
 
+	--/ <summary>Teff estimate from ANNRR</summary>
+	--/ <quantity>phys.temperature.effective</quantity>
+	--/ <unit>K</unit>
 	[TEFFANNRR] [real] NOT NULL,
 
+	--/ <summary>Teff estimate from WBG</summary>
+	--/ <quantity>phys.temperature.effective</quantity>
+	--/ <unit>K</unit>
 	[TEFFWBG] [real] NOT NULL,
 
+	--/ <summary>Teff estimate from k24</summary>
+	--/ <quantity>phys.temperature.effective</quantity>
+	--/ <unit>K</unit>
 	[TEFFK24] [real] NOT NULL,
 
+	--/ <summary>Teff estimate from ki13</summary>
+	--/ <quantity>phys.temperature.effective</quantity>
+	--/ <unit>K</unit>
 	[TEFFKI13] [real] NOT NULL,
 
+	--/ <summary>Indicator variable, = 0 bad, = 1 good</summary>
+	--/ <quantity>meta.code.qual;phys.temperature.effective</quantity>
 	[TEFFHA24IND] [tinyint] NOT NULL,
 
+	--/ <summary>Indicator variable, = 0 bad, = 1 good</summary>
+	--/ <quantity>meta.code.qual;phys.temperature.effective</quantity>
 	[TEFFHD24IND] [tinyint] NOT NULL,
 
+	--/ <summary>Indicator variable, = 0 bad, = 1 good</summary>
+	--/ <quantity>meta.code.qual;phys.temperature.effective</quantity>
 	[TEFFNGS1IND] [tinyint] NOT NULL,
 
+	--/ <summary>Indicator variable, = 0 bad, = 1 good</summary>
+	--/ <quantity>meta.code.qual;phys.temperature.effective</quantity>
 	[TEFFANNSRIND] [tinyint] NOT NULL,
 
+	--/ <summary>Indicator variable, = 0 bad, = 1 good</summary>
+	--/ <quantity>meta.code.qual;phys.temperature.effective</quantity>
 	[TEFFANNRRIND] [tinyint] NOT NULL,
 
+	--/ <summary>Indicator variable, = 0 bad, = 1 good</summary>
+	--/ <quantity>meta.code.qual;phys.temperature.effective</quantity>
 	[TEFFWBGIND] [tinyint] NOT NULL,
 
+	--/ <summary>Indicator variable, = 0 bad, = 1 good</summary>
+	--/ <quantity>meta.code.qual;phys.temperature.effective</quantity>
 	[TEFFK24IND] [tinyint] NOT NULL,
 
+	--/ <summary>Indicator variable, = 0 bad, = 1 good</summary>
+	--/ <quantity>meta.code.qual;phys.temperature.effective</quantity>
 	[TEFFKI13IND] [tinyint] NOT NULL,
 
+	--/ <summary>Error in Teff estimate from HA24</summary>
+	--/ <quantity>stat.error;phys.temperature.effective</quantity>
+	--/ <unit>K</unit>
 	[TEFFHA24UNC] [real] NOT NULL,
 
+	--/ <summary>Error in Teff estimate from HD24</summary>
+	--/ <quantity>stat.error;phys.temperature.effective</quantity>
+	--/ <unit>K</unit>
 	[TEFFHD24UNC] [real] NOT NULL,
 
+	--/ <summary>Error in Teff estimate from NGS1</summary>
+	--/ <quantity>stat.error;phys.temperature.effective</quantity>
+	--/ <unit>K</unit>
 	[TEFFNGS1UNC] [real] NOT NULL,
 
+	--/ <summary>Error in Teff estimate from ANNSR</summary>
+	--/ <quantity>stat.error;phys.temperature.effective</quantity>
+	--/ <unit>K</unit>
 	[TEFFANNSRUNC] [real] NOT NULL,
 
+	--/ <summary>Error in Teff estimate from ANNRR</summary>
+	--/ <quantity>stat.error;phys.temperature.effective</quantity>
+	--/ <unit>K</unit>
 	[TEFFANNRRUNC] [real] NOT NULL,
 
+	--/ <summary>Error in Teff estimate from WBG</summary>
+	--/ <quantity>stat.error;phys.temperature.effective</quantity>
+	--/ <unit>K</unit>
 	[TEFFWBGUNC] [real] NOT NULL,
 
+	--/ <summary>Error in Teff estimate from k24</summary>
+	--/ <quantity>stat.error;phys.temperature.effective</quantity>
+	--/ <unit>K</unit>
 	[TEFFK24UNC] [real] NOT NULL,
 
+	--/ <summary>Error in Teff estimate from ki13</summary>
+	--/ <quantity>stat.error;phys.temperature.effective</quantity>
+	--/ <unit>K</unit>
 	[TEFFKI13UNC] [real] NOT NULL,
 
+	--/ <summary>Adopted log g, bi-weigth average of estimators with indicator variable of 2</summary>
+	--/ <quantity>phys.gravity;stat.mean</quantity>
+	--/ <unit>dex</unit>
 	[LOGGADOP] [real] NOT NULL,
 
+	--/ <summary>Number of log g estimators in used bi-weight average</summary>
+	--/ <quantity>meta.number</quantity>
 	[LOGGADOPN] [tinyint] NOT NULL,
 
+	--/ <summary>Error in the adopted log g</summary>
+	--/ <quantity>stat.error;phys.gravity;stat.mean</quantity>
+	--/ <unit>dex</unit>
 	[LOGGADOPUNC] [real] NOT NULL,
 
+	--/ <summary>log g estimate from NGS2</summary>
+	--/ <quantity>phys.gravity</quantity>
+	--/ <unit>dex</unit>
 	[LOGGNGS2] [real] NOT NULL,
 
+	--/ <summary>log g estimate from NGS1</summary>
+	--/ <quantity>phys.gravity</quantity>
+	--/ <unit>dex</unit>
 	[LOGGNGS1] [real] NOT NULL,
 
+	--/ <summary>log g estimate from ANNSR</summary>
+	--/ <quantity>phys.gravity</quantity>
+	--/ <unit>dex</unit>
 	[LOGGANNSR] [real] NOT NULL,
 
+	--/ <summary>log g estimate from ANNRR</summary>
+	--/ <quantity>phys.gravity</quantity>
+	--/ <unit>dex</unit>
 	[LOGGANNRR] [real] NOT NULL,
 
+	--/ <summary>log g estimate from CaI1</summary>
+	--/ <quantity>phys.gravity</quantity>
+	--/ <unit>dex</unit>
 	[LOGGCAI1] [real] NOT NULL,
 
+	--/ <summary>log g estimate from WBG</summary>
+	--/ <quantity>phys.gravity</quantity>
+	--/ <unit>dex</unit>
 	[LOGGWBG] [real] NOT NULL,
 
+	--/ <summary>log g estimate from k24</summary>
+	--/ <quantity>phys.gravity</quantity>
+	--/ <unit>dex</unit>
 	[LOGGK24] [real] NOT NULL,
 
+	--/ <summary>log g estimate from ki13</summary>
+	--/ <quantity>phys.gravity</quantity>
+	--/ <unit>dex</unit>
 	[LOGGKI13] [real] NOT NULL,
 
+	--/ <summary>Indicator variable, = 0 bad, = 1 good</summary>
+	--/ <quantity>meta.code.qual;phys.gravity</quantity>
 	[LOGGNGS2IND] [tinyint] NOT NULL,
 
+	--/ <summary>Indicator variable, = 0 bad, = 1 good</summary>
+	--/ <quantity>meta.code.qual;phys.gravity</quantity>
 	[LOGGNGS1IND] [tinyint] NOT NULL,
 
+	--/ <summary>Indicator variable, = 0 bad, = 1 good</summary>
+	--/ <quantity>meta.code.qual;phys.gravity</quantity>
 	[LOGGANNSRIND] [tinyint] NOT NULL,
 
+	--/ <summary>Indicator variable, = 0 bad, = 1 good</summary>
+	--/ <quantity>meta.code.qual;phys.gravity</quantity>
 	[LOGGANNRRIND] [tinyint] NOT NULL,
 
+	--/ <summary>Indicator variable, = 0 bad, = 1 good</summary>
+	--/ <quantity>meta.code.qual;phys.gravity</quantity>
 	[LOGGCAI1IND] [tinyint] NOT NULL,
 
+	--/ <summary>Indicator variable, = 0 bad, = 1 good</summary>
+	--/ <quantity>meta.code.qual;phys.gravity</quantity>
 	[LOGGWBGIND] [tinyint] NOT NULL,
 
+	--/ <summary>Indicator variable, = 0 bad, = 1 good</summary>
+	--/ <quantity>meta.code.qual;phys.gravity</quantity>
 	[LOGGK24IND] [tinyint] NOT NULL,
 
+	--/ <summary>Indicator variable, = 0 bad, = 1 good</summary>
+	--/ <quantity>meta.code.qual;phys.gravity</quantity>
 	[LOGGKI13IND] [tinyint] NOT NULL,
 
+	--/ <summary>Error in log g estimate from NGS2</summary>
+	--/ <quantity>stat.error;phys.gravity</quantity>
+	--/ <unit>dex</unit>
 	[LOGGNGS2UNC] [real] NOT NULL,
 
+	--/ <summary>Error in log g estimate from NGS2</summary>
+	--/ <quantity>stat.error;phys.gravity</quantity>
+	--/ <unit>dex</unit>
 	[LOGGNGS1UNC] [real] NOT NULL,
 
+	--/ <summary>Error in log g estimate from NGS2</summary>
+	--/ <quantity>stat.error;phys.gravity</quantity>
+	--/ <unit>dex</unit>
 	[LOGGANNSRUNC] [real] NOT NULL,
 
+	--/ <summary>Error in log g estimate from NGS2</summary>
+	--/ <quantity>stat.error;phys.gravity</quantity>
+	--/ <unit>dex</unit>
 	[LOGGANNRRUNC] [real] NOT NULL,
 
+	--/ <summary>Error in log g estimate from NGS2</summary>
+	--/ <quantity>stat.error;phys.gravity</quantity>
+	--/ <unit>dex</unit>
 	[LOGGCAI1UNC] [real] NOT NULL,
 
+	--/ <summary>Error in log g estimate from NGS2</summary>
+	--/ <quantity>stat.error;phys.gravity</quantity>
+	--/ <unit>dex</unit>
 	[LOGGWBGUNC] [real] NOT NULL,
 
+	--/ <summary>Error in log g estimate from NGS2</summary>
+	--/ <quantity>stat.error;phys.gravity</quantity>
+	--/ <unit>dex</unit>
 	[LOGGK24UNC] [real] NOT NULL,
 
+	--/ <summary>Error in log g estimate from NGS2</summary>
+	--/ <quantity>stat.error;phys.gravity</quantity>
+	--/ <unit>dex</unit>
 	[LOGGKI13UNC] [real] NOT NULL,
 
+	--/ <summary>Adopted [Fe/H], bi-weigth average of estimators with indicator variable of 2</summary>
+	--/ <quantity>phys.abund.Fe;stat.mean</quantity>
+	--/ <unit>dex</unit>
 	[FEHADOP] [real] NOT NULL,
 
+	--/ <summary>Number of estimators used in bi-weight average</summary>
+	--/ <quantity>meta.number</quantity>
 	[FEHADOPN] [tinyint] NOT NULL,
 
+	--/ <summary>Error in the adopted [Fe/H]</summary>
+	--/ <quantity>stat.error;phys.abund.Fe;stat.mean</quantity>
+	--/ <unit>dex</unit>
 	[FEHADOPUNC] [real] NOT NULL,
 
+	--/ <summary>[Fe/H] estimate from NGS2</summary>
+	--/ <quantity>phys.abund.Fe</quantity>
+	--/ <unit>dex</unit>
 	[FEHNGS2] [real] NOT NULL,
 
+	--/ <summary>[Fe/H] estimate from NGS1</summary>
+	--/ <quantity>phys.abund.Fe</quantity>
+	--/ <unit>dex</unit>
 	[FEHNGS1] [real] NOT NULL,
 
+	--/ <summary>[Fe/H] estimate from ANNSR</summary>
+	--/ <quantity>phys.abund.Fe</quantity>
+	--/ <unit>dex</unit>
 	[FEHANNSR] [real] NOT NULL,
 
+	--/ <summary>[Fe/H] estimate from ANNRR</summary>
+	--/ <quantity>phys.abund.Fe</quantity>
+	--/ <unit>dex</unit>
 	[FEHANNRR] [real] NOT NULL,
 
+	--/ <summary>[Fe/H] estimate from CaIIK1</summary>
+	--/ <quantity>phys.abund.Fe</quantity>
+	--/ <unit>dex</unit>
 	[FEHCAIIK1] [real] NOT NULL,
 
+	--/ <summary>[Fe/H] estimate from CaIIK2</summary>
+	--/ <quantity>phys.abund.Fe</quantity>
+	--/ <unit>dex</unit>
 	[FEHCAIIK2] [real] NOT NULL,
 
+	--/ <summary>[Fe/H] estimate from CaIIK3</summary>
+	--/ <quantity>phys.abund.Fe</quantity>
+	--/ <unit>dex</unit>
 	[FEHCAIIK3] [real] NOT NULL,
 
+	--/ <summary>[Fe/H] estimate from WBG</summary>
+	--/ <quantity>phys.abund.Fe</quantity>
+	--/ <unit>dex</unit>
 	[FEHWBG] [real] NOT NULL,
 
+	--/ <summary>[Fe/H] estimate from k24</summary>
+	--/ <quantity>phys.abund.Fe</quantity>
+	--/ <unit>dex</unit>
 	[FEHK24] [real] NOT NULL,
 
+	--/ <summary>[Fe/H] estimate from ki13</summary>
+	--/ <quantity>phys.abund.Fe</quantity>
+	--/ <unit>dex</unit>
 	[FEHKI13] [real] NOT NULL,
 
+	--/ <summary>Indicator variable, = 0 bad, = 1 low S/N or out of g-r color range, = 2 good</summary>
+	--/ <quantity>meta.code.qual;phys.abund.Fe</quantity>
 	[FEHNGS2IND] [tinyint] NOT NULL,
 
+	--/ <summary>Indicator variable, = 0 bad, = 1 low S/N or out of g-r color range, = 2 good</summary>
+	--/ <quantity>meta.code.qual;phys.abund.Fe</quantity>
 	[FEHNGS1IND] [tinyint] NOT NULL,
 
+	--/ <summary>Indicator variable, = 0 bad, = 1 low S/N or out of g-r color range, = 2 good</summary>
+	--/ <quantity>meta.code.qual;phys.abund.Fe</quantity>
 	[FEHANNSRIND] [tinyint] NOT NULL,
 
+	--/ <summary>Indicator variable, = 0 bad, = 1 low S/N or out of g-r color range, = 2 good</summary>
+	--/ <quantity>meta.code.qual;phys.abund.Fe</quantity>
 	[FEHANNRRIND] [tinyint] NOT NULL,
 
+	--/ <summary>Indicator variable, = 0 bad, = 1 low S/N or out of g-r color range, = 2 good</summary>
+	--/ <quantity>meta.code.qual;phys.abund.Fe</quantity>
 	[FEHCAIIK1IND] [tinyint] NOT NULL,
 
+	--/ <summary>Indicator variable, = 0 bad, = 1 low S/N or out of g-r color range, = 2 good</summary>
+	--/ <quantity>meta.code.qual;phys.abund.Fe</quantity>
 	[FEHCAIIK2IND] [tinyint] NOT NULL,
 
+	--/ <summary>Indicator variable, = 0 bad, = 1 low S/N or out of g-r color range, = 2 good</summary>
+	--/ <quantity>meta.code.qual;phys.abund.Fe</quantity>
 	[FEHCAIIK3IND] [tinyint] NOT NULL,
 
+	--/ <summary>Indicator variable, = 0 bad, = 1 low S/N or out of g-r color range, = 2 good</summary>
+	--/ <quantity>meta.code.qual;phys.abund.Fe</quantity>
 	[FEHWBGIND] [tinyint] NOT NULL,
 
+	--/ <summary>Indicator variable, = 0 bad, = 1 low S/N or out of g-r color range, = 2 good</summary>
+	--/ <quantity>meta.code.qual;phys.abund.Fe</quantity>
 	[FEHK24IND] [tinyint] NOT NULL,
 
+	--/ <summary>Indicator variable, = 0 bad, = 1 low S/N or out of g-r color range, = 2 good</summary>
+	--/ <quantity>meta.code.qual;phys.abund.Fe</quantity>
 	[FEHKI13IND] [tinyint] NOT NULL,
 
+	--/ <summary>Error in [Fe/H] estimate from NGS2</summary>
+	--/ <quantity>stat.error;phys.abund.Fe</quantity>
+	--/ <unit>dex</unit>
 	[FEHNGS2UNC] [real] NOT NULL,
 
+	--/ <summary>Error in [Fe/H] estimate from NGS1</summary>
+	--/ <quantity>stat.error;phys.abund.Fe</quantity>
+	--/ <unit>dex</unit>
 	[FEHNGS1UNC] [real] NOT NULL,
 
+	--/ <summary>Error in [Fe/H] estimate from ANNSR</summary>
+	--/ <quantity>stat.error;phys.abund.Fe</quantity>
+	--/ <unit>dex</unit>
 	[FEHANNSRUNC] [real] NOT NULL,
 
+	--/ <summary>Error in [Fe/H] estimate from ANNRR</summary>
+	--/ <quantity>stat.error;phys.abund.Fe</quantity>
+	--/ <unit>dex</unit>
 	[FEHANNRRUNC] [real] NOT NULL,
 
+	--/ <summary>Error in [Fe/H] estiimate from CaIIK1</summary>
+	--/ <quantity>stat.error;phys.abund.Fe</quantity>
+	--/ <unit>dex</unit>
 	[FEHCAIIK1UNC] [real] NOT NULL,
 
+	--/ <summary>Error in [Fe/H] estimate from CaIIK2</summary>
+	--/ <quantity>stat.error;phys.abund.Fe</quantity>
+	--/ <unit>dex</unit>
 	[FEHCAIIK2UNC] [real] NOT NULL,
 
+	--/ <summary>Error in [Fe/H] estimate from CaIIK3</summary>
+	--/ <quantity>stat.error;phys.abund.Fe</quantity>
+	--/ <unit>dex</unit>
 	[FEHCAIIK3UNC] [real] NOT NULL,
 
+	--/ <summary>Error in [Fe/H] estimate from WBG</summary>
+	--/ <quantity>stat.error;phys.abund.Fe</quantity>
+	--/ <unit>dex</unit>
 	[FEHWBGUNC] [real] NOT NULL,
 
+	--/ <summary>Error in [Fe/H] estimate from k24</summary>
+	--/ <quantity>stat.error;phys.abund.Fe</quantity>
+	--/ <unit>dex</unit>
 	[FEHK24UNC] [real] NOT NULL,
 
+	--/ <summary>Error in [Fe/H] estimate from ki13</summary>
+	--/ <quantity>stat.error;phys.abund.Fe</quantity>
+	--/ <unit>dex</unit>
 	[FEHKI13UNC] [real] NOT NULL,
 
+	--/ <summary>Average S/N per pixel over 4000 - 8000 A</summary>
+	--/ <quantity>stat.snr;stat.mean</quantity>
 	[SNR] [real] NOT NULL,
 
+	--/ <summary>Quality check on spectrum, depending on S/N</summary>
+	--/ <quantity>meta.code.qual</quantity>
 	[QA] [tinyint] NOT NULL,
 
+	--/ <summary>Correlation coefficient over 3850-4250 A</summary>
+	--/ <quantity>stat.correlation</quantity>
 	[CCCAHK] [real] NOT NULL,
 
+	--/ <summary>Correlation coefficient over 4500-5500 A</summary>
+	--/ <quantity>stat.correlation</quantity>
 	[CCMGH] [real] NOT NULL,
 
+	--/ <summary>Spectroscopically determined Teff, color independent</summary>
+	--/ <quantity>phys.temperature.effective</quantity>
+	--/ <unit>K</unit>
 	[TEFFSPEC] [real] NOT NULL,
 
+	--/ <summary>Number of estimators used in average</summary>
+	--/ <quantity>meta.number</quantity>
 	[TEFFSPECN] [tinyint] NOT NULL,
 
+	--/ <summary>Error in the spectroscopically determined Teff</summary>
+	--/ <quantity>stat.error;phys.temperature.effective</quantity>
+	--/ <unit>K</unit>
 	[TEFFSPECUNC] [real] NOT NULL,
 
+	--/ <summary>Spectroscopically determined log g, color independent</summary>
+	--/ <quantity>phys.gravity</quantity>
+	--/ <unit>dex</unit>
 	[LOGGSPEC] [real] NOT NULL,
 
+	--/ <summary>Number of estimators used in average</summary>
+	--/ <quantity>meta.number</quantity>
 	[LOGGSPECN] [tinyint] NOT NULL,
 
+	--/ <summary>Error in the spectroscopically determined log g</summary>
+	--/ <quantity>stat.error;phys.gravity</quantity>
+	--/ <unit>dex</unit>
 	[LOGGSPECUNC] [real] NOT NULL,
 
+	--/ <summary>Spectroscopically determined [Fe/H], color independent</summary>
+	--/ <quantity>phys.abund.Fe</quantity>
 	[FEHSPEC] [real] NOT NULL,
 
+	--/ <summary>Number of estimators used in average</summary>
+	--/ <quantity>meta.number</quantity>
 	[FEHSPECN] [tinyint] NOT NULL,
 
+	--/ <summary>Error in the spectroscopically determined [Fe/H]</summary>
+	--/ <quantity>stat.error;phys.abund.Fe</quantity>
 	[FEHSPECUNC] [real] NOT NULL,
 
+	--/ <summary>Auto-Correlation Function over 4000-4086/4116-4325/4355-4500</summary>
+	--/ <quantity>stat.correlation</quantity>
 	[ACF1] [real] NOT NULL,
 
+	--/ <summary>Average signal-to-noise ratio in Auto-Correlation Function 1 (ACF1)</summary>
+	--/ <quantity>stat.snr;stat.mean</quantity>
 	[ACF1SNR] [real] NOT NULL,
 
+	--/ <summary>Auto-Correlation Functioin over 4000-4086/4116-4280/4280-4500</summary>
+	--/ <quantity>stat.correlation</quantity>
 	[ACF2] [real] NOT NULL,
 
+	--/ <summary>Average signal-to-noise ratio in Auto-Correlation Function 2 (ACF2)</summary>
+	--/ <quantity>stat.snr;stat.mean</quantity>
 	[ACF2SNR] [real] NOT NULL,
 
+	--/ <summary>Flag with combination of six letters among FTtMmCn, for inspecting spectra</summary>
+	--/ <quantity>meta.code</quantity>
 	[INSPECT] [varchar](32) NOT NULL,
 
+	--/ <summary>Velocity as measured by Elodie library templates, converted to km/s and with the empirical 7.3 km/s offset applied (see Yanny et al. 2009, AJ, 137, 4377)</summary>
+	--/ <quantity>spect.dopplerVeloc</quantity>
+	--/ <unit>km s-1</unit>
 	[ELODIERVFINAL] [real] NOT NULL,
 
+	--/ <summary>Uncertainty in the measured Elodie RV, as determined from the chisq template-fitting routine. See the discussion of empirically-determined velocity errors in Yanny et al. 2009, AJ, 137, 4377</summary>
+	--/ <quantity>stat.error;spect.dopplerVeloc</quantity>
+	--/ <unit>km s-1</unit>
 	[ELODIERVFINALERR] [real] NOT NULL,
 
+	--/ <summary>Warning flags about velocity/redshift determinations</summary>
+	--/ <quantity>meta.code</quantity>
 	[ZWARNING] [bigint] NOT NULL,
 
+	--/ <summary>Teff from Infrared Flux Methods (IRFM)</summary>
+	--/ <quantity>phys.temperature.effective</quantity>
+	--/ <unit>K</unit>
 	[TEFFIRFM] [real] NOT NULL,
 
+	--/ <summary>Indicator variable, = 0 bad, = 1 good</summary>
+	--/ <quantity>meta.code.qual;phys.temperature.effective</quantity>
 	[TEFFIRFMIND] [tinyint] NOT NULL,
 
+	--/ <summary>Error in Teff estimate from IRFM</summary>
+	--/ <quantity>stat.error;phys.temperature.effective</quantity>
+	--/ <unit>K</unit>
 	[TEFFIRFMUNC] [real] NOT NULL,
 
+	--/ <summary>log g estimate from NGS1 while fixing Teff from IRFM</summary>
+	--/ <quantity>phys.gravity</quantity>
+	--/ <unit>dex</unit>
 	[LOGGNGS1IRFM] [real] NOT NULL,
 
+	--/ <summary>Indicator variable, = 0 bad, = 1 good</summary>
+	--/ <quantity>meta.code.qual;phys.gravity</quantity>
 	[LOGGNGS1IRFMIND] [tinyint] NOT NULL,
 
+	--/ <summary>Error in log g from NGS1 while fixing Teff from IRFM</summary>
+	--/ <quantity>stat.error;phys.gravity</quantity>
+	--/ <unit>dex</unit>
 	[LOGGNGS1IRFMUNC] [real] NOT NULL,
 
+	--/ <summary>[Fe/H] estimate from NGS1 while fixing Teff from IRFM</summary>
+	--/ <quantity>phys.abund.Fe</quantity>
+	--/ <unit>dex</unit>
 	[FEHNGS1IRFM] [real] NOT NULL,
 
+	--/ <summary>Indicator variable, = 0 bad, = 1 good</summary>
+	--/ <quantity>meta.code.qual;phys.abund.Fe</quantity>
 	[FEHNGS1IRFMIND] [tinyint] NOT NULL,
 
+	--/ <summary>Error in [Fe/H] from NGS1 while fixing Teff from IRFM</summary>
+	--/ <quantity>stat.error;phys.abund.Fe</quantity>
+	--/ <unit>dex</unit>
 	[FEHNGS1IRFMUNC] [real] NOT NULL,
 
+	--/ <summary>log g estimate from CAI1 with fixed IRFM Teff</summary>
+	--/ <quantity>phys.gravity</quantity>
+	--/ <unit>dex</unit>
 	[LOGGCAI1IRFM] [real] NOT NULL,
 
+	--/ <summary>Indicator variable, =0 bad, = 1 good</summary>
+	--/ <quantity>meta.code.qual;phys.gravity</quantity>
 	[LOGGCAI1IRFMIND] [tinyint] NOT NULL,
 
+	--/ <summary>Error in log g from CAI1 with fixed IRFM Teff</summary>
+	--/ <quantity>stat.error;phys.gravity</quantity>
+	--/ <unit>dex</unit>
 	[LOGGCAI1IRFMUNC] [real] NOT NULL,
 
+	--/ <summary>[Fe/H] from CaIIK1 with fixed IRFM Teff</summary>
+	--/ <quantity>phys.abund.Fe</quantity>
+	--/ <unit>dex</unit>
 	[FEHCAIIK1IRFM] [real] NOT NULL,
 
+	--/ <summary>Indicator variable, =0 bad, = 1 good</summary>
+	--/ <quantity>meta.code.qual;phys.abund.Fe</quantity>
 	[FEHCAIIK1IRFMIND] [tinyint] NOT NULL,
 
+	--/ <summary>Error in [Fe/H] from CaIIK1 with fixed IRFM Teff</summary>
+	--/ <quantity>stat.error;phys.abund.Fe</quantity>
+	--/ <unit>dex</unit>
 	[FEHCAIIK1IRFMUNC] [real] NOT NULL,
  CONSTRAINT [pk_sppParams_specObjID] PRIMARY KEY CLUSTERED 
 (
