@@ -18942,6 +18942,7 @@ CREATE TABLE [dbo].[zoo2MainPhotoz](
 
 	--/ <summary>right ascension [J2000.0], decimal degrees</summary>
 	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[ra] [real] NOT NULL,
 
 	--/ <summary>declination [J2000.0], decimal degrees</summary>
@@ -19877,468 +19878,934 @@ GO
 --/ <remarks> This table includes galaxies with spectra in SDSS Data Release 7.  Several columns give data that can be used to cross-match rows with  other SDSS tables, including objIDs and positions of the galaxies.  Morphological classifications include six parameters for each category:  unweighted and weighted versions of both the total number of votes and  the vote fraction for that response, the vote fraction after being  debiased, and flags for systems identified as being in clean samples.   Note that this table and zoo2Stripe82Normal contain some of the same  galaxies (with r &lt; 17.0).   Reference:  The project and data release are described in Willett et  al. (2013, in prep). Please cite this paper if making use of any data  in this table in publications. </remarks>
 CREATE TABLE [dbo].[zoo2MainSpecz](
 
+	--/ <summary>obj ID</summary>
+	--/ <quantity>meta.id</quantity>
 	[specobjid] [bigint] NOT NULL,
 
+	--/ <summary>match to the DR8 objID</summary>
+	--/ <quantity>meta.id</quantity>
 	[dr8objid] [bigint] NOT NULL,
 
+	--/ <summary>match to the DR7 objID</summary>
+	--/ <quantity>meta.id</quantity>
 	[dr7objid] [bigint] NOT NULL,
 
+	--/ <summary>right ascension [J2000.0], decimal degrees</summary>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[ra] [real] NOT NULL,
 
+	--/ <summary>declination [J2000.0], decimal degrees</summary>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[dec] [real] NOT NULL,
 
+	--/ <summary>right ascension [J2000.0], sexagesimal</summary>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
 	[rastring] [varchar](16) NOT NULL,
 
+	--/ <summary>declination [J2000.0], sexagesimal</summary>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000</quantity>
 	[decstring] [varchar](16) NOT NULL,
 
+	--/ <summary>sub-sample identification</summary>
+	--/ <quantity>meta.id</quantity>
 	[sample] [varchar](32) NOT NULL,
 
+	--/ <summary>total number of classifications for this galaxy</summary>
+	--/ <quantity>meta.number</quantity>
 	[total_classifications] [int] NOT NULL,
 
+	--/ <summary>total number of votes for each response, summed over all classifications</summary>
+	--/ <quantity>meta.number</quantity>
 	[total_votes] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "smooth" response to Task 01</summary>
+	--/ <quantity>meta.number</quantity>
 	[t01_smooth_or_features_a01_smooth_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "smooth" response to Task 01</summary>
+	--/ <quantity>meta.number</quantity>
 	[t01_smooth_or_features_a01_smooth_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "smooth" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a01_smooth_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "smooth" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a01_smooth_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "smooth" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a01_smooth_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "smooth" - 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t01_smooth_or_features_a01_smooth_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "features or disk" response to Task 01</summary>
+	--/ <quantity>meta.number</quantity>
 	[t01_smooth_or_features_a02_features_or_disk_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "features or disk" response to Task 01</summary>
+	--/ <quantity>meta.number</quantity>
 	[t01_smooth_or_features_a02_features_or_disk_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "features or disk" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a02_features_or_disk_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "features or disk" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a02_features_or_disk_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "features or disk" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a02_features_or_disk_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "features or disk"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t01_smooth_or_features_a02_features_or_disk_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "star or artifact" response to Task 01</summary>
+	--/ <quantity>meta.number;</quantity>
 	[t01_smooth_or_features_a03_star_or_artifact_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "star or artifact" response to Task 01</summary>
+	--/ <quantity>meta.number;</quantity>
 	[t01_smooth_or_features_a03_star_or_artifact_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "star or artifact" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a03_star_or_artifact_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "star or artifact" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a03_star_or_artifact_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "star or artifact" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a03_star_or_artifact_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "star or artifact"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t01_smooth_or_features_a03_star_or_artifact_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "edge-on" response to Task 02</summary>
+	--/ <quantity>meta.number</quantity>
 	[t02_edgeon_a04_yes_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "edge-on" response to Task 02</summary>
+	--/ <quantity>meta.number</quantity>
 	[t02_edgeon_a04_yes_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "edge-on" out of all responses to Task 02</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t02_edgeon_a04_yes_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "edge-on" out of all responses to Task 02</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t02_edgeon_a04_yes_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "edge-on" out of all responses to Task 02</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t02_edgeon_a04_yes_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "edge-on"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t02_edgeon_a04_yes_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "not edge-on" response to Task 02</summary>
+	--/ <quantity>meta.number</quantity>
 	[t02_edgeon_a05_no_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "not edge-on" response to Task 02</summary>
+	--/ <quantity>meta.number</quantity>
 	[t02_edgeon_a05_no_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "not edge-on" out of all responses to Task 02</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t02_edgeon_a05_no_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "not edge-on" out of all responses to Task 02</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t02_edgeon_a05_no_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "not edge-on" out of all responses to Task 02</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t02_edgeon_a05_no_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "not edge-on"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>mta.code</quantity>
 	[t02_edgeon_a05_no_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "bar" response to Task 03</summary>
+	--/ <quantity>meta.number</quantity>
 	[t03_bar_a06_bar_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "bar" response to Task 03</summary>
+	--/ <quantity>meta.number</quantity>
 	[t03_bar_a06_bar_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "bar" out of all responses to Task 03</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t03_bar_a06_bar_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "bar" out of all responses to Task 03</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t03_bar_a06_bar_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "bar" out of all responses to Task 03</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t03_bar_a06_bar_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "bar"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t03_bar_a06_bar_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "no bar" response to Task 03</summary>
+	--/ <quantity>meta.number</quantity>
 	[t03_bar_a07_no_bar_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "no bar" response to Task 03</summary>
+	--/ <quantity>meta.number</quantity>
 	[t03_bar_a07_no_bar_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "no bar" out of all responses to Task 03</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t03_bar_a07_no_bar_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "no bar" out of all responses to Task 03</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t03_bar_a07_no_bar_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "no bar" out of all responses to Task 03</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t03_bar_a07_no_bar_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "no bar"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t03_bar_a07_no_bar_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "spiral structure" response to Task 04</summary>
+	--/ <quantity>meta.number</quantity>
 	[t04_spiral_a08_spiral_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "spiral structure" response to Task 04</summary>
+	--/ <quantity>meta.number</quantity>
 	[t04_spiral_a08_spiral_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "spiral structure" out of all responses to Task 04</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t04_spiral_a08_spiral_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "spiral structure" out of all responses to Task 04</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t04_spiral_a08_spiral_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "spiral structure" out of all responses to Task 04</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t04_spiral_a08_spiral_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "spiral structure"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t04_spiral_a08_spiral_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "no spiral structure" response to Task 04</summary>
+	--/ <quantity>meta.number</quantity>
 	[t04_spiral_a09_no_spiral_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "no spiral structure" response to Task 04</summary>
+	--/ <quantity>meta.number</quantity>
 	[t04_spiral_a09_no_spiral_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "no spiral structure" out of all responses to Task 04</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t04_spiral_a09_no_spiral_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "no spiral structure" out of all responses to Task 04</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t04_spiral_a09_no_spiral_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "no spiral structure" out of all responses to Task 04</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t04_spiral_a09_no_spiral_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "no spiral structure"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t04_spiral_a09_no_spiral_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "no bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a10_no_bulge_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "no bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a10_no_bulge_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "no bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a10_no_bulge_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "no bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a10_no_bulge_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "no bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a10_no_bulge_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "no bulge"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t05_bulge_prominence_a10_no_bulge_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "just noticeable bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a11_just_noticeable_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "just noticeable bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a11_just_noticeable_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "just noticeable bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a11_just_noticeable_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "just noticeable bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a11_just_noticeable_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "just noticeable bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a11_just_noticeable_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "just noticeable bulge"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t05_bulge_prominence_a11_just_noticeable_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "obvious bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a12_obvious_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "obvious bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a12_obvious_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "obvious bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a12_obvious_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "obvious bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a12_obvious_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "obvious bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a12_obvious_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "obvious bulge"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t05_bulge_prominence_a12_obvious_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "dominant bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a13_dominant_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "dominant bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a13_dominant_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "dominant bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a13_dominant_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "dominant bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a13_dominant_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "dominant bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a13_dominant_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "dominant bulge"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t05_bulge_prominence_a13_dominant_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "something odd" response to Task 06</summary>
+	--/ <quantity>meta.number</quantity>
 	[t06_odd_a14_yes_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "something odd" response to Task 06</summary>
+	--/ <quantity>meta.number</quantity>
 	[t06_odd_a14_yes_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "something odd" out of all responses to Task 06</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t06_odd_a14_yes_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "something odd" out of all responses to Task 06</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t06_odd_a14_yes_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "something odd" out of all responses to Task 06</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t06_odd_a14_yes_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "something odd"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t06_odd_a14_yes_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "nothing odd" response to Task 06</summary>
+	--/ <quantity>meta.number</quantity>
 	[t06_odd_a15_no_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "nothing odd" response to Task 06</summary>
+	--/ <quantity>meta.number</quantity>
 	[t06_odd_a15_no_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "nothing odd" out of all responses to Task 06</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t06_odd_a15_no_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "nothing odd" out of all responses to Task 06</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t06_odd_a15_no_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "nothing odd" out of all responses to Task 06</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t06_odd_a15_no_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "nothing odd"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t06_odd_a15_no_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "smooth and completely round" response to Task 07</summary>
+	--/ <quantity>meta.number</quantity>
 	[t07_rounded_a16_completely_round_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "smooth and completely round" response to Task 07</summary>
+	--/ <quantity>meta.number</quantity>
 	[t07_rounded_a16_completely_round_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "smooth and completely round" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a16_completely_round_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "smooth and completely round" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a16_completely_round_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "smooth and completely round" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a16_completely_round_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "smooth and completely round"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t07_rounded_a16_completely_round_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "smooth and in-between roundness" response to Task 07</summary>
+	--/ <quantity>meta.number</quantity>
 	[t07_rounded_a17_in_between_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "smooth and in-between roundness" response to Task 07</summary>
+	--/ <quantity>meta.number</quantity>
 	[t07_rounded_a17_in_between_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "smooth and in-between roundness" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a17_in_between_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "smooth and in-between roundness" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a17_in_between_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "smooth and in-between roundness" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a17_in_between_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "smooth and in-between roundness"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t07_rounded_a17_in_between_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "smooth and cigar-shaped" response to Task 07</summary>
+	--/ <quantity>meta.number</quantity>
 	[t07_rounded_a18_cigar_shaped_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "smooth and cigar-shaped" response to Task 07</summary>
+	--/ <quantity>meta.number</quantity>
 	[t07_rounded_a18_cigar_shaped_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "smooth and cigar-shaped" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a18_cigar_shaped_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "smooth and cigar-shaped" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a18_cigar_shaped_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "smooth and cigar-shaped" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a18_cigar_shaped_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "smooth and cigar-shaped"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t07_rounded_a18_cigar_shaped_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "odd feature is a ring" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a19_ring_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "odd feature is a ring" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a19_ring_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "odd feature is a ring" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a19_ring_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "odd feature is a ring" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a19_ring_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "odd feature is a ring" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a19_ring_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "odd feature is a ring"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t08_odd_feature_a19_ring_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "odd feature is a lens or arc" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a20_lens_or_arc_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "odd feature is a lens or arc" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a20_lens_or_arc_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "odd feature is a lens or arc" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a20_lens_or_arc_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "odd feature is a lens or arc" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a20_lens_or_arc_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "odd feature is a lens or arc" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a20_lens_or_arc_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "odd feature is a lens or arc"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t08_odd_feature_a20_lens_or_arc_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "odd feature is a disturbed" galaxy response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a21_disturbed_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "odd feature is a disturbed galaxy response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a21_disturbed_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "odd feature is a disturbed" galaxy out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a21_disturbed_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "odd feature is a disturbed galaxy out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a21_disturbed_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "odd feature is a disturbed" galaxy out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a21_disturbed_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "odd feature is a disturbed galaxy"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t08_odd_feature_a21_disturbed_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "odd feature is an irregular" galaxy response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a22_irregular_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "odd feature is an irregular galaxy response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a22_irregular_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "odd feature is an irregular" galaxy out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a22_irregular_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "odd feature is an irregular galaxy out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a22_irregular_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "odd feature is an irregular" galaxy out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a22_irregular_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "odd feature is an irregular galaxy"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t08_odd_feature_a22_irregular_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "odd feature is something else" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a23_other_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "odd feature is something else" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a23_other_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "odd feature is something else" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a23_other_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "odd feature is something else" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a23_other_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "odd feature is something else" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a23_other_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "odd feature is something else"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t08_odd_feature_a23_other_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "odd feature is a merger" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a24_merger_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "odd feature is a merger" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a24_merger_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "odd feature is a merger" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a24_merger_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "odd feature is a merger" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a24_merger_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "odd feature is a merger" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a24_merger_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "odd feature is a merger"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t08_odd_feature_a24_merger_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "odd feature is a dust lane" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a38_dust_lane_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "odd feature is a dust lane" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a38_dust_lane_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "odd feature is a dust lane" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a38_dust_lane_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "odd feature is a dust lane" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a38_dust_lane_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "odd feature is a dust lane" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a38_dust_lane_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "odd feature is a dust lane"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t08_odd_feature_a38_dust_lane_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "edge-on bulge is rounded" response to Task 09</summary>
+	--/ <quantity>meta.number</quantity>
 	[t09_bulge_shape_a25_rounded_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "edge-on bulge is rounded" response to Task 09</summary>
+	--/ <quantity>meta.number</quantity>
 	[t09_bulge_shape_a25_rounded_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "edge-on bulge is rounded" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a25_rounded_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "edge-on bulge is rounded" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a25_rounded_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "edge-on bulge is rounded" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a25_rounded_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "edge-on bulge is rounded"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t09_bulge_shape_a25_rounded_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "edge-on bulge is boxy" response to Task 09</summary>
+	--/ <quantity>meta.number</quantity>
 	[t09_bulge_shape_a26_boxy_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "edge-on bulge is boxy" response to Task 09</summary>
+	--/ <quantity>meta.number</quantity>
 	[t09_bulge_shape_a26_boxy_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "edge-on bulge is boxy" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a26_boxy_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "edge-on bulge is boxy" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a26_boxy_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "edge-on bulge is boxy" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a26_boxy_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "edge-on bulge is boxy"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t09_bulge_shape_a26_boxy_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "no edge-on bulge" response to Task 09</summary>
+	--/ <quantity>meta.number</quantity>
 	[t09_bulge_shape_a27_no_bulge_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "no edge-on bulge" response to Task 09</summary>
+	--/ <quantity>meta.number</quantity>
 	[t09_bulge_shape_a27_no_bulge_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "no edge-on bulge" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a27_no_bulge_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "no edge-on bulge" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a27_no_bulge_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "no edge-on bulge" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a27_no_bulge_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "no edge-on bulge"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t09_bulge_shape_a27_no_bulge_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "tightly wound spiral arms" response to Task 10</summary>
+	--/ <quantity>meta.number</quantity>
 	[t10_arms_winding_a28_tight_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "tightly wound spiral arms" response to Task 10</summary>
+	--/ <quantity>meta.number</quantity>
 	[t10_arms_winding_a28_tight_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "tightly wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a28_tight_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "tightly wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a28_tight_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "tightly wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a28_tight_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "tightly wound spiral arms"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t10_arms_winding_a28_tight_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "medium wound spiral arms" response to Task 10</summary>
+	--/ <quantity>meta.number</quantity>
 	[t10_arms_winding_a29_medium_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "medium wound spiral arms" response to Task 10</summary>
+	--/ <quantity>meta.number</quantity>
 	[t10_arms_winding_a29_medium_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "medium wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a29_medium_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "medium wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a29_medium_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "medium wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a29_medium_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "medium wound spiral arms"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t10_arms_winding_a29_medium_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "loosely wound spiral arms" response to Task 10</summary>
+	--/ <quantity>meta.number</quantity>
 	[t10_arms_winding_a30_loose_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "loosely wound spiral arms" response to Task 10</summary>
+	--/ <quantity>meta.number</quantity>
 	[t10_arms_winding_a30_loose_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "loosely wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a30_loose_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "loosely wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a30_loose_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "loosely wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a30_loose_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "loosely wound spiral arms"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t10_arms_winding_a30_loose_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "1 spiral arm" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a31_1_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "1 spiral arm" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a31_1_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "1 spiral arm" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a31_1_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "1 spiral arm" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a31_1_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "1 spiral arm" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a31_1_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "1 spiral arm"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t11_arms_number_a31_1_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "2 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a32_2_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "2 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a32_2_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "2 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a32_2_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "2 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a32_2_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "2 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a32_2_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "2 spiral arms"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t11_arms_number_a32_2_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "3 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a33_3_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "3 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a33_3_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "3 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a33_3_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "3 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a33_3_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "3 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a33_3_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "3 spiral arms"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t11_arms_number_a33_3_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "4 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a34_4_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "4 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a34_4_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "4 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a34_4_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "4 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a34_4_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "4 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a34_4_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "4 spiral arms"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t11_arms_number_a34_4_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "more than 4 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a36_more_than_4_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "more than 4 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a36_more_than_4_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "more than 4 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a36_more_than_4_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "more than 4 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a36_more_than_4_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "more than 4 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a36_more_than_4_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "more than 4 spiral arms"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t11_arms_number_a36_more_than_4_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "spiral arms present, but can't tell how many" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a37_cant_tell_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "spiral arms present, but can't tell how many" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a37_cant_tell_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "spiral arms present, but can't tell how many" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a37_cant_tell_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "spiral arms present, but can't tell how many" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a37_cant_tell_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "spiral arms present, but can't tell how many" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a37_cant_tell_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "spiral arms present, but can't tell how many"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t11_arms_number_a37_cant_tell_flag] [int] NOT NULL,
  CONSTRAINT [pk_zoo2MainSpecz_dr7objid] PRIMARY KEY CLUSTERED 
 (
@@ -20356,472 +20823,943 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+--/ <summary> Morphological classifications of Stripe 82, coadded (sample  1) spectroscopic galaxies from Galaxy Zoo 2 </summary>
+--/ <remarks> This table includes classifications from coadded images of Stripe 82  galaxies in SDSS Data Release 7. The co-addition method is described in  Willett et al.; it differs from the second sample in that these images  did NOT desaturate color in their noisy background pixels. Several  columns give data that can be used to cross-match rows with other SDSS  tables, including objIDs and positions of the galaxies. Morphological  classifications include six parameters for each category: unweighted and  weighted versions of both the total number of votes and the vote fraction  for that response, the vote fraction after being debiased, and flags for  systems identified as being in clean samples.   Reference:  The project and data release are described in Willett et al.  (2013, in prep). Please cite this paper if making use of any data in this  table in publications. </remarks>
 CREATE TABLE [dbo].[zoo2Stripe82Coadd1](
 
+	--/ <summary>obj ID</summary>
+	--/ <quantity>meta.id</quantity>
 	[specobjid] [bigint] NOT NULL,
 
+	--/ <summary>objID of the galaxy in the Stripe82 context of CasJobs</summary>
+	--/ <quantity>meta.id</quantity>
 	[stripe82objid] [bigint] NOT NULL,
 
+	--/ <summary>match to the DR8 objID for the corresponding normal-depth image</summary>
+	--/ <quantity></quantity>
 	[dr8objid] [bigint] NOT NULL,
 
+	--/ <summary>match to the DR7 objID</summary>
+	--/ <quantity>meta.id</quantity>
 	[dr7objid] [bigint] NOT NULL,
 
+	--/ <summary>right ascension [J2000.0], decimal degrees</summary>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[ra] [real] NOT NULL,
 
+	--/ <summary>declination [J2000.0], decimal degrees</summary>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[dec] [real] NOT NULL,
 
+	--/ <summary>right ascension [J2000.0], sexagesimal</summary>
+	--/ <quantity></quantity>
 	[rastring] [varchar](11) NOT NULL,
-
+	
+	--/ <summary>declination [J2000.0], sexagesimal</summary>
+	--/ <quantity></quantity>
 	[decstring] [varchar](11) NOT NULL,
 
+	--/ <summary>sub-sample identification</summary>
+	--/ <quantity>meta.id</quantity>
 	[sample] [varchar](32) NOT NULL,
 
+	--/ <summary>total number of classifications for this galaxy</summary>
+	--/ <quantity>meta.number</quantity>
 	[total_classifications] [int] NOT NULL,
 
+	--/ <summary>total number of votes for each response, summed over all classifications</summary>
+	--/ <quantity>meta.number</quantity>
 	[total_votes] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "smooth" response to Task 01</summary>
+	--/ <quantity>meta.number</quantity>
 	[t01_smooth_or_features_a01_smooth_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "smooth" response to Task 01</summary>
+	--/ <quantity>meta.number</quantity>
 	[t01_smooth_or_features_a01_smooth_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "smooth" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a01_smooth_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "smooth" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a01_smooth_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "smooth" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a01_smooth_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "smooth" - 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t01_smooth_or_features_a01_smooth_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "features or disk" response to Task 01</summary>
+	--/ <quantity>meta.number</quantity>
 	[t01_smooth_or_features_a02_features_or_disk_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "features or disk" response to Task 01</summary>
+	--/ <quantity>meta.number</quantity>
 	[t01_smooth_or_features_a02_features_or_disk_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "features or disk" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a02_features_or_disk_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "features or disk" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a02_features_or_disk_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "features or disk" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a02_features_or_disk_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "features or disk"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t01_smooth_or_features_a02_features_or_disk_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "star or artifact" response to Task 01</summary>
+	--/ <quantity>meta.number;</quantity>
 	[t01_smooth_or_features_a03_star_or_artifact_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "star or artifact" response to Task 01</summary>
+	--/ <quantity>meta.number;</quantity>
 	[t01_smooth_or_features_a03_star_or_artifact_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "star or artifact" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a03_star_or_artifact_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "star or artifact" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a03_star_or_artifact_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "star or artifact" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a03_star_or_artifact_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "star or artifact"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t01_smooth_or_features_a03_star_or_artifact_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "edge-on" response to Task 02</summary>
+	--/ <quantity>meta.number</quantity>
 	[t02_edgeon_a04_yes_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "edge-on" response to Task 02</summary>
+	--/ <quantity>meta.number</quantity>
 	[t02_edgeon_a04_yes_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "edge-on" out of all responses to Task 02</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t02_edgeon_a04_yes_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "edge-on" out of all responses to Task 02</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t02_edgeon_a04_yes_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "edge-on" out of all responses to Task 02</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t02_edgeon_a04_yes_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "edge-on"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t02_edgeon_a04_yes_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "not edge-on" response to Task 02</summary>
+	--/ <quantity>meta.number</quantity>
 	[t02_edgeon_a05_no_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "not edge-on" response to Task 02</summary>
+	--/ <quantity>meta.number</quantity>
 	[t02_edgeon_a05_no_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "not edge-on" out of all responses to Task 02</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t02_edgeon_a05_no_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "not edge-on" out of all responses to Task 02</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t02_edgeon_a05_no_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "not edge-on" out of all responses to Task 02</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t02_edgeon_a05_no_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "not edge-on"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>mta.code</quantity>
 	[t02_edgeon_a05_no_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "bar" response to Task 03</summary>
+	--/ <quantity>meta.number</quantity>
 	[t03_bar_a06_bar_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "bar" response to Task 03</summary>
+	--/ <quantity>meta.number</quantity>
 	[t03_bar_a06_bar_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "bar" out of all responses to Task 03</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t03_bar_a06_bar_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "bar" out of all responses to Task 03</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t03_bar_a06_bar_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "bar" out of all responses to Task 03</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t03_bar_a06_bar_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "bar"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t03_bar_a06_bar_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "no bar" response to Task 03</summary>
+	--/ <quantity>meta.number</quantity>
 	[t03_bar_a07_no_bar_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "no bar" response to Task 03</summary>
+	--/ <quantity>meta.number</quantity>
 	[t03_bar_a07_no_bar_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "no bar" out of all responses to Task 03</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t03_bar_a07_no_bar_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "no bar" out of all responses to Task 03</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t03_bar_a07_no_bar_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "no bar" out of all responses to Task 03</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t03_bar_a07_no_bar_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "no bar"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t03_bar_a07_no_bar_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "spiral structure" response to Task 04</summary>
+	--/ <quantity>meta.number</quantity>
 	[t04_spiral_a08_spiral_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "spiral structure" response to Task 04</summary>
+	--/ <quantity>meta.number</quantity>
 	[t04_spiral_a08_spiral_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "spiral structure" out of all responses to Task 04</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t04_spiral_a08_spiral_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "spiral structure" out of all responses to Task 04</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t04_spiral_a08_spiral_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "spiral structure" out of all responses to Task 04</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t04_spiral_a08_spiral_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "spiral structure"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t04_spiral_a08_spiral_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "no spiral structure" response to Task 04</summary>
+	--/ <quantity>meta.number</quantity>
 	[t04_spiral_a09_no_spiral_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "no spiral structure" response to Task 04</summary>
+	--/ <quantity>meta.number</quantity>
 	[t04_spiral_a09_no_spiral_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "no spiral structure" out of all responses to Task 04</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t04_spiral_a09_no_spiral_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "no spiral structure" out of all responses to Task 04</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t04_spiral_a09_no_spiral_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "no spiral structure" out of all responses to Task 04</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t04_spiral_a09_no_spiral_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "no spiral structure"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t04_spiral_a09_no_spiral_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "no bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a10_no_bulge_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "no bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a10_no_bulge_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "no bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a10_no_bulge_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "no bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a10_no_bulge_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "no bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a10_no_bulge_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "no bulge"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t05_bulge_prominence_a10_no_bulge_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "just noticeable bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a11_just_noticeable_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "just noticeable bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a11_just_noticeable_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "just noticeable bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a11_just_noticeable_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "just noticeable bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a11_just_noticeable_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "just noticeable bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a11_just_noticeable_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "just noticeable bulge"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t05_bulge_prominence_a11_just_noticeable_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "obvious bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a12_obvious_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "obvious bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a12_obvious_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "obvious bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a12_obvious_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "obvious bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a12_obvious_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "obvious bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a12_obvious_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "obvious bulge"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t05_bulge_prominence_a12_obvious_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "dominant bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a13_dominant_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "dominant bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a13_dominant_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "dominant bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a13_dominant_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "dominant bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a13_dominant_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "dominant bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a13_dominant_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "dominant bulge"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t05_bulge_prominence_a13_dominant_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "something odd" response to Task 06</summary>
+	--/ <quantity>meta.number</quantity>
 	[t06_odd_a14_yes_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "something odd" response to Task 06</summary>
+	--/ <quantity>meta.number</quantity>
 	[t06_odd_a14_yes_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "something odd" out of all responses to Task 06</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t06_odd_a14_yes_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "something odd" out of all responses to Task 06</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t06_odd_a14_yes_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "something odd" out of all responses to Task 06</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t06_odd_a14_yes_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "something odd"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t06_odd_a14_yes_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "nothing odd" response to Task 06</summary>
+	--/ <quantity>meta.number</quantity>
 	[t06_odd_a15_no_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "nothing odd" response to Task 06</summary>
+	--/ <quantity>meta.number</quantity>
 	[t06_odd_a15_no_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "nothing odd" out of all responses to Task 06</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t06_odd_a15_no_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "nothing odd" out of all responses to Task 06</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t06_odd_a15_no_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "nothing odd" out of all responses to Task 06</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t06_odd_a15_no_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "nothing odd"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t06_odd_a15_no_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "smooth and completely round" response to Task 07</summary>
+	--/ <quantity>meta.number</quantity>
 	[t07_rounded_a16_completely_round_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "smooth and completely round" response to Task 07</summary>
+	--/ <quantity>meta.number</quantity>
 	[t07_rounded_a16_completely_round_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "smooth and completely round" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a16_completely_round_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "smooth and completely round" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a16_completely_round_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "smooth and completely round" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a16_completely_round_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "smooth and completely round"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t07_rounded_a16_completely_round_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "smooth and in-between roundness" response to Task 07</summary>
+	--/ <quantity>meta.number</quantity>
 	[t07_rounded_a17_in_between_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "smooth and in-between roundness" response to Task 07</summary>
+	--/ <quantity>meta.number</quantity>
 	[t07_rounded_a17_in_between_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "smooth and in-between roundness" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a17_in_between_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "smooth and in-between roundness" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a17_in_between_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "smooth and in-between roundness" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a17_in_between_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "smooth and in-between roundness"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t07_rounded_a17_in_between_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "smooth and cigar-shaped" response to Task 07</summary>
+	--/ <quantity>meta.number</quantity>
 	[t07_rounded_a18_cigar_shaped_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "smooth and cigar-shaped" response to Task 07</summary>
+	--/ <quantity>meta.number</quantity>
 	[t07_rounded_a18_cigar_shaped_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "smooth and cigar-shaped" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a18_cigar_shaped_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "smooth and cigar-shaped" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a18_cigar_shaped_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "smooth and cigar-shaped" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a18_cigar_shaped_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "smooth and cigar-shaped"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t07_rounded_a18_cigar_shaped_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "odd feature is a ring" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a19_ring_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "odd feature is a ring" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a19_ring_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "odd feature is a ring" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a19_ring_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "odd feature is a ring" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a19_ring_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "odd feature is a ring" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a19_ring_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "odd feature is a ring"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t08_odd_feature_a19_ring_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "odd feature is a lens or arc" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a20_lens_or_arc_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "odd feature is a lens or arc" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a20_lens_or_arc_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "odd feature is a lens or arc" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a20_lens_or_arc_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "odd feature is a lens or arc" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a20_lens_or_arc_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "odd feature is a lens or arc" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a20_lens_or_arc_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "odd feature is a lens or arc"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t08_odd_feature_a20_lens_or_arc_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "odd feature is a disturbed" galaxy response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a21_disturbed_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "odd feature is a disturbed galaxy response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a21_disturbed_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "odd feature is a disturbed" galaxy out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a21_disturbed_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "odd feature is a disturbed galaxy out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a21_disturbed_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "odd feature is a disturbed" galaxy out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a21_disturbed_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "odd feature is a disturbed galaxy"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t08_odd_feature_a21_disturbed_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "odd feature is an irregular" galaxy response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a22_irregular_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "odd feature is an irregular galaxy response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a22_irregular_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "odd feature is an irregular" galaxy out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a22_irregular_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "odd feature is an irregular galaxy out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a22_irregular_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "odd feature is an irregular" galaxy out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a22_irregular_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "odd feature is an irregular galaxy"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t08_odd_feature_a22_irregular_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "odd feature is something else" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a23_other_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "odd feature is something else" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a23_other_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "odd feature is something else" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a23_other_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "odd feature is something else" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a23_other_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "odd feature is something else" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a23_other_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "odd feature is something else"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t08_odd_feature_a23_other_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "odd feature is a merger" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a24_merger_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "odd feature is a merger" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a24_merger_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "odd feature is a merger" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a24_merger_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "odd feature is a merger" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a24_merger_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "odd feature is a merger" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a24_merger_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "odd feature is a merger"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t08_odd_feature_a24_merger_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "odd feature is a dust lane" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a38_dust_lane_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "odd feature is a dust lane" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a38_dust_lane_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "odd feature is a dust lane" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a38_dust_lane_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "odd feature is a dust lane" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a38_dust_lane_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "odd feature is a dust lane" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a38_dust_lane_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "odd feature is a dust lane"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t08_odd_feature_a38_dust_lane_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "edge-on bulge is rounded" response to Task 09</summary>
+	--/ <quantity>meta.number</quantity>
 	[t09_bulge_shape_a25_rounded_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "edge-on bulge is rounded" response to Task 09</summary>
+	--/ <quantity>meta.number</quantity>
 	[t09_bulge_shape_a25_rounded_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "edge-on bulge is rounded" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a25_rounded_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "edge-on bulge is rounded" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a25_rounded_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "edge-on bulge is rounded" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a25_rounded_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "edge-on bulge is rounded"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t09_bulge_shape_a25_rounded_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "edge-on bulge is boxy" response to Task 09</summary>
+	--/ <quantity>meta.number</quantity>
 	[t09_bulge_shape_a26_boxy_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "edge-on bulge is boxy" response to Task 09</summary>
+	--/ <quantity>meta.number</quantity>
 	[t09_bulge_shape_a26_boxy_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "edge-on bulge is boxy" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a26_boxy_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "edge-on bulge is boxy" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a26_boxy_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "edge-on bulge is boxy" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a26_boxy_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "edge-on bulge is boxy"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t09_bulge_shape_a26_boxy_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "no edge-on bulge" response to Task 09</summary>
+	--/ <quantity>meta.number</quantity>
 	[t09_bulge_shape_a27_no_bulge_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "no edge-on bulge" response to Task 09</summary>
+	--/ <quantity>meta.number</quantity>
 	[t09_bulge_shape_a27_no_bulge_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "no edge-on bulge" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a27_no_bulge_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "no edge-on bulge" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a27_no_bulge_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "no edge-on bulge" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a27_no_bulge_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "no edge-on bulge"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t09_bulge_shape_a27_no_bulge_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "tightly wound spiral arms" response to Task 10</summary>
+	--/ <quantity>meta.number</quantity>
 	[t10_arms_winding_a28_tight_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "tightly wound spiral arms" response to Task 10</summary>
+	--/ <quantity>meta.number</quantity>
 	[t10_arms_winding_a28_tight_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "tightly wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a28_tight_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "tightly wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a28_tight_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "tightly wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a28_tight_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "tightly wound spiral arms"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t10_arms_winding_a28_tight_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "medium wound spiral arms" response to Task 10</summary>
+	--/ <quantity>meta.number</quantity>
 	[t10_arms_winding_a29_medium_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "medium wound spiral arms" response to Task 10</summary>
+	--/ <quantity>meta.number</quantity>
 	[t10_arms_winding_a29_medium_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "medium wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a29_medium_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "medium wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a29_medium_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "medium wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a29_medium_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "medium wound spiral arms"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t10_arms_winding_a29_medium_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "loosely wound spiral arms" response to Task 10</summary>
+	--/ <quantity>meta.number</quantity>
 	[t10_arms_winding_a30_loose_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "loosely wound spiral arms" response to Task 10</summary>
+	--/ <quantity>meta.number</quantity>
 	[t10_arms_winding_a30_loose_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "loosely wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a30_loose_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "loosely wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a30_loose_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "loosely wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a30_loose_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "loosely wound spiral arms"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t10_arms_winding_a30_loose_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "1 spiral arm" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a31_1_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "1 spiral arm" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a31_1_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "1 spiral arm" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a31_1_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "1 spiral arm" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a31_1_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "1 spiral arm" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a31_1_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "1 spiral arm"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t11_arms_number_a31_1_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "2 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a32_2_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "2 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a32_2_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "2 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a32_2_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "2 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a32_2_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "2 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a32_2_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "2 spiral arms"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t11_arms_number_a32_2_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "3 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a33_3_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "3 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a33_3_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "3 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a33_3_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "3 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a33_3_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "3 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a33_3_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "3 spiral arms"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t11_arms_number_a33_3_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "4 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a34_4_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "4 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a34_4_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "4 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a34_4_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "4 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a34_4_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "4 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a34_4_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "4 spiral arms"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t11_arms_number_a34_4_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "more than 4 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a36_more_than_4_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "more than 4 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a36_more_than_4_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "more than 4 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a36_more_than_4_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "more than 4 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a36_more_than_4_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "more than 4 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a36_more_than_4_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "more than 4 spiral arms"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t11_arms_number_a36_more_than_4_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "spiral arms present, but can't tell how many" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a37_cant_tell_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "spiral arms present, but can't tell how many" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a37_cant_tell_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "spiral arms present, but can't tell how many" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a37_cant_tell_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "spiral arms present, but can't tell how many" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a37_cant_tell_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "spiral arms present, but can't tell how many" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a37_cant_tell_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "spiral arms present, but can't tell how many"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t11_arms_number_a37_cant_tell_flag] [int] NOT NULL,
  CONSTRAINT [pk_zoo2Stripe82Coadd1_stripe82ob] PRIMARY KEY CLUSTERED 
 (
@@ -20839,472 +21777,943 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+--/ <summary> Morphological classifications of Stripe 82, coadded (sample 2)  spectroscopic galaxies from Galaxy Zoo 2 </summary>
+--/ <remarks> This table includes classifications from coadded images of Stripe 82  galaxies in SDSS Data Release 7. Sky background pixels for these co-added  images were desaturated to attempt and avoid bias by classifiers, as  described in Willett et al. Several columns give data that can be used to  cross-match rows with other SDSS tables, including objIDs and positions  of the galaxies. Morphological classifications include six parameters for  each category: unweighted and weighted versions of both the total number  of votes and the vote fraction for that response, the vote fraction after  being debiased, and flags for systems identified as being in clean samples.   Reference:	The project and data release are described in Willett et al.  (2013, in prep). Please cite this paper if making use of any data in  this table in publications. </remarks>
 CREATE TABLE [dbo].[zoo2Stripe82Coadd2](
 
+	--/ <summary>obj ID</summary>
+	--/ <quantity>meta.id</quantity>
 	[specobjid] [bigint] NOT NULL,
 
+	--/ <summary>objID of the galaxy in the Stripe82 context of CasJobs</summary>
+	--/ <quantity>meta.id</quantity>
 	[stripe82objid] [bigint] NOT NULL,
 
+	--/ <summary>match to the DR8 objID for the corresponding normal-depth image</summary>
+	--/ <quantity></quantity>
 	[dr8objid] [bigint] NOT NULL,
 
+	--/ <summary>match to the DR7 objID</summary>
+	--/ <quantity>meta.id</quantity>
 	[dr7objid] [bigint] NOT NULL,
 
+	--/ <summary>right ascension [J2000.0], decimal degrees</summary>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[ra] [real] NOT NULL,
 
+	--/ <summary>declination [J2000.0], decimal degrees</summary>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[dec] [real] NOT NULL,
 
+	--/ <summary>right ascension [J2000.0], sexagesimal</summary>
+	--/ <quantity></quantity>
 	[rastring] [varchar](11) NOT NULL,
-
+	
+	--/ <summary>declination [J2000.0], sexagesimal</summary>
+	--/ <quantity></quantity>
 	[decstring] [varchar](11) NOT NULL,
 
+	--/ <summary>sub-sample identification</summary>
+	--/ <quantity>meta.id</quantity>
 	[sample] [varchar](32) NOT NULL,
 
+	--/ <summary>total number of classifications for this galaxy</summary>
+	--/ <quantity>meta.number</quantity>
 	[total_classifications] [int] NOT NULL,
 
+	--/ <summary>total number of votes for each response, summed over all classifications</summary>
+	--/ <quantity>meta.number</quantity>
 	[total_votes] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "smooth" response to Task 01</summary>
+	--/ <quantity>meta.number</quantity>
 	[t01_smooth_or_features_a01_smooth_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "smooth" response to Task 01</summary>
+	--/ <quantity>meta.number</quantity>
 	[t01_smooth_or_features_a01_smooth_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "smooth" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a01_smooth_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "smooth" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a01_smooth_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "smooth" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a01_smooth_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "smooth" - 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t01_smooth_or_features_a01_smooth_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "features or disk" response to Task 01</summary>
+	--/ <quantity>meta.number</quantity>
 	[t01_smooth_or_features_a02_features_or_disk_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "features or disk" response to Task 01</summary>
+	--/ <quantity>meta.number</quantity>
 	[t01_smooth_or_features_a02_features_or_disk_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "features or disk" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a02_features_or_disk_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "features or disk" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a02_features_or_disk_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "features or disk" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a02_features_or_disk_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "features or disk"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t01_smooth_or_features_a02_features_or_disk_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "star or artifact" response to Task 01</summary>
+	--/ <quantity>meta.number;</quantity>
 	[t01_smooth_or_features_a03_star_or_artifact_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "star or artifact" response to Task 01</summary>
+	--/ <quantity>meta.number;</quantity>
 	[t01_smooth_or_features_a03_star_or_artifact_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "star or artifact" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a03_star_or_artifact_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "star or artifact" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a03_star_or_artifact_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "star or artifact" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a03_star_or_artifact_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "star or artifact"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t01_smooth_or_features_a03_star_or_artifact_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "edge-on" response to Task 02</summary>
+	--/ <quantity>meta.number</quantity>
 	[t02_edgeon_a04_yes_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "edge-on" response to Task 02</summary>
+	--/ <quantity>meta.number</quantity>
 	[t02_edgeon_a04_yes_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "edge-on" out of all responses to Task 02</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t02_edgeon_a04_yes_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "edge-on" out of all responses to Task 02</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t02_edgeon_a04_yes_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "edge-on" out of all responses to Task 02</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t02_edgeon_a04_yes_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "edge-on"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t02_edgeon_a04_yes_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "not edge-on" response to Task 02</summary>
+	--/ <quantity>meta.number</quantity>
 	[t02_edgeon_a05_no_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "not edge-on" response to Task 02</summary>
+	--/ <quantity>meta.number</quantity>
 	[t02_edgeon_a05_no_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "not edge-on" out of all responses to Task 02</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t02_edgeon_a05_no_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "not edge-on" out of all responses to Task 02</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t02_edgeon_a05_no_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "not edge-on" out of all responses to Task 02</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t02_edgeon_a05_no_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "not edge-on"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>mta.code</quantity>
 	[t02_edgeon_a05_no_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "bar" response to Task 03</summary>
+	--/ <quantity>meta.number</quantity>
 	[t03_bar_a06_bar_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "bar" response to Task 03</summary>
+	--/ <quantity>meta.number</quantity>
 	[t03_bar_a06_bar_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "bar" out of all responses to Task 03</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t03_bar_a06_bar_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "bar" out of all responses to Task 03</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t03_bar_a06_bar_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "bar" out of all responses to Task 03</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t03_bar_a06_bar_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "bar"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t03_bar_a06_bar_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "no bar" response to Task 03</summary>
+	--/ <quantity>meta.number</quantity>
 	[t03_bar_a07_no_bar_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "no bar" response to Task 03</summary>
+	--/ <quantity>meta.number</quantity>
 	[t03_bar_a07_no_bar_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "no bar" out of all responses to Task 03</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t03_bar_a07_no_bar_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "no bar" out of all responses to Task 03</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t03_bar_a07_no_bar_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "no bar" out of all responses to Task 03</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t03_bar_a07_no_bar_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "no bar"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t03_bar_a07_no_bar_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "spiral structure" response to Task 04</summary>
+	--/ <quantity>meta.number</quantity>
 	[t04_spiral_a08_spiral_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "spiral structure" response to Task 04</summary>
+	--/ <quantity>meta.number</quantity>
 	[t04_spiral_a08_spiral_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "spiral structure" out of all responses to Task 04</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t04_spiral_a08_spiral_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "spiral structure" out of all responses to Task 04</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t04_spiral_a08_spiral_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "spiral structure" out of all responses to Task 04</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t04_spiral_a08_spiral_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "spiral structure"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t04_spiral_a08_spiral_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "no spiral structure" response to Task 04</summary>
+	--/ <quantity>meta.number</quantity>
 	[t04_spiral_a09_no_spiral_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "no spiral structure" response to Task 04</summary>
+	--/ <quantity>meta.number</quantity>
 	[t04_spiral_a09_no_spiral_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "no spiral structure" out of all responses to Task 04</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t04_spiral_a09_no_spiral_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "no spiral structure" out of all responses to Task 04</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t04_spiral_a09_no_spiral_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "no spiral structure" out of all responses to Task 04</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t04_spiral_a09_no_spiral_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "no spiral structure"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t04_spiral_a09_no_spiral_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "no bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a10_no_bulge_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "no bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a10_no_bulge_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "no bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a10_no_bulge_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "no bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a10_no_bulge_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "no bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a10_no_bulge_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "no bulge"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t05_bulge_prominence_a10_no_bulge_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "just noticeable bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a11_just_noticeable_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "just noticeable bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a11_just_noticeable_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "just noticeable bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a11_just_noticeable_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "just noticeable bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a11_just_noticeable_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "just noticeable bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a11_just_noticeable_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "just noticeable bulge"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t05_bulge_prominence_a11_just_noticeable_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "obvious bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a12_obvious_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "obvious bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a12_obvious_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "obvious bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a12_obvious_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "obvious bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a12_obvious_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "obvious bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a12_obvious_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "obvious bulge"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t05_bulge_prominence_a12_obvious_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "dominant bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a13_dominant_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "dominant bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a13_dominant_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "dominant bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a13_dominant_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "dominant bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a13_dominant_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "dominant bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a13_dominant_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "dominant bulge"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t05_bulge_prominence_a13_dominant_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "something odd" response to Task 06</summary>
+	--/ <quantity>meta.number</quantity>
 	[t06_odd_a14_yes_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "something odd" response to Task 06</summary>
+	--/ <quantity>meta.number</quantity>
 	[t06_odd_a14_yes_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "something odd" out of all responses to Task 06</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t06_odd_a14_yes_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "something odd" out of all responses to Task 06</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t06_odd_a14_yes_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "something odd" out of all responses to Task 06</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t06_odd_a14_yes_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "something odd"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t06_odd_a14_yes_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "nothing odd" response to Task 06</summary>
+	--/ <quantity>meta.number</quantity>
 	[t06_odd_a15_no_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "nothing odd" response to Task 06</summary>
+	--/ <quantity>meta.number</quantity>
 	[t06_odd_a15_no_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "nothing odd" out of all responses to Task 06</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t06_odd_a15_no_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "nothing odd" out of all responses to Task 06</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t06_odd_a15_no_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "nothing odd" out of all responses to Task 06</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t06_odd_a15_no_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "nothing odd"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t06_odd_a15_no_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "smooth and completely round" response to Task 07</summary>
+	--/ <quantity>meta.number</quantity>
 	[t07_rounded_a16_completely_round_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "smooth and completely round" response to Task 07</summary>
+	--/ <quantity>meta.number</quantity>
 	[t07_rounded_a16_completely_round_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "smooth and completely round" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a16_completely_round_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "smooth and completely round" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a16_completely_round_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "smooth and completely round" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a16_completely_round_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "smooth and completely round"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t07_rounded_a16_completely_round_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "smooth and in-between roundness" response to Task 07</summary>
+	--/ <quantity>meta.number</quantity>
 	[t07_rounded_a17_in_between_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "smooth and in-between roundness" response to Task 07</summary>
+	--/ <quantity>meta.number</quantity>
 	[t07_rounded_a17_in_between_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "smooth and in-between roundness" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a17_in_between_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "smooth and in-between roundness" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a17_in_between_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "smooth and in-between roundness" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a17_in_between_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "smooth and in-between roundness"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t07_rounded_a17_in_between_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "smooth and cigar-shaped" response to Task 07</summary>
+	--/ <quantity>meta.number</quantity>
 	[t07_rounded_a18_cigar_shaped_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "smooth and cigar-shaped" response to Task 07</summary>
+	--/ <quantity>meta.number</quantity>
 	[t07_rounded_a18_cigar_shaped_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "smooth and cigar-shaped" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a18_cigar_shaped_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "smooth and cigar-shaped" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a18_cigar_shaped_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "smooth and cigar-shaped" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a18_cigar_shaped_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "smooth and cigar-shaped"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t07_rounded_a18_cigar_shaped_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "odd feature is a ring" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a19_ring_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "odd feature is a ring" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a19_ring_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "odd feature is a ring" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a19_ring_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "odd feature is a ring" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a19_ring_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "odd feature is a ring" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a19_ring_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "odd feature is a ring"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t08_odd_feature_a19_ring_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "odd feature is a lens or arc" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a20_lens_or_arc_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "odd feature is a lens or arc" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a20_lens_or_arc_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "odd feature is a lens or arc" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a20_lens_or_arc_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "odd feature is a lens or arc" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a20_lens_or_arc_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "odd feature is a lens or arc" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a20_lens_or_arc_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "odd feature is a lens or arc"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t08_odd_feature_a20_lens_or_arc_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "odd feature is a disturbed" galaxy response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a21_disturbed_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "odd feature is a disturbed galaxy response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a21_disturbed_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "odd feature is a disturbed" galaxy out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a21_disturbed_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "odd feature is a disturbed galaxy out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a21_disturbed_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "odd feature is a disturbed" galaxy out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a21_disturbed_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "odd feature is a disturbed galaxy"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t08_odd_feature_a21_disturbed_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "odd feature is an irregular" galaxy response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a22_irregular_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "odd feature is an irregular galaxy response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a22_irregular_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "odd feature is an irregular" galaxy out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a22_irregular_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "odd feature is an irregular galaxy out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a22_irregular_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "odd feature is an irregular" galaxy out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a22_irregular_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "odd feature is an irregular galaxy"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t08_odd_feature_a22_irregular_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "odd feature is something else" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a23_other_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "odd feature is something else" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a23_other_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "odd feature is something else" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a23_other_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "odd feature is something else" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a23_other_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "odd feature is something else" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a23_other_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "odd feature is something else"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t08_odd_feature_a23_other_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "odd feature is a merger" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a24_merger_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "odd feature is a merger" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a24_merger_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "odd feature is a merger" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a24_merger_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "odd feature is a merger" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a24_merger_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "odd feature is a merger" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a24_merger_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "odd feature is a merger"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t08_odd_feature_a24_merger_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "odd feature is a dust lane" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a38_dust_lane_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "odd feature is a dust lane" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a38_dust_lane_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "odd feature is a dust lane" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a38_dust_lane_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "odd feature is a dust lane" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a38_dust_lane_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "odd feature is a dust lane" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a38_dust_lane_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "odd feature is a dust lane"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t08_odd_feature_a38_dust_lane_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "edge-on bulge is rounded" response to Task 09</summary>
+	--/ <quantity>meta.number</quantity>
 	[t09_bulge_shape_a25_rounded_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "edge-on bulge is rounded" response to Task 09</summary>
+	--/ <quantity>meta.number</quantity>
 	[t09_bulge_shape_a25_rounded_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "edge-on bulge is rounded" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a25_rounded_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "edge-on bulge is rounded" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a25_rounded_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "edge-on bulge is rounded" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a25_rounded_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "edge-on bulge is rounded"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t09_bulge_shape_a25_rounded_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "edge-on bulge is boxy" response to Task 09</summary>
+	--/ <quantity>meta.number</quantity>
 	[t09_bulge_shape_a26_boxy_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "edge-on bulge is boxy" response to Task 09</summary>
+	--/ <quantity>meta.number</quantity>
 	[t09_bulge_shape_a26_boxy_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "edge-on bulge is boxy" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a26_boxy_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "edge-on bulge is boxy" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a26_boxy_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "edge-on bulge is boxy" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a26_boxy_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "edge-on bulge is boxy"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t09_bulge_shape_a26_boxy_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "no edge-on bulge" response to Task 09</summary>
+	--/ <quantity>meta.number</quantity>
 	[t09_bulge_shape_a27_no_bulge_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "no edge-on bulge" response to Task 09</summary>
+	--/ <quantity>meta.number</quantity>
 	[t09_bulge_shape_a27_no_bulge_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "no edge-on bulge" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a27_no_bulge_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "no edge-on bulge" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a27_no_bulge_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "no edge-on bulge" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a27_no_bulge_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "no edge-on bulge"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t09_bulge_shape_a27_no_bulge_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "tightly wound spiral arms" response to Task 10</summary>
+	--/ <quantity>meta.number</quantity>
 	[t10_arms_winding_a28_tight_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "tightly wound spiral arms" response to Task 10</summary>
+	--/ <quantity>meta.number</quantity>
 	[t10_arms_winding_a28_tight_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "tightly wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a28_tight_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "tightly wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a28_tight_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "tightly wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a28_tight_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "tightly wound spiral arms"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t10_arms_winding_a28_tight_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "medium wound spiral arms" response to Task 10</summary>
+	--/ <quantity>meta.number</quantity>
 	[t10_arms_winding_a29_medium_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "medium wound spiral arms" response to Task 10</summary>
+	--/ <quantity>meta.number</quantity>
 	[t10_arms_winding_a29_medium_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "medium wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a29_medium_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "medium wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a29_medium_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "medium wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a29_medium_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "medium wound spiral arms"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t10_arms_winding_a29_medium_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "loosely wound spiral arms" response to Task 10</summary>
+	--/ <quantity>meta.number</quantity>
 	[t10_arms_winding_a30_loose_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "loosely wound spiral arms" response to Task 10</summary>
+	--/ <quantity>meta.number</quantity>
 	[t10_arms_winding_a30_loose_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "loosely wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a30_loose_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "loosely wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a30_loose_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "loosely wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a30_loose_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "loosely wound spiral arms"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t10_arms_winding_a30_loose_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "1 spiral arm" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a31_1_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "1 spiral arm" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a31_1_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "1 spiral arm" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a31_1_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "1 spiral arm" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a31_1_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "1 spiral arm" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a31_1_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "1 spiral arm"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t11_arms_number_a31_1_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "2 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a32_2_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "2 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a32_2_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "2 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a32_2_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "2 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a32_2_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "2 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a32_2_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "2 spiral arms"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t11_arms_number_a32_2_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "3 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a33_3_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "3 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a33_3_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "3 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a33_3_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "3 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a33_3_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "3 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a33_3_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "3 spiral arms"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t11_arms_number_a33_3_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "4 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a34_4_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "4 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a34_4_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "4 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a34_4_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "4 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a34_4_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "4 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a34_4_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "4 spiral arms"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t11_arms_number_a34_4_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "more than 4 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a36_more_than_4_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "more than 4 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a36_more_than_4_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "more than 4 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a36_more_than_4_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "more than 4 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a36_more_than_4_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "more than 4 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a36_more_than_4_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "more than 4 spiral arms"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t11_arms_number_a36_more_than_4_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "spiral arms present, but can't tell how many" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a37_cant_tell_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "spiral arms present, but can't tell how many" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a37_cant_tell_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "spiral arms present, but can't tell how many" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a37_cant_tell_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "spiral arms present, but can't tell how many" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a37_cant_tell_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "spiral arms present, but can't tell how many" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a37_cant_tell_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "spiral arms present, but can't tell how many"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t11_arms_number_a37_cant_tell_flag] [int] NOT NULL,
  CONSTRAINT [pk_zoo2Stripe82Coadd2_stripe82ob] PRIMARY KEY CLUSTERED 
 (
@@ -21322,470 +22731,939 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+--/ <summary> Morphological classifications of Stripe 82 normal-depth, spectroscopic  galaxies from Galaxy Zoo 2 </summary>
+--/ <remarks> This table includes Stripe 82 galaxies with spectra in SDSS Data Release  7. Several columns give data that can be used to cross-match rows with  other SDSS tables, including objIDs and positions of the galaxies.  Morphological classifications include six parameters for each category:  unweighted and weighted versions of both the total number of votes and  the vote fraction for that response, the vote fraction after being  debiased, and flags for systems identified as being in clean samples.   Note that this table and zoo2MainSpecz contain some of the same  galaxies (with r &lt; 17.0).	Reference:	The project and data release are described in Willett et al.  (2013, in prep). Please cite this paper if making use of any data in  this table in publications. </remarks>
 CREATE TABLE [dbo].[zoo2Stripe82Normal](
 
+	--/ <summary>obj ID</summary>
+	--/ <quantity>meta.id</quantity>
 	[specobjid] [bigint] NOT NULL,
 
+	--/ <summary>match to the DR8 objID for the corresponding normal-depth image</summary>
+	--/ <quantity></quantity>
 	[dr8objid] [bigint] NOT NULL,
 
+	--/ <summary>match to the DR7 objID</summary>
+	--/ <quantity>meta.id</quantity>
 	[dr7objid] [bigint] NOT NULL,
 
+	--/ <summary>right ascension [J2000.0], decimal degrees</summary>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[ra] [real] NOT NULL,
 
+	--/ <summary>declination [J2000.0], decimal degrees</summary>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[dec] [real] NOT NULL,
 
+	--/ <summary>right ascension [J2000.0], sexagesimal</summary>
+	--/ <quantity></quantity>
 	[rastring] [varchar](16) NOT NULL,
-
+	
+	--/ <summary>declination [J2000.0], sexagesimal</summary>
+	--/ <quantity></quantity>
 	[decstring] [varchar](16) NOT NULL,
 
+	--/ <summary>sub-sample identification</summary>
+	--/ <quantity>meta.id</quantity>
 	[sample] [varchar](32) NOT NULL,
 
+	--/ <summary>total number of classifications for this galaxy</summary>
+	--/ <quantity>meta.number</quantity>
 	[total_classifications] [int] NOT NULL,
 
+	--/ <summary>total number of votes for each response, summed over all classifications</summary>
+	--/ <quantity>meta.number</quantity>
 	[total_votes] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "smooth" response to Task 01</summary>
+	--/ <quantity>meta.number</quantity>
 	[t01_smooth_or_features_a01_smooth_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "smooth" response to Task 01</summary>
+	--/ <quantity>meta.number</quantity>
 	[t01_smooth_or_features_a01_smooth_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "smooth" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a01_smooth_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "smooth" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a01_smooth_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "smooth" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a01_smooth_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "smooth" - 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t01_smooth_or_features_a01_smooth_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "features or disk" response to Task 01</summary>
+	--/ <quantity>meta.number</quantity>
 	[t01_smooth_or_features_a02_features_or_disk_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "features or disk" response to Task 01</summary>
+	--/ <quantity>meta.number</quantity>
 	[t01_smooth_or_features_a02_features_or_disk_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "features or disk" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a02_features_or_disk_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "features or disk" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a02_features_or_disk_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "features or disk" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a02_features_or_disk_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "features or disk"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t01_smooth_or_features_a02_features_or_disk_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "star or artifact" response to Task 01</summary>
+	--/ <quantity>meta.number;</quantity>
 	[t01_smooth_or_features_a03_star_or_artifact_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "star or artifact" response to Task 01</summary>
+	--/ <quantity>meta.number;</quantity>
 	[t01_smooth_or_features_a03_star_or_artifact_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "star or artifact" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a03_star_or_artifact_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "star or artifact" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a03_star_or_artifact_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "star or artifact" out of all responses to Task 01</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t01_smooth_or_features_a03_star_or_artifact_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "star or artifact"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t01_smooth_or_features_a03_star_or_artifact_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "edge-on" response to Task 02</summary>
+	--/ <quantity>meta.number</quantity>
 	[t02_edgeon_a04_yes_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "edge-on" response to Task 02</summary>
+	--/ <quantity>meta.number</quantity>
 	[t02_edgeon_a04_yes_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "edge-on" out of all responses to Task 02</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t02_edgeon_a04_yes_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "edge-on" out of all responses to Task 02</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t02_edgeon_a04_yes_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "edge-on" out of all responses to Task 02</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t02_edgeon_a04_yes_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "edge-on"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t02_edgeon_a04_yes_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "not edge-on" response to Task 02</summary>
+	--/ <quantity>meta.number</quantity>
 	[t02_edgeon_a05_no_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "not edge-on" response to Task 02</summary>
+	--/ <quantity>meta.number</quantity>
 	[t02_edgeon_a05_no_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "not edge-on" out of all responses to Task 02</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t02_edgeon_a05_no_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "not edge-on" out of all responses to Task 02</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t02_edgeon_a05_no_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "not edge-on" out of all responses to Task 02</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t02_edgeon_a05_no_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "not edge-on"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>mta.code</quantity>
 	[t02_edgeon_a05_no_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "bar" response to Task 03</summary>
+	--/ <quantity>meta.number</quantity>
 	[t03_bar_a06_bar_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "bar" response to Task 03</summary>
+	--/ <quantity>meta.number</quantity>
 	[t03_bar_a06_bar_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "bar" out of all responses to Task 03</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t03_bar_a06_bar_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "bar" out of all responses to Task 03</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t03_bar_a06_bar_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "bar" out of all responses to Task 03</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t03_bar_a06_bar_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "bar"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t03_bar_a06_bar_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "no bar" response to Task 03</summary>
+	--/ <quantity>meta.number</quantity>
 	[t03_bar_a07_no_bar_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "no bar" response to Task 03</summary>
+	--/ <quantity>meta.number</quantity>
 	[t03_bar_a07_no_bar_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "no bar" out of all responses to Task 03</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t03_bar_a07_no_bar_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "no bar" out of all responses to Task 03</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t03_bar_a07_no_bar_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "no bar" out of all responses to Task 03</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t03_bar_a07_no_bar_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "no bar"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t03_bar_a07_no_bar_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "spiral structure" response to Task 04</summary>
+	--/ <quantity>meta.number</quantity>
 	[t04_spiral_a08_spiral_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "spiral structure" response to Task 04</summary>
+	--/ <quantity>meta.number</quantity>
 	[t04_spiral_a08_spiral_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "spiral structure" out of all responses to Task 04</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t04_spiral_a08_spiral_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "spiral structure" out of all responses to Task 04</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t04_spiral_a08_spiral_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "spiral structure" out of all responses to Task 04</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t04_spiral_a08_spiral_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "spiral structure"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t04_spiral_a08_spiral_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "no spiral structure" response to Task 04</summary>
+	--/ <quantity>meta.number</quantity>
 	[t04_spiral_a09_no_spiral_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "no spiral structure" response to Task 04</summary>
+	--/ <quantity>meta.number</quantity>
 	[t04_spiral_a09_no_spiral_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "no spiral structure" out of all responses to Task 04</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t04_spiral_a09_no_spiral_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "no spiral structure" out of all responses to Task 04</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t04_spiral_a09_no_spiral_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "no spiral structure" out of all responses to Task 04</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t04_spiral_a09_no_spiral_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "no spiral structure"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t04_spiral_a09_no_spiral_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "no bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a10_no_bulge_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "no bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a10_no_bulge_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "no bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a10_no_bulge_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "no bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a10_no_bulge_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "no bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a10_no_bulge_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "no bulge"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t05_bulge_prominence_a10_no_bulge_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "just noticeable bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a11_just_noticeable_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "just noticeable bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a11_just_noticeable_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "just noticeable bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a11_just_noticeable_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "just noticeable bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a11_just_noticeable_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "just noticeable bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a11_just_noticeable_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "just noticeable bulge"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t05_bulge_prominence_a11_just_noticeable_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "obvious bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a12_obvious_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "obvious bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a12_obvious_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "obvious bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a12_obvious_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "obvious bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a12_obvious_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "obvious bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a12_obvious_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "obvious bulge"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t05_bulge_prominence_a12_obvious_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "dominant bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a13_dominant_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "dominant bulge" response to Task 05</summary>
+	--/ <quantity>meta.number</quantity>
 	[t05_bulge_prominence_a13_dominant_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "dominant bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a13_dominant_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "dominant bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a13_dominant_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "dominant bulge" out of all responses to Task 05</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t05_bulge_prominence_a13_dominant_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "dominant bulge"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t05_bulge_prominence_a13_dominant_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "something odd" response to Task 06</summary>
+	--/ <quantity>meta.number</quantity>
 	[t06_odd_a14_yes_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "something odd" response to Task 06</summary>
+	--/ <quantity>meta.number</quantity>
 	[t06_odd_a14_yes_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "something odd" out of all responses to Task 06</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t06_odd_a14_yes_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "something odd" out of all responses to Task 06</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t06_odd_a14_yes_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "something odd" out of all responses to Task 06</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t06_odd_a14_yes_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "something odd"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t06_odd_a14_yes_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "nothing odd" response to Task 06</summary>
+	--/ <quantity>meta.number</quantity>
 	[t06_odd_a15_no_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "nothing odd" response to Task 06</summary>
+	--/ <quantity>meta.number</quantity>
 	[t06_odd_a15_no_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "nothing odd" out of all responses to Task 06</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t06_odd_a15_no_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "nothing odd" out of all responses to Task 06</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t06_odd_a15_no_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "nothing odd" out of all responses to Task 06</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t06_odd_a15_no_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "nothing odd"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t06_odd_a15_no_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "smooth and completely round" response to Task 07</summary>
+	--/ <quantity>meta.number</quantity>
 	[t07_rounded_a16_completely_round_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "smooth and completely round" response to Task 07</summary>
+	--/ <quantity>meta.number</quantity>
 	[t07_rounded_a16_completely_round_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "smooth and completely round" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a16_completely_round_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "smooth and completely round" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a16_completely_round_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "smooth and completely round" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a16_completely_round_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "smooth and completely round"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t07_rounded_a16_completely_round_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "smooth and in-between roundness" response to Task 07</summary>
+	--/ <quantity>meta.number</quantity>
 	[t07_rounded_a17_in_between_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "smooth and in-between roundness" response to Task 07</summary>
+	--/ <quantity>meta.number</quantity>
 	[t07_rounded_a17_in_between_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "smooth and in-between roundness" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a17_in_between_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "smooth and in-between roundness" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a17_in_between_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "smooth and in-between roundness" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a17_in_between_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "smooth and in-between roundness"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t07_rounded_a17_in_between_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "smooth and cigar-shaped" response to Task 07</summary>
+	--/ <quantity>meta.number</quantity>
 	[t07_rounded_a18_cigar_shaped_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "smooth and cigar-shaped" response to Task 07</summary>
+	--/ <quantity>meta.number</quantity>
 	[t07_rounded_a18_cigar_shaped_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "smooth and cigar-shaped" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a18_cigar_shaped_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "smooth and cigar-shaped" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a18_cigar_shaped_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "smooth and cigar-shaped" out of all responses to Task 07</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t07_rounded_a18_cigar_shaped_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "smooth and cigar-shaped"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t07_rounded_a18_cigar_shaped_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "odd feature is a ring" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a19_ring_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "odd feature is a ring" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a19_ring_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "odd feature is a ring" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a19_ring_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "odd feature is a ring" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a19_ring_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "odd feature is a ring" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a19_ring_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "odd feature is a ring"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t08_odd_feature_a19_ring_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "odd feature is a lens or arc" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a20_lens_or_arc_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "odd feature is a lens or arc" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a20_lens_or_arc_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "odd feature is a lens or arc" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a20_lens_or_arc_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "odd feature is a lens or arc" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a20_lens_or_arc_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "odd feature is a lens or arc" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a20_lens_or_arc_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "odd feature is a lens or arc"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t08_odd_feature_a20_lens_or_arc_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "odd feature is a disturbed" galaxy response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a21_disturbed_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "odd feature is a disturbed galaxy response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a21_disturbed_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "odd feature is a disturbed" galaxy out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a21_disturbed_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "odd feature is a disturbed galaxy out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a21_disturbed_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "odd feature is a disturbed" galaxy out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a21_disturbed_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "odd feature is a disturbed galaxy"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t08_odd_feature_a21_disturbed_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "odd feature is an irregular" galaxy response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a22_irregular_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "odd feature is an irregular galaxy response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a22_irregular_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "odd feature is an irregular" galaxy out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a22_irregular_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "odd feature is an irregular galaxy out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a22_irregular_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "odd feature is an irregular" galaxy out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a22_irregular_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "odd feature is an irregular galaxy"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t08_odd_feature_a22_irregular_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "odd feature is something else" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a23_other_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "odd feature is something else" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a23_other_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "odd feature is something else" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a23_other_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "odd feature is something else" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a23_other_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "odd feature is something else" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a23_other_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "odd feature is something else"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t08_odd_feature_a23_other_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "odd feature is a merger" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a24_merger_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "odd feature is a merger" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a24_merger_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "odd feature is a merger" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a24_merger_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "odd feature is a merger" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a24_merger_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "odd feature is a merger" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a24_merger_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "odd feature is a merger"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t08_odd_feature_a24_merger_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "odd feature is a dust lane" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a38_dust_lane_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "odd feature is a dust lane" response to Task 08</summary>
+	--/ <quantity>meta.number</quantity>
 	[t08_odd_feature_a38_dust_lane_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "odd feature is a dust lane" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a38_dust_lane_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "odd feature is a dust lane" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a38_dust_lane_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "odd feature is a dust lane" out of all responses to Task 08</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t08_odd_feature_a38_dust_lane_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "odd feature is a dust lane"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t08_odd_feature_a38_dust_lane_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "edge-on bulge is rounded" response to Task 09</summary>
+	--/ <quantity>meta.number</quantity>
 	[t09_bulge_shape_a25_rounded_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "edge-on bulge is rounded" response to Task 09</summary>
+	--/ <quantity>meta.number</quantity>
 	[t09_bulge_shape_a25_rounded_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "edge-on bulge is rounded" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a25_rounded_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "edge-on bulge is rounded" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a25_rounded_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "edge-on bulge is rounded" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a25_rounded_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "edge-on bulge is rounded"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t09_bulge_shape_a25_rounded_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "edge-on bulge is boxy" response to Task 09</summary>
+	--/ <quantity>meta.number</quantity>
 	[t09_bulge_shape_a26_boxy_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "edge-on bulge is boxy" response to Task 09</summary>
+	--/ <quantity>meta.number</quantity>
 	[t09_bulge_shape_a26_boxy_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "edge-on bulge is boxy" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a26_boxy_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "edge-on bulge is boxy" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a26_boxy_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "edge-on bulge is boxy" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a26_boxy_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "edge-on bulge is boxy"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t09_bulge_shape_a26_boxy_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "no edge-on bulge" response to Task 09</summary>
+	--/ <quantity>meta.number</quantity>
 	[t09_bulge_shape_a27_no_bulge_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "no edge-on bulge" response to Task 09</summary>
+	--/ <quantity>meta.number</quantity>
 	[t09_bulge_shape_a27_no_bulge_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "no edge-on bulge" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a27_no_bulge_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "no edge-on bulge" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a27_no_bulge_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "no edge-on bulge" out of all responses to Task 09</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t09_bulge_shape_a27_no_bulge_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "no edge-on bulge"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t09_bulge_shape_a27_no_bulge_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "tightly wound spiral arms" response to Task 10</summary>
+	--/ <quantity>meta.number</quantity>
 	[t10_arms_winding_a28_tight_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "tightly wound spiral arms" response to Task 10</summary>
+	--/ <quantity>meta.number</quantity>
 	[t10_arms_winding_a28_tight_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "tightly wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a28_tight_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "tightly wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a28_tight_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "tightly wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a28_tight_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "tightly wound spiral arms"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t10_arms_winding_a28_tight_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "medium wound spiral arms" response to Task 10</summary>
+	--/ <quantity>meta.number</quantity>
 	[t10_arms_winding_a29_medium_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "medium wound spiral arms" response to Task 10</summary>
+	--/ <quantity>meta.number</quantity>
 	[t10_arms_winding_a29_medium_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "medium wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a29_medium_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "medium wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a29_medium_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "medium wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a29_medium_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "medium wound spiral arms"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t10_arms_winding_a29_medium_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "loosely wound spiral arms" response to Task 10</summary>
+	--/ <quantity>meta.number</quantity>
 	[t10_arms_winding_a30_loose_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "loosely wound spiral arms" response to Task 10</summary>
+	--/ <quantity>meta.number</quantity>
 	[t10_arms_winding_a30_loose_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "loosely wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a30_loose_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "loosely wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a30_loose_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "loosely wound spiral arms" out of all responses to Task 10</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t10_arms_winding_a30_loose_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "loosely wound spiral arms"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t10_arms_winding_a30_loose_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "1 spiral arm" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a31_1_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "1 spiral arm" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a31_1_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "1 spiral arm" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a31_1_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "1 spiral arm" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a31_1_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "1 spiral arm" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a31_1_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "1 spiral arm"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t11_arms_number_a31_1_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "2 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a32_2_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "2 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a32_2_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "2 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a32_2_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "2 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a32_2_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "2 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a32_2_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "2 spiral arms"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t11_arms_number_a32_2_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "3 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a33_3_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "3 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a33_3_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "3 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a33_3_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "3 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a33_3_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "3 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a33_3_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "3 spiral arms"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t11_arms_number_a33_3_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "4 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a34_4_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "4 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a34_4_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "4 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a34_4_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "4 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a34_4_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "4 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a34_4_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "4 spiral arms"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t11_arms_number_a34_4_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "more than 4 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a36_more_than_4_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "more than 4 spiral arms" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a36_more_than_4_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "more than 4 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a36_more_than_4_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "more than 4 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a36_more_than_4_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "more than 4 spiral arms" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a36_more_than_4_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "more than 4 spiral arms"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t11_arms_number_a36_more_than_4_flag] [int] NOT NULL,
 
+	--/ <summary>number of votes for the "spiral arms present, but can't tell how many" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a37_cant_tell_count] [int] NOT NULL,
 
+	--/ <summary>consistency-weighted number of votes for the "spiral arms present, but can't tell how many" response to Task 11</summary>
+	--/ <quantity>meta.number</quantity>
 	[t11_arms_number_a37_cant_tell_weight] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for "spiral arms present, but can't tell how many" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a37_cant_tell_fraction] [float] NOT NULL,
 
+	--/ <summary>consistency-weighted fraction of votes for "spiral arms present, but can't tell how many" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a37_cant_tell_weighted_fraction] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for "spiral arms present, but can't tell how many" out of all responses to Task 11</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[t11_arms_number_a37_cant_tell_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for "spiral arms present, but can't tell how many"	- 1 if galaxy is in clean sample, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[t11_arms_number_a37_cant_tell_flag] [int] NOT NULL,
  CONSTRAINT [pk_zoo2Stripe82Normal_dr7objid] PRIMARY KEY CLUSTERED 
 (
@@ -21803,34 +23681,65 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+--/ <summary> Measures of classification confidence from Galaxy Zoo. </summary>
+--/ <remarks> Only galaxies with spectra in DR7 are included (those in the zooSpec table).  This information is identical to that in Galaxy Zoo 1 Table 4.  The project is described in Lintott et al., 2008, MNRAS, 389, 1179 and the  data release is described in Lintott et al. 2010. Anyone making use of the   data should cite at least one of these papers in any resulting publications. </remarks>
 CREATE TABLE [dbo].[zooConfidence](
 
+	--/ <summary>match to DR8 spectrum object</summary>
+	--/ <quantity>meta.id</quantity>
 	[specobjid] [bigint] NOT NULL,
 
+	--/ <summary>DR8 ObjID</summary>
+	--/ <quantity>meta.id</quantity>
 	[objid] [bigint] NOT NULL,
 
+	--/ <summary>DR7 ObjID</summary>
+	--/ <quantity>meta.id</quantity>
 	[dr7objid] [bigint] NOT NULL,
 
+	--/ <summary>Right Ascension, J2000 deg</summary>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
 	[ra] [real] NOT NULL,
 
+	--/ <summary>Declination, J2000 deg</summary>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000</quantity>
 	[dec] [real] NOT NULL,
 
+	--/ <summary>Right ascension in sexagesimal</summary>
+	--/ <quantity>pos.eq.ra</quantity>
 	[rastring] [varchar](11) NOT NULL,
 
+	--/ <summary>Declination in sexagesimal</summary>
+	--/ <quantity>pos.eq.dec</quantity>
 	[decstring] [varchar](11) NOT NULL,
 
+	--/ <summary>fraction of galaxies in same bin that are unclassified, clean condition</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[f_unclass_clean] [float] NOT NULL,
 
+	--/ <summary>fraction of galaxies in same bin that are misclassified, clean condition</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[f_misclass_clean] [float] NOT NULL,
 
+	--/ <summary>average bias correction in bin, clean condition</summary>
+	--/ <quantity>stat.value</quantity>
 	[avcorr_clean] [float] NOT NULL,
 
+	--/ <summary>std dev of bias corrections in bin, clean condition</summary>
+	--/ <quantity>stat.stdev</quantity>
 	[stdcorr_clean] [float] NOT NULL,
 
+	--/ <summary>fraction of galaxies in same bin that are misclassified, greater condition</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[f_misclass_greater] [float] NOT NULL,
 
+	--/ <summary>average bias correction in bin, greater condition</summary>
+	--/ <quantity>stat.value</quantity>
 	[avcorr_greater] [float] NOT NULL,
 
+	--/ <summary>std dev of bias corrections in bin, greater condition</summary>
+	--/ <quantity>stat.stdev</quantity>
 	[stdcorr_greater] [float] NOT NULL,
  CONSTRAINT [pk_zooConfidence_specObjID] PRIMARY KEY CLUSTERED 
 (
@@ -21848,52 +23757,101 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+--/ <summary> Results from the bias study using mirrored images from Galaxy Zoo </summary>
+--/ <remarks> This information is identical to that in Galaxy Zoo 1 Table 5.  The project is described in Lintott et al., 2008, MNRAS, 389, 1179 and the  data release is described in Lintott et al. 2010. Anyone making use of the   data should cite at least one of these papers in any resulting publications. </remarks>
 CREATE TABLE [dbo].[zooMirrorBias](
 
+	--/ <summary>match to DR8 spectrum object</summary>
+	--/ <quantity>meta.id</quantity>
 	[specobjid] [bigint] NOT NULL,
 
+	--/ <summary>DR8 ObjID</summary>
+	--/ <quantity>meta.id</quantity>
 	[objid] [bigint] NOT NULL,
 
+	--/ <summary>DR7 ObjID</summary>
+	--/ <quantity>meta.id</quantity>
 	[dr7objid] [bigint] NOT NULL,
 
+	--/ <summary>Right Ascension, J2000 deg</summary>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
 	[ra] [real] NOT NULL,
 
+	--/ <summary>Declination, J2000 deg</summary>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000</quantity>
 	[dec] [real] NOT NULL,
 
+	--/ <summary>Right ascension in sexagesimal</summary>
+	--/ <quantity>pos.eq.ra</quantity>
 	[rastring] [varchar](11) NOT NULL,
 
+	--/ <summary>Declination in sexagesimal</summary>
+	--/ <quantity>pos.eq.dec</quantity>
 	[decstring] [varchar](11) NOT NULL,
 
+	--/ <summary>number of votes, vertical mirroring</summary>
+	--/ <quantity>meta.number</quantity>
 	[nvote_mr1] [int] NOT NULL,
 
+	--/ <summary>fraction of votes for elliptical, vertical mirroring</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_el_mr1] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for clockwise spiral, vertical mirroring</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_cw_mr1] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for anticlockwise spiral, vertical mirroring</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_acw_mr1] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for edge-on disk, vertical mirroring</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_edge_mr1] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for don't know, vertical mirroring</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_dk_mr1] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for merger, vertical mirroring</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_mg_mr1] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for combined spiral, vertical mirroring</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_cs_mr1] [float] NOT NULL,
 
+	--/ <summary>number of votes, diagonal mirroring</summary>
+	--/ <quantity>meta.number</quantity>
 	[nvote_mr2] [int] NOT NULL,
 
+	--/ <summary>fraction of votes for elliptical, diagonal mirroring</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_el_mr2] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for clockwise spiral, diagonal mirroring</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_cw_mr2] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for anticlockwise spiral, diagonal mirroring</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_acw_mr2] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for edge-on disk, diagonal mirroring</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_edge_mr2] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for don't know, diagonal mirroring</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_dk_mr2] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for merger, diagonal mirroring</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_mg_mr2] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for combined spiral, diagonal mirroring</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_cs_mr2] [float] NOT NULL,
  CONSTRAINT [pk_zooMirrorBias_dr7objid] PRIMARY KEY CLUSTERED 
 (
@@ -21911,36 +23869,69 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+--/ <summary> Results from the bias study that introduced monochrome images in Galaxy Zoo. </summary>
+--/ <remarks> This information is identical to that in Galaxy Zoo 1 Table 6.  The project is described in Lintott et al., 2008, MNRAS, 389, 1179 and the  data release is described in Lintott et al. 2010. Anyone making use of the   data should cite at least one of these papers in any resulting publications. </remarks>
 CREATE TABLE [dbo].[zooMonochromeBias](
 
+	--/ <summary>match to DR8 spectrum object</summary>
+	--/ <quantity>meta.id</quantity>
 	[specobjid] [bigint] NOT NULL,
 
+	--/ <summary>DR8 ObjID</summary>
+	--/ <quantity>meta.id</quantity>
 	[objid] [bigint] NOT NULL,
 
+	--/ <summary>DR7 ObjID</summary>
+	--/ <quantity>meta.id</quantity>
 	[dr7objid] [bigint] NOT NULL,
 
+	--/ <summary>Right Ascension, J2000 deg</summary>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
 	[ra] [real] NOT NULL,
 
+	--/ <summary>Declination, J2000 deg</summary>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000</quantity>
 	[dec] [real] NOT NULL,
 
+	--/ <summary>Right ascension in sexagesimal</summary>
+	--/ <quantity>pos.eq.ra</quantity>
 	[rastring] [varchar](11) NOT NULL,
 
+	--/ <summary>Declination in sexagesimal</summary>
+	--/ <quantity>pos.eq.dec</quantity>
 	[decstring] [varchar](11) NOT NULL,
 
+	--/ <summary>number of votes, monochrome</summary>
+	--/ <quantity>meta.number</quantity>
 	[nvote_mon] [int] NOT NULL,
 
+	--/ <summary>fraction of votes for elliptical, monochrome</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_el_mon] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for clockwise spiral, monochrome</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_cw_mon] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for anticlockwise spiral, monochrome</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_acw_mon] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for edge-on disk, monochrome</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_edge_mon] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for don't know, monochrome</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_dk_mon] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for merger, monochrome</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_mg_mon] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for combined spiral (cw + acw + edge-on), monochrome</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_cs_mon] [float] NOT NULL,
  CONSTRAINT [pk_zooMonochromeBias_dr7objid] PRIMARY KEY CLUSTERED 
 (
@@ -21958,34 +23949,65 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+--/ <summary> Morphology classifications of galaxies without spectra from Galaxy Zoo  </summary>
+--/ <remarks> This information is identical to that in Galaxy Zoo 1 Table 3.   Some objects may have spectroscopic matches in DR8 (though they did   not in DR7) It is not possible to estimate the bias in the sample, and so   only the fraction of the vote in each of the six categories is given.  The project is described in Lintott et al., 2008, MNRAS, 389, 1179 and the  data release is described in Lintott et al. 2010. Anyone making use of the   data should cite at least one of these papers in any resulting publications. </remarks>
 CREATE TABLE [dbo].[zooNoSpec](
 
+	--/ <summary>match to DR8 spectrum object</summary>
+	--/ <quantity>meta.id</quantity>
 	[specobjid] [bigint] NOT NULL,
 
+	--/ <summary>DR8 ObjID</summary>
+	--/ <quantity>meta.id</quantity>
 	[objid] [bigint] NOT NULL,
 
+	--/ <summary>DR7 ObjID</summary>
+	--/ <quantity>meta.id</quantity>
 	[dr7objid] [bigint] NOT NULL,
 
+	--/ <summary>Right Ascension, J2000 deg</summary>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
 	[ra] [real] NOT NULL,
 
+	--/ <summary>Declination, J2000 deg</summary>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000</quantity>
 	[dec] [real] NOT NULL,
 
+	--/ <summary>Right ascension in sexagesimal</summary>
+	--/ <quantity>pos.eq.ra</quantity>
 	[rastring] [varchar](11) NOT NULL,
 
+	--/ <summary>number of votes</summary>
+	--/ <quantity>pos.eq.dec</quantity>
 	[nvote] [int] NOT NULL,
 
+	--/ <summary>fraction of votes for elliptical</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_el] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for clockwise spiral</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_cw] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for anticlockwise spiral</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_acw] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for edge-on disk</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_edge] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for don't know</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_dk] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for merger</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_mg] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for combined spiral - cw + acw + edge-on</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_cs] [float] NOT NULL,
  CONSTRAINT [pk_zooNoSpec_dr7objid] PRIMARY KEY CLUSTERED 
 (
@@ -22003,46 +24025,89 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+--/ <summary> Morphological classifications of spectroscopic galaxies from Galaxy Zoo </summary>
+--/ <remarks> This information is identical to that in Galaxy Zoo 1 Table 2.  This table includes galaxies with spectra in SDSS Data Release 7.  The fraction of the vote in each of the six categories is given, along with   debiased votes in elliptical and spiral categories and flags identifying   systems as classified as spiral, elliptical or uncertain.  The project is described in Lintott et al., 2008, MNRAS, 389, 1179 and the  data release is described in Lintott et al. 2010. Anyone making use of the   data should cite at least one of these papers in any resulting publications. </remarks>
 CREATE TABLE [dbo].[zooSpec](
 
+	--/ <summary>match to DR8 spectrum object</summary>
+	--/ <quantity>meta.id</quantity>
 	[specobjid] [bigint] NOT NULL,
 
+	--/ <summary>DR8 ObjID</summary>
+	--/ <quantity>meta.id</quantity>
 	[objid] [bigint] NOT NULL,
 
+	--/ <summary>DR7 ObjID</summary>
+	--/ <quantity>meta.id</quantity>
 	[dr7objid] [bigint] NOT NULL,
 
+	--/ <summary>Right Ascension, J2000 deg</summary>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
 	[ra] [real] NOT NULL,
 
+	--/ <summary>Declination, J2000 deg</summary>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
 	[dec] [real] NOT NULL,
 
+	--/ <summary>Right ascension in sexagesimal</summary>
+	--/ <quantity>pos.eq.ra</quantity>
 	[rastring] [varchar](11) NOT NULL,
 
+	--/ <summary>Declination in sexagesimal</summary>
+	--/ <quantity>pos.eq.ra</quantity>
 	[decstring] [varchar](11) NOT NULL,
 
+	--/ <summary>number of votes</summary>
+	--/ <quantity>meta.number</quantity>
 	[nvote] [int] NOT NULL,
 
+	--/ <summary>fraction of votes for elliptical</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_el] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for clockwise spiral</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_cw] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for anticlockwise spiral</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_acw] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for edge-on disk</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_edge] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for don't know</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_dk] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for merger</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_mg] [float] NOT NULL,
 
+	--/ <summary>fraction of votes for combined spiral - cw + acw + edge-on</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_cs] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for elliptical</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_el_debiased] [float] NOT NULL,
 
+	--/ <summary>debiased fraction of votes for combined spiral</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_cs_debiased] [float] NOT NULL,
 
+	--/ <summary>flag for combined spiral - 1 if debiased spiral fraction &gt; 0.8, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[spiral] [int] NOT NULL,
 
+	--/ <summary>flag for elliptical - 1 if debiased elliptical fraction &gt; 0.8, 0 otherwise</summary>
+	--/ <quantity>meta.code</quantity>
 	[elliptical] [int] NOT NULL,
 
+	--/ <summary>flag for uncertain type - 1 if both spiral and elliptical flags are 0</summary>
+	--/ <quantity>meta.code</quantity>
 	[uncertain] [int] NOT NULL,
  CONSTRAINT [pk_zooSpec_specObjID] PRIMARY KEY CLUSTERED 
 (
@@ -22060,44 +24125,85 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+--/ <summary> Vote breakdown in Galaxy Zoo results. </summary>
+--/ <remarks> Fraction of votes in each of the six categories, combining results from the main   and bias studies. This information is identical to that in Galaxy Zoo 1 Table 7.  The project is described in Lintott et al., 2008, MNRAS, 389, 1179 and the  data release is described in Lintott et al. 2010. Anyone making use of the   data should cite at least one of these papers in any resulting publications. </remarks>
 CREATE TABLE [dbo].[zooVotes](
 
+	--/ <summary>match to DR8 spectrum object</summary>
+	--/ <quantity>meta.id</quantity>
 	[specobjid] [bigint] NOT NULL,
 
+	--/ <summary>DR8 ObjID</summary>
+	--/ <quantity>meta.id</quantity>
 	[objid] [bigint] NOT NULL,
 
+	--/ <summary>DR7 ObjID</summary>
+	--/ <quantity>meta.id</quantity>
 	[dr7objid] [bigint] NOT NULL,
 
+	--/ <summary>Right Ascension, J2000 deg</summary>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
 	[ra] [real] NOT NULL,
 
+	--/ <summary>Declination, J2000 deg</summary>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000</quantity>
 	[dec] [real] NOT NULL,
 
+	--/ <summary>Right ascension in sexagesimal</summary>
+	--/ <quantity>pos.eq.ra</quantity>
 	[rastring] [varchar](11) NOT NULL,
 
+	--/ <summary>Declination in sexagesimal</summary>
+	--/ <quantity>pos.eq.dec</quantity>
 	[decstring] [varchar](11) NOT NULL,
 
+	--/ <summary>Total votes</summary>
+	--/ <quantity>meta.number</quantity>
 	[nvote_tot] [int] NOT NULL,
 
+	--/ <summary>Total votes for the standard classification</summary>
+	--/ <quantity>meta.number</quantity>
 	[nvote_std] [int] NOT NULL,
 
+	--/ <summary>Total votes for the vertical mirrored classification</summary>
+	--/ <quantity>meta.number</quantity>
 	[nvote_mr1] [int] NOT NULL,
 
+	--/ <summary>Total votes for the diagonally mirrored classification</summary>
+	--/ <quantity>meta.number</quantity>
 	[nvote_mr2] [int] NOT NULL,
 
+	--/ <summary>Total votes for the monochrome classification</summary>
+	--/ <quantity>meta.number</quantity>
 	[nvote_mon] [int] NOT NULL,
 
+	--/ <summary>Fraction of votes for elliptical</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_el] [float] NOT NULL,
 
+	--/ <summary>Fraction of votes for clockwise spiral</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_cw] [float] NOT NULL,
 
+	--/ <summary>Fraction of votes for anticlockwise spiral</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_acw] [float] NOT NULL,
 
+	--/ <summary>Fraction of votes for edge-on disk</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_edge] [float] NOT NULL,
 
+	--/ <summary>Fraction of votes for don't know</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_dk] [float] NOT NULL,
 
+	--/ <summary>Fraction of votes for merger</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_mg] [float] NOT NULL,
 
+	--/ <summary>Fraction of votes for combined spiral - cw + acw + edge-on</summary>
+	--/ <quantity>meta.number;arith.ratio</quantity>
 	[p_cs] [float] NOT NULL,
  CONSTRAINT [pk_zooVotes_dr7objid] PRIMARY KEY CLUSTERED 
 (
