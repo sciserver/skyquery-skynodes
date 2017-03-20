@@ -836,7 +836,7 @@
 </column></table>
   <table name="[dbo].[emissionLinesPort]">
     <summary> Emission line kinematics results for SDSS and BOSS galaxies using GANDALF </summary>
-<remarks> We fit galaxies using an adaptation of the publicly available Gas AND Absorption  Line Fitting (GANDALF, &lt;a href='http://adsabs.harvard.edu/abs/2006MNRAS.366.1151S'&gt;Sarzi et al. 2006&lt;/a&gt;)  and penalised PiXel Fitting (pPXF, &lt;a href='http://adsabs.harvard.edu/abs/2004PASP..116..138C'&gt;Cappellari &amp; Emsellem 2004&lt;/a&gt;).  Stellar population models for the continuum are from of &lt;a href='http://adsabs.harvard.edu/abs/2011MNRAS.418.2785M'&gt;Maraston &amp; Str&ouml;mb&auml;ck (2011)&lt;/a&gt; and  &lt;a href='http://adsabs.harvard.edu/abs/2011MNRAS.412.2183T'&gt;Thomas, Maraston &amp; Johansson (2011)&lt;/a&gt;. </remarks>
+<remarks> We fit galaxies using an adaptation of the publicly available Gas AND Absorption  Line Fitting (GANDALF, &lt;a href='http://adsabs.harvard.edu/abs/2006MNRAS.366.1151S'&gt;Sarzi et al. 2006&lt;/a&gt;)  and penalised PiXel Fitting (pPXF, &lt;a href='http://adsabs.harvard.edu/abs/2004PASP..116..138C'&gt;Cappellari &amp; Emsellem 2004&lt;/a&gt;).  Stellar population models for the continuum are from of &lt;a href='http://adsabs.harvard.edu/abs/2011MNRAS.418.2785M'&gt;Maraston &amp; Str&#246;mb&#228;ck (2011)&lt;/a&gt; and  &lt;a href='http://adsabs.harvard.edu/abs/2011MNRAS.412.2183T'&gt;Thomas, Maraston &amp; Johansson (2011)&lt;/a&gt;. </remarks>
 <column name="[specObjID]"><summary>Unique ID</summary>
 <quantity>meta.id</quantity>
 </column><column name="[plate]"><summary>Plate number</summary>

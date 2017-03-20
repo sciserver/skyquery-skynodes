@@ -35,7 +35,7 @@
 <unit> deg </unit>
 </column>
     <column name="[Rmag]">
-      <summary> DEIMOS R band (648.7&plusmn;81nm) in AB system </summary>
+      <summary> DEIMOS R band (648.7&#177;81nm) in AB system </summary>
 <quantity>phot.mag;em.opt.B</quantity>
 <unit> mag </unit>
 </column>

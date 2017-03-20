@@ -93,7 +93,7 @@ CREATE TABLE dbo.Obs
 	--/ <unit> Jy </unit>
 	[e_S_W] real NOT NULL,
 
-	--/ <summary> [-3.1/2.1] WMAP spectral index &alpha; (S&nu;&prop;&nu;&alpha;)  </summary>
+	--/ <summary> [-3.1/2.1] WMAP spectral index &#945; (S&#957;&#8733;&#957;&#945;)  </summary>
 	--/ <quantity>spect.index</quantity>
 	[alf] real NOT NULL,
 

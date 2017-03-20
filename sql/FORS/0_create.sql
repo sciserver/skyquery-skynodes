@@ -103,7 +103,7 @@ CREATE TABLE dbo.SpecObj
 
 	--/ <summary> Notes. Further information on the object. For stars a rough spectral type is given. 
 	--/ Quasars and strong Ly_alpha emission galaxies are indicated by the entries "QSO" and "LAB" (Ly_alpha bright, 
-	--/ i.e. Ly_alpha emission EW &ge; 20 Angstrom), respectively. "600R" indicates galaxies whose redshift and object type 
+	--/ i.e. Ly_alpha emission EW &#8805; 20 Angstrom), respectively. "600R" indicates galaxies whose redshift and object type 
 	--/ were verified by means of the medium resolution spectra of Ziegler et al. (2002ApJ...564L..69Z). </summary>
 	--/ <quantity>meta.note</quantity>
 	[Notes] char(20) NOT NULL,

@@ -35,7 +35,7 @@ CREATE TABLE dbo.SpecObj
 	--/ <unit> deg </unit>
 	[DEC] float NOT NULL,
 
-	--/ <summary> DEIMOS R band (648.7&plusmn;81nm) in AB system </summary>
+	--/ <summary> DEIMOS R band (648.7&#177;81nm) in AB system </summary>
 	--/ <quantity>phot.mag;em.opt.B</quantity>
 	--/ <unit> mag </unit>
 	[Rmag] real NOT NULL,

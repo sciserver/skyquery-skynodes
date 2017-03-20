@@ -511,7 +511,7 @@ CREATE TABLE dbo.PhotoObj
 	--/ <quantity>src.redshift</quantity>
 	[z1] float NOT NULL,
 
-	--/ <summary> MGCz redshift quality. Spectroscopic quality parameter (Normally only redshifts with q_z&ge;3 should be used): 
+	--/ <summary> MGCz redshift quality. Spectroscopic quality parameter (Normally only redshifts with q_z&#8805;3 should be used): 
 	--/ 1:Something is clearly wrong with the spectrum or there is absolutely no flux. Redshift measurement is not possible. 
 	--/ with this q_z are meaningless 
 	--/ 2:Low quality spectrum. Probability that redshift is correct is low. 
@@ -526,7 +526,7 @@ CREATE TABLE dbo.PhotoObj
 	--/ <quantity>src.redshif</quantity>
 	[z2] float NOT NULL,
 
-	--/ <summary> SDSS redshift quality (=SDSS_ZQUAL). Spectroscopic quality parameter (Normally only redshifts with q_z&ge;3 should 
+	--/ <summary> SDSS redshift quality (=SDSS_ZQUAL). Spectroscopic quality parameter (Normally only redshifts with q_z&#8805;3 should 
 	--/ used): 
 	--/ 1:Something is clearly wrong with the spectrum or there is absolutely no flux. Redshift measurement is not possible. 
 	--/ with this q_z are meaningless 
@@ -542,7 +542,7 @@ CREATE TABLE dbo.PhotoObj
 	--/ <quantity>src.redshift</quantity>
 	[z3] float NOT NULL,
 
-	--/ <summary> 2dFGRS redshift quality. Spectroscopic quality parameter (Normally only redshifts with q_z&ge;3 should be used): 
+	--/ <summary> 2dFGRS redshift quality. Spectroscopic quality parameter (Normally only redshifts with q_z&#8805;3 should be used): 
 	--/ 1:Something is clearly wrong with the spectrum or there is absolutely no flux. Redshift measurement is not possible. 
 	--/ with this q_z are meaningless 
 	--/ 2:Low quality spectrum. Probability that redshift is correct is low. 
@@ -557,7 +557,7 @@ CREATE TABLE dbo.PhotoObj
 	--/ <quantity>src.redshift</quantity>
 	[z4] float NOT NULL,
 
-	--/ <summary> 2QZ redshift quality. Spectroscopic quality parameter (Normally only redshifts with q_z&ge;3 should be used): 
+	--/ <summary> 2QZ redshift quality. Spectroscopic quality parameter (Normally only redshifts with q_z&#8805;3 should be used): 
 	--/ 1:Something is clearly wrong with the spectrum or there is absolutely no flux. Redshift measurement is not possible. 
 	--/ with this q_z are meaningless 
 	--/ 2:Low quality spectrum. Probability that redshift is correct is low. 
@@ -572,7 +572,7 @@ CREATE TABLE dbo.PhotoObj
 	--/ <quantity>src.redshift</quantity>
 	[z5] float NOT NULL,
 
-	--/ <summary> NED redshift quality. Spectroscopic quality parameter (Normally only redshifts with q_z&ge;3 should be used): 
+	--/ <summary> NED redshift quality. Spectroscopic quality parameter (Normally only redshifts with q_z&#8805;3 should be used): 
 	--/ 1:Something is clearly wrong with the spectrum or there is absolutely no flux. Redshift measurement is not possible. 
 	--/ with this q_z are meaningless 
 	--/ 2:Low quality spectrum. Probability that redshift is correct is low. 
@@ -587,7 +587,7 @@ CREATE TABLE dbo.PhotoObj
 	--/ <quantity>src.redshift</quantity>
 	[z6] float NOT NULL,
 
-	--/ <summary> PFr redshift quality. Spectroscopic quality parameter (Normally only redshifts with q_z&ge;3 should be used): 
+	--/ <summary> PFr redshift quality. Spectroscopic quality parameter (Normally only redshifts with q_z&#8805;3 should be used): 
 	--/ 1:Something is clearly wrong with the spectrum or there is absolutely no flux. Redshift measurement is not possible. 
 	--/ with this q_z are meaningless 
 	--/ 2:Low quality spectrum. Probability that redshift is correct is low. 
@@ -602,7 +602,7 @@ CREATE TABLE dbo.PhotoObj
 	--/ <quantity>src.redshift</quantity>
 	[z7] float NOT NULL,
 
-	--/ <summary>  LSBG redshift quality. Spectroscopic quality parameter (Normally only redshifts with q_z&ge;3 should be used): 
+	--/ <summary>  LSBG redshift quality. Spectroscopic quality parameter (Normally only redshifts with q_z&#8805;3 should be used): 
 	--/ 1:Something is clearly wrong with the spectrum or there is absolutely no flux. Redshift measurement is not possible. 
 	--/ with this q_z are meaningless 
 	--/ 2:Low quality spectrum. Probability that redshift is correct is low. 
@@ -621,7 +621,7 @@ CREATE TABLE dbo.PhotoObj
 	--/ <quantity>src.redshift</quantity>
 	[z] float NOT NULL,
 
-	--/ <summary> Quality of best redshift. Spectroscopic quality parameter (Normally only redshifts with q_z&ge;3 should be used): 
+	--/ <summary> Quality of best redshift. Spectroscopic quality parameter (Normally only redshifts with q_z&#8805;3 should be used): 
 	--/ 1:Something is clearly wrong with the spectrum or there is absolutely no flux. Redshift measurement is not possible. 
 	--/ with this q_z are meaningless 
 	--/ 2:Low quality spectrum. Probability that redshift is correct is low. 

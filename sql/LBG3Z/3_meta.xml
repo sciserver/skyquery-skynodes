@@ -36,24 +36,24 @@
 </column>
     <column name="[Rmag]">
       <summary> The {R} band magnitude. Filters are designated by:
-Un = Identical to SDSS u' filter (both Un and SDSS u' cut at 4000 &Aring; on the red side, about 200 &Aring; blueward of the standard Johnson U passband)
-{R} = bandpass centered at 6830 &Aring; and half-power bandwidth of ~1250 &Aring;
+Un = Identical to SDSS u' filter (both Un and SDSS u' cut at 4000 &#197; on the red side, about 200 &#197; blueward of the standard Johnson U passband)
+{R} = bandpass centered at 6830 &#197; and half-power bandwidth of ~1250 &#197;
 G = Same effective wavelength as the SDSS g' filter but slightly narrower. </summary>
 <quantity>phot.mag;em.opt.R</quantity>
 <unit> mag </unit>
 </column>
     <column name="[G_R]">
       <summary> G band magnitude. Filters are designated by:
-Un = Identical to SDSS u' filter (both Un and SDSS u' cut at 4000 &Aring; on the red side, about 200 &Aring; blueward of the standard Johnson U passband)
-{R} = bandpass centered at 6830 &Aring; and half-power bandwidth of ~1250 &Aring;
+Un = Identical to SDSS u' filter (both Un and SDSS u' cut at 4000 &#197; on the red side, about 200 &#197; blueward of the standard Johnson U passband)
+{R} = bandpass centered at 6830 &#197; and half-power bandwidth of ~1250 &#197;
 G = Same effective wavelength as the SDSS g' filter but slightly narrower. </summary>
 <quantity>phot.mag;em.opt.SDSS.g</quantity>
 <unit> mag </unit>
 </column>
     <column name="[U_G]">
       <summary>  U band magnitude. Filters are designated by:
-Un = Identical to SDSS u' filter (both Un and SDSS u' cut at 4000 &Aring; on the red side, about 200 &Aring; blueward of the standard Johnson U passband)
-{R} = bandpass centered at 6830 &Aring; and half-power bandwidth of ~1250 &Aring;
+Un = Identical to SDSS u' filter (both Un and SDSS u' cut at 4000 &#197; on the red side, about 200 &#197; blueward of the standard Johnson U passband)
+{R} = bandpass centered at 6830 &#197; and half-power bandwidth of ~1250 &#197;
 G = Same effective wavelength as the SDSS g' filter but slightly narrower. </summary>
 <quantity>poht.mag;em.opt.SDSS.u</quantity>
 <unit> mag </unit>
@@ -66,7 +66,7 @@ G = Same effective wavelength as the SDSS g' filter but slightly narrower. </sum
       <summary> Redshift derived from emission lines. Special values of the redshift are used:
 -1.000: Entries of -1.000 in the redshift column indicate that a candidate has never been attempted spectroscopically;
 -2.000: in both the z-em and z-abs columns indicates that the object has been observed spectroscopically but no reliable
-redshift resulted. Objects whose redshift measurement depended only on emission lines (usually Lyman &alpha; only, for all but the AGN)
+redshift resulted. Objects whose redshift measurement depended only on emission lines (usually Lyman &#945; only, for all but the AGN)
 have a -2.000 in the z-abs column, and those objects without measurable emission lines have -2.000 in the z-em column. </summary>
 <quantity>src.redshift</quantity>
 </column>
@@ -78,7 +78,7 @@ have a -2.000 in the z-abs column, and those objects without measurable emission
       <summary> Redshift derived from absorption lines. Special values of the redshift are used:
 -1.000: Entries of -1.000 in the redshift column indicate that a candidate has never been attempted spectroscopically;
 -2.000: in both the z-em and z-abs columns indicates that the object has been observed spectroscopically but no reliable
-redshift resulted. Objects whose redshift measurement depended only on emission lines (usually Lyman &alpha; only, for all but the AGN)
+redshift resulted. Objects whose redshift measurement depended only on emission lines (usually Lyman &#945; only, for all but the AGN)
 have a -2.000 in the z-abs column, and those objects without measurable emission lines have -2.000 in the z-em column. </summary>
 <quantity>src.redshift</quantity>
 </column>
@@ -150,9 +150,9 @@ k =	This object appeared as a member of the z=3.09 "spike" in Steidel et al. (19
 </column>
     <column name="[Filt]">
       <summary> Filter. Filters are designated by:
-Un= Identical to SDSS u' filter (both Un and SDSS u' cut at 4000 &Aring; on the red side, about 200 &Aring; blueward of the standard Johnson
+Un= Identical to SDSS u' filter (both Un and SDSS u' cut at 4000 &#197; on the red side, about 200 &#197; blueward of the standard Johnson
 passband)
-{R}= bandpass centered at 6830 &Aring; and half-power bandwidth of &lt;1250 &Aring;
+{R}= bandpass centered at 6830 &#197; and half-power bandwidth of &lt;1250 &#197;
 G= Same effective wavelength as the SDSS g' filter but slightly narrower </summary>
 <quantity>instr.filter</quantity>
 </column>

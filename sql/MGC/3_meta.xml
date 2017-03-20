@@ -511,7 +511,7 @@ diffractionspikes
 <quantity>src.redshift</quantity>
 </column>
     <column name="[q_z1]">
-      <summary> MGCz redshift quality. Spectroscopic quality parameter (Normally only redshifts with q_z&ge;3 should be used):
+      <summary> MGCz redshift quality. Spectroscopic quality parameter (Normally only redshifts with q_z&#8805;3 should be used):
 1:Something is clearly wrong with the spectrum or there is absolutely no flux. Redshift measurement is not possible.
 with this q_z are meaningless
 2:Low quality spectrum. Probability that redshift is correct is low.
@@ -526,7 +526,7 @@ with this q_z are meaningless
 <quantity>src.redshif</quantity>
 </column>
     <column name="[q_z2]">
-      <summary> SDSS redshift quality (=SDSS_ZQUAL). Spectroscopic quality parameter (Normally only redshifts with q_z&ge;3 should
+      <summary> SDSS redshift quality (=SDSS_ZQUAL). Spectroscopic quality parameter (Normally only redshifts with q_z&#8805;3 should
 used):
 1:Something is clearly wrong with the spectrum or there is absolutely no flux. Redshift measurement is not possible.
 with this q_z are meaningless
@@ -542,7 +542,7 @@ with this q_z are meaningless
 <quantity>src.redshift</quantity>
 </column>
     <column name="[q_z3]">
-      <summary> 2dFGRS redshift quality. Spectroscopic quality parameter (Normally only redshifts with q_z&ge;3 should be used):
+      <summary> 2dFGRS redshift quality. Spectroscopic quality parameter (Normally only redshifts with q_z&#8805;3 should be used):
 1:Something is clearly wrong with the spectrum or there is absolutely no flux. Redshift measurement is not possible.
 with this q_z are meaningless
 2:Low quality spectrum. Probability that redshift is correct is low.
@@ -557,7 +557,7 @@ with this q_z are meaningless
 <quantity>src.redshift</quantity>
 </column>
     <column name="[q_z4]">
-      <summary> 2QZ redshift quality. Spectroscopic quality parameter (Normally only redshifts with q_z&ge;3 should be used):
+      <summary> 2QZ redshift quality. Spectroscopic quality parameter (Normally only redshifts with q_z&#8805;3 should be used):
 1:Something is clearly wrong with the spectrum or there is absolutely no flux. Redshift measurement is not possible.
 with this q_z are meaningless
 2:Low quality spectrum. Probability that redshift is correct is low.
@@ -572,7 +572,7 @@ with this q_z are meaningless
 <quantity>src.redshift</quantity>
 </column>
     <column name="[q_z5]">
-      <summary> NED redshift quality. Spectroscopic quality parameter (Normally only redshifts with q_z&ge;3 should be used):
+      <summary> NED redshift quality. Spectroscopic quality parameter (Normally only redshifts with q_z&#8805;3 should be used):
 1:Something is clearly wrong with the spectrum or there is absolutely no flux. Redshift measurement is not possible.
 with this q_z are meaningless
 2:Low quality spectrum. Probability that redshift is correct is low.
@@ -587,7 +587,7 @@ with this q_z are meaningless
 <quantity>src.redshift</quantity>
 </column>
     <column name="[q_z6]">
-      <summary> PFr redshift quality. Spectroscopic quality parameter (Normally only redshifts with q_z&ge;3 should be used):
+      <summary> PFr redshift quality. Spectroscopic quality parameter (Normally only redshifts with q_z&#8805;3 should be used):
 1:Something is clearly wrong with the spectrum or there is absolutely no flux. Redshift measurement is not possible.
 with this q_z are meaningless
 2:Low quality spectrum. Probability that redshift is correct is low.
@@ -602,7 +602,7 @@ with this q_z are meaningless
 <quantity>src.redshift</quantity>
 </column>
     <column name="[q_z7]">
-      <summary>  LSBG redshift quality. Spectroscopic quality parameter (Normally only redshifts with q_z&ge;3 should be used):
+      <summary>  LSBG redshift quality. Spectroscopic quality parameter (Normally only redshifts with q_z&#8805;3 should be used):
 1:Something is clearly wrong with the spectrum or there is absolutely no flux. Redshift measurement is not possible.
 with this q_z are meaningless
 2:Low quality spectrum. Probability that redshift is correct is low.
@@ -621,7 +621,7 @@ with this q_z are meaningless
 <quantity>src.redshift</quantity>
 </column>
     <column name="[q_z]">
-      <summary> Quality of best redshift. Spectroscopic quality parameter (Normally only redshifts with q_z&ge;3 should be used):
+      <summary> Quality of best redshift. Spectroscopic quality parameter (Normally only redshifts with q_z&#8805;3 should be used):
 1:Something is clearly wrong with the spectrum or there is absolutely no flux. Redshift measurement is not possible.
 with this q_z are meaningless
 2:Low quality spectrum. Probability that redshift is correct is low.
