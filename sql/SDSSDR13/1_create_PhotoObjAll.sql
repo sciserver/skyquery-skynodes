@@ -136,52 +136,52 @@ CREATE TABLE PhotoObjAll (
 
     --/ <summary>Sky flux at the center of object (allowing for siblings if blended).</summary>
 	--/ <quantity>phot.flux;em.opt.SDSS.u</quantity>
-    --/ <unit>nMgy arcsec-2</unit>
+    --/ <unit>nmgy arcsec-2</unit>
 	sky_u            real NOT NULL,
 
     --/ <summary>Sky flux at the center of object (allowing for siblings if blended).</summary>
 	--/ <quantity>phot.flux;em.opt.SDSS.g</quantity>
-    --/ <unit>nMgy arcsec-2</unit>
+    --/ <unit>nmgy arcsec-2</unit>
 	sky_g            real NOT NULL,
 
     --/ <summary>Sky flux at the center of object (allowing for siblings if blended).</summary>
 	--/ <quantity>phot.flux;em.opt.SDSS.r</quantity>
-    --/ <unit>nMgy arcsec-2</unit>
+    --/ <unit>nmgy arcsec-2</unit>
 	sky_r            real NOT NULL,
 
     --/ <summary>Sky flux at the center of object (allowing for siblings if blended).</summary>
 	--/ <quantity>phot.flux;em.opt.SDSS.i</quantity>
-    --/ <unit>nMgy arcsec-2</unit>
+    --/ <unit>nmgy arcsec-2</unit>
 	sky_i            real NOT NULL,
 
     --/ <summary>Sky flux at the center of object (allowing for siblings if blended).</summary>
 	--/ <quantity>phot.flux;em.opt.SDSS.z</quantity>
-    --/ <unit>nMgy arcsec-2</unit>
+    --/ <unit>nmgy arcsec-2</unit>
 	sky_z            real NOT NULL,
 
     --/ <summary>Sky flux inverse variance</summary>
 	--/ <quantity>stat.variance;phot.flux;em.opt.SDSS.u</quantity>
-    --/ <unit>nMgy arcsec-2</unit>
+    --/ <unit>nmgy arcsec-2</unit>
 	skyIvar_u         real NOT NULL,
 
     --/ <summary>Sky flux inverse variance</summary>
 	--/ <quantity>stat.variance;phot.flux;em.opt.SDSS.g</quantity>
-    --/ <unit>nMgy arcsec-2</unit>
+    --/ <unit>nmgy arcsec-2</unit>
 	skyIvar_g         real NOT NULL,
 
     --/ <summary>Sky flux inverse variance</summary>
 	--/ <quantity>stat.variance;phot.flux;em.opt.SDSS.r</quantity>
-    --/ <unit>nMgy arcsec-2</unit>
+    --/ <unit>nmgy arcsec-2</unit>
 	skyIvar_r         real NOT NULL,
 
     --/ <summary>Sky flux inverse variance</summary>
 	--/ <quantity>stat.variance;phot.flux;em.opt.SDSS.i</quantity>
-    --/ <unit>nMgy arcsec-2</unit>
+    --/ <unit>nmgy arcsec-2</unit>
 	skyIvar_i         real NOT NULL,
 
     --/ <summary>Sky flux inverse variance</summary>
 	--/ <quantity>stat.variance;phot.flux;em.opt.SDSS.z</quantity>
-    --/ <unit>nMgy arcsec-2</unit>
+    --/ <unit>nmgy arcsec-2</unit>
 	skyIvar_z         real NOT NULL,
 
     --/ <summary>PSF magnitude</summary>
@@ -386,202 +386,202 @@ CREATE TABLE PhotoObjAll (
 
     --/ <summary>PSF flux</summary>
 	--/ <quantity>phot.flux;em.opt.SDSS.u</quantity>
-    --/ <unit>nMgy</unit>
+    --/ <unit>nmgy</unit>
 	psfFlux_u        real NOT NULL,
 
     --/ <summary>PSF flux</summary>
 	--/ <quantity>phot.flux;em.opt.SDSS.g</quantity>
-    --/ <unit>nMgy</unit>
+    --/ <unit>nmgy</unit>
 	psfFlux_g        real NOT NULL,
 
     --/ <summary>PSF flux</summary>
 	--/ <quantity>phot.flux;em.opt.SDSS.r</quantity>
-    --/ <unit>nMgy</unit>
+    --/ <unit>nmgy</unit>
 	psfFlux_r        real NOT NULL,
 
     --/ <summary>PSF flux</summary>
 	--/ <quantity>phot.flux;em.opt.SDSS.i</quantity>
-    --/ <unit>nMgy</unit>
+    --/ <unit>nmgy</unit>
 	psfFlux_i        real NOT NULL,
 
     --/ <summary>PSF flux</summary>
 	--/ <quantity>phot.flux;em.opt.SDSS.z</quantity>
-    --/ <unit>nMgy</unit>
+    --/ <unit>nmgy</unit>
 	psfFlux_z        real NOT NULL,
 
     --/ <summary>PSF flux inverse variance</summary>
 	--/ <quantity>stat.variance;phot.flux;em.opt.SDSS.u</quantity>
-    --/ <unit>nMgy-2</unit>
+    --/ <unit>nmgy-2</unit>
 	psfFluxIvar_u    real NOT NULL,
 
     --/ <summary>PSF flux inverse variance</summary>
 	--/ <quantity>stat.variance;phot.flux;em.opt.SDSS.g</quantity>
-    --/ <unit>nMgy-2</unit>
+    --/ <unit>nmgy-2</unit>
 	psfFluxIvar_g    real NOT NULL,
 
     --/ <summary>PSF flux inverse variance</summary>
 	--/ <quantity>stat.variance;phot.flux;em.opt.SDSS.r</quantity>
-    --/ <unit>nMgy-2</unit>
+    --/ <unit>nmgy-2</unit>
 	psfFluxIvar_r    real NOT NULL,
 
     --/ <summary>PSF flux inverse variance</summary>
 	--/ <quantity>stat.variance;phot.flux;em.opt.SDSS.i</quantity>
-    --/ <unit>nMgy-2</unit>
+    --/ <unit>nmgy-2</unit>
 	psfFluxIvar_i    real NOT NULL,
 
     --/ <summary>PSF flux inverse variance</summary>
 	--/ <quantity>stat.variance;phot.flux;em.opt.SDSS.z</quantity>
-    --/ <unit>nMgy-2</unit>
+    --/ <unit>nmgy-2</unit>
 	psfFluxIvar_z    real NOT NULL,
 
     --/ <summary>Flux in 3 arcsec diameter fiber radius</summary>
 	--/ <quantity>phot.flux.fiber;em.opt.SDSS.i</quantity>
-    --/ <unit>nMgy</unit>
+    --/ <unit>nmgy</unit>
 	fiberFlux_u      real NOT NULL,
 
     --/ <summary>Flux in 3 arcsec diameter fiber radius</summary>
 	--/ <quantity>phot.flux.fiber;em.opt.SDSS.g</quantity>
-    --/ <unit>nMgy</unit>
+    --/ <unit>nmgy</unit>
 	fiberFlux_g      real NOT NULL,
 
     --/ <summary>Flux in 3 arcsec diameter fiber radius</summary>
 	--/ <quantity>phot.flux.fiber;em.opt.SDSS.r</quantity>
-    --/ <unit>nMgy</unit>
+    --/ <unit>nmgy</unit>
 	fiberFlux_r      real NOT NULL,
 
     --/ <summary>Flux in 3 arcsec diameter fiber radius</summary>
 	--/ <quantity>phot.flux.fiber;em.opt.SDSS.i</quantity>
-    --/ <unit>nMgy</unit>
+    --/ <unit>nmgy</unit>
 	fiberFlux_i      real NOT NULL,
 
     --/ <summary>Flux in 3 arcsec diameter fiber radius</summary>
 	--/ <quantity>phot.flux.fiber;em.opt.SDSS.z</quantity>
-    --/ <unit>nMgy</unit>
+    --/ <unit>nmgy</unit>
 	fiberFlux_z      real NOT NULL,
 
     --/ <summary>Inverse variance in flux in 3 arcsec diameter fiber radius</summary>
 	--/ <quantity>stat.variance;phot.flux.fiber;em.opt.SDSS.u</quantity>
-    --/ <unit>nMgy-2</unit>
+    --/ <unit>nmgy-2</unit>
 	fiberFluxIvar_u  real NOT NULL,
 
     --/ <summary>Inverse variance in flux in 3 arcsec diameter fiber radius</summary>
 	--/ <quantity>stat.variance;phot.flux.fiber;em.opt.SDSS.g</quantity>
-    --/ <unit>nMgy-2</unit>
+    --/ <unit>nmgy-2</unit>
 	fiberFluxIvar_g  real NOT NULL,
 
     --/ <summary>Inverse variance in flux in 3 arcsec diameter fiber radius</summary>
 	--/ <quantity>stat.variance;phot.flux.fiber;em.opt.SDSS.r</quantity>
-    --/ <unit>nMgy-2</unit>
+    --/ <unit>nmgy-2</unit>
 	fiberFluxIvar_r  real NOT NULL,
 
     --/ <summary>Inverse variance in flux in 3 arcsec diameter fiber radius</summary>
 	--/ <quantity>stat.variance;phot.flux.fiber;em.opt.SDSS.i</quantity>
-    --/ <unit>nMgy-2</unit>
+    --/ <unit>nmgy-2</unit>
 	fiberFluxIvar_i  real NOT NULL,
 
     --/ <summary>Inverse variance in flux in 3 arcsec diameter fiber radius</summary>
 	--/ <quantity>stat.variance;phot.flux.fiber;em.opt.SDSS.z</quantity>
-    --/ <unit>nMgy-2</unit>
+    --/ <unit>nmgy-2</unit>
 	fiberFluxIvar_z  real NOT NULL,
 
     --/ <summary>Flux in 2 arcsec diameter fiber radius</summary>
 	--/ <quantity>phot.flux.fiber;em.opt.SDSS.u</quantity>
-    --/ <unit>nMgy</unit>
+    --/ <unit>nmgy</unit>
 	fiber2Flux_u     real NOT NULL,
 
     --/ <summary>Flux in 2 arcsec diameter fiber radius</summary>
 	--/ <quantity>phot.flux.fiber;em.opt.SDSS.g</quantity>
-    --/ <unit>nMgy</unit>
+    --/ <unit>nmgy</unit>
 	fiber2Flux_g     real NOT NULL,
 
     --/ <summary>Flux in 2 arcsec diameter fiber radius</summary>
 	--/ <quantity>phot.flux.fiber;em.opt.SDSS.r</quantity>
-    --/ <unit>nMgy</unit>
+    --/ <unit>nmgy</unit>
 	fiber2Flux_r     real NOT NULL,
 
     --/ <summary>Flux in 2 arcsec diameter fiber radius</summary>
 	--/ <quantity>phot.flux.fiber;em.opt.SDSS.i</quantity>
-    --/ <unit>nMgy</unit>
+    --/ <unit>nmgy</unit>
 	fiber2Flux_i     real NOT NULL,
 
     --/ <summary>Flux in 2 arcsec diameter fiber radius</summary>
 	--/ <quantity>phot.flux.fiber;em.opt.SDSS.z</quantity>
-    --/ <unit>nMgy</unit>
+    --/ <unit>nmgy</unit>
 	fiber2Flux_z     real NOT NULL,
 
     --/ <summary>Inverse variance in flux in 2 arcsec diameter fiber radius</summary>
 	--/ <quantity>stat.variance;phot.flux.fiber;em.opt.SDSS.u</quantity>
-    --/ <unit>nMgy-2</unit>
+    --/ <unit>nmgy-2</unit>
 	fiber2FluxIvar_u real NOT NULL,
 
     --/ <summary>Inverse variance in flux in 2 arcsec diameter fiber radius</summary>
 	--/ <quantity>stat.variance;phot.flux.fiber;em.opt.SDSS.g</quantity>
-    --/ <unit>nMgy-2</unit>
+    --/ <unit>nmgy-2</unit>
 	fiber2FluxIvar_g real NOT NULL,
 
     --/ <summary>Inverse variance in flux in 2 arcsec diameter fiber radius</summary>
 	--/ <quantity>stat.variance;phot.flux.fiber;em.opt.SDSS.r</quantity>
-    --/ <unit>nMgy-2</unit>
+    --/ <unit>nmgy-2</unit>
 	fiber2FluxIvar_r real NOT NULL,
 
     --/ <summary>Inverse variance in flux in 2 arcsec diameter fiber radius</summary>
 	--/ <quantity>stat.variance;phot.flux.fiber;em.opt.SDSS.i</quantity>
-    --/ <unit>nMgy-2</unit>
+    --/ <unit>nmgy-2</unit>
 	fiber2FluxIvar_i real NOT NULL,
 
     --/ <summary>Inverse variance in flux in 2 arcsec diameter fiber radius</summary>
 	--/ <quantity>stat.variance;phot.flux.fiber;em.opt.SDSS.z</quantity>
-    --/ <unit>nMgy-2</unit>
+    --/ <unit>nmgy-2</unit>
 	fiber2FluxIvar_z real NOT NULL,
 
     --/ <summary>Petrosian flux</summary>
 	--/ <quantity>phot.flux.petrosian;em.opt.SDSS.u</quantity>
-    --/ <unit>nMgy</unit>
+    --/ <unit>nmgy</unit>
 	petroFlux_u      real NOT NULL,
 
     --/ <summary>Petrosian flux</summary>
 	--/ <quantity>phot.flux.petrosian;em.opt.SDSS.g</quantity>
-    --/ <unit>nMgy</unit>
+    --/ <unit>nmgy</unit>
 	petroFlux_g      real NOT NULL,
 
     --/ <summary>Petrosian flux</summary>
 	--/ <quantity>phot.flux.petrosian;em.opt.SDSS.r</quantity>
-    --/ <unit>nMgy</unit>
+    --/ <unit>nmgy</unit>
 	petroFlux_r      real NOT NULL,
 
     --/ <summary>Petrosian flux</summary>
 	--/ <quantity>phot.flux.petrosian;em.opt.SDSS.i</quantity>
-    --/ <unit>nMgy</unit>
+    --/ <unit>nmgy</unit>
 	petroFlux_i      real NOT NULL,
 
     --/ <summary>Petrosian flux</summary>
 	--/ <quantity>phot.flux.petrosian;em.opt.SDSS.z</quantity>
-    --/ <unit>nMgy</unit>
+    --/ <unit>nmgy</unit>
 	petroFlux_z      real NOT NULL,
 
     --/ <summary>Petrosian flux inverse variance</summary>
 	--/ <quantity>stat.variance;phot.flux.petrosian;em.opt.SDSS.u</quantity>
-    --/ <unit>nMgy-2</unit>
+    --/ <unit>nmgy-2</unit>
 	petroFluxIvar_u  real NOT NULL,
 
     --/ <summary>Petrosian flux inverse variance</summary>
 	--/ <quantity>stat.variance;phot.flux.petrosian;em.opt.SDSS.g</quantity>
-    --/ <unit>nMgy-2</unit>
+    --/ <unit>nmgy-2</unit>
 	petroFluxIvar_g  real NOT NULL,
 
     --/ <summary>Petrosian flux inverse variance</summary>
 	--/ <quantity>stat.variance;phot.flux.petrosian;em.opt.SDSS.r</quantity>
-    --/ <unit>nMgy-2</unit>
+    --/ <unit>nmgy-2</unit>
 	petroFluxIvar_r  real NOT NULL,
 
     --/ <summary>Petrosian flux inverse variance</summary>
 	--/ <quantity>stat.variance;phot.flux.petrosian;em.opt.SDSS.i</quantity>
-    --/ <unit>nMgy-2</unit>
+    --/ <unit>nmgy-2</unit>
 	petroFluxIvar_i  real NOT NULL,
 
     --/ <summary>Petrosian flux inverse variance</summary>
 	--/ <quantity>stat.variance;phot.flux.petrosian;em.opt.SDSS.z</quantity>
-    --/ <unit>nMgy-2</unit>
+    --/ <unit>nmgy-2</unit>
 	petroFluxIvar_z  real NOT NULL,
 
     --/ <summary>Petrosian radius</summary>

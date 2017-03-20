@@ -48,34 +48,34 @@ The table has the following  views:
 <quantity>meta.code</quantity>
 </column><column name="sky_u"><summary>Sky flux at the center of object (allowing for siblings if blended).</summary>
 <quantity>phot.flux;em.opt.SDSS.u</quantity>
-<unit>nMgy arcsec-2</unit>
+<unit>nmgy arcsec-2</unit>
 </column><column name="sky_g"><summary>Sky flux at the center of object (allowing for siblings if blended).</summary>
 <quantity>phot.flux;em.opt.SDSS.g</quantity>
-<unit>nMgy arcsec-2</unit>
+<unit>nmgy arcsec-2</unit>
 </column><column name="sky_r"><summary>Sky flux at the center of object (allowing for siblings if blended).</summary>
 <quantity>phot.flux;em.opt.SDSS.r</quantity>
-<unit>nMgy arcsec-2</unit>
+<unit>nmgy arcsec-2</unit>
 </column><column name="sky_i"><summary>Sky flux at the center of object (allowing for siblings if blended).</summary>
 <quantity>phot.flux;em.opt.SDSS.i</quantity>
-<unit>nMgy arcsec-2</unit>
+<unit>nmgy arcsec-2</unit>
 </column><column name="sky_z"><summary>Sky flux at the center of object (allowing for siblings if blended).</summary>
 <quantity>phot.flux;em.opt.SDSS.z</quantity>
-<unit>nMgy arcsec-2</unit>
+<unit>nmgy arcsec-2</unit>
 </column><column name="skyIvar_u"><summary>Sky flux inverse variance</summary>
 <quantity>stat.variance;phot.flux;em.opt.SDSS.u</quantity>
-<unit>nMgy arcsec-2</unit>
+<unit>nmgy arcsec-2</unit>
 </column><column name="skyIvar_g"><summary>Sky flux inverse variance</summary>
 <quantity>stat.variance;phot.flux;em.opt.SDSS.g</quantity>
-<unit>nMgy arcsec-2</unit>
+<unit>nmgy arcsec-2</unit>
 </column><column name="skyIvar_r"><summary>Sky flux inverse variance</summary>
 <quantity>stat.variance;phot.flux;em.opt.SDSS.r</quantity>
-<unit>nMgy arcsec-2</unit>
+<unit>nmgy arcsec-2</unit>
 </column><column name="skyIvar_i"><summary>Sky flux inverse variance</summary>
 <quantity>stat.variance;phot.flux;em.opt.SDSS.i</quantity>
-<unit>nMgy arcsec-2</unit>
+<unit>nmgy arcsec-2</unit>
 </column><column name="skyIvar_z"><summary>Sky flux inverse variance</summary>
 <quantity>stat.variance;phot.flux;em.opt.SDSS.z</quantity>
-<unit>nMgy arcsec-2</unit>
+<unit>nmgy arcsec-2</unit>
 </column><column name="psfMag_u"><summary>PSF magnitude</summary>
 <quantity>phot.mag.psf;em.opt.SDSS.u</quantity>
 <unit>mag</unit>
@@ -198,124 +198,124 @@ The table has the following  views:
 <unit>mag</unit>
 </column><column name="psfFlux_u"><summary>PSF flux</summary>
 <quantity>phot.flux;em.opt.SDSS.u</quantity>
-<unit>nMgy</unit>
+<unit>nmgy</unit>
 </column><column name="psfFlux_g"><summary>PSF flux</summary>
 <quantity>phot.flux;em.opt.SDSS.g</quantity>
-<unit>nMgy</unit>
+<unit>nmgy</unit>
 </column><column name="psfFlux_r"><summary>PSF flux</summary>
 <quantity>phot.flux;em.opt.SDSS.r</quantity>
-<unit>nMgy</unit>
+<unit>nmgy</unit>
 </column><column name="psfFlux_i"><summary>PSF flux</summary>
 <quantity>phot.flux;em.opt.SDSS.i</quantity>
-<unit>nMgy</unit>
+<unit>nmgy</unit>
 </column><column name="psfFlux_z"><summary>PSF flux</summary>
 <quantity>phot.flux;em.opt.SDSS.z</quantity>
-<unit>nMgy</unit>
+<unit>nmgy</unit>
 </column><column name="psfFluxIvar_u"><summary>PSF flux inverse variance</summary>
 <quantity>stat.variance;phot.flux;em.opt.SDSS.u</quantity>
-<unit>nMgy-2</unit>
+<unit>nmgy-2</unit>
 </column><column name="psfFluxIvar_g"><summary>PSF flux inverse variance</summary>
 <quantity>stat.variance;phot.flux;em.opt.SDSS.g</quantity>
-<unit>nMgy-2</unit>
+<unit>nmgy-2</unit>
 </column><column name="psfFluxIvar_r"><summary>PSF flux inverse variance</summary>
 <quantity>stat.variance;phot.flux;em.opt.SDSS.r</quantity>
-<unit>nMgy-2</unit>
+<unit>nmgy-2</unit>
 </column><column name="psfFluxIvar_i"><summary>PSF flux inverse variance</summary>
 <quantity>stat.variance;phot.flux;em.opt.SDSS.i</quantity>
-<unit>nMgy-2</unit>
+<unit>nmgy-2</unit>
 </column><column name="psfFluxIvar_z"><summary>PSF flux inverse variance</summary>
 <quantity>stat.variance;phot.flux;em.opt.SDSS.z</quantity>
-<unit>nMgy-2</unit>
+<unit>nmgy-2</unit>
 </column><column name="fiberFlux_u"><summary>Flux in 3 arcsec diameter fiber radius</summary>
 <quantity>phot.flux.fiber;em.opt.SDSS.i</quantity>
-<unit>nMgy</unit>
+<unit>nmgy</unit>
 </column><column name="fiberFlux_g"><summary>Flux in 3 arcsec diameter fiber radius</summary>
 <quantity>phot.flux.fiber;em.opt.SDSS.g</quantity>
-<unit>nMgy</unit>
+<unit>nmgy</unit>
 </column><column name="fiberFlux_r"><summary>Flux in 3 arcsec diameter fiber radius</summary>
 <quantity>phot.flux.fiber;em.opt.SDSS.r</quantity>
-<unit>nMgy</unit>
+<unit>nmgy</unit>
 </column><column name="fiberFlux_i"><summary>Flux in 3 arcsec diameter fiber radius</summary>
 <quantity>phot.flux.fiber;em.opt.SDSS.i</quantity>
-<unit>nMgy</unit>
+<unit>nmgy</unit>
 </column><column name="fiberFlux_z"><summary>Flux in 3 arcsec diameter fiber radius</summary>
 <quantity>phot.flux.fiber;em.opt.SDSS.z</quantity>
-<unit>nMgy</unit>
+<unit>nmgy</unit>
 </column><column name="fiberFluxIvar_u"><summary>Inverse variance in flux in 3 arcsec diameter fiber radius</summary>
 <quantity>stat.variance;phot.flux.fiber;em.opt.SDSS.u</quantity>
-<unit>nMgy-2</unit>
+<unit>nmgy-2</unit>
 </column><column name="fiberFluxIvar_g"><summary>Inverse variance in flux in 3 arcsec diameter fiber radius</summary>
 <quantity>stat.variance;phot.flux.fiber;em.opt.SDSS.g</quantity>
-<unit>nMgy-2</unit>
+<unit>nmgy-2</unit>
 </column><column name="fiberFluxIvar_r"><summary>Inverse variance in flux in 3 arcsec diameter fiber radius</summary>
 <quantity>stat.variance;phot.flux.fiber;em.opt.SDSS.r</quantity>
-<unit>nMgy-2</unit>
+<unit>nmgy-2</unit>
 </column><column name="fiberFluxIvar_i"><summary>Inverse variance in flux in 3 arcsec diameter fiber radius</summary>
 <quantity>stat.variance;phot.flux.fiber;em.opt.SDSS.i</quantity>
-<unit>nMgy-2</unit>
+<unit>nmgy-2</unit>
 </column><column name="fiberFluxIvar_z"><summary>Inverse variance in flux in 3 arcsec diameter fiber radius</summary>
 <quantity>stat.variance;phot.flux.fiber;em.opt.SDSS.z</quantity>
-<unit>nMgy-2</unit>
+<unit>nmgy-2</unit>
 </column><column name="fiber2Flux_u"><summary>Flux in 2 arcsec diameter fiber radius</summary>
 <quantity>phot.flux.fiber;em.opt.SDSS.u</quantity>
-<unit>nMgy</unit>
+<unit>nmgy</unit>
 </column><column name="fiber2Flux_g"><summary>Flux in 2 arcsec diameter fiber radius</summary>
 <quantity>phot.flux.fiber;em.opt.SDSS.g</quantity>
-<unit>nMgy</unit>
+<unit>nmgy</unit>
 </column><column name="fiber2Flux_r"><summary>Flux in 2 arcsec diameter fiber radius</summary>
 <quantity>phot.flux.fiber;em.opt.SDSS.r</quantity>
-<unit>nMgy</unit>
+<unit>nmgy</unit>
 </column><column name="fiber2Flux_i"><summary>Flux in 2 arcsec diameter fiber radius</summary>
 <quantity>phot.flux.fiber;em.opt.SDSS.i</quantity>
-<unit>nMgy</unit>
+<unit>nmgy</unit>
 </column><column name="fiber2Flux_z"><summary>Flux in 2 arcsec diameter fiber radius</summary>
 <quantity>phot.flux.fiber;em.opt.SDSS.z</quantity>
-<unit>nMgy</unit>
+<unit>nmgy</unit>
 </column><column name="fiber2FluxIvar_u"><summary>Inverse variance in flux in 2 arcsec diameter fiber radius</summary>
 <quantity>stat.variance;phot.flux.fiber;em.opt.SDSS.u</quantity>
-<unit>nMgy-2</unit>
+<unit>nmgy-2</unit>
 </column><column name="fiber2FluxIvar_g"><summary>Inverse variance in flux in 2 arcsec diameter fiber radius</summary>
 <quantity>stat.variance;phot.flux.fiber;em.opt.SDSS.g</quantity>
-<unit>nMgy-2</unit>
+<unit>nmgy-2</unit>
 </column><column name="fiber2FluxIvar_r"><summary>Inverse variance in flux in 2 arcsec diameter fiber radius</summary>
 <quantity>stat.variance;phot.flux.fiber;em.opt.SDSS.r</quantity>
-<unit>nMgy-2</unit>
+<unit>nmgy-2</unit>
 </column><column name="fiber2FluxIvar_i"><summary>Inverse variance in flux in 2 arcsec diameter fiber radius</summary>
 <quantity>stat.variance;phot.flux.fiber;em.opt.SDSS.i</quantity>
-<unit>nMgy-2</unit>
+<unit>nmgy-2</unit>
 </column><column name="fiber2FluxIvar_z"><summary>Inverse variance in flux in 2 arcsec diameter fiber radius</summary>
 <quantity>stat.variance;phot.flux.fiber;em.opt.SDSS.z</quantity>
-<unit>nMgy-2</unit>
+<unit>nmgy-2</unit>
 </column><column name="petroFlux_u"><summary>Petrosian flux</summary>
 <quantity>phot.flux.petrosian;em.opt.SDSS.u</quantity>
-<unit>nMgy</unit>
+<unit>nmgy</unit>
 </column><column name="petroFlux_g"><summary>Petrosian flux</summary>
 <quantity>phot.flux.petrosian;em.opt.SDSS.g</quantity>
-<unit>nMgy</unit>
+<unit>nmgy</unit>
 </column><column name="petroFlux_r"><summary>Petrosian flux</summary>
 <quantity>phot.flux.petrosian;em.opt.SDSS.r</quantity>
-<unit>nMgy</unit>
+<unit>nmgy</unit>
 </column><column name="petroFlux_i"><summary>Petrosian flux</summary>
 <quantity>phot.flux.petrosian;em.opt.SDSS.i</quantity>
-<unit>nMgy</unit>
+<unit>nmgy</unit>
 </column><column name="petroFlux_z"><summary>Petrosian flux</summary>
 <quantity>phot.flux.petrosian;em.opt.SDSS.z</quantity>
-<unit>nMgy</unit>
+<unit>nmgy</unit>
 </column><column name="petroFluxIvar_u"><summary>Petrosian flux inverse variance</summary>
 <quantity>stat.variance;phot.flux.petrosian;em.opt.SDSS.u</quantity>
-<unit>nMgy-2</unit>
+<unit>nmgy-2</unit>
 </column><column name="petroFluxIvar_g"><summary>Petrosian flux inverse variance</summary>
 <quantity>stat.variance;phot.flux.petrosian;em.opt.SDSS.g</quantity>
-<unit>nMgy-2</unit>
+<unit>nmgy-2</unit>
 </column><column name="petroFluxIvar_r"><summary>Petrosian flux inverse variance</summary>
 <quantity>stat.variance;phot.flux.petrosian;em.opt.SDSS.r</quantity>
-<unit>nMgy-2</unit>
+<unit>nmgy-2</unit>
 </column><column name="petroFluxIvar_i"><summary>Petrosian flux inverse variance</summary>
 <quantity>stat.variance;phot.flux.petrosian;em.opt.SDSS.i</quantity>
-<unit>nMgy-2</unit>
+<unit>nmgy-2</unit>
 </column><column name="petroFluxIvar_z"><summary>Petrosian flux inverse variance</summary>
 <quantity>stat.variance;phot.flux.petrosian;em.opt.SDSS.z</quantity>
-<unit>nMgy-2</unit>
+<unit>nmgy-2</unit>
 </column><column name="petroRad_u"><summary>Petrosian radius</summary>
 <quantity>phys.angSize;em.opt.SDSS.u</quantity>
 <unit>arcsec</unit>

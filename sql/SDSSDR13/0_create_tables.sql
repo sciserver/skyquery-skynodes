@@ -354,22 +354,22 @@ CREATE TABLE [dbo].[apogeeObject](
 
 	--/ <summary>Proper motion in RA</summary>
 	--/ <quantity>pos.pm;pos.eq.ra</quantity>
-	--/ <unit>mas/yr</unit>
+	--/ <unit>mas yr-1</unit>
 	[pmra] [real] NOT NULL,
 
 	--/ <summary>Uncertainty in proper motion in RA</summary>
 	--/ <quantity>stat.error;pos.pm;pos.eq.ra</quantity>
-	--/ <unit>mas/yr</unit>
+	--/ <unit>mas yr-1</unit>
 	[pmra_err] [real] NOT NULL,
 
 	--/ <summary>Proper motion in Dec</summary>
 	--/ <quantity>pos.pm;pos.eq.dec</quantity>
-	--/ <unit>mas/yr</unit>
+	--/ <unit>mas yr-1</unit>
 	[pmdec] [real] NOT NULL,
 
 	--/ <summary>Uncertainty in proper motion in Dec</summary>
 	--/ <quantity>stat.error;pos.pm;pos.eq.dec</quantity>
-	--/ <unit>mas/yr</unit>
+	--/ <unit>mas yr-1</unit>
 	[pmdec_err] [real] NOT NULL,
 
 	--/ <summary>Source of proper motion data</summary>
@@ -1066,7 +1066,7 @@ CREATE TABLE [dbo].[aspcapStar](
 
 	--/ <summary>original fit temperature</summary>
 	--/ <quantity>phys.temperature</quantity>
-	--/ <unit>deg K</unit>
+	--/ <unit>K</unit>
 	[fparam_teff] [real] NOT NULL,
 
 	--/ <summary>original fit log g from 6-parameter FERRE fit</summary>
@@ -1100,7 +1100,7 @@ CREATE TABLE [dbo].[aspcapStar](
 
 	--/ <summary>Empirically calibrated temperature from ASPCAP</summary>
 	--/ <quantity>phys.temperature</quantity>
-	--/ <unit>deg K</unit>
+	--/ <unit>K</unit>
 	[param_teff] [real] NOT NULL,
 
 	--/ <summary>Empirically calibrated surface gravity from ASPCAP</summary>
@@ -5240,22 +5240,22 @@ CREATE TABLE [dbo].[Field](
 
 	--/ <summary>Gain averaged over amplifiers</summary>
 	--/ <quantity>instr.param;em.opt.SDSS.u</quantity>
-	--/ <unit>electrons DN-1</unit>
+	--/ <unit>count DN-1</unit>
 	[gain_u] [real] NOT NULL,
 
 	--/ <summary>Gain averaged over amplifiers</summary>
 	--/ <quantity>instr.param;em.opt.SDSS.g</quantity>
-	--/ <unit>electrons DN-1</unit>
+	--/ <unit>count DN-1</unit>
 	[gain_g] [real] NOT NULL,
 
 	--/ <summary>Gain averaged over amplifiers</summary>
 	--/ <quantity>instr.param;em.opt.SDSS.r</quantity>
-	--/ <unit>electrons DN-1</unit>
+	--/ <unit>count DN-1</unit>
 	[gain_r] [real] NOT NULL,
 
 	--/ <summary>Gain averaged over amplifiers</summary>
 	--/ <quantity>instr.param;em.opt.SDSS.i</quantity>
-	--/ <unit>electrons DN-1</unit>
+	--/ <unit>count DN-1</unit>
 	[gain_i] [real] NOT NULL,
 
 	--/ <summary>Gain averaged over amplifiers</summary>
@@ -6064,202 +6064,202 @@ CREATE TABLE [dbo].[galSpecIndx](
 
 	--/ <summary>Restframe index measurement</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_ca4227] [real] NOT NULL,
 
 	--/ <summary>Error on index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_ca4227_err] [real] NOT NULL,
 
 	--/ <summary>Index of best fit model spectrum</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_ca4227_model] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_ca4227_sub] [real] NOT NULL,
 
 	--/ <summary>Error in the above index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_ca4227_sub_err] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_g4300] [real] NOT NULL,
 
 	--/ <summary>Error on index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_g4300_err] [real] NOT NULL,
 
 	--/ <summary>Index of best fit model spectrum</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_g4300_model] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_g4300_sub] [real] NOT NULL,
 
 	--/ <summary>Error in the above index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_g4300_sub_err] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe4383] [real] NOT NULL,
 
 	--/ <summary>Error on index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe4383_err] [real] NOT NULL,
 
 	--/ <summary>Index of best fit model spectrum</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe4383_model] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe4383_sub] [real] NOT NULL,
 
 	--/ <summary>Error in the above index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe4383_sub_err] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_ca4455] [real] NOT NULL,
 
 	--/ <summary>Error on index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_ca4455_err] [real] NOT NULL,
 
 	--/ <summary>Index of best fit model spectrum</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_ca4455_model] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_ca4455_sub] [real] NOT NULL,
 
 	--/ <summary>Error in the above index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_ca4455_sub_err] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe4531] [real] NOT NULL,
 
 	--/ <summary>Error on index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe4531_err] [real] NOT NULL,
 
 	--/ <summary>Index of best fit model spectrum</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe4531_model] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe4531_sub] [real] NOT NULL,
 
 	--/ <summary>Error in the above index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe4531_sub_err] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_c4668] [real] NOT NULL,
 
 	--/ <summary>Error on index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_c4668_err] [real] NOT NULL,
 
 	--/ <summary>Index of best fit model spectrum</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_c4668_model] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_c4668_sub] [real] NOT NULL,
 
 	--/ <summary>Error in the above index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_c4668_sub_err] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_hb] [real] NOT NULL,
 
 	--/ <summary>Error on index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_hb_err] [real] NOT NULL,
 
 	--/ <summary>Index of best fit model spectrum</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_hb_model] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_hb_sub] [real] NOT NULL,
 
 	--/ <summary>Error in the above index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_hb_sub_err] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe5015] [real] NOT NULL,
 
 	--/ <summary>Error on index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe5015_err] [real] NOT NULL,
 
 	--/ <summary>Index of best fit model spectrum</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe5015_model] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe5015_sub] [real] NOT NULL,
 
 	--/ <summary>Error in the above index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe5015_sub_err] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement</summary>
@@ -6314,177 +6314,177 @@ CREATE TABLE [dbo].[galSpecIndx](
 
 	--/ <summary>Restframe index measurement</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_mgb] [real] NOT NULL,
 
 	--/ <summary>Error on index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_mgb_err] [real] NOT NULL,
 
 	--/ <summary>Index of best fit model spectrum</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_mgb_model] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_mgb_sub] [real] NOT NULL,
 
 	--/ <summary>Error in the above index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_mgb_sub_err] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe5270] [real] NOT NULL,
 
 	--/ <summary>Error on index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe5270_err] [real] NOT NULL,
 
 	--/ <summary>Index of best fit model spectrum</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe5270_model] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe5270_sub] [real] NOT NULL,
 
 	--/ <summary>Error in the above index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe5270_sub_err] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe5335] [real] NOT NULL,
 
 	--/ <summary>Error on index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe5335_err] [real] NOT NULL,
 
 	--/ <summary>Index of best fit model spectrum</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe5335_model] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe5335_sub] [real] NOT NULL,
 
 	--/ <summary>Error in the above index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe5335_sub_err] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe5406] [real] NOT NULL,
 
 	--/ <summary>Error on index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe5406_err] [real] NOT NULL,
 
 	--/ <summary>Index of best fit model spectrum</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe5406_model] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe5406_sub] [real] NOT NULL,
 
 	--/ <summary>Error in the above index measurement</summary>
 	--/ <quantity>stat.error;</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe5406_sub_err] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe5709] [real] NOT NULL,
 
 	--/ <summary>Error on index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe5709_err] [real] NOT NULL,
 
 	--/ <summary>Index of best fit model spectrum</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe5709_model] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe5709_sub] [real] NOT NULL,
 
 	--/ <summary>Error in the above index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe5709_sub_err] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe5782] [real] NOT NULL,
 
 	--/ <summary>Error on index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe5782_err] [real] NOT NULL,
 
 	--/ <summary>Index of best fit model spectrum</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe5782_model] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe5782_sub] [real] NOT NULL,
 
 	--/ <summary>Error in the above index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_fe5782_sub_err] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_nad] [real] NOT NULL,
 
 	--/ <summary>Error on index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_nad_err] [real] NOT NULL,
 
 	--/ <summary>Index of best fit model spectrum</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_nad_model] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_nad_sub] [real] NOT NULL,
 
 	--/ <summary>Error in the above index measurement</summary>
 	--/ <quantity>stat.error;</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_nad_sub_err] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement</summary>
@@ -6539,202 +6539,202 @@ CREATE TABLE [dbo].[galSpecIndx](
 
 	--/ <summary>Restframe index measurement</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_hd_a] [real] NOT NULL,
 
 	--/ <summary>Error on index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_hd_a_err] [real] NOT NULL,
 
 	--/ <summary>Index of best fit model spectrum</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_hd_a_model] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_hd_a_sub] [real] NOT NULL,
 
 	--/ <summary>Error in the above index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_hd_a_sub_err] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_hg_a] [real] NOT NULL,
 
 	--/ <summary>Error on index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_hg_a_err] [real] NOT NULL,
 
 	--/ <summary>Index of best fit model spectrum</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_hg_a_model] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_hg_a_sub] [real] NOT NULL,
 
 	--/ <summary>Error in the above index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_hg_a_sub_err] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_hd_f] [real] NOT NULL,
 
 	--/ <summary>Error on index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_hd_f_err] [real] NOT NULL,
 
 	--/ <summary>Index of best fit model spectrum</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_hd_f_model] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_hd_f_sub] [real] NOT NULL,
 
 	--/ <summary>Error in the above index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_hd_f_sub_err] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_hg_f] [real] NOT NULL,
 
 	--/ <summary>Error on index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_hg_f_err] [real] NOT NULL,
 
 	--/ <summary>Index of best fit model spectrum</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_hg_f_model] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_hg_f_sub] [real] NOT NULL,
 
 	--/ <summary>Error in the above index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[lick_hg_f_sub_err] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[dtt_caii8498] [real] NOT NULL,
 
 	--/ <summary>Error on index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[dtt_caii8498_err] [real] NOT NULL,
 
 	--/ <summary>Index of best fit model spectrum</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[dtt_caii8498_model] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[dtt_caii8498_sub] [real] NOT NULL,
 
 	--/ <summary>Error in the above index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[dtt_caii8498_sub_err] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[dtt_caii8542] [real] NOT NULL,
 
 	--/ <summary>Error on index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[dtt_caii8542_err] [real] NOT NULL,
 
 	--/ <summary>Index of best fit model spectrum</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[dtt_caii8542_model] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[dtt_caii8542_sub] [real] NOT NULL,
 
 	--/ <summary>Error in the above index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[dtt_caii8542_sub_err] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[dtt_caii8662] [real] NOT NULL,
 
 	--/ <summary>Error on index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[dtt_caii8662_err] [real] NOT NULL,
 
 	--/ <summary>Index of best fit model spectrum</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[dtt_caii8662_model] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[dtt_caii8662_sub] [real] NOT NULL,
 
 	--/ <summary>Error in the above index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[dtt_caii8662_sub_err] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[dtt_mgi8807] [real] NOT NULL,
 
 	--/ <summary>Error on index measurement</summary>
 	--/ <quantity>spect.index;stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[dtt_mgi8807_err] [real] NOT NULL,
 
 	--/ <summary>Index of best fit model spectrum</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[dtt_mgi8807_model] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 	--/ <quantity>spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[dtt_mgi8807_sub] [real] NOT NULL,
 
 	--/ <summary>Error in the above index measurement</summary>
 	--/ <quantity>stat.error;spect.index</quantity>
-	--/ <unit>A</unit>
+	--/ <unit>AA</unit>
 	[dtt_mgi8807_sub_err] [real] NOT NULL,
 
 	--/ <summary>Restframe index measurement</summary>
@@ -7134,12 +7134,12 @@ CREATE TABLE [dbo].[galSpecInfo](
 
 	--/ <summary>Right Ascention of drilled fiber position</summary>
 	--/ <quantity>pos.eq.ra</quantity>
-	--/ <unit>degrees</unit>
+	--/ <unit>deg</unit>
 	[ra] [real] NOT NULL,
 
 	--/ <summary>Declination of drilled fiber position</summary>
 	--/ <quantity>pos.eq.dec</quantity>
-	--/ <unit>degrees</unit>
+	--/ <unit>deg</unit>
 	[dec] [real] NOT NULL,
 
 	--/ <summary>Primary Target Flag (MAIN galaxy = 64)</summary>
@@ -8893,7 +8893,7 @@ CREATE TABLE [dbo].[Mask](
 
 	--/ <summary>seeing width</summary>
 	--/ <quantity></quantity>
-	--/ <unit>arcsecs</unit>
+	--/ <unit>arcsec</unit>
 	[seeing] [real] NOT NULL,
 
 	--/ <summary>unit vector for ra+dec</summary>
@@ -11105,7 +11105,7 @@ CREATE TABLE [dbo].[Run](
 
 	--/ <summary>tracking rate</summary>
 	--/ <quantity>arith.rate</quantity>
-	--/ <unit>arcsec/sec</unit>
+	--/ <unit>arcsec s-1</unit>
 	[tracking] [float] NOT NULL,
 
 	--/ <summary>node of great circle, that is, its RA on the J2000 equator</summary>
@@ -11122,7 +11122,7 @@ CREATE TABLE [dbo].[Run](
 
 	--/ <summary>quadratic term in coarse astrometric solution</summary>
 	--/ <quantity></quantity>
-	--/ <unit>arcsec/hr^2</unit>
+	--/ <unit>arcsec h-2</unit>
 	[qterm] [real] NOT NULL,
 
 	--/ <summary>maximum residual from great circle in scan direction</summary>
@@ -12784,12 +12784,12 @@ CREATE TABLE [dbo].[SpecObjAll](
 
 	--/ <summary>Minimum observed (vacuum) wavelength</summary>
 	--/ <quantity>em.wl;stat.min</quantity>
-	--/ <unit>Angstroms</unit>
+	--/ <unit>AA</unit>
 	[waveMin] [real] NOT NULL,
 
 	--/ <summary>Maximum observed (vacuum) wavelength</summary>
 	--/ <quantity>em.wl;stat.max</quantity>
-	--/ <unit>Angstroms</unit>
+	--/ <unit>AA</unit>
 	[waveMax] [real] NOT NULL,
 
 	--/ <summary>Coverage in wavelength, in units of log10 wavelength</summary>
@@ -13132,7 +13132,7 @@ CREATE TABLE [dbo].[SpecObjAll](
 
 	--/ <summary>Effective temperature</summary>
 	--/ <quantity>phys.temperature.effective</quantity>
-	--/ <unit>Kelvin</unit>
+	--/ <unit>K</unit>
 	[elodieTEff] [real] NOT NULL,
 
 	--/ <summary>log10(gravity)</summary>
@@ -13204,7 +13204,7 @@ CREATE TABLE [dbo].[SpecPhotoAll](
 
 	--/ <summary>MJD of observation</summary>
 	--/ <quantity>time.epoch</quantity>
-	--/ <unit>MJD</unit>
+	--/ <unit>d</unit>
 	[mjd] [int] NOT NULL,
 
 	--/ <summary>Plate ID</summary>
@@ -17059,7 +17059,7 @@ CREATE TABLE [dbo].[stellarMassFSPSGranEarlyNoDust](
 
 	--/ <summary>MJD of observation</summary>
 	--/ <quantity>time.epoch;obs</quantity>
-	--/ <unit>days</unit>
+	--/ <unit>d</unit>
 	[MJD] [int] NULL,
 
 	--/ <summary>Right ascension of fiber, J2000</summary>
@@ -18295,17 +18295,17 @@ CREATE TABLE [dbo].[stellarMassPassivePort](
 
 	--/ <summary>Star-formation rate of best fit</summary>
 	--/ <quantity>phys.SFR</quantity>
-	--/ <unit>solar masses per year</unit>
+	--/ <unit>M_sol yr-1</unit>
 	[SFR] [real] NOT NULL,
 
 	--/ <summary>1-sigma minimum star-formation rate of best fit (where chi-squared is within minimum + 1)</summary>
 	--/ <quantity>phys.SFR;stat.min</quantity>
-	--/ <unit>solar masses per year</unit>
+	--/ <unit>M_sol yr-1</unit>
 	[minSFR] [real] NOT NULL,
 
 	--/ <summary>1-sigma maximum star-formation rate of best fit (where chi-squared is within minimum + 1)</summary>
 	--/ <quantity>phys.SFR;stat.max</quantity>
-	--/ <unit>solar masses per year</unit>
+	--/ <unit>M_sol yr-1</unit>
 	[maxSFR] [real] NOT NULL,
 
 	--/ <summary>Absolute magnitude in K inferred from model</summary>
@@ -18776,17 +18776,17 @@ CREATE TABLE [dbo].[stellarMassStarformingPort](
 
 	--/ <summary>Star-formation rate of best fit</summary>
 	--/ <quantity>phys.SFR</quantity>
-	--/ <unit>solar masses per year</unit>
+	--/ <unit>M_sol yr-1</unit>
 	[SFR] [real] NOT NULL,
 
 	--/ <summary>1-sigma minimum star-formation rate of best fit (where chi-squared is within minimum + 1)</summary>
 	--/ <quantity>phys.SFR;stat.min</quantity>
-	--/ <unit>solar masses per year</unit>
+	--/ <unit>M_sol yr-1</unit>
 	[minSFR] [real] NOT NULL,
 
 	--/ <summary>1-sigma maximum star-formation rate of best fit (where chi-squared is within minimum + 1)</summary>
 	--/ <quantity>phys.SFR.stat.max</quantity>
-	--/ <unit>solar masses per year</unit>
+	--/ <unit>M_sol yr-1</unit>
 	[maxSFR] [real] NOT NULL,
 
 	--/ <summary>Absolute magnitude in K inferred from model</summary>

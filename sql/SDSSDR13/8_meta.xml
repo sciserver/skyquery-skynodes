@@ -186,16 +186,16 @@
 <quantity>meta.note;</quantity>
 </column><column name="[pmra]"><summary>Proper motion in RA</summary>
 <quantity>pos.pm;pos.eq.ra</quantity>
-<unit>mas/yr</unit>
+<unit>mas yr-1</unit>
 </column><column name="[pmra_err]"><summary>Uncertainty in proper motion in RA</summary>
 <quantity>stat.error;pos.pm;pos.eq.ra</quantity>
-<unit>mas/yr</unit>
+<unit>mas yr-1</unit>
 </column><column name="[pmdec]"><summary>Proper motion in Dec</summary>
 <quantity>pos.pm;pos.eq.dec</quantity>
-<unit>mas/yr</unit>
+<unit>mas yr-1</unit>
 </column><column name="[pmdec_err]"><summary>Uncertainty in proper motion in Dec</summary>
 <quantity>stat.error;pos.pm;pos.eq.dec</quantity>
-<unit>mas/yr</unit>
+<unit>mas yr-1</unit>
 </column><column name="[pm_src]"><summary>Source of proper motion data</summary>
 <quantity>meta.ref;pos.pm</quantity>
 </column><column name="[tmass_a]"><summary>Source of 2MASS optical counterpart</summary>
@@ -529,7 +529,7 @@
 <quantity>meta.code</quantity>
 </column><column name="[fparam_teff]"><summary>original fit temperature</summary>
 <quantity>phys.temperature</quantity>
-<unit>deg K</unit>
+<unit>K</unit>
 </column><column name="[fparam_logg]"><summary>original fit log g from 6-parameter FERRE fit</summary>
 <quantity>phys.gravity</quantity>
 <unit>dex</unit>
@@ -549,7 +549,7 @@
 <unit>dex</unit>
 </column><column name="[param_teff]"><summary>Empirically calibrated temperature from ASPCAP</summary>
 <quantity>phys.temperature</quantity>
-<unit>deg K</unit>
+<unit>K</unit>
 </column><column name="[param_logg]"><summary>Empirically calibrated surface gravity from ASPCAP</summary>
 <quantity>phys.gravity</quantity>
 <unit>dex</unit>
@@ -2876,16 +2876,16 @@
 <unit>count</unit>
 </column><column name="[gain_u]"><summary>Gain averaged over amplifiers</summary>
 <quantity>instr.param;em.opt.SDSS.u</quantity>
-<unit>electrons DN-1</unit>
+<unit>count DN-1</unit>
 </column><column name="[gain_g]"><summary>Gain averaged over amplifiers</summary>
 <quantity>instr.param;em.opt.SDSS.g</quantity>
-<unit>electrons DN-1</unit>
+<unit>count DN-1</unit>
 </column><column name="[gain_r]"><summary>Gain averaged over amplifiers</summary>
 <quantity>instr.param;em.opt.SDSS.r</quantity>
-<unit>electrons DN-1</unit>
+<unit>count DN-1</unit>
 </column><column name="[gain_i]"><summary>Gain averaged over amplifiers</summary>
 <quantity>instr.param;em.opt.SDSS.i</quantity>
-<unit>electrons DN-1</unit>
+<unit>count DN-1</unit>
 </column><column name="[gain_z]"><summary>Gain averaged over amplifiers</summary>
 <quantity>instr.param;em.opt.SDSS.z</quantity>
 <unit>electrons DN-1</unit>
@@ -3319,124 +3319,124 @@
 <unit>mag</unit>
 </column><column name="[lick_ca4227]"><summary>Restframe index measurement</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_ca4227_err]"><summary>Error on index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_ca4227_model]"><summary>Index of best fit model spectrum</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_ca4227_sub]"><summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_ca4227_sub_err]"><summary>Error in the above index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_g4300]"><summary>Restframe index measurement</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_g4300_err]"><summary>Error on index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_g4300_model]"><summary>Index of best fit model spectrum</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_g4300_sub]"><summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_g4300_sub_err]"><summary>Error in the above index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe4383]"><summary>Restframe index measurement</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe4383_err]"><summary>Error on index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe4383_model]"><summary>Index of best fit model spectrum</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe4383_sub]"><summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe4383_sub_err]"><summary>Error in the above index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_ca4455]"><summary>Restframe index measurement</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_ca4455_err]"><summary>Error on index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_ca4455_model]"><summary>Index of best fit model spectrum</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_ca4455_sub]"><summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_ca4455_sub_err]"><summary>Error in the above index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe4531]"><summary>Restframe index measurement</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe4531_err]"><summary>Error on index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe4531_model]"><summary>Index of best fit model spectrum</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe4531_sub]"><summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe4531_sub_err]"><summary>Error in the above index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_c4668]"><summary>Restframe index measurement</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_c4668_err]"><summary>Error on index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_c4668_model]"><summary>Index of best fit model spectrum</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_c4668_sub]"><summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_c4668_sub_err]"><summary>Error in the above index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_hb]"><summary>Restframe index measurement</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_hb_err]"><summary>Error on index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_hb_model]"><summary>Index of best fit model spectrum</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_hb_sub]"><summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_hb_sub_err]"><summary>Error in the above index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe5015]"><summary>Restframe index measurement</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe5015_err]"><summary>Error on index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe5015_model]"><summary>Index of best fit model spectrum</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe5015_sub]"><summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe5015_sub_err]"><summary>Error in the above index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_mg1]"><summary>Restframe index measurement</summary>
 <quantity>spect.index</quantity>
 <unit>mag</unit>
@@ -3469,109 +3469,109 @@
 <unit>mag</unit>
 </column><column name="[lick_mgb]"><summary>Restframe index measurement</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_mgb_err]"><summary>Error on index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_mgb_model]"><summary>Index of best fit model spectrum</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_mgb_sub]"><summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_mgb_sub_err]"><summary>Error in the above index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe5270]"><summary>Restframe index measurement</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe5270_err]"><summary>Error on index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe5270_model]"><summary>Index of best fit model spectrum</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe5270_sub]"><summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe5270_sub_err]"><summary>Error in the above index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe5335]"><summary>Restframe index measurement</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe5335_err]"><summary>Error on index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe5335_model]"><summary>Index of best fit model spectrum</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe5335_sub]"><summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe5335_sub_err]"><summary>Error in the above index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe5406]"><summary>Restframe index measurement</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe5406_err]"><summary>Error on index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe5406_model]"><summary>Index of best fit model spectrum</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe5406_sub]"><summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe5406_sub_err]"><summary>Error in the above index measurement</summary>
 <quantity>stat.error;</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe5709]"><summary>Restframe index measurement</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe5709_err]"><summary>Error on index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe5709_model]"><summary>Index of best fit model spectrum</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe5709_sub]"><summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe5709_sub_err]"><summary>Error in the above index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe5782]"><summary>Restframe index measurement</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe5782_err]"><summary>Error on index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe5782_model]"><summary>Index of best fit model spectrum</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe5782_sub]"><summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_fe5782_sub_err]"><summary>Error in the above index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_nad]"><summary>Restframe index measurement</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_nad_err]"><summary>Error on index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_nad_model]"><summary>Index of best fit model spectrum</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_nad_sub]"><summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_nad_sub_err]"><summary>Error in the above index measurement</summary>
 <quantity>stat.error;</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_tio1]"><summary>Restframe index measurement</summary>
 <quantity>spect.index</quantity>
 <unit>mag</unit>
@@ -3604,124 +3604,124 @@
 <unit>mag</unit>
 </column><column name="[lick_hd_a]"><summary>Restframe index measurement</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_hd_a_err]"><summary>Error on index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_hd_a_model]"><summary>Index of best fit model spectrum</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_hd_a_sub]"><summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_hd_a_sub_err]"><summary>Error in the above index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_hg_a]"><summary>Restframe index measurement</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_hg_a_err]"><summary>Error on index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_hg_a_model]"><summary>Index of best fit model spectrum</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_hg_a_sub]"><summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_hg_a_sub_err]"><summary>Error in the above index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_hd_f]"><summary>Restframe index measurement</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_hd_f_err]"><summary>Error on index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_hd_f_model]"><summary>Index of best fit model spectrum</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_hd_f_sub]"><summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_hd_f_sub_err]"><summary>Error in the above index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_hg_f]"><summary>Restframe index measurement</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_hg_f_err]"><summary>Error on index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_hg_f_model]"><summary>Index of best fit model spectrum</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_hg_f_sub]"><summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[lick_hg_f_sub_err]"><summary>Error in the above index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[dtt_caii8498]"><summary>Restframe index measurement</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[dtt_caii8498_err]"><summary>Error on index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[dtt_caii8498_model]"><summary>Index of best fit model spectrum</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[dtt_caii8498_sub]"><summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[dtt_caii8498_sub_err]"><summary>Error in the above index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[dtt_caii8542]"><summary>Restframe index measurement</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[dtt_caii8542_err]"><summary>Error on index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[dtt_caii8542_model]"><summary>Index of best fit model spectrum</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[dtt_caii8542_sub]"><summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[dtt_caii8542_sub_err]"><summary>Error in the above index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[dtt_caii8662]"><summary>Restframe index measurement</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[dtt_caii8662_err]"><summary>Error on index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[dtt_caii8662_model]"><summary>Index of best fit model spectrum</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[dtt_caii8662_sub]"><summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[dtt_caii8662_sub_err]"><summary>Error in the above index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[dtt_mgi8807]"><summary>Restframe index measurement</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[dtt_mgi8807_err]"><summary>Error on index measurement</summary>
 <quantity>spect.index;stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[dtt_mgi8807_model]"><summary>Index of best fit model spectrum</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[dtt_mgi8807_sub]"><summary>Restframe index measurement on the data after subtracting all 3-sigma emission lines</summary>
 <quantity>spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[dtt_mgi8807_sub_err]"><summary>Error in the above index measurement</summary>
 <quantity>stat.error;spect.index</quantity>
-<unit>A</unit>
+<unit>AA</unit>
 </column><column name="[bh_cnb]"><summary>Restframe index measurement</summary>
 <quantity>spect.index</quantity>
 <unit>mag</unit>
@@ -3939,10 +3939,10 @@
 <quantity>meta.id;instr.param</quantity>
 </column><column name="[ra]"><summary>Right Ascention of drilled fiber position</summary>
 <quantity>pos.eq.ra</quantity>
-<unit>degrees</unit>
+<unit>deg</unit>
 </column><column name="[dec]"><summary>Declination of drilled fiber position</summary>
 <quantity>pos.eq.dec</quantity>
-<unit>degrees</unit>
+<unit>deg</unit>
 </column><column name="[primtarget]"><summary>Primary Target Flag (MAIN galaxy = 64)</summary>
 <quantity>meta.code</quantity>
 </column><column name="[sectarget]"><summary>Secondary Target Flag (QA = 8)</summary>
@@ -4914,7 +4914,7 @@
 <quantity></quantity>
 </column><column name="[seeing]"><summary>seeing width</summary>
 <quantity></quantity>
-<unit>arcsecs</unit>
+<unit>arcsec</unit>
 </column><column name="[cx]"><summary>unit vector for ra+dec</summary>
 <quantity>pos.eq.x</quantity>
 </column><column name="[cy]"><summary>unit vector for ra+dec</summary>
@@ -6084,7 +6084,7 @@
 <unit>microsec</unit>
 </column><column name="[tracking]"><summary>tracking rate</summary>
 <quantity>arith.rate</quantity>
-<unit>arcsec/sec</unit>
+<unit>arcsec s-1</unit>
 </column><column name="[node]"><summary>node of great circle, that is, its RA on the J2000 equator</summary>
 <quantity>src.orbital.node</quantity>
 </column><column name="[incl]"><summary>inclination of great circle relative to J2000 equator</summary>
@@ -6093,7 +6093,7 @@
 <quantity>meta.note</quantity>
 </column><column name="[qterm]"><summary>quadratic term in coarse astrometric solution</summary>
 <quantity></quantity>
-<unit>arcsec/hr^2</unit>
+<unit>arcsec h-2</unit>
 </column><column name="[maxMuResid]"><summary>maximum residual from great circle in scan direction</summary>
 <quantity>stat.fit.residual;stat.max</quantity>
 <unit>arcsec</unit>
@@ -6894,10 +6894,10 @@
 <quantity>stat.fit.dof</quantity>
 </column><column name="[waveMin]"><summary>Minimum observed (vacuum) wavelength</summary>
 <quantity>em.wl;stat.min</quantity>
-<unit>Angstroms</unit>
+<unit>AA</unit>
 </column><column name="[waveMax]"><summary>Maximum observed (vacuum) wavelength</summary>
 <quantity>em.wl;stat.max</quantity>
-<unit>Angstroms</unit>
+<unit>AA</unit>
 </column><column name="[wCoverage]"><summary>Coverage in wavelength, in units of log10 wavelength</summary>
 <quantity>stat.value</quantity>
 </column><column name="[snMedian_u]"><summary>Median signal-to-noise over all good pixels in u-band</summary>
@@ -7082,7 +7082,7 @@
 <unit>mag</unit>
 </column><column name="[elodieTEff]"><summary>Effective temperature</summary>
 <quantity>phys.temperature.effective</quantity>
-<unit>Kelvin</unit>
+<unit>K</unit>
 </column><column name="[elodieLogG]"><summary>log10(gravity)</summary>
 <quantity>phys.gravity</quantity>
 </column><column name="[elodieFeH]"><summary>Metallicity ([Fe/H])</summary>
@@ -7111,7 +7111,7 @@
 <quantity>meta.id</quantity>
 </column><column name="[mjd]"><summary>MJD of observation</summary>
 <quantity>time.epoch</quantity>
-<unit>MJD</unit>
+<unit>d</unit>
 </column><column name="[plate]"><summary>Plate ID</summary>
 <quantity>meta.id;instr.det</quantity>
 </column><column name="[tile]"><summary>Tile ID</summary>
@@ -9242,7 +9242,7 @@
 <quantity>meta.id;instr.param</quantity>
 </column><column name="[MJD]"><summary>MJD of observation</summary>
 <quantity>time.epoch;obs</quantity>
-<unit>days</unit>
+<unit>d</unit>
 </column><column name="[ra]"><summary>Right ascension of fiber, J2000</summary>
 <quantity>pos.eq.ra;pos.frame=j2000</quantity>
 <unit>deg</unit>
@@ -9896,13 +9896,13 @@
 <unit>Gyrs</unit>
 </column><column name="[SFR]"><summary>Star-formation rate of best fit</summary>
 <quantity>phys.SFR</quantity>
-<unit>solar masses per year</unit>
+<unit>M_sol yr-1</unit>
 </column><column name="[minSFR]"><summary>1-sigma minimum star-formation rate of best fit (where chi-squared is within minimum + 1)</summary>
 <quantity>phys.SFR;stat.min</quantity>
-<unit>solar masses per year</unit>
+<unit>M_sol yr-1</unit>
 </column><column name="[maxSFR]"><summary>1-sigma maximum star-formation rate of best fit (where chi-squared is within minimum + 1)</summary>
 <quantity>phys.SFR;stat.max</quantity>
-<unit>solar masses per year</unit>
+<unit>M_sol yr-1</unit>
 </column><column name="[absMagK]"><summary>Absolute magnitude in K inferred from model</summary>
 <quantity>phot.mag.abs;meta.modelled;em.IR.K</quantity>
 </column><column name="[SFH]"><summary>Star-formation history model used</summary>
@@ -10149,13 +10149,13 @@
 <unit>Gyrs</unit>
 </column><column name="[SFR]"><summary>Star-formation rate of best fit</summary>
 <quantity>phys.SFR</quantity>
-<unit>solar masses per year</unit>
+<unit>M_sol yr-1</unit>
 </column><column name="[minSFR]"><summary>1-sigma minimum star-formation rate of best fit (where chi-squared is within minimum + 1)</summary>
 <quantity>phys.SFR;stat.min</quantity>
-<unit>solar masses per year</unit>
+<unit>M_sol yr-1</unit>
 </column><column name="[maxSFR]"><summary>1-sigma maximum star-formation rate of best fit (where chi-squared is within minimum + 1)</summary>
 <quantity>phys.SFR.stat.max</quantity>
-<unit>solar masses per year</unit>
+<unit>M_sol yr-1</unit>
 </column><column name="[absMagK]"><summary>Absolute magnitude in K inferred from model</summary>
 <quantity>phot.mag.abs;em.IR.K</quantity>
 </column><column name="[SFH]"><summary>Star-formation history model used ("const" or "tau=X" or "trunc=X", where X is the exponential decline rate, or the time until truncation of the model)</summary>
