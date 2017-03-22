@@ -4406,102 +4406,102 @@ CREATE TABLE [dbo].[Field](
 
 	--/ <summary>Sky estimate from PSP (u-band)</summary>
 	--/ <quantity>instr.skyLevel;em.opt.SDSS.u</quantity>
-	--/ <unit>ngmy arcsec-2</unit>
+	--/ <unit>nmgy arcsec-2</unit>
 	[skyPsp_u] [real] NOT NULL,
 
 	--/ <summary>Sky estimate from PSP (g-band)</summary>
 	--/ <quantity>instr.skyLevel;em.opt.SDSS.g</quantity>
-	--/ <unit>ngmy arcsec-2</unit>
+	--/ <unit>nmgy arcsec-2</unit>
 	[skyPsp_g] [real] NOT NULL,
 
 	--/ <summary>Sky estimate from PSP (r-band)</summary>
 	--/ <quantity>instr.skyLevel;em.opt.SDSS.r</quantity>
-	--/ <unit>ngmy arcsec-2</unit>
+	--/ <unit>nmgy arcsec-2</unit>
 	[skyPsp_r] [real] NOT NULL,
 
 	--/ <summary>Sky estimate from PSP (i-band)</summary>
 	--/ <quantity>instr.skyLevel;em.opt.SDSS.i</quantity>
-	--/ <unit>ngmy arcsec-2</unit>
+	--/ <unit>nmgy arcsec-2</unit>
 	[skyPsp_i] [real] NOT NULL,
 
 	--/ <summary>Sky estimate from PSP (z-band)</summary>
 	--/ <quantity>instr.skyLevel;em.opt.SDSS.z</quantity>
-	--/ <unit>ngmy arcsec-2</unit>
+	--/ <unit>nmgy arcsec-2</unit>
 	[skyPsp_z] [real] NOT NULL,
 
 	--/ <summary>Frames sky value</summary>
 	--/ <quantity>instr.skyLevel;em.opt.SDSS.u</quantity>
-	--/ <unit>ngmy arcsec-2</unit>
+	--/ <unit>nmgy arcsec-2</unit>
 	[skyFrames_u] [real] NOT NULL,
 
 	--/ <summary>Frames sky value</summary>
 	--/ <quantity>instr.skyLevel;em.opt.SDSS.g</quantity>
-	--/ <unit>ngmy arcsec-2</unit>
+	--/ <unit>nmgy arcsec-2</unit>
 	[skyFrames_g] [real] NOT NULL,
 
 	--/ <summary>Frames sky value</summary>
 	--/ <quantity>instr.skyLevel;em.opt.SDSS.r</quantity>
-	--/ <unit>ngmy arcsec-2</unit>
+	--/ <unit>nmgy arcsec-2</unit>
 	[skyFrames_r] [real] NOT NULL,
 
 	--/ <summary>Frames sky value</summary>
 	--/ <quantity>instr.skyLevel;em.opt.SDSS.i</quantity>
-	--/ <unit>ngmy arcsec-2</unit>
+	--/ <unit>nmgy arcsec-2</unit>
 	[skyFrames_i] [real] NOT NULL,
 
 	--/ <summary>Frames sky value</summary>
 	--/ <quantity>instr.skyLevel;em.opt.SDSS.z</quantity>
-	--/ <unit>ngmy arcsec-2</unit>
+	--/ <unit>nmgy arcsec-2</unit>
 	[skyFrames_z] [real] NOT NULL,
 
 	--/ <summary>Frames sky value after object subtraction</summary>
 	--/ <quantity>instr.skyLevel;em.opt.SDSS.u</quantity>
-	--/ <unit>ngmy arcsec-2</unit>
+	--/ <unit>nmgy arcsec-2</unit>
 	[skyFramesSub_u] [real] NOT NULL,
 
 	--/ <summary>Frames sky value after object subtraction</summary>
 	--/ <quantity>instr.skyLevel;em.opt.SDSS.g</quantity>
-	--/ <unit>ngmy arcsec-2</unit>
+	--/ <unit>nmgy arcsec-2</unit>
 	[skyFramesSub_g] [real] NOT NULL,
 
 	--/ <summary>Frames sky value after object subtraction</summary>
 	--/ <quantity>instr.skyLevel;em.opt.SDSS.r</quantity>
-	--/ <unit>ngmy arcsec-2</unit>
+	--/ <unit>nmgy arcsec-2</unit>
 	[skyFramesSub_r] [real] NOT NULL,
 
 	--/ <summary>Frames sky value after object subtraction</summary>
 	--/ <quantity>instr.skyLevel;em.opt.SDSS.i</quantity>
-	--/ <unit>ngmy arcsec-2</unit>
+	--/ <unit>nmgy arcsec-2</unit>
 	[skyFramesSub_i] [real] NOT NULL,
 
 	--/ <summary>Frames sky value after object subtraction</summary>
 	--/ <quantity>instr.skyLevel;em.opt.SDSS.z</quantity>
-	--/ <unit>ngmy arcsec-2</unit>
+	--/ <unit>nmgy arcsec-2</unit>
 	[skyFramesSub_z] [real] NOT NULL,
 
 	--/ <summary>Sigma of pixel values in u-band frame (clipped)</summary>
 	--/ <quantity>instr.param;em.opt.SDSS.u</quantity>
-	--/ <unit>ngmy arcsec-2</unit>
+	--/ <unit>nmgy arcsec-2</unit>
 	[sigPix_u] [real] NOT NULL,
 
 	--/ <summary>Sigma of pixel values in g-band frame (clipped)</summary>
 	--/ <quantity>instr.param;em.opt.SDSS.g</quantity>
-	--/ <unit>ngmy arcsec-2</unit>
+	--/ <unit>nmgy arcsec-2</unit>
 	[sigPix_g] [real] NOT NULL,
 
 	--/ <summary>Sigma of pixel values in r-band frame (clipped)</summary>
 	--/ <quantity>instr.param;em.opt.SDSS.r</quantity>
-	--/ <unit>ngmy arcsec-2</unit>
+	--/ <unit>nmgy arcsec-2</unit>
 	[sigPix_r] [real] NOT NULL,
 
 	--/ <summary>Sigma of pixel values in i-band frame (clipped)</summary>
 	--/ <quantity>instr.param;em.opt.SDSS.i</quantity>
-	--/ <unit>ngmy arcsec-2</unit>
+	--/ <unit>nmgy arcsec-2</unit>
 	[sigPix_i] [real] NOT NULL,
 
 	--/ <summary>Sigma of pixel values in z-band frame (clipped)</summary>
 	--/ <quantity>instr.param;em.opt.SDSS.z</quantity>
-	--/ <unit>ngmy arcsec-2</unit>
+	--/ <unit>nmgy arcsec-2</unit>
 	[sigPix_z] [real] NOT NULL,
 
 	--/ <summary>deV aperture correction (u-band)</summary>
@@ -4750,27 +4750,27 @@ CREATE TABLE [dbo].[Field](
 
 	--/ <summary>PSP estimate of sky in u-band</summary>
 	--/ <quantity>meta.code.status;em.opt.SDSS.u</quantity>
-	--/ <unit>ngmy arcsec-2</unit>
+	--/ <unit>nmgy arcsec-2</unit>
 	[sky_u] [real] NOT NULL,
 
 	--/ <summary>PSP estimate of sky in g-band</summary>
 	--/ <quantity>meta.code.status;em.opt.SDSS.g</quantity>
-	--/ <unit>ngmy arcsec-2</unit>
+	--/ <unit>nmgy arcsec-2</unit>
 	[sky_g] [real] NOT NULL,
 
 	--/ <summary>PSP estimate of sky in r-band</summary>
 	--/ <quantity>meta.code.status;em.opt.SDSS.r</quantity>
-	--/ <unit>ngmy arcsec-2</unit>
+	--/ <unit>nmgy arcsec-2</unit>
 	[sky_r] [real] NOT NULL,
 
 	--/ <summary>PSP estimate of sky in i-band</summary>
 	--/ <quantity>meta.code.status;em.opt.SDSS.i</quantity>
-	--/ <unit>ngmy arcsec-2</unit>
+	--/ <unit>nmgy arcsec-2</unit>
 	[sky_i] [real] NOT NULL,
 
 	--/ <summary>PSP estimate of sky in z-band</summary>
 	--/ <quantity>meta.code.status;em.opt.SDSS.z</quantity>
-	--/ <unit>ngmy arcsec-2</unit>
+	--/ <unit>nmgy arcsec-2</unit>
 	[sky_z] [real] NOT NULL,
 
 	--/ <summary>Fractional Sigma of Sky Value Distribution, expressed as magnitude. Sky noise = skySig * sky * ln(10)/2.5</summary>
@@ -4800,52 +4800,52 @@ CREATE TABLE [dbo].[Field](
 
 	--/ <summary>Error in PSP estimate of sky in u-band</summary>
 	--/ <quantity>stat.error;meta.code.status;em.opt.SDSS.u</quantity>
-	--/ <unit>ngmy arcsec-2</unit>
+	--/ <unit>nmgy arcsec-2</unit>
 	[skyErr_u] [real] NOT NULL,
 
 	--/ <summary>Error in PSP estimate of sky in g-band</summary>
 	--/ <quantity>stat.error;meta.code.status;em.opt.SDSS.g</quantity>
-	--/ <unit>ngmy arcsec-2</unit>
+	--/ <unit>nmgy arcsec-2</unit>
 	[skyErr_g] [real] NOT NULL,
 
 	--/ <summary>Error in PSP estimate of sky in r-band</summary>
 	--/ <quantity>stat.error;meta.code.status;em.opt.SDSS.r</quantity>
-	--/ <unit>ngmy arcsec-2</unit>
+	--/ <unit>nmgy arcsec-2</unit>
 	[skyErr_r] [real] NOT NULL,
 
 	--/ <summary>Error in PSP estimate of sky in i-band</summary>
 	--/ <quantity>stat.error;meta.code.status;em.opt.SDSS.i</quantity>
-	--/ <unit>ngmy arcsec-2</unit>
+	--/ <unit>nmgy arcsec-2</unit>
 	[skyErr_i] [real] NOT NULL,
 
 	--/ <summary>Error in PSP estimate of sky in z-band</summary>
 	--/ <quantity>stat.error;meta.code.status;em.opt.SDSS.z</quantity>
-	--/ <unit>ngmy arcsec-2</unit>
+	--/ <unit>nmgy arcsec-2</unit>
 	[skyErr_z] [real] NOT NULL,
 
 	--/ <summary>Rate of change in sky value along columns (u-band)</summary>
 	--/ <quantity>instr.skyLevel;em.opt.SDSS.u</quantity>
-	--/ <unit>ngmy arcsec-2 field-1</unit>
+	--/ <unit>nmgy arcsec-2 field-1</unit>
 	[skySlope_u] [real] NOT NULL,
 
 	--/ <summary>Rate of change in sky value along columns (g-band)</summary>
 	--/ <quantity>instr.skyLevel;em.opt.SDSS.g</quantity>
-	--/ <unit>ngmy arcsec-2 field-1</unit>
+	--/ <unit>nmgy arcsec-2 field-1</unit>
 	[skySlope_g] [real] NOT NULL,
 
 	--/ <summary>Rate of change in sky value along columns (r-band)</summary>
 	--/ <quantity>instr.skyLevel;em.opt.SDSS.r</quantity>
-	--/ <unit>ngmy arcsec-2 field-1</unit>
+	--/ <unit>nmgy arcsec-2 field-1</unit>
 	[skySlope_r] [real] NOT NULL,
 
 	--/ <summary>Rate of change in sky value along columns (i-band)</summary>
 	--/ <quantity>instr.skyLevel;em.opt.SDSS.i</quantity>
-	--/ <unit>ngmy arcsec-2 field-1</unit>
+	--/ <unit>nmgy arcsec-2 field-1</unit>
 	[skySlope_i] [real] NOT NULL,
 
 	--/ <summary>Rate of change in sky value along columns (z-band)</summary>
 	--/ <quantity>instr.skyLevel;em.opt.SDSS.z</quantity>
-	--/ <unit>ngmy arcsec-2 field-1</unit>
+	--/ <unit>nmgy arcsec-2 field-1</unit>
 	[skySlope_z] [real] NOT NULL,
 
 	--/ <summary>Left-hand amplifier bias level (u-band)		XXX make sure to apply DSCALE, counts or ADU?</summary>
@@ -5289,27 +5289,27 @@ CREATE TABLE [dbo].[Field](
 
 	--/ <summary>nanomaggies per count due to instrument</summary>
 	--/ <quantity>instr.param;em.opt.SDSS.u</quantity>
-	--/ <unit>ngmy count-1</unit>
+	--/ <unit>nmgy count-1</unit>
 	[aterm_u] [real] NOT NULL,
 
 	--/ <summary>nanomaggies per count due to instrument</summary>
 	--/ <quantity>instr.param;em.opt.SDSS.g</quantity>
-	--/ <unit>ngmy count-1</unit>
+	--/ <unit>nmgy count-1</unit>
 	[aterm_g] [real] NOT NULL,
 
 	--/ <summary>nanomaggies per count due to instrument</summary>
 	--/ <quantity>instr.param;em.opt.SDSS.r</quantity>
-	--/ <unit>ngmy count-1</unit>
+	--/ <unit>nmgy count-1</unit>
 	[aterm_r] [real] NOT NULL,
 
 	--/ <summary>nanomaggies per count due to instrument</summary>
 	--/ <quantity>instr.param;em.opt.SDSS.i</quantity>
-	--/ <unit>ngmy count-1</unit>
+	--/ <unit>nmgy count-1</unit>
 	[aterm_i] [real] NOT NULL,
 
 	--/ <summary>nanomaggies per count due to instrument</summary>
 	--/ <quantity>instr.param;em.opt.SDSS.z</quantity>
-	--/ <unit>ngmy count-1</unit>
+	--/ <unit>nmgy count-1</unit>
 	[aterm_z] [real] NOT NULL,
 
 	--/ <summary>atmospheric k-term at reference time in calibration</summary>
@@ -5494,53 +5494,53 @@ CREATE TABLE [dbo].[Field](
 
 	--/ <summary>nanomaggies per count in u-band</summary>
 	--/ <quantity>phot;em.opt.SDSS.u</quantity>
-	--/ <unit>ngmy count-1</unit>
-	[ngmyPerCount_u] [real] NOT NULL,
+	--/ <unit>nmgy count-1</unit>
+	[nmgyPerCount_u] [real] NOT NULL,
 
 	--/ <summary>nanomaggies per count in g-band</summary>
 	--/ <quantity>phot;em.opt.SDSS.g</quantity>
-	--/ <unit>ngmy count-1</unit>
-	[ngmyPerCount_g] [real] NOT NULL,
+	--/ <unit>nmgy count-1</unit>
+	[nmgyPerCount_g] [real] NOT NULL,
 
 	--/ <summary>nanomaggies per count in r-band</summary>
 	--/ <quantity>phot;em.opt.SDSS.r</quantity>
-	--/ <unit>ngmy count-1</unit>
-	[ngmyPerCount_r] [real] NOT NULL,
+	--/ <unit>nmgy count-1</unit>
+	[nmgyPerCount_r] [real] NOT NULL,
 
 	--/ <summary>nanomaggies per count in i-band</summary>
 	--/ <quantity>phot;em.opt.SDSS.i</quantity>
-	--/ <unit>ngmy count-1</unit>
-	[ngmyPerCount_i] [real] NOT NULL,
+	--/ <unit>nmgy count-1</unit>
+	[nmgyPerCount_i] [real] NOT NULL,
 
 	--/ <summary>nanomaggies per count in z-band</summary>
 	--/ <quantity>phot;em.opt.SDSS.z</quantity>
-	--/ <unit>ngmy count-1</unit>
-	[ngmyPerCount_z] [real] NOT NULL,
+	--/ <unit>nmgy count-1</unit>
+	[nmgyPerCount_z] [real] NOT NULL,
 
 	--/ <summary>Inverse variance of nanomaggies per count in u-band</summary>
 	--/ <quantity>stat.variance;phot;em.opt.SDSS.u</quantity>
-	--/ <unit>ngmy-2 count+2</unit>
-	[ngmyPerCountIvar_u] [real] NOT NULL,
+	--/ <unit>nmgy-2 count+2</unit>
+	[nmgyPerCountIvar_u] [real] NOT NULL,
 
 	--/ <summary>Inverse variance of nanomaggies per count in g-band</summary>
 	--/ <quantity>stat.variance;phot;em.opt.SDSS.g</quantity>
-	--/ <unit>ngmy-2 count+2</unit>
-	[ngmyPerCountIvar_g] [real] NOT NULL,
+	--/ <unit>nmgy-2 count+2</unit>
+	[nmgyPerCountIvar_g] [real] NOT NULL,
 
 	--/ <summary>Inverse variance of nanomaggies per count in r-band</summary>
 	--/ <quantity>stat.variance;phot;em.opt.SDSS.r</quantity>
-	--/ <unit>ngmy-2 count+2</unit>
-	[ngmyPerCountIvar_r] [real] NOT NULL,
+	--/ <unit>nmgy-2 count+2</unit>
+	[nmgyPerCountIvar_r] [real] NOT NULL,
 
 	--/ <summary>Inverse variance of nanomaggies per count in i-band</summary>
 	--/ <quantity>stat.variance;phot;em.opt.SDSS.i</quantity>
-	--/ <unit>ngmy-2 count+2</unit>
-	[ngmyPerCountIvar_i] [real] NOT NULL,
+	--/ <unit>nmgy-2 count+2</unit>
+	[nmgyPerCountIvar_i] [real] NOT NULL,
 
 	--/ <summary>Inverse variance of nanomaggies per count in z-band</summary>
 	--/ <quantity>stat.variance;phot;em.opt.SDSS.z</quantity>
-	--/ <unit>ngmy-2 count+2</unit>
-	[ngmyPerCountIvar_z] [real] NOT NULL,
+	--/ <unit>nmgy-2 count+2</unit>
+	[nmgyPerCountIvar_z] [real] NOT NULL,
 
 	--/ <summary>field id used by resolve pipeline</summary>
 	--/ <quantity>meta.id;obs;field</quantity>
@@ -8145,6 +8145,7 @@ CREATE TABLE [dbo].[galSpecLine](
 
 	--/ <summary>The multiplicative scale factor applied to the original flux and error spectra prior to measurement of the emission lines to improve the spectrophotometric accuracy.  The rescaling insures that a synthetic r-band magnitude computed from the spectrum matches the r-band fiber magnitude measured by the photometric pipeline.</summary>
 	--/ <quantity>obs.param;phot.flux</quantity>
+	[spectofiber] [real] NOT NULL,
  CONSTRAINT [pk_galSpecLine_specObjID] PRIMARY KEY CLUSTERED 
 (
 	[specObjID] ASC
