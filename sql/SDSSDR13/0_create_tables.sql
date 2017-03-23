@@ -5495,52 +5495,52 @@ CREATE TABLE [dbo].[Field](
 	--/ <summary>nanomaggies per count in u-band</summary>
 	--/ <quantity>phot;em.opt.SDSS.u</quantity>
 	--/ <unit>nmgy count-1</unit>
-	[nmgyPerCount_u] [real] NOT NULL,
+	[nMgyPerCount_u] [real] NOT NULL,
 
 	--/ <summary>nanomaggies per count in g-band</summary>
 	--/ <quantity>phot;em.opt.SDSS.g</quantity>
 	--/ <unit>nmgy count-1</unit>
-	[nmgyPerCount_g] [real] NOT NULL,
+	[nMgyPerCount_g] [real] NOT NULL,
 
 	--/ <summary>nanomaggies per count in r-band</summary>
 	--/ <quantity>phot;em.opt.SDSS.r</quantity>
 	--/ <unit>nmgy count-1</unit>
-	[nmgyPerCount_r] [real] NOT NULL,
+	[nMgyPerCount_r] [real] NOT NULL,
 
 	--/ <summary>nanomaggies per count in i-band</summary>
 	--/ <quantity>phot;em.opt.SDSS.i</quantity>
 	--/ <unit>nmgy count-1</unit>
-	[nmgyPerCount_i] [real] NOT NULL,
+	[nMgyPerCount_i] [real] NOT NULL,
 
 	--/ <summary>nanomaggies per count in z-band</summary>
 	--/ <quantity>phot;em.opt.SDSS.z</quantity>
 	--/ <unit>nmgy count-1</unit>
-	[nmgyPerCount_z] [real] NOT NULL,
+	[nMgyPerCount_z] [real] NOT NULL,
 
 	--/ <summary>Inverse variance of nanomaggies per count in u-band</summary>
 	--/ <quantity>stat.variance;phot;em.opt.SDSS.u</quantity>
 	--/ <unit>nmgy-2 count+2</unit>
-	[nmgyPerCountIvar_u] [real] NOT NULL,
+	[nMgyPerCountIvar_u] [real] NOT NULL,
 
 	--/ <summary>Inverse variance of nanomaggies per count in g-band</summary>
 	--/ <quantity>stat.variance;phot;em.opt.SDSS.g</quantity>
 	--/ <unit>nmgy-2 count+2</unit>
-	[nmgyPerCountIvar_g] [real] NOT NULL,
+	[nMgyPerCountIvar_g] [real] NOT NULL,
 
 	--/ <summary>Inverse variance of nanomaggies per count in r-band</summary>
 	--/ <quantity>stat.variance;phot;em.opt.SDSS.r</quantity>
 	--/ <unit>nmgy-2 count+2</unit>
-	[nmgyPerCountIvar_r] [real] NOT NULL,
+	[nMgyPerCountIvar_r] [real] NOT NULL,
 
 	--/ <summary>Inverse variance of nanomaggies per count in i-band</summary>
 	--/ <quantity>stat.variance;phot;em.opt.SDSS.i</quantity>
 	--/ <unit>nmgy-2 count+2</unit>
-	[nmgyPerCountIvar_i] [real] NOT NULL,
+	[nMgyPerCountIvar_i] [real] NOT NULL,
 
 	--/ <summary>Inverse variance of nanomaggies per count in z-band</summary>
 	--/ <quantity>stat.variance;phot;em.opt.SDSS.z</quantity>
 	--/ <unit>nmgy-2 count+2</unit>
-	[nmgyPerCountIvar_z] [real] NOT NULL,
+	[nMgyPerCountIvar_z] [real] NOT NULL,
 
 	--/ <summary>field id used by resolve pipeline</summary>
 	--/ <quantity>meta.id;obs;field</quantity>
@@ -10755,7 +10755,7 @@ CREATE TABLE [dbo].[Region](
 (
 	[regionid] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY] [TEXTIMAGE_ON] PRIMARY
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
 SET ANSI_PADDING ON
