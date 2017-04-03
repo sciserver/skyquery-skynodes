@@ -2359,374 +2359,1551 @@ CREATE TABLE [dbo].[photoextract](
 GO
 
 CREATE TABLE [dbo].[photoobjall](
+	--/ <summary>Galex Global Object ID</summary>
+	--/ <quantity>meta.id</quantity>
 	[objid] [bigint] NOT NULL,
+
+	--/ <summary>Pointer to photoExtract Table</summary>
+	--/ <quantity>meta.id</quantity>
 	[photoExtractID] [bigint] NOT NULL DEFAULT ((0)),
+
+	--/ <summary>Version number</summary>
+	--/ <quantity>meta.version</quantity>
 	[vsn] [int] NULL,
+
+	--/ <summary>Tile number</summary>
+	--/ <quantity>meta.id</quantity>
 	[tilenum] [int] NULL,
+
+	--/ <summary>Obs.type (0=single,1=multi)</summary>
+	--/ <quantity>meta.code;obs</quantity>
 	[type] [int] NULL,
+
+	--/ <summary>Optics wheel (1=drct,2=grsm,3=opaq)</summary>
+	--/ <quantity>meta.code;instr</quantity>
 	[ow] [int] NULL,
+
+	--/ <summary>Product number (_visits,_main,etc.)</summary>
+	--/ <quantity>meta.id</quantity>
 	[prod] [int] NULL,
+
+	--/ <summary>image number (exposure# for _visits)</summary>
+	--/ <quantity>meta.number</quantity>
 	[img] [int] NULL,
+
+	--/ <summary>Try number (processing attempt number)</summary>
+	--/ <quantity>meta.number</quantity>
 	[try] [int] NULL,
+
+	--/ <summary>Band number (1=nuv,2=fuv,3=both)</summary>
+	--/ <quantity>meta.code;instr.bandpass</quantity>
 	[band] [int] NULL,
+
+	--/ <summary>Merged ID.</summary>
+	--/ <quantity>meta.id</quantity>
 	[id] [int] NULL,
+
+	--/ <summary>Sub-visit number for AIS</summary>
+	--/ <quantity>meta.number</quantity>
 	[subvisit] [smallint] NULL,
+
+	--/ <summary>Planned leg number for AIS</summary>
+	--/ <quantity>meta.number</quantity>
 	[leg] [smallint] NULL,
+
+	--/ <summary>Right Ascension(degrees).</summary>
+	--/ <quantity>pos.eq.ra</quantity>
+	--/ <unit>deg</unit>
 	[ra] [float] NULL,
+
+	--/ <summary>Declination (degrees).</summary>
+	--/ <quantity>pos.eq.dec</quantity>
+	--/ <unit>deg</unit>
 	[dec] [float] NULL,
+
+	--/ <summary>Band-merged Right Ascension(degrees).</summary>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[alpha_j2000_merged] [float] NULL,
+
+	--/ <summary>Band-merged Declination (degrees).</summary>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[delta_j2000_merged] [float] NULL,
+
+	--/ <summary>Chi-squared probability of match.</summary>
+	--/ <quantity>stat.probability</quantity>
 	[prob] [real] NULL,
+
+	--/ <summary>Separation between band positions.</summary>
+	--/ <quantity>pos.distance</quantity>
 	[sep] [real] NULL,
+
+	--/ <summary>Separation on images (no adjustment)</summary>
+	--/ <quantity>pos.distance</quantity>
 	[sep_img] [real] NULL,
+
+	--/ <summary>E(B-V) Galactic Reddening.</summary>
+	--/ <quantity>phot.excess</quantity>
 	[E_bv] [real] NULL,
+
+	--/ <summary>Galactic longitude in degrees.</summary>
+	--/ <quantity>pos.galactic.lon</quantity>
+	--/ <unit>deg</unit>
 	[glon] [real] NULL,
+
+	--/ <summary>Galactic latitude in degrees.</summary>
+	--/ <quantity>pos.galactic.lat</quantity>
+	--/ <unit>deg</unit>
 	[glat] [real] NULL,
+
+	--/ <summary>Is AIS/MIS source a primary? (1/0)</summary>
+	--/ <quantity>meta.code</quantity>
 	[primary_flag] [int] NULL,
+
+	--/ <summary>distance from center of FOV in degrees</summary>
+	--/ <quantity>pos.distance</quantity>
+	--/ <unit>deg</unit>
 	[fov_radius] [real] NULL,
+
+	--/ <summary>NUV detector X position (pixels)</summary>
+	--/ <quantity>pos.cartesian.x;instr.det</quantity>
+	--/ <unit>pix</unit>
 	[nuv_det_x] [real] NULL,
+
+	--/ <summary>NUV detector Y position (pixels)</summary>
+	--/ <quantity>pos.cartesian.y;instr.det</quantity>
+	--/ <unit>pix</unit>
 	[nuv_det_y] [real] NULL,
+
+	--/ <summary>FUV detector X position (pixels)</summary>
+	--/ <quantity>pos.cartesian.x;instr.det</quantity>
+	--/ <unit>pix</unit>
 	[fuv_det_x] [real] NULL,
+
+	--/ <summary>FUV detector Y position (pixels)</summary>
+	--/ <quantity>pos.cartesian.y;instr.det</quantity>
+	--/ <unit>pix</unit>
 	[fuv_det_y] [real] NULL,
+
+	--/ <summary>Astrometry check type</summary>
+	--/ <quantity></quantity>
 	[chkobj_type] [int] NULL,
+
+	--/ <summary>Astrometry check ID</summary>
+	--/ <quantity>meta.id</quantity>
 	[chkobj_id] [int] NULL,
+
+	--/ <summary>Astrometry check radius in degrees</summary>
+	--/ <quantity>phys.angSize</quantity>
+	--/ <unit>deg</unit>
 	[chkobj_r] [real] NULL,
+
+	--/ <summary>Astrometry check position angle in degrees</summary>
+	--/ <quantity>pos.posAng</quantity>
+	--/ <unit>deg</unit>
 	[chkobj_pa] [real] NULL,
+
+	--/ <summary>Miscellaneous flags</summary>
+	--/ <quantity>meta.code</quantity>
 	[misc_flags] [int] NULL,
+
+	--/ <summary>NUV calibrated flux (micro Jansky)</summary>
+	--/ <quantity>phot.flux;em.UV</quantity>
+	--/ <unit>uJy</unit>
 	[nuv_flux] [real] NULL,
+
+	--/ <summary>NUV calibrated flux error</summary>
+	--/ <quantity>stat.error;phot.flux;em.UV</quantity>
+	--/ <unit>uJy</unit>
 	[nuv_fluxerr] [real] NULL,
+
+	--/ <summary>NUV calibrated magnitude</summary>
+	--/ <quantity>phot.mag;em.UV</quantity>
+	--/ <unit>mag</unit>
 	[nuv_mag] [real] NULL,
+
+	--/ <summary>NUV calibrated magnitude error</summary>
+	--/ <quantity>stat.error;phot.mag;em.UV</quantity>
+	--/ <unit>mag</unit>
 	[nuv_magerr] [real] NULL,
+
+	--/ <summary>FUV calibrated flux (micro Jansky)</summary>
+	--/ <quantity>phot.flux;em.UV.FUV</quantity>
+	--/ <unit>uJy</unit>
 	[fuv_flux] [real] NULL,
+
+	--/ <summary>FUV calibrated flux error</summary>
+	--/ <quantity>stat.error;phot.flux;em.UV.FUV</quantity>
+	--/ <unit>uJy</unit>
 	[fuv_fluxerr] [real] NULL,
+
+	--/ <summary>FUV calibrated magnitude</summary>
+	--/ <quantity>phot.mag;em.UV.FUV</quantity>
+	--/ <unit>mag</unit>
 	[fuv_mag] [real] NULL,
+
+	--/ <summary>FUV calibrated magnitude error</summary>
+	--/ <quantity>stat.error;phot.mag;em.UV.FUV</quantity>
+	--/ <unit>mag</unit>
 	[fuv_magerr] [real] NULL,
+
+	--/ <summary>NUV signal-to-noise from 'AUTO' flux value</summary>
+	--/ <quantity>stat.snr</quantity>
 	[nuv_s2n] [real] NULL,
+
+	--/ <summary>FUV signal-to-noise from 'AUTO' flux value</summary>
+	--/ <quantity>stat.snr</quantity>
 	[fuv_s2n] [real] NULL,
+
+	--/ <summary>NUV calibrated flux using FUV positn(-nd-fcat)</summary>
+	--/ <quantity>phot.flux;em.UV</quantity>
 	[nuv_fcat_flux] [real] NULL,
+
+	--/ <summary>Error for nuv_fcat_flux</summary>
+	--/ <quantity>stat.error;phot.flux;em.UV</quantity>
 	[nuv_fcat_fluxerr] [real] NULL,
+
+	--/ <summary>FUV calibrated flux using NUV positn(-fd-ncat)</summary>
+	--/ <quantity>phot.flux;em.UV.FUV</quantity>
 	[fuv_ncat_flux] [real] NULL,
+
+	--/ <summary>Error for fuv_ncat_flux</summary>
+	--/ <quantity>stat.error;phot.flux;em.UV.FUV</quantity>
 	[fuv_ncat_fluxerr] [real] NULL,
+
+	--/ <summary>FUV adjusted RA in degrees</summary>
+	--/ <quantity>pos.eq.ra</quantity>
+	--/ <unit>deg</unit>
 	[fuv_ra_adj] [float] NULL,
+
+	--/ <summary>FUV adjusted DEC in degrees</summary>
+	--/ <quantity>pos.eq.dec</quantity>
+	--/ <unit>deg</unit>
 	[fuv_dec_adj] [float] NULL,
+
+	--/ <summary>FUV_FLAGS from -fd-ncat.fits</summary>
+	--/ <quantity>meta.code</quantity>
 	[fuv_ncat_flags] [smallint] NULL,
+
+	--/ <summary>FUV calibrated magnitude from -fd-ncat.fits</summary>
+	--/ <quantity>phot.mag;em.UV.FUV</quantity>
 	[fuv_ncat_mag] [real] NULL,
+
+	--/ <summary>Error for fuv_ncat_mag</summary>
+	--/ <quantity>stat.error;phot.mag;em.UV.FUV</quantity>
 	[fuv_ncat_magerr] [real] NULL,
+
+	--/ <summary>Signal to noise for fuv_ncat_flux</summary>
+	--/ <quantity>stat.snr;em.UV.FUV</quantity>
 	[fuv_ncat_s2n] [real] NULL,
+
+	--/ <summary>NUV calibrated magnitude from -nd-fcat.fits</summary>
+	--/ <quantity>phot.mag;em.UV</quantity>
 	[nuv_fcat_mag] [real] NULL,
+
+	--/ <summary>Error for nuv_fcat_mag</summary>
+	--/ <quantity>stat.error;phot.mag;em.UV</quantity>
 	[nuv_fcat_magerr] [real] NULL,
+
+	--/ <summary>Signal to noise for nuv_fcat_flux</summary>
+	--/ <quantity>stat.snr;em.UV</quantity>
 	[nuv_fcat_s2n] [real] NULL,
+
+	--/ <summary>FUV FWHM_IMAGE value from -fd-ncat.fits (px)</summary>
+	--/ <quantity>phys.angSize</quantity>
+	--/ <unit>pix</unit>
 	[fuv_ncat_fwhm_image] [real] NULL,
+
+	--/ <summary>FUV FWHM_WORLD value from -fd-ncat.fits (deg)</summary>
+	--/ <quantity>phys.angSize</quantity>
+	--/ <unit>deg</unit>
 	[fuv_ncat_fwhm_world] [real] NULL,
+
+	--/ <summary>FUV FLUX_RADIUS #1 (-fd-ncat)(px)[0.20]</summary>
+	--/ <quantity>phys.angSize</quantity>
+	--/ <unit>pix</unit>
 	[fuv_ncat_flux_radius_1] [real] NULL,
+
+	--/ <summary>FUV FLUX_RADIUS #2 (-fd-ncat)(px)[0.50]</summary>
+	--/ <quantity>phys.angSize</quantity>
+	--/ <unit>pix</unit>
 	[fuv_ncat_flux_radius_2] [real] NULL,
+
+	--/ <summary>FUV FLUX_RADIUS #3 (-fd-ncat)(px)[0.80]</summary>
+	--/ <quantity>phys.angSize</quantity>
+	--/ <unit>pix</unit>
 	[fuv_ncat_flux_radius_3] [real] NULL,
+
+	--/ <summary>FUV FLUX_RADIUS #4 (-fd-ncat)(px)[0.90]</summary>
+	--/ <quantity>phys.angSize</quantity>
+	--/ <unit>pix</unit>
 	[fuv_ncat_flux_radius_4] [real] NULL,
+
+	--/ <summary>FUV FLUX_RADIUS #5 (-fd-ncat)(px)[0.95]</summary>
+	--/ <quantity>phys.angSize</quantity>
+	--/ <unit>pix</unit>
 	[fuv_ncat_flux_radius_5] [real] NULL,
+
+	--/ <summary>FUV FLUX_APER #1 (-fd-ncat)(cnt/sec)[ 2. px]</summary>
+	--/ <quantity>phot.flux;em.UV.FUV</quantity>
+	--/ <unit>ct sec-1</unit>
 	[fuv_ncat_flux_aper_1] [real] NULL,
+
+	--/ <summary>FUV FLUX_APER #2 (-fd-ncat)(cnt/sec)[ 3. px]</summary>
+	--/ <quantity>phot.flux;em.UV.FUV</quantity>
+	--/ <unit>ct sec-1</unit>
 	[fuv_ncat_flux_aper_2] [real] NULL,
+
+	--/ <summary>FUV FLUX_APER #3 (-fd-ncat)(cnt/sec)[ 5. px]</summary>
+	--/ <quantity>phot.flux;em.UV.FUV</quantity>
+	--/ <unit>ct sec-1</unit>
 	[fuv_ncat_flux_aper_3] [real] NULL,
+
+	--/ <summary>FUV FLUX_APER #4 (-fd-ncat)(cnt/sec)[ 8. px]</summary>
+	--/ <quantity>phot.flux;em.UV.FUV</quantity>
+	--/ <unit>ct sec-1</unit>
 	[fuv_ncat_flux_aper_4] [real] NULL,
+
+	--/ <summary>FUV FLUX_APER #5 (-fd-ncat)(cnt/sec)[12. px]</summary>
+	--/ <quantity>phot.flux;em.UV.FUV</quantity>
+	--/ <unit>ct sec-1</unit>
 	[fuv_ncat_flux_aper_5] [real] NULL,
+
+	--/ <summary>FUV FLUX_APER #6 (-fd-ncat)(cnt/sec)[17. px]</summary>
+	--/ <quantity>phot.flux;em.UV.FUV</quantity>
+	--/ <unit>ct sec-1</unit>
 	[fuv_ncat_flux_aper_6] [real] NULL,
+
+	--/ <summary>FUV FLUX_APER #7 (-fd-ncat)(cnt/sec)[23. px]</summary>
+	--/ <quantity>phot.flux;em.UV.FUV</quantity>
+	--/ <unit>ct sec-1</unit>
 	[fuv_ncat_flux_aper_7] [real] NULL,
+
+	--/ <summary>error for fuv_ncat_flux_aper_1</summary>
+	--/ <quantity>stat.error;phot.flux;em.UV.FUV</quantity>
+	--/ <unit>ct sec-1</unit>
 	[fuv_ncat_fluxerr_aper_1] [real] NULL,
+
+	--/ <summary>error for fuv_ncat_flux_aper_2</summary>
+	--/ <quantity>stat.error;phot.flux;em.UV.FUV</quantity>
+	--/ <unit>ct sec-1</unit>
 	[fuv_ncat_fluxerr_aper_2] [real] NULL,
+
+	--/ <summary>error for fuv_ncat_flux_aper_3</summary>
+	--/ <quantity>stat.error;phot.flux;em.UV.FUV</quantity>
+	--/ <unit>ct sec-1</unit>
 	[fuv_ncat_fluxerr_aper_3] [real] NULL,
+
+	--/ <summary>error for fuv_ncat_flux_aper_4</summary>
+	--/ <quantity>stat.error;phot.flux;em.UV.FUV</quantity>
+	--/ <unit>ct sec-1</unit>
 	[fuv_ncat_fluxerr_aper_4] [real] NULL,
+
+	--/ <summary>error for fuv_ncat_flux_aper_5</summary>
+	--/ <quantity>stat.error;phot.flux;em.UV.FUV</quantity>
+	--/ <unit>ct sec-1</unit>
 	[fuv_ncat_fluxerr_aper_5] [real] NULL,
+
+	--/ <summary>error for fuv_ncat_flux_aper_6</summary>
+	--/ <quantity>stat.error;phot.flux;em.UV.FUV</quantity>
+	--/ <unit>ct sec-1</unit>
 	[fuv_ncat_fluxerr_aper_6] [real] NULL,
+
+	--/ <summary>error for fuv_ncat_flux_aper_7</summary>
+	--/ <quantity>stat.error;phot.flux;em.UV.FUV</quantity>
+	--/ <unit>ct sec-1</unit>
 	[fuv_ncat_fluxerr_aper_7] [real] NULL,
+
+	--/ <summary>FUV MAG_APER #1 (-fd-ncat)(raw mag)[ 2. px]</summary>
+	--/ <quantity>phot.mag;em.UV.FUV</quantity>
+	--/ <unit>mag</unit>
 	[fuv_ncat_mag_aper_1] [real] NULL,
+
+	--/ <summary>FUV MAG_APER #2 (-fd-ncat)(raw mag)[ 3. px]</summary>
+	--/ <quantity>phot.mag;em.UV.FUV</quantity>
+	--/ <unit>mag</unit>
 	[fuv_ncat_mag_aper_2] [real] NULL,
+
+	--/ <summary>FUV MAG_APER #3 (-fd-ncat)(raw mag)[ 5. px]</summary>
+	--/ <quantity>phot.mag;em.UV.FUV</quantity>
+	--/ <unit>mag</unit>
 	[fuv_ncat_mag_aper_3] [real] NULL,
+
+	--/ <summary>FUV MAG_APER #4 (-fd-ncat)(raw mag)[ 8. px]</summary>
+	--/ <quantity>phot.mag;em.UV.FUV</quantity>
+	--/ <unit>mag</unit>
 	[fuv_ncat_mag_aper_4] [real] NULL,
+
+	--/ <summary>FUV MAG_APER #5 (-fd-ncat)(raw mag)[12. px]</summary>
+	--/ <quantity>phot.mag;em.UV.FUV</quantity>
+	--/ <unit>mag</unit>
 	[fuv_ncat_mag_aper_5] [real] NULL,
+
+	--/ <summary>FUV MAG_APER #6 (-fd-ncat)(raw mag)[17. px]</summary>
+	--/ <quantity>phot.mag;em.UV.FUV</quantity>
+	--/ <unit>mag</unit>
 	[fuv_ncat_mag_aper_6] [real] NULL,
+
+	--/ <summary>FUV MAG_APER #7 (-fd-ncat)(raw mag)[23. px]</summary>
+	--/ <quantity>phot.mag;em.UV.FUV</quantity>
+	--/ <unit>mag</unit>
 	[fuv_ncat_mag_aper_7] [real] NULL,
+
+	--/ <summary>error for fuv_ncat_mag_aper_1</summary>
+	--/ <quantity>stat.error;phot.mag;em.UV.FUV</quantity>
+	--/ <unit>mag</unit>
 	[fuv_ncat_magerr_aper_1] [real] NULL,
+
+	--/ <summary>error for fuv_ncat_mag_aper_2</summary>
+	--/ <quantity>stat.error;phot.mag;em.UV.FUV</quantity>
+	--/ <unit>mag</unit>
 	[fuv_ncat_magerr_aper_2] [real] NULL,
+
+	--/ <summary>error for fuv_ncat_mag_aper_3</summary>
+	--/ <quantity>stat.error;phot.mag;em.UV.FUV</quantity>
+	--/ <unit>mag</unit>
 	[fuv_ncat_magerr_aper_3] [real] NULL,
+
+	--/ <summary>error for fuv_ncat_mag_aper_4</summary>
+	--/ <quantity>stat.error;phot.mag;em.UV.FUV</quantity>
+	--/ <unit>mag</unit>
 	[fuv_ncat_magerr_aper_4] [real] NULL,
+
+	--/ <summary>error for fuv_ncat_mag_aper_5</summary>
+	--/ <quantity>stat.error;phot.mag;em.UV.FUV</quantity>
+	--/ <unit>mag</unit>
 	[fuv_ncat_magerr_aper_5] [real] NULL,
+
+	--/ <summary>error for fuv_ncat_mag_aper_6</summary>
+	--/ <quantity>stat.error;phot.mag;em.UV.FUV</quantity>
+	--/ <unit>mag</unit>
 	[fuv_ncat_magerr_aper_6] [real] NULL,
+
+	--/ <summary>error for fuv_ncat_mag_aper_7</summary>
+	--/ <quantity>stat.error;phot.mag;em.UV.FUV</quantity>
+	--/ <unit>mag</unit>
 	[fuv_ncat_magerr_aper_7] [real] NULL,
+
+	--/ <summary>NUV neighbor count out to radius R1</summary>
+	--/ <quantity>meta.number</quantity>
 	[nuv_nc_r1] [smallint] NULL,
+
+	--/ <summary>NUV neighbor count out to radius R2</summary>
+	--/ <quantity>meta.number</quantity>
 	[nuv_nc_r2] [smallint] NULL,
+
+	--/ <summary>NUV neighbor count out to radius R3</summary>
+	--/ <quantity>meta.number</quantity>
 	[nuv_nc_r3] [smallint] NULL,
+
+	--/ <summary>FUV neighbor count out to radius R1</summary>
+	--/ <quantity>meta.number</quantity>
 	[fuv_nc_r1] [smallint] NULL,
+
+	--/ <summary>FUV neighbor count out to radius R2</summary>
+	--/ <quantity>meta.number</quantity>
 	[fuv_nc_r2] [smallint] NULL,
+
+	--/ <summary>FUV neighbor count out to radius R3</summary>
+	--/ <quantity>meta.number</quantity>
 	[fuv_nc_r3] [smallint] NULL,
+
+	--/ <summary>NUV neighbor flux out to radius R1</summary>
+	--/ <quantity>phot.flux;em.UV</quantity>
 	[nuv_nf_r1] [real] NULL,
+
+	--/ <summary>NUV neighbor flux out to radius R2</summary>
+	--/ <quantity>phot.flux;em.UV</quantity>
 	[nuv_nf_r2] [real] NULL,
+
+	--/ <summary>NUV neighbor flux out to radius R3</summary>
+	--/ <quantity>phot.flux;em.UV</quantity>
 	[nuv_nf_r3] [real] NULL,
+
+	--/ <summary>FUV neighbor flux out to radius R1</summary>
+	--/ <quantity>phot.flux;em.UV.FUV</quantity>
 	[fuv_nf_r1] [real] NULL,
+
+	--/ <summary>FUV neighbor flux out to radius R2</summary>
+	--/ <quantity>phot.flux;em.UV.FUV</quantity>
 	[fuv_nf_r2] [real] NULL,
+
+	--/ <summary>FUV neighbor flux out to radius R3</summary>
+	--/ <quantity>phot.flux;em.UV.FUV</quantity>
 	[fuv_nf_r3] [real] NULL,
+
+	--/ <summary>Closest neighbor radius in arcseconds</summary>
+	--/ <quantity>phys.angSize</quantity>
+	--/ <unit>arcsec</unit>
 	[cn_radius] [real] NULL,
+
+	--/ <summary>Closest neighbor position angle in degrees</summary>
+	--/ <quantity>pos.posAng</quantity>
+	--/ <unit>deg</unit>
 	[cn_pa] [real] NULL,
+
+	--/ <summary>Closest neighbor NUV magnitude</summary>
+	--/ <quantity>phot.flux;em.UV</quantity>
+	--/ <unit>mag</unit>
 	[cn_mag_nuv] [real] NULL,
+
+	--/ <summary>Closest neighbor FUV magnitude</summary>
+	--/ <quantity>phot.flux;em.UV.FUV</quantity>
+	--/ <unit>mag</unit>
 	[cn_mag_fuv] [real] NULL,
+
+	--/ <summary>NUV sky background(pho/sec/sq.arcsec)(at centr)</summary>
+	--/ <quantity>phot.flux;em.UV</quantity>
+	--/ <unit>ph sec-1 arcsec-2</unit>
 	[nuv_skybg] [real] NULL,
+
+	--/ <summary>FUV sky background(pho/sec/sq.arcsec)(at centr)</summary>
+	--/ <quantity>phot.flux;em.UV.FUV</quantity>
+	--/ <unit>ph sec-1 arcsec-2</unit>
 	[fuv_skybg] [real] NULL,
+
+	--/ <summary>NUV effective exposure (response)</summary>
+	--/ <quantity>stat.weight</quantity>
 	[nuv_weight] [real] NULL,
+
+	--/ <summary>FUV effective exposure (response)</summary>
+	--/ <quantity>stat.weight</quantity>
 	[fuv_weight] [real] NULL,
+
+	--/ <summary>NUV intensity (photons/second/pixel)</summary>
+	--/ <quantity>spect.line.intensity;em.UV</quantity>
+	--/ <unit>ph sec-1 pix</unit>
 	[nuv_int] [real] NULL,
+
+	--/ <summary>FUV intensity (photons/second/pixel)</summary>
+	--/ <quantity>spect.line.intensity;em.UV.FUV</quantity>
+	--/ <unit>ph sec-1 pix</unit>
 	[fuv_int] [real] NULL,
+
+	--/ <summary>NUV threshold sigmas (int-bg)/wt)</summary>
+	--/ <quantity>instr.param</quantity>
 	[nuv_thres] [real] NULL,
+
+	--/ <summary>FUV threshold sigmas (int-bg)/wt)</summary>
+	--/ <quantity>instr.param</quantity>
 	[fuv_thres] [real] NULL,
+
+	--/ <summary>NUV ratio of min to max response near source</summary>
+	--/ <quantity>stat.value</quantity>
 	[nuv_contrast] [real] NULL,
+
+	--/ <summary>FUV ratio of min to max response near source</summary>
+	--/ <quantity>stat.value</quantity>
 	[fuv_contrast] [real] NULL,
+
+	--/ <summary>NUV median Q within 40 arcsec of source</summary>
+	--/ <quantity></quantity>
 	[nuv_scq_mdn] [real] NULL,
+
+	--/ <summary>NUV  5th percentile Q: 40 arcssec of source</summary>
+	--/ <quantity></quantity>
 	[nuv_scq_p05] [real] NULL,
+
+	--/ <summary>NUV 95th percentile Q: 40 arcssec of source</summary>
+	--/ <quantity></quantity>
 	[nuv_scq_p95] [real] NULL,
+
+	--/ <summary>FUV median Q within 40 arcsec of source</summary>
+	--/ <quantity></quantity>
 	[fuv_scq_mdn] [real] NULL,
+
+	--/ <summary>FUV  5th percentile Q: 40 arcssec of source</summary>
+	--/ <quantity></quantity>
 	[fuv_scq_p05] [real] NULL,
+
+	--/ <summary>FUV 95th percentile Q: 40 arcssec of source</summary>
+	--/ <quantity></quantity>
 	[fuv_scq_p95] [real] NULL,
+
+	--/ <summary>NUV number of masked pixels near source</summary>
+	--/ <quantity>meta.number</quantity>
 	[nuv_maskpix] [int] NULL,
+
+	--/ <summary>FUV number of masked pixels near source</summary>
+	--/ <quantity>meta.number</quantity>
 	[fuv_maskpix] [int] NULL,
+
+	--/ <summary>NUV artifact flag (logical OR near source)</summary>
+	--/ <quantity>meta.code</quantity>
 	[nuv_artifact] [int] NULL,
+
+	--/ <summary>FUV artifact flag (logical OR near source)</summary>
+	--/ <quantity>meta.code</quantity>
 	[fuv_artifact] [int] NULL,
+
+	--/ <summary>NUV spacecraft X position</summary>
+	--/ <quantity>pos.cartesian.x;instr</quantity>
 	[nuv_scx] [real] NULL,
+
+	--/ <summary>NUV spacecraft Y position</summary>
+	--/ <quantity>pos.cartesian.y;instr</quantity>
 	[nuv_scy] [real] NULL,
+
+	--/ <summary>FUV spacecraft X position</summary>
+	--/ <quantity>pos.cartesian.x;instr</quantity>
 	[fuv_scx] [real] NULL,
+
+	--/ <summary>FUV spacecraft Y position</summary>
+	--/ <quantity>pos.cartesian.y;instr</quantity>
 	[fuv_scy] [real] NULL,
+
+	--/ <summary>NUV detector Q value</summary>
+	--/ <quantity></quantity>
 	[nuv_Q] [real] NULL,
+
+	--/ <summary>FUV detector Q value</summary>
+	--/ <quantity></quantity>
 	[fuv_Q] [real] NULL,
+
+	--/ <summary>NUV ambiguity flag.</summary>
+	--/ <quantity>meta.code</quantity>
 	[nuv_ambg] [int] NULL,
+
+	--/ <summary>FUV ambiguity flag.</summary>
+	--/ <quantity>meta.code</quantity>
 	[fuv_ambg] [int] NULL,
+
+	--/ <summary>NUV number of candidates.</summary>
+	--/ <quantity>meta.number</quantity>
 	[nuv_nc] [int] NULL,
+
+	--/ <summary>FUV number of candidates.</summary>
+	--/ <quantity>meta.number</quantity>
 	[fuv_nc] [int] NULL,
+
+	--/ <summary>First candidate for NUV source(FUV IDs)</summary>
+	--/ <quantity>meta.id</quantity>
 	[nuv_cid1] [int] NULL,
+
+	--/ <summary>First candidate for FUV source(NUV IDs)</summary>
+	--/ <quantity>meta.id</quantity>
 	[fuv_cid1] [int] NULL,
+
+	--/ <summary>Second candidate for NUV source(FUV IDs)</summary>
+	--/ <quantity>meta.id</quantity>
 	[nuv_cid2] [int] NULL,
+
+	--/ <summary>Second candidate for FUV source(NUV IDs)</summary>
+	--/ <quantity>meta.id</quantity>
 	[fuv_cid2] [int] NULL,
+
+	--/ <summary>Closest unmatched FUV source within 7 arcsec</summary>
+	--/ <quantity>meta.id</quantity>
 	[nuv_cid3] [int] NULL,
+
+	--/ <summary>Closest unmatched NUV source within 7 arcsec</summary>
+	--/ <quantity>meta.id</quantity>
 	[fuv_cid3] [int] NULL,
+
+	--/ <summary>NUV position error in arcseconds</summary>
+	--/ <quantity>stat.error;pos</quantity>
+	--/ <unit>arcsec</unit>
 	[nuv_poserr] [real] NULL,
+
+	--/ <summary>FUV position error in arcseconds</summary>
+	--/ <quantity>stat.error;pos</quantity>
+	--/ <unit>arcsec</unit>
 	[fuv_poserr] [real] NULL,
+
+	--/ <summary>Interband position error in arcseconds</summary>
+	--/ <quantity>stat.error;pos</quantity>
+	--/ <unit>arcsec</unit>
 	[ib_poserr] [real] NULL,
+
+	--/ <summary>NUV Poisson position error in arcseconds</summary>
+	--/ <quantity>stat.error;pos</quantity>
+	--/ <unit>arcsec</unit>
 	[nuv_pperr] [real] NULL,
+
+	--/ <summary>FUV Poisson position error in arcseconds</summary>
+	--/ <quantity>stat.error;pos</quantity>
+	--/ <unit>arcsec</unit>
 	[fuv_pperr] [real] NULL,
+
+	--/ <summary>Reliability based on random unfilled FUV</summary>
+	--/ <quantity>meta.code.qual</quantity>
 	[match_reliability] [real] NULL,
+
+	--/ <summary>position angle betw. band sources.</summary>
+	--/ <quantity>pos.posAng</quantity>
 	[sourcepa] [real] NULL,
+
+	--/ <summary>Running object number</summary>
+	--/ <quantity>meta.number</quantity>
 	[NUV_NUMBER] [int] NULL,
+
+	--/ <summary>Isophotal flux</summary>
+	--/ <quantity>phot.flux.isophotal;em.UV</quantity>
 	[NUV_FLUX_ISO] [real] NULL,
+
+	--/ <summary>RMS error for isophotal flux</summary>
+	--/ <quantity>stat.error;phot.flux.isophotal;em.UV</quantity>
 	[NUV_FLUXERR_ISO] [real] NULL,
+
+	--/ <summary>Isophotal magnitude</summary>
+	--/ <quantity>phot.mag.isophotal;em.UV</quantity>
 	[NUV_MAG_ISO] [real] NULL,
+
+	--/ <summary>RMS error for isophotal magnitude</summary>
+	--/ <quantity>stat.error;phot.mag.isophotal;em.UV</quantity>
 	[NUV_MAGERR_ISO] [real] NULL,
+
+	--/ <summary>Flux aperture (   2.000 px)</summary>
+	--/ <quantity>phot.flux.aper;em.UV</quantity>
 	[NUV_FLUX_APER_1] [real] NULL,
+
+	--/ <summary>Flux aperture (   3.000 px)</summary>
+	--/ <quantity>phot.flux.aper;em.UV</quantity>
 	[NUV_FLUX_APER_2] [real] NULL,
+
+	--/ <summary>Flux aperture (   5.000 px)</summary>
+	--/ <quantity>phot.flux.aper;em.UV</quantity>
 	[NUV_FLUX_APER_3] [real] NULL,
+
+	--/ <summary>Flux aperture (   8.000 px)</summary>
+	--/ <quantity>phot.flux.aper;em.UV</quantity>
 	[NUV_FLUX_APER_4] [real] NULL,
+
+	--/ <summary>Flux aperture (  12.000 px)</summary>
+	--/ <quantity>phot.flux.aper;em.UV</quantity>
 	[NUV_FLUX_APER_5] [real] NULL,
+
+	--/ <summary>Flux aperture (  17.000 px)</summary>
+	--/ <quantity></quantity>
 	[NUV_FLUX_APER_6] [real] NULL,
+
+	--/ <summary>Flux aperture (  23.000 px)</summary>
+	--/ <quantity></quantity>
 	[NUV_FLUX_APER_7] [real] NULL,
+
+	--/ <summary>Flux error aperture (   2.000 px)</summary>
+	--/ <quantity>stat.error;phot.flux.aper;em.UV</quantity>
 	[NUV_FLUXERR_APER_1] [real] NULL,
+
+	--/ <summary>Flux error aperture (   3.000 px)</summary>
+	--/ <quantity>stat.error;phot.flux.aper;em.UV</quantity>
 	[NUV_FLUXERR_APER_2] [real] NULL,
+
+	--/ <summary>Flux error aperture (   5.000 px)</summary>
+	--/ <quantity>stat.error;phot.flux.aper;em.UV</quantity>
 	[NUV_FLUXERR_APER_3] [real] NULL,
+
+	--/ <summary>Flux error aperture (   8.000 px)</summary>
+	--/ <quantity>stat.error;phot.flux.aper;em.UV</quantity>
 	[NUV_FLUXERR_APER_4] [real] NULL,
+
+	--/ <summary>Flux error aperture (  12.000 px)</summary>
+	--/ <quantity>stat.error;phot.flux.aper;em.UV</quantity>
 	[NUV_FLUXERR_APER_5] [real] NULL,
+
+	--/ <summary>Flux error aperture (  17.000 px)</summary>
+	--/ <quantity>stat.error;phot.flux.aper;em.UV</quantity>
 	[NUV_FLUXERR_APER_6] [real] NULL,
+
+	--/ <summary>Flux error aperture (  23.000 px)</summary>
+	--/ <quantity>stat.error;phot.flux.aper;em.UV</quantity>
 	[NUV_FLUXERR_APER_7] [real] NULL,
+
+	--/ <summary>Magnitude aperture (   2.000 px)</summary>
+	--/ <quantity>phot.mag.aper;em.UV</quantity>
 	[NUV_MAG_APER_1] [real] NULL,
+
+	--/ <summary>Magnitude aperture (   3.000 px)</summary>
+	--/ <quantity>phot.mag.aper;em.UV</quantity>
 	[NUV_MAG_APER_2] [real] NULL,
+
+	--/ <summary>Magnitude aperture (   5.000 px)</summary>
+	--/ <quantity>phot.mag.aper;em.UV</quantity>
 	[NUV_MAG_APER_3] [real] NULL,
+
+	--/ <summary>Magnitude aperture (   8.000 px)</summary>
+	--/ <quantity>phot.mag.aper;em.UV</quantity>
 	[NUV_MAG_APER_4] [real] NULL,
+
+	--/ <summary>Magnitude aperture (  12.000 px)</summary>
+	--/ <quantity>phot.mag.aper;em.UV</quantity>
 	[NUV_MAG_APER_5] [real] NULL,
+
+	--/ <summary>Magnitude aperture (  17.000 px)</summary>
+	--/ <quantity>phot.mag.aper;em.UV</quantity>
 	[NUV_MAG_APER_6] [real] NULL,
+
+	--/ <summary>Magnitude aperture (  23.000 px)</summary>
+	--/ <quantity>phot.mag.aper;em.UV</quantity>
 	[NUV_MAG_APER_7] [real] NULL,
+
+	--/ <summary>Magnitude error aperture (   2.000 px)</summary>
+	--/ <quantity>stat.error;phot.mag.aper;em.UV</quantity>
 	[NUV_MAGERR_APER_1] [real] NULL,
+
+	--/ <summary>Magnitude error aperture (   3.000 px)</summary>
+	--/ <quantity>stat.error;phot.mag.aper;em.UV</quantity>
 	[NUV_MAGERR_APER_2] [real] NULL,
+
+	--/ <summary>Magnitude error aperture (   5.000 px)</summary>
+	--/ <quantity>stat.error;phot.mag.aper;em.UV</quantity>
 	[NUV_MAGERR_APER_3] [real] NULL,
+
+	--/ <summary>Magnitude error aperture (   8.000 px)</summary>
+	--/ <quantity>stat.error;phot.mag.aper;em.UV</quantity>
 	[NUV_MAGERR_APER_4] [real] NULL,
+
+	--/ <summary>Magnitude error aperture (  12.000 px)</summary>
+	--/ <quantity>stat.error;phot.mag.aper;em.UV</quantity>
 	[NUV_MAGERR_APER_5] [real] NULL,
+
+	--/ <summary>Magnitude error aperture (  17.000 px)</summary>
+	--/ <quantity>stat.error;phot.mag.aper;em.UV</quantity>
 	[NUV_MAGERR_APER_6] [real] NULL,
+
+	--/ <summary>Magnitude error aperture (  23.000 px)</summary>
+	--/ <quantity>stat.error;phot.mag.aper;em.UV</quantity>
 	[NUV_MAGERR_APER_7] [real] NULL,
+
+	--/ <summary>Flux within a Kron-like elliptical aperture</summary>
+	--/ <quantity>phot.flux.aper;em.UV</quantity>
 	[NUV_FLUX_AUTO] [real] NULL,
+
+	--/ <summary>RMS error for AUTO flux</summary>
+	--/ <quantity>stat.error;phot.flux.aper;em.UV</quantity>
 	[NUV_FLUXERR_AUTO] [real] NULL,
+
+	--/ <summary>Kron-like elliptical aperture magnitude</summary>
+	--/ <quantity>phot.mag.aper;em.UV</quantity>
 	[NUV_MAG_AUTO] [real] NULL,
+
+	--/ <summary>RMS error for AUTO magnitude</summary>
+	--/ <quantity>stat.error;phot.mag.aper;em.UV</quantity>
 	[NUV_MAGERR_AUTO] [real] NULL,
+
+	--/ <summary>Fraction-of-light radius (  0.2000)</summary>
+	--/ <quantity>phot.flux;em.UV</quantity>
 	[NUV_FLUX_RADIUS_1] [real] NULL,
+
+	--/ <summary>Fraction-of-light radius (  0.5000)</summary>
+	--/ <quantity>phot.flux;em.UV</quantity>
 	[NUV_FLUX_RADIUS_2] [real] NULL,
+
+	--/ <summary>Fraction-of-light radius (  0.8000)</summary>
+	--/ <quantity>phot.flux;em.UV</quantity>
 	[NUV_FLUX_RADIUS_3] [real] NULL,
+
+	--/ <summary>Fraction-of-light radius (  0.9000)</summary>
+	--/ <quantity>phot.flux;em.UV</quantity>
 	[NUV_FLUX_RADIUS_4] [real] NULL,
+
+	--/ <summary>Fraction-of-light radius (  0.9500)</summary>
+	--/ <quantity>phot.flux;em.UV</quantity>
 	[NUV_FLUX_RADIUS_5] [real] NULL,
+
+	--/ <summary>Kron apertures in units of A or B</summary>
+	--/ <quantity>phys.angSize</quantity>
 	[NUV_KRON_RADIUS] [real] NULL,
+
+	--/ <summary>Background at centroid position</summary>
+	--/ <quantity>phot.flux</quantity>
 	[NUV_BACKGROUND] [real] NULL,
+
+	--/ <summary>Detection threshold above background</summary>
+	--/ <quantity>instr.saturation</quantity>
 	[NUV_THRESHOLD] [real] NULL,
+
+	--/ <summary>Detection threshold above background</summary>
+	--/ <quantity>instr.saturation</quantity>
 	[NUV_MU_THRESHOLD] [real] NULL,
+
+	--/ <summary>Peak flux above background</summary>
+	--/ <quantity>phot.flux;stat.max</quantity>
 	[NUV_FLUX_MAX] [real] NULL,
+
+	--/ <summary>Peak surface brightness above background</summary>
+	--/ <quantity>phot.flux.sb;stat.max</quantity>
 	[NUV_MU_MAX] [real] NULL,
+
+	--/ <summary>Isophotal area above Analysis threshold</summary>
+	--/ <quantity>phys.angSize.area</quantity>
 	[NUV_ISOAREA_IMAGE] [real] NULL,
+
+	--/ <summary>Isophotal area above Analysis threshold</summary>
+	--/ <quantity>phys.angSize.area</quantity>
 	[NUV_ISOAREA_WORLD] [real] NULL,
+
+	--/ <summary>Isophotal area (filtered) above Detection thres</summary>
+	--/ <quantity>phys.angSize.area</quantity>
 	[NUV_ISOAREAF_IMAGE] [real] NULL,
+
+	--/ <summary>Isophotal area (filtered) above Detection thres</summary>
+	--/ <quantity>phys.angSize.area</quantity>
 	[NUV_ISOAREAF_WORLD] [real] NULL,
+
+	--/ <summary>Minimum x-coordinate among detected pixels</summary>
+	--/ <quantity>pos.cartesian.x;stat.min</quantity>
 	[NUV_XMIN_IMAGE] [int] NULL,
+
+	--/ <summary>Minimum y-coordinate among detected pixels</summary>
+	--/ <quantity>pos.cartesian.y;stat.min</quantity>
 	[NUV_YMIN_IMAGE] [int] NULL,
+
+	--/ <summary>Maximum x-coordinate among detected pixels</summary>
+	--/ <quantity>pos.cartesian.x;stat.max</quantity>
 	[NUV_XMAX_IMAGE] [int] NULL,
+
+	--/ <summary>Maximum y-coordinate among detected pixels</summary>
+	--/ <quantity>pos.cartesian.y;stat.max</quantity>
 	[NUV_YMAX_IMAGE] [int] NULL,
+
+	--/ <summary>Object position along x</summary>
+	--/ <quantity>pos.cartesian.x</quantity>
 	[NUV_X_IMAGE] [real] NULL,
+
+	--/ <summary>Object position along y</summary>
+	--/ <quantity>pos.cartesian.y</quantity>
 	[NUV_Y_IMAGE] [real] NULL,
+
+	--/ <summary>x-coordinate of the brightest pixel</summary>
+	--/ <quantity>pos.cartesian.x</quantity>
 	[NUV_XPEAK_IMAGE] [int] NULL,
+
+	--/ <summary>y-coordinate of the brightest pixel</summary>
+	--/ <quantity>pos.cartesian.y</quantity>
 	[NUV_YPEAK_IMAGE] [int] NULL,
+
+	--/ <summary>Right ascension of barycenter (J2000)</summary>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000;pos.barycenter</quantity>
 	[NUV_ALPHA_J2000] [float] NULL,
+
+	--/ <summary>Declination of barycenter (J2000)</summary>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000;pos.barycenter</quantity>
 	[NUV_DELTA_J2000] [float] NULL,
+
+	--/ <summary>Variance along x</summary>
+	--/ <quantity>stat.variance</quantity>
 	[NUV_X2_IMAGE] [real] NULL,
+
+	--/ <summary>Variance along y</summary>
+	--/ <quantity>stat.variance</quantity>
 	[NUV_Y2_IMAGE] [real] NULL,
+
+	--/ <summary>Covariance between x and y</summary>
+	--/ <quantity>stat.covariance</quantity>
 	[NUV_XY_IMAGE] [real] NULL,
+
+	--/ <summary>Variance along X-WORLD (alpha)</summary>
+	--/ <quantity>stat.variance</quantity>
 	[NUV_X2_WORLD] [real] NULL,
+
+	--/ <summary>Variance along Y-WORLD (delta)</summary>
+	--/ <quantity>stat.variance</quantity>
 	[NUV_Y2_WORLD] [real] NULL,
+
+	--/ <summary>Covariance between X-WORLD and Y-WORLD</summary>
+	--/ <quantity>stat.covariance</quantity>
 	[NUV_XY_WORLD] [real] NULL,
+
+	--/ <summary>Cxx object ellipse parameter</summary>
+	--/ <quantity>src.ellipticity</quantity>
 	[NUV_CXX_IMAGE] [real] NULL,
+
+	--/ <summary>Cyy object ellipse parameter</summary>
+	--/ <quantity>src.ellipticity</quantity>
 	[NUV_CYY_IMAGE] [real] NULL,
+
+	--/ <summary>Cxy object ellipse parameter</summary>
+	--/ <quantity>src.ellipticity</quantity>
 	[NUV_CXY_IMAGE] [real] NULL,
+
+	--/ <summary>Cxx object ellipse parameter (WORLD units)</summary>
+	--/ <quantity>src.ellipticity</quantity>
 	[NUV_CXX_WORLD] [real] NULL,
+
+	--/ <summary>Cyy object ellipse parameter (WORLD units)</summary>
+	--/ <quantity>src.ellipticity</quantity>
 	[NUV_CYY_WORLD] [real] NULL,
+
+	--/ <summary>Cxy object ellipse parameter (WORLD units)</summary>
+	--/ <quantity>src.ellipticity</quantity>
 	[NUV_CXY_WORLD] [real] NULL,
+
+	--/ <summary>Profile RMS along major axis</summary>
+	--/ <quantity>phys.angSize.smajAxis;stat.mean</quantity>
 	[NUV_A_IMAGE] [real] NULL,
+
+	--/ <summary>Profile RMS along minor axis</summary>
+	--/ <quantity>phys.angSize.sminAxis;stat.mean</quantity>
 	[NUV_B_IMAGE] [real] NULL,
+
+	--/ <summary>Profile RMS along major axis (world units)</summary>
+	--/ <quantity>phys.angSize.smajAxis;stat.mean</quantity>
 	[NUV_A_WORLD] [real] NULL,
+
+	--/ <summary>Profile RMS along minor axis (world units)</summary>
+	--/ <quantity>phys.angSize.sminAxis;stat.mean</quantity>
 	[NUV_B_WORLD] [real] NULL,
+
+	--/ <summary>Position angle (CCW/x)</summary>
+	--/ <quantity>pos.posAng</quantity>
 	[NUV_THETA_IMAGE] [real] NULL,
+
+	--/ <summary>Position angle (CCW/world-x)</summary>
+	--/ <quantity>pos.posAng</quantity>
 	[NUV_THETA_WORLD] [real] NULL,
+
+	--/ <summary>Position angle (east of north) (J2000)</summary>
+	--/ <quantity>pos.posAng</quantity>
 	[NUV_THETA_J2000] [real] NULL,
+
+	--/ <summary>A_IMAGE/B_IMAGE</summary>
+	--/ <quantity>pos.phaseAng</quantity>
 	[NUV_ELONGATION] [real] NULL,
+
+	--/ <summary>1 - B_IMAGE/A_IMAGE</summary>
+	--/ <quantity>src.ellipticity</quantity>
 	[NUV_ELLIPTICITY] [real] NULL,
+
+	--/ <summary>Variance of position along x</summary>
+	--/ <quantity>stat.variance;pos.cartesian.x</quantity>
 	[NUV_ERRX2_IMAGE] [float] NULL,
+
+	--/ <summary>Variance of position along y</summary>
+	--/ <quantity>stat.variance;pos.cartesian.y</quantity>
 	[NUV_ERRY2_IMAGE] [float] NULL,
+
+	--/ <summary>Covariance of position between x and y</summary>
+	--/ <quantity>stat.covariance;pos</quantity>
 	[NUV_ERRXY_IMAGE] [real] NULL,
+
+	--/ <summary>Variance of position along X-WORLD (alpha)</summary>
+	--/ <quantity>stat.variance;pos.cartesian.x</quantity>
 	[NUV_ERRX2_WORLD] [float] NULL,
+
+	--/ <summary>Variance of position along Y-WORLD (delta)</summary>
+	--/ <quantity>stat.variance;pos.cartesian.y</quantity>
 	[NUV_ERRY2_WORLD] [float] NULL,
+
+	--/ <summary>Covariance of position X-WORLD/Y-WORLD</summary>
+	--/ <quantity>stat.covariance;pos</quantity>
 	[NUV_ERRXY_WORLD] [real] NULL,
+
+	--/ <summary>Cxx error ellipse parameter</summary>
+	--/ <quantity>src.ellipticity</quantity>
 	[NUV_ERRCXX_IMAGE] [real] NULL,
+
+	--/ <summary>Cyy error ellipse parameter</summary>
+	--/ <quantity>src.ellipticity</quantity>
 	[NUV_ERRCYY_IMAGE] [real] NULL,
+
+	--/ <summary>Cxy error ellipse parameter</summary>
+	--/ <quantity>src.ellipticity</quantity>
 	[NUV_ERRCXY_IMAGE] [real] NULL,
+
+	--/ <summary>Cxx error ellipse parameter (WORLD units)</summary>
+	--/ <quantity>src.ellipticity</quantity>
 	[NUV_ERRCXX_WORLD] [real] NULL,
+
+	--/ <summary>Cyy error ellipse parameter (WORLD units)</summary>
+	--/ <quantity>src.ellipticity</quantity>
 	[NUV_ERRCYY_WORLD] [real] NULL,
+
+	--/ <summary>Cxy error ellipse parameter (WORLD units)</summary>
+	--/ <quantity>src.ellipticity</quantity>
 	[NUV_ERRCXY_WORLD] [real] NULL,
+
+	--/ <summary>RMS position error along major axis</summary>
+	--/ <quantity>pos.errorEllipse</quantity>
 	[NUV_ERRA_IMAGE] [real] NULL,
+
+	--/ <summary>RMS position error along minor axis</summary>
+	--/ <quantity>pos.errorEllipse</quantity>
 	[NUV_ERRB_IMAGE] [real] NULL,
+
+	--/ <summary>World RMS position error along major axis</summary>
+	--/ <quantity>pos.errorEllipse</quantity>
 	[NUV_ERRA_WORLD] [real] NULL,
+
+	--/ <summary>World RMS position error along minor axis</summary>
+	--/ <quantity>pos.errorEllipse</quantity>
 	[NUV_ERRB_WORLD] [real] NULL,
+
+	--/ <summary>Error ellipse position angle (CCW/x)</summary>
+	--/ <quantity>pos.posAng</quantity>
 	[NUV_ERRTHETA_IMAGE] [real] NULL,
+
+	--/ <summary>Error ellipse pos. angle (CCW/world-x)</summary>
+	--/ <quantity>pos.posAng</quantity>
 	[NUV_ERRTHETA_WORLD] [real] NULL,
+
+	--/ <summary>J2000 error ellipse pos. angle (east of north)</summary>
+	--/ <quantity>pos.posAng</quantity>
 	[NUV_ERRTHETA_J2000] [real] NULL,
+
+	--/ <summary>FWHM assuming a gaussian core</summary>
+	--/ <quantity>phys.angSize</quantity>
 	[NUV_FWHM_IMAGE] [real] NULL,
+
+	--/ <summary>FWHM assuming a gaussian core</summary>
+	--/ <quantity>phys.angSize</quantity>
 	[NUV_FWHM_WORLD] [real] NULL,
+
+	--/ <summary>Extraction flags</summary>
+	--/ <quantity>meta.code</quantity>
 	[NUV_FLAGS] [smallint] NULL,
+
+	--/ <summary>S/G classifier output</summary>
+	--/ <quantity>src.class.starGalaxy</quantity>
 	[NUV_CLASS_STAR] [real] NULL,
+
+	--/ <summary>Running object number</summary>
+	--/ <quantity>met.number</quantity>
 	[FUV_NUMBER] [int] NULL,
+
+	--/ <summary>Isophotal flux</summary>
+	--/ <quantity>phot.flux.isophotal;em.UV.FUV</quantity>
 	[FUV_FLUX_ISO] [real] NULL,
+
+	--/ <summary>RMS error for isophotal flux</summary>
+	--/ <quantity>stat.error;phot.flux.isophotal;em.UV.FUV</quantity>
 	[FUV_FLUXERR_ISO] [real] NULL,
+
+	--/ <summary>Isophotal magnitude</summary>
+	--/ <quantity>phot.mag.isophotal;em.UV.FUV</quantity>
 	[FUV_MAG_ISO] [real] NULL,
+
+	--/ <summary>RMS error for isophotal magnitude</summary>
+	--/ <quantity>stat.error;phot.mag.isophotal;em.UV.FUV</quantity>
 	[FUV_MAGERR_ISO] [real] NULL,
+
+	--/ <summary>Flux aperture (   2.000 px)</summary>
+	--/ <quantity>phot.flux.aper;em.UV.FUV</quantity>
 	[FUV_FLUX_APER_1] [real] NULL,
+
+	--/ <summary>Flux aperture (   3.000 px)</summary>
+	--/ <quantity>phot.flux.aper;em.UV.FUV</quantity>
 	[FUV_FLUX_APER_2] [real] NULL,
+
+	--/ <summary>Flux aperture (   5.000 px)</summary>
+	--/ <quantity>phot.flux.aper;em.UV.FUV</quantity>
 	[FUV_FLUX_APER_3] [real] NULL,
+
+	--/ <summary>Flux aperture (   8.000 px)</summary>
+	--/ <quantity>phot.flux.aper;em.UV.FUV</quantity>
 	[FUV_FLUX_APER_4] [real] NULL,
+
+	--/ <summary>Flux aperture (  12.000 px)</summary>
+	--/ <quantity>phot.flux.aper;em.UV.FUV</quantity>
 	[FUV_FLUX_APER_5] [real] NULL,
+
+	--/ <summary>Flux aperture (  17.000 px)</summary>
+	--/ <quantity>phot.flux.aper;em.UV.FUV</quantity>
 	[FUV_FLUX_APER_6] [real] NULL,
+
+	--/ <summary>Flux aperture (  23.000 px)</summary>
+	--/ <quantity>phot.flux.aper;em.UV.FUV</quantity>
 	[FUV_FLUX_APER_7] [real] NULL,
+
+	--/ <summary>Flux error aperture (   2.000 px)</summary>
+	--/ <quantity>stat.error;phot.flux.aper;em.UV.FUV</quantity>
 	[FUV_FLUXERR_APER_1] [real] NULL,
+
+	--/ <summary>Flux error aperture (   3.000 px)</summary>
+	--/ <quantity>stat.error;phot.flux.aper;em.UV.FUV</quantity>
 	[FUV_FLUXERR_APER_2] [real] NULL,
+
+	--/ <summary>Flux error aperture (   5.000 px)</summary>
+	--/ <quantity>stat.error;phot.flux.aper;em.UV.FUV</quantity>
 	[FUV_FLUXERR_APER_3] [real] NULL,
+
+	--/ <summary>Flux error aperture (   8.000 px)</summary>
+	--/ <quantity>stat.error;phot.flux.aper;em.UV.FUV</quantity>
 	[FUV_FLUXERR_APER_4] [real] NULL,
+
+	--/ <summary>Flux error aperture (  12.000 px)</summary>
+	--/ <quantity>stat.error;phot.flux.aper;em.UV.FUV</quantity>
 	[FUV_FLUXERR_APER_5] [real] NULL,
+
+	--/ <summary>Flux error aperture (  17.000 px)</summary>
+	--/ <quantity>stat.error;phot.flux.aper;em.UV.FUV</quantity>
 	[FUV_FLUXERR_APER_6] [real] NULL,
+
+	--/ <summary>Flux error aperture (  23.000 px)</summary>
+	--/ <quantity>stat.error;phot.flux.aper;em.UV.FUV</quantity>
 	[FUV_FLUXERR_APER_7] [real] NULL,
+
+	--/ <summary>Magnitude aperture (   2.000 px)</summary>
+	--/ <quantity>phot.mag.aper;em.UV.FUV</quantity>
 	[FUV_MAG_APER_1] [real] NULL,
+
+	--/ <summary>Magnitude aperture (   3.000 px)</summary>
+	--/ <quantity>phot.mag.aper;em.UV.FUV</quantity>
 	[FUV_MAG_APER_2] [real] NULL,
+
+	--/ <summary>Magnitude aperture (   5.000 px)</summary>
+	--/ <quantity>phot.mag.aper;em.UV.FUV</quantity>
 	[FUV_MAG_APER_3] [real] NULL,
+
+	--/ <summary>Magnitude aperture (   8.000 px)</summary>
+	--/ <quantity>phot.mag.aper;em.UV.FUV</quantity>
 	[FUV_MAG_APER_4] [real] NULL,
+
+	--/ <summary>Magnitude aperture (  12.000 px)</summary>
+	--/ <quantity>phot.mag.aper;em.UV.FUV</quantity>
 	[FUV_MAG_APER_5] [real] NULL,
+
+	--/ <summary>Magnitude aperture (  17.000 px)</summary>
+	--/ <quantity>phot.mag.aper;em.UV.FUV</quantity>
 	[FUV_MAG_APER_6] [real] NULL,
+
+	--/ <summary>Magnitude aperture (  23.000 px)</summary>
+	--/ <quantity>phot.mag.aper;em.UV.FUV</quantity>
 	[FUV_MAG_APER_7] [real] NULL,
+
+	--/ <summary>Magnitude error aperture (   2.000 px)</summary>
+	--/ <quantity>stat.error;phot.mag.aper;em.UV.FUV</quantity>
 	[FUV_MAGERR_APER_1] [real] NULL,
+
+	--/ <summary>Magnitude error aperture (   3.000 px)</summary>
+	--/ <quantity>stat.error;phot.mag.aper;em.UV.FUV</quantity>
 	[FUV_MAGERR_APER_2] [real] NULL,
+
+	--/ <summary>Magnitude error aperture (   5.000 px)</summary>
+	--/ <quantity>stat.error;phot.mag.aper;em.UV.FUV</quantity>
 	[FUV_MAGERR_APER_3] [real] NULL,
+
+	--/ <summary>Magnitude error aperture (   8.000 px)</summary>
+	--/ <quantity>stat.error;phot.mag.aper;em.UV.FUV</quantity>
 	[FUV_MAGERR_APER_4] [real] NULL,
+
+	--/ <summary>Magnitude error aperture (  12.000 px)</summary>
+	--/ <quantity>stat.error;phot.mag.aper;em.UV.FUV</quantity>
 	[FUV_MAGERR_APER_5] [real] NULL,
+
+	--/ <summary>Magnitude error aperture (  17.000 px)</summary>
+	--/ <quantity>stat.error;phot.mag.aper;em.UV.FUV</quantity>
 	[FUV_MAGERR_APER_6] [real] NULL,
+
+	--/ <summary>Magnitude error aperture (  23.000 px)</summary>
+	--/ <quantity>stat.error;phot.mag.aper;em.UV.FUV</quantity>
 	[FUV_MAGERR_APER_7] [real] NULL,
+
+	--/ <summary>Flux within a Kron-like elliptical aperture</summary>
+	--/ <quantity>phot.flux.aper;em.UV.FUV</quantity>
 	[FUV_FLUX_AUTO] [real] NULL,
+
+	--/ <summary>RMS error for AUTO flux</summary>
+	--/ <quantity>stat.error;phot.flux.aper;em.UV.FUV</quantity>
 	[FUV_FLUXERR_AUTO] [real] NULL,
+
+	--/ <summary>Kron-like elliptical aperture magnitude</summary>
+	--/ <quantity>phot.mag.aper;em.UV.FUV</quantity>
 	[FUV_MAG_AUTO] [real] NULL,
+
+	--/ <summary>RMS error for AUTO magnitude</summary>
+	--/ <quantity>stat.error;phot.mag.aper;em.UV</quantity>
 	[FUV_MAGERR_AUTO] [real] NULL,
+
+	--/ <summary>Fraction-of-light radius (  0.2000)</summary>
+	--/ <quantity>phot.flux;em.UV.FUV</quantity>
 	[FUV_FLUX_RADIUS_1] [real] NULL,
+
+	--/ <summary>Fraction-of-light radius (  0.5000)</summary>
+	--/ <quantity>phot.flux;em.UV.FUV</quantity>
 	[FUV_FLUX_RADIUS_2] [real] NULL,
+
+	--/ <summary>Fraction-of-light radius (  0.8000)</summary>
+	--/ <quantity>phot.flux;em.UV.FUV</quantity>
 	[FUV_FLUX_RADIUS_3] [real] NULL,
+
+	--/ <summary>Fraction-of-light radius (  0.9000)</summary>
+	--/ <quantity>phot.flux;em.UV.FUV</quantity>
 	[FUV_FLUX_RADIUS_4] [real] NULL,
+
+	--/ <summary>Fraction-of-light radius (  0.9500)</summary>
+	--/ <quantity>phot.flux;em.UV.FUV</quantity>
 	[FUV_FLUX_RADIUS_5] [real] NULL,
+
+	--/ <summary>Kron apertures in units of A or B</summary>
+	--/ <quantity>phys.angSize</quantity>
 	[FUV_KRON_RADIUS] [real] NULL,
+
+	--/ <summary>Background at centroid position</summary>
+	--/ <quantity>phot.flux</quantity>
 	[FUV_BACKGROUND] [real] NULL,
+
+	--/ <summary>Detection threshold above background</summary>
+	--/ <quantity>instr.saturation</quantity>
 	[FUV_THRESHOLD] [real] NULL,
+
+	--/ <summary>Detection threshold above background</summary>
+	--/ <quantity>instr.saturation</quantity>
 	[FUV_MU_THRESHOLD] [real] NULL,
+
+	--/ <summary>Peak flux above background</summary>
+	--/ <quantity>phot.flux;stat.max</quantity>
 	[FUV_FLUX_MAX] [real] NULL,
+
+	--/ <summary>Peak surface brightness above background</summary>
+	--/ <quantity>phot.flux.sb;stat.max</quantity>
 	[FUV_MU_MAX] [real] NULL,
+
+	--/ <summary>Isophotal area above Analysis threshold</summary>
+	--/ <quantity>phys.angSize.area</quantity>
 	[FUV_ISOAREA_IMAGE] [real] NULL,
+
+	--/ <summary>Isophotal area above Analysis threshold</summary>
+	--/ <quantity>phys.angSize.area</quantity>
 	[FUV_ISOAREA_WORLD] [real] NULL,
+
+	--/ <summary>Isophotal area (filtered) above Detection thres</summary>
+	--/ <quantity>phys.angSize.area</quantity>
 	[FUV_ISOAREAF_IMAGE] [real] NULL,
+
+	--/ <summary>Isophotal area (filtered) above Detection thres</summary>
+	--/ <quantity>phys.angSize.area</quantity>
 	[FUV_ISOAREAF_WORLD] [real] NULL,
+
+	--/ <summary>Minimum x-coordinate among detected pixels</summary>
+	--/ <quantity>pos.cartesian.x;stat.min</quantity>
 	[FUV_XMIN_IMAGE] [int] NULL,
+
+	--/ <summary>Minimum y-coordinate among detected pixels</summary>
+	--/ <quantity>pos.cartesian.y;stat.min</quantity>
 	[FUV_YMIN_IMAGE] [int] NULL,
+
+	--/ <summary>Maximum x-coordinate among detected pixels</summary>
+	--/ <quantity>pos.cartesian.x;stat.max</quantity>
 	[FUV_XMAX_IMAGE] [int] NULL,
+
+	--/ <summary>Maximum y-coordinate among detected pixels</summary>
+	--/ <quantity>pos.cartesian.y;stat.max</quantity>
 	[FUV_YMAX_IMAGE] [int] NULL,
+
+	--/ <summary>Object position along x</summary>
+	--/ <quantity>pos.cartesian.x</quantity>
 	[FUV_X_IMAGE] [real] NULL,
+
+	--/ <summary>Object position along y</summary>
+	--/ <quantity>pos.cartesian.y</quantity>
 	[FUV_Y_IMAGE] [real] NULL,
+
+	--/ <summary>x-coordinate of the brightest pixel</summary>
+	--/ <quantity>pos.cartesian.x</quantity>
 	[FUV_XPEAK_IMAGE] [int] NULL,
+
+	--/ <summary>y-coordinate of the brightest pixel</summary>
+	--/ <quantity>pos.cartesian.y</quantity>
 	[FUV_YPEAK_IMAGE] [int] NULL,
+
+	--/ <summary>Right ascension of barycenter (J2000)</summary>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000;pos.barycenter</quantity>
 	[FUV_ALPHA_J2000] [float] NULL,
+
+	--/ <summary>Declination of barycenter (J2000)</summary>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000;pos.barycenter</quantity>
 	[FUV_DELTA_J2000] [float] NULL,
+
+	--/ <summary>Variance along x</summary>
+	--/ <quantity>stat.variance</quantity>
 	[FUV_X2_IMAGE] [real] NULL,
+
+	--/ <summary>Variance along y</summary>
+	--/ <quantity>stat.variance</quantity>
 	[FUV_Y2_IMAGE] [real] NULL,
+
+	--/ <summary>Covariance between x and y</summary>
+	--/ <quantity>stat.covariance</quantity>
 	[FUV_XY_IMAGE] [real] NULL,
+
+	--/ <summary>Variance along X-WORLD (alpha)</summary>
+	--/ <quantity>stat.variance</quantity>
 	[FUV_X2_WORLD] [real] NULL,
+
+	--/ <summary>Variance along Y-WORLD (delta)</summary>
+	--/ <quantity>stat.variance</quantity>
 	[FUV_Y2_WORLD] [real] NULL,
+
+	--/ <summary>Covariance between X-WORLD and Y-WORLD</summary>
+	--/ <quantity>stat.covariance</quantity>
 	[FUV_XY_WORLD] [real] NULL,
+
+	--/ <summary>Cxx object ellipse parameter</summary>
+	--/ <quantity>src.ellipticity</quantity>
 	[FUV_CXX_IMAGE] [real] NULL,
+
+	--/ <summary>Cyy object ellipse parameter</summary>
+	--/ <quantity>src.ellipticity</quantity>
 	[FUV_CYY_IMAGE] [real] NULL,
+
+	--/ <summary>Cxy object ellipse parameter</summary>
+	--/ <quantity>src.ellipticity</quantity>
 	[FUV_CXY_IMAGE] [real] NULL,
+
+	--/ <summary>Cxx object ellipse parameter (WORLD units)</summary>
+	--/ <quantity>src.ellipticity</quantity>
 	[FUV_CXX_WORLD] [real] NULL,
+
+	--/ <summary>Cyy object ellipse parameter (WORLD units)</summary>
+	--/ <quantity>src.ellipticity</quantity>
 	[FUV_CYY_WORLD] [real] NULL,
+
+	--/ <summary>Cxy object ellipse parameter (WORLD units)</summary>
+	--/ <quantity>src.ellipticity</quantity>
 	[FUV_CXY_WORLD] [real] NULL,
+
+	--/ <summary>Profile RMS along major axis</summary>
+	--/ <quantity>phys.angSize.smajAxis;stat.mean</quantity>
 	[FUV_A_IMAGE] [real] NULL,
+
+	--/ <summary>Profile RMS along minor axis</summary>
+	--/ <quantity>phys.angSize.sminAxis;stat.mean</quantity>
 	[FUV_B_IMAGE] [real] NULL,
+
+	--/ <summary>Profile RMS along major axis (world units)</summary>
+	--/ <quantity>phys.angSize.smajAxis;stat.mean</quantity>
 	[FUV_A_WORLD] [real] NULL,
+
+	--/ <summary>Profile RMS along minor axis (world units)</summary>
+	--/ <quantity>phys.angSize.sminAxis;stat.mean</quantity>
 	[FUV_B_WORLD] [real] NULL,
+
+	--/ <summary>Position angle (CCW/x)</summary>
+	--/ <quantity>pos.posAng</quantity>
 	[FUV_THETA_IMAGE] [real] NULL,
+
+	--/ <summary>Position angle (CCW/world-x)</summary>
+	--/ <quantity>pos.posAng</quantity>
 	[FUV_THETA_WORLD] [real] NULL,
+
+	--/ <summary>Position angle (east of north) (J2000)</summary>
+	--/ <quantity>pos.posAng</quantity>
 	[FUV_THETA_J2000] [real] NULL,
+
+	--/ <summary>A_IMAGE/B_IMAGE</summary>
+	--/ <quantity>pos.phaseAng</quantity>
 	[FUV_ELONGATION] [real] NULL,
+
+	--/ <summary>1 - B_IMAGE/A_IMAGE</summary>
+	--/ <quantity>src.ellipticity</quantity>
 	[FUV_ELLIPTICITY] [real] NULL,
+
+	--/ <summary>Variance of position along x</summary>
+	--/ <quantity>stat.variance;pos.cartesian.x</quantity>
 	[FUV_ERRX2_IMAGE] [float] NULL,
+
+	--/ <summary>Variance of position along y</summary>
+	--/ <quantity>stat.variance;pos.cartesian.y</quantity>
 	[FUV_ERRY2_IMAGE] [float] NULL,
+
+	--/ <summary>Covariance of position between x and y</summary>
+	--/ <quantity>stat.covariance;pos</quantity>
 	[FUV_ERRXY_IMAGE] [real] NULL,
+
+	--/ <summary>Variance of position along X-WORLD (alpha)</summary>
+	--/ <quantity>stat.variance;pos.cartesian.x</quantity>
 	[FUV_ERRX2_WORLD] [float] NULL,
+
+	--/ <summary>Variance of position along Y-WORLD (delta)</summary>
+	--/ <quantity>stat.variance;pos.cartesian.y</quantity>
 	[FUV_ERRY2_WORLD] [float] NULL,
+
+	--/ <summary>Covariance of position X-WORLD/Y-WORLD</summary>
+	--/ <quantity>stat.covariance;pos</quantity>
 	[FUV_ERRXY_WORLD] [real] NULL,
+
+	--/ <summary>Cxx error ellipse parameter</summary>
+	--/ <quantity>src.ellipticity</quantity>
 	[FUV_ERRCXX_IMAGE] [real] NULL,
+
+	--/ <summary>Cyy error ellipse parameter</summary>
+	--/ <quantity>src.ellipticity</quantity>
 	[FUV_ERRCYY_IMAGE] [real] NULL,
+
+	--/ <summary>Cxy error ellipse parameter</summary>
+	--/ <quantity>src.ellipticity</quantity>
 	[FUV_ERRCXY_IMAGE] [real] NULL,
+
+	--/ <summary>Cxx error ellipse parameter (WORLD units)</summary>
+	--/ <quantity>src.ellipticity</quantity>
 	[FUV_ERRCXX_WORLD] [real] NULL,
+
+	--/ <summary>Cyy error ellipse parameter (WORLD units)</summary>
+	--/ <quantity>src.ellipticity</quantity>
 	[FUV_ERRCYY_WORLD] [real] NULL,
+
+	--/ <summary>Cxy error ellipse parameter (WORLD units)</summary>
+	--/ <quantity>src.ellipticity</quantity>
 	[FUV_ERRCXY_WORLD] [real] NULL,
+
+	--/ <summary>RMS position error along major axis</summary>
+	--/ <quantity>pos.errorEllipse</quantity>
 	[FUV_ERRA_IMAGE] [real] NULL,
+
+	--/ <summary>RMS position error along minor axis</summary>
+	--/ <quantity>pos.errorEllipse</quantity>
 	[FUV_ERRB_IMAGE] [real] NULL,
+
+	--/ <summary>World RMS position error along major axis</summary>
+	--/ <quantity>pos.errorEllipse</quantity>
 	[FUV_ERRA_WORLD] [real] NULL,
+
+	--/ <summary>World RMS position error along minor axis</summary>
+	--/ <quantity>pos.errorEllipse</quantity>
 	[FUV_ERRB_WORLD] [real] NULL,
+
+	--/ <summary>Error ellipse position angle (CCW/x)</summary>
+	--/ <quantity>pos.posAng</quantity>
 	[FUV_ERRTHETA_IMAGE] [real] NULL,
+
+	--/ <summary>Error ellipse pos. angle (CCW/world-x)</summary>
+	--/ <quantity>pos.posAng</quantity>
 	[FUV_ERRTHETA_WORLD] [real] NULL,
+
+	--/ <summary>J2000 error ellipse pos. angle (east of north)</summary>
+	--/ <quantity>pos.posAng</quantity>
 	[FUV_ERRTHETA_J2000] [real] NULL,
+
+	--/ <summary>FWHM assuming a gaussian core</summary>
+	--/ <quantity>phys.angSize</quantity>
 	[FUV_FWHM_IMAGE] [real] NULL,
+
+	--/ <summary>FWHM assuming a gaussian core</summary>
+	--/ <quantity>phys.angSize</quantity>
 	[FUV_FWHM_WORLD] [real] NULL,
+
+	--/ <summary>Extraction flags</summary>
+	--/ <quantity>meta.code</quantity>
 	[FUV_FLAGS] [smallint] NULL,
+
+	--/ <summary>S/G classifier output</summary>
+	--/ <quantity>src.class.starGalaxy</quantity>
 	[FUV_CLASS_STAR] [real] NULL,
+
+	--/ <summary>Spectrum Flag. Does this object have a spectrum? Yes (1), No (0)</summary>
+	--/ <quantity>meta.code;spect</quantity>
 	[isThereSpectrum] [bit] NULL DEFAULT ((0)),
+
+	--/ <summary>unit vector for ra+dec</summary>
+	--/ <quantity>pos.eq.x</quantity>
 	[cx] [float] NULL DEFAULT ((0)),
+
+	--/ <summary>unit vector for ra+dec</summary>
+	--/ <quantity>pos.eq.y</quantity>
 	[cy] [float] NULL DEFAULT ((0)),
+
+	--/ <summary>unit vector for ra+dec</summary>
+	--/ <quantity>pos.eq.z</quantity>
 	[cz] [float] NULL DEFAULT ((0)),
+
+	--/ <summary>20-deep hierarchical trangular mesh ID of this object.</summary>
+	--/ <quantity>pos.HTM</quantity>
 	[htmID] [bigint] NULL DEFAULT ((0)),
+
+	--/ <summary>Zone ID</summary>
+	--/ <quantity>pos.zone</quantity>
 	[zoneID] [int] NULL DEFAULT ((0)),
  CONSTRAINT [PKPhotoObjAll] PRIMARY KEY CLUSTERED 
 (
