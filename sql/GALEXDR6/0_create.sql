@@ -3913,21 +3913,54 @@ CREATE TABLE [dbo].[photoobjall](
 
 GO
 
+--/ <summary> A location on the sky planned for observations </summary>
+--/ <remarks> </remarks>
 CREATE TABLE [dbo].[PSExtract](
+
+	--/ <quantity>meta.id</quantity>
 	[PSExtractID] [bigint] NOT NULL,
+	
+	--/ <quantity>meta.id</quantity>
 	[survey] [char](3) NOT NULL,
+	
+	--/ <quantity>meta.id</quantity>
 	[tilename] [varchar](32) NOT NULL,
+	
+	--/ <quantity>pos.eq.ra</quantity>
 	[raCenter] [numeric](10, 5) NOT NULL,
+	
+	--/ <quantity>pos.eq.dec</quantity>
 	[decCenter] [numeric](10, 5) NOT NULL,
+	
+	--/ <quantity>pos.cartesian.x</quantity>
 	[xCenter] [numeric](10, 5) NULL,
+	
+	--/ <quantity>pos.cartesian.y</quantity>
 	[yCenter] [numeric](10, 5) NULL,
+	
+	--/ <quantity>instr.offset</quantity>
+	--/ <unit>arcmin</unit>
 	[offSetDstInArcMin] [float] NULL,
+	
+	--/ <quantity>time.duration;obs.exposure</quantity>
 	[nuv_exptime] [float] NULL,
+	
+	--/ <quantity>time.duration;obs.exposure</quantity>
 	[fuv_exptime] [float] NULL,
+	
+	--/ <quantity>meta.id</quantity>
 	[imagingTilenum] [int] NOT NULL,
+	
+	--/ <quantity>meta.id</quantity>
 	[spectraTilenum] [int] NOT NULL,
+	
+	--/ <quantity>meta.number</quantity>
 	[nuv_Visits] [int] NULL,
+	
+	--/ <quantity>meta.number</quantity>
 	[fuv_Visits] [int] NULL,
+	
+	--/ <quantity>meta.number</quantity>
 	[nSpectra] [int] NOT NULL,
 	[img] [int] NOT NULL,
 	[subvis] [smallint] NOT NULL,
@@ -3936,20 +3969,68 @@ CREATE TABLE [dbo].[PSExtract](
 
 GO
 
+--/ <summary> A location on the sky planned for observations </summary>
+--/ <remarks> </remarks>
 CREATE TABLE [dbo].[target](
+
+	--/ <quantity>meta.id</quantity>
 	[plan_id] [bigint] NOT NULL,
+
+	--/ <summary>Unique Id of tile</summary>
+	--/ <quantity>meta.id</quantity>
 	[target_id] [varchar](32) NOT NULL,
+
+	--/ <summary>Time of command execution, relative to start of eclipse</summary>
+	--/ <quantity>time.duration</quantity>
 	[offset_secs] [float] NOT NULL,
+
+	--/ <summary>Observation mode</summary>
+	--/ <quantity>meta.note;obs</quantity>
 	[mode] [varchar](8) NOT NULL,
+
+	--/ <summary>Boresight right ascension, J2000 frame</summary>
+	--/ <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[ra] [float] NOT NULL,
+
+	--/ <summary>Boresight declination, J2000 frame</summary>
+	--/ <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+	--/ <unit>deg</unit>
 	[dec] [float] NOT NULL,
+
+	--/ <summary>Satellite twist angle aka roll</summary>
+	--/ <quantity>pos.posAng</quantity>
+	--/ <unit>deg</unit>
 	[twist] [float] NOT NULL,
+
+	--/ <summary>X axis rotation rate</summary>
+	--/ <quantity></quantity>
+	--/ <unit>rad s-1</unit>
 	[omegax] [float] NOT NULL,
+
+	--/ <summary>Y axis rotation rate</summary>
+	--/ <quantity>phys.veloc.rotat</quantity>
+	--/ <unit>rad s-1</unit>
 	[omegay] [float] NOT NULL,
+
+	--/ <summary>unit vector for ra+dec</summary>
+	--/ <quantity>pos.eq.x;pos.frame=j2000</quantity>
 	[cx] [float] NOT NULL,
+
+	--/ <summary>unit vector for ra+dec</summary>
+	--/ <quantity>pos.eq.y;pos.frame=j2000</quantity>
 	[cy] [float] NOT NULL,
+
+	--/ <summary>unit vector for ra+dec</summary>
+	--/ <quantity>pos.eq.z;pos.frame=j2000</quantity>
 	[cz] [float] NOT NULL,
+
+	--/ <summary>20-deep hierarchical trangular mesh ID of this object.</summary>
+	--/ <quantity>pos.HTM</quantity>
 	[htmId] [bigint] NOT NULL,
+
+	--/ <summary>Zone ID</summary>
+	--/ <quantity>pos.zone</quantity>
 	[zoneId] [int] NOT NULL,
  CONSTRAINT [PK_Target] PRIMARY KEY CLUSTERED 
 (
@@ -3962,481 +4043,1070 @@ CREATE TABLE [dbo].[target](
 GO
 
 CREATE TABLE [dbo].[visitimg](
+	--/ <summary>Pointer to IMG Table for NUV or FUV image</summary>
+	--/ <quantity>meta.id</quantity>
 	[imgID] [bigint] NOT NULL,
+
+	--/ <summary>Pointer to imgrun table for NUV or FUV image</summary>
+	--/ <quantity>meta.id</quantity>
 	[imgRunID] [bigint] NULL,
+
+	--/ <summary>RA center for this field.</summary>
+	--/ <quantity>pos.eq.ra</quantity>
 	[ra_cent] [float] NULL,
+
+	--/ <summary>DEC center for this field.</summary>
+	--/ <quantity>pos.eq.dec</quantity>
 	[dec_cent] [float] NULL,
+
+	--/ <summary>Reduction version (high level)</summary>
+	--/ <quantity>meta.version</quantity>
 	[vsn] [int] NULL,
+
+	--/ <summary>Tile number (a.k.a. field or target)</summary>
+	--/ <quantity>meta.id</quantity>
 	[tileNum] [int] NULL,
+
 	[tile] [varchar](32) NULL,
+
+	--/ <summary>Observation type (0=single,1=multi)</summary>
+	--/ <quantity>meta.code;obs</quantity>
 	[type] [int] NULL,
+
+	--/ <summary>Optics wheel (1=drct,2=grsm,3=opaq)</summary>
+	--/ <quantity>meta.code;instr.param</quantity>
 	[ow] [int] NULL,
+
+	--/ <summary>Reduction product number (type)</summary>
+	--/ <quantity>meta.id</quantity>
 	[prod] [int] NULL,
+
+	--/ <summary>pointer to the extraction of the two NUV and FUV images</summary>
+	--/ <quantity>meta.id</quantity>
 	[img] [int] NULL,
+
+	--/ <summary>Reduction try number (low level)</summary>
+	--/ <quantity>meta.number</quantity>
 	[try] [int] NULL,
+
 	[visit] [int] NULL,
+
+	--/ <summary>fits file where this metadata is extracted</summary>
+	--/ <quantity>meta.note</quantity>
 	[nuv_fileNPath] [varchar](256) NULL,
+
+	--/ <summary>fits file where this metadata is extracted</summary>
+	--/ <quantity>meta.note</quantity>
 	[fuv_fileNPath] [varchar](256) NULL,
+
+	--/ <summary>file does conform to FITS standard</summary>
+	--/ <quantity>meta.note</quantity>
 	[nuv_simple] [varchar](32) NULL,
+
+	--/ <summary>file does conform to FITS standard</summary>
+	--/ <quantity>meta.note</quantity>
 	[fuv_simple] [varchar](32) NULL,
+
+	--/ <summary>number of bits per data pixel</summary>
+	--/ <quantity>meta.number</quantity>
 	[nuv_bitpix] [int] NULL,
+
+	--/ <summary>number of bits per data pixel</summary>
+	--/ <quantity>meta.number</quantity>
 	[fuv_bitpix] [int] NULL,
+
+	--/ <summary>number of data axes</summary>
+	--/ <quantity>meta.number</quantity>
 	[nuv_naxis] [int] NULL,
+
+	--/ <summary>number of data axes</summary>
+	--/ <quantity>meta.number</quantity>
 	[fuv_naxis] [int] NULL,
+
+	--/ <summary>length of data axis 1</summary>
+	--/ <quantity>meta.number</quantity>
 	[nuv_naxis1] [int] NULL,
+
+	--/ <summary>length of data axis 1</summary>
+	--/ <quantity>meta.number</quantity>
 	[fuv_naxis1] [int] NULL,
+
+	--/ <summary>length of data axis 2</summary>
+	--/ <quantity>meta.number</quantity>
 	[nuv_naxis2] [int] NULL,
+
+	--/ <summary>length of data axis 2</summary>
+	--/ <quantity>meta.number</quantity>
 	[fuv_naxis2] [int] NULL,
+
+	--/ <summary>FITS dataset may contain extensions</summary>
+	--/ <quantity>meta.note</quantity>
 	[nuv_extend] [varchar](32) NULL,
+
+	--/ <summary>FITS dataset may contain extensions</summary>
+	--/ <quantity>meta.note</quantity>
 	[fuv_extend] [varchar](32) NULL,
+
+	--/ <summary>The HEASARC Long String Convention may be used.</summary>
+	--/ <quantity>meta.note</quantity>
 	[nuv_longstrn] [varchar](32) NULL,
+
+	--/ <summary>The HEASARC Long String Convention may be used.</summary>
+	--/ <quantity>meta.note</quantity>
 	[fuv_longstrn] [varchar](32) NULL,
+
 	[nuv_cdelt1] [float] NULL,
+
 	[fuv_cdelt1] [float] NULL,
+
 	[nuv_cdelt2] [float] NULL,
+
 	[fuv_cdelt2] [float] NULL,
+
 	[nuv_equinox] [float] NULL,
+
 	[fuv_equinox] [float] NULL,
+
 	[nuv_epoch] [float] NULL,
+
 	[fuv_epoch] [float] NULL,
+
 	[nuv_ctype1] [varchar](32) NULL,
+
 	[fuv_ctype1] [varchar](32) NULL,
+
 	[nuv_ctype2] [varchar](32) NULL,
+
 	[fuv_ctype2] [varchar](32) NULL,
+
 	[nuv_crpix1] [float] NULL,
+
 	[fuv_crpix1] [float] NULL,
+
 	[nuv_crpix2] [float] NULL,
+
 	[fuv_crpix2] [float] NULL,
+
 	[nuv_crval1] [float] NULL,
+
 	[fuv_crval1] [float] NULL,
+
 	[nuv_crval2] [float] NULL,
+
 	[fuv_crval2] [float] NULL,
+
 	[nuv_crota2] [float] NULL,
+
 	[fuv_crota2] [float] NULL,
+
 	[nuv_bunit] [varchar](32) NULL,
+
 	[fuv_bunit] [varchar](32) NULL,
+
 	[nuv_bscale] [float] NULL,
+
 	[fuv_bscale] [float] NULL,
+
 	[nuv_bzero] [float] NULL,
+
 	[fuv_bzero] [float] NULL,
+
 	[nuv_phofile] [varchar](192) NULL,
+
 	[fuv_phofile] [varchar](192) NULL,
+
 	[nuv_aspfile] [varchar](192) NULL,
+
 	[fuv_aspfile] [varchar](192) NULL,
+
 	[nuv_hkfile] [varchar](32) NULL,
+
 	[fuv_hkfile] [varchar](32) NULL,
+
 	[nuv_calpath] [varchar](64) NULL,
+
 	[fuv_calpath] [varchar](64) NULL,
+
 	[nuv_flatfl] [varchar](128) NULL,
+
 	[fuv_flatfl] [varchar](128) NULL,
+
 	[nuv_dtbgndfl] [varchar](32) NULL,
+
 	[fuv_dtbgndfl] [varchar](32) NULL,
+
 	[nuv_spflatfl] [varchar](32) NULL,
+
 	[fuv_spflatfl] [varchar](32) NULL,
+
 	[nuv_maskfl] [varchar](128) NULL,
+
 	[fuv_maskfl] [varchar](128) NULL,
+
 	[nuv_smapvers] [varchar](128) NULL,
+
 	[fuv_smapvers] [varchar](128) NULL,
+
 	[nuv_psffwhm] [float] NULL,
+
 	[fuv_psffwhm] [float] NULL,
+
+	--/ <summary>Band number (1=nuv,2=fuv,3=both)</summary>
+	--/ <quantity>meta.code;instr.bandpass</quantity>
 	[nuv_band] [int] NULL,
+
+	--/ <summary>Band number (1=nuv,2=fuv,3=both)</summary>
+	--/ <quantity>meta.code;instr.bandpass</quantity>
 	[fuv_band] [int] NULL,
+
+	--/ <summary>Optics wheel (1=drct,2=grsm,3=opaq)</summary>
+	--/ <quantity>meta.code;instr.param</quantity>
 	[nuv_ow] [int] NULL,
+
+	--/ <summary>Optics wheel (1=drct,2=grsm,3=opaq)</summary>
+	--/ <quantity>meta.code;instr.param</quantity>
 	[fuv_ow] [int] NULL,
+
 	[nuv_direct] [int] NULL,
+
 	[fuv_direct] [int] NULL,
+
 	[nuv_grism] [int] NULL,
+
 	[fuv_grism] [int] NULL,
+
 	[nuv_opaque] [int] NULL,
+
 	[fuv_opaque] [int] NULL,
+
+	--/ <summary>RA center for this field.</summary>
+	--/ <quantity>pos.eq.ra</quantity>
 	[nuv_ra_cent] [float] NULL,
+
+	--/ <summary>RA center for this field.</summary>
+	--/ <quantity>pos.eq.ra</quantity>
 	[fuv_ra_cent] [float] NULL,
+
+	--/ <summary>DEC center for this field.</summary>
+	--/ <quantity>pos.eq.dec</quantity>
 	[nuv_dec_cent] [float] NULL,
+
+	--/ <summary>DEC center for this field.</summary>
+	--/ <quantity>pos.eq.dec</quantity>
 	[fuv_dec_cent] [float] NULL,
+
 	[nuv_twist] [float] NULL,
+
 	[fuv_twist] [float] NULL,
+
 	[nuv_grspa] [float] NULL,
+
 	[fuv_grspa] [float] NULL,
+
+	--/ <summary>Planned leg number for AIS</summary>
+	--/ <quantity>meta.number</quantity>
 	[nuv_leg] [int] NULL,
+
+	--/ <summary>Planned leg number for AIS</summary>
+	--/ <quantity>meta.number</quantity>
 	[fuv_leg] [int] NULL,
+
 	[nuv_mpsnpos] [int] NULL,
+
 	[fuv_mpsnpos] [int] NULL,
+
 	[nuv_minivis] [int] NULL,
+
 	[fuv_minivis] [int] NULL,
+
 	[nuv_subvis] [int] NULL,
+
 	[fuv_subvis] [int] NULL,
+
 	[nuv_object] [varchar](64) NULL,
+
 	[fuv_object] [varchar](64) NULL,
+
 	[nuv_expstart] [float] NULL,
+
 	[fuv_expstart] [float] NULL,
+
 	[nuv_expend] [float] NULL,
+
 	[fuv_expend] [float] NULL,
+
 	[nuv_obs_date] [varchar](32) NULL,
+
 	[fuv_obs_date] [varchar](32) NULL,
+
 	[nuv_time_obs] [varchar](32) NULL,
+
 	[fuv_time_obs] [varchar](32) NULL,
+
 	[nuv_obsdatim] [varchar](32) NULL,
+
 	[fuv_obsdatim] [varchar](32) NULL,
+
 	[nuv_obssecs] [float] NULL,
+
 	[fuv_obssecs] [float] NULL,
+
 	[nuv_eclipse] [int] NULL,
+
 	[fuv_eclipse] [int] NULL,
+
 	[nuv_visit] [int] NULL,
+
 	[fuv_visit] [int] NULL,
+
 	[nuv_planid] [int] NULL,
+
 	[fuv_planid] [int] NULL,
+
+	--/ <summary>Tile number (a.k.a. field or target)</summary>
+	--/ <quantity>meta.id</quantity>
 	[nuv_tilenum] [int] NULL,
+
+	--/ <summary>Tile number (a.k.a. field or target)</summary>
+	--/ <quantity>meta.id</quantity>
 	[fuv_tilenum] [int] NULL,
+
 	[nuv_tile] [varchar](32) NULL,
+
 	[fuv_tile] [varchar](32) NULL,
+
 	[nuv_tilename] [varchar](32) NULL,
+
 	[fuv_tilename] [varchar](32) NULL,
+
 	[nuv_mpsplan] [varchar](32) NULL,
+
 	[fuv_mpsplan] [varchar](32) NULL,
+
 	[nuv_mpstype] [varchar](32) NULL,
+
 	[fuv_mpstype] [varchar](32) NULL,
+
 	[nuv_mpsphase] [varchar](32) NULL,
+
 	[fuv_mpsphase] [varchar](32) NULL,
+
 	[nuv_roll] [float] NULL,
+
 	[fuv_roll] [float] NULL,
+
 	[nuv_skygrid] [int] NULL,
+
 	[fuv_skygrid] [int] NULL,
+
 	[nuv_nhvnom] [int] NULL,
+
 	[fuv_nhvnom] [int] NULL,
+
 	[nuv_nhvnomn] [int] NULL,
+
 	[fuv_nhvnomn] [int] NULL,
+
 	[nuv_nhvnomf] [int] NULL,
+
 	[fuv_nhvnomf] [int] NULL,
+
 	[nuv_whichims] [int] NULL,
+
 	[fuv_whichims] [int] NULL,
+
 	[nuv_nvalidph] [int] NULL,
+
 	[fuv_nvalidph] [int] NULL,
+
 	[nuv_smnsecs] [int] NULL,
+
 	[fuv_smnsecs] [int] NULL,
+
 	[nuv_smr0] [float] NULL,
+
 	[fuv_smr0] [float] NULL,
+
 	[nuv_smr1] [float] NULL,
+
 	[fuv_smr1] [float] NULL,
+
 	[nuv_smnltr0] [int] NULL,
+
 	[fuv_smnltr0] [int] NULL,
+
 	[nuv_smnltr1] [int] NULL,
+
 	[fuv_smnltr1] [int] NULL,
+
 	[nuv_smnr0r1] [int] NULL,
+
 	[fuv_smnr0r1] [int] NULL,
+
 	[nuv_smngtr1] [int] NULL,
+
 	[fuv_smngtr1] [int] NULL,
+
 	[nuv_smr8ltr0] [float] NULL,
+
 	[fuv_smr8ltr0] [float] NULL,
+
 	[nuv_smr8gtr1] [float] NULL,
+
 	[fuv_smr8gtr1] [float] NULL,
+
 	[nuv_smr8r0r1] [float] NULL,
+
 	[fuv_smr8r0r1] [float] NULL,
+
 	[nuv_grelease] [varchar](32) NULL,
+
 	[fuv_grelease] [varchar](32) NULL,
+
 	[nuv_scstgrel] [varchar](32) NULL,
+
 	[fuv_scstgrel] [varchar](32) NULL,
+
 	[nuv_ndtdet] [float] NULL,
+
 	[fuv_ndtdet] [float] NULL,
+
 	[nuv_ndttdc] [float] NULL,
+
 	[fuv_ndttdc] [float] NULL,
+
 	[nuv_ndtampa] [float] NULL,
+
 	[fuv_ndtampa] [float] NULL,
+
 	[nuv_ndtampb] [float] NULL,
+
 	[fuv_ndtampb] [float] NULL,
+
 	[nuv_ndtcon] [float] NULL,
+
 	[fuv_ndtcon] [float] NULL,
+
 	[nuv_itnuvoba] [float] NULL,
+
 	[fuv_itnuvoba] [float] NULL,
+
 	[nuv_ndthvps] [float] NULL,
+
 	[fuv_ndthvps] [float] NULL,
+
 	[nuv_ndtlvps] [float] NULL,
+
 	[fuv_ndtlvps] [float] NULL,
+
 	[nuv_ndtdib] [float] NULL,
+
 	[fuv_ndtdib] [float] NULL,
+
 	[nuv_ndhvmon] [float] NULL,
+
 	[fuv_ndhvmon] [float] NULL,
+
 	[nuv_ndhimon] [float] NULL,
+
 	[fuv_ndhimon] [float] NULL,
+
 	[nuv_ndsfhv] [float] NULL,
+
 	[fuv_ndsfhv] [float] NULL,
+
 	[nuv_ndctec] [float] NULL,
+
 	[fuv_ndctec] [float] NULL,
+
 	[nuv_ndcfec] [float] NULL,
+
 	[fuv_ndcfec] [float] NULL,
+
 	[nuv_ndcdec] [float] NULL,
+
 	[fuv_ndcdec] [float] NULL,
+
 	[nuv_fdtdet] [float] NULL,
+
 	[fuv_fdtdet] [float] NULL,
+
 	[nuv_fdttdc] [float] NULL,
+
 	[fuv_fdttdc] [float] NULL,
+
 	[nuv_fdtampa] [float] NULL,
+
 	[fuv_fdtampa] [float] NULL,
+
 	[nuv_fdtampb] [float] NULL,
+
 	[fuv_fdtampb] [float] NULL,
+
 	[nuv_fdtcon] [float] NULL,
+
 	[fuv_fdtcon] [float] NULL,
+
 	[nuv_itfuvoba] [float] NULL,
+
 	[fuv_itfuvoba] [float] NULL,
+
 	[nuv_fdthvps] [float] NULL,
+
 	[fuv_fdthvps] [float] NULL,
+
 	[nuv_fdtlvps] [float] NULL,
+
 	[fuv_fdtlvps] [float] NULL,
+
 	[nuv_fdtdib] [float] NULL,
+
 	[fuv_fdtdib] [float] NULL,
+
 	[nuv_fdhvmon] [float] NULL,
+
 	[fuv_fdhvmon] [float] NULL,
+
 	[nuv_fdhimon] [float] NULL,
+
 	[fuv_fdhimon] [float] NULL,
+
 	[nuv_fdsfhv] [float] NULL,
+
 	[fuv_fdsfhv] [float] NULL,
+
 	[nuv_fdctec] [float] NULL,
+
 	[fuv_fdctec] [float] NULL,
+
 	[nuv_fdcfec] [float] NULL,
+
 	[fuv_fdcfec] [float] NULL,
+
 	[nuv_fdcdec] [float] NULL,
+
 	[fuv_fdcdec] [float] NULL,
+
 	[nuv_itm1hshl] [float] NULL,
+
 	[fuv_itm1hshl] [float] NULL,
+
 	[nuv_itm2hub] [float] NULL,
+
 	[fuv_itm2hub] [float] NULL,
+
 	[nuv_itcylbaf] [float] NULL,
+
 	[fuv_itcylbaf] [float] NULL,
+
 	[nuv_nchunks] [int] NULL,
+
 	[fuv_nchunks] [int] NULL,
+
 	[nuv_nruns] [float] NULL,
+
 	[fuv_nruns] [float] NULL,
+
 	[nuv_phtrng0] [float] NULL,
+
 	[fuv_phtrng0] [float] NULL,
+
 	[nuv_phtrng1] [float] NULL,
+
 	[fuv_phtrng1] [float] NULL,
+
 	[nuv_phtfirst] [float] NULL,
+
 	[fuv_phtfirst] [float] NULL,
+
 	[nuv_phtlast] [float] NULL,
+
 	[fuv_phtlast] [float] NULL,
+
 	[nuv_phtelap] [float] NULL,
+
 	[fuv_phtelap] [float] NULL,
+
+	--/ <summary>BQ: Exposure time in seconds (based on NUV).</summary>
+	--/ <quantity>time.duration;obs.exposure</quantity>
+	--/ <unit>sec</unit>
 	[nuv_exptime] [float] NULL,
+
+	--/ <summary>BQ: Exposure time in seconds (based on NUV).</summary>
+	--/ <quantity>time.duration;obs.exposure</quantity>
+	--/ <unit>sec</unit>
 	[fuv_exptime] [float] NULL,
+
 	[nuv_ngaps] [float] NULL,
+
 	[fuv_ngaps] [float] NULL,
+
 	[nuv_totread] [float] NULL,
+
 	[fuv_totread] [float] NULL,
+
 	[nuv_totmap] [float] NULL,
+
 	[fuv_totmap] [float] NULL,
+
 	[nuv_totonmap] [float] NULL,
+
 	[fuv_totonmap] [float] NULL,
+
 	[nuv_nmasked] [float] NULL,
+
 	[fuv_nmasked] [float] NULL,
+
 	[nuv_nvisible] [float] NULL,
+
 	[fuv_nvisible] [float] NULL,
+
 	[nuv_nstim1] [float] NULL,
+
 	[fuv_nstim1] [float] NULL,
+
 	[nuv_stim1x] [float] NULL,
+
 	[fuv_stim1x] [float] NULL,
+
 	[nuv_stim1y] [float] NULL,
+
 	[fuv_stim1y] [float] NULL,
+
 	[nuv_nstim2] [float] NULL,
+
 	[fuv_nstim2] [float] NULL,
+
 	[nuv_stim2x] [float] NULL,
+
 	[fuv_stim2x] [float] NULL,
+
 	[nuv_stim2y] [float] NULL,
+
 	[fuv_stim2y] [float] NULL,
+
 	[nuv_nstim3] [float] NULL,
+
 	[fuv_nstim3] [float] NULL,
+
 	[nuv_stim3x] [float] NULL,
+
 	[fuv_stim3x] [float] NULL,
+
 	[nuv_stim3y] [float] NULL,
+
 	[fuv_stim3y] [float] NULL,
+
 	[nuv_nstim4] [float] NULL,
+
 	[fuv_nstim4] [float] NULL,
+
 	[nuv_stim4x] [float] NULL,
+
 	[fuv_stim4x] [float] NULL,
+
 	[nuv_stim4y] [float] NULL,
+
 	[fuv_stim4y] [float] NULL,
+
 	[nuv_cntmed] [float] NULL,
+
 	[fuv_cntmed] [float] NULL,
+
 	[nuv_cntave] [float] NULL,
+
 	[fuv_cntave] [float] NULL,
+
 	[nuv_cntpct1] [float] NULL,
+
 	[fuv_cntpct1] [float] NULL,
+
 	[nuv_cntpct99] [float] NULL,
+
 	[fuv_cntpct99] [float] NULL,
+
 	[nuv_xnot0ave] [float] NULL,
+
 	[fuv_xnot0ave] [float] NULL,
+
 	[nuv_ynot0ave] [float] NULL,
+
 	[fuv_ynot0ave] [float] NULL,
+
 	[nuv_nnot0] [float] NULL,
+
 	[fuv_nnot0] [float] NULL,
+
 	[nuv_rrmed] [float] NULL,
+
 	[fuv_rrmed] [float] NULL,
+
 	[nuv_rrave] [float] NULL,
+
 	[fuv_rrave] [float] NULL,
+
 	[nuv_rrpct1] [float] NULL,
+
 	[fuv_rrpct1] [float] NULL,
+
 	[nuv_rrpct99] [float] NULL,
+
 	[fuv_rrpct99] [float] NULL,
+
 	[nuv_naspok] [int] NULL,
+
 	[fuv_naspok] [int] NULL,
+
 	[nuv_naspall] [int] NULL,
+
 	[fuv_naspall] [int] NULL,
+
 	[nuv_naspxy] [int] NULL,
+
 	[fuv_naspxy] [int] NULL,
+
 	[nuv_avaspx] [float] NULL,
+
 	[fuv_avaspx] [float] NULL,
+
 	[nuv_avaspy] [float] NULL,
+
 	[fuv_avaspy] [float] NULL,
+
 	[nuv_avasprrx] [float] NULL,
+
 	[fuv_avasprrx] [float] NULL,
+
 	[nuv_avasprry] [float] NULL,
+
 	[fuv_avasprry] [float] NULL,
+
+	--/ <summary>Average Aspect RA of Field Center</summary>
+	--/ <quantity>pos.eq.ra</quantity>
 	[nuv_avaspra] [float] NULL,
+
+	--/ <summary>Average Aspect RA of Field Center</summary>
+	--/ <quantity>pos.eq.ra</quantity>
 	[fuv_avaspra] [float] NULL,
+
+	--/ <summary>Average Aspect DEC of Field Center</summary>
+	--/ <quantity>pos.eq.dec</quantity>
 	[nuv_avaspdec] [float] NULL,
+
+	--/ <summary>Average Aspect DEC of Field Center</summary>
+	--/ <quantity>pos.eq.dec</quantity>
 	[fuv_avaspdec] [float] NULL,
+
+	--/ <summary>Average Aspect ROLL angle (deg)</summary>
+	--/ <quantity>pos.posAng</quantity>
+	--/ <unit>deg</unit>
 	[nuv_avasprol] [float] NULL,
+
+	--/ <summary>Average Aspect ROLL angle (deg)</summary>
+	--/ <quantity>pos.posAng</quantity>
+	--/ <unit>deg</unit>
 	[fuv_avasprol] [float] NULL,
+
 	[nuv_nstmsamp] [int] NULL,
+
 	[fuv_nstmsamp] [int] NULL,
+
 	[nuv_stmtime] [float] NULL,
+
 	[fuv_stmtime] [float] NULL,
+
 	[nuv_stm1x] [float] NULL,
+
 	[fuv_stm1x] [float] NULL,
+
 	[nuv_stm1y] [float] NULL,
+
 	[fuv_stm1y] [float] NULL,
+
 	[nuv_stm2x] [float] NULL,
+
 	[fuv_stm2x] [float] NULL,
+
 	[nuv_stm2y] [float] NULL,
+
 	[fuv_stm2y] [float] NULL,
+
 	[nuv_stm3x] [float] NULL,
+
 	[fuv_stm3x] [float] NULL,
+
 	[nuv_stm3y] [float] NULL,
+
 	[fuv_stm3y] [float] NULL,
+
 	[nuv_stm4x] [float] NULL,
+
 	[fuv_stm4x] [float] NULL,
+
 	[nuv_stm4y] [float] NULL,
+
 	[fuv_stm4y] [float] NULL,
+
 	[nuv_stmsclx] [float] NULL,
+
 	[fuv_stmsclx] [float] NULL,
+
 	[nuv_stmoffx] [float] NULL,
+
 	[fuv_stmoffx] [float] NULL,
+
 	[nuv_stmoffy] [float] NULL,
+
 	[fuv_stmoffy] [float] NULL,
+
 	[nuv_stm1xsd] [float] NULL,
+
 	[fuv_stm1xsd] [float] NULL,
+
 	[nuv_stm3xsd] [float] NULL,
+
 	[fuv_stm3xsd] [float] NULL,
+
 	[nuv_stm1ysd] [float] NULL,
+
 	[fuv_stm1ysd] [float] NULL,
+
 	[nuv_stm2ysd] [float] NULL,
+
 	[fuv_stm2ysd] [float] NULL,
+
 	[nuv_r8int] [float] NULL,
+
 	[fuv_r8int] [float] NULL,
+
 	[nuv_nrates] [int] NULL,
+
 	[fuv_nrates] [int] NULL,
+
 	[nuv_maxrates] [int] NULL,
+
 	[fuv_maxrates] [int] NULL,
+
 	[nuv_aver8] [float] NULL,
+
 	[fuv_aver8] [float] NULL,
+
 	[nuv_sigr8] [float] NULL,
+
 	[fuv_sigr8] [float] NULL,
+
 	[nuv_minr8] [float] NULL,
+
 	[fuv_minr8] [float] NULL,
+
 	[nuv_maxr8] [float] NULL,
+
 	[fuv_maxr8] [float] NULL,
+
 	[nuv_avestmr8] [float] NULL,
+
 	[fuv_avestmr8] [float] NULL,
+
 	[nuv_sigstmr8] [float] NULL,
+
 	[fuv_sigstmr8] [float] NULL,
+
 	[nuv_minstmr8] [float] NULL,
+
 	[fuv_minstmr8] [float] NULL,
+
 	[nuv_maxstmr8] [float] NULL,
+
 	[fuv_maxstmr8] [float] NULL,
+
 	[nuv_nodead] [int] NULL,
+
 	[fuv_nodead] [int] NULL,
+
 	[nuv_ndedhist] [int] NULL,
+
 	[fuv_ndedhist] [int] NULL,
+
 	[nuv_ndedzero] [int] NULL,
+
 	[fuv_ndedzero] [int] NULL,
+
 	[nuv_ndead] [int] NULL,
+
 	[fuv_ndead] [int] NULL,
+
 	[nuv_avefdead] [float] NULL,
+
 	[fuv_avefdead] [float] NULL,
+
 	[nuv_sigfdead] [float] NULL,
+
 	[fuv_sigfdead] [float] NULL,
+
 	[nuv_minfdead] [float] NULL,
+
 	[fuv_minfdead] [float] NULL,
+
 	[nuv_maxfdead] [float] NULL,
+
 	[fuv_maxfdead] [float] NULL,
+
 	[nuv_ndead1] [int] NULL,
+
 	[fuv_ndead1] [int] NULL,
+
 	[nuv_avefded1] [float] NULL,
+
 	[fuv_avefded1] [float] NULL,
+
 	[nuv_sigfded1] [float] NULL,
+
 	[fuv_sigfded1] [float] NULL,
+
 	[nuv_minfded1] [float] NULL,
+
 	[fuv_minfded1] [float] NULL,
+
 	[nuv_maxfded1] [float] NULL,
+
 	[fuv_maxfded1] [float] NULL,
+
 	[nuv_ndead2] [int] NULL,
+
 	[fuv_ndead2] [int] NULL,
+
 	[nuv_avefded2] [float] NULL,
+
 	[fuv_avefded2] [float] NULL,
+
 	[nuv_sigfded2] [float] NULL,
+
 	[fuv_sigfded2] [float] NULL,
+
 	[nuv_minfded2] [float] NULL,
+
 	[fuv_minfded2] [float] NULL,
+
 	[nuv_maxfded2] [float] NULL,
+
 	[fuv_maxfded2] [float] NULL,
+
 	[nuv_nskip] [int] NULL,
+
 	[fuv_nskip] [int] NULL,
+
 	[nuv_nskip00] [int] NULL,
+
 	[fuv_nskip00] [int] NULL,
+
 	[nuv_nskip01] [int] NULL,
+
 	[fuv_nskip01] [int] NULL,
+
 	[nuv_nskip02] [int] NULL,
+
 	[fuv_nskip02] [int] NULL,
+
 	[nuv_nskip03] [int] NULL,
+
 	[fuv_nskip03] [int] NULL,
+
 	[nuv_nskip04] [int] NULL,
+
 	[fuv_nskip04] [int] NULL,
+
 	[nuv_nskip05] [int] NULL,
+
 	[fuv_nskip05] [int] NULL,
+
 	[nuv_nskip06] [int] NULL,
+
 	[fuv_nskip06] [int] NULL,
+
 	[nuv_nskip07] [int] NULL,
+
 	[fuv_nskip07] [int] NULL,
+
 	[nuv_nskip08] [int] NULL,
+
 	[fuv_nskip08] [int] NULL,
+
 	[nuv_nskip09] [int] NULL,
+
 	[fuv_nskip09] [int] NULL,
+
 	[nuv_nskip10] [int] NULL,
+
 	[fuv_nskip10] [int] NULL,
+
 	[nuv_nskip11] [int] NULL,
+
 	[fuv_nskip11] [int] NULL,
+
 	[nuv_pmedrr] [float] NULL,
+
 	[fuv_pmedrr] [float] NULL,
+
 	[nuv_pthresh] [float] NULL,
+
 	[fuv_pthresh] [float] NULL,
+
 	[nuv_pmedbg] [float] NULL,
+
 	[fuv_pmedbg] [float] NULL,
+
 	[nuv_prmsbg] [float] NULL,
+
 	[fuv_prmsbg] [float] NULL,
+
 	[nuv_pthrbg] [float] NULL,
+
 	[fuv_pthrbg] [float] NULL,
+
 	[nuv_psigdet] [float] NULL,
+
 	[fuv_psigdet] [float] NULL,
+
 	[nuv_pmedthr] [float] NULL,
+
 	[fuv_pmedthr] [float] NULL,
+
 	[nuv_prmsthr] [float] NULL,
+
 	[fuv_prmsthr] [float] NULL,
+
 	[subvis] [int] NULL,
+
+	--/ <summary>?</summary>
+	--/ <quantity>meta.id</quantity>
 	[subGridId] [int] NULL,
+
+	--/ <summary>?</summary>
+	--/ <quantity>meta.id</quantity>
 	[gridId] [int] NULL,
+
+	--/ <summary>indicates GR release, 2.0, 3.0, ...</summary>
+	--/ <quantity>meta.version</quantity>
 	[GRReleaseNumber] [real] NULL,
+
+	--/ <summary>unit vector for ra+dec</summary>
+	--/ <quantity>pos.eq.x</quantity>
 	[cx] [float] NULL,
+
+	--/ <summary>unit vector for ra+dec</summary>
+	--/ <quantity>pos.eq.y</quantity>
 	[cy] [float] NULL,
+
+	--/ <summary>unit vector for ra+dec</summary>
+	--/ <quantity>pos.eq.z</quantity>
 	[cz] [float] NULL,
+
+	--/ <summary>20-deep hierarchical trangular mesh ID of this object.</summary>
+	--/ <quantity>pos.HTM</quantity>
 	[htmid] [bigint] NULL,
+
+	--/ <summary>Zone ID</summary>
+	--/ <quantity>pos.zone</quantity>
 	[zoneid] [int] NULL,
  CONSTRAINT [PKVisitImg] PRIMARY KEY CLUSTERED 
 (
@@ -4446,6 +5116,8 @@ CREATE TABLE [dbo].[visitimg](
 
 GO
 
+--/ <summary> Extraction run information </summary>
+--/ <remarks> Each record contains the extraction parameters for NUV and FUV band. </remarks>
 CREATE TABLE [dbo].[visitphotoextract](
 	--/ <summary>pointer to the extraction of the two NUV and FUV images</summary>
 	--/ <quantity>meta.id</quantity>
