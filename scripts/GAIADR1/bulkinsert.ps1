@@ -1,0 +1,1 @@
+foreach ($f in ls *.csv) { bcp Source in $f.Name -S sciserver04 -d GaiaDR1_Load -T -c -F 2 -t',' -r '0x0A' -h 'TABLOCK' }
