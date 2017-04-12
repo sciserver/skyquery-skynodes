@@ -3969,6 +3969,14 @@ CREATE TABLE [dbo].[PSExtract](
 
 GO
 
+ALTER TABLE dbo.PSExtract
+ADD CONSTRAINT PK_PSExtract PRIMARY KEY CLUSTERED 
+(
+	PSExtractID
+) WITH (DATA_COMPRESSION = PAGE, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+
 --/ <summary> A location on the sky planned for observations </summary>
 --/ <remarks> </remarks>
 CREATE TABLE [dbo].[target](
