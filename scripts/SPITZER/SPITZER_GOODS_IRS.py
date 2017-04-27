@@ -14,7 +14,11 @@ import numpy as np
 path = r"\\SKYQUERY01\Data\temp0\data0\ebanyai\SPITZER\\"
 src = path+"GOODSN-16.tbl"
 src2 = path+"GOODSS-16.tbl"
-cols = ["id","ra","dec","cov","s3_6","e_s3_6","s4_5","e_s4_5","s5_8","e_s5_8",
+cols1 = ["id","ra","dec","cov","s3_6","e_s3_6","s4_5","e_s4_5","s5_8","e_s5_8",
+        "s8","e_s8","s16","e_s16","s24","e_s24","zspec","r_zspec","xdet","sbf",
+        "hbf","star","ratio","ncf","ncf16","q","e","bmag","vmag","imag","zmag",
+        "ebmag","evmag","eimag","ezmag","icls","cntr"]
+cols2 = ["id","ra","dec","cov","s3_6","e_s3_6","s4_5","e_s4_5","s5_8","e_s5_8",
         "s8","e_s8","s16","e_s16","s24","e_s24","zspec","r_zspec","xdet","sbf",
         "hbf","star","ratio","ncf","ncf16","q","e","bmag","vmag","imag","zmag",
         "ebmag","evmag","eimag","ezmag","icls"]
@@ -63,13 +67,13 @@ dt_df = np.dtype(types)
 
 
 # grab the data
-# GOODS-N MIPS 24
-df1 = pd.read_table(src,index_col=False,skiprows=91,skipinitialspace=True,sep=" ",na_values=["null"])
+# GOODS-N IRS 16
+df1 = pd.read_table(src,names=cols1,index_col=False,skiprows=91,skipinitialspace=True,sep=" ",na_values=["null"])
 df1.fillna(value=-99,inplace=True)
 df1["objID"] = df1.index+1  
 
-# GOODS-N MIPS 24
-df2 = pd.read_table(src2,names=cols,index_col=False,skiprows=89,skipinitialspace=True, sep=" ",na_values=["null"])
+# GOODS-N IRS 16
+df2 = pd.read_table(src2,names=cols2,index_col=False,skiprows=89,skipinitialspace=True, sep=" ",na_values=["null"])
 df2.fillna(value=-99,inplace=True)       
 df2["objID"] = df2.index+1                  
 

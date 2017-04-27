@@ -1,4 +1,4 @@
-USE [SkyNode_SPITZER]
+USE [Graywulf_Temp]
 
 GO
 
@@ -237,7 +237,7 @@ GO
 -- INSERT DATA + CREATE HTMID, CX, CY, CZ
 INSERT dbo.goodsnIRS16micron WITH (TABLOCKX)
 ( cx, cy, cz, htmid, zoneid, objID, id, ra, dec, cov, s3_6, e_s3_6, s4_5, e_s4_5, s5_8, e_s5_8, s8, e_s8, s16, e_s16, s24, e_s24, zspec, r_zspec, xdet, sbf, hbf, star, ratio, ncf, ncf16, q, e, bmag, vmag, imag, zmag, ebmag, evmag, eimag, ezmag, icls)
-SELECT c.x AS  cx, c.y AS cy, c.z AS cz, SkyQuery_CODE_dev.htmid.FromXyz(c.x,c.y,c.z) AS htmid, SkyQuery_CODE_dev.skyquery.ZoneIDFromDec(dec,4.0/3600.00000000) as zoneid, objID, id, ra, dec, cov, s3_6, e_s3_6, s4_5, e_s4_5, s5_8, e_s5_8, s8, e_s8, s16, e_s16, s24, e_s24, zspec, r_zspec, xdet, sbf, hbf, star, ratio, ncf, ncf16, q, e, bmag, vmag, imag, zmag, ebmag, evmag, eimag, ezmag, icls
+SELECT c.x AS  cx, c.y AS cy, c.z AS cz, SkyQuery_CODE_dev.htmid.FromXyz(c.x,c.y,c.z) AS htmid, SkyQuery_CODE_prod.skyquery.ZoneIDFromDec(dec,4.0/3600.00000000) as zoneid, objID, id, ra, dec, cov, s3_6, e_s3_6, s4_5, e_s4_5, s5_8, e_s5_8, s8, e_s8, s16, e_s16, s24, e_s24, zspec, r_zspec, xdet, sbf, hbf, star, ratio, ncf, ncf16, q, e, bmag, vmag, imag, zmag, ebmag, evmag, eimag, ezmag, icls
 FROM dbo.goodsnIRS16micronRAW
 CROSS APPLY SkyQuery_CODE_dev.point.EqToXyz(ra, dec) AS c
 

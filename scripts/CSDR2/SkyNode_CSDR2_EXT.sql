@@ -71,7 +71,7 @@ CREATE TABLE dbo.PhotoObj
 	[cz] [float] NOT NULL,
 
 	--/ <summary> HTM ID (J2000)</summary>
-	[htmid] [float] NOT NULL,
+	[htmid] [bigint] NOT NULL,
 
 	--/ <summary> Zone ID </summary>
 	[zoneid] int NOT NULL,

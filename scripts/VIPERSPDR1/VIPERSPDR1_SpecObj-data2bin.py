@@ -28,8 +28,8 @@ df = pd.concat([df1,df2],ignore_index=True)
 # DEFINE DATA TYPES FOR BINARY FORMAT
 types = [("id_IAU","S16"),
         ("num","i8"),
-        ("ra","f4"),
-        ("dec","f4"),
+        ("alpha","f4"),
+        ("delta","f4"),
         ("selmag","f4"),
         ("errselmag","f4"),
         ("pointing","S6"),

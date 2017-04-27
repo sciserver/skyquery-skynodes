@@ -44,7 +44,7 @@ data["RA_hms"] = data.apply(lambda x:'%s %s %s' % (x['RA1'],x['RA2'],x["RA3"]),a
 data["Dec_dms"] = data.apply(lambda x:'%s %s %s' % (x['Dec1'],x['Dec2'],x["Dec3"]),axis=1)
 
 coords = SkyCoord(data["RA_hms"],data["Dec_dms"],unit=(u.hourangle,u.deg))
-data["RA"],data["DEC"] = coords.ra.deg, coords.dec.deg
+data["RA"],data["Dec"] = coords.ra.deg, coords.dec.deg
 
 
 # DEFINE DATA TYPES FOR BINARY FORMAT
