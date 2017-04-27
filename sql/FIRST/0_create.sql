@@ -55,7 +55,7 @@ CREATE TABLE dbo.PhotoObj
 
 	--/ <summary>HTM ID (J2000)</summary>
 	--/ <quantity>pos.HTM;pos.eq;pos.frame=j2000</quantity>
-	[htmid] [float] NOT NULL,
+	[htmid] [bigint] NOT NULL,
 
 	--/ <summary> Zone ID </summary>
 	--/ <quantity>pos.zone;pos.eq;pos.frame=j2000</quantity>
