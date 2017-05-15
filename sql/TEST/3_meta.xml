@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+  <dataset>
+    <summary>This is a test dataset</summary>
+    <remarks>
+      <h3>Project web site</h3>
+      <p>
+        <a href="http://test.com/">http://test.com/</a>
+      </p>
+      <h3>References</h3>
+      <ul>
+        <li>Dobos et al. ApJ 2017 123 345 pp 435-123</li>
+      </ul>
+    </remarks>
+    <icon>test.jpg</icon>
+  </dataset>
+  <table name="[dbo].[CatalogA]">
+    <remarks>Some remarks about this catalog</remarks>
+    <example>
+      Here's an example query
+      with two lines of comment.
+      <query>SELECT * FROM CatalogA</query>
+    </example>
+    <column name="[objId]">
+      <summary></summary>
+      <quantity>meta.id</quantity>
+    </column>
+    <column name="[ra]">
+      <summary>Right ascension (J2000)</summary>
+      <quantity>pos.eq.ra; pos.frame=j2000</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[dec]">
+      <summary>Declination (J2000)</summary>
+      <quantity>pos.eq.dec; pos.frame=j2000</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[astroErr]">
+      <summary>Declination (J2000)</summary>
+      <quantity>stat.error; pos.eq</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[cx]">
+      <summary>Equatorial cartesian X (J2000)</summary>
+      <quantity>pos.eq.x;pos.frame=j2000</quantity>
+    </column>
+    <column name="[cy]">
+      <summary>Equatiorial cartesian Y (J2000)</summary>
+      <quantity>pos.eq.y;pos.frame=j2000</quantity>
+    </column>
+    <column name="[cz]">
+      <summary>Equatorial cartesian Z (J2000)</summary>
+      <quantity>pos.eq.z;pos.frame=j2000</quantity>
+    </column>
+    <column name="[htmId]">
+      <summary>Equatorial HTM ID (J2000)</summary>
+      <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+    </column>
+    <column name="[zoneId]">
+      <summary>Equatorial Zone ID (J2000)</summary>
+      <quantity>pos.zone; pos.eq; pos.frome=j2000</quantity>
+    </column>
+    <column name="[mag_1]">
+      <summary>Magnitude 1</summary>
+      <quantity>phot.mag</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[mag_2]">
+      <summary>Magnitude 2</summary>
+      <quantity>phot.mag</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[mag_3]">
+      <summary>Magnitude 3</summary>
+      <quantity>phot.mag</quantity>
+      <unit>mag</unit>
+    </column>
+  </table>
+</metadata>
