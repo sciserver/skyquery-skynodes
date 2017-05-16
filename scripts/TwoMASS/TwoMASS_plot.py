@@ -27,3 +27,27 @@ plt.show()
 
 plot.CreateDensityPlot(proj="Aitoff")
 plt.show()
+
+############################################################
+
+dbTable = "PhotoXSC"  
+
+ra, dec, dens = GetDensity(dbName,dbTable,level=6,isStat=True)
+
+d = np.log(dens) / np.log(np.max(dens))
+c = SkyCoord(ra=ra,dec=dec,frame="fk5",equinox="j2000",unit=u.degree)
+
+ 
+
+# PhotoPSC PLateCarree
+
+plot = DensityPlot(c,d,dbName,dbTable)
+     
+plot.CreateDensityPlot()
+plt.show()
+
+
+# PhotoPSC Aitoff
+
+plot.CreateDensityPlot(proj="Aitoff")
+plt.show()

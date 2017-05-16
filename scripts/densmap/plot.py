@@ -26,7 +26,7 @@ class DensityPlot():
        self.database = database
        self.table = table
         
-    def CreatePatches(self,unit):
+    def CreatePatches(self,unit,cmap):
         patches = []
         
         if (unit == "deg"):
@@ -60,36 +60,39 @@ class DensityPlot():
             patches.append(polygon)
             
             
-        p = PatchCollection(patches, alpha=1,cmap="plasma")
+        p = PatchCollection(patches, alpha=1,cmap=cmap)
         p.set_array(np.array(self.d[::3])) # we need only 1 piont out of 3 since 3 ra-dec pairs defines a triangle
         return p
     
-    def CreateDensityPlot(self,proj="PlateCarree"):
+    def CreateDensityPlot(self,proj="PlateCarree",cmap="plasma",dest="./",grid=True):
         
         fig = plt.figure(figsize=(16,8),dpi=300)
         
         if (proj == "PlateCarree"):
-            self.CreateDensityPlot_PlateCarree(fig)
+            self.CreateDensityPlot_PlateCarree(fig,cmap,grid)
         elif (proj == "Aitoff"):
-            self.CreateDensityPlot_Aitoff(fig)
+            self.CreateDensityPlot_Aitoff(fig,cmap)
 
-        fig.savefig(self.database+"_"+self.table+"_"+proj+".png")
+        fig.savefig(dest+self.database+"_"+self.table+"_"+proj+".png")
         return fig
     
-    def CreateDensityPlot_PlateCarree(self,fig):
-        p = self.CreatePatches("deg")
+    def CreateDensityPlot_PlateCarree(self,fig,cmap,grid):
+        p = self.CreatePatches("deg",cmap)
         ax = fig.add_subplot(111, facecolor="black", projection=ccrs.PlateCarree())
         ax.add_feature(cf.LAND,color="black",zorder=-1)
         ax.add_feature(cf.OCEAN,color="black",zorder=-1)
+        grid_alpha = 0.0
+        if (grid): 
+            grid_alpha = 0.4
         ax.gridlines(zorder=11,crs=ccrs.PlateCarree(), draw_labels=True,
-                          linewidth=1, color='gray', alpha=0.4)
+                          linewidth=1, color='gray', alpha=grid_alpha)
         plt.axis([np.min(self.ra_deg),np.max(self.ra_deg),np.min(self.dec_deg),np.max(self.dec_deg)])
         ax.set_title(self.database+" "+self.table+" density map", y=1.08)
         ax.add_collection(p)
         return 
     
-    def CreateDensityPlot_Aitoff(self,fig):        
-        p = self.CreatePatches("rad")
+    def CreateDensityPlot_Aitoff(self,fig,cmap):        
+        p = self.CreatePatches("rad",cmap)
     
         ax = plt.subplot(111, facecolor="black", projection="aitoff")
         ax.add_collection(p)

@@ -19,7 +19,7 @@ c = SkyCoord(ra=ra,dec=dec,frame="fk5",equinox="j2000",unit=u.degree)
 
 plot = DensityPlot(c,d,dbName,dbTable)
      
-plot.CreateDensityPlot()
+plot.CreateDensityPlot(grid=False)
 plt.show()
 
 
@@ -32,5 +32,5 @@ c = SkyCoord(ra=ra,dec=dec,frame="fk5",equinox="j2000",unit=u.degree)
 
 plot = DensityPlot(c,d,dbName,dbTable)
 
-plot.CreateDensityPlot(proj="Aitoff")
+plot.CreateDensityPlot(proj="Aitoff",cmap="autumn")
 plt.show()

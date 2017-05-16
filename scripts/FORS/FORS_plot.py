@@ -19,18 +19,18 @@ c = SkyCoord(ra=ra,dec=dec,frame="fk5",equinox="j2000",unit=u.degree)
 
 plot = DensityPlot(c,d,dbName,dbTable)
      
-plot.CreateDensityPlot()
+plot.CreateDensityPlot(grid=False)
 plt.show()
 
 
 # SpecObj Aitoff
 
-ra, dec, dens = GetDensity(dbName,dbTable,level=6,isStat=False)
+ra, dec, dens = GetDensity(dbName,dbTable,level=5,isStat=False)
 
 d = np.log(dens) / np.log(np.max(dens))
 c = SkyCoord(ra=ra,dec=dec,frame="fk5",equinox="j2000",unit=u.degree)
 
 plot = DensityPlot(c,d,dbName,dbTable)
 
-plot.CreateDensityPlot(proj="Aitoff")
+plot.CreateDensityPlot(proj="Aitoff",cmap="autumn")
 plt.show()

@@ -25,3 +25,25 @@ plt.show()
 
 plot.CreateDensityPlot(proj="Aitoff")
 plt.show()
+
+##################################################################
+
+dbTable = "ObsCMBFree"  
+
+ra, dec, dens = GetDensity(dbName,dbTable,level=6,isStat=False)
+
+d = np.log(dens) / np.log(np.max(dens))
+c = SkyCoord(ra=ra,dec=dec,frame="fk5",equinox="j2000",unit=u.degree)
+
+# ObsCMBFree PLateCarree
+
+plot = DensityPlot(c,d,dbName,dbTable)
+     
+plot.CreateDensityPlot()
+plt.show()
+
+
+# ObsCMBFree Aitoff
+
+plot.CreateDensityPlot(proj="Aitoff")
+plt.show()
