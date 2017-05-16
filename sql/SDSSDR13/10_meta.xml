@@ -1,0 +1,13 @@
+<metadata>
+  <dataset>
+    <summary>Sloan Digital Sky Survey Data Release 13</summary>
+	<remarks>
+		Data Release 13 (DR13) is the first data release of the fourth phase 
+		of the Sloan Digital Sky Survey (SDSS-IV). DR13 contains SDSS observations 
+		through July 2015.
+	</remarks>
+	<url>http://www.sdss.org/dr13/</url>
+	<icon>sdssdr13.png</icon>
+	<docpage>sdssdr13.html</docpage>
+  </dataset>
+</metadata>
