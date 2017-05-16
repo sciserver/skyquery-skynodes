@@ -39,7 +39,7 @@ c = SkyCoord(ra=ra,dec=dec,frame="fk5",equinox="j2000",unit=u.degree)
 
  
 
-# PhotoPSC PLateCarree
+# PhotoXSC PLateCarree
 
 plot = DensityPlot(c,d,dbName,dbTable)
      
@@ -47,7 +47,7 @@ plot.CreateDensityPlot()
 plt.show()
 
 
-# PhotoPSC Aitoff
+# PhotoXSC Aitoff
 
 plot.CreateDensityPlot(proj="Aitoff")
 plt.show()
