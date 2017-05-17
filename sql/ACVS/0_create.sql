@@ -1,5 +1,19 @@
--- CREATE PhotoObj TABLE
+--/ <dataset>
+--/ <summary>ASAS Catalog of Variable Stars </summary>
+--/ <remarks>
+--/ The ASAS-3 Catalog of Variable Stars contains over 10,000 eclipsing binaries, 
+--/ almost 8,000 periodic pulsating and over 31,000 irregular stars found among 
+--/ 15,000,000 stars on the sky south of the declination +28 (512 fields). 
+--/ </remarks>
+--/ <url>http://www.astrouw.edu.pl/asas/?page=download</url>
+--/ <icon>acvs.png</icon>
+--/ <docpage>acvs.html</docpage>
+--/ </dataset>
+ GO
 
+-- CREATE PhotoObj TABLE
+--/ <summary> ASAS-3 Catalog of Variable Stars </summary>
+--/ <remarks> All exposures were made using 'I ' band and 'V ' band filters, and were transformed into the standard 'I ' and 'V ' system using Landolt and Hipparcos. In most cases photometry is accurate to about 0.05 mag, but in many cases (due to problems with flatfielding and lack of colour information) errors could be 0.1 mag or larger. Positions are very inaccurate. </remarks>
 CREATE TABLE dbo.PhotoObj 
 (
 	--/ <summary> Unique ID. </summary>	--/ <quantity>meta.record</quantity>

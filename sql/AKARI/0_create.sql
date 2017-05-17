@@ -1,5 +1,22 @@
+--/ <dataset>
+--/ <summary>AKARI Point Source Catalogues</summary>
+--/ <remarks>
+--/ AKARI (Previously known as ASTRO-F or IRIS - InfraRed Imaging Surveyor) 
+--/ is the second space mission for infrared astronomy in Japan. AKARI had 
+--/ a 68.5cm telescope cooled down to 6K, and observed in the wavelength 
+--/ range from 1.7 (near-infrared) to 180 (far-infrared) micrometer. 
+--/ </remarks>
+--/ <url>http://www.ir.isas.jaxa.jp/AKARI/Archive/Catalogues/PSC/</url>
+--/ <icon>akari.png</icon>
+--/ <docpage>akari.html</docpage>
+--/ </dataset>
+ GO
+
+
 -- CREATE IRC TABLE
 
+--/ <summary> The AKARI/IRC Point Source Catalogue Version 1.0 provides positions and fluxes of 870,973 sources (844,649 sources in 9µm band and 194,551 sources in 18µm band) in the Mid-Infrared wavelengths.</summary>
+--/ <remarks></remarks>
 CREATE TABLE dbo.IRC 
 (
 	--/ <summary> AKARI source ID number. </summary>	--/ <quantity>meta.id</quantity>
@@ -174,6 +191,8 @@ GO
 
 -- CREATE FIS TABLE
 
+--/ <summary> The AKARI/FIS Bright Source Catalogue Version 1.0 provides the positions and fluxes of 427,071 point sources in the four far-infrared wavelengths centred at 65, 90, 140, and 160 μm. The sensitivity in the 90 μm band is about 0.55 Jy.</summary>
+--/ <remarks></remarks>
 CREATE TABLE dbo.FIS 
 (
 	--/ <summary> Internal Object ID. A unique number for each object in the catalogue. This is mostly for internal use in the
