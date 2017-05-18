@@ -1,76 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <metadata>
+  <dataset>
+    <summary> Arecibo Galaxy Catalog </summary>
+    <remarks>
+      The AGC, or Arecibo General Catalog, contains information about the positions, sizes, magnitudes,
+      morphologies, redshifts and HI properties of lots of galaxies. It is very heterogeneous, so it
+      shouldn't be used as the ultimate authority on anything! But, here is some info on its status
+      and a summary of what it contains; formats refer to the ASCII text version available to the CU EGG.</remarks>
+    <url>http://caborojo.astro.cornell.edu/alfalfalog/idldocs/agcinfo.php</url>
+    <icon>agc.png</icon>
+    <docpage>agc.html</docpage>
+  </dataset>
   <table name="[dbo].[PhotoObj]">
-    <summary>Arecibo Galaxy Catalog</summary>
-<remarks>Objects from the Arecibo Galaxy Catalog, which provide
-HI measurements of about 100,000 bright galaxies. Galaxy redshifts
-are in km/s</remarks>
-<column name="[objid]"><summary>Unique object identifier</summary>
-</column><column name="[ra]"><summary>RA (J2000)</summary>
-<quantity>pos.eq.ra; pos.frame=j2000</quantity>
-<unit>deg</unit>
-</column><column name="[dec]"><summary>Dec (J2000)</summary>
-<quantity>pos.eq.ra; pos.frame=j2000</quantity>
-<unit>deg</unit>
-</column><column name="[cx]"><summary>Cartesian x</summary>
-<quantity>pos.eq.x;pos.frame=j2000</quantity>
-</column><column name="[cy]"><summary>Cartesian y</summary>
-<quantity>pos.eq.y;pos.frame=j2000</quantity>
-</column><column name="[cz]"><summary>Cartesian z</summary>
-<quantity>pos.eq.z;pos.frame=j2000</quantity>
-</column><column name="[htmID]"><summary>the htmid of the object</summary>
-<quantity>pos.HTM; pos.eq; pos.frame=J2000</quantity>
-</column><column name="[zoneID]"><summary>the zoneid of the object</summary>
-<quantity>pos.zone; pos.eq; pos.frame=J2000</quantity>
-</column><column name="[a]"><summary>Major axis</summary>
-<quantity>phys.angSize.smajAxis</quantity>
-<unit>arcmin</unit>
-</column><column name="[b]"><summary>Minor axis</summary>
-<quantity>phys.angSize.sminAxis</quantity>
-<unit>arcmin</unit>
-</column><column name="[Bmag]"><summary>B magnitude</summary>
-<quantity></quantity>
-<unit>mag</unit>
-</column><column name="[angle]"><summary>Position angle</summary>
-<quantity>pos.posAng</quantity>
-<unit>deg</unit>
-</column><column name="[type]"><summary>Morphological type</summary>
-<quantity>src.morph.type</quantity>
-</column><column name="[btype]"><summary>Burstein morph type (enum)</summary>
-<quantity>src.morph.tpye</quantity>
-</column><column name="[velocity]"><summary>Optical velocity</summary>
-<quantity>spect.dopplerVeloc.opt</quantity>
-<unit>km s-1</unit>
-</column><column name="[velocityError]"><summary>Error of optical velocity</summary>
-<quantity>stat.error; spect.dopplerVeloc.opt</quantity>
-<unit>km s-1</unit>
-</column><column name="[objname]"><summary>Object name</summary>
-<quantity>meta.id</quantity>
-</column><column name="[fluxHI]"><summary>HI flux</summary>
-<quantity>phot.flux; em.line.HI</quantity>
-<unit>Jy km s-1</unit>
-</column><column name="[fluxHInoise]"><summary>Noise HI rms</summary>
-<quantity>stat.error; phot.flux; em.line.HI</quantity>
-<unit>Jy km s-1</unit>
-</column><column name="[centerVelocity]"><summary>HI center velocity</summary>
-<quantity>spect.dopplerVeloc; em.line.HI</quantity>
-<unit>km s-1</unit>
-</column><column name="[velocityWidth]"><summary>Velocity width</summary>
-<quantity>spec.line.width</quantity>
-<unit>km s-1</unit>
-</column><column name="[velocityWidthError]"><summary>Error of velocity width</summary>
-<quantity>stat.error; spec.line.width</quantity>
-<unit>km s-1</unit>
-</column><column name="[telescopeCode]"><summary>Telescope code</summary>
-<quantity>meta.code; instr.tel</quantity>
-</column><column name="[HIdetectionCode]"><summary>HI detection code</summary>
-<quantity>meta.code; obs</quantity>
-</column><column name="[HIsnr]"><summary>HI signal-to-noise ratio</summary>
-<quantity>stat.snr; em.line.HI</quantity>
-</column><column name="[IbandQ]"><summary>I band quality index</summary>
-<quantity>meta.code.qual; em.opt.I</quantity>
-</column><column name="[RC3flag]"><summary>Indicator of galaxy is part of RC3 catalog</summary>
-<quantity>meta.code.member</quantity>
-</column><column name="[IrotCat]"><summary>Flag for rotation curve database</summary>
-<quantity>meta.code.member</quantity>
-</column></table>
+    <remarks>
+      Objects from the Arecibo Galaxy Catalog, which provide
+      HI measurements of about 100,000 bright galaxies. Galaxy redshifts
+      are in km/s</remarks>
+    <column name="[objid]">
+      <summary>Unique object identifier</summary>
+    </column>
+    <column name="[ra]">
+      <summary>RA (J2000)</summary>
+      <quantity>pos.eq.ra; pos.frame=j2000</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[dec]">
+      <summary>Dec (J2000)</summary>
+      <quantity>pos.eq.ra; pos.frame=j2000</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[cx]">
+      <summary>Cartesian x</summary>
+      <quantity>pos.eq.x;pos.frame=j2000</quantity>
+    </column>
+    <column name="[cy]">
+      <summary>Cartesian y</summary>
+      <quantity>pos.eq.y;pos.frame=j2000</quantity>
+    </column>
+    <column name="[cz]">
+      <summary>Cartesian z</summary>
+      <quantity>pos.eq.z;pos.frame=j2000</quantity>
+    </column>
+    <column name="[htmID]">
+      <summary>the htmid of the object</summary>
+      <quantity>pos.HTM; pos.eq; pos.frame=J2000</quantity>
+    </column>
+    <column name="[zoneID]">
+      <summary>the zoneid of the object</summary>
+      <quantity>pos.zone; pos.eq; pos.frame=J2000</quantity>
+    </column>
+    <column name="[a]">
+      <summary>Major axis</summary>
+      <quantity>phys.angSize.smajAxis</quantity>
+      <unit>arcmin</unit>
+    </column>
+    <column name="[b]">
+      <summary>Minor axis</summary>
+      <quantity>phys.angSize.sminAxis</quantity>
+      <unit>arcmin</unit>
+    </column>
+    <column name="[Bmag]">
+      <summary>B magnitude</summary>
+      <quantity>phot.mag; em.opt.B</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[angle]">
+      <summary>Position angle</summary>
+      <quantity>pos.posAng</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[type]">
+      <summary>Morphological type</summary>
+      <quantity>src.morph.type</quantity>
+    </column>
+    <column name="[btype]">
+      <summary>Burstein morph type (enum)</summary>
+      <quantity>src.morph.tpye</quantity>
+    </column>
+    <column name="[velocity]">
+      <summary>Optical velocity</summary>
+      <quantity>spect.dopplerVeloc.opt</quantity>
+      <unit>km s-1</unit>
+    </column>
+    <column name="[velocityError]">
+      <summary>Error of optical velocity</summary>
+      <quantity>stat.error; spect.dopplerVeloc.opt</quantity>
+      <unit>km s-1</unit>
+    </column>
+    <column name="[objname]">
+      <summary>Object name</summary>
+      <quantity>meta.id</quantity>
+    </column>
+    <column name="[fluxHI]">
+      <summary>HI flux</summary>
+      <quantity>phot.flux; em.line.HI</quantity>
+      <unit>Jy km s-1</unit>
+    </column>
+    <column name="[fluxHInoise]">
+      <summary>Noise HI rms</summary>
+      <quantity>stat.error; phot.flux; em.line.HI</quantity>
+      <unit>Jy km s-1</unit>
+    </column>
+    <column name="[centerVelocity]">
+      <summary>HI center velocity</summary>
+      <quantity>spect.dopplerVeloc; em.line.HI</quantity>
+      <unit>km s-1</unit>
+    </column>
+    <column name="[velocityWidth]">
+      <summary>Velocity width</summary>
+      <quantity>spec.line.width</quantity>
+      <unit>km s-1</unit>
+    </column>
+    <column name="[velocityWidthError]">
+      <summary>Error of velocity width</summary>
+      <quantity>stat.error; spec.line.width</quantity>
+      <unit>km s-1</unit>
+    </column>
+    <column name="[telescopeCode]">
+      <summary>Telescope code</summary>
+      <quantity>meta.code; instr.tel</quantity>
+    </column>
+    <column name="[HIdetectionCode]">
+      <summary>HI detection code</summary>
+      <quantity>meta.code; obs</quantity>
+    </column>
+    <column name="[HIsnr]">
+      <summary>HI signal-to-noise ratio</summary>
+      <quantity>stat.snr; em.line.HI</quantity>
+    </column>
+    <column name="[IbandQ]">
+      <summary>I band quality index</summary>
+      <quantity>meta.code.qual; em.opt.I</quantity>
+    </column>
+    <column name="[RC3flag]">
+      <summary>Indicator of galaxy is part of RC3 catalog</summary>
+      <quantity>meta.code.member</quantity>
+    </column>
+    <column name="[IrotCat]">
+      <summary>Flag for rotation curve database</summary>
+      <quantity>meta.code.member</quantity>
+    </column>
+  </table>
 </metadata>

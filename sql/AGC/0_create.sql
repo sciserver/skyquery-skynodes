@@ -1,3 +1,17 @@
+--/ <dataset>
+--/ <summary> Arecibo Galaxy Catalog </summary>
+--/ <remarks>
+--/ The AGC, or Arecibo General Catalog, contains information about the positions, sizes, magnitudes, 
+--/ morphologies, redshifts and HI properties of lots of galaxies. It is very heterogeneous, so it 
+--/ shouldn't be used as the ultimate authority on anything! But, here is some info on its status 
+--/ and a summary of what it contains; formats refer to the ASCII text version available to the CU EGG.
+--/ </remarks>
+--/ <url>http://caborojo.astro.cornell.edu/alfalfalog/idldocs/agcinfo.php</url>
+--/ <icon>agc.png</icon>
+--/ <docpage>agc.html</docpage>
+--/ </dataset>
+ GO
+
 --------------------------------------------------------------------------------
 --/ <summary>Arecibo Galaxy Catalog</summary>
 --/ <remarks>Objects from the Arecibo Galaxy Catalog, which provide 

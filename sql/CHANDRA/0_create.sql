@@ -1,5 +1,23 @@
--- CREATE PhotoObj TABLE
+--/ <dataset>
+--/ <summary> The Chandra Source Catalog, Release 1.1 </summary>
+--/ <remarks>
+--/ The first official release of the CSC includes information about sources detected in 
+--/ public ACIS and HRC imaging observations from roughly the first eight years of the 
+--/ Chandra mission. Only point sources, and compact sources, with observed spatial 
+--/ extents &lt;~30 arcseconds, are included. Highly extended sources, and sources located 
+--/ in selected fields containing bright, highly extended sources, are excluded from the first release.
+--/ </remarks>
+--/ <url>http://cxc.cfa.harvard.edu/csc/</url>
+--/ <icon>chandra.png</icon>
+--/ <docpage>chandra.html</docpage>
+--/ </dataset>
+ GO
 
+
+
+-- CREATE PhotoObj TABLE
+--/ <summary>he Chandra Source Catalog, Version 1.1</summary>
+--/ <remarks></remarks>
 CREATE TABLE dbo.PhotoObj 
 (
 	--/ <summary> Numerical ID. </summary>	--/ <quantity>meta.record</quantity>
