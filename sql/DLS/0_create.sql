@@ -1,3 +1,15 @@
+--/ <dataset>
+--/ <summary> Deep Lens Survey catalog </summary>
+--/ <remarks>
+--/ The Deep Lens Survey is a 20 deg2 ultra-deep multi-band sky survey. The images were taken over about 100 nights on NOAO's Blanco and Mayall 4-meter telescopes.
+--/ </remarks>
+--/ <url>http://matilda.physics.ucdavis.edu/working/website/index.html</url>
+--/ <icon>dls.png</icon>
+--/ <docpage>dls.html</docpage>
+--/ </dataset>
+ GO
+
+
 --/ <summary> The main PhotoObj table for the Deep Lens Survey catalog </summary>
 --/ <remarks> The main PhotoObj table for the DLS catalog </remarks>
 CREATE TABLE [dbo].[PhotoObj]

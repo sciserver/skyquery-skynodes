@@ -1,4 +1,27 @@
+--/ <dataset>
+--/ <summary>  Dark Energy Survey </summary>
+--/ <remarks>
+--/ The Dark Energy Survey (DES) is a five-year program (2012B-0001, PI Josh Frieman) using the Dark Energy Camera (DECam) 
+--/ on the CTIO Blanco 4m telescope to image 5,000 square degrees of sky in 5 bands (g, r, i, z and Y), and to carry out a 
+--/ time-domain survey of repeated visits over 30 square degrees. The primary goal of DES is to probe the origin of 
+--/ accelerating cosmic expansion through measurements of galaxy clusters, weak lensing, galaxy clustering, and type Ia 
+--/ supernovae. However, the data are valuable for many other astronomical applications.
+--/ The DES-Y1 data release consists of science observations taken between September 2013 and early February 2014, 
+--/ covering roughly 1800 square degrees of the survey footprint in the South Galactic Cap. This includes more than 
+--/ 160 sq. degrees overlapping the Sloan Digital Sky Survey (SDSS) Stripe 82 region, and about 20 visits to ten of 
+--/ the DES supernova fields. This release includes 13,890 DECam exposures that have been reduced and calibrated 
+--/ through the DES Data Management (DESDM) pipeline at the National Center for Supercomputing Applications (NCSA). 
+--/ </remarks>
+--/ <url>http://archive.noao.edu/search/query</url>
+--/ <icon>des.png</icon>
+--/ <docpage>des.html</docpage>
+--/ </dataset>
+ GO
+
 -- CREATE PhotoObj TABLE
+ 
+--/ <summary></summary>
+--/ <remarks></remarks>
 CREATE TABLE dbo.PhotoObj
 (
 	--/ <summary> Cartesian X (J2000)</summary>

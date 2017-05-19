@@ -1,210 +1,364 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <metadata>
+  <dataset>
+    <summary> Deep Lens Survey catalog </summary>
+    <remarks>
+      The Deep Lens Survey is a 20 deg2 ultra-deep multi-band sky survey. The images were taken over about 100 nights on NOAO's Blanco and Mayall 4-meter telescopes.</remarks>
+    <url>http://matilda.physics.ucdavis.edu/working/website/index.html</url>
+    <icon>dls.png</icon>
+    <docpage>dls.html</docpage>
+  </dataset>
   <table name="[dbo].[PhotoObj]">
-    <summary> The main PhotoObj table for the Deep Lens Survey catalog </summary>
-<remarks> The main PhotoObj table for the DLS catalog </remarks>
-<column name="[objid]"><summary>primary key</summary>
-<quantity>meta.id</quantity>
-</column><column name="[ra]"><summary>master right ascension</summary>
-<quantity>pos.eq.ra;pos.frame=j2000</quantity>
-<unit>deg</unit>
-</column><column name="[dec]"><summary>master declination</summary>
-<quantity>pos.eq.dec;pos.frame=j2000</quantity>
-<unit>deg</unit>
-</column><column name="[cx]"><summary>cartesian x coordinate</summary>
-<quantity>pos.eq.x;pos.frame=j2000</quantity>
-</column><column name="[cy]"><summary>cartesian y coordinate</summary>
-<quantity>pos.eq.y;pos.frame=j2000</quantity>
-</column><column name="[cz]"><summary>cartesian z coordinate</summary>
-<quantity>pos.eq.z;pos.frame=j2000</quantity>
-</column><column name="[htmid]"><summary>htmid for spatial search</summary>
-<quantity>pos.HTM;pos.eq;pos.frame=j2000</quantity>
-</column><column name="[zoneid]"><summary>zoneid for spatial search</summary>
-<quantity>pos.zone;pos.eq;pos.frame=j2000</quantity>
-</column><column name="[band]"><summary>master coordinate origin</summary>
-<quantity>meta;pos</quantity>
-</column><column name="[AlphaB]"><summary>RA in B</summary>
-<quantity>pos.eq.ra;pos.frame=j2000;em.opt.B</quantity>
-<unit>deg</unit>
-</column><column name="[DeltaB]"><summary>DEC in B</summary>
-<quantity>pos.eq.dec;pos.frame=j2000;em.opt.B</quantity>
-<unit>deg</unit>
-</column><column name="[XB]"><summary>position on CCD in B</summary>
-<quantity>pos.cartesian.x;instr.det;em.opt.B</quantity>
-<unit>pix</unit>
-</column><column name="[YB]"><summary>position on CCD in B</summary>
-<quantity>pos.cartesian.y;instr.det;em.opt.B</quantity>
-<unit>pix</unit>
-</column><column name="[AB]"><summary>Semi-major axis in B</summary>
-<quantity>phys.size.smajAxis;em.opt.B</quantity>
-<unit>pix</unit>
-</column><column name="[BB]"><summary>Semi-minor axis in B</summary>
-<quantity>phys.size.sminAxis;em.opt.B</quantity>
-<unit>pix</unit>
-</column><column name="[THETAB]"><summary>Position angle</summary>
-<quantity>pos.posAng</quantity>
-<unit>deg</unit>
-</column><column name="[FLAGSB]"><summary>Flags from Sextractor</summary>
-<quantity>meta.code</quantity>
-</column><column name="[MAG_APERB]"><summary>Aperture magnitude in B</summary>
-<quantity>phot.mag.aper;em.opt.B</quantity>
-<unit>mag</unit>
-</column><column name="[MAGERR_APERB]"><summary>error in aperture magnitude in B</summary>
-<quantity>stat.error;phot.mag.aper;em.opt.B</quantity>
-<unit>mag</unit>
-</column><column name="[MAGB]"><summary>Best magnitude in B</summary>
-<quantity>phot.mag;em.opt.B</quantity>
-<unit>mag</unit>
-</column><column name="[MAGERRB]"><summary>Error in best magnitude in B</summary>
-<quantity>stat.error;phot.mag;em.opt.B</quantity>
-<unit>mag</unit>
-</column><column name="[MAG_ISOB]"><summary>Isophotal magnitude in B</summary>
-<quantity>phot.mag.isophotal;em.opt.B</quantity>
-<unit>mag</unit>
-</column><column name="[MAGERR_ISOB]"><summary>Error in isophotal magnitude in B</summary>
-<quantity>stat.error;phot.mag.isophotal;em.opt.B</quantity>
-<unit>mag</unit>
-</column><column name="[ISOAREAB]"><summary>Isophotal area</summary>
-<quantity>phys.area</quantity>
-<unit>pix+2</unit>
-</column><column name="[CLASS_STARB]"><summary>Fuzzy classifier</summary>
-<quantity>meta.code</quantity>
-</column><column name="[AlphaV]"><summary>RA in V</summary>
-<quantity>pos.eq.ra;pos.frame=j2000;em.opt.V</quantity>
-<unit>deg</unit>
-</column><column name="[DeltaV]"><summary>DEC in V</summary>
-<quantity>pos.eq.dec;pos.frame=j2000;em.opt.V</quantity>
-<unit>deg</unit>
-</column><column name="[XV]"><summary>position on CCD in V</summary>
-<quantity>pos.cartesian.x;instr.det;em.opt.V</quantity>
-<unit>pix</unit>
-</column><column name="[YV]"><summary>position on CCD in V</summary>
-<quantity>pos.cartesian.y;instr.det;em.opt.V</quantity>
-<unit>pix</unit>
-</column><column name="[AV]"><summary>Semi-major axis in V</summary>
-<quantity>phys.size.smajAxis;em.opt.V</quantity>
-<unit>pix</unit>
-</column><column name="[BV]"><summary>Semi-minor axis in V</summary>
-<quantity>phys.size.sminAxis;em.opt.V</quantity>
-<unit>pix</unit>
-</column><column name="[THETAV]"><summary>Position angle in V</summary>
-<quantity>pos.posAng;em.opt.V</quantity>
-<unit>deg</unit>
-</column><column name="[FLAGSV]"><summary>Flags from Sextractor</summary>
-<quantity>meta.code</quantity>
-</column><column name="[MAG_APERV]"><summary>Aperture magnitude in V</summary>
-<quantity>phot.mag.aper;em.opt.V</quantity>
-<unit>mag</unit>
-</column><column name="[MAGERR_APERV]"><summary>error in aperture magnitude in V</summary>
-<quantity>stat.error;phot.mag.aper;em.opt.V</quantity>
-<unit>mag</unit>
-</column><column name="[MAGV]"><summary>Best magnitude in V</summary>
-<quantity>phot.mag;em.opt.V</quantity>
-<unit>mag</unit>
-</column><column name="[MAGERRV]"><summary>Error in best magnitude in V</summary>
-<quantity>stat.error;phot.mag;em.opt.V</quantity>
-<unit>mag</unit>
-</column><column name="[MAG_ISOV]"><summary>Isophotal magnitude in V</summary>
-<quantity>phot.mag.isophotal;em.opt.V</quantity>
-<unit>mag</unit>
-</column><column name="[MAGERR_ISOV]"><summary>Error in isophotal magnitude in V</summary>
-<quantity>stat.error;phot.mag.isophotal;em.opt.V</quantity>
-<unit>mag</unit>
-</column><column name="[ISOAREAV]"><summary>Isophotal area</summary>
-<quantity>phys.area</quantity>
-<unit>pix+2</unit>
-</column><column name="[CLASS_STARV]"><summary>Fuzzy classifier</summary>
-<quantity>meta</quantity>
-</column><column name="[AlphaR]"><summary>RA in R</summary>
-<quantity>pos.eq.ra;pos.frame=j2000;em.opt.R</quantity>
-<unit>deg</unit>
-</column><column name="[DeltaR]"><summary>DEC in R</summary>
-<quantity>pos.eq.dec;pos.frame=j2000;em.opt.R</quantity>
-<unit>deg</unit>
-</column><column name="[XR]"><summary>position on CCD in R</summary>
-<quantity>pos.cartesian.x;instr.det;em.opt.R</quantity>
-<unit>pix</unit>
-</column><column name="[YR]"><summary>position on CCD in R</summary>
-<quantity>pos.cartesian.y;instr.det;em.opt.R</quantity>
-<unit>pix</unit>
-</column><column name="[AR]"><summary>Semi-major axis in R</summary>
-<quantity>phys.size.smajAxis;em.opt.R</quantity>
-<unit>pix</unit>
-</column><column name="[BR]"><summary>Semi-minor axis in R</summary>
-<quantity>phys.size.sminAxis;em.opt.R</quantity>
-<unit>pix</unit>
-</column><column name="[THETAR]"><summary>Position angle in R</summary>
-<quantity>pos.posAng;em.opt.R</quantity>
-<unit>deg</unit>
-</column><column name="[FLAGSR]"><summary>Flags from Sextractor</summary>
-<quantity>meta.code</quantity>
-</column><column name="[MAG_APERR]"><summary>Aperture magnitude in R</summary>
-<quantity>phot.mag.aper;em.opt.R</quantity>
-<unit>mag</unit>
-</column><column name="[MAGERR_APERR]"><summary>error in aperture magnitude in R</summary>
-<quantity>stat.error;phot.mag.aper;em.opt.R</quantity>
-<unit>mag</unit>
-</column><column name="[MAGR]"><summary>Best magnitude in R</summary>
-<quantity>phot.mag;em.opt.R</quantity>
-<unit>mag</unit>
-</column><column name="[MAGERRR]"><summary>Error in best magnitude in R</summary>
-<quantity>stat.error;em.opt.R</quantity>
-<unit>mag</unit>
-</column><column name="[MAG_ISOR]"><summary>Isophotal magnitude in R</summary>
-<quantity>phot.mag.isophotal;em.opt.R</quantity>
-<unit>mag</unit>
-</column><column name="[MAGERR_ISOR]"><summary>Error in isophotal magnitude in R</summary>
-<quantity>stat.error;phot.mag.isophotal;em.opt.R</quantity>
-<unit>mag</unit>
-</column><column name="[ISOAREAR]"><summary>Isophotal area</summary>
-<quantity>phys.area</quantity>
-<unit>pix+2</unit>
-</column><column name="[CLASS_STARR]"><summary>Fuzzy classifier</summary>
-<quantity>meta</quantity>
-</column><column name="[Alphaz]"><summary>RA in z</summary>
-<quantity>pos.eq.ra;pos.frame=j2000;em.opt.SDSS.z</quantity>
-<unit>deg</unit>
-</column><column name="[Deltaz]"><summary>DEC in z</summary>
-<quantity>pos.eq.dec;pos.frame=j2000;em.opt.SDSS.z</quantity>
-<unit>deg</unit>
-</column><column name="[Xz]"><summary>position on CCD in z</summary>
-<quantity>pos.cartesian.x;instr.det;em.opt.SDSS.z</quantity>
-<unit>pix</unit>
-</column><column name="[Yz]"><summary>position on CCD in z</summary>
-<quantity>pos.cartesian.y;instr.det;em.opt.SDSS.z</quantity>
-<unit>pix</unit>
-</column><column name="[Az]"><summary>Semi-major axis in z</summary>
-<quantity>phys.size.smajAxis;em.opt.SDSS.z</quantity>
-<unit>pix</unit>
-</column><column name="[Bz]"><summary>Semi-minor axis in z</summary>
-<quantity>phys.size.sminAxis;em.opt.SDSS.z</quantity>
-<unit>pix</unit>
-</column><column name="[THETAz]"><summary>Position angle in z</summary>
-<quantity>pos.posAng;em.opt.SDSS.z</quantity>
-<unit>deg</unit>
-</column><column name="[FLAGSz]"><summary>Flags from Sextractor</summary>
-<quantity>meta.code</quantity>
-</column><column name="[MAG_APERz]"><summary>Aperture magnitude in z</summary>
-<quantity>phot.mag.aper;em.opt.SDSS.z</quantity>
-<unit>mag</unit>
-</column><column name="[MAGERR_APERz]"><summary>error in aperture magnitude in z</summary>
-<quantity>stat.error;phot.mag.aper;em.opt.SDSS.z</quantity>
-<unit>mag</unit>
-</column><column name="[MAGz]"><summary>Best magnitude in z</summary>
-<quantity>phot.mag;em.opt.SDSS.z</quantity>
-<unit>mag</unit>
-</column><column name="[MAGERRz]"><summary>Error in best magnitude in z</summary>
-<quantity>stat.error;phot.mag;em.opt.SDSS.z</quantity>
-<unit>mag</unit>
-</column><column name="[MAG_ISOz]"><summary>Isophotal magnitude in z</summary>
-<quantity>phot.mag.isophotal;em.opt.SDSS.z</quantity>
-<unit>mag</unit>
-</column><column name="[MAGERR_ISOz]"><summary>Error in isophotal magnitude in z</summary>
-<quantity>stat.error;phot.mag.isophotal;em.opt.SDSS.z</quantity>
-<unit>mag</unit>
-</column><column name="[ISOAREAz]"><summary>Isophotal area</summary>
-<quantity>phys.size.area</quantity>
-<unit>pix+2</unit>
-</column><column name="[CLASS_STARz]"><summary>Fuzzy classifier</summary>
-<quantity>meta</quantity>
-</column></table>
+    <remarks> The main PhotoObj table for the DLS catalog </remarks>
+    <column name="[objid]">
+      <summary>primary key</summary>
+      <quantity>meta.id</quantity>
+    </column>
+    <column name="[ra]">
+      <summary>master right ascension</summary>
+      <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[dec]">
+      <summary>master declination</summary>
+      <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[cx]">
+      <summary>cartesian x coordinate</summary>
+      <quantity>pos.eq.x;pos.frame=j2000</quantity>
+    </column>
+    <column name="[cy]">
+      <summary>cartesian y coordinate</summary>
+      <quantity>pos.eq.y;pos.frame=j2000</quantity>
+    </column>
+    <column name="[cz]">
+      <summary>cartesian z coordinate</summary>
+      <quantity>pos.eq.z;pos.frame=j2000</quantity>
+    </column>
+    <column name="[htmid]">
+      <summary>htmid for spatial search</summary>
+      <quantity>pos.HTM;pos.eq;pos.frame=j2000</quantity>
+    </column>
+    <column name="[zoneid]">
+      <summary>zoneid for spatial search</summary>
+      <quantity>pos.zone;pos.eq;pos.frame=j2000</quantity>
+    </column>
+    <column name="[band]">
+      <summary>master coordinate origin</summary>
+      <quantity>meta;pos</quantity>
+    </column>
+    <column name="[AlphaB]">
+      <summary>RA in B</summary>
+      <quantity>pos.eq.ra;pos.frame=j2000;em.opt.B</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[DeltaB]">
+      <summary>DEC in B</summary>
+      <quantity>pos.eq.dec;pos.frame=j2000;em.opt.B</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[XB]">
+      <summary>position on CCD in B</summary>
+      <quantity>pos.cartesian.x;instr.det;em.opt.B</quantity>
+      <unit>pix</unit>
+    </column>
+    <column name="[YB]">
+      <summary>position on CCD in B</summary>
+      <quantity>pos.cartesian.y;instr.det;em.opt.B</quantity>
+      <unit>pix</unit>
+    </column>
+    <column name="[AB]">
+      <summary>Semi-major axis in B</summary>
+      <quantity>phys.size.smajAxis;em.opt.B</quantity>
+      <unit>pix</unit>
+    </column>
+    <column name="[BB]">
+      <summary>Semi-minor axis in B</summary>
+      <quantity>phys.size.sminAxis;em.opt.B</quantity>
+      <unit>pix</unit>
+    </column>
+    <column name="[THETAB]">
+      <summary>Position angle</summary>
+      <quantity>pos.posAng</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[FLAGSB]">
+      <summary>Flags from Sextractor</summary>
+      <quantity>meta.code</quantity>
+    </column>
+    <column name="[MAG_APERB]">
+      <summary>Aperture magnitude in B</summary>
+      <quantity>phot.mag.aper;em.opt.B</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[MAGERR_APERB]">
+      <summary>error in aperture magnitude in B</summary>
+      <quantity>stat.error;phot.mag.aper;em.opt.B</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[MAGB]">
+      <summary>Best magnitude in B</summary>
+      <quantity>phot.mag;em.opt.B</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[MAGERRB]">
+      <summary>Error in best magnitude in B</summary>
+      <quantity>stat.error;phot.mag;em.opt.B</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[MAG_ISOB]">
+      <summary>Isophotal magnitude in B</summary>
+      <quantity>phot.mag.isophotal;em.opt.B</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[MAGERR_ISOB]">
+      <summary>Error in isophotal magnitude in B</summary>
+      <quantity>stat.error;phot.mag.isophotal;em.opt.B</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[ISOAREAB]">
+      <summary>Isophotal area</summary>
+      <quantity>phys.area</quantity>
+      <unit>pix+2</unit>
+    </column>
+    <column name="[CLASS_STARB]">
+      <summary>Fuzzy classifier</summary>
+      <quantity>meta.code</quantity>
+    </column>
+    <column name="[AlphaV]">
+      <summary>RA in V</summary>
+      <quantity>pos.eq.ra;pos.frame=j2000;em.opt.V</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[DeltaV]">
+      <summary>DEC in V</summary>
+      <quantity>pos.eq.dec;pos.frame=j2000;em.opt.V</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[XV]">
+      <summary>position on CCD in V</summary>
+      <quantity>pos.cartesian.x;instr.det;em.opt.V</quantity>
+      <unit>pix</unit>
+    </column>
+    <column name="[YV]">
+      <summary>position on CCD in V</summary>
+      <quantity>pos.cartesian.y;instr.det;em.opt.V</quantity>
+      <unit>pix</unit>
+    </column>
+    <column name="[AV]">
+      <summary>Semi-major axis in V</summary>
+      <quantity>phys.size.smajAxis;em.opt.V</quantity>
+      <unit>pix</unit>
+    </column>
+    <column name="[BV]">
+      <summary>Semi-minor axis in V</summary>
+      <quantity>phys.size.sminAxis;em.opt.V</quantity>
+      <unit>pix</unit>
+    </column>
+    <column name="[THETAV]">
+      <summary>Position angle in V</summary>
+      <quantity>pos.posAng;em.opt.V</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[FLAGSV]">
+      <summary>Flags from Sextractor</summary>
+      <quantity>meta.code</quantity>
+    </column>
+    <column name="[MAG_APERV]">
+      <summary>Aperture magnitude in V</summary>
+      <quantity>phot.mag.aper;em.opt.V</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[MAGERR_APERV]">
+      <summary>error in aperture magnitude in V</summary>
+      <quantity>stat.error;phot.mag.aper;em.opt.V</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[MAGV]">
+      <summary>Best magnitude in V</summary>
+      <quantity>phot.mag;em.opt.V</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[MAGERRV]">
+      <summary>Error in best magnitude in V</summary>
+      <quantity>stat.error;phot.mag;em.opt.V</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[MAG_ISOV]">
+      <summary>Isophotal magnitude in V</summary>
+      <quantity>phot.mag.isophotal;em.opt.V</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[MAGERR_ISOV]">
+      <summary>Error in isophotal magnitude in V</summary>
+      <quantity>stat.error;phot.mag.isophotal;em.opt.V</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[ISOAREAV]">
+      <summary>Isophotal area</summary>
+      <quantity>phys.area</quantity>
+      <unit>pix+2</unit>
+    </column>
+    <column name="[CLASS_STARV]">
+      <summary>Fuzzy classifier</summary>
+      <quantity>meta</quantity>
+    </column>
+    <column name="[AlphaR]">
+      <summary>RA in R</summary>
+      <quantity>pos.eq.ra;pos.frame=j2000;em.opt.R</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[DeltaR]">
+      <summary>DEC in R</summary>
+      <quantity>pos.eq.dec;pos.frame=j2000;em.opt.R</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[XR]">
+      <summary>position on CCD in R</summary>
+      <quantity>pos.cartesian.x;instr.det;em.opt.R</quantity>
+      <unit>pix</unit>
+    </column>
+    <column name="[YR]">
+      <summary>position on CCD in R</summary>
+      <quantity>pos.cartesian.y;instr.det;em.opt.R</quantity>
+      <unit>pix</unit>
+    </column>
+    <column name="[AR]">
+      <summary>Semi-major axis in R</summary>
+      <quantity>phys.size.smajAxis;em.opt.R</quantity>
+      <unit>pix</unit>
+    </column>
+    <column name="[BR]">
+      <summary>Semi-minor axis in R</summary>
+      <quantity>phys.size.sminAxis;em.opt.R</quantity>
+      <unit>pix</unit>
+    </column>
+    <column name="[THETAR]">
+      <summary>Position angle in R</summary>
+      <quantity>pos.posAng;em.opt.R</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[FLAGSR]">
+      <summary>Flags from Sextractor</summary>
+      <quantity>meta.code</quantity>
+    </column>
+    <column name="[MAG_APERR]">
+      <summary>Aperture magnitude in R</summary>
+      <quantity>phot.mag.aper;em.opt.R</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[MAGERR_APERR]">
+      <summary>error in aperture magnitude in R</summary>
+      <quantity>stat.error;phot.mag.aper;em.opt.R</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[MAGR]">
+      <summary>Best magnitude in R</summary>
+      <quantity>phot.mag;em.opt.R</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[MAGERRR]">
+      <summary>Error in best magnitude in R</summary>
+      <quantity>stat.error;em.opt.R</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[MAG_ISOR]">
+      <summary>Isophotal magnitude in R</summary>
+      <quantity>phot.mag.isophotal;em.opt.R</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[MAGERR_ISOR]">
+      <summary>Error in isophotal magnitude in R</summary>
+      <quantity>stat.error;phot.mag.isophotal;em.opt.R</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[ISOAREAR]">
+      <summary>Isophotal area</summary>
+      <quantity>phys.area</quantity>
+      <unit>pix+2</unit>
+    </column>
+    <column name="[CLASS_STARR]">
+      <summary>Fuzzy classifier</summary>
+      <quantity>meta</quantity>
+    </column>
+    <column name="[Alphaz]">
+      <summary>RA in z</summary>
+      <quantity>pos.eq.ra;pos.frame=j2000;em.opt.SDSS.z</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[Deltaz]">
+      <summary>DEC in z</summary>
+      <quantity>pos.eq.dec;pos.frame=j2000;em.opt.SDSS.z</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[Xz]">
+      <summary>position on CCD in z</summary>
+      <quantity>pos.cartesian.x;instr.det;em.opt.SDSS.z</quantity>
+      <unit>pix</unit>
+    </column>
+    <column name="[Yz]">
+      <summary>position on CCD in z</summary>
+      <quantity>pos.cartesian.y;instr.det;em.opt.SDSS.z</quantity>
+      <unit>pix</unit>
+    </column>
+    <column name="[Az]">
+      <summary>Semi-major axis in z</summary>
+      <quantity>phys.size.smajAxis;em.opt.SDSS.z</quantity>
+      <unit>pix</unit>
+    </column>
+    <column name="[Bz]">
+      <summary>Semi-minor axis in z</summary>
+      <quantity>phys.size.sminAxis;em.opt.SDSS.z</quantity>
+      <unit>pix</unit>
+    </column>
+    <column name="[THETAz]">
+      <summary>Position angle in z</summary>
+      <quantity>pos.posAng;em.opt.SDSS.z</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[FLAGSz]">
+      <summary>Flags from Sextractor</summary>
+      <quantity>meta.code</quantity>
+    </column>
+    <column name="[MAG_APERz]">
+      <summary>Aperture magnitude in z</summary>
+      <quantity>phot.mag.aper;em.opt.SDSS.z</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[MAGERR_APERz]">
+      <summary>error in aperture magnitude in z</summary>
+      <quantity>stat.error;phot.mag.aper;em.opt.SDSS.z</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[MAGz]">
+      <summary>Best magnitude in z</summary>
+      <quantity>phot.mag;em.opt.SDSS.z</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[MAGERRz]">
+      <summary>Error in best magnitude in z</summary>
+      <quantity>stat.error;phot.mag;em.opt.SDSS.z</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[MAG_ISOz]">
+      <summary>Isophotal magnitude in z</summary>
+      <quantity>phot.mag.isophotal;em.opt.SDSS.z</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[MAGERR_ISOz]">
+      <summary>Error in isophotal magnitude in z</summary>
+      <quantity>stat.error;phot.mag.isophotal;em.opt.SDSS.z</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[ISOAREAz]">
+      <summary>Isophotal area</summary>
+      <quantity>phys.size.area</quantity>
+      <unit>pix+2</unit>
+    </column>
+    <column name="[CLASS_STARz]">
+      <summary>Fuzzy classifier</summary>
+      <quantity>meta</quantity>
+    </column>
+  </table>
 </metadata>
