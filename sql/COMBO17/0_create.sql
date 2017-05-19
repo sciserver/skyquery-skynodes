@@ -1,4 +1,27 @@
+--/ <dataset>
+--/ <summary> Classifying Objects by Medium-Band Observations - a spectrophotometric 17-filter survey </summary>
+--/ <remarks>
+--/ This catalogue lists astrometry, photometry in 17 passbands from 350 to 930 nm, and ground-based morphological data for 
+--/ 63,501 objects. The catalogue also contains multi-colour classification into the categories Star, Galaxy and Quasar as well as 
+--/ photometric redshifts. We include restframe luminosities in Johnson, SDSS and Bessell passbands and estimated errors. The redshifts 
+--/ are most reliable at R&lt;4, where the sample contains approximately 100 quasars, 1000 stars and 10000 galaxies. We use nearly 1000 
+--/ spectroscopically identified objects in conjunction with detailed simulations to characterize the performance of COMBO-17. We show 
+--/ that the selection of quasars, more generally type-1 AGN, is nearly complete and minimally contaminated at z=[0.5,5] for luminosities 
+--/ above M_B=-21.7. Their photometric redshifts are accurate to roughly 5000 km/sec. Galaxy redshifts are accurate to 1% in dz/(1+z) 
+--/ at R&lt;21. They degrade in quality for progressively fainter galaxies, reaching accuracies of 2% for galaxies with R~22 and of 10% for 
+--/ galaxies with R&gt;24. The selection of stars is complete to R~23, and deeper for M stars. We also present an updated discussion of our 
+--/ classification technique with maps of survey completeness, and discuss possible failures of the statistical classification in the faint regime at R&gt;24. 
+--/ </remarks>
+--/ <url>http://www.mpia.de/COMBO/combo_CDFSpublic.html</url>
+--/ <icon>combo17.png</icon>
+--/ <docpage>combo17.html</docpage>
+--/ </dataset>
+ GO
+ 
 -- CREATE PhotoObj TABLE
+
+--/ <summary></summary>
+--/ <remarks></remarks>
 CREATE TABLE dbo.PhotoObj
 (
 	--/ <summary> Cartesian X (J2000)</summary>	--/ <quantity>pos.eq.x;pos.frame=j2000</quantity>

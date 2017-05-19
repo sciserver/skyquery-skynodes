@@ -1,64 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <metadata>
+  <dataset>
+    <summary> Catalina Survey DR2 Variable Catalog </summary>
+    <remarks>
+      The catalog contains ~47,000 periodic variables within a 20,000 square degree region covered by the Catalina Surveys Data Release-1 (CSDR1).</remarks>
+    <url>http://nesssi.cacr.caltech.edu/DataRelease/Varcat.html</url>
+    <icon>csdr2.png</icon>
+    <docpage>csdr2.html</docpage>
+  </dataset>
   <table name="[dbo].[PhotoObj]">
+    <remarks>The catalog contains periods, amplitudes, and classifications.</remarks>
     <column name="[objID]">
       <summary> Numerical ID. </summary>
-<quantity>meta.record</quantity>
-</column>
+      <quantity>meta.record</quantity>
+    </column>
     <column name="[csID]">
       <summary> Catalina Surveys identification (coded from the star's RA_2000 and DEC_2000 in the format: CSS_Jhhmmss.s+ddmmss). </summary>
-<quantity>meta.id</quantity>
-</column>
+      <quantity>meta.id</quantity>
+    </column>
     <column name="[ra]">
       <summary> Right ascension in decimal degrees. </summary>
-<quantity>pos.eq.ra;</quantity>
-<unit>deg</unit>
-</column>
+      <quantity>pos.eq.ra;</quantity>
+      <unit>deg</unit>
+    </column>
     <column name="[dec]">
       <summary> Declination in decimal degrees. </summary>
-<quantity>pos.eq.dec</quantity>
-<unit>deg</unit>
-</column>
+      <quantity>pos.eq.dec</quantity>
+      <unit>deg</unit>
+    </column>
     <column name="[cx]">
       <summary> Cartesian X</summary>
-<quantity>pos.eq.x</quantity>
-</column>
+      <quantity>pos.eq.x</quantity>
+    </column>
     <column name="[cy]">
       <summary> Cartesian Y</summary>
-<quantity>pos.eq.y</quantity>
-</column>
+      <quantity>pos.eq.y</quantity>
+    </column>
     <column name="[cz]">
       <summary> Cartesian Z</summary>
-<quantity>pos.eq.z</quantity>
-</column>
+      <quantity>pos.eq.z</quantity>
+    </column>
     <column name="[htmid]">
       <summary> HTM ID</summary>
-<quantity>pos.HTM;pos.eq</quantity>
-</column>
+      <quantity>pos.HTM;pos.eq</quantity>
+    </column>
     <column name="[zoneid]">
       <summary> Zone ID </summary>
-<quantity>pos.zone;pos.eq</quantity>
-</column>
+      <quantity>pos.zone;pos.eq</quantity>
+    </column>
     <column name="[V]">
       <summary> Magnitude in V band. </summary>
-<quantity>phot.mag;em.opt.V</quantity>
-<unit> mag </unit>
-</column>
+      <quantity>phot.mag;em.opt.V</quantity>
+      <unit> mag </unit>
+    </column>
     <column name="[Period]">
       <summary>  Period in days. </summary>
-<quantity>time.period;src.var</quantity>
-<unit> d </unit>
-</column>
+      <quantity>time.period;src.var</quantity>
+      <unit> d </unit>
+    </column>
     <column name="[Amplitude]">
       <summary>  Amplitude of the variation. </summary>
-<quantity>src.var.amplitude</quantity>
-</column>
+      <quantity>src.var.amplitude</quantity>
+    </column>
     <column name="[NumberObs]">
       <summary> Number of observations. </summary>
-<quantity>meta.number;obs</quantity>
-</column>
+      <quantity>meta.number;obs</quantity>
+    </column>
     <column name="[Type]">
       <summary> Variable type. </summary>
-<quantity>src.var.type</quantity>
-</column>
+      <quantity>src.var.type</quantity>
+    </column>
   </table>
 </metadata>

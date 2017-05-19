@@ -1,5 +1,18 @@
+--/ <dataset>
+--/ <summary> Catalina Survey DR2 Variable Catalog </summary>
+--/ <remarks>
+--/ The catalog contains ~47,000 periodic variables within a 20,000 square degree region covered by the Catalina Surveys Data Release-1 (CSDR1).
+--/ </remarks>
+--/ <url>http://nesssi.cacr.caltech.edu/DataRelease/Varcat.html</url>
+--/ <icon>csdr2.png</icon>
+--/ <docpage>csdr2.html</docpage>
+--/ </dataset>
+ GO
+
 -- CREATE PhotoObj TABLE
 
+--/ <summary></summary>
+--/ <remarks>The catalog contains periods, amplitudes, and classifications.</remarks>
 CREATE TABLE dbo.PhotoObj 
 (
 	--/ <summary> Numerical ID. </summary>

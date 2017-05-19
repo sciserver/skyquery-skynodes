@@ -1,4 +1,19 @@
+--/ <dataset>
+--/ <summary> DEEP2 Galaxy Redshift Survey - Data Release 4 </summary>
+--/ <remarks>
+--/ The DEEP2 DR4 redshift catalog includes 50,319 entries, with 36 fields (or tags) per entry. 
+--/ </remarks>
+--/ <url>http://deep.ps.uci.edu/DR4/zcatalog.html</url>
+--/ <icon>deep2dr4.png</icon>
+--/ <docpage>deep2dr4.html</docpage>
+--/ </dataset>
+ GO
+ 
 -- CREATE SpecObj TABLE
+
+--/ <summary> </summary>
+--/ <remarks>Note that these redshift catalogs include all spectroscopic targets regardless of whether an accurate redshift was measured; only galaxies with redshift quality (ZQUALITY) greater than or equal to 3 should be treated as having a reliable redshift measurement (objects identified as stars are given ZQUALITY of -1).</remarks>
+
 CREATE TABLE dbo.SpecObj
 (
 
