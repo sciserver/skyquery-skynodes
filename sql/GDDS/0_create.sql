@@ -1,4 +1,20 @@
+--/ <dataset>
+--/ <summary>  </summary>
+--/ <remarks>
+--/ The Gemini Deep Deep Survey (GDDS) is an ultradeep (K&lt;20.6 mag, I&lt;24.5 mag) redshift survey 
+--/ targeting galaxies in the ``redshift desert'' between z=1 and z=2. The primary goal of the 
+--/ survey is to constrain the space density at high redshift of evolved high-mass galaxies.
+--/ </remarks>
+--/ <url>http://www.gemini.edu/node/18</url>
+--/ <icon>gdds.png</icon>
+--/ <docpage>gdds.html</docpage>
+--/ </dataset>
+ GO
+ 
 -- CREATE SpecObj TABLE
+ 
+--/ <summary></summary>
+--/ <remarks></remarks>
 CREATE TABLE dbo.SpecObj
 (
 
@@ -198,6 +214,9 @@ CREATE TABLE dbo.SpecObj
 GO
 
 -- CREATE SpectralFeatures TABLE
+
+--/ <summary></summary>
+--/ <remarks></remarks>
 CREATE TABLE dbo.SpectralFeatures
 (
 	--/ <summary> GDDS object identification (HH-NNNN). 

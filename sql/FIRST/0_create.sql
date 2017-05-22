@@ -1,9 +1,28 @@
+--/ <dataset>
+--/ <summary> The VLA FIRST Survey - Faint Images of the Radio Sky at Twenty-Centimeters  </summary>
+--/ <remarks>
+--/ A source catalog including peak and integrated flux densities and size information derived from 
+--/ fitting two-dimensional Gaussians to the sources is generated from the coadded images. The 
+--/ astrometric reference frame of the maps is accurate to 0.05", and individual sources have 90% 
+--/ confidence error circles of radius &lt; 0.5" at the 3 mJy level and 1" at the survey threshold. The 
+--/ survey area has been chosen to coincide with that of the Sloan Digital Sky Survey (SDSS); at the 
+--/ mv~23 limit of SDSS, ~30% of the optical counterparts to FIRST sources are detected. unambiguous 
+--/ optical identifications (&lt;5% false rates) are achievable to mv~24. 
+--/ </remarks>
+--/ <url>http://sundog.stsci.edu/first/catalogs/</url>
+--/ <icon>first.png</icon>
+--/ <docpage>first.html</docpage>
+--/ </dataset>
+ GO
+
+
+
 -- CREATE PhotoObj TABLE
 
-IF OBJECT_ID ('dbo.PhotoObj', 'U') IS NOT NULL
-	DROP TABLE dbo.PhotoObj;
-
-GO
+--/ <summary> Source catalog (version 14dec17) </summary>
+--/ <remarks>  A catalog from the 1993 through 2011 images (containing ~946,000 sources and covering 
+--/ ~10,575 square degrees) has been constructed and tested to ensure reliability and completeness.
+--/ </remarks>
 
 CREATE TABLE dbo.PhotoObj 
 (

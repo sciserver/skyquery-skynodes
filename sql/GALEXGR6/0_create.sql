@@ -1,3 +1,14 @@
+--/ <dataset>
+--/ <summary> The Galaxy Evolution Explorer General Release 6 </summary>
+--/ <remarks>
+--/ 
+--/ </remarks>
+--/ <url>http://galex.stsci.edu/GR6/</url>
+--/ <icon>galexgr6.png</icon>
+--/ <docpage>galexgr6.html</docpage>
+--/ </dataset>
+GO
+ 
 --/ <summary> Auxiliary information about the observation commands sent to the spacecraft </summary>
 --/ <remarks>	</remarks>
 CREATE TABLE [dbo].[acsData](
@@ -73,6 +84,8 @@ CREATE TABLE [dbo].[acsData](
 
 GO
 
+--/ <summary>  </summary>
+--/ <remarks>  </remarks>
 CREATE TABLE [dbo].[DataConstants](
 	[field] [varchar](64) NULL,
 	[name] [varchar](64) NULL,
@@ -2358,6 +2371,9 @@ CREATE TABLE [dbo].[photoextract](
 ) ON [PRIMARY]
 GO
 
+
+--/ <summary>  </summary>
+--/ <remarks>  </remarks>
 CREATE TABLE [dbo].[photoobjall](
 	--/ <summary>Galex Global Object ID</summary>
 	--/ <quantity>meta.id</quantity>
@@ -4050,6 +4066,9 @@ CREATE TABLE [dbo].[target](
 
 GO
 
+
+--/ <summary>  </summary>
+--/ <remarks>  </remarks>
 CREATE TABLE [dbo].[visitimg](
 	--/ <summary>Pointer to IMG Table for NUV or FUV image</summary>
 	--/ <quantity>meta.id</quantity>
@@ -6854,6 +6873,8 @@ CREATE TABLE [dbo].[visitphotoextract](
 
 GO
 
+--/ <summary>  </summary>
+--/ <remarks>  </remarks>
 CREATE TABLE [dbo].[visitphotoobjall](
 	--/ <summary>Galex Global Object ID</summary>
 	--/ <quantity>meta.id</quantity>

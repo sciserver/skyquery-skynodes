@@ -1,4 +1,25 @@
+--/ <dataset>
+--/ <summary> Hubble Deep Field </summary>
+--/ <remarks>
+--/ The Hubble Deep Field (HDF) is a Director's Discretionary program on HST in Cycle 5 to image a 
+--/ typical field at high galactic latitude in four wavelength passbands as deeply as reasonably 
+--/ possible. In order to optimize observing in the time available, a field in the northern continuous 
+--/ viewing zone (CVZ) was selected and images were taken for 10 consecutive days, or approximately 
+--/ 150 orbits. Shorter 1-orbit images were also obtained of the fields immediately adjacent to the 
+--/ primary HDF in order to facilitate spectroscopic follow-up by ground-based telescopes. The 
+--/ observations were carried out from 18-30 December 1995, and the data are available to the 
+--/ community for study.
+--/ </remarks>
+--/ <url>http://www.stsci.edu/ftp/science/hdf/hdf.html</url>
+--/ <icon>hdf.png</icon>
+--/ <docpage>hdf.html</docpage>
+--/ </dataset>
+ GO
+ 
 -- CREATE PhotoObj TABLE
+
+--/ <summary></summary>
+--/ <remarks></remarks>
 CREATE TABLE dbo.PhotoObj
 (
 	--/ <summary> Cartesian X (J2000)</summary>

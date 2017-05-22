@@ -1,3 +1,14 @@
+--/ <dataset>
+--/ <summary> GAIA DATA RELEASE 1 </summary>
+--/ <remarks>
+--/ 
+--/ </remarks>
+--/ <url>https://www.cosmos.esa.int/web/gaia/dr1</url>
+--/ <icon>gaiadr1.png</icon>
+--/ <docpage>gaiadr1.html</docpage>
+--/ </dataset>
+ GO
+
 --/ <summary>This table has an entry for every Gaia observed source as listed in the Main Database accumulating catalogue version from which the catalogue release has been generated.</summary>
 --/ <remarks>It contains the basic source parameters, that is only final data (no epoch data) and no spectra (neither final nor epoch). </remarks>
 CREATE TABLE Source

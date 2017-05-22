@@ -1,4 +1,18 @@
+--/ <dataset>
+--/ <summary> The FORS Deep Field Spectroscopic Survey </summary>
+--/ <remarks>
+--/ The catalogue contains a well defined sample of 341 objects in the FORS Deep Field. All spectra were obtained with the FORS instruments at the ESO VLT with essentially the same spectroscopic set-up. The observed extragalactic objects cover the redshift range 0.1 to 5.0. 98 objects are starburst galaxies and QSOs at z&gt;2.
+--/ </remarks>
+--/ <url>http://vizier.cfa.harvard.edu/viz-bin/VizieR?-source=J/A+A/418/885</url>
+--/ <icon>fors.png</icon>
+--/ <docpage>fors.html</docpage>
+--/ </dataset>
+ GO
+ 
 -- CREATE SpecObj TABLE
+
+--/ <summary></summary>
+--/ <remarks>Data of FDF objects with spectroscopic redshift</remarks>
 CREATE TABLE dbo.SpecObj
 (
 

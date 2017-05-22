@@ -1,3 +1,15 @@
+--/ <dataset>
+--/ <summary> Far Ultraviolet Spectroscopic Explorer (FUSE) </summary>
+--/ <remarks>
+--/ Over eight years of operations, FUSE acquired over 6000 observations of nearly 3000 separate 
+--/ astronomical targets.
+--/ </remarks>
+--/ <url>http://archive.stsci.edu/fuse</url>
+--/ <icon>fuse.png</icon>
+--/ <docpage>fuse.html</docpage>
+--/ </dataset>
+ GO
+
 --/ <summary>A view of the SpecObj table so SkyNode queries will work</summary>
 --/ <remarks>Using the FUSE SkyNode for cross-matching requires it to have a table named PhotoPrimary.  Even though FUSE data is spectroscopic data, a PhotoPrimary view of the main SpecObj table is defined for this purpose.</remarks>
 CREATE TABLE [dbo].[PhotoObj](
