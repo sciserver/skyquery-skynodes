@@ -1,4 +1,18 @@
+--/ <dataset>
+--/ <summary> Herschel - The Great Observatories Origins Deep Survey </summary>
+--/ <remarks>
+--/ The database contains the deepest 100 to 500 µm far-infrared observations obtained with the Herschel Space Observatory as part of the GOODS-Herschel key program.
+--/ </remarks>
+--/ <url>http://irsa.ipac.caltech.edu/data/Herschel/GOODS/</url>
+--/ <icon>herschel.png</icon>
+--/ <docpage>herschel.html</docpage>
+--/ </dataset>
+ GO
+
 -- CREATE goodsNorth TABLE
+
+--/ <summary></summary>
+--/ <remarks></remarks>
 CREATE TABLE dbo.goodsNorth
 (
 
@@ -390,6 +404,9 @@ GO
 ----------------------------------------------------------------------------------
 
 -- CREATE goodsSouth TABLE
+
+--/ <summary></summary>
+--/ <remarks></remarks>
 CREATE TABLE dbo.goodsSouth
 (
 

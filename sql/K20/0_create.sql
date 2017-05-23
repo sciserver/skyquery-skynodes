@@ -1,4 +1,20 @@
+--/ <dataset>
+--/ <summary>  </summary>
+--/ <remarks>
+--/ The K20 survey is a near infrared-selected, deep (Ks&lt;20) redshift survey targeting galaxies in two 
+--/ independent regions of the sky, the Chandra Deep Field South and the field around the quasar 
+--/ 0055-2659, for a total area of 52-arcmin2. The total Ks-selected sample includes 545 objects.
+--/ </remarks>
+--/ <url>http://vizier.cfa.harvard.edu/viz-bin/VizieR?-source=J/A+A/437/883</url>
+--/ <icon>k20.png</icon>
+--/ <docpage>k20.html</docpage>
+--/ </dataset>
+ GO
+
 -- CREATE SpecObj TABLE
+
+--/ <summary></summary>
+--/ <remarks></remarks>
 CREATE TABLE dbo.SpecObj
 (
 	--/ <summary> Cartesian X (J2000)</summary>

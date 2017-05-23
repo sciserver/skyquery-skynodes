@@ -1,134 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <metadata>
+  <dataset>
+    <summary> The Infrared Astronomical Satellite (IRAS) Point Source Catalog </summary>
+    <remarks>
+      The IRAS mission performed an unbiased, sensitive all sky survey at 12, 25, 60 and 100 µm.</remarks>
+    <url>https://irsa.ipac.caltech.edu/IRASdocs/iras.html</url>
+    <icon>iras.png</icon>
+    <docpage>iras.html</docpage>
+  </dataset>
   <table name="[dbo].[PhotoObj]">
-    <summary>The main PhotoObj table for the IRAS catalog</summary>
-<remarks>The main PhotoObj table for the IRAS catalog</remarks>
-<column name="[objID]"><summary>unique object identifier</summary>
-<quantity>meta.id</quantity>
-</column><column name="[name]"><summary>IRAS Source Name</summary>
-<quantity>meta.id</quantity>
-</column><column name="[ra]"><summary>J2000 right ascension</summary>
-<quantity>pos.eq.ra;pos.frame=j2000</quantity>
-<unit>deg</unit>
-</column><column name="[dec]"><summary>J2000 declination</summary>
-<quantity>pos.eq.dec;pos.frame=j2000</quantity>
-<unit>deg</unit>
-</column><column name="[cx]"><summary>Cartesian coordinate x</summary>
-<quantity>pos.eq.x;pos.frame=j2000</quantity>
-</column><column name="[cy]"><summary>Cartesian coordinate y</summary>
-<quantity>pos.eq.y;pos.frame=j2000</quantity>
-</column><column name="[cz]"><summary>Cartesian coordinate z</summary>
-<quantity>pos.eq.z;pos.frame=j2000</quantity>
-</column><column name="[htmid]"><summary>HTM ID</summary>
-<quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
-</column><column name="[zoneid]"><summary>Zone ID</summary>
-<quantity>pos.zone; pos.eq; pos.frame=j2000</quantity>
-</column><column name="[err_maj]"><summary>Uncertainty ellipse major axis</summary>
-<quantity>stat.error;pos.errorEllipse.smajAxis</quantity>
-<unit>arcsec</unit>
-</column><column name="[err_min]"><summary>Uncertainty ellipse minor axis</summary>
-<quantity>stat.error;pos.errorEllipse.sminAxis</quantity>
-<unit>arcsec</unit>
-</column><column name="[err_ang]"><summary>Uncertainty ellipse position angle</summary>
-<quantity>pos.posAng;pos.errorEllipse</quantity>
-<unit>deg</unit>
-</column><column name="[nhcon]"><summary>Number of times observed (&lt;25)</summary>
-<quantity>meta.number;obs</quantity>
-</column><column name="[flux_12]"><summary>Averaged non-color corrected flux density, 12 microns</summary>
-<quantity>phot.flux.density;em.IR.IRAS.12;stat.mean</quantity>
-<unit>Jy</unit>
-</column><column name="[flux_25]"><summary>Averaged non-color corrected flux density, 25 microns</summary>
-<quantity>phot.flux.density;em.IR.IRAS.25;stat.mean</quantity>
-<unit>Jy</unit>
-</column><column name="[flux_60]"><summary>Averaged non-color corrected flux density, 60 microns</summary>
-<quantity>phot.flux.density;em.IR.IRAS.60;stat.mean</quantity>
-<unit>Jy</unit>
-</column><column name="[flux_100]"><summary>Averaged non-color corrected flux density,100 microns</summary>
-<quantity>phot.flux.density;em.IR.IRAS.100;stat.mean</quantity>
-<unit>Jy</unit>
-</column><column name="[fqual_12]"><summary>flux density quality, 12 microns</summary>
-<quantity>meta.code.qual;em.IR.IRAS.12</quantity>
-</column><column name="[fqual_25]"><summary>flux density quality, 25 microns</summary>
-<quantity>meta.code.qual;em.IR.IRAS.25</quantity>
-</column><column name="[fqual_60]"><summary>flux density quality, 60 microns</summary>
-<quantity>meta.code.qual;em.IR.IRAS.60</quantity>
-</column><column name="[fqual_100]"><summary>flux density quality,100 microns</summary>
-<quantity>meta.code.qual;em.IR.IRAS.100</quantity>
-</column><column name="[nlrs]"><summary>Number of significant LRS spectra</summary>
-<quantity></quantity>
-</column><column name="[lrschar]"><summary>Characterization of averaged LRS spectrum, __ is NULL</summary>
-<quantity>meta.code</quantity>
-</column><column name="[relunc_12]"><summary>Percent relative flux density uncertainties, 12 microns</summary>
-<quantity>stat.error;phot.flux.density;em.IR.IRAS.12</quantity>
-</column><column name="[relunc_25]"><summary>Percent relative flux density uncertainties, 25 microns</summary>
-<quantity>stat.error;phot.flux.density;em.IR.IRAS.25</quantity>
-</column><column name="[relunc_60]"><summary>Percent relative flux density uncertainties, 60 microns</summary>
-<quantity>stat.error;phot.flux.density;em.IR.IRAS.60</quantity>
-</column><column name="[relunc_100]"><summary>Percent relative flux density uncertainties,100 microns</summary>
-<quantity>stat.error;phot.flux.density;em.IR.IRAS.100</quantity>
-</column><column name="[tsnr_12]"><summary>Ten times the minimum signal-to-noise ratio, 12 microns</summary>
-<quantity>stat.snr;em.IR.IRAS.12</quantity>
-</column><column name="[tsnr_25]"><summary>Ten times the minimum signal-to-noise ratio, 25 microns</summary>
-<quantity>stat.snr;em.IR.IRAS.25</quantity>
-</column><column name="[tsnr_60]"><summary>Ten times the minimum signal-to-noise ratio, 60 microns</summary>
-<quantity>stat.snr;em.IR.IRAS.60</quantity>
-</column><column name="[tsnr_100]"><summary>Ten times the minimum signal-to-noise ratio,100 microns</summary>
-<quantity>stat.snr;em.IR.IRAS.100</quantity>
-</column><column name="[cc_12]"><summary>Point source correlation coefficient,_ is NULL, 12 microns</summary>
-<quantity>stat.correlation;em.IR.IRAS.12</quantity>
-</column><column name="[cc_25]"><summary>Point source correlation coefficient,_ is NULL, 25 microns</summary>
-<quantity>stat.correlation;em.IR.IRAS.25</quantity>
-</column><column name="[cc_60]"><summary>Point source correlation coefficient,_ is NULL, 60 microns</summary>
-<quantity>stat.correlation;em.IR.IRAS.60</quantity>
-</column><column name="[cc_100]"><summary>Point source correlation coefficient,_ is NULL,100 microns</summary>
-<quantity>stat.correlation;em.IR.IRAS.100</quantity>
-</column><column name="[lvar]"><summary>Percent Likelihood of Variability</summary>
-<quantity>stat.likelihood;src.var</quantity>
-</column><column name="[disc]"><summary>Discrepant Fluxes flag (hex-encoded)</summary>
-<quantity>meta.code;phot.flux</quantity>
-</column><column name="[confuse]"><summary>Confusion flag (hex-encoded)</summary>
-<quantity>meta.code</quantity>
-</column><column name="[pnearh]"><summary>Number of nearby hours-confirmed point sources</summary>
-<quantity>meta.number;src</quantity>
-</column><column name="[pnearw]"><summary>Number of nearby weeks-confirmed point sources</summary>
-<quantity>meta.number;src</quantity>
-</column><column name="[ses1_12]"><summary>Number of seconds-confirmed nearby small extended sources, 12 microns</summary>
-<quantity>meta.number;src;em.IR.IRAS.12</quantity>
-</column><column name="[ses1_25]"><summary>Number of seconds-confirmed nearby small extended sources, 25 microns</summary>
-<quantity>meta.number;src;em.IR.IRAS.25</quantity>
-</column><column name="[ses1_60]"><summary>Number of seconds-confirmed nearby small extended sources, 60 microns</summary>
-<quantity>meta.number;src;em.IR.IRAS.60</quantity>
-</column><column name="[ses1_100]"><summary>Number of seconds-confirmed nearby small extended sources,100 microns</summary>
-<quantity>meta.number;src;em.IR.IRAS.100</quantity>
-</column><column name="[ses2_12]"><summary>Number of nearby weeks-confirmed small extended sources, 12 microns</summary>
-<quantity>meta.number;src;em.IR.IRAS.12</quantity>
-</column><column name="[ses2_25]"><summary>Number of nearby weeks-confirmed small extended sources, 25 microns</summary>
-<quantity>meta.number;src;em.IR.IRAS.25</quantity>
-</column><column name="[ses2_60]"><summary>Number of nearby weeks-confirmed small extended sources, 60 microns</summary>
-<quantity>meta.number;src;em.IR.IRAS.60</quantity>
-</column><column name="[ses2_100]"><summary>Number of nearby weeks-confirmed small extended sources,100 microns</summary>
-<quantity>meta.number;src;em.IR.IRAS.100</quantity>
-</column><column name="[hsdflag]"><summary>Source is located in high source density bin (hex-encoded)</summary>
-<quantity>meta.code.qual;pos</quantity>
-</column><column name="[cirr1]"><summary>Number of nearby 100 micron only WSDB sources</summary>
-<quantity>meta.code;src</quantity>
-</column><column name="[cirr2]"><summary>Spatially filtered 100 micron sky brightness ratio to flux density of point source (see text)</summary>
-<quantity>phot.flux.sb;arith.ratio</quantity>
-</column><column name="[cirr3]"><summary>Total 100 micron sky surface brightness</summary>
-<quantity>phot.flux.sb;obs.background</quantity>
-<unit>MJy sr-1</unit>
-</column><column name="[nid]"><summary>Number of positional associations</summary>
-<quantity>meta.number</quantity>
-</column><column name="[idtype]"><summary>Type of Object</summary>
-<quantity>src.class</quantity>
-</column><column name="[mhcon]"><summary>Possible number of HCONs, 99 for NULL</summary>
-<quantity>meta.number</quantity>
-</column><column name="[fcor_12]"><summary>Flux correction factor applied (times 1000),9999 is NULL, 12 microns</summary>
-<quantity>stat.param;phot.flux;em.IR.IRAS.12</quantity>
-</column><column name="[fcor_25]"><summary>Flux correction factor applied (times 1000),9999 is NULL, 25 microns</summary>
-<quantity>stat.param;phot.flux;em.IR.IRAS.25</quantity>
-</column><column name="[fcor_60]"><summary>Flux correction factor applied (times 1000),9999 is NULL, 60 microns</summary>
-<quantity>stat.param;phot.flux;em.IR.IRAS.60</quantity>
-</column><column name="[fcor_100]"><summary>Flux correction factor applied (times 1000),9999 is NULL,100 microns</summary>
-<quantity>stat.param;phot.flux;em.IR.IRAS.100</quantity>
-</column></table>
+    <remarks>The main PhotoObj table for the IRAS catalog</remarks>
+    <column name="[objID]">
+      <summary>unique object identifier</summary>
+      <quantity>meta.id</quantity>
+    </column>
+    <column name="[name]">
+      <summary>IRAS Source Name</summary>
+      <quantity>meta.id</quantity>
+    </column>
+    <column name="[ra]">
+      <summary>J2000 right ascension</summary>
+      <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[dec]">
+      <summary>J2000 declination</summary>
+      <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[cx]">
+      <summary>Cartesian coordinate x</summary>
+      <quantity>pos.eq.x;pos.frame=j2000</quantity>
+    </column>
+    <column name="[cy]">
+      <summary>Cartesian coordinate y</summary>
+      <quantity>pos.eq.y;pos.frame=j2000</quantity>
+    </column>
+    <column name="[cz]">
+      <summary>Cartesian coordinate z</summary>
+      <quantity>pos.eq.z;pos.frame=j2000</quantity>
+    </column>
+    <column name="[htmid]">
+      <summary>HTM ID</summary>
+      <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+    </column>
+    <column name="[zoneid]">
+      <summary>Zone ID</summary>
+      <quantity>pos.zone; pos.eq; pos.frame=j2000</quantity>
+    </column>
+    <column name="[err_maj]">
+      <summary>Uncertainty ellipse major axis</summary>
+      <quantity>stat.error;pos.errorEllipse.smajAxis</quantity>
+      <unit>arcsec</unit>
+    </column>
+    <column name="[err_min]">
+      <summary>Uncertainty ellipse minor axis</summary>
+      <quantity>stat.error;pos.errorEllipse.sminAxis</quantity>
+      <unit>arcsec</unit>
+    </column>
+    <column name="[err_ang]">
+      <summary>Uncertainty ellipse position angle</summary>
+      <quantity>pos.posAng;pos.errorEllipse</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[nhcon]">
+      <summary>Number of times observed (&lt;25)</summary>
+      <quantity>meta.number;obs</quantity>
+    </column>
+    <column name="[flux_12]">
+      <summary>Averaged non-color corrected flux density, 12 microns</summary>
+      <quantity>phot.flux.density;em.IR.IRAS.12;stat.mean</quantity>
+      <unit>Jy</unit>
+    </column>
+    <column name="[flux_25]">
+      <summary>Averaged non-color corrected flux density, 25 microns</summary>
+      <quantity>phot.flux.density;em.IR.IRAS.25;stat.mean</quantity>
+      <unit>Jy</unit>
+    </column>
+    <column name="[flux_60]">
+      <summary>Averaged non-color corrected flux density, 60 microns</summary>
+      <quantity>phot.flux.density;em.IR.IRAS.60;stat.mean</quantity>
+      <unit>Jy</unit>
+    </column>
+    <column name="[flux_100]">
+      <summary>Averaged non-color corrected flux density,100 microns</summary>
+      <quantity>phot.flux.density;em.IR.IRAS.100;stat.mean</quantity>
+      <unit>Jy</unit>
+    </column>
+    <column name="[fqual_12]">
+      <summary>flux density quality, 12 microns</summary>
+      <quantity>meta.code.qual;em.IR.IRAS.12</quantity>
+    </column>
+    <column name="[fqual_25]">
+      <summary>flux density quality, 25 microns</summary>
+      <quantity>meta.code.qual;em.IR.IRAS.25</quantity>
+    </column>
+    <column name="[fqual_60]">
+      <summary>flux density quality, 60 microns</summary>
+      <quantity>meta.code.qual;em.IR.IRAS.60</quantity>
+    </column>
+    <column name="[fqual_100]">
+      <summary>flux density quality,100 microns</summary>
+      <quantity>meta.code.qual;em.IR.IRAS.100</quantity>
+    </column>
+    <column name="[nlrs]">
+      <summary>Number of significant LRS spectra</summary>
+      <quantity></quantity>
+    </column>
+    <column name="[lrschar]">
+      <summary>Characterization of averaged LRS spectrum, __ is NULL</summary>
+      <quantity>meta.code</quantity>
+    </column>
+    <column name="[relunc_12]">
+      <summary>Percent relative flux density uncertainties, 12 microns</summary>
+      <quantity>stat.error;phot.flux.density;em.IR.IRAS.12</quantity>
+    </column>
+    <column name="[relunc_25]">
+      <summary>Percent relative flux density uncertainties, 25 microns</summary>
+      <quantity>stat.error;phot.flux.density;em.IR.IRAS.25</quantity>
+    </column>
+    <column name="[relunc_60]">
+      <summary>Percent relative flux density uncertainties, 60 microns</summary>
+      <quantity>stat.error;phot.flux.density;em.IR.IRAS.60</quantity>
+    </column>
+    <column name="[relunc_100]">
+      <summary>Percent relative flux density uncertainties,100 microns</summary>
+      <quantity>stat.error;phot.flux.density;em.IR.IRAS.100</quantity>
+    </column>
+    <column name="[tsnr_12]">
+      <summary>Ten times the minimum signal-to-noise ratio, 12 microns</summary>
+      <quantity>stat.snr;em.IR.IRAS.12</quantity>
+    </column>
+    <column name="[tsnr_25]">
+      <summary>Ten times the minimum signal-to-noise ratio, 25 microns</summary>
+      <quantity>stat.snr;em.IR.IRAS.25</quantity>
+    </column>
+    <column name="[tsnr_60]">
+      <summary>Ten times the minimum signal-to-noise ratio, 60 microns</summary>
+      <quantity>stat.snr;em.IR.IRAS.60</quantity>
+    </column>
+    <column name="[tsnr_100]">
+      <summary>Ten times the minimum signal-to-noise ratio,100 microns</summary>
+      <quantity>stat.snr;em.IR.IRAS.100</quantity>
+    </column>
+    <column name="[cc_12]">
+      <summary>Point source correlation coefficient,_ is NULL, 12 microns</summary>
+      <quantity>stat.correlation;em.IR.IRAS.12</quantity>
+    </column>
+    <column name="[cc_25]">
+      <summary>Point source correlation coefficient,_ is NULL, 25 microns</summary>
+      <quantity>stat.correlation;em.IR.IRAS.25</quantity>
+    </column>
+    <column name="[cc_60]">
+      <summary>Point source correlation coefficient,_ is NULL, 60 microns</summary>
+      <quantity>stat.correlation;em.IR.IRAS.60</quantity>
+    </column>
+    <column name="[cc_100]">
+      <summary>Point source correlation coefficient,_ is NULL,100 microns</summary>
+      <quantity>stat.correlation;em.IR.IRAS.100</quantity>
+    </column>
+    <column name="[lvar]">
+      <summary>Percent Likelihood of Variability</summary>
+      <quantity>stat.likelihood;src.var</quantity>
+    </column>
+    <column name="[disc]">
+      <summary>Discrepant Fluxes flag (hex-encoded)</summary>
+      <quantity>meta.code;phot.flux</quantity>
+    </column>
+    <column name="[confuse]">
+      <summary>Confusion flag (hex-encoded)</summary>
+      <quantity>meta.code</quantity>
+    </column>
+    <column name="[pnearh]">
+      <summary>Number of nearby hours-confirmed point sources</summary>
+      <quantity>meta.number;src</quantity>
+    </column>
+    <column name="[pnearw]">
+      <summary>Number of nearby weeks-confirmed point sources</summary>
+      <quantity>meta.number;src</quantity>
+    </column>
+    <column name="[ses1_12]">
+      <summary>Number of seconds-confirmed nearby small extended sources, 12 microns</summary>
+      <quantity>meta.number;src;em.IR.IRAS.12</quantity>
+    </column>
+    <column name="[ses1_25]">
+      <summary>Number of seconds-confirmed nearby small extended sources, 25 microns</summary>
+      <quantity>meta.number;src;em.IR.IRAS.25</quantity>
+    </column>
+    <column name="[ses1_60]">
+      <summary>Number of seconds-confirmed nearby small extended sources, 60 microns</summary>
+      <quantity>meta.number;src;em.IR.IRAS.60</quantity>
+    </column>
+    <column name="[ses1_100]">
+      <summary>Number of seconds-confirmed nearby small extended sources,100 microns</summary>
+      <quantity>meta.number;src;em.IR.IRAS.100</quantity>
+    </column>
+    <column name="[ses2_12]">
+      <summary>Number of nearby weeks-confirmed small extended sources, 12 microns</summary>
+      <quantity>meta.number;src;em.IR.IRAS.12</quantity>
+    </column>
+    <column name="[ses2_25]">
+      <summary>Number of nearby weeks-confirmed small extended sources, 25 microns</summary>
+      <quantity>meta.number;src;em.IR.IRAS.25</quantity>
+    </column>
+    <column name="[ses2_60]">
+      <summary>Number of nearby weeks-confirmed small extended sources, 60 microns</summary>
+      <quantity>meta.number;src;em.IR.IRAS.60</quantity>
+    </column>
+    <column name="[ses2_100]">
+      <summary>Number of nearby weeks-confirmed small extended sources,100 microns</summary>
+      <quantity>meta.number;src;em.IR.IRAS.100</quantity>
+    </column>
+    <column name="[hsdflag]">
+      <summary>Source is located in high source density bin (hex-encoded)</summary>
+      <quantity>meta.code.qual;pos</quantity>
+    </column>
+    <column name="[cirr1]">
+      <summary>Number of nearby 100 micron only WSDB sources</summary>
+      <quantity>meta.code;src</quantity>
+    </column>
+    <column name="[cirr2]">
+      <summary>Spatially filtered 100 micron sky brightness ratio to flux density of point source (see text)</summary>
+      <quantity>phot.flux.sb;arith.ratio</quantity>
+    </column>
+    <column name="[cirr3]">
+      <summary>Total 100 micron sky surface brightness</summary>
+      <quantity>phot.flux.sb;obs.background</quantity>
+      <unit>MJy sr-1</unit>
+    </column>
+    <column name="[nid]">
+      <summary>Number of positional associations</summary>
+      <quantity>meta.number</quantity>
+    </column>
+    <column name="[idtype]">
+      <summary>Type of Object</summary>
+      <quantity>src.class</quantity>
+    </column>
+    <column name="[mhcon]">
+      <summary>Possible number of HCONs, 99 for NULL</summary>
+      <quantity>meta.number</quantity>
+    </column>
+    <column name="[fcor_12]">
+      <summary>Flux correction factor applied (times 1000),9999 is NULL, 12 microns</summary>
+      <quantity>stat.param;phot.flux;em.IR.IRAS.12</quantity>
+    </column>
+    <column name="[fcor_25]">
+      <summary>Flux correction factor applied (times 1000),9999 is NULL, 25 microns</summary>
+      <quantity>stat.param;phot.flux;em.IR.IRAS.25</quantity>
+    </column>
+    <column name="[fcor_60]">
+      <summary>Flux correction factor applied (times 1000),9999 is NULL, 60 microns</summary>
+      <quantity>stat.param;phot.flux;em.IR.IRAS.60</quantity>
+    </column>
+    <column name="[fcor_100]">
+      <summary>Flux correction factor applied (times 1000),9999 is NULL,100 microns</summary>
+      <quantity>stat.param;phot.flux;em.IR.IRAS.100</quantity>
+    </column>
+  </table>
 </metadata>

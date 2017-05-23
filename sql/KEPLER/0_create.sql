@@ -1,4 +1,24 @@
--- CREATE PhotoObj TABLE
+--/ <dataset>
+--/ <summary>The Kepler Input Catalog </summary>
+--/ <remarks>
+--/ The KIC, or Kepler Input Catalog, is the primary source of information about objects observed as 
+--/ part of the ground-based Kepler Spectral Classification Program (SCP) in preparation for the 
+--/ selection of Kepler PI and GO targets. The KIC lists objects down to 21mag, but it is not complete 
+--/ to this limit. Light from only about 1/3 of these objects falls on the Kepler CCD detector. A small 
+--/ number of the KIC objects are calibration objects distributed across the sky.
+--/ </remarks>
+--/ <url>http://tdc-www.harvard.edu/software/catalogs/kic.html</url>
+--/ <icon>kepler.png</icon>
+--/ <docpage>kepler.html</docpage>
+--/ </dataset>
+ GO
+ 
+ -- CREATE PhotoObj TABLE
+
+--/ <summary>The Kepler Input Catalog</summary>
+--/ <remarks>The primary source of information about objects observed as 
+--/ part of the ground-based Kepler Spectral Classification Program (SCP) in preparation for the 
+--/ selection of Kepler PI and GO targets</remarks>
 CREATE TABLE dbo.KIC
 (
 	--/ <summary> Cartesian X (J2000)</summary>

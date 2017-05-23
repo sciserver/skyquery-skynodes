@@ -1,3 +1,14 @@
+--/ <dataset>
+--/ <summary> The Infrared Astronomical Satellite (IRAS) Point Source Catalog </summary>
+--/ <remarks>
+--/ The IRAS mission performed an unbiased, sensitive all sky survey at 12, 25, 60 and 100 µm.
+--/ </remarks>
+--/ <url>https://irsa.ipac.caltech.edu/IRASdocs/iras.html</url>
+--/ <icon>iras.png</icon>
+--/ <docpage>iras.html</docpage>
+--/ </dataset>
+ GO
+
 --/ <summary>The main PhotoObj table for the IRAS catalog</summary>
 --/ <remarks>The main PhotoObj table for the IRAS catalog</remarks>
 CREATE TABLE [dbo].[PhotoObj]

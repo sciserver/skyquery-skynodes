@@ -1,77 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <metadata>
+  <dataset>
+    <summary />
+    <remarks>
+      The K20 survey is a near infrared-selected, deep (Ks&lt;20) redshift survey targeting galaxies in two
+      independent regions of the sky, the Chandra Deep Field South and the field around the quasar
+      0055-2659, for a total area of 52-arcmin2. The total Ks-selected sample includes 545 objects.</remarks>
+    <url>http://vizier.cfa.harvard.edu/viz-bin/VizieR?-source=J/A+A/437/883</url>
+    <icon>k20.png</icon>
+    <docpage>k20.html</docpage>
+  </dataset>
   <table name="[dbo].[SpecObj]">
+    <remarks></remarks>
     <column name="[cx]">
       <summary> Cartesian X (J2000)</summary>
-<quantity>pos.eq.x;pos.frame=j2000</quantity>
-</column>
+      <quantity>pos.eq.x;pos.frame=j2000</quantity>
+    </column>
     <column name="[cy]">
       <summary> Cartesian Y (J2000)</summary>
-<quantity>pos.eq.y;pos.frame=j2000</quantity>
-</column>
+      <quantity>pos.eq.y;pos.frame=j2000</quantity>
+    </column>
     <column name="[cz]">
       <summary> Cartesian Z (J2000)</summary>
-<quantity>pos.eq.z;pos.frame=j2000</quantity>
-</column>
+      <quantity>pos.eq.z;pos.frame=j2000</quantity>
+    </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
-<quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
-</column>
+      <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+    </column>
     <column name="[zoneid]">
       <summary> Zone ID </summary>
-<quantity>pos.zone; pos.eq; pos.frame=j2000</quantity>
-</column>
+      <quantity>pos.zone; pos.eq; pos.frame=j2000</quantity>
+    </column>
     <column name="[Seq]">
       <summary> K20 identification number, CDFS_NNNNN or q0055_NNNNN </summary>
-<quantity>meta.id</quantity>
-</column>
+      <quantity>meta.id</quantity>
+    </column>
     <column name="[RA]">
       <summary> Right ascension (J2000.0) </summary>
-<quantity>pos.eq.ra;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[DEC]">
       <summary> Declination (J2000.0) </summary>
-<quantity>pos.eq.dec;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[Ksmag]">
       <summary> Total (SExtractor BEST) Ks-band magnitude </summary>
-<quantity>phot.mag;em.IR.K</quantity>
-<unit> mag </unit>
-</column>
+      <quantity>phot.mag;em.IR.K</quantity>
+      <unit> mag </unit>
+    </column>
     <column name="[R_K]">
       <summary> R-K colour index, measured in a 2"-diameter aperture corrected to total </summary>
-<quantity>phot.color;em.opt.R;em.IR.K</quantity>
-</column>
+      <quantity>phot.color;em.opt.R;em.IR.K</quantity>
+    </column>
     <column name="[z]">
       <summary> Spectroscopic redshift </summary>
-<quantity>src.redshift;spect</quantity>
-<unit> mag </unit>
-</column>
+      <quantity>src.redshift;spect</quantity>
+      <unit> mag </unit>
+    </column>
     <column name="[q_z]">
-      <summary> [-1/1] Quality flag on redshfit. Quality flag on redshfit as follows:
-1=	solid redshift determination;
-0=	tentative redshift determination;
--1=	no redshfit determination. </summary>
-<quantity>meta.code.qual;src.redshift</quantity>
-</column>
+      <summary>
+        [-1/1] Quality flag on redshfit. Quality flag on redshfit as follows:
+        1=	solid redshift determination;
+        0=	tentative redshift determination;
+        -1=	no redshfit determination.</summary>
+      <quantity>meta.code.qual;src.redshift</quantity>
+    </column>
     <column name="[Class]">
-      <summary> Spectroscopic classes code. Spectroscopic classes as follows:
-0=	objects classified as stars;
-1=	red passive early-type galaxies;
-2=	blue emission-line galaxies;
-1.5=	intermediate galaxies with emission lines but red continuum indices;
-3=	galaxies which are not included in one of the three previous classes;
-4=	broad-line AGN. We remind that objects with only a tentative redshift (q_z=0) are not classified. </summary>
-<quantity>meta.code;src.class.luminosity</quantity>
-</column>
+      <summary>
+        Spectroscopic classes code. Spectroscopic classes as follows:
+        0=	objects classified as stars;
+        1=	red passive early-type galaxies;
+        2=	blue emission-line galaxies;
+        1.5=	intermediate galaxies with emission lines but red continuum indices;
+        3=	galaxies which are not included in one of the three previous classes;
+        4=	broad-line AGN. We remind that objects with only a tentative redshift (q_z=0) are not classified.</summary>
+      <quantity>meta.code;src.class.luminosity</quantity>
+    </column>
     <column name="[FileName]">
       <summary> Spectra file name in "sp" subdirectory </summary>
-<quantity>meta.id;meta.file</quantity>
-</column>
+      <quantity>meta.id;meta.file</quantity>
+    </column>
     <column name="[Com]">
       <summary> Comment </summary>
-<quantity>meta.note</quantity>
-</column>
+      <quantity>meta.note</quantity>
+    </column>
   </table>
 </metadata>
