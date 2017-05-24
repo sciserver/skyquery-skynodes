@@ -1,162 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <metadata>
+  <dataset>
+    <summary> The Large Sky Area Multi-Object Fiber Spectroscopic Telescope - Data Release 1 </summary>
+    <remarks>
+      the LAMOST general catalog. It includes 717,469 objects obtained from the LAMOST pilot survey, which
+      contains 648,746 stars, 2,723 galaxies, 621 quasars and 65,406 unknown objects, and 1,487,200
+      objects obtained from the LAMOST general survey, which contains 1,295,583 stars, 9,359 galaxies,
+      4,396 quasars and 177,862 unknown objects, so this catalog totally includes 2,204,696 objects
+      including 1,944,329 stars, 12,082 galaxies, 5,017 quasars and 243,268 unknown objects. In this
+      catalog, there are 1,186,132 objects with SNR of g band larger than 10, 1,680,794 objects with SNR
+      of i band larger than 10, and 1,746,202 objects with SNR of g band larger than 10 and SNR of i
+      band larger than 10.</remarks>
+    <url>http://dr1.lamost.org/</url>
+    <icon>lamostdr1.png</icon>
+    <docpage>lamostdr1.html</docpage>
+  </dataset>
   <table name="[dbo].[SpecObj]">
+    <remarks></remarks>
     <column name="[cx]">
       <summary> Cartesian X (J2000)</summary>
-<quantity>pos.eq.x;pos.frame=j2000</quantity>
-</column>
+      <quantity>pos.eq.x;pos.frame=j2000</quantity>
+    </column>
     <column name="[cy]">
       <summary> Cartesian Y (J2000)</summary>
-<quantity>pos.eq.y;pos.frame=j2000</quantity>
-</column>
+      <quantity>pos.eq.y;pos.frame=j2000</quantity>
+    </column>
     <column name="[cz]">
       <summary> Cartesian Z (J2000)</summary>
-<quantity>pos.eq.z;pos.frame=j2000</quantity>
-</column>
+      <quantity>pos.eq.z;pos.frame=j2000</quantity>
+    </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
-<quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
-</column>
+      <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+    </column>
     <column name="[zoneid]">
       <summary> Zone ID </summary>
-<quantity>pos.zone; pos.frame=j2000</quantity>
-</column>
+      <quantity>pos.zone; pos.frame=j2000</quantity>
+    </column>
     <column name="[obsid]">
       <summary> Unique Spectra ID </summary>
-<quantity>meta.id;spect</quantity>
-</column>
+      <quantity>meta.id;spect</quantity>
+    </column>
     <column name="[designation]">
       <summary> Target Designation </summary>
-<quantity>meta.id</quantity>
-</column>
+      <quantity>meta.id</quantity>
+    </column>
     <column name="[obsdate]">
       <summary> Target Observation Date </summary>
-<quantity>time.epoch;obs</quantity>
-</column>
+      <quantity>time.epoch;obs</quantity>
+    </column>
     <column name="[lmjd]">
       <summary> Local Modified Julian Day </summary>
-<quantity>time.epoch;obs</quantity>
-</column>
+      <quantity>time.epoch;obs</quantity>
+    </column>
     <column name="[planid]">
       <summary> Plan Name </summary>
-<quantity>meta.id;instr</quantity>
-</column>
+      <quantity>meta.id;instr</quantity>
+    </column>
     <column name="[spid]">
       <summary> Spectrograph ID </summary>
-<quantity>meta.id;instr</quantity>
-</column>
+      <quantity>meta.id;instr</quantity>
+    </column>
     <column name="[fiberid]">
       <summary> Fiber ID </summary>
-<quantity>meta.id;instr</quantity>
-</column>
+      <quantity>meta.id;instr</quantity>
+    </column>
     <column name="[ra]">
       <summary> Right Ascension </summary>
-<quantity>pos.eq.ra;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[dec]">
       <summary> Declination </summary>
-<quantity>pos.eq.dec;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[snru]">
       <summary> Signal Noise Ratio of u filter </summary>
-<quantity>stat.snr;em.opt.SDSS.u</quantity>
-</column>
+      <quantity>stat.snr;em.opt.SDSS.u</quantity>
+    </column>
     <column name="[snrg]">
       <summary> Signal Noise Ratio of g filter </summary>
-<quantity>stat.snr;em.opt.SDSS.g</quantity>
-</column>
+      <quantity>stat.snr;em.opt.SDSS.g</quantity>
+    </column>
     <column name="[snrr]">
       <summary> Signal Noise Ratio of r filter </summary>
-<quantity>stat.snr;em.opt.SDSS.r</quantity>
-</column>
+      <quantity>stat.snr;em.opt.SDSS.r</quantity>
+    </column>
     <column name="[snri]">
       <summary> Signal Noise Ratio of i filter </summary>
-<quantity>stat.snr;em.opt.SDSS.i</quantity>
-</column>
+      <quantity>stat.snr;em.opt.SDSS.i</quantity>
+    </column>
     <column name="[snrz]">
       <summary> Signal Noise Ratio of z filter </summary>
-<quantity>stat.snr;em.opt.SDSS.z</quantity>
-</column>
+      <quantity>stat.snr;em.opt.SDSS.z</quantity>
+    </column>
     <column name="[objtype]">
       <summary> Object Type </summary>
-<quantity></quantity>
-</column>
+      <quantity></quantity>
+    </column>
     <column name="[class]">
       <summary> Spectra Type </summary>
-<quantity>instr.param</quantity>
-</column>
+      <quantity>instr.param</quantity>
+    </column>
     <column name="[subclass]">
       <summary> Stellar Sub-Class </summary>
-<quantity>src.class</quantity>
-</column>
+      <quantity>src.class</quantity>
+    </column>
     <column name="[magtype]">
       <summary> Target Magnitude Type </summary>
-<quantity>meta.note;phot.mag</quantity>
-</column>
+      <quantity>meta.note;phot.mag</quantity>
+    </column>
     <column name="[mag1]">
       <summary> Associated Magnitude 1 </summary>
-<quantity>phot.mag</quantity>
-<unit> mag </unit>
-</column>
+      <quantity>phot.mag</quantity>
+      <unit> mag </unit>
+    </column>
     <column name="[mag2]">
       <summary> Associated Magnitude 2 </summary>
-<quantity>phot.mag</quantity>
-<unit> mag </unit>
-</column>
+      <quantity>phot.mag</quantity>
+      <unit> mag </unit>
+    </column>
     <column name="[mag3]">
       <summary> Associated Magnitude 3 </summary>
-<quantity>phot.mag</quantity>
-<unit> mag </unit>
-</column>
+      <quantity>phot.mag</quantity>
+      <unit> mag </unit>
+    </column>
     <column name="[mag4]">
       <summary> Associated Magnitude 4 </summary>
-<quantity>phot.mag</quantity>
-<unit> mag </unit>
-</column>
+      <quantity>phot.mag</quantity>
+      <unit> mag </unit>
+    </column>
     <column name="[mag5]">
       <summary> Associated Magnitude 5 </summary>
-<quantity>phot.mag</quantity>
-<unit> mag </unit>
-</column>
+      <quantity>phot.mag</quantity>
+      <unit> mag </unit>
+    </column>
     <column name="[mag6]">
       <summary> Associated Magnitude 6 </summary>
-<quantity>phot.mag</quantity>
-<unit> mag </unit>
-</column>
+      <quantity>phot.mag</quantity>
+      <unit> mag </unit>
+    </column>
     <column name="[mag7]">
       <summary> Associated Magnitude 7 </summary>
-<quantity>phot.mag</quantity>
-<unit> mag </unit>
-</column>
+      <quantity>phot.mag</quantity>
+      <unit> mag </unit>
+    </column>
     <column name="[tsource]">
       <summary> Organization or person who submits input catalog </summary>
-<quantity>meta.note</quantity>
-</column>
+      <quantity>meta.note</quantity>
+    </column>
     <column name="[fibertype]">
       <summary> Fiber Type of target [Obj, Sky, F-std, Unused, PosErr, Dead] </summary>
-<quantity>meta.code;instr</quantity>
-</column>
+      <quantity>meta.code;instr</quantity>
+    </column>
     <column name="[tfrom]">
       <summary> Input catalog submitted by an organization or a person determined by the tsource </summary>
-<quantity>meta.table</quantity>
-</column>
+      <quantity>meta.table</quantity>
+    </column>
     <column name="[t_info]">
       <summary> Target ID from SDSS, UCAC4, PANSTAR and other catalogue </summary>
-<quantity>meta.id.cross</quantity>
-</column>
+      <quantity>meta.id.cross</quantity>
+    </column>
     <column name="[rv]">
       <summary> Heliocentric Radial Velocity </summary>
-<quantity>spect.dopplerVeloc</quantity>
-<unit> km s-1 </unit>
-</column>
+      <quantity>spect.dopplerVeloc</quantity>
+      <unit> km s-1 </unit>
+    </column>
     <column name="[z]">
       <summary> Redshift </summary>
-<quantity>src.redshif</quantity>
-</column>
+      <quantity>src.redshif</quantity>
+    </column>
     <column name="[z_err]">
       <summary> Redshift Uncertainty </summary>
-<quantity>stat.error;src.redshif</quantity>
-</column>
+      <quantity>stat.error;src.redshif</quantity>
+    </column>
   </table>
 </metadata>

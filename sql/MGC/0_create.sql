@@ -1,4 +1,23 @@
+--/ <dataset>
+--/ <summary> Millennium Galaxy Catalogue </summary>
+--/ <remarks>
+--/ The Millennium Galaxy Catalogue (MGC) is a 37.5 deg+2, medium-deep, B -band imaging survey along the 
+--/ celestial equator, taken with the Wide Field Camera on the Isaac Newton Telescope. The survey region
+--/  is contained within the regions of both the Two Degree Field Galaxy Redshift Survey (2dFGRS) and 
+--/ the Sloan Digital Sky Survey Early Data Release (SDSS-EDR). The survey has a uniform isophotal 
+--/ detection limit of 26 mag arcsec–2 and it provides a robust, well-defined catalogue of stars and 
+--/ galaxies in the range 16&lt;B_MGC&lt;24 mag.
+--/ </remarks>
+--/ <url>http://vizier.u-strasbg.fr/viz-bin/VizieR-3?-source=VII/240/mgczcat</url>
+--/ <icon>mgc.png</icon>
+--/ <docpage>mgc.html</docpage>
+--/ </dataset>
+ GO
+
 -- CREATE PhotoObj TABLE
+
+--/ <summary></summary>
+--/ <remarks></remarks>
 CREATE TABLE dbo.PhotoObj
 (
 	--/ <summary> Cartesian X (J2000)</summary>

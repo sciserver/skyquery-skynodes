@@ -1,4 +1,21 @@
+--/ <dataset>
+--/ <summary> OGLE-III Catalog of Variable Stars </summary>
+--/ <remarks>
+--/ The catalog data include basic parameters of the stars (coordinates, periods, mean magnitudes, 
+--/ amplitudes, parameters of the Fourier light curve decompositions), VI multi-epoch photometry 
+--/ collected since 2001, and for some stars supplemented with the OGLE-II photometry obtained between 
+--/ 1997 and 2000, finding charts and cross-identifications with previously published catalogs.
+--/ </remarks>
+--/ <url>http://ogledb.astrouw.edu.pl/~ogle/CVS/</url>
+--/ <icon>ogleiii.png</icon>
+--/ <docpage>ogleiii.html</docpage>
+--/ </dataset>
+ GO
+
 -- CREATE VariableStars TABLE
+
+--/ <summary></summary>
+--/ <remarks></remarks>
 CREATE TABLE dbo.VariableStars
 (
 	--/ <summary> Cartesian X (J2000)</summary>

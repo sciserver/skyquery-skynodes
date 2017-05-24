@@ -1,189 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <metadata>
+  <dataset>
+    <summary> Third Reference Cat. of Bright Galaxies </summary>
+    <remarks>
+      The present, much enlarged Third Reference Catalogue of Bright Galaxies (RC3) attempts to be
+      reasonably complete for galaxies having apparent diameters larger than 1 arcmin at the D25 isophotal
+      level and total B-band magnitudes BT brighter than about 15.5, with a redshift not in excess of
+      15,000 km/s.</remarks>
+    <url>http://cdsarc.u-strasbg.fr/viz-bin/Cat?VII/155</url>
+    <icon>rc3.png</icon>
+    <docpage>rc3.html</docpage>
+  </dataset>
   <table name="[dbo].[PhotoObj]">
-    <summary> The main PhotoObj table for the RC3 catalog </summary>
-<remarks> The main PhotoObj table for the RC3 catalog </remarks>
-<column name="[name]"><summary content="ID_AREA">Primary name</summary>
-<quantity>meta.id;meta.main</quantity>
-</column><column name="[aliases]"><summary>Other names</summary>
-<quantity>meta.id.cross</quantity>
-</column><column name="[PGC_name]"><summary>PGC (Paturel et al. 1989a,b) designation</summary>
-<quantity>meta.id.cross</quantity>
-</column><column name="[ra]"><summary>Right Ascension (J2000)</summary>
-<quantity>pos.eq.ra;pos.frame=j2000</quantity>
-<unit>deg</unit>
-</column><column name="[dec]"><summary>Declination (J2000)</summary>
-<quantity>pos.eq.dec;pos.frame=j2000</quantity>
-<unit>deg</unit>
-</column><column name="[cx]"><summary>cartesian x coordinate</summary>
-<quantity>pos.eq.x;pos.frame=j2000</quantity>
-</column><column name="[cy]"><summary>cartesian y coordinate</summary>
-<quantity>pos.eq.y;pos.frame=j2000</quantity>
-</column><column name="[cz]"><summary>cartesian z coordinate</summary>
-<quantity>pos.eq.z;pos.frame=j2000</quantity>
-</column><column name="[htmid]"><summary>htmid for spatial search</summary>
-<quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
-</column><column name="[zoneid]"><summary>zoneid for spatial search</summary>
-<quantity>pos.zone</quantity>
-</column><column name="[good_position]"><summary>The values of ra/dec are good to 0.1 sec time, 1 asec (otherwise, 0.1 min time, 1 amin)</summary>
-<quantity>meta.code;pos.eq</quantity>
-</column><column name="[galactic_l]"><summary>Galactic longitude in the IAU 1958 system (Blaauw et al. 1960); good to 0.01 degrees</summary>
-<quantity>pos.galactic.lon</quantity>
-<unit>deg</unit>
-</column><column name="[galactic_b]"><summary>Galactic latitude in the IAU 1958 system (Blaauw et al. 1960); good to 0.01 degrees</summary>
-<quantity>pos.galactic.lat</quantity>
-<unit>deg</unit>
-</column><column name="[superGalactic_l]"><summary>Supergalactic longitude in the RC2 system; good to 0.01 degrees</summary>
-<quantity>pos.supergalactic.lon</quantity>
-<unit>deg</unit>
-</column><column name="[superGalactic_b]"><summary>Supergalactic latitude in the RC2 system; good to 0.01 degrees</summary>
-<quantity>pos.supergalactic.lat</quantity>
-<unit>deg</unit>
-</column><column name="[PosAngle]"><summary>position angle, measured in degrees from north through east (all p.a. &lt; 180 degrees), taken when available from UGC, ESO, and ESGC (and in a few cases from HI data).</summary>
-<quantity>pos.ang</quantity>
-<unit>deg</unit>
-</column><column name="[rc2_type]"><summary>mean revised morphological type in the RC2 system, coded as in RC2</summary>
-<quantity>src.morph</quantity>
-</column><column name="[rc2_typeSource]"><summary>Sources of revised morphological type estimate</summary>
-<quantity>meta.ref;src.morph</quantity>
-</column><column name="[T_type]"><summary>Mean numerical index of stage along the Hubble sequence in the RC2 system</summary>
-<quantity>src.class.struct</quantity>
-</column><column name="[T_typeErr]"><summary>Error in T_type</summary>
-<quantity>stat.error;src.class.struct</quantity>
-</column><column name="[LC_rc2]"><summary>Mean numerical luminosity class in the RC2 system</summary>
-<quantity>src.class.luminosity</quantity>
-</column><column name="[LC_rc2Err]"><summary>Error in LC_rc2</summary>
-<quantity>stat.error;src.class.luminosity</quantity>
-</column><column name="[n_L]"><summary>Number of luminosity class estimates</summary>
-<quantity>meta.number</quantity>
-</column><column name="[B_T]"><summary>Total (asymptotic) magnitude in the B system, derived by extrapolation from photoelectric aperture-magnitude data, B_T^A, and from surface photometry with photoelectric zero point, B_T^S</summary>
-<quantity>phot.mag;em.opt.B</quantity>
-<unit>mag</unit>
-</column><column name="[B_TErr]"><summary>Error in B_T</summary>
-<quantity>stat.error;phot.mag;em.opt.B</quantity>
-<unit>mag</unit>
-</column><column name="[B_Tsource]"><summary>M when B_T is the weighted mean of B_T^A and B_T^S; V when B_T is a V-band magnitude rather than a B-band magnitude; v when the nucleus of the galaxy is variable; * when deriving B_T^A would have required an extrapolation in excess of 0.75 mag.</summary>
-<quantity>meta.code</quantity>
-</column><column name="[B_T0]"><summary>total ``face-on'' magnitude corrected for Galactic and internal extinction, and for redshift</summary>
-<quantity>phot.mag.redFree</quantity>
-<unit>mag</unit>
-</column><column name="[M_B]"><summary>Photographic magnitude from Ames (1930), Shapley and Ames (1932), CGCG, Buta and Corwin (1986), and/or Lauberts and Valentijn (1989) reduced to the B_T system</summary>
-<quantity>phot.mag;em.opt.B</quantity>
-<unit>mag</unit>
-</column><column name="[M_BErr]"><summary>Error in M_B</summary>
-<quantity>stat.error;phot.mag;em.opt.B</quantity>
-<unit>mag</unit>
-</column><column name="[M_FIR]"><summary>Far-infrared magnitude calculated from M_FIR = - 20.0 - 2.5 log_10(FIR), where FIR is the far infrared continuum flux measured at 60 and 100 microns as listed in the IRAS Point Source Catalog (1987). For galaxies larger than 8 arcmin in RC2 and for the Virgo cluster area, resolved by the IRAS beam, integrated fluxes are taken from Rice et al. (1988) or Helou et al. (1988)</summary>
-<quantity>phot.mag;em.IR</quantity>
-<unit>mag</unit>
-</column><column name="[M_21cm]"><summary>21-cm emission line magnitude, and its mean error, defined by m_21 = 21.6 - 2.5 log(S_H), where S_H is the measured neutral hydrogen flux density in units of 10^-24 W/m^2</summary>
-<quantity>phot.mag;em.line.HI</quantity>
-<unit>mag</unit>
-</column><column name="[M_21cmErr]"><summary>Error in M_21cm</summary>
-<quantity>stat.error;em.line.HI</quantity>
-<unit>mag</unit>
-</column><column name="[BV_T]"><summary>Total (asymptotic) color index in the Johnson B-V system, derived by extrapolation from photoelectric color-aperture data, and/or from surface photometry with photoelectric zero point</summary>
-<quantity>phot.color;em.opt.Johnson.B;em.opt.Johnson.V</quantity>
-<unit>mag</unit>
-</column><column name="[BV_TErr]"><summary>Error in BV_T</summary>
-<quantity>stat.erro;phot.color;em.opt.Johnson.B;em.opt.Johnson.V</quantity>
-<unit>magnitudes</unit>
-</column><column name="[BV_T0]"><summary>Total B-V color index corrected for Galactic and internal extinction, and for redshift</summary>
-<quantity>phot.color.redFree;em.opt.Johnson.B;em.opt.Johnson.V</quantity>
-<unit>magnitudes</unit>
-</column><column name="[BV_e]"><summary>Mean B-V color index within the effective aperture A_e, derived by interpolation from photoelectric color-aperture data</summary>
-<quantity>phot.color;em.opt.Johnson.B;em.opt.Johnson.V;stat.mean</quantity>
-<unit>magnitudes</unit>
-</column><column name="[BV_eErr]"><summary>Error in BV_e</summary>
-<quantity>stat.error;phot.color;em.opt.Johnson.B;em.opt.Johnson.V</quantity>
-<unit>magnitudes</unit>
-</column><column name="[UB_T]"><summary>Total (asymptotic) color index in the Johnson U-B system, derived by extrapolation from photoelectric color-aperture data, and/or from surface photometry with photoelectric zero point</summary>
-<quantity>stat.error;phot.color;em.opt.Johnson.U;em.opt.Johnson.B</quantity>
-<unit>magnitudes</unit>
-</column><column name="[UB_TErr]"><summary>Error in UB_T</summary>
-<quantity>stat.error;stat.error;phot.color;em.opt.Johnson.U;em.opt.Johnson.B</quantity>
-<unit>magnitudes</unit>
-</column><column name="[UB_T0]"><summary>Total U-B color index corrected for Galactic and internal extinction, and for redshift</summary>
-<quantity>stat.error;phot.color.redFree;em.opt.Johnson.U;em.opt.Johnson.B</quantity>
-<unit>magnitudes</unit>
-</column><column name="[UB_e]"><summary>Mean U-B color index, and its mean error, within the effective aperture A_e, derived by interpolation from photoelectric color-aperture data</summary>
-<quantity>stat.error;phot.color;em.opt.Johnson.U;em.opt.Johnson.B;stat.mean</quantity>
-<unit>magnitudes</unit>
-</column><column name="[UB_eErr]"><summary>Error in UB_e</summary>
-<quantity>stat.error;stat.error;phot.color;em.opt.Johnson.U;em.opt.Johnson.B</quantity>
-<unit>magnitudes</unit>
-</column><column name="[lgD_25]"><summary>mean decimal logarithm of the apparent major isophotal diameter measured at or reduced to surface brightness level mu_B = 25.0 B-mag/arcsec^2</summary>
-<quantity>phys.angSize.smajAxis;stat.mean</quantity>
-<unit>10e-1 log(arcmin)</unit>
-</column><column name="[lgD_25Err]"><summary>Error in lgD_25</summary>
-<quantity>stat.error;phys.angSize.smajAxis</quantity>
-<unit>10e-1 log(arcmin)</unit>
-</column><column name="[lgD_0]"><summary>decimal logarithm of the isophotal major diameter corrected to ``face-on'' (inclination = 0 degrees), and corrected for Galactic extinction to A_g = 0, but not for redshift</summary>
-<quantity>phys.angSize.smajAxis</quantity>
-<unit>10e-1 log(arcmin)</unit>
-</column><column name="[lgR_25]"><summary>Mean decimal logarithm of the ratio of the major isophotal diameter, D_25, to the minor isophotal diameter, d_25, measured at or reduced to the surface brightness level mu_B = 25.0 B-mag/arcsec^2</summary>
-<quantity>phys.angSize.smajAxis</quantity>
-</column><column name="[lgR_25Err]"><summary>Error in lgR_25</summary>
-<quantity>stat.error;phys.angSize.smajAxis</quantity>
-</column><column name="[logA_e]"><summary>Decimal logarithm of the apparent diameter (in 0.1 arcmin) of the ``effective aperture,'' the circle centered on the nucleus within which one-half of the total B-band flux is emitted</summary>
-<quantity>phys.angSize</quantity>
-<unit>10e-1 log(arcmin)</unit>
-</column><column name="[logA_eErr]"><summary>Error in logA_e</summary>
-<quantity>stat.error;phys.angSize</quantity>
-<unit>10e-1 log(arcmin)</unit>
-</column><column name="[m_e]"><summary>mean B-band surface brightness in magnitudes per square arcmin (B-mag/arcmin^2) within the effective aperture A_e, as given by the relation m'_e = B_T + 0.75 + 5logA_e - 5.26.  m'_e is statistically related to the effective mean surface brightness, mu'_e (RC2, p. 31; Olson and de Vaucouleurs 1981), with which it coincides when log R = 0 (i = 0 degrees)</summary>
-<quantity>phot.mag.sb;em.opt.B;stat.mean</quantity>
-<unit>mag arcmin-2</unit>
-</column><column name="[m_eErr]"><summary>Error in m_e</summary>
-<quantity>stat.error;phot.mag.sb;em.opt.B;stat.mean</quantity>
-<unit>mag arcmin-2</unit>
-</column><column name="[m_25]"><summary>m'_25 = the mean surface brightness in B-mag/arcmin^2 within the mu_B = 25.0 B-mag/arcsec^2 elliptical isophote of major axis D_25 and axis ratio R_25, defined as in RC2 (Equation 21) by:  m'_25 = B_T + Delta m_25 + 5 logD_25 - 2.5 logR_25 - - 5.26, where Delta m_25 = 2.5 log(L_T/L_D_25) = B_25 - B_T is the magnitude increment contributed by the outer regions of a galaxy fainter than mu_B = 25.0 B-mag/arcsec^2</summary>
-<quantity>phot.mag.sb;em.opt.B;stat.mean</quantity>
-<unit>mag arcmin-2</unit>
-</column><column name="[m_25Err]"><summary>Error in m_25</summary>
-<quantity>stat.error;phot.mag.sb;em.opt.B;stat.mean</quantity>
-<unit>mag arcmin-2</unit>
-</column><column name="[A_B]"><summary>Galactic extinction in B-band magnitudes, calculated following Burstein and Heiles (1978a,b, 1982, 1984)</summary>
-<quantity> phys.absorption.gal;em.opt.B</quantity>
-<unit>mag</unit>
-</column><column name="[A_HI_self]"><summary>HI line self-absorption in magnitudes (for correction to face-on), calculated from logR and T &gt;= 1</summary>
-<quantity>phys.absorption;em.line.HI</quantity>
-<unit>mag</unit>
-</column><column name="[A_B_int]"><summary>internal extinction in B-band magnitudes (for correction to face-on), calculated from logR and T</summary>
-<quantity>phys.absorption;em.opt.B;em.line.HI</quantity>
-<unit>mag</unit>
-</column><column name="[W_20]"><summary>Neutral hydrogen line full width measured at the 20% level (I_20/I_max)</summary>
-<quantity>spect.line.width;</quantity>
-<unit>km s-1</unit>
-</column><column name="[W_20Err]"><summary>Error in W_20</summary>
-<quantity>stat.error;spect.line.width;em.line.HI</quantity>
-<unit>km s-1</unit>
-</column><column name="[W_50]"><summary>Neutral hydrogen line full width measured at the 50% level (I_50/I_max)</summary>
-<quantity>spect.line.width;em.line.HI</quantity>
-<unit>km s-1</unit>
-</column><column name="[W_50Err]"><summary>Error in W_50</summary>
-<quantity>stat.error;spect.line.width</quantity>
-<unit>km s-1</unit>
-</column><column name="[HI]"><summary>corrected neutral hydrogen index, which is the difference m_21^0 - B_T^0 between the corrected (face-on) 21-cm emission line magnitude and the similarly corrected magnitude in the B_T system. N.n. Since m_21 and B_T are provided in this table, there is no need to list the uncorrected index.</summary>
-<quantity>phot.color;em.opt.B;em.line.HI</quantity>
-</column><column name="[V_21cm]"><summary>Mean heliocentric radial velocity, and its mean error, in km/s derived from neutral hydrogen observations</summary>
-<quantity>spect.dopplerVeloc;em.line.HI;stat.mean</quantity>
-<unit>km s-1</unit>
-</column><column name="[V_21cmErr]"><summary>Error in V_21cm</summary>
-<quantity>stat.error;spect.dopplerVeloc;em.line.HI;stat.mean</quantity>
-<unit>km s-1</unit>
-</column><column name="[V_opt]"><summary>mean heliocentric radial velocity, and its mean error, in km/s derived from optical observations</summary>
-<quantity>spect.dopplerVeloc;em.opt;stat.mean</quantity>
-<unit>km s-1</unit>
-</column><column name="[V_optErr]"><summary>Error in V_opt</summary>
-<quantity>stat.error;spect.dopplerVeloc;em.opt;stat.mean</quantity>
-<unit>km s-1</unit>
-</column><column name="[V_GSR]"><summary>weighted mean of the neutral hydrogen and optical velocities, corrected to the ``Galactic standard of rest</summary>
-<quantity>spect.depplerVeloc;stat.mean</quantity>
-<unit>km s-1</unit>
-</column><column name="[V_3K]"><summary>weighted mean velocity corrected to the reference frame defined by the 3 K microwave background radiation</summary>
-<quantity>spect.depplerVeloc;stat.mean</quantity>
-<unit>km s-1</unit>
-</column><column name="[objId]"><summary content="ID_MAIN">the main primary key</summary>
-<quantity>meta.record</quantity>
-</column></table>
+    <remarks> The main PhotoObj table for the RC3 catalog </remarks>
+    <column name="[name]">
+      <summary content="ID_AREA">Primary name</summary>
+      <quantity>meta.id;meta.main</quantity>
+    </column>
+    <column name="[aliases]">
+      <summary>Other names</summary>
+      <quantity>meta.id.cross</quantity>
+    </column>
+    <column name="[PGC_name]">
+      <summary>PGC (Paturel et al. 1989a,b) designation</summary>
+      <quantity>meta.id.cross</quantity>
+    </column>
+    <column name="[ra]">
+      <summary>Right Ascension (J2000)</summary>
+      <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[dec]">
+      <summary>Declination (J2000)</summary>
+      <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[cx]">
+      <summary>cartesian x coordinate</summary>
+      <quantity>pos.eq.x;pos.frame=j2000</quantity>
+    </column>
+    <column name="[cy]">
+      <summary>cartesian y coordinate</summary>
+      <quantity>pos.eq.y;pos.frame=j2000</quantity>
+    </column>
+    <column name="[cz]">
+      <summary>cartesian z coordinate</summary>
+      <quantity>pos.eq.z;pos.frame=j2000</quantity>
+    </column>
+    <column name="[htmid]">
+      <summary>htmid for spatial search</summary>
+      <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+    </column>
+    <column name="[zoneid]">
+      <summary>zoneid for spatial search</summary>
+      <quantity>pos.zone</quantity>
+    </column>
+    <column name="[good_position]">
+      <summary>The values of ra/dec are good to 0.1 sec time, 1 asec (otherwise, 0.1 min time, 1 amin)</summary>
+      <quantity>meta.code;pos.eq</quantity>
+    </column>
+    <column name="[galactic_l]">
+      <summary>Galactic longitude in the IAU 1958 system (Blaauw et al. 1960); good to 0.01 degrees</summary>
+      <quantity>pos.galactic.lon</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[galactic_b]">
+      <summary>Galactic latitude in the IAU 1958 system (Blaauw et al. 1960); good to 0.01 degrees</summary>
+      <quantity>pos.galactic.lat</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[superGalactic_l]">
+      <summary>Supergalactic longitude in the RC2 system; good to 0.01 degrees</summary>
+      <quantity>pos.supergalactic.lon</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[superGalactic_b]">
+      <summary>Supergalactic latitude in the RC2 system; good to 0.01 degrees</summary>
+      <quantity>pos.supergalactic.lat</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[PosAngle]">
+      <summary>position angle, measured in degrees from north through east (all p.a. &lt; 180 degrees), taken when available from UGC, ESO, and ESGC (and in a few cases from HI data).</summary>
+      <quantity>pos.ang</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[rc2_type]">
+      <summary>mean revised morphological type in the RC2 system, coded as in RC2</summary>
+      <quantity>src.morph</quantity>
+    </column>
+    <column name="[rc2_typeSource]">
+      <summary>Sources of revised morphological type estimate</summary>
+      <quantity>meta.ref;src.morph</quantity>
+    </column>
+    <column name="[T_type]">
+      <summary>Mean numerical index of stage along the Hubble sequence in the RC2 system</summary>
+      <quantity>src.class.struct</quantity>
+    </column>
+    <column name="[T_typeErr]">
+      <summary>Error in T_type</summary>
+      <quantity>stat.error;src.class.struct</quantity>
+    </column>
+    <column name="[LC_rc2]">
+      <summary>Mean numerical luminosity class in the RC2 system</summary>
+      <quantity>src.class.luminosity</quantity>
+    </column>
+    <column name="[LC_rc2Err]">
+      <summary>Error in LC_rc2</summary>
+      <quantity>stat.error;src.class.luminosity</quantity>
+    </column>
+    <column name="[n_L]">
+      <summary>Number of luminosity class estimates</summary>
+      <quantity>meta.number</quantity>
+    </column>
+    <column name="[B_T]">
+      <summary>Total (asymptotic) magnitude in the B system, derived by extrapolation from photoelectric aperture-magnitude data, B_T^A, and from surface photometry with photoelectric zero point, B_T^S</summary>
+      <quantity>phot.mag;em.opt.B</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[B_TErr]">
+      <summary>Error in B_T</summary>
+      <quantity>stat.error;phot.mag;em.opt.B</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[B_Tsource]">
+      <summary>M when B_T is the weighted mean of B_T^A and B_T^S; V when B_T is a V-band magnitude rather than a B-band magnitude; v when the nucleus of the galaxy is variable; * when deriving B_T^A would have required an extrapolation in excess of 0.75 mag.</summary>
+      <quantity>meta.code</quantity>
+    </column>
+    <column name="[B_T0]">
+      <summary>total ``face-on'' magnitude corrected for Galactic and internal extinction, and for redshift</summary>
+      <quantity>phot.mag.redFree</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[M_B]">
+      <summary>Photographic magnitude from Ames (1930), Shapley and Ames (1932), CGCG, Buta and Corwin (1986), and/or Lauberts and Valentijn (1989) reduced to the B_T system</summary>
+      <quantity>phot.mag;em.opt.B</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[M_BErr]">
+      <summary>Error in M_B</summary>
+      <quantity>stat.error;phot.mag;em.opt.B</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[M_FIR]">
+      <summary>Far-infrared magnitude calculated from M_FIR = - 20.0 - 2.5 log_10(FIR), where FIR is the far infrared continuum flux measured at 60 and 100 microns as listed in the IRAS Point Source Catalog (1987). For galaxies larger than 8 arcmin in RC2 and for the Virgo cluster area, resolved by the IRAS beam, integrated fluxes are taken from Rice et al. (1988) or Helou et al. (1988)</summary>
+      <quantity>phot.mag;em.IR</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[M_21cm]">
+      <summary>21-cm emission line magnitude, and its mean error, defined by m_21 = 21.6 - 2.5 log(S_H), where S_H is the measured neutral hydrogen flux density in units of 10^-24 W/m^2</summary>
+      <quantity>phot.mag;em.line.HI</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[M_21cmErr]">
+      <summary>Error in M_21cm</summary>
+      <quantity>stat.error;em.line.HI</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[BV_T]">
+      <summary>Total (asymptotic) color index in the Johnson B-V system, derived by extrapolation from photoelectric color-aperture data, and/or from surface photometry with photoelectric zero point</summary>
+      <quantity>phot.color;em.opt.Johnson.B;em.opt.Johnson.V</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[BV_TErr]">
+      <summary>Error in BV_T</summary>
+      <quantity>stat.erro;phot.color;em.opt.Johnson.B;em.opt.Johnson.V</quantity>
+      <unit>magnitudes</unit>
+    </column>
+    <column name="[BV_T0]">
+      <summary>Total B-V color index corrected for Galactic and internal extinction, and for redshift</summary>
+      <quantity>phot.color.redFree;em.opt.Johnson.B;em.opt.Johnson.V</quantity>
+      <unit>magnitudes</unit>
+    </column>
+    <column name="[BV_e]">
+      <summary>Mean B-V color index within the effective aperture A_e, derived by interpolation from photoelectric color-aperture data</summary>
+      <quantity>phot.color;em.opt.Johnson.B;em.opt.Johnson.V;stat.mean</quantity>
+      <unit>magnitudes</unit>
+    </column>
+    <column name="[BV_eErr]">
+      <summary>Error in BV_e</summary>
+      <quantity>stat.error;phot.color;em.opt.Johnson.B;em.opt.Johnson.V</quantity>
+      <unit>magnitudes</unit>
+    </column>
+    <column name="[UB_T]">
+      <summary>Total (asymptotic) color index in the Johnson U-B system, derived by extrapolation from photoelectric color-aperture data, and/or from surface photometry with photoelectric zero point</summary>
+      <quantity>stat.error;phot.color;em.opt.Johnson.U;em.opt.Johnson.B</quantity>
+      <unit>magnitudes</unit>
+    </column>
+    <column name="[UB_TErr]">
+      <summary>Error in UB_T</summary>
+      <quantity>stat.error;stat.error;phot.color;em.opt.Johnson.U;em.opt.Johnson.B</quantity>
+      <unit>magnitudes</unit>
+    </column>
+    <column name="[UB_T0]">
+      <summary>Total U-B color index corrected for Galactic and internal extinction, and for redshift</summary>
+      <quantity>stat.error;phot.color.redFree;em.opt.Johnson.U;em.opt.Johnson.B</quantity>
+      <unit>magnitudes</unit>
+    </column>
+    <column name="[UB_e]">
+      <summary>Mean U-B color index, and its mean error, within the effective aperture A_e, derived by interpolation from photoelectric color-aperture data</summary>
+      <quantity>stat.error;phot.color;em.opt.Johnson.U;em.opt.Johnson.B;stat.mean</quantity>
+      <unit>magnitudes</unit>
+    </column>
+    <column name="[UB_eErr]">
+      <summary>Error in UB_e</summary>
+      <quantity>stat.error;stat.error;phot.color;em.opt.Johnson.U;em.opt.Johnson.B</quantity>
+      <unit>magnitudes</unit>
+    </column>
+    <column name="[lgD_25]">
+      <summary>mean decimal logarithm of the apparent major isophotal diameter measured at or reduced to surface brightness level mu_B = 25.0 B-mag/arcsec^2</summary>
+      <quantity>phys.angSize.smajAxis;stat.mean</quantity>
+      <unit>10e-1 log(arcmin)</unit>
+    </column>
+    <column name="[lgD_25Err]">
+      <summary>Error in lgD_25</summary>
+      <quantity>stat.error;phys.angSize.smajAxis</quantity>
+      <unit>10e-1 log(arcmin)</unit>
+    </column>
+    <column name="[lgD_0]">
+      <summary>decimal logarithm of the isophotal major diameter corrected to ``face-on'' (inclination = 0 degrees), and corrected for Galactic extinction to A_g = 0, but not for redshift</summary>
+      <quantity>phys.angSize.smajAxis</quantity>
+      <unit>10e-1 log(arcmin)</unit>
+    </column>
+    <column name="[lgR_25]">
+      <summary>Mean decimal logarithm of the ratio of the major isophotal diameter, D_25, to the minor isophotal diameter, d_25, measured at or reduced to the surface brightness level mu_B = 25.0 B-mag/arcsec^2</summary>
+      <quantity>phys.angSize.smajAxis</quantity>
+    </column>
+    <column name="[lgR_25Err]">
+      <summary>Error in lgR_25</summary>
+      <quantity>stat.error;phys.angSize.smajAxis</quantity>
+    </column>
+    <column name="[logA_e]">
+      <summary>Decimal logarithm of the apparent diameter (in 0.1 arcmin) of the ``effective aperture,'' the circle centered on the nucleus within which one-half of the total B-band flux is emitted</summary>
+      <quantity>phys.angSize</quantity>
+      <unit>10e-1 log(arcmin)</unit>
+    </column>
+    <column name="[logA_eErr]">
+      <summary>Error in logA_e</summary>
+      <quantity>stat.error;phys.angSize</quantity>
+      <unit>10e-1 log(arcmin)</unit>
+    </column>
+    <column name="[m_e]">
+      <summary>mean B-band surface brightness in magnitudes per square arcmin (B-mag/arcmin^2) within the effective aperture A_e, as given by the relation m'_e = B_T + 0.75 + 5logA_e - 5.26.  m'_e is statistically related to the effective mean surface brightness, mu'_e (RC2, p. 31; Olson and de Vaucouleurs 1981), with which it coincides when log R = 0 (i = 0 degrees)</summary>
+      <quantity>phot.mag.sb;em.opt.B;stat.mean</quantity>
+      <unit>mag arcmin-2</unit>
+    </column>
+    <column name="[m_eErr]">
+      <summary>Error in m_e</summary>
+      <quantity>stat.error;phot.mag.sb;em.opt.B;stat.mean</quantity>
+      <unit>mag arcmin-2</unit>
+    </column>
+    <column name="[m_25]">
+      <summary>m'_25 = the mean surface brightness in B-mag/arcmin^2 within the mu_B = 25.0 B-mag/arcsec^2 elliptical isophote of major axis D_25 and axis ratio R_25, defined as in RC2 (Equation 21) by:  m'_25 = B_T + Delta m_25 + 5 logD_25 - 2.5 logR_25 - - 5.26, where Delta m_25 = 2.5 log(L_T/L_D_25) = B_25 - B_T is the magnitude increment contributed by the outer regions of a galaxy fainter than mu_B = 25.0 B-mag/arcsec^2</summary>
+      <quantity>phot.mag.sb;em.opt.B;stat.mean</quantity>
+      <unit>mag arcmin-2</unit>
+    </column>
+    <column name="[m_25Err]">
+      <summary>Error in m_25</summary>
+      <quantity>stat.error;phot.mag.sb;em.opt.B;stat.mean</quantity>
+      <unit>mag arcmin-2</unit>
+    </column>
+    <column name="[A_B]">
+      <summary>Galactic extinction in B-band magnitudes, calculated following Burstein and Heiles (1978a,b, 1982, 1984)</summary>
+      <quantity> phys.absorption.gal;em.opt.B</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[A_HI_self]">
+      <summary>HI line self-absorption in magnitudes (for correction to face-on), calculated from logR and T &gt;= 1</summary>
+      <quantity>phys.absorption;em.line.HI</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[A_B_int]">
+      <summary>internal extinction in B-band magnitudes (for correction to face-on), calculated from logR and T</summary>
+      <quantity>phys.absorption;em.opt.B;em.line.HI</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[W_20]">
+      <summary>Neutral hydrogen line full width measured at the 20% level (I_20/I_max)</summary>
+      <quantity>spect.line.width;</quantity>
+      <unit>km s-1</unit>
+    </column>
+    <column name="[W_20Err]">
+      <summary>Error in W_20</summary>
+      <quantity>stat.error;spect.line.width;em.line.HI</quantity>
+      <unit>km s-1</unit>
+    </column>
+    <column name="[W_50]">
+      <summary>Neutral hydrogen line full width measured at the 50% level (I_50/I_max)</summary>
+      <quantity>spect.line.width;em.line.HI</quantity>
+      <unit>km s-1</unit>
+    </column>
+    <column name="[W_50Err]">
+      <summary>Error in W_50</summary>
+      <quantity>stat.error;spect.line.width</quantity>
+      <unit>km s-1</unit>
+    </column>
+    <column name="[HI]">
+      <summary>corrected neutral hydrogen index, which is the difference m_21^0 - B_T^0 between the corrected (face-on) 21-cm emission line magnitude and the similarly corrected magnitude in the B_T system. N.n. Since m_21 and B_T are provided in this table, there is no need to list the uncorrected index.</summary>
+      <quantity>phot.color;em.opt.B;em.line.HI</quantity>
+    </column>
+    <column name="[V_21cm]">
+      <summary>Mean heliocentric radial velocity, and its mean error, in km/s derived from neutral hydrogen observations</summary>
+      <quantity>spect.dopplerVeloc;em.line.HI;stat.mean</quantity>
+      <unit>km s-1</unit>
+    </column>
+    <column name="[V_21cmErr]">
+      <summary>Error in V_21cm</summary>
+      <quantity>stat.error;spect.dopplerVeloc;em.line.HI;stat.mean</quantity>
+      <unit>km s-1</unit>
+    </column>
+    <column name="[V_opt]">
+      <summary>mean heliocentric radial velocity, and its mean error, in km/s derived from optical observations</summary>
+      <quantity>spect.dopplerVeloc;em.opt;stat.mean</quantity>
+      <unit>km s-1</unit>
+    </column>
+    <column name="[V_optErr]">
+      <summary>Error in V_opt</summary>
+      <quantity>stat.error;spect.dopplerVeloc;em.opt;stat.mean</quantity>
+      <unit>km s-1</unit>
+    </column>
+    <column name="[V_GSR]">
+      <summary>weighted mean of the neutral hydrogen and optical velocities, corrected to the ``Galactic standard of rest</summary>
+      <quantity>spect.depplerVeloc;stat.mean</quantity>
+      <unit>km s-1</unit>
+    </column>
+    <column name="[V_3K]">
+      <summary>weighted mean velocity corrected to the reference frame defined by the 3 K microwave background radiation</summary>
+      <quantity>spect.depplerVeloc;stat.mean</quantity>
+      <unit>km s-1</unit>
+    </column>
+    <column name="[objId]">
+      <summary content="ID_MAIN">the main primary key</summary>
+      <quantity>meta.record</quantity>
+    </column>
+  </table>
 </metadata>

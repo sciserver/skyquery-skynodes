@@ -1,4 +1,18 @@
+--/ <dataset>
+--/ <summary> Lyman break galaxies at redshift z~3 </summary>
+--/ <remarks>
+--/ 
+--/ </remarks>
+--/ <url>http://vizier.cfa.harvard.edu/viz-bin/VizieR-3?-source=J/ApJ/592/728</url>
+--/ <icon>lbg3z.png</icon>
+--/ <docpage>lbg3z.html</docpage>
+--/ </dataset>
+ GO
+
 -- CREATE SpecObj TABLE
+
+--/ <summary>Lyman break galaxies</summary>
+--/ <remarks></remarks>
 CREATE TABLE dbo.SpecObj
 (
 	--/ <summary> Cartesian X (J2000)</summary>
@@ -118,6 +132,8 @@ CREATE TABLE dbo.SpecObj
 GO
 
 -- CREATE DeepImagingObs TABLE
+--/ <summary>Deep Imaging Observations</summary>
+--/ <remarks></remarks>
 CREATE TABLE dbo.DeepImagingObs
 (
 	--/ <summary> Cartesian X (J2000)</summary>

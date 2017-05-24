@@ -1,3 +1,17 @@
+--/ <dataset>
+--/ <summary> NOAO Deep Wide-Field Survey </summary>
+--/ <remarks>
+--/ The NOAO Deep Wide-Field Survey (NDWFS) is a deep optical and near-infrared imaging survey that 
+--/ covers two 9.3 square degree fields. It was designed primarily for the study of the existence and 
+--/ evolution of large scale structures at redshifts z>1 as sampled by diverse populations of objects. 
+--/ </remarks>
+--/ <url>https://www.noao.edu/noao/noaodeep/</url>
+--/ <icon>ndwfs.png</icon>
+--/ <docpage>ndwfs.html</docpage>
+--/ </dataset>
+ GO
+
+
 --/ <summary> The main Photo table for the NOAO Deep Field catalog containing the individual band detections </summary>
 --/ <remarks> The main Photo table for the NOAO Deep Field catalog containing detections in   the individual bands. The merged catalog  will be located in the PhotoObjAll table </remarks>
 CREATE TABLE [dbo].[PhotoObj](

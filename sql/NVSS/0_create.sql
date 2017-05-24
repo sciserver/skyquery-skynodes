@@ -1,3 +1,14 @@
+--/ <dataset>
+--/ <summary> The NRAO VLA Sky Survey </summary>
+--/ <remarks>
+--/ The NRAO VLA Sky Survey (NVSS) is a 1.4 GHz continuum survey covering the entire sky north of -40 deg declination.
+--/ </remarks>
+--/ <url>http://www.cv.nrao.edu/nvss/</url>
+--/ <icon>nvss.png</icon>
+--/ <docpage>nvss.html</docpage>
+--/ </dataset>
+ GO
+
 --/ <summary>The main PhotoObj table for the NVSS catalog</summary>
 --/ <remarks>The main PhotoObj table for the NVSS catalog</remarks>
 CREATE TABLE [dbo].[PhotoObj](

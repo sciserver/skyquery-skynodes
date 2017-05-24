@@ -1,4 +1,18 @@
+--/ <dataset>
+--/ <summary> Kitt Peak galaxy redshift survey </summary>
+--/ <remarks>
+--/ Redshifts, four-band photometry (UBRI), and astrometry are presented for faint galaxies in four widely separated fields.
+--/ </remarks>
+--/ <url>http://vizier.cfa.harvard.edu/viz-bin/VizieR?-source=J/ApJS/109/45/table6</url>
+--/ <icon>kpgrs.png</icon>
+--/ <docpage>kpgrs.html</docpage>
+--/ </dataset>
+ GO
+
 -- CREATE SpecObj TABLE
+
+--/ <summary></summary>
+--/ <remarks></remarks>
 CREATE TABLE dbo.SpecObj
 (
 	--/ <summary> Cartesian X </summary>

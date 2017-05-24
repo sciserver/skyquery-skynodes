@@ -1,3 +1,20 @@
+--/ <dataset>
+--/ <summary> The IRAS Point Source Catalog Redshift (PSCz) Survey </summary>
+--/ <remarks>
+--/ The IRAS Point Source Catalog Redshift (PSCz) Survey consists of redshifts, infrared and optical 
+--/ photometry, and assorted other information for 18351 IRAS sources, mostly selected from the Point 
+--/ Source Catalog. The survey was designed to select almost all galaxies with flux brighter than 0.595 
+--/ Jy at 60 microns (um), over the 84% of the sky with extinction small enough that reliable and 
+--/ complete optical identification and spectroscopy was possible. Some of the sources are not galaxies 
+--/ and some are multiple entries for the same galaxy as described in the reference paper. There are in 
+--/ total 15,411 galaxies or possible galaxies, for which redshifts are available for 14,677.
+--/ </remarks>
+--/ <url>https://heasarc.gsfc.nasa.gov/w3browse/all/iraspscz.html</url>
+--/ <icon>pscz.png</icon>
+--/ <docpage>pscz.html</docpage>
+--/ </dataset>
+ GO
+
 --/ <summary>The main PhotoObj table for the PSCz catalog</summary>
 --/ <remarks>The main PhotoObj table for the PSCz catalog</remarks>
 CREATE TABLE [dbo].[PhotoObj](
@@ -338,7 +355,7 @@ CREATE TABLE [dbo].[PhotoObj](
 	[iar] [smallint] NOT NULL, 
 
 	--/ <summary>Best heliocentric Vel from Literature or PSCz.</summary>
-	--/ <quantity>spect.dopplerVeloc;pos.heliocentric/quantity>
+	--/ <quantity>spect.dopplerVeloc;pos.heliocentric</quantity>
 	--/ <unit>km -s</unit>
 	[ivhel] [int] NOT NULL, 
 

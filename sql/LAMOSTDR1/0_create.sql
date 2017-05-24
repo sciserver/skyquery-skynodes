@@ -1,4 +1,25 @@
+--/ <dataset>
+--/ <summary> The Large Sky Area Multi-Object Fiber Spectroscopic Telescope - Data Release 1 </summary>
+--/ <remarks>
+--/  the LAMOST general catalog. It includes 717,469 objects obtained from the LAMOST pilot survey, which 
+--/  contains 648,746 stars, 2,723 galaxies, 621 quasars and 65,406 unknown objects, and 1,487,200 
+--/  objects obtained from the LAMOST general survey, which contains 1,295,583 stars, 9,359 galaxies, 
+--/  4,396 quasars and 177,862 unknown objects, so this catalog totally includes 2,204,696 objects 
+--/  including 1,944,329 stars, 12,082 galaxies, 5,017 quasars and 243,268 unknown objects. In this 
+--/  catalog, there are 1,186,132 objects with SNR of g band larger than 10, 1,680,794 objects with SNR
+--/   of i band larger than 10, and 1,746,202 objects with SNR of g band larger than 10 and SNR of i 
+--/  band larger than 10.
+--/ </remarks>
+--/ <url>http://dr1.lamost.org/</url>
+--/ <icon>lamostdr1.png</icon>
+--/ <docpage>lamostdr1.html</docpage>
+--/ </dataset>
+ GO
+
 -- CREATE SpecObj TABLE
+
+--/ <summary></summary>
+--/ <remarks></remarks>
 CREATE TABLE dbo.SpecObj
 (
 	--/ <summary> Cartesian X (J2000)</summary>

@@ -1,4 +1,18 @@
---/ <summary> The main PhotoObj table for the RC3 catalog </summary>
+--/ <dataset>
+--/ <summary> Third Reference Cat. of Bright Galaxies </summary>
+--/ <remarks>
+--/ The present, much enlarged Third Reference Catalogue of Bright Galaxies (RC3) attempts to be 
+--/ reasonably complete for galaxies having apparent diameters larger than 1 arcmin at the D25 isophotal 
+--/ level and total B-band magnitudes BT brighter than about 15.5, with a redshift not in excess of 
+--/ 15,000 km/s.
+--/ </remarks>
+--/ <url>http://cdsarc.u-strasbg.fr/viz-bin/Cat?VII/155</url>
+--/ <icon>rc3.png</icon>
+--/ <docpage>rc3.html</docpage>
+--/ </dataset>
+ GO
+ 
+ --/ <summary> The main PhotoObj table for the RC3 catalog </summary>
 --/ <remarks> The main PhotoObj table for the RC3 catalog </remarks>
 CREATE TABLE [dbo].[PhotoObj]
 (
