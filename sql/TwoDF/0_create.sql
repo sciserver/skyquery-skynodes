@@ -1,3 +1,18 @@
+--/ <dataset>
+--/ <summary> The 2dF Galaxy Redshift Survey Catalog </summary>
+--/ <remarks>
+--/ The 2dFGRS obtained spectra for 245591 objects, mainly galaxies, brighter than a nominal 
+--/ extinction-corrected magnitude limit of bJ=19.45. Reliable (quality>=3) redshifts were obtained for
+--/  221414 galaxies. The galaxies cover an area of approximately 1500 square degrees selected from the 
+--/ extended APM Galaxy Survey in three regions: an NGP strip, an SGP strip and random fields scattered 
+--/ around the SGP strip. The arrangement of survey fields is shown below.
+--/ </remarks>
+--/ <url>http://magnum.anu.edu.au/~TDFgg/</url>
+--/ <icon>twodf.png</icon>
+--/ <docpage>twodf.html</docpage>
+--/ </dataset>
+ GO
+
 --/ <summary>The main PhotoObj table for the 2DF catalog</summary>
 --/ <remarks>The main PhotoObj table for the 2DF catalog</remarks>
 CREATE TABLE [dbo].[PhotoObj]

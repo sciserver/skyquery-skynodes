@@ -1,4 +1,21 @@
+--/ <dataset>
+--/ <summary> Spitzer GOODS Catalog </summary>
+--/ <remarks>
+--/ The Great Observatories Origins Deep Survey (GOODS) aims to unite extremely deep observations from 
+--/ NASA's Great Observatories (Spitzer, Hubble and Chandra), ESA's Herschel and XMM-Newton, and the 
+--/ most powerful ground-based facilities. The survey consists of two 10x16.5 arcmin fields: GOODS-N 
+--/ coincides with the Hubble Deep Field North, while GOODS-S coincides with the Chandra Deep Field South.
+--/ </remarks>
+--/ <url>http://irsa.ipac.caltech.edu/data/SPITZER/GOODS/</url>
+--/ <icon>spitzer.png</icon>
+--/ <docpage>spitzer.html</docpage>
+--/ </dataset>
+ GO
+
 -- CREATE goodsnIRS16micron TABLE
+
+--/ <summary>	GOODS-N IRS 16 micron Photometry Catalog</summary>
+--/ <remarks>	GOODS-N IRS 16 micron Photometry Catalog</remarks>
 CREATE TABLE dbo.goodsnIRS16micron
 (
 	--/ <summary> Cartesian X (J2000)</summary>
@@ -207,6 +224,9 @@ GO
 
 
 -- CREATE goodsnMIPS24micron TABLE
+
+--/ <summary>	GOODS-N MIPS 24 micron Photometry Catalog</summary>
+--/ <remarks>	GOODS-N MIPS 24 micron Photometry Catalog</remarks>
 CREATE TABLE dbo.goodsnMIPS24micron
 (
 	--/ <summary> Cartesian X (J2000)</summary>
@@ -287,6 +307,9 @@ GO
 ---------------------------------------------------------------------------------------------------
 
 -- CREATE goodssIRS16micron TABLE
+
+--/ <summary>GOODS-S IRS 16 micron Photometry Catalog</summary>
+--/ <remarks>GOODS-S IRS 16 micron Photometry Catalog</remarks>
 CREATE TABLE dbo.goodssIRS16micron
 (
 	--/ <summary> Cartesian X (J2000)</summary>
@@ -494,6 +517,9 @@ GO
 ------------------------------------------------------------------------------------------------
 
 -- CREATE goodssMIPS24micron TABLE
+
+--/ <summary>GOODS-S MIPS 24 micron Photometry Catalog</summary>
+--/ <remarks>GOODS-S MIPS 24 micron Photometry Catalog</remarks>
 CREATE TABLE dbo.goodssMIPS24micron
 (
 	--/ <summary> Cartesian X (J2000)</summary>

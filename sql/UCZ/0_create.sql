@@ -1,4 +1,25 @@
+--/ <dataset>
+--/ <summary> Updated Zwicky Catalog </summary>
+--/ <remarks>
+--/ The Zwicky Catalog of Galaxies, with a magnitude limit m_Zw &lt;=15.5, has been the basis for the 
+--/ Center for Astrophysics (CfA) redshift surveys. To date, analyses of the Zwicky Catalog and redshift
+--/  surveys based on it have relied on heterogeneous sets of galaxy coordinates and redshifts. In this 
+--/ Updated Zwicky Catalog (UZC), some of the inadequacies of previous catalogs are corrected by 
+--/ providing (1) coordinates with ~&lt;2 arcsecond errors for all of the 19,369 catalog galaxies, (2) 
+--/ homogeneously estimated redshifts cz (radial velocities) for the majority (98%) of the data taken at
+--/  the CfA (14,632 spectra), and (3) an estimate of the remaining "blunder" rate for both the CfA 
+--/ redshifts and for those compiled from the literature.
+--/ </remarks>
+--/ <url>http://vizier.cfa.harvard.edu/viz-bin/VizieR?-source=J/PASP/111/438/catalog</url>
+--/ <icon>ucz.png</icon>
+--/ <docpage>ucz.html</docpage>
+--/ </dataset>
+ GO
+
 -- CREATE SpecObj TABLE
+
+--/ <summary>UZC catalog</summary>
+--/ <remarks>UZC catalog</remarks>
 CREATE TABLE dbo.SpecObj
 (
 	--/ <summary> Cartesian X (J2000)</summary>

@@ -1,4 +1,20 @@
+--/ <dataset>
+--/ <summary> Team Keck Treasury Redshift Survey Catalog </summary>
+--/ <remarks>
+--/  The catalog includes redshifts and associated quality assessments, photometric 
+--/  and astrometric measurements for all targets detected in  the 
+--/  GOODS-North region.
+--/ </remarks>
+--/ <url>http://vizier.cfa.harvard.edu/viz-bin/VizieR?-source=J/AJ/127/3121/catalog</url>
+--/ <icon>tkrs.png</icon>
+--/ <docpage>tkrs.html</docpage>
+--/ </dataset>
+ GO
+
 -- CREATE SpecObj TABLE
+
+--/ <summary>TKRS catalog of GOODS-North Field</summary>
+--/ <remarks>TKRS catalog of GOODS-North Field</remarks>
 CREATE TABLE dbo.SpecObj
 (
 	--/ <summary> Cartesian X (J2000)</summary>

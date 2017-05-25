@@ -1,95 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <metadata>
+  <dataset>
+    <summary> Southern Sky Redshift Survey </summary>
+    <remarks>
+      The catalog contians redshifts, magnitudes, and morphological classifications for 5369 galaxies with m_B_ ≤ 15.5 and for 57 galaxies fainter than this limit, in two regions covering a total of 1.70 sr in the southern celestial hemisphere. The galaxy catalog is drawn primarily from the list of nonstellar objects identified in the Hubble Space Telescope Guide Star Catalog (GSC). The galaxies have positions accurate to ~1" and magnitudes with an rms scatter of ~0.3 mag.</remarks>
+    <url>http://vizier.cfa.harvard.edu/viz-bin/VizieR?-source=J/AJ/116/1</url>
+    <icon>ssrs.png</icon>
+    <docpage>ssrs.html</docpage>
+  </dataset>
   <table name="[dbo].[SpecObj]">
+    <remarks></remarks>
     <column name="[cx]">
       <summary> Cartesian X (ICRS)</summary>
-<quantity>pos.eq.x; pos.frame=icrs</quantity>
-</column>
+      <quantity>pos.eq.x; pos.frame=icrs</quantity>
+    </column>
     <column name="[cy]">
       <summary> Cartesian Y (ICRS)</summary>
-<quantity>pos.eq.y; pos.frame=icrs</quantity>
-</column>
+      <quantity>pos.eq.y; pos.frame=icrs</quantity>
+    </column>
     <column name="[cz]">
       <summary> Cartesian Z (ICRS)</summary>
-<quantity>pos.eq.z; pos.frame=icrs</quantity>
-</column>
+      <quantity>pos.eq.z; pos.frame=icrs</quantity>
+    </column>
     <column name="[htmid]">
       <summary> HTM ID (ICRS)</summary>
-<quantity>pos.HTM; pos.eq; pos.frame=icrs</quantity>
-</column>
+      <quantity>pos.HTM; pos.eq; pos.frame=icrs</quantity>
+    </column>
     <column name="[zoneid]">
       <summary> Zone ID </summary>
-<quantity>pos.zone</quantity>
-</column>
+      <quantity>pos.zone</quantity>
+    </column>
     <column name="[seqID]">
       <summary> sequential ID </summary>
-<quantity>meta.record</quantity>
-</column>
+      <quantity>meta.record</quantity>
+    </column>
     <column name="[n_GSC]">
       <summary> f for galaxies fainter than the limit mSSRS2=15.5 </summary>
-<quantity>meta.code</quantity>
-</column>
+      <quantity>meta.code</quantity>
+    </column>
     <column name="[GSC]">
       <summary> GSC (Cat. I/220) number of the galaxy  </summary>
-<quantity>meta.id</quantity>
-</column>
+      <quantity>meta.id</quantity>
+    </column>
     <column name="[m_GSC]">
       <summary> [NSEW] Multiplicity index on GSC </summary>
-<quantity>meta.code.multip</quantity>
-</column>
+      <quantity>meta.code.multip</quantity>
+    </column>
     <column name="[ESO_MCG]">
       <summary> ESO (Cat. VII/34) or MCG (Cat. VII/100) name </summary>
-<quantity></quantity>
-</column>
+      <quantity></quantity>
+    </column>
     <column name="[RA]">
       <summary> )Right ascension (ICRS) (computed by VizieR, not part of the original data)  </summary>
-<quantity>pos.eq.ra;pos.frame=icrs</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.ra;pos.frame=icrs</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[DEC]">
       <summary> Declination (ICRS) (computed by VizieR, not part of the original data)  </summary>
-<quantity>pos.eq.dec;pos.frame=icrs</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.dec;pos.frame=icrs</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[RA_1950]">
       <summary> Right ascension (B1950.0) </summary>
-<quantity>pos.eq.ra;pos.frame=b1950</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.ra;pos.frame=b1950</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[DEC_1950]">
       <summary> Declination (B1950.0) </summary>
-<quantity>pos.eq.dec;pos.frame=b1950</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.dec;pos.frame=b1950</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[mSSR]">
       <summary> SSRS2 magnitude. m(SSRS2) = 0.59m(GSC) + 8.42 </summary>
-<quantity>phot.mag;em.opt</quantity>
-<unit> mag </unit>
-</column>
+      <quantity>phot.mag;em.opt</quantity>
+      <unit> mag </unit>
+    </column>
     <column name="[RV]">
       <summary> Radial velocity </summary>
-<quantity>spect.dopplerVelocity;pos.heliocentric</quantity>
-<unit> km s-1 </unit>
-</column>
+      <quantity>spect.dopplerVelocity;pos.heliocentric</quantity>
+      <unit> km s-1 </unit>
+    </column>
     <column name="[e_RV]">
       <summary> rms uncertainty on RV </summary>
-<quantity>stat.error;spect.dopplerVelocity;pos.heliocentric</quantity>
-<unit> km s-1 </unit>
-</column>
+      <quantity>stat.error;spect.dopplerVelocity;pos.heliocentric</quantity>
+      <unit> km s-1 </unit>
+    </column>
     <column name="[TT]">
       <summary> de Vaucouleurs' galaxy morphology (T-types) </summary>
-<quantity>src.morp.type</quantity>
-</column>
+      <quantity>src.morp.type</quantity>
+    </column>
     <column name="[r_RV]">
       <summary> Source for the radial velocity in refs.dat file  </summary>
-<quantity>meta.ref;spect.dopplerVelocity</quantity>
-</column>
+      <quantity>meta.ref;spect.dopplerVelocity</quantity>
+    </column>
     <column name="[Note]">
       <summary> Note </summary>
-<quantity>meta.note</quantity>
-</column>
+      <quantity>meta.note</quantity>
+    </column>
     <column name="[NGC_IC]">
       <summary> NGC or IC (Cat. VII/118) name </summary>
-<quantity>meta.id.cross</quantity>
-</column>
+      <quantity>meta.id.cross</quantity>
+    </column>
   </table>
 </metadata>

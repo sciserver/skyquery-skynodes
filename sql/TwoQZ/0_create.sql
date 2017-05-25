@@ -1,6 +1,17 @@
---/ <summary>The main PhotoObj table for the 2QZ catalog</summary>
-	--/ <quantity></quantity>
---/ <remarks>The main PhotoObj table for the 2QZ catalog</remarks>
+--/ <dataset>
+--/ <summary> The 2dF QSO Redshift Survey </summary>
+--/ <remarks>
+--/ The 2QZ comprises 23 338 quasi-stellar objects (QSOs), 12 292 galactic stars (including 2071 white 
+--/ dwarfs) and 4558 compact narrow emission-line galaxies. 
+--/ </remarks>
+--/ <url>http://www.2dfquasar.org/Spec_Cat/</url>
+--/ <icon>twoqz.png</icon>
+--/ <docpage>twoqz.html</docpage>
+--/ </dataset>
+ GO
+
+--/ <summary>The main SpecObj table for the 2QZ catalog</summary>
+--/ <remarks>The main SpecObj table for the 2QZ catalog</remarks>
 CREATE TABLE [dbo].[SpecObj]
 (
 	--/ <summary>unique object identifier</summary>

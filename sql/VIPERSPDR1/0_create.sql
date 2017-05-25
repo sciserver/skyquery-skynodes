@@ -1,4 +1,20 @@
+--/ <dataset>
+--/ <summary> First data release (PDR-1) of the VIMOS Public Extragalactic Redshift Survey (VIPERS). </summary>
+--/ <remarks>
+--/ The PDR-1 includes spectroscopic measurements for 57204 objects, together with the survey masks and 
+--/ weights and photometric ancillary information from the CFHTLS. 54756 of these objects are galaxies 
+--/ or AGN, 2448 are stars. 
+--/ </remarks>
+--/ <url>http://vipers.inaf.it/rel-pdr1.html</url>
+--/ <icon>viperspdr1.png</icon>
+--/ <docpage>viperspdr1.html</docpage>
+--/ </dataset>
+ GO
+
 -- CREATE PhotoObj TABLE
+
+--/ <summary></summary>
+--/ <remarks></remarks>
 CREATE TABLE dbo.PhotoObj
 (
 	--/ <summary> Cartesian X (J2000)</summary>
@@ -434,6 +450,9 @@ GO
 
 
 -- CREATE SpecObj TABLE
+
+--/ <summary></summary>
+--/ <remarks></remarks>
 CREATE TABLE dbo.SpecObj
 (
 	--/ <summary> Cartesian X (J2000)</summary>

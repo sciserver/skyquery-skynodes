@@ -1,1411 +1,1432 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <metadata>
+  <dataset>
+    <summary> The second ROSAT all-sky survey (2RXS) catalogue </summary>
+    <remarks>
+      The 2RXS catalogue is the second publicly released ROSAT catalogue of point-like sources obtained
+      from the ROSAT all-sky survey observations performed between June 1990 and August 1991, and is an
+      extended and revised version of the 1RXS catalogue. The 2RXS catalogue contains about 135,000 X-ray
+      detections down to a detection likelihood of 6.5 in the 0.1-2.4 keV energy band. The 2RXS catalogue
+      provides the deepest and cleanest X-ray all-sky survey catalogue before eROSITA data will become
+      available.</remarks>
+    <url>http://www.mpe.mpg.de/ROSAT/2RXS</url>
+    <icon>rosat2rxs.png</icon>
+    <docpage>rosat2rxs.html</docpage>
+  </dataset>
   <table name="[dbo].[SourceObj]">
+    <remarks></remarks>
     <column name="[cx]">
       <summary> Cartesian X (J2000)</summary>
-<quantity>pos.eq.x;pos.frame=j2000</quantity>
-</column>
+      <quantity>pos.eq.x;pos.frame=j2000</quantity>
+    </column>
     <column name="[cy]">
       <summary> Cartesian Y (J2000)</summary>
-<quantity>pos.eq.y;pos.frame=j2000</quantity>
-</column>
+      <quantity>pos.eq.y;pos.frame=j2000</quantity>
+    </column>
     <column name="[cz]">
       <summary> Cartesian Z (J2000)</summary>
-<quantity>pos.eq.z;pos.frame=j2000</quantity>
-</column>
+      <quantity>pos.eq.z;pos.frame=j2000</quantity>
+    </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
-<quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
-</column>
+      <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+    </column>
     <column name="[zoneid]">
       <summary> Zone ID (J2000)</summary>
-<quantity>pos.zone</quantity>
-</column>
+      <quantity>pos.zone</quantity>
+    </column>
     <column name="[IAU_NAME]">
-      <summary> IAU name. Each source has been attributed an IAU name according to the IAU conventions. As this is the second ROSAT
-of point sources the prefix 2RXS is given in addition to the coordinate naming convention. </summary>
-<quantity>meta.id;meta.main</quantity>
-</column>
+      <summary>
+        IAU name. Each source has been attributed an IAU name according to the IAU conventions. As this is the second ROSAT
+        of point sources the prefix 2RXS is given in addition to the coordinate naming convention.</summary>
+      <quantity>meta.id;meta.main</quantity>
+    </column>
     <column name="[SEQ_ID]">
       <summary> Sky field number </summary>
-<quantity>meta.id;obs.field</quantity>
-</column>
+      <quantity>meta.id;obs.field</quantity>
+    </column>
     <column name="[IND_DET]">
       <summary> Source number in a certain sky field </summary>
-<quantity>meta.id;obs.field</quantity>
-</column>
+      <quantity>meta.id;obs.field</quantity>
+    </column>
     <column name="[EXI_ML]">
       <summary> Detection likelihood </summary>
-<quantity>stat.likelihood</quantity>
-</column>
+      <quantity>stat.likelihood</quantity>
+    </column>
     <column name="[CTS]">
       <summary> Background corrected source counts </summary>
-<quantity>phot.count;em.X-ray</quantity>
-<unit> ct </unit>
-</column>
+      <quantity>phot.count;em.X-ray</quantity>
+      <unit> ct </unit>
+    </column>
     <column name="[CERR]">
       <summary> Error of the source counts </summary>
-<quantity>stat.error;phot.count;em.X-ray</quantity>
-<unit> ct </unit>
-</column>
+      <quantity>stat.error;phot.count;em.X-ray</quantity>
+      <unit> ct </unit>
+    </column>
     <column name="[RATE]">
       <summary> Source count rate </summary>
-<quantity>phot.count;em.X-ray</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>phot.count;em.X-ray</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[ERATE]">
       <summary> Error of the count rate </summary>
-<quantity>stat.error;phot.count;em.X-ray</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>stat.error;phot.count;em.X-ray</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[EXPOSURE]">
       <summary> Source exposure time </summary>
-<quantity>time.duration;obs.exposure</quantity>
-<unit> s </unit>
-</column>
+      <quantity>time.duration;obs.exposure</quantity>
+      <unit> s </unit>
+    </column>
     <column name="[RA]">
       <summary> Right ascension </summary>
-<quantity>pos.eq.ra;pos.frame=j2000;meta.main</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.ra;pos.frame=j2000;meta.main</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[DEC]">
       <summary> Declination </summary>
-<quantity>pos.eq.dec;pos.frame=j2000;meta.main</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.dec;pos.frame=j2000;meta.main</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[RA_HMS]">
       <summary> Sexadecimal right ascension </summary>
-<quantity>pos.eq.ra;pos.frame=j2000</quantity>
-</column>
+      <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+    </column>
     <column name="[DEC_DMS]">
       <summary> Sexadecimal declination </summary>
-<quantity>pos.eq.dec,pos.frame=j2000</quantity>
-</column>
+      <quantity>pos.eq.dec,pos.frame=j2000</quantity>
+    </column>
     <column name="[LII]">
       <summary> 	Latitude in galactic coordinate </summary>
-<quantity>pos.galactic.lat</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.galactic.lat</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[BII]">
       <summary> Longitude in galactic coordinate </summary>
-<quantity>pos.galactic.lon</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.galactic.lon</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[LAMBDA]">
       <summary> Latitude in ecliptic coordinate </summary>
-<quantity>pos.ecliptic.lat</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.ecliptic.lat</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[BETA]">
       <summary> Longitude in ecliptic coordinate </summary>
-<quantity>pos.ecliptic.lon</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.ecliptic.lon</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[EXT]">
       <summary> 	Source extent in units of image pixels </summary>
-<quantity>phys.angSize;arith.ratio</quantity>
-<unit> pix </unit>
-</column>
+      <quantity>phys.angSize;arith.ratio</quantity>
+      <unit> pix </unit>
+    </column>
     <column name="[EXTERR]">
       <summary> 	Error of the source extent </summary>
-<quantity>stat.error;phys.angSize;arith.ratio</quantity>
-<unit> pix </unit>
-</column>
+      <quantity>stat.error;phys.angSize;arith.ratio</quantity>
+      <unit> pix </unit>
+    </column>
     <column name="[EXT_ML]">
       <summary> Proability of the source extend </summary>
-<quantity>stat.likelihood</quantity>
-</column>
+      <quantity>stat.likelihood</quantity>
+    </column>
     <column name="[HR_1]">
-      <summary> Hardness ratio 1 value. Hardness ratio 1 values as calculated from the source counts in the energy channels A (11-41), B
-by: HR_1=(B-A)/(B+A)
-Hardness ratio 2 values as calculated from the source counts in the
-energy channels C (52-90), D(91-201) by: HR_2=(D-C)/(D+C) </summary>
-<quantity>phot.flux;arith.ratio</quantity>
-</column>
+      <summary>
+        Hardness ratio 1 value. Hardness ratio 1 values as calculated from the source counts in the energy channels A (11-41), B
+        by: HR_1=(B-A)/(B+A)
+        Hardness ratio 2 values as calculated from the source counts in the
+        energy channels C (52-90), D(91-201) by: HR_2=(D-C)/(D+C)</summary>
+      <quantity>phot.flux;arith.ratio</quantity>
+    </column>
     <column name="[HR_1_err]">
       <summary> Error of HR1 </summary>
-<quantity>stat.error;phot.flux;arith.ratio</quantity>
-</column>
+      <quantity>stat.error;phot.flux;arith.ratio</quantity>
+    </column>
     <column name="[HR_2]">
-      <summary> Hardness ratio 2 value. Hardness ratio 1 values as calculated from the source counts in the energy channels A (11-41), B
-by: HR_1=(B-A)/(B+A)
-Hardness ratio 2 values as calculated from the source counts in the
-energy channels C (52-90), D(91-201) by: HR_2=(D-C)/(D+C) </summary>
-<quantity>phot.flux;arith.ratio</quantity>
-</column>
+      <summary>
+        Hardness ratio 2 value. Hardness ratio 1 values as calculated from the source counts in the energy channels A (11-41), B
+        by: HR_1=(B-A)/(B+A)
+        Hardness ratio 2 values as calculated from the source counts in the
+        energy channels C (52-90), D(91-201) by: HR_2=(D-C)/(D+C)</summary>
+      <quantity>phot.flux;arith.ratio</quantity>
+    </column>
     <column name="[HR_2_err]">
       <summary> Error of HR2 </summary>
-<quantity>stat.error;phot.flux;arith.ratio</quantity>
-</column>
+      <quantity>stat.error;phot.flux;arith.ratio</quantity>
+    </column>
     <column name="[USKY]">
       <summary> Unique flag. Sub-field detection cell defined in sky coordinates. </summary>
-<quantity>meta.code</quantity>
-</column>
+      <quantity>meta.code</quantity>
+    </column>
     <column name="[Masked]">
       <summary> [1] Extended emission regions (0=yes 1=no) </summary>
-<quantity>meta.code</quantity>
-</column>
+      <quantity>meta.code</quantity>
+    </column>
     <column name="[FLAG_all]">
       <summary> [0] Detection flag of nearby sources 0=best </summary>
-<quantity>meta.code</quantity>
-</column>
+      <quantity>meta.code</quantity>
+    </column>
     <column name="[S_flag]">
       <summary> S flag (0=good) </summary>
-<quantity>meta.code</quantity>
-</column>
+      <quantity>meta.code</quantity>
+    </column>
     <column name="[INDEX]">
       <summary> Running number in catalogue </summary>
-<quantity>meta.id</quantity>
-</column>
+      <quantity>meta.id</quantity>
+    </column>
     <column name="[AMPL_MAX]">
       <summary> Maximum amplitude variability  </summary>
-<quantity>src.var.amplitude</quantity>
-</column>
+      <quantity>src.var.amplitude</quantity>
+    </column>
     <column name="[CM]">
       <summary> Error of CMIN </summary>
-<quantity>phot.count;em.X-ray</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>phot.count;em.X-ray</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[CD]">
       <summary> Standard deviation of CM </summary>
-<quantity>stat.error;phot.count;em.X-ray</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>stat.error;phot.count;em.X-ray</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[CTS_lc]">
       <summary> Number of counts calculated from the light curve analysis </summary>
-<quantity>phot.count</quantity>
-<unit> ct </unit>
-</column>
+      <quantity>phot.count</quantity>
+      <unit> ct </unit>
+    </column>
     <column name="[CMIN]">
       <summary> Minimum count rate </summary>
-<quantity>phot.count;em.X-ray;stat.min</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>phot.count;em.X-ray;stat.min</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[CMAX]">
       <summary> Maximum count rate </summary>
-<quantity>phot.count;em.X-ray;stat.max</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>phot.count;em.X-ray;stat.max</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[EMIN]">
       <summary> Error of CMIN </summary>
-<quantity>stat.error;phot.count;em.X-ray;stat.min</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>stat.error;phot.count;em.X-ray;stat.min</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[EMAX]">
       <summary> Error of CMAX </summary>
-<quantity>stat.error;phot.count;em.X-ray;stat.max</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>stat.error;phot.count;em.X-ray;stat.max</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[CHI2_lc]">
       <summary> Chi2 value from the LC analysis </summary>
-<quantity>stat.fit.ch2</quantity>
-</column>
+      <quantity>stat.fit.ch2</quantity>
+    </column>
     <column name="[EXCESS_VAR]">
       <summary> Normalized excess variance </summary>
-<quantity>stat.variance</quantity>
-</column>
+      <quantity>stat.variance</quantity>
+    </column>
     <column name="[UNCERTAINTY]">
       <summary> One-sigma uncertainty of Exc_Var </summary>
-<quantity>stat.error;stat.variance</quantity>
-</column>
+      <quantity>stat.error;stat.variance</quantity>
+    </column>
     <column name="[Sigma_Excess]">
       <summary> Excess variance in units of sigma </summary>
-<quantity>stat.variance</quantity>
-</column>
+      <quantity>stat.variance</quantity>
+    </column>
     <column name="[NH_gal]">
       <summary> Galactic neutral hydrogen density </summary>
-<quantity>phys.density;em.line.HI;pos.galactic</quantity>
-<unit> 1e+21 cm-2 </unit>
-</column>
+      <quantity>phys.density;em.line.HI;pos.galactic</quantity>
+      <unit> 1e+21 cm-2 </unit>
+    </column>
     <column name="[NH_fit_p]">
       <summary> neutral hydrogen density of PL fits </summary>
-<quantity>phys.columnDensity;em.line.HI</quantity>
-<unit> 1e+21 cm-2 </unit>
-</column>
+      <quantity>phys.columnDensity;em.line.HI</quantity>
+      <unit> 1e+21 cm-2 </unit>
+    </column>
     <column name="[NH_err_p]">
       <summary> Error of NHfitp </summary>
-<quantity>stat.erro;phys.density;em.line.HI</quantity>
-<unit> 1e+21 cm-2 </unit>
-</column>
+      <quantity>stat.erro;phys.density;em.line.HI</quantity>
+      <unit> 1e+21 cm-2 </unit>
+    </column>
     <column name="[NORM_p]">
       <summary> Normalization for PL fits </summary>
-<quantity>stat.fit.param</quantity>
-</column>
+      <quantity>stat.fit.param</quantity>
+    </column>
     <column name="[NORM_err_p]">
       <summary> Error of NORM_p </summary>
-<quantity>stat.error;stat.fit.param</quantity>
-</column>
+      <quantity>stat.error;stat.fit.param</quantity>
+    </column>
     <column name="[GAMMA_p]">
       <summary> Photon index  </summary>
-<quantity>spect.index</quantity>
-</column>
+      <quantity>spect.index</quantity>
+    </column>
     <column name="[GAMMA_err_p]">
       <summary> Error of GAMMA_p </summary>
-<quantity>stat.error;spect.index</quantity>
-</column>
+      <quantity>stat.error;spect.index</quantity>
+    </column>
     <column name="[CTR_spec_p]">
       <summary> Count rate obtained from the PL fit </summary>
-<quantity>phot.count;em.X-ray</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>phot.count;em.X-ray</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[FLUX_p]">
       <summary> Absorption corrected flux of PL-fit  </summary>
-<quantity>phot.count;em.X-ray</quantity>
-<unit> mW m-2 </unit>
-</column>
+      <quantity>phot.count;em.X-ray</quantity>
+      <unit> mW m-2 </unit>
+    </column>
     <column name="[Chi2red_spec_p]">
       <summary> Reduced chi^2 value for the PL-fits </summary>
-<quantity>stat.fit.chi2</quantity>
-</column>
+      <quantity>stat.fit.chi2</quantity>
+    </column>
     <column name="[Chi2_spec_p]">
       <summary> Chi^2 value for the power-law-fits </summary>
-<quantity>stat.fit.chi2</quantity>
-</column>
+      <quantity>stat.fit.chi2</quantity>
+    </column>
     <column name="[Num_Data_pts_p]">
       <summary> Number of data points for the PL-fits </summary>
-<quantity>meta.number</quantity>
-</column>
+      <quantity>meta.number</quantity>
+    </column>
     <column name="[Num_Deg_free_p]">
       <summary> Number of degrees of freedom (PL) </summary>
-<quantity>stat.fit.dof</quantity>
-</column>
+      <quantity>stat.fit.dof</quantity>
+    </column>
     <column name="[NH_fit_m]">
       <summary> Neutral hydrogen density (mekal fits) </summary>
-<quantity>phys.columnDensity;em.line.HI</quantity>
-<unit> 1e+21 cm-2 </unit>
-</column>
+      <quantity>phys.columnDensity;em.line.HI</quantity>
+      <unit> 1e+21 cm-2 </unit>
+    </column>
     <column name="[NH_err_m]">
       <summary> Error of NHfitm </summary>
-<quantity>stat.error;phys.columnDensity;em.line.HI</quantity>
-<unit> 1e+21 cm-2 </unit>
-</column>
+      <quantity>stat.error;phys.columnDensity;em.line.HI</quantity>
+      <unit> 1e+21 cm-2 </unit>
+    </column>
     <column name="[NORM_m]">
       <summary> Normalization for the mekal fits </summary>
-<quantity>stat.fit.param</quantity>
-</column>
+      <quantity>stat.fit.param</quantity>
+    </column>
     <column name="[NORM_err_m]">
       <summary> Error of NORM_m </summary>
-<quantity>stat.error;stat.fit.param</quantity>
-</column>
+      <quantity>stat.error;stat.fit.param</quantity>
+    </column>
     <column name="[Temp_fit_m]">
       <summary> Temperature of the mekal fits </summary>
-<quantity>phys.temperature</quantity>
-</column>
+      <quantity>phys.temperature</quantity>
+    </column>
     <column name="[Temp_err_m]">
       <summary> Error of Tempfitm  </summary>
-<quantity>stat.error;phys.temperature</quantity>
-</column>
+      <quantity>stat.error;phys.temperature</quantity>
+    </column>
     <column name="[CTR_spec_m]">
       <summary> Count rate obtained for the mekal fits </summary>
-<quantity>phot.count;em.X-ray</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>phot.count;em.X-ray</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[FLUX_m]">
       <summary> Absorption corrected flux (mekal fits) </summary>
-<quantity>phot.flux;em.X-ray</quantity>
-<unit> mW m-2 </unit>
-</column>
+      <quantity>phot.flux;em.X-ray</quantity>
+      <unit> mW m-2 </unit>
+    </column>
     <column name="[Chi2red_spec_m]">
       <summary> Reduced chi^2 value for mekal fits </summary>
-<quantity>stat.fit.chi2</quantity>
-</column>
+      <quantity>stat.fit.chi2</quantity>
+    </column>
     <column name="[Chi2_spec_m]">
       <summary> Chi^2 value for the mekal fits </summary>
-<quantity>stat.fit.chi2</quantity>
-</column>
+      <quantity>stat.fit.chi2</quantity>
+    </column>
     <column name="[Num_Data_pts_m]">
       <summary> Number of data points (mekal fits)  </summary>
-<quantity>meta.number</quantity>
-</column>
+      <quantity>meta.number</quantity>
+    </column>
     <column name="[Num_Deg_free_m]">
       <summary> Number of degrees of freedom (mekal) </summary>
-<quantity>stat.fit.dof</quantity>
-</column>
+      <quantity>stat.fit.dof</quantity>
+    </column>
     <column name="[NH_fit_b]">
       <summary> Neutral hydrogen density (bbdy fits) </summary>
-<quantity>phys.columnDensity;em.line.HI</quantity>
-<unit> 1e+21 cm-2 </unit>
-</column>
+      <quantity>phys.columnDensity;em.line.HI</quantity>
+      <unit> 1e+21 cm-2 </unit>
+    </column>
     <column name="[NH_err_b]">
       <summary> Error of NHfitb </summary>
-<quantity>stat.error;phys.columnDensity;em.line.HI</quantity>
-<unit> 1e+21 cm-2 </unit>
-</column>
+      <quantity>stat.error;phys.columnDensity;em.line.HI</quantity>
+      <unit> 1e+21 cm-2 </unit>
+    </column>
     <column name="[NORM_b]">
       <summary> Normalization for the black body fits </summary>
-<quantity>stat.fit.param</quantity>
-</column>
+      <quantity>stat.fit.param</quantity>
+    </column>
     <column name="[NORM_err_b]">
       <summary> Error of the normalization (bbdy fits) </summary>
-<quantity>stat.error;stat.fit.param</quantity>
-</column>
+      <quantity>stat.error;stat.fit.param</quantity>
+    </column>
     <column name="[Temp_fit_b]">
       <summary> Temperature of the black body fits </summary>
-<quantity>phys.temperature</quantity>
-</column>
+      <quantity>phys.temperature</quantity>
+    </column>
     <column name="[Temp_err_b]">
       <summary> Error of Tempfitbbdy </summary>
-<quantity>stat.error;phys.temperature</quantity>
-</column>
+      <quantity>stat.error;phys.temperature</quantity>
+    </column>
     <column name="[CTR_spec_b]">
       <summary> Count rate for the black body fit </summary>
-<quantity>phot.count;em.X-ray</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>phot.count;em.X-ray</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[FLUX_b]">
       <summary> Absorption corrected flux (black body) </summary>
-<quantity>phot.flux;em.X-ray</quantity>
-<unit> mW m-2 </unit>
-</column>
+      <quantity>phot.flux;em.X-ray</quantity>
+      <unit> mW m-2 </unit>
+    </column>
     <column name="[Chi2red_spec_b]">
       <summary> Reduced chi2 value (black body) </summary>
-<quantity>stat.fit.chi2</quantity>
-</column>
+      <quantity>stat.fit.chi2</quantity>
+    </column>
     <column name="[Chi2_spec_b]">
       <summary> Chi2 value for the black body fits </summary>
-<quantity>stat.fit.chi2</quantity>
-</column>
+      <quantity>stat.fit.chi2</quantity>
+    </column>
     <column name="[Num_Data_pts_b]">
       <summary> Number of data points (black body) </summary>
-<quantity>meta.number</quantity>
-</column>
+      <quantity>meta.number</quantity>
+    </column>
     <column name="[Num_Deg_free_b]">
       <summary> Number of degrees of freedom (bbdy)  </summary>
-<quantity>stat.fit.dof</quantity>
-</column>
+      <quantity>stat.fit.dof</quantity>
+    </column>
     <column name="[X_IMA]">
       <summary> X image coordinate (45 arcsec) in image pixel </summary>
-<quantity>pos.cartesian.x;instr.det</quantity>
-<unit> pix </unit>
-</column>
+      <quantity>pos.cartesian.x;instr.det</quantity>
+      <unit> pix </unit>
+    </column>
     <column name="[Y_IMA]">
       <summary> Y image coordinate (45 arcsec) in image pixel </summary>
-<quantity>pos.cartesian.y;instr.det</quantity>
-<unit> pix </unit>
-</column>
+      <quantity>pos.cartesian.y;instr.det</quantity>
+      <unit> pix </unit>
+    </column>
     <column name="[XERR]">
       <summary> One-sigma error of X_IMA in image pixel </summary>
-<quantity>stat.error;pos.cartesian.x;instr.det</quantity>
-<unit> pix </unit>
-</column>
+      <quantity>stat.error;pos.cartesian.x;instr.det</quantity>
+      <unit> pix </unit>
+    </column>
     <column name="[YERR]">
       <summary> One-sigma error of Y_IMA in image pixel </summary>
-<quantity>stat.error;pos.cartesian.y;instr.det</quantity>
-<unit> pix </unit>
-</column>
+      <quantity>stat.error;pos.cartesian.y;instr.det</quantity>
+      <unit> pix </unit>
+    </column>
     <column name="[X_SKY]">
       <summary> X sky coordinates (0.5 arcsec) in sky pixel </summary>
-<quantity>pos.cartesian.x;instr.det</quantity>
-<unit> pix </unit>
-</column>
+      <quantity>pos.cartesian.x;instr.det</quantity>
+      <unit> pix </unit>
+    </column>
     <column name="[Y_SKY]">
       <summary> Y sky coordinates (0.5 arcsec) in sky pixel </summary>
-<quantity>pos.cartesian.y;instr.det</quantity>
-<unit> pix </unit>
-</column>
+      <quantity>pos.cartesian.y;instr.det</quantity>
+      <unit> pix </unit>
+    </column>
     <column name="[CUT_RAD]">
       <summary> [600] Source extraction radius in sky pixels </summary>
-<quantity>phys.angSize</quantity>
-</column>
+      <quantity>phys.angSize</quantity>
+    </column>
     <column name="[FA]">
       <summary> Analyzed fraction of cut radius </summary>
-<quantity>stat.fit.param</quantity>
-</column>
+      <quantity>stat.fit.param</quantity>
+    </column>
     <column name="[TOTNUM]">
       <summary> Total number of photons read from the PET and analyzed by the maximum likelihood algorithm </summary>
-<quantity>phot.count;em.X-ray</quantity>
-</column>
+      <quantity>phot.count;em.X-ray</quantity>
+    </column>
     <column name="[BGR]">
       <summary> Background in source extraction region in 1/pix_image </summary>
-<quantity>instr.background</quantity>
-<unit> pix-1 </unit>
-</column>
+      <quantity>instr.background</quantity>
+      <unit> pix-1 </unit>
+    </column>
     <column name="[VIG_COR]">
       <summary> Vignetting correction factor </summary>
-<quantity>instr.param</quantity>
-</column>
+      <quantity>instr.param</quantity>
+    </column>
     <column name="[REMARKS]">
       <summary> [source nrby?] on flags originating from ML-detection </summary>
-<quantity>meta.note</quantity>
-</column>
+      <quantity>meta.note</quantity>
+    </column>
     <column name="[SB1]">
       <summary> Counts in band A </summary>
-<quantity>phot.count;em.X-ray</quantity>
-<unit> ct </unit>
-</column>
+      <quantity>phot.count;em.X-ray</quantity>
+      <unit> ct </unit>
+    </column>
     <column name="[SB2]">
       <summary> Counts in band B </summary>
-<quantity>phot.count;em.X-ray</quantity>
-<unit> ct </unit>
-</column>
+      <quantity>phot.count;em.X-ray</quantity>
+      <unit> ct </unit>
+    </column>
     <column name="[SB3]">
       <summary> Counts in band C  </summary>
-<quantity>phot.count;em.X-ray</quantity>
-<unit> ct </unit>
-</column>
+      <quantity>phot.count;em.X-ray</quantity>
+      <unit> ct </unit>
+    </column>
     <column name="[SB4]">
       <summary> Counts in band D </summary>
-<quantity>phot.count;em.X-ray</quantity>
-<unit> ct </unit>
-</column>
+      <quantity>phot.count;em.X-ray</quantity>
+      <unit> ct </unit>
+    </column>
     <column name="[B1]">
       <summary> Background band A with other catalogue entries excised </summary>
-<quantity>instr.background</quantity>
-<unit> ct </unit>
-</column>
+      <quantity>instr.background</quantity>
+      <unit> ct </unit>
+    </column>
     <column name="[B2]">
       <summary> Background band B with other catalogue entries excised </summary>
-<quantity>instr.background</quantity>
-<unit> ct </unit>
-</column>
+      <quantity>instr.background</quantity>
+      <unit> ct </unit>
+    </column>
     <column name="[B3]">
       <summary> Background band C with other catalogue entries excised </summary>
-<quantity>instr.background</quantity>
-<unit> ct </unit>
-</column>
+      <quantity>instr.background</quantity>
+      <unit> ct </unit>
+    </column>
     <column name="[B4]">
       <summary> Background band D with other catalogue entries excised </summary>
-<quantity>instr.background</quantity>
-<unit> ct </unit>
-</column>
+      <quantity>instr.background</quantity>
+      <unit> ct </unit>
+    </column>
     <column name="[B_SPA]">
       <summary> Remaining bkg area in square arcmin </summary>
-<quantity>phys.area;instr.background</quantity>
-<unit> arcmin+2 </unit>
-</column>
+      <quantity>phys.area;instr.background</quantity>
+      <unit> arcmin+2 </unit>
+    </column>
     <column name="[S1]">
       <summary> Source counts in band A (SB1 - B1*sbspa/bspa) </summary>
-<quantity>phot.count;em.X-ray</quantity>
-<unit> ct </unit>
-</column>
+      <quantity>phot.count;em.X-ray</quantity>
+      <unit> ct </unit>
+    </column>
     <column name="[S2]">
       <summary>  Source counts in band B (SB2 - B2*sbspa/bspa)  </summary>
-<quantity>phot.count;em.X-ray</quantity>
-<unit> ct </unit>
-</column>
+      <quantity>phot.count;em.X-ray</quantity>
+      <unit> ct </unit>
+    </column>
     <column name="[S3]">
       <summary> Source counts in band c (SB3 - B3*sbspa/bspa)  </summary>
-<quantity>phot.count;em.X-ray</quantity>
-<unit> ct </unit>
-</column>
+      <quantity>phot.count;em.X-ray</quantity>
+      <unit> ct </unit>
+    </column>
     <column name="[S4]">
       <summary> Source counts in band D (SB4 - B4*sbspa/bspa)  </summary>
-<quantity>phot.count;em.X-ray</quantity>
-<unit> ct </unit>
-</column>
+      <quantity>phot.count;em.X-ray</quantity>
+      <unit> ct </unit>
+    </column>
     <column name="[mult_xmmsl1]">
       <summary> Number of counterparts in the XMM Slew Survey within the distance of 60"  </summary>
-<quantity>meta.number;str</quantity>
-</column>
+      <quantity>meta.number;str</quantity>
+    </column>
     <column name="[entr_xmmsl1]">
       <summary> Source number of nearest counterpart in the XMM Slew Survey  </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[dist_xmmsl1]">
       <summary> Distance of nearest XMMSL1 counterpart </summary>
-<quantity>pos.angDistance</quantity>
-<unit> arcsec </unit>
-</column>
+      <quantity>pos.angDistance</quantity>
+      <unit> arcsec </unit>
+    </column>
     <column name="[RA_xmmsl1]">
       <summary> 	XMMSL Right ascension (J2000) </summary>
-<quantity>pos.eq.ra;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[DEC_xmmsl1]">
       <summary> XMMSL Declination (J2000) </summary>
-<quantity>pos.eq.dec;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[SRCNAME_xmmsl1]">
       <summary> Source name in the XMM Slew Survey </summary>
-<quantity>meta.id.cross</quantity>
-</column>
+      <quantity>meta.id.cross</quantity>
+    </column>
     <column name="[RATE_B0_xmmsl1]">
       <summary> Broad Band Count rate </summary>
-<quantity>phot.count;em.X-ray</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>phot.count;em.X-ray</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[RATE_B0e_xmmsl1]">
       <summary> Broad Band Count rate error </summary>
-<quantity>stat.error;phot.count;em.X-ray</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>stat.error;phot.count;em.X-ray</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[RATE_B5_xmmsl1]">
       <summary> Count rate, energy band 0.5-2keV </summary>
-<quantity>phot.count;em.X-ray</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>phot.count;em.X-ray</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[RATE_B5e_xmmsl1]">
       <summary> Count rate error, 0.5-2keV  </summary>
-<quantity>stat.error;phot.count;em.X-ray</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>stat.error;phot.count;em.X-ray</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[mult_3xmm]">
       <summary> Number of 3XMM counterparts within the distance of 60" </summary>
-<quantity>number;src</quantity>
-</column>
+      <quantity>number;src</quantity>
+    </column>
     <column name="[entr_3xmm]">
       <summary> Source number of nearest counterpart in the 3XMM Catalogue </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[dist_3xmm]">
       <summary> Distance of nearest 3XMM counterpart </summary>
-<quantity>pos.angDistance</quantity>
-<unit> arcsec </unit>
-</column>
+      <quantity>pos.angDistance</quantity>
+      <unit> arcsec </unit>
+    </column>
     <column name="[RA_3xmm]">
       <summary> 3XMM Right ascension (J2000)  </summary>
-<quantity>pos.eq.ra;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[DEC_3xmm]">
       <summary> 3XMM Declination (J2000) </summary>
-<quantity>pos.eq.dec;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[SRCNAME_3xmm]">
       <summary> Source name in the 3XMM Catalogue  </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[RATE_EP8_3xmm]">
       <summary> 3XMM Count rate </summary>
-<quantity>phot.count;em.X-ray</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>phot.count;em.X-ray</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[RATE_EP8e_3xmm]">
       <summary>  3XMM Count rate error </summary>
-<quantity>stat.error;phot.count;em.X-ray</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>stat.error;phot.count;em.X-ray</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[FLUX_R_3xmm]">
       <summary> 3XMM Flux </summary>
-<quantity>phot.flux;em.X-ray</quantity>
-<unit> mW m-2 </unit>
-</column>
+      <quantity>phot.flux;em.X-ray</quantity>
+      <unit> mW m-2 </unit>
+    </column>
     <column name="[FLUX_R_err_3xmm]">
       <summary> 3XMM Flux error </summary>
-<quantity>stat.error;phot.flux;em.X-ray</quantity>
-<unit> mW m-2 </unit>
-</column>
+      <quantity>stat.error;phot.flux;em.X-ray</quantity>
+      <unit> mW m-2 </unit>
+    </column>
     <column name="[mult_2rxp]">
       <summary> Number of 2RXP counterparts within the distance of 300" </summary>
-<quantity>meta.number;src</quantity>
-</column>
+      <quantity>meta.number;src</quantity>
+    </column>
     <column name="[entr_2rxp]">
       <summary> Source number of nearest counterpart in the 2RXP catalogue </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[dist_2rxp]">
       <summary> Distance of 2RXP nearest counterpart  </summary>
-<quantity>pos.angDistance</quantity>
-<unit> arcsec </unit>
-</column>
+      <quantity>pos.angDistance</quantity>
+      <unit> arcsec </unit>
+    </column>
     <column name="[RA_2rxp]">
       <summary> 2RXP Right ascension (J2000)  </summary>
-<quantity>pos.eq.ra;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[DEC_2rxp]">
       <summary> 2RXP Declination (J2000)  </summary>
-<quantity>pos.eq.dec;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[SRCNAME_2rxp]">
       <summary> Source name in the 2RXP </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[CRATE_2rxp]">
       <summary> 2RXP Count rate </summary>
-<quantity>phot.count;em.X-ray</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>phot.count;em.X-ray</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[CRATE_err_2rxp]">
       <summary> 2RXP Count rate error  </summary>
-<quantity>stat.error;phot.count;em.X-ray</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>stat.error;phot.count;em.X-ray</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[ExpTime_2rxp]">
       <summary> 2RXP Source exposure time </summary>
-<quantity>time.duration;obs.exposure</quantity>
-<unit> s </unit>
-</column>
+      <quantity>time.duration;obs.exposure</quantity>
+      <unit> s </unit>
+    </column>
     <column name="[ObsID_2rxp]">
       <summary> Field number of 2RXP counterpart </summary>
-<quantity>meta.id;obs</quantity>
-</column>
+      <quantity>meta.id;obs</quantity>
+    </column>
     <column name="[mult_1rxs]">
       <summary> Number of 1RXS counterparts within a distance of 60" </summary>
-<quantity>meta.number;src</quantity>
-</column>
+      <quantity>meta.number;src</quantity>
+    </column>
     <column name="[entr_1rxs]">
       <summary> Source number of nearest counterpart in the 1RXS catalogue </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[dist_1rxs]">
       <summary>  Distance to nearest 1RXS counterpart </summary>
-<quantity>pos.angDistance</quantity>
-<unit> arcsec </unit>
-</column>
+      <quantity>pos.angDistance</quantity>
+      <unit> arcsec </unit>
+    </column>
     <column name="[RA_1rxs]">
       <summary> 1RXS Right ascension (J2000) </summary>
-<quantity>pos.eq.ra;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[DEC_1rxs]">
       <summary> 	1RXS Declination (J2000) </summary>
-<quantity>pos.eq.dec;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[SRCNAME_1rxs]">
       <summary> Source name in the 1RXS catalogue </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[RATE_1rxs]">
       <summary> Source count rate in the 1RXS </summary>
-<quantity>phot.count;em.X-ray</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>phot.count;em.X-ray</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[RATE_err_1rxs]">
       <summary> Error of RATE_1rxs </summary>
-<quantity>stat.error;phot.count;em.X-ray</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>stat.error;phot.count;em.X-ray</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[CTS_1rxs]">
       <summary> Background corrected src counts 1RXS </summary>
-<quantity>phot.count;em.X-ray</quantity>
-</column>
+      <quantity>phot.count;em.X-ray</quantity>
+    </column>
     <column name="[CTS_err_1rxs]">
       <summary> Error of CTS_1rxs </summary>
-<quantity>stat.error;phot.count;em.X-ray</quantity>
-</column>
+      <quantity>stat.error;phot.count;em.X-ray</quantity>
+    </column>
     <column name="[EXI_ML_1rxs]">
       <summary> Background corrected src counts 1RXS </summary>
-<quantity>stat.likelihood</quantity>
-</column>
+      <quantity>stat.likelihood</quantity>
+    </column>
     <column name="[EXPOS_1rxs]">
       <summary> Source exposure time in 1RXS </summary>
-<quantity>time.duration;obs.exposure</quantity>
-<unit> s </unit>
-</column>
+      <quantity>time.duration;obs.exposure</quantity>
+      <unit> s </unit>
+    </column>
     <column name="[HR1_1rxs]">
-      <summary>  1RXS Hardness ratio 1 value. 1RXS hardness ratio 1 values have been calculated from the source counts in the energy
-A (11-41), B (52-201) by: HR_1=(B-A)/(B+A) in 1RXS
-Hardness ratio 2 values have been calculated from the source counts in the
-energy channels C (52-90), D(91-201) by: HR_2=(D-C)/(D+C) in the 1RXS </summary>
-<quantity>phot.flux;arith.ratio</quantity>
-</column>
+      <summary>
+        1RXS Hardness ratio 1 value. 1RXS hardness ratio 1 values have been calculated from the source counts in the energy
+        A (11-41), B (52-201) by: HR_1=(B-A)/(B+A) in 1RXS
+        Hardness ratio 2 values have been calculated from the source counts in the
+        energy channels C (52-90), D(91-201) by: HR_2=(D-C)/(D+C) in the 1RXS</summary>
+      <quantity>phot.flux;arith.ratio</quantity>
+    </column>
     <column name="[HR1e_1rxs]">
       <summary>  Error of HR1 in the 1RXS </summary>
-<quantity>stat.error;phot.flux;arith.ratio</quantity>
-</column>
+      <quantity>stat.error;phot.flux;arith.ratio</quantity>
+    </column>
     <column name="[HR2_1rxs]">
-      <summary> 1RXS Hardness ratio 2 value.  1RXS hardness ratio 1 values have been calculated from the source counts in the energy
-A (11-41), B (52-201) by: HR_1=(B-A)/(B+A) in 1RXS
-Hardness ratio 2 values have been calculated from the source counts in the
-energy channels C (52-90), D(91-201) by: HR_2=(D-C)/(D+C) in the 1RXS </summary>
-<quantity>phot.flux;arith.ratio</quantity>
-</column>
+      <summary>
+        1RXS Hardness ratio 2 value.  1RXS hardness ratio 1 values have been calculated from the source counts in the energy
+        A (11-41), B (52-201) by: HR_1=(B-A)/(B+A) in 1RXS
+        Hardness ratio 2 values have been calculated from the source counts in the
+        energy channels C (52-90), D(91-201) by: HR_2=(D-C)/(D+C) in the 1RXS</summary>
+      <quantity>phot.flux;arith.ratio</quantity>
+    </column>
     <column name="[HR2e_1rxs]">
       <summary> Error of HR2 in the 1RXS </summary>
-<quantity>stat.error;phot.flux;arith.ratio</quantity>
-</column>
+      <quantity>stat.error;phot.flux;arith.ratio</quantity>
+    </column>
     <column name="[mult_vv10]">
       <summary> Number of counterparts in the Veron and Verson Catalogue within the distance of 60"  </summary>
-<quantity>meta.number;src</quantity>
-</column>
+      <quantity>meta.number;src</quantity>
+    </column>
     <column name="[entr_vv10]">
       <summary> Source number of VV10 nearest counterpart </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[dist_vv10]">
       <summary> Distance to nearest VV10 counterpart </summary>
-<quantity>pos.angDistance</quantity>
-<unit> arcsec </unit>
-</column>
+      <quantity>pos.angDistance</quantity>
+      <unit> arcsec </unit>
+    </column>
     <column name="[NAME_vv10]">
       <summary> VV10 Catalogue name </summary>
-<quantity>meta.id</quantity>
-</column>
+      <quantity>meta.id</quantity>
+    </column>
     <column name="[Type_vv10]">
       <summary> 	[B/A/Q] VV10 Object type </summary>
-<quantity>src.class</quantity>
-</column>
+      <quantity>src.class</quantity>
+    </column>
     <column name="[Vmag_vv10]">
       <summary>  VV10 V magnitude </summary>
-<quantity>phot.mag;em.opt.V</quantity>
-<unit> mag </unit>
-</column>
+      <quantity>phot.mag;em.opt.V</quantity>
+      <unit> mag </unit>
+    </column>
     <column name="[z_vv10]">
       <summary> VV10 Redshift </summary>
-<quantity>src.redshift</quantity>
-</column>
+      <quantity>src.redshift</quantity>
+    </column>
     <column name="[Index_vv10]">
       <summary> VV10 Running catalogue number </summary>
-<quantity>meta.id</quantity>
-</column>
+      <quantity>meta.id</quantity>
+    </column>
     <column name="[RA_vv10]">
       <summary> VV10 Right ascension (J2000)  </summary>
-<quantity>pos.eq.ra;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[DEC_vv10]">
       <summary> VV10 Declination (J2000) </summary>
-<quantity>pos.eq.dec;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[mult_tyc2]">
       <summary>  Number of the nearest counterpart in the Tycho2 Catalogue </summary>
-<quantity>meta.number;src</quantity>
-</column>
+      <quantity>meta.number;src</quantity>
+    </column>
     <column name="[entr_tyc2]">
       <summary>  Source number of nearest Tyc2 counterpart  </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[dist_tyc2]">
       <summary>  Distance to nearest Tyc2 counterpart </summary>
-<quantity>pos.angDistance</quantity>
-<unit> arcsec </unit>
-</column>
+      <quantity>pos.angDistance</quantity>
+      <unit> arcsec </unit>
+    </column>
     <column name="[RA_tyc2]">
       <summary> Tyc2 Right ascension (J2000)  </summary>
-<quantity>pos.eq.ra;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[DEC_tyc2]">
       <summary> Tyc2 Declination (J2000) </summary>
-<quantity>pos.eq.dec;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[RecNo_tyc2]">
       <summary> Tyc2 Catalogue number </summary>
-<quantity>meta.id</quantity>
-</column>
+      <quantity>meta.id</quantity>
+    </column>
     <column name="[VTmag_tyc2]">
       <summary> Tyc2 VT magnitude </summary>
-<quantity>phot.mag;em.opt.V</quantity>
-<unit> mag </unit>
-</column>
+      <quantity>phot.mag;em.opt.V</quantity>
+      <unit> mag </unit>
+    </column>
     <column name="[BTmag_tyc2]">
       <summary> Tyc2 BT magnitude  </summary>
-<quantity>phot.mag;em.opt.B</quantity>
-<unit> mag </unit>
-</column>
+      <quantity>phot.mag;em.opt.B</quantity>
+      <unit> mag </unit>
+    </column>
     <column name="[TYC1_tyc2]">
       <summary> Tyc2 TYC1 number. Tyhco 2 name (c.f. Note 1 of the Tycho-2 online catalogue description) </summary>
-<quantity>meta.id</quantity>
-</column>
+      <quantity>meta.id</quantity>
+    </column>
     <column name="[TYC2_tyc2]">
       <summary> Tyc2 TYC2 number. Tyhco 2 name (c.f. Note 1 of the Tycho-2 online catalogue description) </summary>
-<quantity>meta.id</quantity>
-</column>
+      <quantity>meta.id</quantity>
+    </column>
     <column name="[TYC3_tyc2]">
       <summary> Tyc2 TYC3 number. Tyhco 2 name (c.f. Note 1 of the Tycho-2 online catalogue description) </summary>
-<quantity>meta.id</quantity>
-</column>
+      <quantity>meta.id</quantity>
+    </column>
     <column name="[mult_bri]">
       <summary> Number of counterparts in the Catalogue of Bright Stars (BSC) within the distance of 300"  </summary>
-<quantity>meta.number</quantity>
-</column>
+      <quantity>meta.number</quantity>
+    </column>
     <column name="[entr_bri]">
       <summary> Source number of nearest BSC counterpart </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[dist_bri]">
       <summary> Distance to nearest BSC counterpar </summary>
-<quantity>pos.angDistance</quantity>
-<unit> arcsec </unit>
-</column>
+      <quantity>pos.angDistance</quantity>
+      <unit> arcsec </unit>
+    </column>
     <column name="[RA_bri]">
       <summary> 	BSC Right ascension (J2000) </summary>
-<quantity>pos.eq.ra;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[DEC_bri]">
       <summary> 	BSC Declination (J2000) </summary>
-<quantity>pos.eq.dec;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[Vmag_bri]">
       <summary>  BSC V magnitude </summary>
-<quantity>phot.mag;em.opt.V</quantity>
-<unit> mag </unit>
-</column>
+      <quantity>phot.mag;em.opt.V</quantity>
+      <unit> mag </unit>
+    </column>
     <column name="[SpType_bri]">
       <summary> BSC spectral type </summary>
-<quantity>src.spType</quantity>
-</column>
+      <quantity>src.spType</quantity>
+    </column>
     <column name="[RecNo_bri]">
       <summary> BSC Record catalogue number  </summary>
-<quantity>meta.id</quantity>
-</column>
+      <quantity>meta.id</quantity>
+    </column>
     <column name="[HD_bri]">
       <summary> Henry Draper Catalogue Number </summary>
-<quantity>meta.id</quantity>
-</column>
+      <quantity>meta.id</quantity>
+    </column>
     <column name="[mult_hmxb]">
       <summary> Number of counterparts in the Catalog of High Mass X-Ray Binaries (HMXBCAT) within the distance of 60" </summary>
-<quantity>meta.number</quantity>
-</column>
+      <quantity>meta.number</quantity>
+    </column>
     <column name="[entr_hmxb]">
       <summary> Source number of nearest HMXBCAT counterpart </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[dist_hmxb]">
       <summary> Distance of nearest HMXBCAT counterpart  </summary>
-<quantity>pos.angDistance</quantity>
-<unit> arcsec </unit>
-</column>
+      <quantity>pos.angDistance</quantity>
+      <unit> arcsec </unit>
+    </column>
     <column name="[RA_hmxb]">
       <summary> HMXBCAT Right ascension (J2000) </summary>
-<quantity>pos.eq.ra;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[DEC_hmxb]">
       <summary> HMXBCAT Declination (J2000)  </summary>
-<quantity>pos.eq.deg;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.deg;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[Name_hmxb]">
       <summary> HMXBCAT Catalogue name  </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[Name2_hmxb]">
       <summary> HMXBCAT Alternative catalogue name </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[Vmag_hmxb]">
       <summary> HMXBCAT V magnitude </summary>
-<quantity>phot.mag;em.opt.V</quantity>
-<unit> mag </unit>
-</column>
+      <quantity>phot.mag;em.opt.V</quantity>
+      <unit> mag </unit>
+    </column>
     <column name="[mult_lmxb]">
       <summary> Number of counterparts in the Catalog of Low Mass X-Ray Binaries (LMXBCAT) within the distance of 60"  </summary>
-<quantity>meta.number;src</quantity>
-</column>
+      <quantity>meta.number;src</quantity>
+    </column>
     <column name="[entr_lmxb]">
       <summary> Source number of nearest LMXBCAT counterpart </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[dist_lmxb]">
       <summary> Distance to nearest LMXBCAT counterpart </summary>
-<quantity>pos.angDistance</quantity>
-<unit> arcsec </unit>
-</column>
+      <quantity>pos.angDistance</quantity>
+      <unit> arcsec </unit>
+    </column>
     <column name="[RA_lmxb]">
       <summary> 	LMXBCAT Right ascension (J2000)  </summary>
-<quantity>pos.eq.ra;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[DEC_lmxb]">
       <summary> 	LMXBCAT Declination (J2000) </summary>
-<quantity>pos.eq.dec;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[Name_lmxb]">
       <summary> 	LMXBCAT Catalogue name  </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[Name2_lmxb]">
       <summary> 	LMXBCAT Alternative catalogue name  </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[Vmag_lmxb]">
       <summary> LMXBCAT V magnitude  </summary>
-<quantity>phot.mag;em.opt.V</quantity>
-<unit> mag </unit>
-</column>
+      <quantity>phot.mag;em.opt.V</quantity>
+      <unit> mag </unit>
+    </column>
     <column name="[mult_atnf]">
       <summary> Number of counterparts in the Pulsar Catalogue (ATNF) within the distance of 60" </summary>
-<quantity>meta.number;src</quantity>
-</column>
+      <quantity>meta.number;src</quantity>
+    </column>
     <column name="[entr_atnf]">
       <summary> Source number of nearest ATNF counterpart </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[dist_atnf]">
       <summary> Distance to nearest ATNF counterpart  </summary>
-<quantity>pos.angDistance</quantity>
-<unit> arcsec </unit>
-</column>
+      <quantity>pos.angDistance</quantity>
+      <unit> arcsec </unit>
+    </column>
     <column name="[RA_atnf]">
       <summary> ATNF Right ascension (J2000) </summary>
-<quantity>pos.eq.ra;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[DEC_atnf]">
       <summary> 	ATNF Declination (J2000) </summary>
-<quantity>pos.eq.dec;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[Name_atnf]">
       <summary> ATNF Pulsar name </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[Type_atnf]">
       <summary> ATNF Pulsar type </summary>
-<quantity>src.class</quantity>
-</column>
+      <quantity>src.class</quantity>
+    </column>
     <column name="[Period_atnf]">
       <summary> 	ATNF Pulsar period </summary>
-<quantity>time.period</quantity>
-<unit> s </unit>
-</column>
+      <quantity>time.period</quantity>
+      <unit> s </unit>
+    </column>
     <column name="[mult_fuh]">
       <summary> Number of counterparts in the Catalog of Variable Sources from Fuhrmeister and Schmitt within the distance of 60" </summary>
-<quantity>meta.number;src</quantity>
-</column>
+      <quantity>meta.number;src</quantity>
+    </column>
     <column name="[entr_fuh]">
       <summary> Source number of nearest FUH counterpart </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[dist_fuh]">
       <summary> Distance to nearest FUH counterpart  </summary>
-<quantity>pos.angDistance</quantity>
-<unit> arcsec </unit>
-</column>
+      <quantity>pos.angDistance</quantity>
+      <unit> arcsec </unit>
+    </column>
     <column name="[RA_fuh]">
       <summary> 	FUH Right ascension (J2000)  </summary>
-<quantity>pos.eq.ra;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[DEC_fuh]">
       <summary> FUH Declination (J2000) </summary>
-<quantity>pos.eq.dec;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[Seq_fuh]">
       <summary> 	FUH Object number  </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[Name_fuh]">
       <summary> 	FUH Object name </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[mult_1sxps]">
       <summary> Number of counterparts in Swift 1SXPS catalogue within a distance of 120"  </summary>
-<quantity>meta.number;src</quantity>
-</column>
+      <quantity>meta.number;src</quantity>
+    </column>
     <column name="[entr_1sxps]">
       <summary> Source number of nearest 1SXPS counterpart  </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[dist_1sxps]">
       <summary> Distance to nearest 1SXPS counterparts </summary>
-<quantity>pos.angDistance</quantity>
-<unit> arcsec </unit>
-</column>
+      <quantity>pos.angDistance</quantity>
+      <unit> arcsec </unit>
+    </column>
     <column name="[RA_1sxps]">
       <summary> 	1SXPS Right ascension (J2000) </summary>
-<quantity>pos.eq.ra;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[DEC_1sxps]">
       <summary> 	1SXPS Declination (J2000)  </summary>
-<quantity>pos.eq.dec;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[Expos_1sxps]">
       <summary> 1SXPS Source exposure time </summary>
-<quantity>time.duration;obs.exposure</quantity>
-<unit> s </unit>
-</column>
+      <quantity>time.duration;obs.exposure</quantity>
+      <unit> s </unit>
+    </column>
     <column name="[DET_1sxps]">
       <summary> 1SXPS Total(0.3-10keV)-band detection flag </summary>
-<quantity>meta.code</quantity>
-</column>
+      <quantity>meta.code</quantity>
+    </column>
     <column name="[DET0_1sxps]">
       <summary>  1SXPS Total(0.3-10keV)-band detection flag  </summary>
-<quantity>meta.code</quantity>
-</column>
+      <quantity>meta.code</quantity>
+    </column>
     <column name="[DET1_1sxps]">
       <summary> 1SXPS Soft(0.3-1keV)-band detection flag  </summary>
-<quantity>meta.code</quantity>
-</column>
+      <quantity>meta.code</quantity>
+    </column>
     <column name="[DET2_1sxps]">
       <summary> 1SXPS Meduin(2-2keV)-band detection flag </summary>
-<quantity>meta.code</quantity>
-</column>
+      <quantity>meta.code</quantity>
+    </column>
     <column name="[DET3_1sxps]">
       <summary> 1SXPS Hard(2-10keV)-band detection flag </summary>
-<quantity>meta.code</quantity>
-</column>
+      <quantity>meta.code</quantity>
+    </column>
     <column name="[INDEX_1sxps]">
       <summary> Running catalogue number in Swift </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[Rate0_1sxps]">
       <summary> Swift Total (0.3-10 keV)-band count rate </summary>
-<quantity>phot.count;em.X-ray</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>phot.count;em.X-ray</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[ERate0_1sxps]">
       <summary> Swift Error of Rate0_1sxps </summary>
-<quantity>stat.error;phot.count;em.X-ray</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>stat.error;phot.count;em.X-ray</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[mult_1rxh]">
       <summary>  Number of counterparts in the 1RXH catalogue within the distance of 120"  </summary>
-<quantity>meta.number;src</quantity>
-</column>
+      <quantity>meta.number;src</quantity>
+    </column>
     <column name="[entr_1rxh]">
       <summary> Source number of nearest 1RXH counterpart  </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[dist_1rxh]">
       <summary> Distance to nearest 1RXH counterpart  </summary>
-<quantity>pos.angDistance</quantity>
-<unit> arcsec </unit>
-</column>
+      <quantity>pos.angDistance</quantity>
+      <unit> arcsec </unit>
+    </column>
     <column name="[RA_1rxh]">
       <summary> 	1RXH Right ascension (J2000)  </summary>
-<quantity>pos.eq.ra;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[DEC_1rxh]">
       <summary> 1RXH Declination (J2000) </summary>
-<quantity>pos.eq.dec;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[SRCNAME_1rxh]">
       <summary> Source name in the 1RXH  </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[CRATE_1rxh]">
       <summary> 1RXH Source count rate  </summary>
-<quantity>phot.count;em.X-ray</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>phot.count;em.X-ray</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[CRATE_err_1rxh]">
       <summary>  Error of CRATE_1RXH </summary>
-<quantity>stat.error;phot.count;em.X-ray</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>stat.error;phot.count;em.X-ray</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[ExpTime_1rxh]">
       <summary>  1RXH Source exposure time </summary>
-<quantity>time.duration;obs.exposure</quantity>
-<unit> s </unit>
-</column>
+      <quantity>time.duration;obs.exposure</quantity>
+      <unit> s </unit>
+    </column>
     <column name="[SNR_1rxh]">
       <summary> 1RXH Signal-to-noise ratio </summary>
-<quantity>stat.snr</quantity>
-</column>
+      <quantity>stat.snr</quantity>
+    </column>
     <column name="[mult_flem]">
       <summary> Number of counterparts in the Catalog of White Dwarfs from Flemming within the distance of 60" </summary>
-<quantity>meta.number;src</quantity>
-</column>
+      <quantity>meta.number;src</quantity>
+    </column>
     <column name="[entr_flem]">
       <summary>  Source number of nearest Flemming counterpart </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[dist_flem]">
       <summary>  Distance to nearest Flemming counterpart </summary>
-<quantity>pos.angDistance</quantity>
-<unit> arcsec </unit>
-</column>
+      <quantity>pos.angDistance</quantity>
+      <unit> arcsec </unit>
+    </column>
     <column name="[RA_flem]">
       <summary> Flemming Right ascension (J2000)  </summary>
-<quantity>pos.eq.ra;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[DEC_flem]">
       <summary> Flemming Declination (J2000) </summary>
-<quantity>pos.eq.dec;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[SRCNAME_flem]">
       <summary> Source name in the Flemming Catalogue  </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[Type_flem]">
       <summary> Flemming Object type </summary>
-<quantity>src.class</quantity>
-</column>
+      <quantity>src.class</quantity>
+    </column>
     <column name="[WFC_flem]">
       <summary> 	[Y/N] Flemming Wide Field Camera detection? </summary>
-<quantity>meta.code</quantity>
-</column>
+      <quantity>meta.code</quantity>
+    </column>
     <column name="[Rate_flem]">
       <summary> Flemming count rate  </summary>
-<quantity>phot.count;em.X-ray</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>phot.count;em.X-ray</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[e_Rate_flem]">
       <summary> Error of the Flemming count rate  </summary>
-<quantity>stat.error;phot.count;em.X-ray</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>stat.error;phot.count;em.X-ray</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[mult_wd]">
       <summary> Number of counterparts in the Catalog of White Dwarfs within the distance of 60 "  </summary>
-<quantity>meta.number;src</quantity>
-</column>
+      <quantity>meta.number;src</quantity>
+    </column>
     <column name="[entr_wd]">
       <summary> Source number of nearest WD counterpart  </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[dist_wd]">
       <summary> Distance to nearest WD counterpart  </summary>
-<quantity>pos.angDistance</quantity>
-<unit> arcsec </unit>
-</column>
+      <quantity>pos.angDistance</quantity>
+      <unit> arcsec </unit>
+    </column>
     <column name="[RA_wd]">
       <summary> WD Rigth ascension (J2000)  </summary>
-<quantity>pos.eq.ra;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[DEC_wd]">
       <summary> WD Declination (J2000) </summary>
-<quantity>pos.eq.dec;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[SRCNAME_wd]">
       <summary> 	WD Source name in the Catalogue </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[Vmag_wd]">
       <summary> WD V-magnitude </summary>
-<quantity>phot.mag;em.opt.V</quantity>
-<unit> mag </unit>
-</column>
+      <quantity>phot.mag;em.opt.V</quantity>
+      <unit> mag </unit>
+    </column>
     <column name="[Vsphot_wd]">
       <summary> WD V mag: multichannel spectrophotometry </summary>
-<quantity>phot.mag;em.opt.V</quantity>
-<unit> mag </unit>
-</column>
+      <quantity>phot.mag;em.opt.V</quantity>
+      <unit> mag </unit>
+    </column>
     <column name="[mult_sdss]">
       <summary> Source number of the nearest counterpart in the Sloan Catalogue </summary>
-<quantity>meta.number;src</quantity>
-</column>
+      <quantity>meta.number;src</quantity>
+    </column>
     <column name="[entr_sdss]">
       <summary> Source number of SDSS nearest counterpart </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[dist_sdss]">
       <summary> Distance to nearest SDSS counterpart </summary>
-<quantity>pos.angDistance</quantity>
-<unit> arcsec </unit>
-</column>
+      <quantity>pos.angDistance</quantity>
+      <unit> arcsec </unit>
+    </column>
     <column name="[RA_sdss]">
       <summary> 	SDSS Right ascension (J2000)  </summary>
-<quantity>pos.eq.ra;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[DEC_sdss]">
       <summary> 	SDSS Declination (J2000)  </summary>
-<quantity>pos.eq.dec;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[SDSS_NAME]">
       <summary> 	SDSS Object name </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[LAMBDA_sdss]">
       <summary> SDSS Latitude in elliptical coordinate  </summary>
-<quantity>pos.ecliptic.lat</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.ecliptic.lat</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[BETA_sdss]">
       <summary>  SDSS Longitude in elliptical coordinate </summary>
-<quantity>pos.ecliptic.lon</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.ecliptic.lon</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[mult_2rxs]">
       <summary> Number of counterparts in the 2RXS catalogue within the distance of 60"  </summary>
-<quantity>meta.number;src</quantity>
-</column>
+      <quantity>meta.number;src</quantity>
+    </column>
     <column name="[entr_2rxs]">
       <summary>  Source number of 2RXS counterpart </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[dist_2rxs]">
       <summary> Distance to 2RXS counterpart </summary>
-<quantity>pos.angDistance</quantity>
-<unit> arcsec </unit>
-</column>
+      <quantity>pos.angDistance</quantity>
+      <unit> arcsec </unit>
+    </column>
     <column name="[INDEX_2rxs]">
       <summary>  Index of the nearest 2RXS counterpart  </summary>
-<quantity>meta.id.assoc</quantity>
-</column>
+      <quantity>meta.id.assoc</quantity>
+    </column>
     <column name="[SEQ_ID_2rxs]">
       <summary> Number of sky field of 2RXS nearest counterpart  </summary>
-<quantity>meta.nubmer;obs.field</quantity>
-</column>
+      <quantity>meta.nubmer;obs.field</quantity>
+    </column>
     <column name="[IND_DET_2rxs]">
       <summary> Field detection number of 2RXS nearest counterpart  </summary>
-<quantity>meta.id;obs.field</quantity>
-</column>
+      <quantity>meta.id;obs.field</quantity>
+    </column>
     <column name="[EXI_ML_2rxs]">
       <summary> Detection likelihood of 2RXS nearest counterpart </summary>
-<quantity>stat.likelihood</quantity>
-</column>
+      <quantity>stat.likelihood</quantity>
+    </column>
     <column name="[RATE_2rxs]">
       <summary> Source count rate of 2RXS nearest counterpart  </summary>
-<quantity>phot.count;em.X-ray</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>phot.count;em.X-ray</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[RA_2rxs]">
       <summary> 	2RXS Right ascension (J2000)  </summary>
-<quantity>pos.eq.ra;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[DEC_2rxs]">
       <summary> 2RXS Declination (J2000)  </summary>
-<quantity>pos.eq.deg;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.deg;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[USKY_2rxs]">
       <summary> [-1/9] Sub-field detection cell of 2RXS nearest counterpart  </summary>
-<quantity>meta.code</quantity>
-</column>
+      <quantity>meta.code</quantity>
+    </column>
     <column name="[FLAG_2rxs]">
       <summary>  [0/1] Nearby flag of 2RXS nearest counterpart, 0=best </summary>
-<quantity>meta.code.error</quantity>
-</column>
+      <quantity>meta.code.error</quantity>
+    </column>
     <column name="[BKG_id]">
       <summary> Selected background  </summary>
-<quantity>meta.code</quantity>
-</column>
+      <quantity>meta.code</quantity>
+    </column>
     <column name="[X_BKG_1]">
       <summary> X_sky coordinate of background center 1 in sky pixel  </summary>
-<quantity>pos.cartesian.x;instr.det</quantity>
-<unit> pix </unit>
-</column>
+      <quantity>pos.cartesian.x;instr.det</quantity>
+      <unit> pix </unit>
+    </column>
     <column name="[Y_BKG_1]">
       <summary> Y_sky coordinate of background center 1 in sky pixel </summary>
-<quantity>pos.cartesian.y;instr.det</quantity>
-<unit> pix </unit>
-</column>
+      <quantity>pos.cartesian.y;instr.det</quantity>
+      <unit> pix </unit>
+    </column>
     <column name="[X_BKG_2]">
       <summary>  X_sky coordinate of background center 2 in sky pixel </summary>
-<quantity>pos.cartesian.x;instr.det</quantity>
-<unit> pix </unit>
-</column>
+      <quantity>pos.cartesian.x;instr.det</quantity>
+      <unit> pix </unit>
+    </column>
     <column name="[Y_BKG_2]">
       <summary> Y_sky coordinate of background center 2 in sky pixel </summary>
-<quantity>pos.cartesian.y;instr.det</quantity>
-<unit> pix </unit>
-</column>
+      <quantity>pos.cartesian.y;instr.det</quantity>
+      <unit> pix </unit>
+    </column>
     <column name="[BGR_1rxs]">
       <summary> Background count rate per square arcmin from 1RXS </summary>
-<quantity>phot.count;arith.rate;instr.background</quantity>
-<unit> ct s-1 arcmin-2 </unit>
-</column>
+      <quantity>phot.count;arith.rate;instr.background</quantity>
+      <unit> ct s-1 arcmin-2 </unit>
+    </column>
     <column name="[BGR_2rxs]">
       <summary> Background count rate per square arcmin from 2RXS </summary>
-<quantity>phot.count;arith.rate;instr.background</quantity>
-<unit> ct s-1 arcmin-2 </unit>
-</column>
+      <quantity>phot.count;arith.rate;instr.background</quantity>
+      <unit> ct s-1 arcmin-2 </unit>
+    </column>
     <column name="[LFLAG]">
-      <summary> Variability flag 0=good,1=bkg. quality flag for background selection for lightcurves and spectra: 0=good, bit 1:
-of CM+CD&lt;0, bit 2: background in masked region </summary>
-<quantity>meta.code;src.var</quantity>
-</column>
+      <summary>
+        Variability flag 0=good,1=bkg. quality flag for background selection for lightcurves and spectra: 0=good, bit 1:
+        of CM+CD&lt;0, bit 2: background in masked region</summary>
+      <quantity>meta.code;src.var</quantity>
+    </column>
     <column name="[CM6]">
       <summary> Count rate for light curve with less than 6s exposure </summary>
-<quantity>phot.count;em.X-ray</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>phot.count;em.X-ray</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[CD6]">
       <summary> Standard deviation of light curves with less than 6s exposure </summary>
-<quantity>stat.stdev</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>stat.stdev</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[EXCESSVAR6]">
       <summary> Excess variance for light curves with less than 6s exposure </summary>
-<quantity>stat.variance</quantity>
-</column>
+      <quantity>stat.variance</quantity>
+    </column>
     <column name="[UNCERTAINTY6]">
       <summary>  Excess variance uncertainty </summary>
-<quantity>stat.error;stat.variance</quantity>
-</column>
+      <quantity>stat.error;stat.variance</quantity>
+    </column>
     <column name="[NBINS_A]">
       <summary> Number of data points in the LC </summary>
-<quantity>meta.number;phot</quantity>
-</column>
+      <quantity>meta.number;phot</quantity>
+    </column>
     <column name="[NBINS_6]">
       <summary> Number of data points with exposures times less than 6s </summary>
-<quantity>meta.number;pho</quantity>
-</column>
+      <quantity>meta.number;pho</quantity>
+    </column>
     <column name="[NBINS_1]">
       <summary> Number of data points with exposures times less than 1s </summary>
-<quantity>meta.number;pho</quantity>
-</column>
+      <quantity>meta.number;pho</quantity>
+    </column>
     <column name="[NBINS_N]">
       <summary> Number of data points with exposure times greater than 6s </summary>
-<quantity>meta.number;pho</quantity>
-</column>
+      <quantity>meta.number;pho</quantity>
+    </column>
     <column name="[CMIN6]">
       <summary> Minimum count rate for light curves with exposure times of less than 6s  </summary>
-<quantity>phot.count;em.X-ray;stat.min</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>phot.count;em.X-ray;stat.min</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[CMAX6]">
       <summary> Maximum count rate for light curves with exposure times of less than 6s  </summary>
-<quantity>phot.count;em.X-ray;stat.max</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>phot.count;em.X-ray;stat.max</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[EMIN6]">
       <summary> Error of CMIN6 </summary>
-<quantity>stat.error;phot.count;em.X-ray;stat.min</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>stat.error;phot.count;em.X-ray;stat.min</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[EMAX6]">
       <summary> Error of CMAX6 </summary>
-<quantity>stat.error;phot.count;em.X-ray;stat.max</quantity>
-<unit> ct s-1 </unit>
-</column>
+      <quantity>stat.error;phot.count;em.X-ray;stat.max</quantity>
+      <unit> ct s-1 </unit>
+    </column>
     <column name="[CTS_lc6]">
       <summary> [-] Number of counts for light curves with exposure times of less than 6s (CTS_lc6) Not used  </summary>
-<quantity>meta.number;phot.count</quantity>
-<unit> ct </unit>
-</column>
+      <quantity>meta.number;phot.count</quantity>
+      <unit> ct </unit>
+    </column>
     <column name="[SIGMA_excess6]">
       <summary>  Excess variance for light curves with exposure times of less than 6s  </summary>
-<quantity>stat.variance</quantity>
-</column>
+      <quantity>stat.variance</quantity>
+    </column>
     <column name="[CM_plus_CD]">
       <summary> Sum of count rate + standard deviation </summary>
-<quantity>stat.fit.param</quantity>
-</column>
+      <quantity>stat.fit.param</quantity>
+    </column>
     <column name="[SPX]">
       <summary> [0/1] graphical illustrations from spectral fits available in spx subdirectory  </summary>
-<quantity>meta.code</quantity>
-</column>
+      <quantity>meta.code</quantity>
+    </column>
     <column name="[LCX]">
       <summary> 	[0/1] light curve exists as graphical illustration in clx subdirectory </summary>
-<quantity>meta.code</quantity>
-</column>
+      <quantity>meta.code</quantity>
+    </column>
     <column name="[OBS_CLOCK_1]">
       <summary> Start time of exposure when source is within FOV and detector ons  </summary>
-<quantity>time.start;obs.exposure</quantity>
-<unit> s </unit>
-</column>
+      <quantity>time.start;obs.exposure</quantity>
+      <unit> s </unit>
+    </column>
     <column name="[OBS_CLOCK_2]">
       <summary> End time of exposure when source is within FOV and detector ons  </summary>
-<quantity>time.end;obs.exposure</quantity>
-<unit> s </unit>
-</column>
+      <quantity>time.end;obs.exposure</quantity>
+      <unit> s </unit>
+    </column>
     <column name="[OBS_DATE_1]">
       <summary> Start time of exposure when source is within FOV and detector on  </summary>
-<quantity>time.start;obs.exposure</quantity>
-<unit> "Y:M:D" </unit>
-</column>
+      <quantity>time.start;obs.exposure</quantity>
+      <unit> "Y:M:D" </unit>
+    </column>
     <column name="[OBS_UT_1]">
       <summary> Start time </summary>
-<quantity>time.start</quantity>
-<unit> "h:m:s" </unit>
-</column>
+      <quantity>time.start</quantity>
+      <unit> "h:m:s" </unit>
+    </column>
     <column name="[OBS_DATE_2]">
       <summary> End time of exposure when source is within FOV and detector on </summary>
-<quantity>time.end;obs.exposure</quantity>
-<unit> "Y:M:D" </unit>
-</column>
+      <quantity>time.end;obs.exposure</quantity>
+      <unit> "Y:M:D" </unit>
+    </column>
     <column name="[OBS_UT_2]">
       <summary> End time </summary>
-<quantity>time.end</quantity>
-<unit> "h:m:s" </unit>
-</column>
+      <quantity>time.end</quantity>
+      <unit> "h:m:s" </unit>
+    </column>
     <column name="[IND_2RXS]">
-      <summary>  </summary>
-<quantity>meta.record</quantity>
-</column>
+      <summary></summary>
+      <quantity>meta.record</quantity>
+    </column>
   </table>
 </metadata>

@@ -1,4 +1,15 @@
---/ <summary>Point source survey objects</summary>
+--/ <dataset>
+--/ <summary> The Two Micron All Sky Survey </summary>
+--/ <remarks>
+--/ The Point Source catalogue of 470,992,970 sources.
+--/ </remarks>
+--/ <url>http://www.ipac.caltech.edu/2mass/</url>
+--/ <icon>twomass.png</icon>
+--/ <docpage>twomass.html</docpage>
+--/ </dataset>
+ GO
+ 
+ --/ <summary>Point source survey objects</summary>
 --/ <remarks>This is the Point Source Catalog.</remarks>
 CREATE TABLE [dbo].[PhotoPSC](
 	

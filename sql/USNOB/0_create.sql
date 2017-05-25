@@ -1,3 +1,19 @@
+--/ <dataset>
+--/ <summary> United States Naval Observatory B1.0 Catalog </summary>
+--/ <remarks>
+--/ The USNO-B Catalog presents positions, proper motions, magnitudes un blue, red and infrared, as well
+--/  as star/galaxy estimators for 1,045,175,762 objects derived from 3,648,832,040 separate 
+--/ observations. The data were taken from scans of 7,435 Schmidt plates taken from various sky surveys 
+--/ during the last 50 years. USNO-B1.0 is believed to provide all-sky coverage, completeness down to 
+--/ V=21, 0.2" astrometric accuracy at J2000, 0.3 mag photometric accuracy in up to five colors, and 85% 
+--/ accuracy for distinguishing stars from nonstellar objects. 
+--/ </remarks>
+--/ <url>http://vizier.u-strasbg.fr/viz-bin/VizieR?-source=I/284</url>
+--/ <icon>usnob.png</icon>
+--/ <docpage>usnob.html</docpage>
+--/ </dataset>
+ GO
+
 --/ <summary> The main photometry table for the USNOB1.0 catalog </summary>
 --/ <remarks> We created a bigint objid that is concatenated from  zone and seqNo, with zone in the upper 4 bytes of objid.  The table has been loaded by the ROE group, and has been  genereously shared with the JHU group. </remarks>
 CREATE TABLE [dbo].[PhotoObj](

@@ -1,4 +1,23 @@
+--/ <dataset>
+--/ <summary> The second ROSAT all-sky survey (2RXS) catalogue </summary>
+--/ <remarks>
+--/ The 2RXS catalogue is the second publicly released ROSAT catalogue of point-like sources obtained 
+--/ from the ROSAT all-sky survey observations performed between June 1990 and August 1991, and is an 
+--/ extended and revised version of the 1RXS catalogue. The 2RXS catalogue contains about 135,000 X-ray 
+--/ detections down to a detection likelihood of 6.5 in the 0.1-2.4 keV energy band. The 2RXS catalogue 
+--/ provides the deepest and cleanest X-ray all-sky survey catalogue before eROSITA data will become 
+--/ available.
+--/ </remarks>
+--/ <url>http://www.mpe.mpg.de/ROSAT/2RXS</url>
+--/ <icon>rosat2rxs.png</icon>
+--/ <docpage>rosat2rxs.html</docpage>
+--/ </dataset>
+ GO
+
 -- CREATE SourceObj TABLE
+
+--/ <summary></summary>
+--/ <remarks></remarks>
 CREATE TABLE dbo.SourceObj
 (
 	--/ <summary> Cartesian X (J2000)</summary>

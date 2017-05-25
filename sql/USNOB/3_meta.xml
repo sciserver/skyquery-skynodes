@@ -1,160 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <metadata>
+  <dataset>
+    <summary> United States Naval Observatory B1.0 Catalog </summary>
+    <remarks>
+      The USNO-B Catalog presents positions, proper motions, magnitudes un blue, red and infrared, as well
+      as star/galaxy estimators for 1,045,175,762 objects derived from 3,648,832,040 separate
+      observations. The data were taken from scans of 7,435 Schmidt plates taken from various sky surveys
+      during the last 50 years. USNO-B1.0 is believed to provide all-sky coverage, completeness down to
+      V=21, 0.2" astrometric accuracy at J2000, 0.3 mag photometric accuracy in up to five colors, and 85%
+      accuracy for distinguishing stars from nonstellar objects.</remarks>
+    <url>http://vizier.u-strasbg.fr/viz-bin/VizieR?-source=I/284</url>
+    <icon>usnob.png</icon>
+    <docpage>usnob.html</docpage>
+  </dataset>
   <table name="[dbo].[PhotoObj]">
-    <summary> The main photometry table for the USNOB1.0 catalog </summary>
-<remarks> We created a bigint objid that is concatenated from  zone and seqNo, with zone in the upper 4 bytes of objid.  The table has been loaded by the ROE group, and has been  genereously shared with the JHU group. </remarks>
-<column name="[objid]"><summary>Main unique object identifier</summary>
-<quantity>meta.id;meta.main</quantity>
-</column><column name="[zone]"><summary>The catalog is arranged in zones of 0.1deg in Dec, from 0 in South Pole to 1799 in North Pole</summary>
-<quantity>meta.code</quantity>
-</column><column name="[seqNo]"><summary>Sequence number of objects ordered by Right Ascension in the zone.</summary>
-<quantity>meta.record</quantity>
-</column><column name="[ra]"><summary>J2000 Celestial Right Ascension</summary>
-<quantity>pos.eq.ra;pos.frame=j2000</quantity>
-<unit>deg</unit>
-</column><column name="[dec]"><summary>J2000 Celestial Declination</summary>
-<quantity>pos.eq.dec;pos.frame=j2000</quantity>
-<unit>deg</unit>
-</column><column name="[cx]"><summary>unit vector of spherical co-ordinate</summary>
-<quantity>pos.eq.x;pos.frame=j2000</quantity>
-</column><column name="[cy]"><summary>unit vector of spherical co-ordinate</summary>
-<quantity>pos.eq.y;pos.frame=j2000</quantity>
-</column><column name="[cz]"><summary>unit vector of spherical co-ordinate</summary>
-<quantity>pos.eq.z;pos.frame=j2000</quantity>
-</column><column name="[htmID]"><summary>HTM index, 20 digits, for co-ordinate</summary>
-<quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
-</column><column name="[zoneID]"><summary>ZoneID</summary>
-<quantity>pos.zone</quantity>
-</column><column name="[pmRA]"><summary>Proper motion in RA (relative to YS4.0)</summary>
-<quantity>pos.pm;pos.eq.ra</quantity>
-<unit>mas yr-1</unit>
-</column><column name="[pmDEC]"><summary>Proper motion in DEC (relative to YS4.0)</summary>
-<quantity>pos.pm;pos.eq.dec</quantity>
-<unit>mas yr-1</unit>
-</column><column name="[pmPr]"><summary>Total Proper Motion probability</summary>
-<quantity>stat.probability;pos.pm</quantity>
-</column><column name="[mcFlag]"><summary>Motion catalogue flag, 0=no, 1=yes</summary>
-<quantity>meta.code</quantity>
-</column><column name="[e_pmRA]"><summary>Mean error on pmRA</summary>
-<quantity>stat.error;pos.pm;pos.eq.ra</quantity>
-<unit>mas yr-1</unit>
-</column><column name="[e_pmDEC]"><summary>Mean error on pmDEC</summary>
-<quantity>stat.error;pos.pm;pos.eq.dec</quantity>
-<unit>mas yr-1</unit>
-</column><column name="[e_RAfit]"><summary>Mean error on RA fit</summary>
-<quantity>stat.error;pos.eq.ra</quantity>
-<unit>arcsec</unit>
-</column><column name="[e_DECfit]"><summary>Mean error on DEC fit</summary>
-<quantity>stat.eror;pos.eq.ra</quantity>
-<unit>arcsec</unit>
-</column><column name="[Ndet]"><summary>Number of detections</summary>
-<quantity>meta.number;obs</quantity>
-</column><column name="[difSp]"><summary>Diffraction spike flag, 0=no, 1=yes</summary>
-<quantity>meta.code</quantity>
-</column><column name="[e_RA]"><summary>Mean error on ra*cos(dec) at Epoch</summary>
-<quantity>stat.error;pos.eq.ra</quantity>
-<unit>mas</unit>
-</column><column name="[e_DEC]"><summary>Mean error on dec at Epoch</summary>
-<quantity>stat.error;pos.eq.dec</quantity>
-<unit>mas</unit>
-</column><column name="[Epoch]"><summary>Mean epoch of observation</summary>
-<quantity>time.epoch;stat.mean</quantity>
-<unit>yr</unit>
-</column><column name="[ys40]"><summary>YS4.0 correlation flag, 0=no, 1=yes</summary>
-<quantity>meta.code</quantity>
-</column><column name="[B1Mag]"><summary>First blue magnitude</summary>
-<quantity>phot.mag;em.opt.B</quantity>
-<unit>mag</unit>
-</column><column name="[B1C]"><summary>source of photometric calibration</summary>
-<quantity>meta.ref;instr.calib</quantity>
-</column><column name="[B1S]"><summary>Survey number</summary>
-<quantity>meta.id</quantity>
-</column><column name="[B1F]"><summary>Field number in survey</summary>
-<quantity>meta.id;obs.field</quantity>
-</column><column name="[B1S_G]"><summary>Star-galaxy separation</summary>
-<quantity>src.class.starGalaxy</quantity>
-</column><column name="[B1Xi]"><summary>Residual in X direction</summary>
-<quantity>stat.fit.residual;pos.cartesian.x;arith.diff</quantity>
-<unit>arcsec</unit>
-</column><column name="[B1Eta]"><summary>Residual in Y direction</summary>
-<quantity>stat.fit.residual;pos.cartesian.y;arith.diff</quantity>
-<unit>arcsec</unit>
-</column><column name="[R1Mag]"><summary>First red magnitude</summary>
-<quantity>phot.mag;em.opt.R</quantity>
-<unit>mag</unit>
-</column><column name="[R1C]"><summary>source of photometric calibration</summary>
-<quantity>meta.ref;instr.calib</quantity>
-</column><column name="[R1S]"><summary>Survey number</summary>
-<quantity>meta.id</quantity>
-</column><column name="[R1F]"><summary>Field number in survey</summary>
-<quantity>meta.id;obs.field</quantity>
-</column><column name="[R1S_G]"><summary>Star-galaxy separation</summary>
-<quantity>src.class.starGalaxy</quantity>
-</column><column name="[R1Xi]"><summary>Residual in X direction</summary>
-<quantity>stat.fit.residual;pos.cartesian.x;arith.diff</quantity>
-<unit>arcsec</unit>
-</column><column name="[R1Eta]"><summary>Residual in Y direction</summary>
-<quantity>stat.fit.residual;pos.cartesian.y;arith.diff</quantity>
-<unit>arcsec</unit>
-</column><column name="[B2Mag]"><summary>Second blue magnitude</summary>
-<quantity>phot.mag;em.opt.B</quantity>
-<unit>mag</unit>
-</column><column name="[B2C]"><summary>source of photometric calibration</summary>
-<quantity>meta.ref;instr.calib</quantity>
-</column><column name="[B2S]"><summary>Survey number</summary>
-<quantity>meta.id</quantity>
-</column><column name="[B2F]"><summary>Field number in survey</summary>
-<quantity>meta.id;obs</quantity>
-</column><column name="[B2S_G]"><summary>Star-galaxy separation</summary>
-<quantity>src.class.starGalaxy</quantity>
-</column><column name="[B2Xi]"><summary>Residual in X direction</summary>
-<quantity>stat.fit.residual;pos.cartesian.x;arith.diff</quantity>
-<unit>arcsec</unit>
-</column><column name="[B2Eta]"><summary>Residual in Y direction</summary>
-<quantity>stat.fit.residual;pos.cartesian.y;arith.diff</quantity>
-<unit>arcsec</unit>
-</column><column name="[R2Mag]"><summary>Second red magnitude</summary>
-<quantity>phot.mag;em.opt.R</quantity>
-<unit>mag</unit>
-</column><column name="[R2C]"><summary>source of photometric calibration</summary>
-<quantity>meta.ref;instr.calib</quantity>
-</column><column name="[R2S]"><summary>Survey number</summary>
-<quantity>meta.id</quantity>
-</column><column name="[R2F]"><summary>Field number in survey</summary>
-<quantity>meta.id;obs.field</quantity>
-</column><column name="[R2S_G]"><summary>Star-galaxy separation</summary>
-<quantity>src.class.starGalaxy</quantity>
-</column><column name="[R2Xi]"><summary>Residual in X direction</summary>
-<quantity>stat.fit.residual;pos.cartesian.x;arith.diff</quantity>
-<unit>arcsec</unit>
-</column><column name="[R2Eta]"><summary>Residual in Y direction</summary>
-<quantity>stat.fit.residual;pos.cartesian.y;arith.diff</quantity>
-<unit>arcsec</unit>
-</column><column name="[NMag]"><summary>Infrared (N) magnitude</summary>
-<quantity>phot.mag;em.IR</quantity>
-<unit>mag</unit>
-</column><column name="[NC]"><summary>source of photometric calibration</summary>
-<quantity>meta.ref;instr.calib</quantity>
-</column><column name="[NS]"><summary>Survey number</summary>
-<quantity>meta.id</quantity>
-</column><column name="[NF]"><summary>Field number in survey</summary>
-<quantity>meta.id;obs.field</quantity>
-</column><column name="[NS_G]"><summary>Star-galaxy separation</summary>
-<quantity>src.class.starGalaxy</quantity>
-</column><column name="[NXi]"><summary>Residual in X direction</summary>
-<quantity>stat.fit.residual;pos.cartesian.x;arith.diff</quantity>
-<unit>arcsec</unit>
-</column><column name="[NEta]"><summary>Residual in Y direction</summary>
-<quantity>stat.fit.residual;pos.cartesian.y;arith.diff</quantity>
-<unit>arcsec</unit>
-</column><column name="[lbIdxB1]"><summary>First blue look-back index into PMM scan file</summary>
-<quantity>meta.code</quantity>
-</column><column name="[lbIdxR1]"><summary>First red look-back index into PMM scan file</summary>
-<quantity>meta.code</quantity>
-</column><column name="[lbIdxB2]"><summary>Second blue look-back index into PMM scan file</summary>
-<quantity>meta.code</quantity>
-</column><column name="[lbIdxR2]"><summary>Second red look-back index into PMM scan file</summary>
-<quantity>meta.code</quantity>
-</column><column name="[lbIdxN]"><summary>N look-back index into PMM scan file</summary>
-<quantity>meta.code</quantity>
-</column></table>
+    <remarks> We created a bigint objid that is concatenated from  zone and seqNo, with zone in the upper 4 bytes of objid.  The table has been loaded by the ROE group, and has been  genereously shared with the JHU group. </remarks>
+    <column name="[objid]">
+      <summary>Main unique object identifier</summary>
+      <quantity>meta.id;meta.main</quantity>
+    </column>
+    <column name="[zone]">
+      <summary>The catalog is arranged in zones of 0.1deg in Dec, from 0 in South Pole to 1799 in North Pole</summary>
+      <quantity>meta.code</quantity>
+    </column>
+    <column name="[seqNo]">
+      <summary>Sequence number of objects ordered by Right Ascension in the zone.</summary>
+      <quantity>meta.record</quantity>
+    </column>
+    <column name="[ra]">
+      <summary>J2000 Celestial Right Ascension</summary>
+      <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[dec]">
+      <summary>J2000 Celestial Declination</summary>
+      <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+      <unit>deg</unit>
+    </column>
+    <column name="[cx]">
+      <summary>unit vector of spherical co-ordinate</summary>
+      <quantity>pos.eq.x;pos.frame=j2000</quantity>
+    </column>
+    <column name="[cy]">
+      <summary>unit vector of spherical co-ordinate</summary>
+      <quantity>pos.eq.y;pos.frame=j2000</quantity>
+    </column>
+    <column name="[cz]">
+      <summary>unit vector of spherical co-ordinate</summary>
+      <quantity>pos.eq.z;pos.frame=j2000</quantity>
+    </column>
+    <column name="[htmID]">
+      <summary>HTM index, 20 digits, for co-ordinate</summary>
+      <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+    </column>
+    <column name="[zoneID]">
+      <summary>ZoneID</summary>
+      <quantity>pos.zone</quantity>
+    </column>
+    <column name="[pmRA]">
+      <summary>Proper motion in RA (relative to YS4.0)</summary>
+      <quantity>pos.pm;pos.eq.ra</quantity>
+      <unit>mas yr-1</unit>
+    </column>
+    <column name="[pmDEC]">
+      <summary>Proper motion in DEC (relative to YS4.0)</summary>
+      <quantity>pos.pm;pos.eq.dec</quantity>
+      <unit>mas yr-1</unit>
+    </column>
+    <column name="[pmPr]">
+      <summary>Total Proper Motion probability</summary>
+      <quantity>stat.probability;pos.pm</quantity>
+    </column>
+    <column name="[mcFlag]">
+      <summary>Motion catalogue flag, 0=no, 1=yes</summary>
+      <quantity>meta.code</quantity>
+    </column>
+    <column name="[e_pmRA]">
+      <summary>Mean error on pmRA</summary>
+      <quantity>stat.error;pos.pm;pos.eq.ra</quantity>
+      <unit>mas yr-1</unit>
+    </column>
+    <column name="[e_pmDEC]">
+      <summary>Mean error on pmDEC</summary>
+      <quantity>stat.error;pos.pm;pos.eq.dec</quantity>
+      <unit>mas yr-1</unit>
+    </column>
+    <column name="[e_RAfit]">
+      <summary>Mean error on RA fit</summary>
+      <quantity>stat.error;pos.eq.ra</quantity>
+      <unit>arcsec</unit>
+    </column>
+    <column name="[e_DECfit]">
+      <summary>Mean error on DEC fit</summary>
+      <quantity>stat.eror;pos.eq.ra</quantity>
+      <unit>arcsec</unit>
+    </column>
+    <column name="[Ndet]">
+      <summary>Number of detections</summary>
+      <quantity>meta.number;obs</quantity>
+    </column>
+    <column name="[difSp]">
+      <summary>Diffraction spike flag, 0=no, 1=yes</summary>
+      <quantity>meta.code</quantity>
+    </column>
+    <column name="[e_RA]">
+      <summary>Mean error on ra*cos(dec) at Epoch</summary>
+      <quantity>stat.error;pos.eq.ra</quantity>
+      <unit>mas</unit>
+    </column>
+    <column name="[e_DEC]">
+      <summary>Mean error on dec at Epoch</summary>
+      <quantity>stat.error;pos.eq.dec</quantity>
+      <unit>mas</unit>
+    </column>
+    <column name="[Epoch]">
+      <summary>Mean epoch of observation</summary>
+      <quantity>time.epoch;stat.mean</quantity>
+      <unit>yr</unit>
+    </column>
+    <column name="[ys40]">
+      <summary>YS4.0 correlation flag, 0=no, 1=yes</summary>
+      <quantity>meta.code</quantity>
+    </column>
+    <column name="[B1Mag]">
+      <summary>First blue magnitude</summary>
+      <quantity>phot.mag;em.opt.B</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[B1C]">
+      <summary>source of photometric calibration</summary>
+      <quantity>meta.ref;instr.calib</quantity>
+    </column>
+    <column name="[B1S]">
+      <summary>Survey number</summary>
+      <quantity>meta.id</quantity>
+    </column>
+    <column name="[B1F]">
+      <summary>Field number in survey</summary>
+      <quantity>meta.id;obs.field</quantity>
+    </column>
+    <column name="[B1S_G]">
+      <summary>Star-galaxy separation</summary>
+      <quantity>src.class.starGalaxy</quantity>
+    </column>
+    <column name="[B1Xi]">
+      <summary>Residual in X direction</summary>
+      <quantity>stat.fit.residual;pos.cartesian.x;arith.diff</quantity>
+      <unit>arcsec</unit>
+    </column>
+    <column name="[B1Eta]">
+      <summary>Residual in Y direction</summary>
+      <quantity>stat.fit.residual;pos.cartesian.y;arith.diff</quantity>
+      <unit>arcsec</unit>
+    </column>
+    <column name="[R1Mag]">
+      <summary>First red magnitude</summary>
+      <quantity>phot.mag;em.opt.R</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[R1C]">
+      <summary>source of photometric calibration</summary>
+      <quantity>meta.ref;instr.calib</quantity>
+    </column>
+    <column name="[R1S]">
+      <summary>Survey number</summary>
+      <quantity>meta.id</quantity>
+    </column>
+    <column name="[R1F]">
+      <summary>Field number in survey</summary>
+      <quantity>meta.id;obs.field</quantity>
+    </column>
+    <column name="[R1S_G]">
+      <summary>Star-galaxy separation</summary>
+      <quantity>src.class.starGalaxy</quantity>
+    </column>
+    <column name="[R1Xi]">
+      <summary>Residual in X direction</summary>
+      <quantity>stat.fit.residual;pos.cartesian.x;arith.diff</quantity>
+      <unit>arcsec</unit>
+    </column>
+    <column name="[R1Eta]">
+      <summary>Residual in Y direction</summary>
+      <quantity>stat.fit.residual;pos.cartesian.y;arith.diff</quantity>
+      <unit>arcsec</unit>
+    </column>
+    <column name="[B2Mag]">
+      <summary>Second blue magnitude</summary>
+      <quantity>phot.mag;em.opt.B</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[B2C]">
+      <summary>source of photometric calibration</summary>
+      <quantity>meta.ref;instr.calib</quantity>
+    </column>
+    <column name="[B2S]">
+      <summary>Survey number</summary>
+      <quantity>meta.id</quantity>
+    </column>
+    <column name="[B2F]">
+      <summary>Field number in survey</summary>
+      <quantity>meta.id;obs</quantity>
+    </column>
+    <column name="[B2S_G]">
+      <summary>Star-galaxy separation</summary>
+      <quantity>src.class.starGalaxy</quantity>
+    </column>
+    <column name="[B2Xi]">
+      <summary>Residual in X direction</summary>
+      <quantity>stat.fit.residual;pos.cartesian.x;arith.diff</quantity>
+      <unit>arcsec</unit>
+    </column>
+    <column name="[B2Eta]">
+      <summary>Residual in Y direction</summary>
+      <quantity>stat.fit.residual;pos.cartesian.y;arith.diff</quantity>
+      <unit>arcsec</unit>
+    </column>
+    <column name="[R2Mag]">
+      <summary>Second red magnitude</summary>
+      <quantity>phot.mag;em.opt.R</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[R2C]">
+      <summary>source of photometric calibration</summary>
+      <quantity>meta.ref;instr.calib</quantity>
+    </column>
+    <column name="[R2S]">
+      <summary>Survey number</summary>
+      <quantity>meta.id</quantity>
+    </column>
+    <column name="[R2F]">
+      <summary>Field number in survey</summary>
+      <quantity>meta.id;obs.field</quantity>
+    </column>
+    <column name="[R2S_G]">
+      <summary>Star-galaxy separation</summary>
+      <quantity>src.class.starGalaxy</quantity>
+    </column>
+    <column name="[R2Xi]">
+      <summary>Residual in X direction</summary>
+      <quantity>stat.fit.residual;pos.cartesian.x;arith.diff</quantity>
+      <unit>arcsec</unit>
+    </column>
+    <column name="[R2Eta]">
+      <summary>Residual in Y direction</summary>
+      <quantity>stat.fit.residual;pos.cartesian.y;arith.diff</quantity>
+      <unit>arcsec</unit>
+    </column>
+    <column name="[NMag]">
+      <summary>Infrared (N) magnitude</summary>
+      <quantity>phot.mag;em.IR</quantity>
+      <unit>mag</unit>
+    </column>
+    <column name="[NC]">
+      <summary>source of photometric calibration</summary>
+      <quantity>meta.ref;instr.calib</quantity>
+    </column>
+    <column name="[NS]">
+      <summary>Survey number</summary>
+      <quantity>meta.id</quantity>
+    </column>
+    <column name="[NF]">
+      <summary>Field number in survey</summary>
+      <quantity>meta.id;obs.field</quantity>
+    </column>
+    <column name="[NS_G]">
+      <summary>Star-galaxy separation</summary>
+      <quantity>src.class.starGalaxy</quantity>
+    </column>
+    <column name="[NXi]">
+      <summary>Residual in X direction</summary>
+      <quantity>stat.fit.residual;pos.cartesian.x;arith.diff</quantity>
+      <unit>arcsec</unit>
+    </column>
+    <column name="[NEta]">
+      <summary>Residual in Y direction</summary>
+      <quantity>stat.fit.residual;pos.cartesian.y;arith.diff</quantity>
+      <unit>arcsec</unit>
+    </column>
+    <column name="[lbIdxB1]">
+      <summary>First blue look-back index into PMM scan file</summary>
+      <quantity>meta.code</quantity>
+    </column>
+    <column name="[lbIdxR1]">
+      <summary>First red look-back index into PMM scan file</summary>
+      <quantity>meta.code</quantity>
+    </column>
+    <column name="[lbIdxB2]">
+      <summary>Second blue look-back index into PMM scan file</summary>
+      <quantity>meta.code</quantity>
+    </column>
+    <column name="[lbIdxR2]">
+      <summary>Second red look-back index into PMM scan file</summary>
+      <quantity>meta.code</quantity>
+    </column>
+    <column name="[lbIdxN]">
+      <summary>N look-back index into PMM scan file</summary>
+      <quantity>meta.code</quantity>
+    </column>
+  </table>
 </metadata>

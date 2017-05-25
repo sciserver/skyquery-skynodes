@@ -1,4 +1,18 @@
+--/ <dataset>
+--/ <summary> Southern Sky Redshift Survey </summary>
+--/ <remarks>
+--/ The catalog contians redshifts, magnitudes, and morphological classifications for 5369 galaxies with m_B_ ≤ 15.5 and for 57 galaxies fainter than this limit, in two regions covering a total of 1.70 sr in the southern celestial hemisphere. The galaxy catalog is drawn primarily from the list of nonstellar objects identified in the Hubble Space Telescope Guide Star Catalog (GSC). The galaxies have positions accurate to ~1" and magnitudes with an rms scatter of ~0.3 mag.
+--/ </remarks>
+--/ <url>http://vizier.cfa.harvard.edu/viz-bin/VizieR?-source=J/AJ/116/1</url>
+--/ <icon>ssrs.png</icon>
+--/ <docpage>ssrs.html</docpage>
+--/ </dataset>
+ GO
+
 -- CREATE SpecObj TABLE
+
+--/ <summary></summary>
+--/ <remarks></remarks>
 CREATE TABLE dbo.SpecObj
 (
 	--/ <summary> Cartesian X (ICRS)</summary>

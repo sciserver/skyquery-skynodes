@@ -1,4 +1,22 @@
+--/ <dataset>
+--/ <summary>The 2dF-SDSS QSO survey </summary>
+--/ <remarks>
+--/ This is the final spectroscopic QSO catalogue from the 2dF-SDSS LRG (luminous red galaxy) and QSO 
+--/ (2SLAQ) survey. This is a deep, 18 &lt; g &lt; 21.85 (extinction corrected), sample aimed at probing 
+--/ in detail the faint end of the broad line active galactic nuclei luminosity distribution at 
+--/ z &lt;~ 2.6. The candidate QSOs were selected from SDSS photometry and observed spectroscopically 
+--/ with the 2dF spectrograph on the Anglo-Australian Telescope.
+--/ </remarks>
+--/ <url>http://vizier.cfa.harvard.edu/viz-bin/VizieR?-source=J/MNRAS/392/19</url>
+--/ <icon>twoslaq.png</icon>
+--/ <docpage>twoslaq.html</docpage>
+--/ </dataset>
+ GO
+
 -- CREATE SpecObj TABLE
+
+--/ <summary>2SLAQ spectroscopic catalogue</summary>
+--/ <remarks>2SLAQ spectroscopic catalogue</remarks>
 CREATE TABLE dbo.SpecObj
 (
 	--/ <summary> Cartesian X (J2000)</summary>

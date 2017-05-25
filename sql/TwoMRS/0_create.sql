@@ -1,4 +1,18 @@
+--/ <dataset>
+--/ <summary> The 2MASS Redshift Survey </summary>
+--/ <remarks>
+--/ 
+--/ </remarks>
+--/ <url>http://vizier.cfa.harvard.edu/viz-bin/VizieR?-source=J/ApJS/199/26</url>
+--/ <icon>twomrs.png</icon>
+--/ <docpage>twomrs.html</docpage>
+--/ </dataset>
+ GO
+
 -- CREATE SpecObj TABLE
+
+--/ <summary>2MRS catalog</summary>
+--/ <remarks>2MRS catalog</remarks>
 CREATE TABLE dbo.SpecObj
 (
 	--/ <summary> Cartesian X (J2000)</summary>
