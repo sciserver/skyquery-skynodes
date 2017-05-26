@@ -1,4 +1,22 @@
+--/ <dataset>
+--/ <summary> The VIMOS VLT Deep Survey </summary>
+--/ <remarks>
+--/  A total of 11 564 objects have been observed in the VVDS-02h and VVDS-CDFS “Deep” fields over a 
+--/  total area of 0.61 deg^2, selected solely on the basis of apparent magnitude 17.5 ≤ IAB ≤ 24. A 
+--/  total of 9677 galaxies have a redshift measurement, 836 objects are stars, 90 objects are AGN, and
+--/   a redshift could not be measured for 961 objects. There are 1065 galaxies with a measured redshift
+--/   z≥1.4.
+--/ </remarks>
+--/ <url>http://vizier.cfa.harvard.edu/viz-bin/VizieR?-source=III/250</url>
+--/ <icon>vvds.png</icon>
+--/ <docpage>vvds.html</docpage>
+--/ </dataset>
+ GO
+
 -- CREATE SpecObj TABLE
+
+--/ <summary></summary>
+--/ <remarks></remarks>
 CREATE TABLE dbo.SpecObj
 (
 	--/ <summary> Cartesian X (J2000)</summary>

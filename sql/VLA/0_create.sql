@@ -1,4 +1,19 @@
+--/ <dataset>
+--/ <summary> GOODS-N VLA Deep 20cm Radio Survey </summary>
+--/ <remarks>
+--/ The 165 hours of VLA 1.4GHz observations of the GOODS-North Field contains 1230 discrete radio 
+--/ emitters, within a 40' × 40' region, above a 5σ detection threshold of ~20 μJy at the field center. 
+--/ </remarks>
+--/ <url>http://www.ifa.hawaii.edu/~morrison/GOODSN/</url>
+--/ <icon>vla.png</icon>
+--/ <docpage>vla.html</docpage>
+--/ </dataset>
+ GO
+
 -- CREATE VLA TABLE
+
+--/ <summary></summary>
+--/ <remarks></remarks>
 CREATE TABLE dbo.GOODSN
 (
 

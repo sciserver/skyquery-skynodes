@@ -1,103 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <metadata>
+  <dataset>
+    <summary> WiggleZ Dark Energy Survey Data Release 1 </summary>
+    <remarks>
+      The WiggleZ Dark Energy Survey is a large-scale galaxy redshift survey which was carried out over
+      276 nights at the Anglo-Australian Telescope between August 2006 and January 2011. WiggleZ has
+      measured redshifts for almost 240,000 galaxies over 1000 square degress of sky for look-back times
+      up to 8 billion years (redshift z=1).
+      There are 7 fields with average area of 140 square degrees totaling ~1000 square degrees. The 7
+      fields overlap with GALEX, SDSS, and RCS2 in 00, 01, 03, 09, 11, 15, 22 hr fields.</remarks>
+    <url>http://wigglez.swin.edu.au/site/data.html</url>
+    <icon>wigglez.png</icon>
+    <docpage>wigglez.html</docpage>
+  </dataset>
   <table name="[dbo].[SpecObj]">
+    <remarks></remarks>
     <column name="[cx]">
       <summary> Cartesian X (J2000)</summary>
-<quantity>pos.eq.x;pos.frame=j2000</quantity>
-</column>
+      <quantity>pos.eq.x;pos.frame=j2000</quantity>
+    </column>
     <column name="[cy]">
       <summary> Cartesian Y (J2000)</summary>
-<quantity>pos.eq.y;pos.frame=j2000</quantity>
-</column>
+      <quantity>pos.eq.y;pos.frame=j2000</quantity>
+    </column>
     <column name="[cz]">
       <summary> Cartesian Z (J2000)</summary>
-<quantity>pos.eq.t;pos.frame=j2000</quantity>
-</column>
+      <quantity>pos.eq.t;pos.frame=j2000</quantity>
+    </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
-<quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
-</column>
+      <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+    </column>
     <column name="[zoneid]">
       <summary> Zone ID </summary>
-<quantity>pos.zone</quantity>
-</column>
+      <quantity>pos.zone</quantity>
+    </column>
     <column name="[ID]">
-      <summary> WiggleZ name (ANNJHHMMSSsss+DDMMSSss). "ANN" represent the regions, where "NN" represents the hour of right
-00, 01, 03 and 22 for the South Galactic Pole; 09, 11 and 15 for the North Galactic Pole. </summary>
-<quantity>meta.id;meta.main</quantity>
-</column>
+      <summary>
+        WiggleZ name (ANNJHHMMSSsss+DDMMSSss). "ANN" represent the regions, where "NN" represents the hour of right
+        00, 01, 03 and 22 for the South Galactic Pole; 09, 11 and 15 for the North Galactic Pole.</summary>
+      <quantity>meta.id;meta.main</quantity>
+    </column>
     <column name="[RA]">
       <summary> Right ascension in decimal degrees </summary>
-<quantity>pos.eq.ra;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[DEC]">
       <summary> Declination in decimal degrees </summary>
-<quantity>pos.eq.dec;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[Redshift]">
       <summary> [-0.02/6.1] Redshift </summary>
-<quantity>src.redshift</quantity>
-</column>
+      <quantity>src.redshift</quantity>
+    </column>
     <column name="[Qop]">
-      <summary> [3/5]Redshift quality flag, 5=best. Redshift Quality Definitions:
-1=	No redshift was possible; highly noisy spectra.
-2=	An uncertain redshift was assigned.
-3=	A reasonably confident redshift; if based on [OII] alone, then the doublet is resolved or partially resolved.
-4=	A redshift that has multiple (obvious) emission lines all in agreement.
-5=	An excellent redshift with high S/N that may be suitable as a template.
-6=	Reserved for Galactic stars used as calibration sources. </summary>
-<quantity>meta.code.qual;src.redshift</quantity>
-</column>
+      <summary>
+        [3/5]Redshift quality flag, 5=best. Redshift Quality Definitions:
+        1=	No redshift was possible; highly noisy spectra.
+        2=	An uncertain redshift was assigned.
+        3=	A reasonably confident redshift; if based on [OII] alone, then the doublet is resolved or partially resolved.
+        4=	A redshift that has multiple (obvious) emission lines all in agreement.
+        5=	An excellent redshift with high S/N that may be suitable as a template.
+        6=	Reserved for Galactic stars used as calibration sources.</summary>
+      <quantity>meta.code.qual;src.redshift</quantity>
+    </column>
     <column name="[u_SDSS]">
       <summary> SDSS u magnitude.  </summary>
-<quantity>phot.mag;em.opt.SDSS.u</quantity>
-<unit> mag </unit>
-</column>
+      <quantity>phot.mag;em.opt.SDSS.u</quantity>
+      <unit> mag </unit>
+    </column>
     <column name="[g_SDSS]">
       <summary> SDSS g magnitude.  </summary>
-<quantity>phot.mag;em.opt.SDSS.g</quantity>
-<unit> mag </unit>
-</column>
+      <quantity>phot.mag;em.opt.SDSS.g</quantity>
+      <unit> mag </unit>
+    </column>
     <column name="[r_SDSS]">
       <summary> SDSS r magnitude. </summary>
-<quantity>phot.mag;em.opt.SDSS.r</quantity>
-<unit> mag </unit>
-</column>
+      <quantity>phot.mag;em.opt.SDSS.r</quantity>
+      <unit> mag </unit>
+    </column>
     <column name="[i_SDSS]">
       <summary> SDSS i magnitude.  </summary>
-<quantity>phot.mag;em.opt.SDSS.i</quantity>
-<unit> mag </unit>
-</column>
+      <quantity>phot.mag;em.opt.SDSS.i</quantity>
+      <unit> mag </unit>
+    </column>
     <column name="[z_SDSS]">
       <summary> SDSS z magnitude.  </summary>
-<quantity>phot.mag;em.opt.SDSS.z</quantity>
-<unit> mag </unit>
-</column>
+      <quantity>phot.mag;em.opt.SDSS.z</quantity>
+      <unit> mag </unit>
+    </column>
     <column name="[g_RCS2]">
       <summary> RCS2 g magnitude </summary>
-<quantity>phot.mag;em.opt.SDSS.g</quantity>
-<unit> mag </unit>
-</column>
+      <quantity>phot.mag;em.opt.SDSS.g</quantity>
+      <unit> mag </unit>
+    </column>
     <column name="[r_RCS2]">
       <summary> RCS2 r magnitude.  </summary>
-<quantity>phot.mag;em.opt.SDSS.r</quantity>
-<unit> mag </unit>
-</column>
+      <quantity>phot.mag;em.opt.SDSS.r</quantity>
+      <unit> mag </unit>
+    </column>
     <column name="[z_RCS2]">
       <summary> RCS2 z magnitude  </summary>
-<quantity>phot.mag;em.opt.SDSS.z</quantity>
-<unit> mag </unit>
-</column>
+      <quantity>phot.mag;em.opt.SDSS.z</quantity>
+      <unit> mag </unit>
+    </column>
     <column name="[NUV]">
       <summary> GALEX NUV magnitude  </summary>
-<quantity>phot.mag;em.UV</quantity>
-<unit> mag </unit>
-</column>
+      <quantity>phot.mag;em.UV</quantity>
+      <unit> mag </unit>
+    </column>
     <column name="[FUV]">
       <summary>  GALEX FUV magnitude </summary>
-<quantity>phot.mag;em.UV.FUV</quantity>
-<unit> mag </unit>
-</column>
+      <quantity>phot.mag;em.UV.FUV</quantity>
+      <unit> mag </unit>
+    </column>
   </table>
 </metadata>

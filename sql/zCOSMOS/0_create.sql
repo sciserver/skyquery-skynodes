@@ -1,3 +1,24 @@
+--/ <dataset>
+--/ <summary> zCOSMOS-bright DR2 catalog</summary>
+--/ <remarks>
+--/ zCOSMOS is a large-redshift survey that is being undertaken in the COSMOS field using 600 hr of 
+--/ observation with the VIMOS spectrograph on the 8 m VLT. The survey is designed to characterize the 
+--/ environments of COSMOS galaxies from the 100 kpc scales of galaxy groups up to the 100 Mpc scale of 
+--/ the cosmic web and to produce diagnostic information on galaxies and active galactic nuclei. The 
+--/ zCOSMOS survey consists of two parts: (1) zCOSMOS-bright, a magnitude-limited I-band IAB$lt;22.5 
+--/ sample of about 20,000 galaxies with 0.1$lt;z$lt;1.2 covering the whole 1.7 deg^2 COSMOS ACS field, 
+--/ for which the survey parameters at z~0.7 are designed to be directly comparable to those of the 
+--/ 2dFGRS at z~0.1 and (2) zCOSMOS-deep, a survey of approximately 10,000 galaxies selected through 
+--/ color-selection criteria to have 1.4$lt;z$lt;3.0, within the central 1 deg^2.
+--/ </remarks>
+--/ <url>http://vizier.cfa.harvard.edu/viz-bin/VizieR?-source=J/ApJS/172/70</url>
+--/ <icon>zcosmos.png</icon>
+--/ <docpage>zcosmos.html</docpage>
+--/ </dataset>
+ GO
+
+--/ <summary></summary>
+--/ <remarks></remarks>
 CREATE TABLE dbo.SpecObj 
 (
 	--/ <summary> zCOSMOS identification number.</summary>

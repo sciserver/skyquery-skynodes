@@ -1,206 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <metadata>
+  <dataset>
+    <summary>  	Nine-year WMAP point source catalogs </summary>
+    <remarks>
+      Nine-year WMAP point source catalogs</remarks>
+    <url>http://vizier.u-strasbg.fr/viz-bin/VizieR?-source=J/ApJS/208/20</url>
+    <icon>wmap.png</icon>
+    <docpage>wmap.html</docpage>
+  </dataset>
   <table name="[dbo].[Obs]">
+    <remarks>WMAP nine-year five-band point source catalog</remarks>
     <column name="[cx]">
       <summary> Cartesian X (J2000)</summary>
-<quantity>pos.eq.x;pos.frame=j2000</quantity>
-</column>
+      <quantity>pos.eq.x;pos.frame=j2000</quantity>
+    </column>
     <column name="[cy]">
       <summary> Cartesian Y (J2000)</summary>
-<quantity>pos.eq.y;pos.frame=j2000</quantity>
-</column>
+      <quantity>pos.eq.y;pos.frame=j2000</quantity>
+    </column>
     <column name="[cz]">
       <summary> Cartesian Z (J2000)</summary>
-<quantity>pos.eq.z;pos.frame=j2000</quantity>
-</column>
+      <quantity>pos.eq.z;pos.frame=j2000</quantity>
+    </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
-<quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
-</column>
+      <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+    </column>
     <column name="[zoneid]">
       <summary> Zone ID </summary>
-<quantity>pos.zone</quantity>
-</column>
+      <quantity>pos.zone</quantity>
+    </column>
     <column name="[seqID]">
       <summary> Sequential ID </summary>
-<quantity>meta.record</quantity>
-</column>
+      <quantity>meta.record</quantity>
+    </column>
     <column name="[RA]">
       <summary> Right ascension (FK5, Equinox=J2000.0) (computed by VizieR, not part of the original data) </summary>
-<quantity>pos.eq.ra;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.ra;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[DEC]">
       <summary> Declination (FK5, Equinox=J2000.0) (computed by VizieR, not part of the original data) </summary>
-<quantity>pos.eq.dec;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[WMAP]">
       <summary> WMAP identifier (constructed from truncated RA and Dec) </summary>
-<quantity>meta.id</quantity>
-</column>
+      <quantity>meta.id</quantity>
+    </column>
     <column name="[WMAP1]">
       <summary> [1/208] Source identifier (from WMAP 1st-yr, Cat. J/ApJS/148/97; &lt;WMAP NNN&gt; in Simbad) </summary>
-<quantity>meta.id</quantity>
-</column>
+      <quantity>meta.id</quantity>
+    </column>
     <column name="[S_K]">
       <summary> [0/24.2] WMAP K band (22.5GHz) flux density </summary>
-<quantity>phot.flux.density;em.radio.12-30GHz</quantity>
-<unit> Jy </unit>
-</column>
+      <quantity>phot.flux.density;em.radio.12-30GHz</quantity>
+      <unit> Jy </unit>
+    </column>
     <column name="[e_S_K]">
       <summary> Uncertainty in S(K) </summary>
-<quantity>stat.error;phot.flux.density;em.radio.12-30GHz</quantity>
-<unit> Jy </unit>
-</column>
+      <quantity>stat.error;phot.flux.density;em.radio.12-30GHz</quantity>
+      <unit> Jy </unit>
+    </column>
     <column name="[S_Ka]">
       <summary> [0.1/22.1] WMAP Ka band (32.8GHz) flux density </summary>
-<quantity>phot.flux.density;em.mm.30-50GHz</quantity>
-<unit> Jy </unit>
-</column>
+      <quantity>phot.flux.density;em.mm.30-50GHz</quantity>
+      <unit> Jy </unit>
+    </column>
     <column name="[e_S_Ka]">
       <summary> Uncertainty in S(Ka) </summary>
-<quantity>stat.error;phot.flux.density;em.mm.30-50GHz</quantity>
-<unit> Jy </unit>
-</column>
+      <quantity>stat.error;phot.flux.density;em.mm.30-50GHz</quantity>
+      <unit> Jy </unit>
+    </column>
     <column name="[S_Q]">
       <summary> [0.1/20.9] WMAP Q band (40.4GHz) flux density  </summary>
-<quantity>phot.flux.density;em.mm.30-50GHz</quantity>
-<unit> Jy </unit>
-</column>
+      <quantity>phot.flux.density;em.mm.30-50GHz</quantity>
+      <unit> Jy </unit>
+    </column>
     <column name="[e_S_Q]">
       <summary>  Uncertainty in S(Q) </summary>
-<quantity>stat.error;phot.flux.density;em.mm.30-50GHz</quantity>
-<unit> Jy </unit>
-</column>
+      <quantity>stat.error;phot.flux.density;em.mm.30-50GHz</quantity>
+      <unit> Jy </unit>
+    </column>
     <column name="[S_V]">
       <summary> [0.2/18.6] WMAP V band (60.2GHz) flux densit </summary>
-<quantity>phot.flux.density;em.mm.50-100GHz</quantity>
-<unit> Jy </unit>
-</column>
+      <quantity>phot.flux.density;em.mm.50-100GHz</quantity>
+      <unit> Jy </unit>
+    </column>
     <column name="[e_S_V]">
       <summary> Uncertainty in S(V)  </summary>
-<quantity>stat.error;phot.flux.density;em.mm.50-100GHz</quantity>
-<unit> Jy </unit>
-</column>
+      <quantity>stat.error;phot.flux.density;em.mm.50-100GHz</quantity>
+      <unit> Jy </unit>
+    </column>
     <column name="[S_W]">
       <summary> [0.4/15.2] WMAP W band (93.0GHz) flux density </summary>
-<quantity>phot.flux.density;em.mm.50-100GHz</quantity>
-<unit> Jy </unit>
-</column>
+      <quantity>phot.flux.density;em.mm.50-100GHz</quantity>
+      <unit> Jy </unit>
+    </column>
     <column name="[e_S_W]">
       <summary> Uncertainty in S(W)  </summary>
-<quantity>stat.error;phot.flux.density;em.mm.50-100GHz</quantity>
-<unit> Jy </unit>
-</column>
+      <quantity>stat.error;phot.flux.density;em.mm.50-100GHz</quantity>
+      <unit> Jy </unit>
+    </column>
     <column name="[alf]">
-      <summary> [-3.1/2.1] WMAP spectral index &#945; (S&#957;&#8733;&#957;&#945;)  </summary>
-<quantity>spect.index</quantity>
-</column>
+      <summary> [-3.1/2.1] WMAP spectral index α (Sν∝να)  </summary>
+      <quantity>spect.index</quantity>
+    </column>
     <column name="[e_alf]">
       <summary> Uncertainty in spectral index alf </summary>
-<quantity>stat.error;spect.index</quantity>
-</column>
+      <quantity>stat.error;spect.index</quantity>
+    </column>
     <column name="[fiveGHzID]">
       <summary> The 5 GHz source identifier </summary>
-<quantity>meta.id.cross</quantity>
-</column>
+      <quantity>meta.id.cross</quantity>
+    </column>
     <column name="[f_5GHzID]">
-      <summary> [abcd] Individual notes. Flag as follows:
-a=	Indicates the source has multiple possible identifications.
-b=	Source J0322-3711 (Fornax A) is extended, and the fluxes listed were obtained by aperture photometry.
-c=	Source J1356+7644 is outside of the declination range of the GB6 and PMN catalogs. It was identified as QSO
-by Trushkin (2006, private communication).
-d=	Source J1632+8227 is outside of the declination range of the GB6 and PMN catalogs. It was identified as NGC 6251 by
-S.A. (2003BSAO...55...90T). </summary>
-<quantity>meta.code</quantity>
-</column>
+      <summary>
+        [abcd] Individual notes. Flag as follows:
+        a=	Indicates the source has multiple possible identifications.
+        b=	Source J0322-3711 (Fornax A) is extended, and the fluxes listed were obtained by aperture photometry.
+        c=	Source J1356+7644 is outside of the declination range of the GB6 and PMN catalogs. It was identified as QSO
+        by Trushkin (2006, private communication).
+        d=	Source J1632+8227 is outside of the declination range of the GB6 and PMN catalogs. It was identified as NGC 6251 by
+        S.A. (2003BSAO...55...90T).</summary>
+      <quantity>meta.code</quantity>
+    </column>
   </table>
   <table name="[dbo].[ObsCMBFree]">
+    <remarks>WMAP nine-year CMB-free QVW point source catalog</remarks>
     <column name="[cx]">
       <summary> Cartesian X (J2000)</summary>
-<quantity>pos.eq.x;pos.frame=j2000</quantity>
-</column>
+      <quantity>pos.eq.x;pos.frame=j2000</quantity>
+    </column>
     <column name="[cy]">
       <summary> Cartesian Y (J2000)</summary>
-<quantity>pos.eq.y;pos.frame=j2000</quantity>
-</column>
+      <quantity>pos.eq.y;pos.frame=j2000</quantity>
+    </column>
     <column name="[cz]">
       <summary> Cartesian Z (J2000)</summary>
-<quantity>pos.eq.z;pos.frame=j2000</quantity>
-</column>
+      <quantity>pos.eq.z;pos.frame=j2000</quantity>
+    </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
-<quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
-</column>
+      <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+    </column>
     <column name="[zoneid]">
       <summary> Zone ID </summary>
-<quantity>pos.zone</quantity>
-</column>
+      <quantity>pos.zone</quantity>
+    </column>
     <column name="[seqID]">
       <summary> Sequential ID </summary>
-<quantity>meta.record</quantity>
-</column>
+      <quantity>meta.record</quantity>
+    </column>
     <column name="[RA]">
       <summary> Right ascension (FK5, Equinox=J2000.0) (computed by VizieR, not part of the original data) </summary>
-<quantity></quantity>
-<unit> deg </unit>
-</column>
+      <quantity></quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[DEC]">
       <summary> Declination (FK5, Equinox=J2000.0) (computed by VizieR, not part of the original data) </summary>
-<quantity>pos.eq.dec;pos.frame=j2000</quantity>
-<unit> deg </unit>
-</column>
+      <quantity>pos.eq.dec;pos.frame=j2000</quantity>
+      <unit> deg </unit>
+    </column>
     <column name="[WMAP]">
       <summary> WMAP identifier (constructed from truncated RA and Dec) </summary>
-<quantity>meta.id</quantity>
-</column>
+      <quantity>meta.id</quantity>
+    </column>
     <column name="[WMAP1]">
       <summary>  [1/208] Source identifier (from WMAP 1st-yr, Cat. J/ApJS/148/97; &lt;WMAP NNN&gt; in Simbad) </summary>
-<quantity>meta.id</quantity>
-</column>
+      <quantity>meta.id</quantity>
+    </column>
     <column name="[S_Q]">
       <summary> [-0.1/18.7] WMAP Q band (40.4GHz) flux density </summary>
-<quantity>phot.flux.density;em.mm.30-50GHz</quantity>
-<unit> Jy </unit>
-</column>
+      <quantity>phot.flux.density;em.mm.30-50GHz</quantity>
+      <unit> Jy </unit>
+    </column>
     <column name="[e_S_Q]">
       <summary> Uncertainty in S(Q) </summary>
-<quantity>stat.error;phot.flux.density;em.mm.30-50GHz</quantity>
-<unit> Jy </unit>
-</column>
+      <quantity>stat.error;phot.flux.density;em.mm.30-50GHz</quantity>
+      <unit> Jy </unit>
+    </column>
     <column name="[S_V]">
       <summary> [-0.4/17] WMAP V band (60.2GHz) flux density </summary>
-<quantity>phot.flux.density;em.mm.50-100GHz</quantity>
-<unit> Jy </unit>
-</column>
+      <quantity>phot.flux.density;em.mm.50-100GHz</quantity>
+      <unit> Jy </unit>
+    </column>
     <column name="[e_S_V]">
       <summary> Uncertainty in S(V) </summary>
-<quantity>stat.error;phot.flux.density;em.mm.50-100GHz</quantity>
-<unit> Jy </unit>
-</column>
+      <quantity>stat.error;phot.flux.density;em.mm.50-100GHz</quantity>
+      <unit> Jy </unit>
+    </column>
     <column name="[S_W]">
       <summary> [-1/13.1] WMAP W band (93.0GHz) flux density </summary>
-<quantity>phot.flux.density;em.mm.50-100GHz</quantity>
-<unit> Jy </unit>
-</column>
+      <quantity>phot.flux.density;em.mm.50-100GHz</quantity>
+      <unit> Jy </unit>
+    </column>
     <column name="[e_S_W]">
       <summary> Uncertainty in S(W) </summary>
-<quantity>stat.error;phot.flux.density;em.mm.50-100GHz</quantity>
-<unit> Jy </unit>
-</column>
+      <quantity>stat.error;phot.flux.density;em.mm.50-100GHz</quantity>
+      <unit> Jy </unit>
+    </column>
     <column name="[fiveGHzID]">
       <summary> The 5 GHz source identifier </summary>
-<quantity>meta.id.cross</quantity>
-</column>
+      <quantity>meta.id.cross</quantity>
+    </column>
     <column name="[f_5GHzID]">
-      <summary> [abcd] Multiple possible identifications. Flag as follows:
-a=	Indicates the source has multiple possible identifications.
-b=	Source J0322-3711 (Fornax A) is extended, and the fluxes listed were obtained by aperture photometry.
-c=	Source J1356+7644 is outside of the declination range of the GB6 and PMN catalogs. It was identified as QSO
-by Trushkin (2006, private communication).
-d=	Source J1632+8227 is outside of the declination range of the GB6 and PMN catalogs. It was identified as NGC 6251 by
-S.A. (2003BSAO...55...90T). </summary>
-<quantity>meta.code</quantity>
-</column>
+      <summary>
+        [abcd] Multiple possible identifications. Flag as follows:
+        a=	Indicates the source has multiple possible identifications.
+        b=	Source J0322-3711 (Fornax A) is extended, and the fluxes listed were obtained by aperture photometry.
+        c=	Source J1356+7644 is outside of the declination range of the GB6 and PMN catalogs. It was identified as QSO
+        by Trushkin (2006, private communication).
+        d=	Source J1632+8227 is outside of the declination range of the GB6 and PMN catalogs. It was identified as NGC 6251 by
+        S.A. (2003BSAO...55...90T).</summary>
+      <quantity>meta.code</quantity>
+    </column>
   </table>
 </metadata>

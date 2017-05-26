@@ -1,3 +1,20 @@
+--/ <dataset>
+--/ <summary> 	The WISE All-Sky data Release </summary>
+--/ <remarks>
+--/ NASA's Wide-field Infrared Survey Explorer (WISE; Wright et al. 2010) mapped the sky at 3.4, 4.6, 
+--/ 12, and 22 μm (W1, W2, W3, W4) in 2010 with an angular resolution of 6.1", 6.4", 6.5", and 12.0" in 
+--/ the four bands. WISE achieved 5σ point source sensitivities better than 0.08, 0.11, 1 and 6 mJy in 
+--/ unconfused regions on the ecliptic in the four bands. Sensitivity improves toward the ecliptic poles 
+--/ due to denser coverage and lower zodiacal background.
+--/ </remarks>
+--/ <url>http://wise2.ipac.caltech.edu/docs/release/allsky/</url>
+--/ <icon>wise.png</icon>
+--/ <docpage>wise.html</docpage>
+--/ </dataset>
+ GO
+
+--/ <summary></summary>
+--/ <remarks></remarks>
 CREATE TABLE [dbo].[PhotoObj]
 (
 	--/ <summary>WISE primary key ('counter')</summary>

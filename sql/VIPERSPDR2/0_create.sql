@@ -1,4 +1,20 @@
+--/ <dataset>
+--/ <summary> The second data release (PDR-2) of the VIMOS Public Extragalactic Redshift Survey (VIPERS) </summary>
+--/ <remarks>
+--/ The PDR-2 includes spectroscopic measurements for 91507 objects, together with the survey masks, 
+--/ statistical weights and photometric ancillary information from the VIPERS multi-lambda survey. 89022 
+--/ of these objects are main survey targets. 
+--/ </remarks>
+--/ <url>http://vipers.inaf.it/rel-pdr2.html</url>
+--/ <icon>viperspdr2.png</icon>
+--/ <docpage>viperspdr2.html</docpage>
+--/ </dataset>
+ GO
+
 -- CREATE PhotoObj TABLE
+
+--/ <summary></summary>
+--/ <remarks></remarks>
 CREATE TABLE dbo.PhotoObj
 (
 	--/ <summary> Cartesian X (J2000)</summary>
@@ -375,6 +391,9 @@ GO
 -----------------------------------------------------------------------------------
 
 -- CREATE SpecObj TABLE
+
+--/ <summary></summary>
+--/ <remarks></remarks>
 CREATE TABLE dbo.SpecObj
 (
 	--/ <summary> Cartesian X (J2000)</summary>

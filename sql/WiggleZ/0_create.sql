@@ -1,4 +1,23 @@
+--/ <dataset>
+--/ <summary> WiggleZ Dark Energy Survey Data Release 1 </summary>
+--/ <remarks>
+--/ The WiggleZ Dark Energy Survey is a large-scale galaxy redshift survey which was carried out over 
+--/ 276 nights at the Anglo-Australian Telescope between August 2006 and January 2011. WiggleZ has 
+--/ measured redshifts for almost 240,000 galaxies over 1000 square degress of sky for look-back times 
+--/ up to 8 billion years (redshift z=1).
+--/ There are 7 fields with average area of 140 square degrees totaling ~1000 square degrees. The 7 
+--/ fields overlap with GALEX, SDSS, and RCS2 in 00, 01, 03, 09, 11, 15, 22 hr fields.
+--/ </remarks>
+--/ <url>http://wigglez.swin.edu.au/site/data.html</url>
+--/ <icon>wigglez.png</icon>
+--/ <docpage>wigglez.html</docpage>
+--/ </dataset>
+ GO
+
 -- CREATE SpecObj TABLE
+
+--/ <summary></summary>
+--/ <remarks></remarks>
 CREATE TABLE dbo.SpecObj
 (
 	--/ <summary> Cartesian X (J2000)</summary>

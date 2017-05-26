@@ -1,4 +1,18 @@
+--/ <dataset>
+--/ <summary>  	Nine-year WMAP point source catalogs </summary>
+--/ <remarks>
+--/  	Nine-year WMAP point source catalogs
+--/ </remarks>
+--/ <url>http://vizier.u-strasbg.fr/viz-bin/VizieR?-source=J/ApJS/208/20</url>
+--/ <icon>wmap.png</icon>
+--/ <docpage>wmap.html</docpage>
+--/ </dataset>
+ GO
+
 -- CREATE Obs TABLE
+
+--/ <summary>WMAP nine-year five-band point source catalog</summary>
+--/ <remarks>WMAP nine-year five-band point source catalog</remarks>
 CREATE TABLE dbo.Obs
 (
 	--/ <summary> Cartesian X (J2000)</summary>
@@ -125,6 +139,9 @@ GO
 
 ---------------------------------------------------------------
 -- CREATE ObsCMBFree TABLE
+
+--/ <summary>WMAP nine-year CMB-free QVW point source catalog</summary>
+--/ <remarks>WMAP nine-year CMB-free QVW point source catalog</remarks>
 CREATE TABLE dbo.ObsCMBFree
 (
 	--/ <summary> Cartesian X (J2000)</summary>
