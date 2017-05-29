@@ -9,7 +9,7 @@
 --/ mv~23 limit of SDSS, ~30% of the optical counterparts to FIRST sources are detected. unambiguous 
 --/ optical identifications (&lt;5% false rates) are achievable to mv~24. 
 --/ </remarks>
---/ <url>http://sundog.stsci.edu/first/catalogs/</url>
+--/ <url>http://sundog.stsci.edu/index.html</url>
 --/ <icon>first.png</icon>
 --/ <docpage>first.html</docpage>
 --/ </dataset>

@@ -5,7 +5,7 @@
 --/ targeting galaxies in the ``redshift desert'' between z=1 and z=2. The primary goal of the 
 --/ survey is to constrain the space density at high redshift of evolved high-mass galaxies.
 --/ </remarks>
---/ <url>http://www.gemini.edu/node/18</url>
+--/ <url>http://vizier.cfa.harvard.edu/viz-bin/VizieR?-source=J/AJ/127/2455</url>
 --/ <icon>gdds.png</icon>
 --/ <docpage>gdds.html</docpage>
 --/ </dataset>

@@ -4,7 +4,7 @@
     <summary> DEEP2 Galaxy Redshift Survey - Data Release 4 </summary>
     <remarks>
       The DEEP2 DR4 redshift catalog includes 50,319 entries, with 36 fields (or tags) per entry.</remarks>
-    <url>http://deep.ps.uci.edu/DR4/zcatalog.html</url>
+    <url>http://deep.ps.uci.edu/DR4/home.html</url>
     <icon>deep2dr4.png</icon>
     <docpage>deep2dr4.html</docpage>
   </dataset>

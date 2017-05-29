@@ -12,7 +12,7 @@
 --/ the DES supernova fields. This release includes 13,890 DECam exposures that have been reduced and calibrated 
 --/ through the DES Data Management (DESDM) pipeline at the National Center for Supercomputing Applications (NCSA). 
 --/ </remarks>
---/ <url>http://archive.noao.edu/search/query</url>
+--/ <url>http://www.darkenergysurvey.org/</url>
 --/ <icon>des.png</icon>
 --/ <docpage>des.html</docpage>
 --/ </dataset>

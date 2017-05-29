@@ -12,7 +12,7 @@
 --/ galaxies with R&gt;24. The selection of stars is complete to R~23, and deeper for M stars. We also present an updated discussion of our 
 --/ classification technique with maps of survey completeness, and discuss possible failures of the statistical classification in the faint regime at R&gt;24. 
 --/ </remarks>
---/ <url>http://www.mpia.de/COMBO/combo_CDFSpublic.html</url>
+--/ <url>http://nesssi.cacr.caltech.edu/DataRelease/http://www.mpia.de/COMBO/combo_index.html</url>
 --/ <icon>combo17.png</icon>
 --/ <docpage>combo17.html</docpage>
 --/ </dataset>

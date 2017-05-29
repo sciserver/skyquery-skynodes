@@ -5,7 +5,7 @@
 --/ almost 8,000 periodic pulsating and over 31,000 irregular stars found among 
 --/ 15,000,000 stars on the sky south of the declination +28 (512 fields). 
 --/ </remarks>
---/ <url>http://www.astrouw.edu.pl/asas/?page=download</url>
+--/ <url>http://www.astrouw.edu.pl/asas/?page=main</url>
 --/ <icon>acvs.png</icon>
 --/ <docpage>acvs.html</docpage>
 --/ </dataset>
