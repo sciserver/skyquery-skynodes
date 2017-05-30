@@ -6,7 +6,7 @@
 --/ level and total B-band magnitudes BT brighter than about 15.5, with a redshift not in excess of 
 --/ 15,000 km/s.
 --/ </remarks>
---/ <url>http://cdsarc.u-strasbg.fr/viz-bin/Cat?VII/155</url>
+--/ <url>https://heasarc.nasa.gov/W3Browse/all/rc3.html</url>
 --/ <icon>rc3.png</icon>
 --/ <docpage>rc3.html</docpage>
 --/ </dataset>

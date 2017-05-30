@@ -6,7 +6,7 @@
 --/ most powerful ground-based facilities. The survey consists of two 10x16.5 arcmin fields: GOODS-N 
 --/ coincides with the Hubble Deep Field North, while GOODS-S coincides with the Chandra Deep Field South.
 --/ </remarks>
---/ <url>http://irsa.ipac.caltech.edu/data/SPITZER/GOODS/</url>
+--/ <url>http://irsa.ipac.caltech.edu/data/SPITZER/GOODS/overview.html</url>
 --/ <icon>spitzer.png</icon>
 --/ <docpage>spitzer.html</docpage>
 --/ </dataset>

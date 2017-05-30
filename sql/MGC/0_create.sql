@@ -8,7 +8,7 @@
 --/ detection limit of 26 mag arcsec–2 and it provides a robust, well-defined catalogue of stars and 
 --/ galaxies in the range 16&lt;B_MGC&lt;24 mag.
 --/ </remarks>
---/ <url>http://vizier.u-strasbg.fr/viz-bin/VizieR-3?-source=VII/240/mgczcat</url>
+--/ <url>http://www.hs.uni-hamburg.de/jliske/mgc/</url>
 --/ <icon>mgc.png</icon>
 --/ <docpage>mgc.html</docpage>
 --/ </dataset>

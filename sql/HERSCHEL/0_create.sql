@@ -3,7 +3,7 @@
 --/ <remarks>
 --/ The database contains the deepest 100 to 500 µm far-infrared observations obtained with the Herschel Space Observatory as part of the GOODS-Herschel key program.
 --/ </remarks>
---/ <url>http://irsa.ipac.caltech.edu/data/Herschel/GOODS/</url>
+--/ <url>http://hedam.lam.fr/GOODS-Herschel/</url>
 --/ <icon>herschel.png</icon>
 --/ <docpage>herschel.html</docpage>
 --/ </dataset>
