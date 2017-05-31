@@ -3,7 +3,7 @@
 --/ <remarks>
 --/  	Nine-year WMAP point source catalogs
 --/ </remarks>
---/ <url>http://vizier.u-strasbg.fr/viz-bin/VizieR?-source=J/ApJS/208/20</url>
+--/ <url>https://heasarc.gsfc.nasa.gov/W3Browse/radio-catalog/wmapptsrc.html</url>
 --/ <icon>wmap.png</icon>
 --/ <docpage>wmap.html</docpage>
 --/ </dataset>

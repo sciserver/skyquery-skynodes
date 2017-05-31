@@ -5,7 +5,7 @@
 --/  and astrometric measurements for all targets detected in  the 
 --/  GOODS-North region.
 --/ </remarks>
---/ <url>http://vizier.cfa.harvard.edu/viz-bin/VizieR?-source=J/AJ/127/3121/catalog</url>
+--/ <url>http://tkserver.keck.hawaii.edu/tksurvey/</url>
 --/ <icon>tkrs.png</icon>
 --/ <docpage>tkrs.html</docpage>
 --/ </dataset>

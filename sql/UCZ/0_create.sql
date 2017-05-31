@@ -10,7 +10,7 @@
 --/  the CfA (14,632 spectra), and (3) an estimate of the remaining "blunder" rate for both the CfA 
 --/ redshifts and for those compiled from the literature.
 --/ </remarks>
---/ <url>http://vizier.cfa.harvard.edu/viz-bin/VizieR?-source=J/PASP/111/438/catalog</url>
+--/ <url>http://tdc-www.harvard.edu/uzc/</url>
 --/ <icon>ucz.png</icon>
 --/ <docpage>ucz.html</docpage>
 --/ </dataset>

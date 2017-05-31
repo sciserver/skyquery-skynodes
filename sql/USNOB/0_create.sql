@@ -8,7 +8,7 @@
 --/ V=21, 0.2" astrometric accuracy at J2000, 0.3 mag photometric accuracy in up to five colors, and 85% 
 --/ accuracy for distinguishing stars from nonstellar objects. 
 --/ </remarks>
---/ <url>http://vizier.u-strasbg.fr/viz-bin/VizieR?-source=I/284</url>
+--/ <url>http://tdc-www.harvard.edu/catalogs/ub1.html</url>
 --/ <icon>usnob.png</icon>
 --/ <docpage>usnob.html</docpage>
 --/ </dataset>

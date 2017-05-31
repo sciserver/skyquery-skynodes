@@ -7,7 +7,7 @@
 --/   a redshift could not be measured for 961 objects. There are 1065 galaxies with a measured redshift
 --/   z≥1.4.
 --/ </remarks>
---/ <url>http://vizier.cfa.harvard.edu/viz-bin/VizieR?-source=III/250</url>
+--/ <url>http://cesam.lam.fr/vvdsproject/index.html</url>
 --/ <icon>vvds.png</icon>
 --/ <docpage>vvds.html</docpage>
 --/ </dataset>
