@@ -42,11 +42,11 @@ CREATE TABLE [dbo].[PhotoPSC](
 	[cz] [float] NULL, 
 	
 	--/ <summary>Unique HTM ID</summary>
-	--/ <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.HTM; pos.frame=j2000</quantity>
 	[htmid] [bigint] NULL, 
 
 	--/ <summary>Zone ID</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone;pos.frame=j2000</quantity>
 	[zoneid] [bigint] NULL, 
 	
 	--/ <summary>major axis of position error ellipse</summary>
@@ -369,11 +369,11 @@ CREATE TABLE [dbo].[PhotoXSC](
 	[cz] [float] NOT NULL, 
 
 	--/ <summary> HTM ID (J2000)</summary>
-	--/ <quantity>pos.HTM; pos.eq; pos.frame=J2000</quantity>
+	--/ <quantity>pos.eq.HTM; pos.frame=J2000</quantity>
 	[htmid] [bigint] NOT NULL,
 	
 	--/ <summary> Zone ID </summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone;pos.frame=j2000</quantity>
 	[zoneid] [bigint] NOT NULL,
 	
 	--/ <summary>Super-coadd centroid RA (J2000 decimal deg).</summary>

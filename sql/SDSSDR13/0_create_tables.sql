@@ -588,7 +588,7 @@ CREATE TABLE [dbo].[apogeeStar](
 	[htmID] [bigint] NOT NULL,
 
 	--/ <summary> Zone ID</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone</quantity>
 	[zoneID] [bigint] NOT NULL,
 
 	--/ <summary>Galactic longitude</summary>
@@ -5765,11 +5765,11 @@ CREATE TABLE [dbo].[Frame](
 	[cz] [float] NOT NULL,
 
 	--/ <summary>The htmID for point at frame center</summary>
-	--/ <quantity>pos.HTM;pos.eq</quantity>
+	--/ <quantity>pos.eq.HTM</quantity>
 	[htmID] [bigint] NOT NULL,
 
 	--/ <summary>Zone ID</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone</quantity>
 	[zoneID] [bigint] NOT NULL,
 	
 	--[img] [varbinary](max) NOT NULL DEFAULT (0x1111),
@@ -8910,11 +8910,11 @@ CREATE TABLE [dbo].[Mask](
 	[cz] [float] NOT NULL,
 
 	--/ <summary>20-deep hierarchical trangular mesh ID of this object</summary>
-	--/ <quantity>pos.HTM; pos.eq</quantity>
+	--/ <quantity>pos.eq.HTM</quantity>
 	[htmID] [bigint] NOT NULL,
 
 	--/ <summary>zone ID</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone</quantity>
 	[zoneID] [bigint] NOT NULL,
  CONSTRAINT [pk_Mask_maskID] PRIMARY KEY CLUSTERED 
 (
@@ -9236,11 +9236,11 @@ CREATE TABLE [dbo].[PhotoObjDR7](
 	[cz] [float] NOT NULL,
 
 	--/ <summary>20-deep hierarchical trangular mesh ID of this object</summary>
-	--/ <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.HTM; pos.frame=j2000</quantity>
 	[htmID] [bigint] NOT NULL,
 
 	--/ <summary>zone.id</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone</quantity>
 	[zoneID] [bigint] NOT NULL,
 
 	--/ <summary>Bit mask of primary target categories the object was selected in.</summary>
@@ -9600,11 +9600,11 @@ CREATE TABLE [dbo].[PhotoPrimaryDR7](
 	[extinction_z] [real] NULL,
 
 	--/ <summary>20-deep hierarchical trangular mesh ID of this object</summary>
-	--/ <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.HTM; pos.frame=j2000</quantity>
 	[htmID] [bigint] NULL,
 
 	--/ <summary>zone.id</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone</quantity>
 	[zoneID] [bigint] NULL,
 
 	--/ <summary>Link to the field this object is in</summary>
@@ -10581,11 +10581,11 @@ CREATE TABLE [dbo].[PlateX](
 	[fscanSpeed] [int] NOT NULL,
 
 	--/ <summary>20 deep Hierarchical Triangular Mesh ID</summary>
-	--/ <quantity>pos.HTM</quantity>
+	--/ <quantity>pos.eq.HTM</quantity>
 	[htmID] [bigint] NOT NULL,
 
 	--/ <summary>Zone ID</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone</quantity>
 	[zoneID] [bigint] NOT NULL,
 
 	--/ <summary>Load Version</summary>
@@ -10935,11 +10935,11 @@ CREATE TABLE [dbo].[RegionPatch](
 	[c] [float] NOT NULL DEFAULT ((0)),
 
 	--/ <summary>20 deep Hierarchical Triangular Mesh ID of centerpoint</summary>
-	--/ <quantity>pos.HTM;pos.eq</quantity>
+	--/ <quantity>pos.eq.HTM</quantity>
 	[htmid] [bigint] NOT NULL DEFAULT ((0)),
 
 	--/ <summary>20 deep Hierarchical Triangular Mesh ID of centerpoint</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone</quantity>
 	[zoneid] [bigint] NOT NULL DEFAULT ((0)),
 
 	--/ <summary>area of the patch</summary>
@@ -11538,11 +11538,11 @@ CREATE TABLE [dbo].[sdssTileAll](
 	[decCen] [float] NOT NULL,
 
 	--/ <summary>htm tree info</summary>
-	--/ <quantity>pos.HTM</quantity>
+	--/ <quantity>pos.eq.HTM</quantity>
 	[htmID] [bigint] NOT NULL,
 
 	--/ <summary>zone ID</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone</quantity>
 	[zoneID] [bigint] NOT NULL,
 
 	--/ <summary>x projection of vector on unit sphere</summary>
@@ -11620,11 +11620,11 @@ CREATE TABLE [dbo].[sdssTiledTargetAll](
 	[dec] [float] NOT NULL,
 
 	--/ <summary>htm tree info</summary>
-	--/ <quantity>pos.HTM</quantity>
+	--/ <quantity>pos.eq.HTM</quantity>
 	[htmID] [bigint] NOT NULL,
 
 	--/ <summary>zone ID</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone</quantity>
 	[zoneID] [bigint] NOT NULL,
 
 	--/ <summary>x projection of vector on unit sphere</summary>
@@ -12306,11 +12306,11 @@ CREATE TABLE [dbo].[SpecDR7](
 	[extinction_z] [real] NOT NULL,
 
 	--/ <summary>20-deep hierarchical trangular mesh ID of this object</summary>
-	--/ <quantity>pos.HTM</quantity>
+	--/ <quantity>pos.eq.HTM</quantity>
 	[htmID] [bigint] NOT NULL,
 
 	--/ <summary>Zone ID</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone</quantity>
 	[zoneID] [bigint] NOT NULL,
 
 	--/ <summary>Link to the field this object is in</summary>
@@ -13165,11 +13165,11 @@ CREATE TABLE [dbo].[SpecObjAll](
 	[elodieDOF] [real] NOT NULL,
 
 	--/ <summary>20 deep Hierarchical Triangular Mesh ID</summary>
-	--/ <quantity>pos.HTM</quantity>
+	--/ <quantity>pos.eq.HTM</quantity>
 	[htmID] [bigint] NOT NULL,
 
 	--/ <summary>Zone ID</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone</quantity>
 	[zoneID] [bigint] NOT NULL,
 
 	--/ <summary>Load Version</summary>
@@ -13263,11 +13263,11 @@ CREATE TABLE [dbo].[SpecPhotoAll](
 	[cz] [float] NOT NULL,
 
 	--/ <summary>20 deep Hierarchical Triangular Mesh ID</summary>
-	--/ <quantity>pos.HTM;pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.HTM;pos.frame=j2000</quantity>
 	[htmID] [bigint] NOT NULL,
 
 	--/ <summary>Zone ID</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone</quantity>
 	[zoneID] [bigint] NOT NULL,
 
 	--/ <summary>Best version of spectrum at this location (defines default view SpecObj)</summary>

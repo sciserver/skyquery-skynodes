@@ -49,11 +49,11 @@ CREATE TABLE [dbo].[PhotoObj]
 	[cz] [float] NULL, 
 
 	--/ <summary>HTM ID</summary>
-	--/ <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.HTM; pos.frame=j2000</quantity>
 	[htmid] [bigint] NULL, 
 
 	--/ <summary>Zone ID</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone;pos.frame=j2000</quantity>
 	[zoneid] [bigint] NULL, 
 
 	--/ <summary>Final bj magnitude with extinction correction</summary>

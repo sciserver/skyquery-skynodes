@@ -42,11 +42,11 @@ CREATE TABLE [dbo].[PhotoObj]
 	[cz] [float] NOT NULL, 
 
 	--/ <summary>htmid for spatial search</summary>
-	--/ <quantity>pos.HTM;pos.eq;pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.HTM;pos.frame=j2000</quantity>
 	[htmid] [bigint] NOT NULL, 
 
 	--/ <summary>zoneid for spatial search</summary>
-	--/ <quantity>pos.zone;pos.eq;pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.zone;pos.frame=j2000</quantity>
 	[zoneid] [bigint] NOT NULL, 
 
 	--/ <summary>master coordinate origin</summary>

@@ -53,11 +53,11 @@ CREATE TABLE [dbo].[PhotoObj](
 	[cz] [float] NOT NULL, 
 
 	--/ <summary>HTM index, 20 digits, for co-ordinate</summary>
-	--/ <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.HTM; pos.frame=j2000</quantity>
 	[htmID] [bigint] NOT NULL, 
 
 	--/ <summary>ZoneID</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone;pos.frame=j2000</quantity>
 	[zoneID] [bigint] NOT NULL, 
 
 	--/ <summary>Proper motion in RA (relative to YS4.0)</summary>

@@ -376,11 +376,11 @@
     </column>
     <column name="[htmid]">
       <summary>HTM ID</summary>
-      <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+      <quantity>pos.eq.HTM; pos.frame=j2000</quantity>
     </column>
     <column name="[zoneid]">
       <summary>Zone ID</summary>
-      <quantity>pos.zone</quantity>
+      <quantity>pos.eq.zone;pos.frame=j2000</quantity>
     </column>
     <column name="[ALPHAPEAK_J2000]">
       <summary>Right ascension of brightest pix (J2000)</summary>
@@ -889,11 +889,11 @@
     </column>
     <column name="[htmid]">
       <summary>Unique HTM ID</summary>
-      <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+      <quantity>pos.eq.HTM; pos.frame=j2000</quantity>
     </column>
     <column name="[zoneid]">
       <summary>Unique HTM ID</summary>
-      <quantity>pos.zone</quantity>
+      <quantity>pos.eq.zone;pos.frame=j2000</quantity>
     </column>
     <column name="[ALPHAPEAK_J2000]">
       <summary>Right ascension of brightest pix (J2000)</summary>

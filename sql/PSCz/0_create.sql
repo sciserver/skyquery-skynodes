@@ -50,11 +50,11 @@ CREATE TABLE [dbo].[PhotoObj](
 	[cz] [float] NOT NULL, 
 
 	--/ <summary>HTM ID</summary>
-	--/ <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.HTM; pos.frame=j2000</quantity>
 	[htmid] [bigint] NOT NULL, 
 
 	--/ <summary>Zone ID</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone;pos.frame=j2000</quantity>
 	[zoneid] [bigint] NOT NULL, 
 
 	--/ <summary>non-color corrected flux, 12 um</summary>

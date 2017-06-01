@@ -23,11 +23,11 @@
     </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
-      <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+      <quantity>pos.eq.HTM; pos.frame=j2000</quantity>
     </column>
     <column name="[zoneid]">
       <summary> Zone ID </summary>
-      <quantity>pos.zone</quantity>
+      <quantity>pos.eq.zone; pos.frame=j2000</quantity>
     </column>
     <column name="[Name]">
       <summary> Object name (Field-Identifier) </summary>
@@ -140,11 +140,11 @@
     </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
-      <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+      <quantity>pos.eq.HTM; pos.frame=j2000</quantity>
     </column>
     <column name="[zoneid]">
       <summary> Zone ID </summary>
-      <quantity>pos.zone</quantity>
+      <quantity>pos.eq.zone; pos.frame=j2000</quantity>
     </column>
     <column name="[objID]">
       <summary> sequential ID </summary>

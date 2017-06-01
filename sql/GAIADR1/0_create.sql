@@ -84,23 +84,23 @@ CREATE TABLE Source
 	[dec_error] [float] NOT NULL,
 	
 	--/ <summary> Cartesian X (J2000)</summary>
-	--/ <quantity>pos.eq.x</quantity>
+	--/ <quantity>pos.eq.x;pos.frame=j2000</quantity>
 	[cx] [float] NOT NULL,
 
 	--/ <summary> Cartesian Y (J2000)</summary>
-	--/ <quantity>pos.eq.y</quantity>
+	--/ <quantity>pos.eq.y;pos.frame=j2000</quantity>
 	[cy] [float] NOT NULL,
 
 	--/ <summary> Cartesian Z (J2000)</summary>
-	--/ <quantity>pos.eq.z</quantity>
+	--/ <quantity>pos.eq.z;pos.frame=j2000</quantity>
 	[cz] [float] NOT NULL,
 
 	--/ <summary> HTM ID (J2000)</summary>
-	--/ <quantity>pos.HTM</quantity>
+	--/ <quantity>pos.eq.HTM;pos.frame=j2000</quantity>
 	[htmid] bigint NOT NULL,
 
 	--/ <summary> Zone ID </summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone;pos.frame=j2000</quantity>
 	[zoneid] int NOT NULL,
 	
 	--/ <summary>Parallax (double, Angle[mas] ). Absolute barycentric stellar parallax ϖ of the soure at the reference 

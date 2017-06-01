@@ -28,11 +28,11 @@ CREATE TABLE dbo.SpecObj
 	[cz] [float] NOT NULL,
 
 	--/ <summary> HTM ID (ICRS)</summary>
-	--/ <quantity>pos.HTM; pos.eq; pos.frame=icrs</quantity>
+	--/ <quantity>pos.eq.HTM; pos.frame=icrs</quantity>
 	[htmid] bigint NOT NULL,
 
 	--/ <summary> Zone ID </summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone;pos.frame=icrs</quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> sequential ID </summary>

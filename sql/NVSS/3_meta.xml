@@ -38,11 +38,11 @@
     </column>
     <column name="[htmid]">
       <summary>htmid for spatial searches</summary>
-      <quantity>pos.htm; pos.eq; pos.frame=j2000</quantity>
+      <quantity>pos.eq.HTM; pos.frame=j2000</quantity>
     </column>
     <column name="[zoneid]">
       <summary> Zone ID</summary>
-      <quantity>pos.zone</quantity>
+      <quantity>pos.eq.zone;pos.frame=j2000</quantity>
     </column>
     <column name="[raErr]">
       <summary>Estimate of J2000 right ascension standard deviation</summary>

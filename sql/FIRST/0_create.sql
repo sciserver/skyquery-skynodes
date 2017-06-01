@@ -73,11 +73,11 @@ CREATE TABLE dbo.PhotoObj
 	[cz] [float] NOT NULL,
 
 	--/ <summary>HTM ID (J2000)</summary>
-	--/ <quantity>pos.HTM;pos.eq;pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.HTM;pos.frame=j2000</quantity>
 	[htmid] [bigint] NOT NULL,
 
 	--/ <summary> Zone ID </summary>
-	--/ <quantity>pos.zone;pos.eq;pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.zone;pos.frame=j2000</quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> Ps indicates the probability that the source is spurious (most commonly because it is a sidelobe 

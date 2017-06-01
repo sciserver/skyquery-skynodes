@@ -52,11 +52,11 @@ CREATE TABLE [dbo].[PhotoObj]
 	[cz] [float] NOT NULL, 
 
 	--/ <summary>htmid for spatial search</summary>
-	--/ <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.HTM; pos.frame=j2000</quantity>
 	[htmid] [bigint] NOT NULL, 
 
 	--/ <summary>zoneid for spatial search</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone;pos.frame=j2000</quantity>
 	[zoneid] [bigint] NOT NULL, 
 
 	--/ <summary>The values of ra/dec are good to 0.1 sec time, 1 asec (otherwise, 0.1 min time, 1 amin)</summary>

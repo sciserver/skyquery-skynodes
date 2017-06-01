@@ -51,11 +51,11 @@
     </column>
     <column name="[htmID]">
       <summary>HTM index, 20 digits, for co-ordinate</summary>
-      <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+      <quantity>pos.eq.HTM; pos.frame=j2000</quantity>
     </column>
     <column name="[zoneID]">
       <summary>ZoneID</summary>
-      <quantity>pos.zone</quantity>
+      <quantity>pos.eq.zone;pos.frame=j2000</quantity>
     </column>
     <column name="[pmRA]">
       <summary>Proper motion in RA (relative to YS4.0)</summary>

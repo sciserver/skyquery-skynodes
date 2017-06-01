@@ -43,11 +43,11 @@
     </column>
     <column name="[htmID]">
       <summary>the htmid of the object</summary>
-      <quantity>pos.HTM; pos.eq; pos.frame=J2000</quantity>
+      <quantity>pos.eq.HTM;pos.frame=J2000</quantity>
     </column>
     <column name="[zoneID]">
       <summary>the zoneid of the object</summary>
-      <quantity>pos.zone; pos.eq; pos.frame=J2000</quantity>
+      <quantity>pos.eq.zone;;pos.frame=J2000</quantity>
     </column>
     <column name="[a]">
       <summary>Major axis</summary>

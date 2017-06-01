@@ -501,7 +501,7 @@ The table has the following  views:
 </column><column name="loadVersion"><summary>Load Version</summary>
 <quantity>meta.version</quantity>
 </column><column name="htmID"><summary>20-deep hierarchical trangular mesh ID of this object</summary>
-<quantity>pos.HTM;pos.eq;pos.frame=j2000</quantity>
+<quantity>pos.eq.HTM;pos.frame=j2000</quantity>
 </column><column name="zoneID"><summary>Zone ID</summary>
 <quantity>pos.zone</quantity>
 </column><column name="fieldID"><summary>Link to the field this object is in</summary>

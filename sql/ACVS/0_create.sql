@@ -30,19 +30,19 @@ CREATE TABLE dbo.PhotoObj
 	--/ <unit>deg</unit>
 	[dec] float NOT NULL,
 
-	--/ <summary> Cartesian X (J2000)</summary>	--/ <quantity>pos.eq.x</quantity>
+	--/ <summary> Cartesian X (J2000)</summary>	--/ <quantity>pos.eq.x;pos.frame=j2000</quantity>
 	[cx] [float] NOT NULL,
 
-	--/ <summary> Cartesian Y (J2000)</summary>	--/ <quantity>pos.eq.y</quantity>
+	--/ <summary> Cartesian Y (J2000)</summary>	--/ <quantity>pos.eq.y;pos.frame=j2000</quantity>
 	[cy] [float] NOT NULL,
 
-	--/ <summary> Cartesian Z (J2000)</summary>	--/ <quantity>pos.eq.z</quantity>
+	--/ <summary> Cartesian Z (J2000)</summary>	--/ <quantity>pos.eq.z;pos.frame=j2000</quantity>
 	[cz] [float] NOT NULL,
 
-	--/ <summary> HTM ID (J2000)</summary>	--/ <quantity>pos.HTM</quantity>
+	--/ <summary> HTM ID (J2000)</summary>	--/ <quantity>pos.eq.HTM;pos.frame=j2000</quantity>
 	[htmid] bigint NOT NULL,
 
-	--/ <summary> Zone ID </summary>	--/ <quantity>pos.zone</quantity>
+	--/ <summary> Zone ID </summary>	--/ <quantity>pos.eq.zone;;pos.frame=j2000</quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> Period in days (or characteristic time scale of variation for irregular objects). </summary>	--/ <quantity>time.period; src.var</quantity>

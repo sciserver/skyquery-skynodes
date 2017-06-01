@@ -3160,7 +3160,7 @@
 </column><column name="[cz]"><summary>Cartesian z of frame center</summary>
 <quantity>pos.eq.r</quantity>
 </column><column name="[htmID]"><summary>The htmID for point at frame center</summary>
-<quantity>pos.HTM;pos.eq</quantity>
+<quantity>pos.eq.HTM</quantity>
 </column><column name="[zoneID]"><summary>Zone ID</summary>
 <quantity>pos.zone</quantity>
 </column></table>
@@ -4922,7 +4922,7 @@
 </column><column name="[cz]"><summary>unit vector for ra+dec</summary>
 <quantity>pos.eq.z</quantity>
 </column><column name="[htmID]"><summary>20-deep hierarchical trangular mesh ID of this object</summary>
-<quantity>pos.HTM; pos.eq</quantity>
+<quantity>pos.eq.HTM</quantity>
 </column><column name="[zoneID]"><summary>zone ID</summary>
 <quantity>pos.zone</quantity>
 </column></table>
@@ -5093,7 +5093,7 @@
 </column><column name="[cz]"><summary>unit vector for ra+dec</summary>
 <quantity>pos.eq.z;pos.frame=j2000</quantity>
 </column><column name="[htmID]"><summary>20-deep hierarchical trangular mesh ID of this object</summary>
-<quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+<quantity>pos.eq.HTM; pos.frame=j2000</quantity>
 </column><column name="[zoneID]"><summary>zone.id</summary>
 <quantity>pos.zone</quantity>
 </column><column name="[primTarget]"><summary>Bit mask of primary target categories the object was selected in.</summary>
@@ -5294,7 +5294,7 @@
 <quantity>phys.absorption.gal;em.opt.SDSS.z</quantity>
 <unit>mag</unit>
 </column><column name="[htmID]"><summary>20-deep hierarchical trangular mesh ID of this object</summary>
-<quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+<quantity>pos.eq.HTM; pos.frame=j2000</quantity>
 </column><column name="[zoneID]"><summary>zone.id</summary>
 <quantity>pos.zone</quantity>
 </column><column name="[fieldID]"><summary>Link to the field this object is in</summary>
@@ -6015,7 +6015,7 @@
 </column><column name="[c]"><summary>offset of the equation of plane</summary>
 <quantity></quantity>
 </column><column name="[htmid]"><summary>20 deep Hierarchical Triangular Mesh ID of centerpoint</summary>
-<quantity>pos.HTM;pos.eq</quantity>
+<quantity>pos.eq.HTM</quantity>
 </column><column name="[zoneid]"><summary>20 deep Hierarchical Triangular Mesh ID of centerpoint</summary>
 <quantity>pos.zone</quantity>
 </column><column name="[area]"><summary>area of the patch</summary>
