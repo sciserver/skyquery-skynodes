@@ -9796,6 +9796,9 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
+--/ <summary></summary>
+--/ <remarks></remarks>
 CREATE TABLE [dbo].[PhotozRF](
 
 	--/ <summary>unique ID pointing to GalaxyTag table</summary>
@@ -9960,6 +9963,9 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
+--/ <summary></summary>
+--/ <remarks></remarks>
 CREATE TABLE [dbo].[PhotozTemplateCoeff](
 
 	--/ <summary>primary key</summary>
