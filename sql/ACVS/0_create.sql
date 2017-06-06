@@ -11,10 +11,10 @@
 --/ </dataset>
  GO
 
--- CREATE PhotoObj TABLE
 --/ <summary> ASAS-3 Catalog of Variable Stars </summary>
 --/ <remarks> All exposures were made using 'I ' band and 'V ' band filters, and were transformed into the standard 'I ' and 'V ' system using Landolt and Hipparcos. In most cases photometry is accurate to about 0.05 mag, but in many cases (due to problems with flatfielding and lack of colour information) errors could be 0.1 mag or larger. Positions are very inaccurate. </remarks>
-CREATE TABLE dbo.PhotoObj 
+--/ <icon>acvs.png</icon>
+CREATE TABLE dbo.PhotoObj
 (
 	--/ <summary> Unique ID. </summary>	--/ <quantity>meta.record</quantity>
 	[objID] bigint NOT NULL,

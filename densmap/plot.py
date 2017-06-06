@@ -13,10 +13,25 @@ from matplotlib.patches import Polygon
 from astropy import units as u
 from astropy.coordinates import SkyCoord
 from matplotlib.collections import PatchCollection
+from mpltools import color
 import math as m
 import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
 import cartopy.feature as cf
+
+colormaps = {
+    "radio": color.LinearColormap("green", [(0, 0, 0), (0, 0.8, 0), (1, 1, 1)]),
+    "fir": plt.get_cmap("hot"),
+    "nir": plt.get_cmap("copper"),
+    "visual": color.LinearColormap("visual", [(0, 0, 0), (1, 1, 0.5), (1, 1, 1)]),
+    "nuv": plt.get_cmap("bone"),
+    "fuv": color.LinearColormap("nuv", [(0, 0, 0), (1, 0, 1)]),
+    "xray": plt.get_cmap("viridis"),
+    "gamma": plt.get_cmap("inferno"),
+    
+    "red": color.LinearColormap("red", [(0, 0, 0), (1, 0, 0)]),
+    "blue": color.LinearColormap("red", [(0, 0, 0), (0, 0, 1)]),
+}
 
 class DensityPlotLayer():
 
@@ -72,10 +87,12 @@ class DensityPlotLayer():
 
 class DensityPlot():
     
-    def __init__(self, title=None, proj="PlateCarree"):
+    def __init__(self, title=None, proj="PlateCarree", labels=False, zoom=False):
         self.dpi = 96.0
         self.title = title
         self.proj = proj
+        self.labels = labels
+        self.zoom = zoom
         
     def GetSize(self, size):
         if (size == "icon"):
@@ -111,16 +128,23 @@ class DensityPlot():
         print("Generating plot...")
        
         fig = self.CreateFig()
+        cmap = colormaps[layer.cmap]
         
         if self.proj == "Aitoff":
             ax = plt.subplot(111, facecolor="black", projection="aitoff")
             ax.get_xaxis().set_visible(False)
-            p = self.CreatePatches(ra_rad, dec_rad, d, "rad", layer.alpha, layer.cmap)
+            p = self.CreatePatches(ra_rad, dec_rad, d, "rad", layer.alpha, cmap)
+            ax.get_xaxis().set_visible(False)   # always hidden for Aitoff
+            ax.get_yaxis().set_visible(self.labels)
         elif self.proj == "PlateCarree":
             ax = fig.add_subplot(111, facecolor="black", projection=ccrs.PlateCarree())
             ax.add_feature(cf.LAND, color="black", zorder=-1)
             ax.add_feature(cf.OCEAN, color="black", zorder=-1)
-            p = self.CreatePatches(ra_deg, dec_deg, d, "deg", layer.alpha, layer.cmap)
+            p = self.CreatePatches(ra_deg, dec_deg, d, "deg", layer.alpha, cmap)
+            ax.get_xaxis().set_visible(self.labels)
+            ax.get_yaxis().set_visible(self.labels)
+            if (self.zoom):
+                plt.axis([np.min(ra_deg), np.max(ra_deg), np.min(dec_deg), np.max(dec_deg)])
         
         ax.add_collection(p)
         
@@ -129,14 +153,17 @@ class DensityPlot():
         else:
             # zero margins
             plt.subplots_adjust(left=0.01, bottom=0.01, right=0.99, top=0.99, wspace=0, hspace=0)
-            ax.get_xaxis().set_visible(self.labels)
-            ax.get_yaxis().set_visible(self.labels)
+        
         
         # get buffer
         fig.canvas.draw()
         buf = np.frombuffer(fig.canvas.buffer_rgba(), np.uint8).reshape(self.height, self.width, -1).copy()
-        fig.clf()
         buf[buf[:, :, -1] == 0] = 0
+        
+        fig.clf()
+        plt.close(fig)
+        del fig
+        
         return buf
         
             
@@ -146,17 +173,6 @@ class DensityPlot():
     #    #    grid_alpha = 0.4
     #    #ax.gridlines(zorder=11, crs=ccrs.PlateCarree(), draw_labels=True,
     #    #                  linewidth=1, color='gray', alpha=grid_alpha)
-    #    
-    #    #plt.axis([np.min(self.ra_deg), np.max(self.ra_deg), np.min(self.dec_deg), np.max(self.dec_deg)])
-    #    self.ax.add_collection(p)
-    #    return ax
-        
-    #def AddLayer_Aitoff(self, fig, cmap):        
-    #    ax = plt.subplot(111, facecolor="black", projection="aitoff")
-    #    ax.add_collection(p)
-    #    #ax.xaxis.set_major_formatter(plt.NullFormatter())
-    #    
-    #    return ax
 
     def CreatePatches(self, ra, dec, d, unit, alpha, cmap):
         patches = []

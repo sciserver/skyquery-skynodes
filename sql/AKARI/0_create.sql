@@ -17,6 +17,7 @@
 
 --/ <summary> The AKARI/IRC Point Source Catalogue Version 1.0 provides positions and fluxes of 870,973 sources (844,649 sources in 9µm band and 194,551 sources in 18µm band) in the Mid-Infrared wavelengths.</summary>
 --/ <remarks></remarks>
+--/ <icon>AKARI_IRC.png</icon>
 CREATE TABLE dbo.IRC 
 (
 	--/ <summary> AKARI source ID number. </summary>	--/ <quantity>meta.id</quantity>
@@ -193,6 +194,7 @@ GO
 
 --/ <summary> The AKARI/FIS Bright Source Catalogue Version 1.0 provides the positions and fluxes of 427,071 point sources in the four far-infrared wavelengths centred at 65, 90, 140, and 160 μm. The sensitivity in the 90 μm band is about 0.55 Jy.</summary>
 --/ <remarks></remarks>
+--/ <icon>AKARI_FIS.png</icon>
 CREATE TABLE dbo.FIS 
 (
 	--/ <summary> Internal Object ID. A unique number for each object in the catalogue. This is mostly for internal use in the

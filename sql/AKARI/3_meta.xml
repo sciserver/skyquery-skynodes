@@ -13,6 +13,7 @@
   </dataset>
   <table name="[dbo].[IRC]">
     <remarks></remarks>
+    <icon>AKARI_IRC.png</icon>
     <column name="[objID]">
       <summary> AKARI source ID number. </summary>
       <quantity>meta.id</quantity>
@@ -229,6 +230,7 @@
   </table>
   <table name="[dbo].[FIS]">
     <remarks></remarks>
+    <icon>AKARI_FIS.png</icon>
     <column name="[objID]">
       <summary>
         Internal Object ID. A unique number for each object in the catalogue. This is mostly for internal use in the

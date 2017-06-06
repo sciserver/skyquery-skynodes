@@ -12,6 +12,7 @@
   </dataset>
   <table name="[dbo].[PhotoObj]">
     <remarks> All exposures were made using 'I ' band and 'V ' band filters, and were transformed into the standard 'I ' and 'V ' system using Landolt and Hipparcos. In most cases photometry is accurate to about 0.05 mag, but in many cases (due to problems with flatfielding and lack of colour information) errors could be 0.1 mag or larger. Positions are very inaccurate. </remarks>
+    <icon>acvs.png</icon>
     <column name="[objID]">
       <summary> Unique ID. </summary>
       <quantity>meta.record</quantity>
