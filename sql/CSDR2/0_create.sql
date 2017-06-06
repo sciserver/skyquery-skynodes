@@ -3,7 +3,7 @@
 --/ <remarks>
 --/ The catalog contains ~47,000 periodic variables within a 20,000 square degree region covered by the Catalina Surveys Data Release-1 (CSDR1).
 --/ </remarks>
---/ <url>http://nesssi.cacr.caltech.edu/DataRelease/Varcat.html</url>
+--/ <url>http://nesssi.cacr.caltech.edu/DataRelease/</url>
 --/ <icon>csdr2.png</icon>
 --/ <docpage>csdr2.html</docpage>
 --/ </dataset>
@@ -46,11 +46,11 @@ CREATE TABLE dbo.PhotoObj
 	[cz] [float] NOT NULL,
 
 	--/ <summary> HTM ID</summary>
-	--/ <quantity>pos.HTM;pos.eq</quantity>
+	--/ <quantity>pos.eq.HTM</quantity>
 	[htmid] [bigint] NOT NULL,
 
 	--/ <summary> Zone ID </summary>
-	--/ <quantity>pos.zone;pos.eq</quantity>
+	--/ <quantity>pos.eq.zone</quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> Magnitude in V band. </summary>

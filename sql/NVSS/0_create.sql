@@ -40,11 +40,11 @@ CREATE TABLE [dbo].[PhotoObj](
 	[cz] [float] NOT NULL, 
 
 	--/ <summary>htmid for spatial searches</summary>
-	--/ <quantity>pos.htm; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.HTM; pos.frame=j2000</quantity>
 	[htmid] [bigint] NOT NULL, 
 
 	--/ <summary> Zone ID</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone;pos.frame=j2000</quantity>
 	[zoneid] [bigint] NOT NULL, 
 
 	--/ <summary>Estimate of J2000 right ascension standard deviation</summary>

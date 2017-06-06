@@ -9,7 +9,7 @@
       up to 8 billion years (redshift z=1).
       There are 7 fields with average area of 140 square degrees totaling ~1000 square degrees. The 7
       fields overlap with GALEX, SDSS, and RCS2 in 00, 01, 03, 09, 11, 15, 22 hr fields.</remarks>
-    <url>http://wigglez.swin.edu.au/site/data.html</url>
+    <url>http://wigglez.swin.edu.au/site/index.html</url>
     <icon>wigglez.png</icon>
     <docpage>wigglez.html</docpage>
   </dataset>
@@ -29,11 +29,11 @@
     </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
-      <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+      <quantity>pos.eq.HTM; pos.frame=j2000</quantity>
     </column>
     <column name="[zoneid]">
       <summary> Zone ID </summary>
-      <quantity>pos.zone</quantity>
+      <quantity>pos.eq.zone;pos.frame=j2000</quantity>
     </column>
     <column name="[ID]">
       <summary>

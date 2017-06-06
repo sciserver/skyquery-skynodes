@@ -38,11 +38,11 @@
     </column>
     <column name="[htmid]">
       <summary>htmid for spatial search</summary>
-      <quantity>pos.HTM;pos.eq;pos.frame=j2000</quantity>
+      <quantity>pos.eq.HTM;pos.frame=j2000</quantity>
     </column>
     <column name="[zoneid]">
       <summary>zoneid for spatial search</summary>
-      <quantity>pos.zone;pos.eq;pos.frame=j2000</quantity>
+      <quantity>pos.eq.zone;pos.frame=j2000</quantity>
     </column>
     <column name="[band]">
       <summary>master coordinate origin</summary>

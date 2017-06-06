@@ -1456,11 +1456,11 @@ CREATE TABLE PhotoObjAll (
 	loadVersion      [int] NOT NULL,
 
     --/ <summary>20-deep hierarchical trangular mesh ID of this object</summary>
-	--/ <quantity>pos.HTM;pos.eq;pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.HTM;pos.frame=j2000</quantity>
 	htmID            bigint NOT NULL,
 
     --/ <summary>Zone ID</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone</quantity>
 	zoneID            bigint NOT NULL,
 	
     --/ <summary>Link to the field this object is in</summary>

@@ -5,7 +5,7 @@
 --/ targeting galaxies in the ``redshift desert'' between z=1 and z=2. The primary goal of the 
 --/ survey is to constrain the space density at high redshift of evolved high-mass galaxies.
 --/ </remarks>
---/ <url>http://www.gemini.edu/node/18</url>
+--/ <url>http://vizier.cfa.harvard.edu/viz-bin/VizieR?-source=J/AJ/127/2455</url>
 --/ <icon>gdds.png</icon>
 --/ <docpage>gdds.html</docpage>
 --/ </dataset>
@@ -31,11 +31,11 @@ CREATE TABLE dbo.SpecObj
 	[cz] [float] NOT NULL,
 
 	--/ <summary> HTM ID (J2000)</summary>
-	--/ <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.HTM; pos.frame=j2000</quantity>
 	[htmid] bigint NOT NULL,
 
 	--/ <summary> Zone ID </summary>
-	--/ <quantity>pos.zone; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.zone; pos.frame=j2000</quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> Sequential Number </summary>

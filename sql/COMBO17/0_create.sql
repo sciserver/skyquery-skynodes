@@ -12,7 +12,7 @@
 --/ galaxies with R&gt;24. The selection of stars is complete to R~23, and deeper for M stars. We also present an updated discussion of our 
 --/ classification technique with maps of survey completeness, and discuss possible failures of the statistical classification in the faint regime at R&gt;24. 
 --/ </remarks>
---/ <url>http://www.mpia.de/COMBO/combo_CDFSpublic.html</url>
+--/ <url>http://nesssi.cacr.caltech.edu/DataRelease/http://www.mpia.de/COMBO/combo_index.html</url>
 --/ <icon>combo17.png</icon>
 --/ <docpage>combo17.html</docpage>
 --/ </dataset>
@@ -33,10 +33,10 @@ CREATE TABLE dbo.PhotoObj
 	--/ <summary> Cartesian Z (J2000)</summary>	--/ <quantity>pos.eq.z;pos.frame=j2000</quantity>
 	[cz] [float] NOT NULL,
 
-	--/ <summary> HTM ID (J2000)</summary>	--/ <quantity>pos.HTM; pos.eq; pos.frame=J2000</quantity>
+	--/ <summary> HTM ID (J2000)</summary>	--/ <quantity>pos.eq.HTM; pos.frame=J2000</quantity>
 	[htmid] [bigint] NOT NULL,
 
-	--/ <summary> Zone ID </summary>	--/ <quantity>pos.zone; pos.eq; pos.frame=J2000</quantity>
+	--/ <summary> Zone ID </summary>	--/ <quantity>pos.eq.zone; pos.frame=J2000</quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> Sequential number (unique object ID) </summary>	--/ <quantity>meta.id</quantity>

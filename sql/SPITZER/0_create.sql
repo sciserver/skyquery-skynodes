@@ -6,7 +6,7 @@
 --/ most powerful ground-based facilities. The survey consists of two 10x16.5 arcmin fields: GOODS-N 
 --/ coincides with the Hubble Deep Field North, while GOODS-S coincides with the Chandra Deep Field South.
 --/ </remarks>
---/ <url>http://irsa.ipac.caltech.edu/data/SPITZER/GOODS/</url>
+--/ <url>http://irsa.ipac.caltech.edu/data/SPITZER/GOODS/overview.html</url>
 --/ <icon>spitzer.png</icon>
 --/ <docpage>spitzer.html</docpage>
 --/ </dataset>
@@ -31,11 +31,11 @@ CREATE TABLE dbo.goodsnIRS16micron
 	[cz] [float] NOT NULL,
 
 	--/ <summary> HTM ID (J2000)</summary>
-	--/ <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.HTM; pos.frame=j2000</quantity>
 	[htmid] bigint NOT NULL,
 
 	--/ <summary> Zone ID (J2000)</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone;pos.frame=j2000</quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> Sequential ID </summary>
@@ -242,11 +242,11 @@ CREATE TABLE dbo.goodsnMIPS24micron
 	[cz] [float] NOT NULL,
 
 	--/ <summary> HTM ID (J2000)</summary>
-	--/ <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.HTM; pos.frame=j2000</quantity>
 	[htmid] bigint NOT NULL,
 
 	--/ <summary> Zone ID (J2000)</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone;pos.frame=j2000</quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> Sequential ID </summary>
@@ -325,11 +325,11 @@ CREATE TABLE dbo.goodssIRS16micron
 	[cz] [float] NOT NULL,
 
 	--/ <summary> HTM ID (J2000)</summary>
-	--/ <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.HTM; pos.frame=j2000</quantity>
 	[htmid] bigint NOT NULL,
 
 	--/ <summary> Zone ID (J2000)</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone;pos.frame=j2000</quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> Sequential ID </summary>
@@ -535,11 +535,11 @@ CREATE TABLE dbo.goodssMIPS24micron
 	[cz] [float] NOT NULL,
 
 	--/ <summary> HTM ID (J2000)</summary>
-	--/ <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.HTM; pos.frame=j2000</quantity>
 	[htmid] bigint NOT NULL,
 
 	--/ <summary> Zone ID (J2000)</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone;pos.frame=j2000</quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> Sequential ID </summary>

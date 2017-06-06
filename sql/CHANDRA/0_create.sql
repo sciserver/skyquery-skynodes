@@ -43,10 +43,10 @@ CREATE TABLE dbo.PhotoObj
 	--/ <summary> Cartesian Z (J2000)</summary>	--/ <quantity>pos.eq.z; pos.frame=icrs</quantity>
 	[cz] [float] NOT NULL,
 
-	--/ <summary> HTM ID (J2000)</summary>	--/ <quantity>pos.HTM; pos.eq; pos.frame=icrs</quantity>
+	--/ <summary> HTM ID (J2000)</summary>	--/ <quantity>pos.eq.HTM; pos.frame=icrs</quantity>
 	[htmid] bigint NOT NULL,
 
-	--/ <summary> Zone ID </summary>	--/ <quantity>pos.zone; pos.eq; pos.frame=icrs</quantity>
+	--/ <summary> Zone ID </summary>	--/ <quantity>pos.eq.zone; pos.frame=icrs</quantity>
 	[zoneid] int NOT NULL,
 	
 	--/ <summary> [0.03/158] Position error radius at 95% confidence level. </summary>	--/ <quantity>stat.error;pos.errorEllipse</quantity>

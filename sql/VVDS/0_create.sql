@@ -7,7 +7,7 @@
 --/   a redshift could not be measured for 961 objects. There are 1065 galaxies with a measured redshift
 --/   z≥1.4.
 --/ </remarks>
---/ <url>http://vizier.cfa.harvard.edu/viz-bin/VizieR?-source=III/250</url>
+--/ <url>http://cesam.lam.fr/vvdsproject/index.html</url>
 --/ <icon>vvds.png</icon>
 --/ <docpage>vvds.html</docpage>
 --/ </dataset>
@@ -32,11 +32,11 @@ CREATE TABLE dbo.SpecObj
 	[cz] [float] NOT NULL,
 
 	--/ <summary> HTM ID (J2000)</summary>
-	--/ <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.HTM; pos.frame=j2000</quantity>
 	[htmid] bigint NOT NULL,
 
 	--/ <summary> Zone ID </summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone;pos.frame=j2000</quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> Observation identification </summary>

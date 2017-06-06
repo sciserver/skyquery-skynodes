@@ -4,7 +4,7 @@
     <summary>  	Nine-year WMAP point source catalogs </summary>
     <remarks>
       Nine-year WMAP point source catalogs</remarks>
-    <url>http://vizier.u-strasbg.fr/viz-bin/VizieR?-source=J/ApJS/208/20</url>
+    <url>https://heasarc.gsfc.nasa.gov/W3Browse/radio-catalog/wmapptsrc.html</url>
     <icon>wmap.png</icon>
     <docpage>wmap.html</docpage>
   </dataset>
@@ -24,11 +24,11 @@
     </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
-      <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+      <quantity>pos.eq.HTM; pos.frame=j2000</quantity>
     </column>
     <column name="[zoneid]">
       <summary> Zone ID </summary>
-      <quantity>pos.zone</quantity>
+      <quantity>pos.eq.zone;pos.frame=j2000</quantity>
     </column>
     <column name="[seqID]">
       <summary> Sequential ID </summary>
@@ -142,11 +142,11 @@
     </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
-      <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+      <quantity>pos.eq.HTM; pos.frame=j2000</quantity>
     </column>
     <column name="[zoneid]">
       <summary> Zone ID </summary>
-      <quantity>pos.zone</quantity>
+      <quantity>pos.eq.zone;pos.frame=j2000</quantity>
     </column>
     <column name="[seqID]">
       <summary> Sequential ID </summary>

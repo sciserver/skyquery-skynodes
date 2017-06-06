@@ -3,7 +3,7 @@
 --/ <remarks>
 --/ The DEEP2 DR4 redshift catalog includes 50,319 entries, with 36 fields (or tags) per entry. 
 --/ </remarks>
---/ <url>http://deep.ps.uci.edu/DR4/zcatalog.html</url>
+--/ <url>http://deep.ps.uci.edu/DR4/home.html</url>
 --/ <icon>deep2dr4.png</icon>
 --/ <docpage>deep2dr4.html</docpage>
 --/ </dataset>
@@ -30,11 +30,11 @@ CREATE TABLE dbo.SpecObj
 	[cz] [float] NOT NULL,
 
 	--/ <summary> HTM ID (J2000)</summary>
-	--/ <quantity>pos.HTM; pos.eq; pos.frame=J2000</quantity>
+	--/ <quantity>pos.eq.HTM; pos.frame=J2000</quantity>
 	[htmid] [bigint] NOT NULL,
 
 	--/ <summary> Zone ID </summary>
-	--/ <quantity>pos.zone; pos.eq; pos.frame=J2000</quantity>
+	--/ <quantity>pos.eq.zone; pos.frame=J2000</quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> DEEP2 object number </summary>

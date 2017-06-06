@@ -24,11 +24,11 @@
     </column>
     <column name="[htmid]">
       <summary> HTM ID (ICRS)</summary>
-      <quantity>pos.HTM; pos.eq; pos.frame=icrs</quantity>
+      <quantity>pos.eq.HTM; pos.frame=icrs</quantity>
     </column>
     <column name="[zoneid]">
       <summary> Zone ID </summary>
-      <quantity>pos.zone</quantity>
+      <quantity>pos.eq.zone;pos.frame=icrs</quantity>
     </column>
     <column name="[seqID]">
       <summary> sequential ID </summary>

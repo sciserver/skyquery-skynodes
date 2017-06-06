@@ -28,11 +28,11 @@ CREATE TABLE dbo.SpecObj
 	[cz] [float] NOT NULL,
 
 	--/ <summary> HTM ID </summary>
-	--/ <quantity>pos.HTM; pos.eq; pos.frame=icrs</quantity>
+	--/ <quantity>pos.eq.HTM; pos.frame=icrs</quantity>
 	[htmid] bigint NOT NULL,
 
 	--/ <summary> Zone ID </summary>
-	--/ <quantity>pos.zone; pos.eq; pos.frame=icrs</quantity>
+	--/ <quantity>pos.eq.zone; pos.frame=icrs</quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> Identifying serial number. Objects in fields SA57, SA68, Her1, and Lynx2 begin with the digit 1, 2, 3, and 4, respectively.</summary>

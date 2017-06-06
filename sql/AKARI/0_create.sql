@@ -6,7 +6,7 @@
 --/ a 68.5cm telescope cooled down to 6K, and observed in the wavelength 
 --/ range from 1.7 (near-infrared) to 180 (far-infrared) micrometer. 
 --/ </remarks>
---/ <url>http://www.ir.isas.jaxa.jp/AKARI/Archive/Catalogues/PSC/</url>
+--/ <url>http://www.ir.isas.jaxa.jp/AKARI/</url>
 --/ <icon>akari.png</icon>
 --/ <docpage>akari.html</docpage>
 --/ </dataset>
@@ -46,10 +46,10 @@ CREATE TABLE dbo.IRC
 	--/ <summary> Cartesian Z (J2000)</summary>	--/ <quantity>pos.eq.z;pos.frame=j2000</quantity>
 	[cz] [float] NOT NULL,
 
-	--/ <summary> HTM ID (J2000)</summary>	--/ <quantity>pos.HTM; pos.eq; pos.frame=J2000</quantity>
+	--/ <summary> HTM ID (J2000)</summary>	--/ <quantity>pos.eq.HTM; pos.frame=J2000</quantity>
 	[htmid] bigint NOT NULL,
 
-	--/ <summary> Zone ID </summary>	--/ <quantity>pos.zone; pos.eq; pos.frame=J2000</quantity>
+	--/ <summary> Zone ID </summary>	--/ <quantity>pos.eq.zone; pos.frame=J2000</quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> Position error major axis. One-sigma error of the source position expressed by an ellipse with Major and Minor axes
@@ -224,10 +224,10 @@ CREATE TABLE dbo.FIS
 	--/ <summary> Cartesian Z (J2000)</summary>	--/ <quantity>pos.eq.z;pos.frame=j2000</quantity>
 	[cz] [float] NOT NULL,
 
-	--/ <summary> HTM ID (J2000)</summary>	--/ <quantity>pos.HTM; pos.eq; pos.frame=J2000</quantity>
+	--/ <summary> HTM ID (J2000)</summary>	--/ <quantity>pos.eq.HTM; pos.frame=J2000</quantity>
 	[htmid] bigint NOT NULL,
 
-	--/ <summary> Zone ID </summary>	--/ <quantity>pos.zone; pos.eq; pos.frame=J2000</quantity>
+	--/ <summary> Zone ID </summary>	--/ <quantity>pos.eq.zone; pos.frame=J2000</quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> Position error major axis. One-sigma error of the source position expressed by an ellipse with Major (POSERRMJ) and Minor axes (POSERRMI)

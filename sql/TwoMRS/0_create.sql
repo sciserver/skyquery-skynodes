@@ -1,9 +1,9 @@
 --/ <dataset>
 --/ <summary> The 2MASS Redshift Survey </summary>
 --/ <remarks>
---/ 
+--/ The 2MASS Redshift Survey (2MRS) aims to map the distribution of galaxies and dark matter in the local universe, out to a mean redshift of z = 0.03 (roughly equivalent to 115 Mpc or 370 million light-years). 2MRS is based on galaxy selection in the near infra-red from the Two Micron All-Sky Survey (2MASS). 2MRS ultimately aims to determine the redshifts of all galaxies in the 2MASS extended source catalog (XSC) to a magnitude of K=12.2 mag (about 100,000 galaxies) and to within 5 deg of the Galactic plane. 
 --/ </remarks>
---/ <url>http://vizier.cfa.harvard.edu/viz-bin/VizieR?-source=J/ApJS/199/26</url>
+--/ <url>https://www.cfa.harvard.edu/~dfabricant/huchra/2mass/</url>
 --/ <icon>twomrs.png</icon>
 --/ <docpage>twomrs.html</docpage>
 --/ </dataset>
@@ -28,11 +28,11 @@ CREATE TABLE dbo.SpecObj
 	[cz] [float] NOT NULL,
 
 	--/ <summary> HTM ID (J2000)</summary>
-	--/ <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.HTM; pos.frame=j2000</quantity>
 	[htmid] bigint NOT NULL,
 
 	--/ <summary> Zone ID </summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone;pos.frame=j2000</quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> 2MASS ID from XSC (Cat. VII/233) or 2MASS Large Galaxy Atlas (LGA) databases (Jarrett et al. 2003AJ....125..525J)  </summary>

@@ -9,7 +9,7 @@
 --/ mv~23 limit of SDSS, ~30% of the optical counterparts to FIRST sources are detected. unambiguous 
 --/ optical identifications (&lt;5% false rates) are achievable to mv~24. 
 --/ </remarks>
---/ <url>http://sundog.stsci.edu/first/catalogs/</url>
+--/ <url>http://sundog.stsci.edu/index.html</url>
 --/ <icon>first.png</icon>
 --/ <docpage>first.html</docpage>
 --/ </dataset>
@@ -73,11 +73,11 @@ CREATE TABLE dbo.PhotoObj
 	[cz] [float] NOT NULL,
 
 	--/ <summary>HTM ID (J2000)</summary>
-	--/ <quantity>pos.HTM;pos.eq;pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.HTM;pos.frame=j2000</quantity>
 	[htmid] [bigint] NOT NULL,
 
 	--/ <summary> Zone ID </summary>
-	--/ <quantity>pos.zone;pos.eq;pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.zone;pos.frame=j2000</quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> Ps indicates the probability that the source is spurious (most commonly because it is a sidelobe 

@@ -54,11 +54,11 @@
     </column>
     <column name="[htmId]">
       <summary>Equatorial HTM ID (J2000)</summary>
-      <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+      <quantity>pos.eq.HTM; pos.frame=j2000</quantity>
     </column>
     <column name="[zoneId]">
       <summary>Equatorial Zone ID (J2000)</summary>
-      <quantity>pos.zone; pos.eq; pos.frome=j2000</quantity>
+      <quantity>pos.eq.zone; pos.frome=j2000</quantity>
     </column>
     <column name="[mag_1]">
       <summary>Magnitude 1</summary>

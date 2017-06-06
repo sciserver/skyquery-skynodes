@@ -28,11 +28,11 @@ CREATE TABLE dbo.SpecObj
 	[cz] [float] NOT NULL,
 
 	--/ <summary> HTM ID (J2000)</summary>
-	--/ <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.HTM; pos.frame=j2000</quantity>
 	[htmid] bigint NOT NULL,
 
 	--/ <summary> Zone ID </summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone; pos.frame=j2000</quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> Object name (Field-Identifier) </summary>
@@ -149,11 +149,11 @@ CREATE TABLE dbo.DeepImagingObs
 	[cz] [float] NOT NULL,
 
 	--/ <summary> HTM ID (J2000)</summary>
-	--/ <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.HTM; pos.frame=j2000</quantity>
 	[htmid] bigint NOT NULL,
 
 	--/ <summary> Zone ID </summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone; pos.frame=j2000</quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> sequential ID </summary>

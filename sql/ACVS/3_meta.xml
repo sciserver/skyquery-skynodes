@@ -6,7 +6,7 @@
       The ASAS-3 Catalog of Variable Stars contains over 10,000 eclipsing binaries,
       almost 8,000 periodic pulsating and over 31,000 irregular stars found among
       15,000,000 stars on the sky south of the declination +28 (512 fields).</remarks>
-    <url>http://www.astrouw.edu.pl/asas/?page=download</url>
+    <url>http://www.astrouw.edu.pl/asas/?page=main</url>
     <icon>acvs.png</icon>
     <docpage>acvs.html</docpage>
   </dataset>
@@ -33,23 +33,23 @@
     </column>
     <column name="[cx]">
       <summary> Cartesian X (J2000)</summary>
-      <quantity>pos.eq.x</quantity>
+      <quantity>pos.eq.x;pos.frame=j2000</quantity>
     </column>
     <column name="[cy]">
       <summary> Cartesian Y (J2000)</summary>
-      <quantity>pos.eq.y</quantity>
+      <quantity>pos.eq.y;pos.frame=j2000</quantity>
     </column>
     <column name="[cz]">
       <summary> Cartesian Z (J2000)</summary>
-      <quantity>pos.eq.z</quantity>
+      <quantity>pos.eq.z;pos.frame=j2000</quantity>
     </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
-      <quantity>pos.HTM</quantity>
+      <quantity>pos.eq.HTM;pos.frame=j2000</quantity>
     </column>
     <column name="[zoneid]">
       <summary> Zone ID </summary>
-      <quantity>pos.zone</quantity>
+      <quantity>pos.eq.zone;;pos.frame=j2000</quantity>
     </column>
     <column name="[PER]">
       <summary> Period in days (or characteristic time scale of variation for irregular objects). </summary>

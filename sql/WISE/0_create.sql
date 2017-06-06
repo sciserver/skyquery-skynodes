@@ -44,11 +44,11 @@ CREATE TABLE [dbo].[PhotoObj]
 	[cz] [float] NOT NULL,
 
 	--/ <summary>HTM ID (J2000)</summary>
-	--/ <quantity>pos.HTM; pos.eq; pos.frame=J2000</quantity>
+	--/ <quantity>pos.eq.HTM; pos.frame=J2000</quantity>
 	[htmid] [bigint] NOT NULL,
 
 	--/ <summary>ZoneID ID (J2000)</summary>
-	--/ <quantity>pos.zone; pos.eq; pos.frame=J2000</quantity>
+	--/ <quantity>pos.eq.zone; pos.frame=J2000</quantity>
 	[zoneid] [bigint] NOT NULL,
 
 	--/ <summary>uncertainty in RA</summary>

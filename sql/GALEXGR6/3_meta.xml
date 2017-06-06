@@ -64,11 +64,11 @@
     </column>
     <column name="[htmId]">
       <summary>20-deep hierarchical trangular mesh ID of this object.</summary>
-      <quantity>pos.htm;pos.eq;pos.frame=j2000</quantity>
+      <quantity>pos.eq.HTM;pos.frame=j2000</quantity>
     </column>
     <column name="[zoneId]">
       <summary>zone ID</summary>
-      <quantity>pos.zone</quantity>
+      <quantity>pos.eq.zone;pos.frame=j2000</quantity>
     </column>
   </table>
   <table name="[dbo].[DataConstants]">
@@ -330,11 +330,11 @@
     </column>
     <column name="[htmid]">
       <summary>20-deep hierarchical trangular mesh ID of this object.</summary>
-      <quantity>pos.htm;pos.eq;pos.frame=j2000</quantity>
+      <quantity>pos.eq.HTM;pos.frame=j2000</quantity>
     </column>
     <column name="[zoneid]">
       <summary>zone ID</summary>
-      <quantity>pos.zone</quantity>
+      <quantity>pos.eq.zone;pos.frame=j2000</quantity>
     </column>
   </table>
   <table name="[dbo].[ImgRun]">
@@ -1670,11 +1670,11 @@
     </column>
     <column name="[htmID]">
       <summary>20-deep hierarchical trangular mesh ID of this object.</summary>
-      <quantity>pos.htm;pos.eq</quantity>
+      <quantity>pos.eq.HTM</quantity>
     </column>
     <column name="[zoneID]">
       <summary>zone ID</summary>
-      <quantity>pos.zone</quantity>
+      <quantity>pos.eq.zone</quantity>
     </column>
   </table>
   <table name="[dbo].[photoobjall]">
@@ -3220,11 +3220,11 @@
     </column>
     <column name="[htmID]">
       <summary>20-deep hierarchical trangular mesh ID of this object.</summary>
-      <quantity>pos.HTM</quantity>
+      <quantity>pos.eq.HTM</quantity>
     </column>
     <column name="[zoneID]">
       <summary>Zone ID</summary>
-      <quantity>pos.zone</quantity>
+      <quantity>pos.eq.zone</quantity>
     </column>
   </table>
   <table name="[dbo].[PSExtract]">
@@ -3332,11 +3332,11 @@
     </column>
     <column name="[htmId]">
       <summary>20-deep hierarchical trangular mesh ID of this object.</summary>
-      <quantity>pos.HTM</quantity>
+      <quantity>pos.eq.HTM</quantity>
     </column>
     <column name="[zoneId]">
       <summary>Zone ID</summary>
-      <quantity>pos.zone</quantity>
+      <quantity>pos.eq.zone</quantity>
     </column>
   </table>
   <table name="[dbo].[visitimg]">
@@ -3559,11 +3559,11 @@
     </column>
     <column name="[htmid]">
       <summary>20-deep hierarchical trangular mesh ID of this object.</summary>
-      <quantity>pos.HTM</quantity>
+      <quantity>pos.eq.HTM</quantity>
     </column>
     <column name="[zoneid]">
       <summary>Zone ID</summary>
-      <quantity>pos.zone</quantity>
+      <quantity>pos.eq.zone</quantity>
     </column>
   </table>
   <table name="[dbo].[visitphotoextract]">
@@ -4826,11 +4826,11 @@
     </column>
     <column name="[htmID]">
       <summary>20-deep hierarchical trangular mesh ID of this object.</summary>
-      <quantity>pos.htm;pos.eq</quantity>
+      <quantity>pos.eq.HTM</quantity>
     </column>
     <column name="[zoneID]">
       <summary>zone ID</summary>
-      <quantity>pos.zone</quantity>
+      <quantity>pos.eq.zone</quantity>
     </column>
   </table>
   <table name="[dbo].[visitphotoobjall]">
@@ -6376,11 +6376,11 @@
     </column>
     <column name="[htmID]">
       <summary>20-deep hierarchical trangular mesh ID of this object.</summary>
-      <quantity>pos.HTM</quantity>
+      <quantity>pos.eq.HTM</quantity>
     </column>
     <column name="[zoneID]">
       <summary>Zone ID</summary>
-      <quantity>pos.zone</quantity>
+      <quantity>pos.eq.zone</quantity>
     </column>
   </table>
 </metadata>

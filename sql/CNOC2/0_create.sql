@@ -3,7 +3,7 @@
 --/ <remarks>
 --/ The Canadian Network for Observational Cosmology (CNOC2) Field Galaxy Redshift Survey is a spectroscopic/photometric survey of faint galaxies over 1.5 deg2 of sky with a nominal spectroscopic limit of RC~21.5 mag. The survey area contains four widely separated patches on the sky with a total sample of over 6000 redshifts, representing a sampling rate of about 45%. In addition, five-color photometry (in IC, RC, V, B, and U) for a complete sample of approximately 40,000 galaxies to RC~23.0 mag is also available. 
 --/ </remarks>
---/ <url>http://vizier.cfa.harvard.edu/viz-bin/VizieR?-source=J/ApJS/129/475</url>
+--/ <url>http://www.astro.utoronto.ca/~cnoc/cnoc2.html</url>
 --/ <icon>cnoc2.png</icon>
 --/ <docpage>cnoc2.html</docpage>
 --/ </dataset>
@@ -39,10 +39,10 @@ CREATE TABLE dbo.SpecObj
 	--/ <summary> Cartesian Z (J2000)</summary>	--/ <quantity>pos.eq.z;pos.frame=j2000</quantity>
 	[cz] [float] NOT NULL,
 
-	--/ <summary> HTM ID (J2000)</summary>	--/ <quantity>pos.HTM; pos.eq; pos.frame=J2000</quantity>
+	--/ <summary> HTM ID (J2000)</summary>	--/ <quantity>pos.eq.HTM; pos.frame=J2000</quantity>
 	[htmid] [bigint] NOT NULL,
 
-	--/ <summary> Zone ID </summary>	--/ <quantity>pos.zone; pos.eq; pos.frame=J2000</quantity>
+	--/ <summary> Zone ID </summary>	--/ <quantity>pos.eq.zone; pos.frame=J2000</quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> Redshift  </summary>	--/ <quantity>src.redshift</quantity>

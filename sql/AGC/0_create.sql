@@ -46,11 +46,11 @@ CREATE TABLE [dbo].[PhotoObj](
 	[cz] [float] NOT NULL, 
 
 	--/ <summary>the htmid of the object</summary>
-	--/ <quantity>pos.HTM; pos.eq; pos.frame=J2000</quantity>
+	--/ <quantity>pos.eq.HTM;pos.frame=J2000</quantity>
 	[htmID] [bigint] NOT NULL, 
 
 	--/ <summary>the zoneid of the object</summary>
-	--/ <quantity>pos.zone; pos.eq; pos.frame=J2000</quantity>
+	--/ <quantity>pos.eq.zone;;pos.frame=J2000</quantity>
 	[zoneID] [bigint] NOT NULL, 
 
 	--/ <summary>Major axis</summary>

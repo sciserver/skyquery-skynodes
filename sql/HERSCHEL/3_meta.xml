@@ -4,7 +4,7 @@
     <summary> Herschel - The Great Observatories Origins Deep Survey </summary>
     <remarks>
       The database contains the deepest 100 to 500 �m far-infrared observations obtained with the Herschel Space Observatory as part of the GOODS-Herschel key program.</remarks>
-    <url>http://irsa.ipac.caltech.edu/data/Herschel/GOODS/</url>
+    <url>http://hedam.lam.fr/GOODS-Herschel/</url>
     <icon>herschel.png</icon>
     <docpage>herschel.html</docpage>
   </dataset>
@@ -24,7 +24,7 @@
     </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
-      <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+      <quantity>pos.eq.HTM; pos.frame=j2000</quantity>
     </column>
     <column name="[objID]">
       <summary> Sequential id </summary>
@@ -32,7 +32,7 @@
     </column>
     <column name="[zoneid]">
       <summary> Zone ID (J2000)</summary>
-      <quantity>pos.zone; pos.eq; pos.frame=j2000</quantity>
+      <quantity>pos.eq.zone; pos.frame=j2000</quantity>
     </column>
     <column name="[IAU_name]">
       <summary> GOODS IAU coded object identifier </summary>
@@ -418,7 +418,7 @@
     </column>
     <column name="[htmid]">
       <summary> HTM ID (J2000)</summary>
-      <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+      <quantity>pos.eq.HTM; pos.frame=j2000</quantity>
     </column>
     <column name="[objID]">
       <summary> Sequential id </summary>
@@ -426,7 +426,7 @@
     </column>
     <column name="[zoneid]">
       <summary> Zone ID (J2000)</summary>
-      <quantity>pos.zone; pos.eq; pos.frame=j2000</quantity>
+      <quantity>pos.eq.zone; pos.frame=j2000</quantity>
     </column>
     <column name="[IAU_name]">
       <summary> GOODS IAU coded object identifier </summary>

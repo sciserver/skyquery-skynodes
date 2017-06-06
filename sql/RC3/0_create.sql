@@ -6,7 +6,7 @@
 --/ level and total B-band magnitudes BT brighter than about 15.5, with a redshift not in excess of 
 --/ 15,000 km/s.
 --/ </remarks>
---/ <url>http://cdsarc.u-strasbg.fr/viz-bin/Cat?VII/155</url>
+--/ <url>https://heasarc.nasa.gov/W3Browse/all/rc3.html</url>
 --/ <icon>rc3.png</icon>
 --/ <docpage>rc3.html</docpage>
 --/ </dataset>
@@ -52,11 +52,11 @@ CREATE TABLE [dbo].[PhotoObj]
 	[cz] [float] NOT NULL, 
 
 	--/ <summary>htmid for spatial search</summary>
-	--/ <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.HTM; pos.frame=j2000</quantity>
 	[htmid] [bigint] NOT NULL, 
 
 	--/ <summary>zoneid for spatial search</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone;pos.frame=j2000</quantity>
 	[zoneid] [bigint] NOT NULL, 
 
 	--/ <summary>The values of ra/dec are good to 0.1 sec time, 1 asec (otherwise, 0.1 min time, 1 amin)</summary>

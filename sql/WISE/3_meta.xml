@@ -42,11 +42,11 @@
     </column>
     <column name="[htmid]">
       <summary>HTM ID (J2000)</summary>
-      <quantity>pos.HTM; pos.eq; pos.frame=J2000</quantity>
+      <quantity>pos.eq.HTM; pos.frame=J2000</quantity>
     </column>
     <column name="[zoneid]">
       <summary>ZoneID ID (J2000)</summary>
-      <quantity>pos.zone; pos.eq; pos.frame=J2000</quantity>
+      <quantity>pos.eq.zone; pos.frame=J2000</quantity>
     </column>
     <column name="[sigra]">
       <summary>uncertainty in RA</summary>

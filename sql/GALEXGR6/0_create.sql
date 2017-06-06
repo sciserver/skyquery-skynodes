@@ -66,11 +66,11 @@ CREATE TABLE [dbo].[acsData](
 	[cz] [float] NOT NULL,
 
 	--/ <summary>20-deep hierarchical trangular mesh ID of this object.</summary>
-	--/ <quantity>pos.htm;pos.eq;pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.HTM;pos.frame=j2000</quantity>
 	[htmId] [bigint] NOT NULL,
 
 	--/ <summary>zone ID</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone;pos.frame=j2000</quantity>
 	[zoneId] [int] NOT NULL,
 	CONSTRAINT [PK_acsData] PRIMARY KEY CLUSTERED 
 	(
@@ -544,11 +544,11 @@ CREATE TABLE [dbo].[img](
 	[cz] [float] NULL,
 
 	--/ <summary>20-deep hierarchical trangular mesh ID of this object.</summary>
-	--/ <quantity>pos.htm;pos.eq;pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.HTM;pos.frame=j2000</quantity>
 	[htmid] [bigint] NULL,
 
 	--/ <summary>zone ID</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone;pos.frame=j2000</quantity>
 	[zoneid] [int] NULL,
 
  CONSTRAINT [PKImg] PRIMARY KEY CLUSTERED 
@@ -2358,11 +2358,11 @@ CREATE TABLE [dbo].[photoextract](
 	[cz] [float] NULL,
 
 	--/ <summary>20-deep hierarchical trangular mesh ID of this object.</summary>
-	--/ <quantity>pos.htm;pos.eq</quantity>
+	--/ <quantity>pos.eq.HTM</quantity>
 	[htmID] [bigint] NULL,
 
 	--/ <summary>zone ID</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone</quantity>
 	[zoneID] [int] NULL,
  CONSTRAINT [PKPhotoExtract] PRIMARY KEY CLUSTERED 
 (
@@ -3915,11 +3915,11 @@ CREATE TABLE [dbo].[photoobjall](
 	[cz] [float] NULL DEFAULT ((0)),
 
 	--/ <summary>20-deep hierarchical trangular mesh ID of this object.</summary>
-	--/ <quantity>pos.HTM</quantity>
+	--/ <quantity>pos.eq.HTM</quantity>
 	[htmID] [bigint] NULL DEFAULT ((0)),
 
 	--/ <summary>Zone ID</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone</quantity>
 	[zoneID] [int] NULL DEFAULT ((0)),
  CONSTRAINT [PKPhotoObjAll] PRIMARY KEY CLUSTERED 
 (
@@ -4050,11 +4050,11 @@ CREATE TABLE [dbo].[target](
 	[cz] [float] NOT NULL,
 
 	--/ <summary>20-deep hierarchical trangular mesh ID of this object.</summary>
-	--/ <quantity>pos.HTM</quantity>
+	--/ <quantity>pos.eq.HTM</quantity>
 	[htmId] [bigint] NOT NULL,
 
 	--/ <summary>Zone ID</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone</quantity>
 	[zoneId] [int] NOT NULL,
  CONSTRAINT [PK_Target] PRIMARY KEY CLUSTERED 
 (
@@ -5129,11 +5129,11 @@ CREATE TABLE [dbo].[visitimg](
 	[cz] [float] NULL,
 
 	--/ <summary>20-deep hierarchical trangular mesh ID of this object.</summary>
-	--/ <quantity>pos.HTM</quantity>
+	--/ <quantity>pos.eq.HTM</quantity>
 	[htmid] [bigint] NULL,
 
 	--/ <summary>Zone ID</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone</quantity>
 	[zoneid] [int] NULL,
  CONSTRAINT [PKVisitImg] PRIMARY KEY CLUSTERED 
 (
@@ -6859,11 +6859,11 @@ CREATE TABLE [dbo].[visitphotoextract](
 	[cz] [float] NULL,
 
 	--/ <summary>20-deep hierarchical trangular mesh ID of this object.</summary>
-	--/ <quantity>pos.htm;pos.eq</quantity>
+	--/ <quantity>pos.eq.HTM</quantity>
 	[htmID] [bigint] NULL,
 
 	--/ <summary>zone ID</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone</quantity>
 	[zoneID] [int] NULL,
  CONSTRAINT [PKVisitPhotoextract] PRIMARY KEY CLUSTERED 
 (
@@ -8416,11 +8416,11 @@ CREATE TABLE [dbo].[visitphotoobjall](
 	[cz] [float] NULL DEFAULT ((0)),
 
 	--/ <summary>20-deep hierarchical trangular mesh ID of this object.</summary>
-	--/ <quantity>pos.HTM</quantity>
+	--/ <quantity>pos.eq.HTM</quantity>
 	[htmID] [bigint] NULL DEFAULT ((0)),
 
 	--/ <summary>Zone ID</summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone</quantity>
 	[zoneID] [int] NULL DEFAULT ((0)),
  CONSTRAINT [PKVisitPhotoObjAll] PRIMARY KEY CLUSTERED 
 (

@@ -10,7 +10,7 @@
 --/  the CfA (14,632 spectra), and (3) an estimate of the remaining "blunder" rate for both the CfA 
 --/ redshifts and for those compiled from the literature.
 --/ </remarks>
---/ <url>http://vizier.cfa.harvard.edu/viz-bin/VizieR?-source=J/PASP/111/438/catalog</url>
+--/ <url>http://tdc-www.harvard.edu/uzc/</url>
 --/ <icon>ucz.png</icon>
 --/ <docpage>ucz.html</docpage>
 --/ </dataset>
@@ -35,11 +35,11 @@ CREATE TABLE dbo.SpecObj
 	[cz] [float] NOT NULL,
 
 	--/ <summary> HTM ID (J2000)</summary>
-	--/ <quantity>pos.HTM; pos.eq; pos.frame=j2000</quantity>
+	--/ <quantity>pos.eq.HTM; pos.frame=j2000</quantity>
 	[htmid] bigint NOT NULL,
 
 	--/ <summary> Zone ID </summary>
-	--/ <quantity>pos.zone</quantity>
+	--/ <quantity>pos.eq.zone;pos.frame=j2000</quantity>
 	[zoneid] int NOT NULL,
 
 	--/ <summary> Sequential ID </summary>
