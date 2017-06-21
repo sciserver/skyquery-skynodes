@@ -11,8 +11,8 @@
 --/ redshifts and for those compiled from the literature.
 --/ </remarks>
 --/ <url>http://tdc-www.harvard.edu/uzc/</url>
---/ <icon>ucz.png</icon>
---/ <docpage>ucz.html</docpage>
+--/ <icon>uzc.png</icon>
+--/ <docpage>uzc.html</docpage>
 --/ </dataset>
  GO
 
