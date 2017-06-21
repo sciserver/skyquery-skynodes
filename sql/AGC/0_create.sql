@@ -17,6 +17,7 @@
 --/ <remarks>Objects from the Arecibo Galaxy Catalog, which provide 
 --/ HI measurements of about 100,000 bright galaxies. Galaxy redshifts 
 --/ are in km/s</remarks>
+--/ <icon>agc.png</icon>
 --------------------------------------------------------------------------------
 CREATE TABLE [dbo].[PhotoObj](
 

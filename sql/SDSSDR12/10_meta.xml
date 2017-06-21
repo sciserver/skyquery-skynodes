@@ -1,0 +1,14 @@
+<metadata>
+  <dataset>
+    <summary>Sloan Digital Sky Survey Data Release 12</summary>
+	<remarks>
+		Data Release 12 (DR12) is the final data release of the SDSS-III, 
+        containing all SDSS observations through July 2014. It includes the complete 
+        dataset of the BOSS and APOGEE surveys, and also newly includes stellar radial 
+        velocity measurements from MARVELS.
+	</remarks>
+	<url>http://www.sdss.org/dr12/</url>
+	<icon>sdssdr12.png</icon>
+	<docpage>sdssdr12.html</docpage>
+  </dataset>
+</metadata>

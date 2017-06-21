@@ -14,6 +14,7 @@
   </dataset>
   <table name="[dbo].[PhotoObj]">
     <remarks></remarks>
+    <icon>chandra.png</icon>
     <column name="[objID]">
       <summary> Numerical ID. </summary>
       <quantity>meta.record</quantity>

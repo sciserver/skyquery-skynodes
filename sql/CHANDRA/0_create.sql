@@ -18,6 +18,7 @@
 -- CREATE PhotoObj TABLE
 --/ <summary>he Chandra Source Catalog, Version 1.1</summary>
 --/ <remarks></remarks>
+--/ <icon>chandra.png</icon>
 CREATE TABLE dbo.PhotoObj 
 (
 	--/ <summary> Numerical ID. </summary>	--/ <quantity>meta.record</quantity>
